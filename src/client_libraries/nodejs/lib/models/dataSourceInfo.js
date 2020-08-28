@@ -62,7 +62,6 @@ class DataSourceInfo {
    * @property {boolean} [model.pbimashup.fastCombine]
    * @property {boolean} [model.pbimashup.allowNativeQueries]
    * @property {object} [model.pbimashup.queriesMetadata]
-   * @property {array} [model.pbimashup.queryGroups]
    * @property {string} [model.pbimashup.document]
    * @property {array} [model.annotations]
    * @property {array} [model.entities]

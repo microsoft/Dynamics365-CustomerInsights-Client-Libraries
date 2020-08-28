@@ -360,19 +360,10 @@ export interface QueryMetadata {
   loadEnabled?: boolean;
 }
 
-export interface QueryGroupEntity {
-  id?: string;
-  name?: string;
-  description?: string;
-  parentId?: string;
-  order?: number;
-}
-
 export interface Mashup {
   fastCombine?: boolean;
   allowNativeQueries?: boolean;
   queriesMetadata?: { [propertyName: string]: QueryMetadata };
-  queryGroups?: QueryGroupEntity[];
   document?: string;
 }
 
@@ -486,7 +477,8 @@ export interface CIResult {
    * 'pipelineInvalidOrMissingValues', 'pipelineNotFound', 'pipelineRunNotFound',
    * 'amlDatasetNotFound', 'datasetInvalidOrMissingValues', 'duplicateAmlWorkspace',
    * 'servicePrincpalNotFound', 'roleAssignementFailed', 'roleAssignementUnauthorized',
-   * 'invalidDatastoreOrPathParameter', 'tenantNotFound', 'updateTenantFailed', 'invalidTenant',
+   * 'invalidDatastoreOrPathParameter', 'invalidWorkspaceProvider',
+   * 'unsupportedWorkspaceOperation', 'tenantNotFound', 'updateTenantFailed', 'invalidTenant',
    * 'storageContainerNotFound', 'storageValidationFailure', 'invalidStorageType',
    * 'storageNotSupported', 'storageAccessForbidden', 'invalidFilterString', 'storageConflict',
    * 'discoveredNoValidSubscriptions', 'invalidResourceType', 'propertyInvalid',
@@ -811,7 +803,8 @@ export interface ApiErrorResult {
    * 'pipelineInvalidOrMissingValues', 'pipelineNotFound', 'pipelineRunNotFound',
    * 'amlDatasetNotFound', 'datasetInvalidOrMissingValues', 'duplicateAmlWorkspace',
    * 'servicePrincpalNotFound', 'roleAssignementFailed', 'roleAssignementUnauthorized',
-   * 'invalidDatastoreOrPathParameter', 'tenantNotFound', 'updateTenantFailed', 'invalidTenant',
+   * 'invalidDatastoreOrPathParameter', 'invalidWorkspaceProvider',
+   * 'unsupportedWorkspaceOperation', 'tenantNotFound', 'updateTenantFailed', 'invalidTenant',
    * 'storageContainerNotFound', 'storageValidationFailure', 'invalidStorageType',
    * 'storageNotSupported', 'storageAccessForbidden', 'invalidFilterString', 'storageConflict',
    * 'discoveredNoValidSubscriptions', 'invalidResourceType', 'propertyInvalid',
@@ -1260,6 +1253,10 @@ export interface PartitionMetadata {
    * Gets the uri location of the data
   */
   location?: string;
+  /**
+   * Gets the refresh time of the data partition
+  */
+  refreshTime?: Date;
   fileFormatSettings?: any;
   readonly hasHeader?: boolean;
 }
@@ -1673,8 +1670,8 @@ export interface InstanceMetadata {
 export interface ResourceMetadata {
   /**
    * Possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
   */
   kind?: string;
   /**
@@ -1688,7 +1685,8 @@ export interface ResourceMetadata {
   /**
    * Possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http',
+   * 'mailchimp', 'googleAds'
   */
   resourceType?: string;
   /**

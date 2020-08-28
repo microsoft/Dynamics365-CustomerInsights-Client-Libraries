@@ -2,7 +2,7 @@
   "name": "@microsoft/customerinsights",
   "author": "Microsoft Corporation",
   "description": "CustomerInsights Library with typescript type definitions for node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "dependencies": {
     "ms-rest": "^2.3.3"
   },

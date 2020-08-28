@@ -27,16 +27,17 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="kind">Possible values include:
         /// 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-        /// 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales',
-        /// 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http',
-        /// 'mailchimp', 'googleAds'</param>
+        /// 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+        /// 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
+        /// 'facebookAds', 'http', 'mailchimp', 'googleAds'</param>
         /// <param name="resourceId">Gets the Id of the resource.</param>
         /// <param name="operationId">Gets the Id of the operation being
         /// performed on the resource.</param>
         /// <param name="resourceType">Possible values include: 'adlsGen2',
         /// 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection',
-        /// 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection',
-        /// 'facebookAds', 'http', 'mailchimp', 'googleAds'</param>
+        /// 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
+        /// 'basicAuthenticationConnection', 'facebookAds', 'http',
+        /// 'mailchimp', 'googleAds'</param>
         /// <param name="name">Gets the Name of the resource.</param>
         /// <param name="description">Gets the Description of the
         /// resource.</param>
@@ -77,9 +78,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Gets or sets possible values include:
         /// 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-        /// 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales',
-        /// 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http',
-        /// 'mailchimp', 'googleAds'
+        /// 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+        /// 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
+        /// 'facebookAds', 'http', 'mailchimp', 'googleAds'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }
@@ -99,8 +100,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Gets or sets possible values include: 'adlsGen2', 'd365Sales',
         /// 'cds', 'ftp', 'bearerAuthenticationConnection',
-        /// 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection',
-        /// 'facebookAds', 'http', 'mailchimp', 'googleAds'
+        /// 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
+        /// 'basicAuthenticationConnection', 'facebookAds', 'http',
+        /// 'mailchimp', 'googleAds'
         /// </summary>
         [JsonProperty(PropertyName = "resourceType")]
         public string ResourceType { get; set; }

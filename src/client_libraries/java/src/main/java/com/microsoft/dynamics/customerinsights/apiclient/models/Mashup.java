@@ -7,7 +7,6 @@
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
 import java.util.Map;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -31,12 +30,6 @@ public class Mashup {
      */
     @JsonProperty(value = "queriesMetadata")
     private Map<String, QueryMetadata> queriesMetadata;
-
-    /**
-     * The queryGroups property.
-     */
-    @JsonProperty(value = "queryGroups")
-    private List<QueryGroupEntity> queryGroups;
 
     /**
      * The document property.
@@ -101,26 +94,6 @@ public class Mashup {
      */
     public Mashup withQueriesMetadata(Map<String, QueryMetadata> queriesMetadata) {
         this.queriesMetadata = queriesMetadata;
-        return this;
-    }
-
-    /**
-     * Get the queryGroups value.
-     *
-     * @return the queryGroups value
-     */
-    public List<QueryGroupEntity> queryGroups() {
-        return this.queryGroups;
-    }
-
-    /**
-     * Set the queryGroups value.
-     *
-     * @param queryGroups the queryGroups value to set
-     * @return the Mashup object itself.
-     */
-    public Mashup withQueryGroups(List<QueryGroupEntity> queryGroups) {
-        this.queryGroups = queryGroups;
         return this;
     }
 

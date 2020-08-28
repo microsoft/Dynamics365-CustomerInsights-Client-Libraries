@@ -1075,6 +1075,24 @@ function _updateAnEntity(instanceId, entityName, entityId, options, callback) {
  * @param {boolean} [options.proxy] Whether or not we are requesting data by
  * proxy.
  *
+ * @param {string} [options.search]
+ *
+ * @param {string} [options.select]
+ *
+ * @param {string} [options.skipToken]
+ *
+ * @param {string} [options.filter]
+ *
+ * @param {string} [options.orderBy]
+ *
+ * @param {string} [options.expand]
+ *
+ * @param {number} [options.top] Format - int32.
+ *
+ * @param {number} [options.skip] Format - int32.
+ *
+ * @param {boolean} [options.skipNullFilterParameters]
+ *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
  *
@@ -1103,6 +1121,15 @@ function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
   let relativePath = (options && options.relativePath !== undefined) ? options.relativePath : undefined;
   let forceSearch = (options && options.forceSearch !== undefined) ? options.forceSearch : undefined;
   let proxy = (options && options.proxy !== undefined) ? options.proxy : undefined;
+  let search = (options && options.search !== undefined) ? options.search : undefined;
+  let select = (options && options.select !== undefined) ? options.select : undefined;
+  let skipToken = (options && options.skipToken !== undefined) ? options.skipToken : undefined;
+  let filter = (options && options.filter !== undefined) ? options.filter : undefined;
+  let orderBy = (options && options.orderBy !== undefined) ? options.orderBy : undefined;
+  let expand = (options && options.expand !== undefined) ? options.expand : undefined;
+  let top = (options && options.top !== undefined) ? options.top : undefined;
+  let skip = (options && options.skip !== undefined) ? options.skip : undefined;
+  let skipNullFilterParameters = (options && options.skipNullFilterParameters !== undefined) ? options.skipNullFilterParameters : undefined;
   // Validate
   try {
     if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
@@ -1116,6 +1143,33 @@ function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
     }
     if (proxy !== null && proxy !== undefined && typeof proxy !== 'boolean') {
       throw new Error('proxy must be of type boolean.');
+    }
+    if (search !== null && search !== undefined && typeof search.valueOf() !== 'string') {
+      throw new Error('search must be of type string.');
+    }
+    if (select !== null && select !== undefined && typeof select.valueOf() !== 'string') {
+      throw new Error('select must be of type string.');
+    }
+    if (skipToken !== null && skipToken !== undefined && typeof skipToken.valueOf() !== 'string') {
+      throw new Error('skipToken must be of type string.');
+    }
+    if (filter !== null && filter !== undefined && typeof filter.valueOf() !== 'string') {
+      throw new Error('filter must be of type string.');
+    }
+    if (orderBy !== null && orderBy !== undefined && typeof orderBy.valueOf() !== 'string') {
+      throw new Error('orderBy must be of type string.');
+    }
+    if (expand !== null && expand !== undefined && typeof expand.valueOf() !== 'string') {
+      throw new Error('expand must be of type string.');
+    }
+    if (top !== null && top !== undefined && typeof top !== 'number') {
+      throw new Error('top must be of type number.');
+    }
+    if (skip !== null && skip !== undefined && typeof skip !== 'number') {
+      throw new Error('skip must be of type number.');
+    }
+    if (skipNullFilterParameters !== null && skipNullFilterParameters !== undefined && typeof skipNullFilterParameters !== 'boolean') {
+      throw new Error('skipNullFilterParameters must be of type boolean.');
     }
   } catch (error) {
     return callback(error);
@@ -1134,6 +1188,33 @@ function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
   }
   if (proxy !== null && proxy !== undefined) {
     queryParameters.push('proxy=' + encodeURIComponent(proxy.toString()));
+  }
+  if (search !== null && search !== undefined) {
+    queryParameters.push('Search=' + encodeURIComponent(search));
+  }
+  if (select !== null && select !== undefined) {
+    queryParameters.push('Select=' + encodeURIComponent(select));
+  }
+  if (skipToken !== null && skipToken !== undefined) {
+    queryParameters.push('SkipToken=' + encodeURIComponent(skipToken));
+  }
+  if (filter !== null && filter !== undefined) {
+    queryParameters.push('Filter=' + encodeURIComponent(filter));
+  }
+  if (orderBy !== null && orderBy !== undefined) {
+    queryParameters.push('OrderBy=' + encodeURIComponent(orderBy));
+  }
+  if (expand !== null && expand !== undefined) {
+    queryParameters.push('Expand=' + encodeURIComponent(expand));
+  }
+  if (top !== null && top !== undefined) {
+    queryParameters.push('Top=' + encodeURIComponent(top.toString()));
+  }
+  if (skip !== null && skip !== undefined) {
+    queryParameters.push('Skip=' + encodeURIComponent(skip.toString()));
+  }
+  if (skipNullFilterParameters !== null && skipNullFilterParameters !== undefined) {
+    queryParameters.push('SkipNullFilterParameters=' + encodeURIComponent(skipNullFilterParameters.toString()));
   }
   if (queryParameters.length > 0) {
     requestUrl += '?' + queryParameters.join('&');
@@ -3001,14 +3082,15 @@ function _deleteAnInstance(instanceId, options, callback) {
  *
  * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
- * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
- * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+ * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+ * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+ * 'http', 'mailchimp', 'googleAds'
  *
  * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
  * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
  * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
- * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
- * 'googleAds'
+ * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+ * 'facebookAds', 'http', 'mailchimp', 'googleAds'
  *
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
@@ -3293,14 +3375,15 @@ function _createAnInstance(options, callback) {
  *
  * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
- * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
- * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+ * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+ * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+ * 'http', 'mailchimp', 'googleAds'
  *
  * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
  * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
  * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
- * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
- * 'googleAds'
+ * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+ * 'facebookAds', 'http', 'mailchimp', 'googleAds'
  *
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
@@ -3557,14 +3640,15 @@ function _updateAnInstance(instanceId, options, callback) {
  *
  * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
- * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
- * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+ * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+ * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+ * 'http', 'mailchimp', 'googleAds'
  *
  * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
  * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
  * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
- * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
- * 'googleAds'
+ * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+ * 'facebookAds', 'http', 'mailchimp', 'googleAds'
  *
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
@@ -8463,9 +8547,9 @@ function _deleteSegment(instanceId, segmentName, options, callback) {
 }
 
 /**
- * @summary Retrieve information about a workflow job. (Preview)
+ * @summary Retrieve information about a workflow job.
  *
- * Retrieve information about a workflow job. (Preview)
+ * Retrieve information about a workflow job.
  *
  * @param {string} instanceId Format - uuid. The instance id.
  *
@@ -8638,9 +8722,9 @@ function _getAWorkflowJobInformation(instanceId, workflowName, jobId, options, c
 }
 
 /**
- * @summary Cancel a job. (Preview)
+ * @summary Cancel a job.
  *
- * Cancel a job. (Preview)
+ * Cancel a job.
  *
  * @param {string} instanceId Format - uuid. The instance id.
  *
@@ -8800,9 +8884,9 @@ function _cancelAWorkflowJob(instanceId, workflowName, jobId, options, callback)
 }
 
 /**
- * @summary Retrieves a list of recent job information. (Preview)
+ * @summary Retrieves a list of recent job information.
  *
- * Retrieves a list of recent job information. (Preview)
+ * Retrieves a list of recent job information.
  *
  * @param {string} instanceId Format - uuid. The instance id.
  *
@@ -8997,13 +9081,13 @@ function _getListOfRecentWorkflowJobs(instanceId, workflowName, options, callbac
  * specified in instanceId.
  * Optionally takes a list of identifiers, only if operationType is not
  * OperationType.All and a flag
- * forceRunRequested indicating whether to force run. (Preview)
+ * forceRunRequested indicating whether to force run.
  *
  * Submits a workflow of OperationTypeoperationType for the instance specified
  * in instanceId.
  * Optionally takes a list of identifiers, only if operationType is not
  * OperationType.All and a flag
- * forceRunRequested indicating whether to force run. (Preview)
+ * forceRunRequested indicating whether to force run.
  *
  * @param {string} instanceId Format - uuid. The Customer Insights instance id.
  *
@@ -10890,6 +10974,24 @@ class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
    *
+   * @param {string} [options.search]
+   *
+   * @param {string} [options.select]
+   *
+   * @param {string} [options.skipToken]
+   *
+   * @param {string} [options.filter]
+   *
+   * @param {string} [options.orderBy]
+   *
+   * @param {string} [options.expand]
+   *
+   * @param {number} [options.top] Format - int32.
+   *
+   * @param {number} [options.skip] Format - int32.
+   *
+   * @param {boolean} [options.skipNullFilterParameters]
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -10930,6 +11032,24 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
+   *
+   * @param {string} [options.search]
+   *
+   * @param {string} [options.select]
+   *
+   * @param {string} [options.skipToken]
+   *
+   * @param {string} [options.filter]
+   *
+   * @param {string} [options.orderBy]
+   *
+   * @param {string} [options.expand]
+   *
+   * @param {number} [options.top] Format - int32.
+   *
+   * @param {number} [options.skip] Format - int32.
+   *
+   * @param {boolean} [options.skipNullFilterParameters]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -11870,14 +11990,15 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -11984,14 +12105,15 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12123,14 +12245,15 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12238,14 +12361,15 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12373,14 +12497,15 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12490,14 +12615,15 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -16504,9 +16630,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieve information about a workflow job. (Preview)
+   * @summary Retrieve information about a workflow job.
    *
-   * Retrieve information about a workflow job. (Preview)
+   * Retrieve information about a workflow job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16542,9 +16668,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieve information about a workflow job. (Preview)
+   * @summary Retrieve information about a workflow job.
    *
-   * Retrieve information about a workflow job. (Preview)
+   * Retrieve information about a workflow job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16601,9 +16727,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Cancel a job. (Preview)
+   * @summary Cancel a job.
    *
-   * Cancel a job. (Preview)
+   * Cancel a job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16637,9 +16763,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Cancel a job. (Preview)
+   * @summary Cancel a job.
    *
-   * Cancel a job. (Preview)
+   * Cancel a job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16694,9 +16820,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of recent job information. (Preview)
+   * @summary Retrieves a list of recent job information.
    *
-   * Retrieves a list of recent job information. (Preview)
+   * Retrieves a list of recent job information.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16733,9 +16859,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of recent job information. (Preview)
+   * @summary Retrieves a list of recent job information.
    *
-   * Retrieves a list of recent job information. (Preview)
+   * Retrieves a list of recent job information.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16797,13 +16923,13 @@ class CustomerInsights extends ServiceClient {
    * specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * Submits a workflow of OperationTypeoperationType for the instance specified
    * in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
    *
@@ -16869,13 +16995,13 @@ class CustomerInsights extends ServiceClient {
    * specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * Submits a workflow of OperationTypeoperationType for the instance specified
    * in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
    *

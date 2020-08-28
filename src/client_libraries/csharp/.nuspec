@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Microsoft.Dynamics.CustomerInsights.Api</id>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <authors>Microsoft</authors>
         <projectUrl>https://developer.ci.ai.dynamics.com</projectUrl>
         <license type="expression">MS-PL</license>
@@ -36,4 +36,3 @@
         <file src=".\bin\Release\netcoreapp2.0\Microsoft.Dynamics.CustomerInsights.Api.deps.json" target="lib\netstandard2.0" />
     </files>
 </package>
-

@@ -385,9 +385,29 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='proxy'>
             /// Whether or not we are requesting data by proxy.
             /// </param>
-            public static object GetEntitiesWithODataQueryParameters(this ICustomerInsights operations, string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?))
+            /// <param name='search'>
+            /// </param>
+            /// <param name='select'>
+            /// </param>
+            /// <param name='skipToken'>
+            /// </param>
+            /// <param name='filter'>
+            /// </param>
+            /// <param name='orderBy'>
+            /// </param>
+            /// <param name='expand'>
+            /// </param>
+            /// <param name='top'>
+            /// Format - int32.
+            /// </param>
+            /// <param name='skip'>
+            /// Format - int32.
+            /// </param>
+            /// <param name='skipNullFilterParameters'>
+            /// </param>
+            public static object GetEntitiesWithODataQueryParameters(this ICustomerInsights operations, string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?))
             {
-                return operations.GetEntitiesWithODataQueryParametersAsync(instanceId, relativePath, forceSearch, proxy).GetAwaiter().GetResult();
+                return operations.GetEntitiesWithODataQueryParametersAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -412,12 +432,32 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='proxy'>
             /// Whether or not we are requesting data by proxy.
             /// </param>
+            /// <param name='search'>
+            /// </param>
+            /// <param name='select'>
+            /// </param>
+            /// <param name='skipToken'>
+            /// </param>
+            /// <param name='filter'>
+            /// </param>
+            /// <param name='orderBy'>
+            /// </param>
+            /// <param name='expand'>
+            /// </param>
+            /// <param name='top'>
+            /// Format - int32.
+            /// </param>
+            /// <param name='skip'>
+            /// Format - int32.
+            /// </param>
+            /// <param name='skipNullFilterParameters'>
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetEntitiesWithODataQueryParametersAsync(this ICustomerInsights operations, string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetEntitiesWithODataQueryParametersAsync(this ICustomerInsights operations, string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(instanceId, relativePath, forceSearch, proxy, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -2170,10 +2210,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieve information about a workflow job. (Preview)
+            /// Retrieve information about a workflow job.
             /// </summary>
             /// <remarks>
-            /// Retrieve information about a workflow job. (Preview)
+            /// Retrieve information about a workflow job.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2196,10 +2236,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieve information about a workflow job. (Preview)
+            /// Retrieve information about a workflow job.
             /// </summary>
             /// <remarks>
-            /// Retrieve information about a workflow job. (Preview)
+            /// Retrieve information about a workflow job.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2228,10 +2268,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Cancel a job. (Preview)
+            /// Cancel a job.
             /// </summary>
             /// <remarks>
-            /// Cancel a job. (Preview)
+            /// Cancel a job.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2251,10 +2291,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Cancel a job. (Preview)
+            /// Cancel a job.
             /// </summary>
             /// <remarks>
-            /// Cancel a job. (Preview)
+            /// Cancel a job.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2280,10 +2320,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of recent job information. (Preview)
+            /// Retrieves a list of recent job information.
             /// </summary>
             /// <remarks>
-            /// Retrieves a list of recent job information. (Preview)
+            /// Retrieves a list of recent job information.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2306,10 +2346,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of recent job information. (Preview)
+            /// Retrieves a list of recent job information.
             /// </summary>
             /// <remarks>
-            /// Retrieves a list of recent job information. (Preview)
+            /// Retrieves a list of recent job information.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2342,14 +2382,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
             /// OperationType.All and a flag
-            /// forceRunRequested indicating whether to force run. (Preview)
+            /// forceRunRequested indicating whether to force run.
             /// </summary>
             /// <remarks>
             /// Submits a workflow of OperationTypeoperationType for the instance specified
             /// in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
             /// OperationType.All and a flag
-            /// forceRunRequested indicating whether to force run. (Preview)
+            /// forceRunRequested indicating whether to force run.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2382,14 +2422,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
             /// OperationType.All and a flag
-            /// forceRunRequested indicating whether to force run. (Preview)
+            /// forceRunRequested indicating whether to force run.
             /// </summary>
             /// <remarks>
             /// Submits a workflow of OperationTypeoperationType for the instance specified
             /// in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
             /// OperationType.All and a flag
-            /// forceRunRequested indicating whether to force run. (Preview)
+            /// forceRunRequested indicating whether to force run.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.

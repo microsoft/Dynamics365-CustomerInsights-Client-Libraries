@@ -23,7 +23,6 @@ class Model {
    * @property {boolean} [pbimashup.fastCombine]
    * @property {boolean} [pbimashup.allowNativeQueries]
    * @property {object} [pbimashup.queriesMetadata]
-   * @property {array} [pbimashup.queryGroups]
    * @property {string} [pbimashup.document]
    * @property {array} [annotations]
    * @property {array} [entities]

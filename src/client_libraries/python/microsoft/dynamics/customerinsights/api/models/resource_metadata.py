@@ -15,9 +15,9 @@ class ResourceMetadata(Model):
     sending a request.
 
     :param kind: Possible values include: 'bearerAuthenticationConnection',
-     'sshKeyAuthenticationConnection', 'basicAuthenticationConnection',
-     'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-     'facebookAds', 'http', 'mailchimp', 'googleAds'
+     'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
+     'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+     'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
     :type kind: str or ~microsoft.dynamics.customerinsights.api.models.enum
     :ivar resource_id: Gets the Id of the resource.
     :vartype resource_id: str
@@ -26,8 +26,9 @@ class ResourceMetadata(Model):
     :vartype operation_id: str
     :param resource_type: Possible values include: 'adlsGen2', 'd365Sales',
      'cds', 'ftp', 'bearerAuthenticationConnection',
-     'sshKeyAuthenticationConnection', 'basicAuthenticationConnection',
-     'facebookAds', 'http', 'mailchimp', 'googleAds'
+     'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
+     'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
+     'googleAds'
     :type resource_type: str or
      ~microsoft.dynamics.customerinsights.api.models.enum
     :ivar name: Gets the Name of the resource.

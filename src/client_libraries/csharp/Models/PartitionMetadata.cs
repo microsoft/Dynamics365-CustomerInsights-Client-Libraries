@@ -27,10 +27,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="name">Gets the name of the data partition</param>
         /// <param name="location">Gets the uri location of the data</param>
-        public PartitionMetadata(string name = default(string), string location = default(string), object fileFormatSettings = default(object), bool? hasHeader = default(bool?))
+        /// <param name="refreshTime">Gets the refresh time of the data
+        /// partition</param>
+        public PartitionMetadata(string name = default(string), string location = default(string), System.DateTime? refreshTime = default(System.DateTime?), object fileFormatSettings = default(object), bool? hasHeader = default(bool?))
         {
             Name = name;
             Location = location;
+            RefreshTime = refreshTime;
             FileFormatSettings = fileFormatSettings;
             HasHeader = hasHeader;
             CustomInit();
@@ -52,6 +55,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "location")]
         public string Location { get; set; }
+
+        /// <summary>
+        /// Gets the refresh time of the data partition
+        /// </summary>
+        [JsonProperty(PropertyName = "refreshTime")]
+        public System.DateTime? RefreshTime { get; set; }
 
         /// <summary>
         /// </summary>

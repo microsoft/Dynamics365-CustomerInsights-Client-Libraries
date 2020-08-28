@@ -214,13 +214,33 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='proxy'>
         /// Whether or not we are requesting data by proxy.
         /// </param>
+        /// <param name='search'>
+        /// </param>
+        /// <param name='select'>
+        /// </param>
+        /// <param name='skipToken'>
+        /// </param>
+        /// <param name='filter'>
+        /// </param>
+        /// <param name='orderBy'>
+        /// </param>
+        /// <param name='expand'>
+        /// </param>
+        /// <param name='top'>
+        /// Format - int32.
+        /// </param>
+        /// <param name='skip'>
+        /// Format - int32.
+        /// </param>
+        /// <param name='skipNullFilterParameters'>
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,GetEntitiesWithODataQueryParametersHeaders>> GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,GetEntitiesWithODataQueryParametersHeaders>> GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Retrieves the flattened entity model for the provided instanceId.
@@ -999,10 +1019,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<DeletionResponse,DeleteSegmentHeaders>> DeleteSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieve information about a workflow job. (Preview)
+        /// Retrieve information about a workflow job.
         /// </summary>
         /// <remarks>
-        /// Retrieve information about a workflow job. (Preview)
+        /// Retrieve information about a workflow job.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -1025,10 +1045,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAWorkflowJobInformationHeaders>> GetAWorkflowJobInformationWithHttpMessagesAsync(string instanceId, string workflowName, string jobId, bool? includeTasks = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Cancel a job. (Preview)
+        /// Cancel a job.
         /// </summary>
         /// <remarks>
-        /// Cancel a job. (Preview)
+        /// Cancel a job.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -1048,10 +1068,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CancelAWorkflowJobHeaders>> CancelAWorkflowJobWithHttpMessagesAsync(string instanceId, string workflowName, string jobId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves a list of recent job information. (Preview)
+        /// Retrieves a list of recent job information.
         /// </summary>
         /// <remarks>
-        /// Retrieves a list of recent job information. (Preview)
+        /// Retrieves a list of recent job information.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -1078,14 +1098,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// specified in instanceId.
         /// Optionally takes a list of identifiers, only if operationType is
         /// not OperationType.All and a flag
-        /// forceRunRequested indicating whether to force run. (Preview)
+        /// forceRunRequested indicating whether to force run.
         /// </summary>
         /// <remarks>
         /// Submits a workflow of OperationTypeoperationType for the instance
         /// specified in instanceId.
         /// Optionally takes a list of identifiers, only if operationType is
         /// not OperationType.All and a flag
-        /// forceRunRequested indicating whether to force run. (Preview)
+        /// forceRunRequested indicating whether to force run.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The Customer Insights instance id.

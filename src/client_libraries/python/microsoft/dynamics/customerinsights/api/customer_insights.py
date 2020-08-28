@@ -539,7 +539,7 @@ class CustomerInsights(SDKClient):
     update_an_entity.metadata = {'url': '/instances/{instanceId}/data/{entityName}/{entityId}'}
 
     def get_entities_with_odata_query_parameters(
-            self, instance_id, relative_path=None, force_search=None, proxy=None, custom_headers=None, raw=False, **operation_config):
+            self, instance_id, relative_path=None, force_search=None, proxy=None, search=None, select=None, skip_token=None, filter=None, order_by=None, expand=None, top=None, skip=None, skip_null_filter_parameters=None, custom_headers=None, raw=False, **operation_config):
         """Submits an OData request to the service.
 
         Submits an OData request to the service.
@@ -553,6 +553,24 @@ class CustomerInsights(SDKClient):
         :type force_search: bool
         :param proxy: Whether or not we are requesting data by proxy.
         :type proxy: bool
+        :param search:
+        :type search: str
+        :param select:
+        :type select: str
+        :param skip_token:
+        :type skip_token: str
+        :param filter:
+        :type filter: str
+        :param order_by:
+        :type order_by: str
+        :param expand:
+        :type expand: str
+        :param top: Format - int32.
+        :type top: int
+        :param skip: Format - int32.
+        :type skip: int
+        :param skip_null_filter_parameters:
+        :type skip_null_filter_parameters: bool
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -578,6 +596,24 @@ class CustomerInsights(SDKClient):
             query_parameters['forceSearch'] = self._serialize.query("force_search", force_search, 'bool')
         if proxy is not None:
             query_parameters['proxy'] = self._serialize.query("proxy", proxy, 'bool')
+        if search is not None:
+            query_parameters['Search'] = self._serialize.query("search", search, 'str')
+        if select is not None:
+            query_parameters['Select'] = self._serialize.query("select", select, 'str')
+        if skip_token is not None:
+            query_parameters['SkipToken'] = self._serialize.query("skip_token", skip_token, 'str')
+        if filter is not None:
+            query_parameters['Filter'] = self._serialize.query("filter", filter, 'str')
+        if order_by is not None:
+            query_parameters['OrderBy'] = self._serialize.query("order_by", order_by, 'str')
+        if expand is not None:
+            query_parameters['Expand'] = self._serialize.query("expand", expand, 'str')
+        if top is not None:
+            query_parameters['Top'] = self._serialize.query("top", top, 'int')
+        if skip is not None:
+            query_parameters['Skip'] = self._serialize.query("skip", skip, 'int')
+        if skip_null_filter_parameters is not None:
+            query_parameters['SkipNullFilterParameters'] = self._serialize.query("skip_null_filter_parameters", skip_null_filter_parameters, 'bool')
 
         # Construct headers
         header_parameters = {}
@@ -3372,9 +3408,9 @@ class CustomerInsights(SDKClient):
 
     def get_a_workflow_job_information(
             self, instance_id, workflow_name, job_id, include_tasks=False, custom_headers=None, raw=False, **operation_config):
-        """Retrieve information about a workflow job. (Preview).
+        """Retrieve information about a workflow job.
 
-        Retrieve information about a workflow job. (Preview).
+        Retrieve information about a workflow job.
 
         :param instance_id: Format - uuid. The instance id.
         :type instance_id: str
@@ -3450,9 +3486,9 @@ class CustomerInsights(SDKClient):
 
     def cancel_a_workflow_job(
             self, instance_id, workflow_name, job_id, custom_headers=None, raw=False, **operation_config):
-        """Cancel a job. (Preview).
+        """Cancel a job.
 
-        Cancel a job. (Preview).
+        Cancel a job.
 
         :param instance_id: Format - uuid. The instance id.
         :type instance_id: str
@@ -3524,9 +3560,9 @@ class CustomerInsights(SDKClient):
 
     def get_list_of_recent_workflow_jobs(
             self, instance_id, workflow_name, top=10, include_tasks=False, custom_headers=None, raw=False, **operation_config):
-        """Retrieves a list of recent job information. (Preview).
+        """Retrieves a list of recent job information.
 
-        Retrieves a list of recent job information. (Preview).
+        Retrieves a list of recent job information.
 
         :param instance_id: Format - uuid. The instance id.
         :type instance_id: str
@@ -3608,13 +3644,13 @@ class CustomerInsights(SDKClient):
         specified in instanceId.
         Optionally takes a list of identifiers, only if operationType is not
         OperationType.All and a flag
-        forceRunRequested indicating whether to force run. (Preview).
+        forceRunRequested indicating whether to force run.
 
         Submits a workflow of OperationTypeoperationType for the instance
         specified in instanceId.
         Optionally takes a list of identifiers, only if operationType is not
         OperationType.All and a flag
-        forceRunRequested indicating whether to force run. (Preview).
+        forceRunRequested indicating whether to force run.
 
         :param instance_id: Format - uuid. The Customer Insights instance id.
         :type instance_id: str

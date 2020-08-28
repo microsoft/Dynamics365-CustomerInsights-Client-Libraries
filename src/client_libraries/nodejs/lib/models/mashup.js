@@ -15,7 +15,6 @@ class Mashup {
    * @property {boolean} [fastCombine]
    * @property {boolean} [allowNativeQueries]
    * @property {object} [queriesMetadata]
-   * @property {array} [queryGroups]
    * @property {string} [document]
    */
   constructor() {
@@ -60,21 +59,6 @@ class Mashup {
                   type: {
                     name: 'Composite',
                     className: 'QueryMetadata'
-                  }
-              }
-            }
-          },
-          queryGroups: {
-            required: false,
-            serializedName: 'queryGroups',
-            type: {
-              name: 'Sequence',
-              element: {
-                  required: false,
-                  serializedName: 'QueryGroupEntityElementType',
-                  type: {
-                    name: 'Composite',
-                    className: 'QueryGroupEntity'
                   }
               }
             }

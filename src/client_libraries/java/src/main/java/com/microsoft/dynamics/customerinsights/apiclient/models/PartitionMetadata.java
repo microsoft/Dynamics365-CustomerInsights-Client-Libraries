@@ -6,6 +6,7 @@
 
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
+import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -23,6 +24,12 @@ public class PartitionMetadata {
      */
     @JsonProperty(value = "location")
     private String location;
+
+    /**
+     * Gets the refresh time of the data partition.
+     */
+    @JsonProperty(value = "refreshTime")
+    private DateTime refreshTime;
 
     /**
      * The fileFormatSettings property.
@@ -73,6 +80,26 @@ public class PartitionMetadata {
      */
     public PartitionMetadata withLocation(String location) {
         this.location = location;
+        return this;
+    }
+
+    /**
+     * Get gets the refresh time of the data partition.
+     *
+     * @return the refreshTime value
+     */
+    public DateTime refreshTime() {
+        return this.refreshTime;
+    }
+
+    /**
+     * Set gets the refresh time of the data partition.
+     *
+     * @param refreshTime the refreshTime value to set
+     * @return the PartitionMetadata object itself.
+     */
+    public PartitionMetadata withRefreshTime(DateTime refreshTime) {
+        this.refreshTime = refreshTime;
         return this;
     }
 

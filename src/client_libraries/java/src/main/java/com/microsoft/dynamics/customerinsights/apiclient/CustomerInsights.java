@@ -556,12 +556,21 @@ public interface CustomerInsights {
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object getEntitiesWithODataQueryParameters(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy);
+    Object getEntitiesWithODataQueryParameters(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters);
 
     /**
      * Submits an OData request to the service.
@@ -571,11 +580,20 @@ public interface CustomerInsights {
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters, final ServiceCallback<Object> serviceCallback);
 
     /**
      * Submits an OData request to the service.
@@ -585,10 +603,19 @@ public interface CustomerInsights {
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy);
+    Observable<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters);
 
     /**
      * Submits an OData request to the service.
@@ -598,10 +625,19 @@ public interface CustomerInsights {
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> getEntitiesWithODataQueryParametersWithServiceResponseAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy);
+    Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> getEntitiesWithODataQueryParametersWithServiceResponseAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters);
 
     /**
      * Retrieves the flattened entity model for the provided instanceId.
@@ -3080,8 +3116,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders>> deleteSegmentWithServiceResponseAsync(String instanceId, String segmentName);
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3094,8 +3130,8 @@ public interface CustomerInsights {
     Object getAWorkflowJobInformation(String instanceId, String workflowName, String jobId);
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3107,8 +3143,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3119,8 +3155,8 @@ public interface CustomerInsights {
     Observable<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId);
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3130,8 +3166,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetAWorkflowJobInformationHeaders>> getAWorkflowJobInformationWithServiceResponseAsync(String instanceId, String workflowName, String jobId);
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3145,8 +3181,8 @@ public interface CustomerInsights {
     Object getAWorkflowJobInformation(String instanceId, String workflowName, String jobId, Boolean includeTasks);
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3159,8 +3195,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId, Boolean includeTasks, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3172,8 +3208,8 @@ public interface CustomerInsights {
     Observable<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId, Boolean includeTasks);
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3185,8 +3221,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAWorkflowJobInformationHeaders>> getAWorkflowJobInformationWithServiceResponseAsync(String instanceId, String workflowName, String jobId, Boolean includeTasks);
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3199,8 +3235,8 @@ public interface CustomerInsights {
     Object cancelAWorkflowJob(String instanceId, String workflowName, String jobId);
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3212,8 +3248,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> cancelAWorkflowJobAsync(String instanceId, String workflowName, String jobId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3224,8 +3260,8 @@ public interface CustomerInsights {
     Observable<Object> cancelAWorkflowJobAsync(String instanceId, String workflowName, String jobId);
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3236,8 +3272,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CancelAWorkflowJobHeaders>> cancelAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, String jobId);
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3249,8 +3285,8 @@ public interface CustomerInsights {
     Object getListOfRecentWorkflowJobs(String instanceId, String workflowName);
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3261,8 +3297,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3272,8 +3308,8 @@ public interface CustomerInsights {
     Observable<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName);
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3282,8 +3318,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetListOfRecentWorkflowJobsHeaders>> getListOfRecentWorkflowJobsWithServiceResponseAsync(String instanceId, String workflowName);
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3297,8 +3333,8 @@ public interface CustomerInsights {
     Object getListOfRecentWorkflowJobs(String instanceId, String workflowName, Integer top, Boolean includeTasks);
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3311,8 +3347,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName, Integer top, Boolean includeTasks, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3324,8 +3360,8 @@ public interface CustomerInsights {
     Observable<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName, Integer top, Boolean includeTasks);
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3339,10 +3375,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -3356,10 +3392,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -3372,10 +3408,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -3387,10 +3423,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -3401,10 +3437,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -3422,10 +3458,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -3442,10 +3478,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -3461,10 +3497,10 @@ public interface CustomerInsights {
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.

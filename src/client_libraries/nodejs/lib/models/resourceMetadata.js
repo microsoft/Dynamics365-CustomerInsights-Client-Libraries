@@ -15,15 +15,17 @@ class ResourceMetadata {
    * Create a ResourceMetadata.
    * @property {string} [kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    * @property {uuid} [resourceId] Gets the Id of the resource.
    * @property {uuid} [operationId] Gets the Id of the operation being
    * performed on the resource.
    * @property {string} [resourceType] Possible values include: 'adlsGen2',
    * 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection',
-   * 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
+   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
+   * 'googleAds'
    * @property {string} [name] Gets the Name of the resource.
    * @property {string} [description] Gets the Description of the resource.
    * @property {number} [version] Gets the version number of this object.

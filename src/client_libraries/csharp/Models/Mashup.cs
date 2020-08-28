@@ -24,12 +24,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the Mashup class.
         /// </summary>
-        public Mashup(bool? fastCombine = default(bool?), bool? allowNativeQueries = default(bool?), IDictionary<string, QueryMetadata> queriesMetadata = default(IDictionary<string, QueryMetadata>), IList<QueryGroupEntity> queryGroups = default(IList<QueryGroupEntity>), string document = default(string))
+        public Mashup(bool? fastCombine = default(bool?), bool? allowNativeQueries = default(bool?), IDictionary<string, QueryMetadata> queriesMetadata = default(IDictionary<string, QueryMetadata>), string document = default(string))
         {
             FastCombine = fastCombine;
             AllowNativeQueries = allowNativeQueries;
             QueriesMetadata = queriesMetadata;
-            QueryGroups = queryGroups;
             Document = document;
             CustomInit();
         }
@@ -53,11 +52,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "queriesMetadata")]
         public IDictionary<string, QueryMetadata> QueriesMetadata { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "queryGroups")]
-        public IList<QueryGroupEntity> QueryGroups { get; set; }
 
         /// <summary>
         /// </summary>

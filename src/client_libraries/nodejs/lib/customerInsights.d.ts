@@ -489,6 +489,24 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
    *
+   * @param {string} [options.search]
+   *
+   * @param {string} [options.select]
+   *
+   * @param {string} [options.skipToken]
+   *
+   * @param {string} [options.filter]
+   *
+   * @param {string} [options.orderBy]
+   *
+   * @param {string} [options.expand]
+   *
+   * @param {number} [options.top] Format - int32.
+   *
+   * @param {number} [options.skip] Format - int32.
+   *
+   * @param {boolean} [options.skipNullFilterParameters]
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -498,7 +516,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getEntitiesWithODataQueryParametersWithHttpOperationResponse(instanceId: string, options?: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  getEntitiesWithODataQueryParametersWithHttpOperationResponse(instanceId: string, options?: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skipToken? : string, filter? : string, orderBy? : string, expand? : string, top? : number, skip? : number, skipNullFilterParameters? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Submits an OData request to the service.
@@ -517,6 +535,24 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
+   *
+   * @param {string} [options.search]
+   *
+   * @param {string} [options.select]
+   *
+   * @param {string} [options.skipToken]
+   *
+   * @param {string} [options.filter]
+   *
+   * @param {string} [options.orderBy]
+   *
+   * @param {string} [options.expand]
+   *
+   * @param {number} [options.top] Format - int32.
+   *
+   * @param {number} [options.skip] Format - int32.
+   *
+   * @param {boolean} [options.skipNullFilterParameters]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -542,9 +578,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getEntitiesWithODataQueryParameters(instanceId: string, options?: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getEntitiesWithODataQueryParameters(instanceId: string, options?: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skipToken? : string, filter? : string, orderBy? : string, expand? : string, top? : number, skip? : number, skipNullFilterParameters? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   getEntitiesWithODataQueryParameters(instanceId: string, callback: ServiceCallback<any>): void;
-  getEntitiesWithODataQueryParameters(instanceId: string, options: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  getEntitiesWithODataQueryParameters(instanceId: string, options: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skipToken? : string, filter? : string, orderBy? : string, expand? : string, top? : number, skip? : number, skipNullFilterParameters? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1199,14 +1235,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1301,14 +1338,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1425,14 +1463,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1528,14 +1567,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1648,14 +1688,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1753,14 +1794,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+   * 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -5077,9 +5119,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieve information about a workflow job. (Preview)
+   * @summary Retrieve information about a workflow job.
    *
-   * Retrieve information about a workflow job. (Preview)
+   * Retrieve information about a workflow job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5103,9 +5145,9 @@ export default class CustomerInsights extends ServiceClient {
   getAWorkflowJobInformationWithHttpOperationResponse(instanceId: string, workflowName: string, jobId: string, options?: { includeTasks? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieve information about a workflow job. (Preview)
+   * @summary Retrieve information about a workflow job.
    *
-   * Retrieve information about a workflow job. (Preview)
+   * Retrieve information about a workflow job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5147,9 +5189,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Cancel a job. (Preview)
+   * @summary Cancel a job.
    *
-   * Cancel a job. (Preview)
+   * Cancel a job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5171,9 +5213,9 @@ export default class CustomerInsights extends ServiceClient {
   cancelAWorkflowJobWithHttpOperationResponse(instanceId: string, workflowName: string, jobId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Cancel a job. (Preview)
+   * @summary Cancel a job.
    *
-   * Cancel a job. (Preview)
+   * Cancel a job.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5213,9 +5255,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves a list of recent job information. (Preview)
+   * @summary Retrieves a list of recent job information.
    *
-   * Retrieves a list of recent job information. (Preview)
+   * Retrieves a list of recent job information.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5240,9 +5282,9 @@ export default class CustomerInsights extends ServiceClient {
   getListOfRecentWorkflowJobsWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { top? : number, includeTasks? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves a list of recent job information. (Preview)
+   * @summary Retrieves a list of recent job information.
    *
-   * Retrieves a list of recent job information. (Preview)
+   * Retrieves a list of recent job information.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5289,13 +5331,13 @@ export default class CustomerInsights extends ServiceClient {
    * specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * Submits a workflow of OperationTypeoperationType for the instance specified
    * in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
    *
@@ -5349,13 +5391,13 @@ export default class CustomerInsights extends ServiceClient {
    * specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * Submits a workflow of OperationTypeoperationType for the instance specified
    * in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
    * OperationType.All and a flag
-   * forceRunRequested indicating whether to force run. (Preview)
+   * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
    *

@@ -21,7 +21,6 @@ exports.DatasourceEntityInformation = require('./datasourceEntityInformation');
 exports.IncrementalRefreshProperties = require('./incrementalRefreshProperties');
 exports.DataSourceMetadata = require('./dataSourceMetadata');
 exports.QueryMetadata = require('./queryMetadata');
-exports.QueryGroupEntity = require('./queryGroupEntity');
 exports.Mashup = require('./mashup');
 exports.Annotation = require('./annotation');
 exports.Entity = require('./entity');

@@ -18,9 +18,6 @@ class Mashup(Model):
     :param queries_metadata:
     :type queries_metadata: dict[str,
      ~microsoft.dynamics.customerinsights.api.models.QueryMetadata]
-    :param query_groups:
-    :type query_groups:
-     list[~microsoft.dynamics.customerinsights.api.models.QueryGroupEntity]
     :param document:
     :type document: str
     """
@@ -29,14 +26,12 @@ class Mashup(Model):
         'fast_combine': {'key': 'fastCombine', 'type': 'bool'},
         'allow_native_queries': {'key': 'allowNativeQueries', 'type': 'bool'},
         'queries_metadata': {'key': 'queriesMetadata', 'type': '{QueryMetadata}'},
-        'query_groups': {'key': 'queryGroups', 'type': '[QueryGroupEntity]'},
         'document': {'key': 'document', 'type': 'str'},
     }
 
-    def __init__(self, *, fast_combine: bool=None, allow_native_queries: bool=None, queries_metadata=None, query_groups=None, document: str=None, **kwargs) -> None:
+    def __init__(self, *, fast_combine: bool=None, allow_native_queries: bool=None, queries_metadata=None, document: str=None, **kwargs) -> None:
         super(Mashup, self).__init__(**kwargs)
         self.fast_combine = fast_combine
         self.allow_native_queries = allow_native_queries
         self.queries_metadata = queries_metadata
-        self.query_groups = query_groups
         self.document = document

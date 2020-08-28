@@ -1401,6 +1401,26 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='proxy'>
         /// Whether or not we are requesting data by proxy.
         /// </param>
+        /// <param name='search'>
+        /// </param>
+        /// <param name='select'>
+        /// </param>
+        /// <param name='skipToken'>
+        /// </param>
+        /// <param name='filter'>
+        /// </param>
+        /// <param name='orderBy'>
+        /// </param>
+        /// <param name='expand'>
+        /// </param>
+        /// <param name='top'>
+        /// Format - int32.
+        /// </param>
+        /// <param name='skip'>
+        /// Format - int32.
+        /// </param>
+        /// <param name='skipNullFilterParameters'>
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -1422,7 +1442,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object,GetEntitiesWithODataQueryParametersHeaders>> GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,GetEntitiesWithODataQueryParametersHeaders>> GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
@@ -1439,6 +1459,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 tracingParameters.Add("relativePath", relativePath);
                 tracingParameters.Add("forceSearch", forceSearch);
                 tracingParameters.Add("proxy", proxy);
+                tracingParameters.Add("search", search);
+                tracingParameters.Add("select", select);
+                tracingParameters.Add("skipToken", skipToken);
+                tracingParameters.Add("filter", filter);
+                tracingParameters.Add("orderBy", orderBy);
+                tracingParameters.Add("expand", expand);
+                tracingParameters.Add("top", top);
+                tracingParameters.Add("skip", skip);
+                tracingParameters.Add("skipNullFilterParameters", skipNullFilterParameters);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetEntitiesWithODataQueryParameters", tracingParameters);
             }
@@ -1458,6 +1487,42 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             if (proxy != null)
             {
                 _queryParameters.Add(string.Format("proxy={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(proxy, SerializationSettings).Trim('"'))));
+            }
+            if (search != null)
+            {
+                _queryParameters.Add(string.Format("Search={0}", System.Uri.EscapeDataString(search)));
+            }
+            if (select != null)
+            {
+                _queryParameters.Add(string.Format("Select={0}", System.Uri.EscapeDataString(select)));
+            }
+            if (skipToken != null)
+            {
+                _queryParameters.Add(string.Format("SkipToken={0}", System.Uri.EscapeDataString(skipToken)));
+            }
+            if (filter != null)
+            {
+                _queryParameters.Add(string.Format("Filter={0}", System.Uri.EscapeDataString(filter)));
+            }
+            if (orderBy != null)
+            {
+                _queryParameters.Add(string.Format("OrderBy={0}", System.Uri.EscapeDataString(orderBy)));
+            }
+            if (expand != null)
+            {
+                _queryParameters.Add(string.Format("Expand={0}", System.Uri.EscapeDataString(expand)));
+            }
+            if (top != null)
+            {
+                _queryParameters.Add(string.Format("Top={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(top, SerializationSettings).Trim('"'))));
+            }
+            if (skip != null)
+            {
+                _queryParameters.Add(string.Format("Skip={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(skip, SerializationSettings).Trim('"'))));
+            }
+            if (skipNullFilterParameters != null)
+            {
+                _queryParameters.Add(string.Format("SkipNullFilterParameters={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(skipNullFilterParameters, SerializationSettings).Trim('"'))));
             }
             if (_queryParameters.Count > 0)
             {
@@ -8874,10 +8939,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieve information about a workflow job. (Preview)
+        /// Retrieve information about a workflow job.
         /// </summary>
         /// <remarks>
-        /// Retrieve information about a workflow job. (Preview)
+        /// Retrieve information about a workflow job.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -9092,10 +9157,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Cancel a job. (Preview)
+        /// Cancel a job.
         /// </summary>
         /// <remarks>
-        /// Cancel a job. (Preview)
+        /// Cancel a job.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -9297,10 +9362,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves a list of recent job information. (Preview)
+        /// Retrieves a list of recent job information.
         /// </summary>
         /// <remarks>
-        /// Retrieves a list of recent job information. (Preview)
+        /// Retrieves a list of recent job information.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -9518,14 +9583,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// in instanceId.
         /// Optionally takes a list of identifiers, only if operationType is not
         /// OperationType.All and a flag
-        /// forceRunRequested indicating whether to force run. (Preview)
+        /// forceRunRequested indicating whether to force run.
         /// </summary>
         /// <remarks>
         /// Submits a workflow of OperationTypeoperationType for the instance specified
         /// in instanceId.
         /// Optionally takes a list of identifiers, only if operationType is not
         /// OperationType.All and a flag
-        /// forceRunRequested indicating whether to force run. (Preview)
+        /// forceRunRequested indicating whether to force run.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The Customer Insights instance id.

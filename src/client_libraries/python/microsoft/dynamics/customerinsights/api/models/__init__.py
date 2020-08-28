@@ -17,7 +17,6 @@ try:
     from .incremental_refresh_properties_py3 import IncrementalRefreshProperties
     from .data_source_metadata_py3 import DataSourceMetadata
     from .query_metadata_py3 import QueryMetadata
-    from .query_group_entity_py3 import QueryGroupEntity
     from .mashup_py3 import Mashup
     from .annotation_py3 import Annotation
     from .entity_py3 import Entity
@@ -119,7 +118,6 @@ except (SyntaxError, ImportError):
     from .incremental_refresh_properties import IncrementalRefreshProperties
     from .data_source_metadata import DataSourceMetadata
     from .query_metadata import QueryMetadata
-    from .query_group_entity import QueryGroupEntity
     from .mashup import Mashup
     from .annotation import Annotation
     from .entity import Entity
@@ -222,7 +220,6 @@ __all__ = [
     'IncrementalRefreshProperties',
     'DataSourceMetadata',
     'QueryMetadata',
-    'QueryGroupEntity',
     'Mashup',
     'Annotation',
     'Entity',

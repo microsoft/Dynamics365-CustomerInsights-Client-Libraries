@@ -219,7 +219,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getEntitiesWithODataQueryParameters" })
         @GET("instances/{instanceId}/data")
-        Observable<Response<ResponseBody>> getEntitiesWithODataQueryParameters(@Path("instanceId") String instanceId, @Query(value = "relativePath", encoded = true) String relativePath, @Query("forceSearch") Boolean forceSearch, @Query("proxy") Boolean proxy);
+        Observable<Response<ResponseBody>> getEntitiesWithODataQueryParameters(@Path("instanceId") String instanceId, @Query(value = "relativePath", encoded = true) String relativePath, @Query("forceSearch") Boolean forceSearch, @Query("proxy") Boolean proxy, @Query("Search") String search, @Query("Select") String select, @Query("SkipToken") String skipToken, @Query("Filter") String filter, @Query("OrderBy") String orderBy, @Query("Expand") String expand, @Query("Top") Integer top, @Query("Skip") Integer skip, @Query("SkipNullFilterParameters") Boolean skipNullFilterParameters);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllEntityMetadata" })
         @GET("instances/{instanceId}/manage/entities")
@@ -379,7 +379,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getListOfRecentWorkflowJobs" })
         @GET("instances/{instanceId}/workflows/{workflowName}/jobs")
-        Observable<Response<ResponseBody>> getListOfRecentWorkflowJobs(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Query("top") Integer top, @Query("includeTasks") Boolean includeTasks);
+        Observable<Response<ResponseBody>> getListOfRecentWorkflowJobs(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Query("top") Integer top1, @Query("includeTasks") Boolean includeTasks);
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights submitAWorkflowJob" })
         @POST("instances/{instanceId}/workflows/{workflowName}/jobs")
@@ -387,7 +387,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getListOfWorkflowTaskInformationHistory" })
         @GET("instances/{instanceId}/workflows/{workflowName}/history")
-        Observable<Response<ResponseBody>> getListOfWorkflowTaskInformationHistory(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Query("top") Integer top);
+        Observable<Response<ResponseBody>> getListOfWorkflowTaskInformationHistory(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Query("top") Integer top1);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getWorkflowStatus" })
         @GET("instances/{instanceId}/workflows/{workflowName}/status")
@@ -1193,7 +1193,16 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         final String relativePath = null;
         final Boolean forceSearch = null;
         final Boolean proxy = null;
-        return service.getEntitiesWithODataQueryParameters(instanceId, relativePath, forceSearch, proxy)
+        final String search = null;
+        final String select = null;
+        final String skipToken = null;
+        final String filter = null;
+        final String orderBy = null;
+        final String expand = null;
+        final Integer top = null;
+        final Integer skip = null;
+        final Boolean skipNullFilterParameters = null;
+        return service.getEntitiesWithODataQueryParameters(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> call(Response<ResponseBody> response) {
@@ -1215,13 +1224,22 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object getEntitiesWithODataQueryParameters(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy) {
-        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy).toBlocking().single().body();
+    public Object getEntitiesWithODataQueryParameters(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters) {
+        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters).toBlocking().single().body();
     }
 
     /**
@@ -1232,12 +1250,21 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy), serviceCallback);
+    public ServiceFuture<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters), serviceCallback);
     }
 
     /**
@@ -1248,11 +1275,20 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy) {
-        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy).map(new Func1<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>, Object>() {
+    public Observable<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters) {
+        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters).map(new Func1<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders> response) {
                 return response.body();
@@ -1268,14 +1304,23 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
+     * @param search the String value
+     * @param select the String value
+     * @param skipToken the String value
+     * @param filter the String value
+     * @param orderBy the String value
+     * @param expand the String value
+     * @param top Format - int32.
+     * @param skip Format - int32.
+     * @param skipNullFilterParameters the Boolean value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> getEntitiesWithODataQueryParametersWithServiceResponseAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy) {
+    public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> getEntitiesWithODataQueryParametersWithServiceResponseAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        return service.getEntitiesWithODataQueryParameters(instanceId, relativePath, forceSearch, proxy)
+        return service.getEntitiesWithODataQueryParameters(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> call(Response<ResponseBody> response) {
@@ -5721,8 +5766,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5737,8 +5782,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5752,8 +5797,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5771,8 +5816,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5806,8 +5851,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5823,8 +5868,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5839,8 +5884,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5859,8 +5904,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job. (Preview).
-     * Retrieve information about a workflow job. (Preview).
+     * Retrieve information about a workflow job.
+     * Retrieve information about a workflow job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5904,8 +5949,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5920,8 +5965,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5935,8 +5980,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5954,8 +5999,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job. (Preview).
-     * Cancel a job. (Preview).
+     * Cancel a job.
+     * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5998,8 +6043,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6013,8 +6058,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6027,8 +6072,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6045,8 +6090,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6077,8 +6122,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6094,8 +6139,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6110,8 +6155,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6130,8 +6175,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information. (Preview).
-     * Retrieves a list of recent job information. (Preview).
+     * Retrieves a list of recent job information.
+     * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -6174,10 +6219,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -6193,10 +6238,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -6211,10 +6256,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -6233,10 +6278,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -6272,10 +6317,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -6295,10 +6340,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -6317,10 +6362,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.
@@ -6343,10 +6388,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     /**
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
      Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
-     forceRunRequested indicating whether to force run. (Preview).
+     forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
      * @param workflowName The workflow name.

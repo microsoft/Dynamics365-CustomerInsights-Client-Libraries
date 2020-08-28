@@ -115,6 +115,7 @@ class ApiErrorResult {
    * 'datasetInvalidOrMissingValues', 'duplicateAmlWorkspace',
    * 'servicePrincpalNotFound', 'roleAssignementFailed',
    * 'roleAssignementUnauthorized', 'invalidDatastoreOrPathParameter',
+   * 'invalidWorkspaceProvider', 'unsupportedWorkspaceOperation',
    * 'tenantNotFound', 'updateTenantFailed', 'invalidTenant',
    * 'storageContainerNotFound', 'storageValidationFailure',
    * 'invalidStorageType', 'storageNotSupported', 'storageAccessForbidden',

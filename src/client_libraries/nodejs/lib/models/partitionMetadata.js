@@ -15,6 +15,7 @@ class PartitionMetadata {
    * Create a PartitionMetadata.
    * @property {string} [name] Gets the name of the data partition
    * @property {string} [location] Gets the uri location of the data
+   * @property {date} [refreshTime] Gets the refresh time of the data partition
    * @property {object} [fileFormatSettings]
    * @property {boolean} [hasHeader]
    */
@@ -47,6 +48,13 @@ class PartitionMetadata {
             serializedName: 'location',
             type: {
               name: 'String'
+            }
+          },
+          refreshTime: {
+            required: false,
+            serializedName: 'refreshTime',
+            type: {
+              name: 'DateTime'
             }
           },
           fileFormatSettings: {

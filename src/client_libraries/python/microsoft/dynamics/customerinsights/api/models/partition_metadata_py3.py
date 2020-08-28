@@ -18,6 +18,8 @@ class PartitionMetadata(Model):
     :type name: str
     :param location: Gets the uri location of the data
     :type location: str
+    :param refresh_time: Gets the refresh time of the data partition
+    :type refresh_time: datetime
     :param file_format_settings:
     :type file_format_settings: object
     :ivar has_header:
@@ -31,13 +33,15 @@ class PartitionMetadata(Model):
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
+        'refresh_time': {'key': 'refreshTime', 'type': 'iso-8601'},
         'file_format_settings': {'key': 'fileFormatSettings', 'type': 'object'},
         'has_header': {'key': 'hasHeader', 'type': 'bool'},
     }
 
-    def __init__(self, *, name: str=None, location: str=None, file_format_settings=None, **kwargs) -> None:
+    def __init__(self, *, name: str=None, location: str=None, refresh_time=None, file_format_settings=None, **kwargs) -> None:
         super(PartitionMetadata, self).__init__(**kwargs)
         self.name = name
         self.location = location
+        self.refresh_time = refresh_time
         self.file_format_settings = file_format_settings
         self.has_header = None

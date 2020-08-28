@@ -16,9 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ResourceMetadata {
     /**
      * Possible values include: 'bearerAuthenticationConnection',
-     * 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection',
-     * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-     * 'facebookAds', 'http', 'mailchimp', 'googleAds'.
+     * 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
+     * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales',
+     * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp',
+     * 'googleAds'.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -38,8 +39,8 @@ public class ResourceMetadata {
     /**
      * Possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
      * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-     * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-     * 'googleAds'.
+     * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
+     * 'facebookAds', 'http', 'mailchimp', 'googleAds'.
      */
     @JsonProperty(value = "resourceType")
     private String resourceType;
@@ -93,7 +94,7 @@ public class ResourceMetadata {
     private UUID instanceId;
 
     /**
-     * Get possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
+     * Get possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
      *
      * @return the kind value
      */
@@ -102,7 +103,7 @@ public class ResourceMetadata {
     }
 
     /**
-     * Set possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
+     * Set possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
      *
      * @param kind the kind value to set
      * @return the ResourceMetadata object itself.
@@ -131,7 +132,7 @@ public class ResourceMetadata {
     }
 
     /**
-     * Get possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
+     * Get possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
      *
      * @return the resourceType value
      */
@@ -140,7 +141,7 @@ public class ResourceMetadata {
     }
 
     /**
-     * Set possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
+     * Set possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp', 'googleAds'.
      *
      * @param resourceType the resourceType value to set
      * @return the ResourceMetadata object itself.
