@@ -23,8 +23,8 @@ class IC360EntityModel {
    * 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
    * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
    * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
-   * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-   * 'derivedEntity'
+   * 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub',
+   * 'insights', 'derivedEntity'
    * @property {array} [entities] Gets entities in the model.
    */
   constructor() {

@@ -35,13 +35,6 @@ class InstanceCreationRequest {
    * instance is set to expire.
    * @property {string} [instanceMetadata.region] Gets the Azure region where
    * the instance lives.
-   * @property {string} [instanceMetadata.bapEnvironmentId] Gets the Id of the
-   * BAP Environment associated with the current instance.
-   * @property {string} [instanceMetadata.ppdfProvisionState] Possible values
-   * include: 'notStarted', 'creating', 'created', 'attaching', 'attached',
-   * 'installing', 'installed', 'failed'
-   * @property {string} [instanceMetadata.pbiProvisionState] Possible values
-   * include: 'notStarted', 'creating', 'created', 'failed'
    * @property {object} [instanceMetadata.cdsOrgInfo]
    * @property {string} [instanceMetadata.cdsOrgInfo.friendlyName] Gets the Cds
    * Organization Friendly Name

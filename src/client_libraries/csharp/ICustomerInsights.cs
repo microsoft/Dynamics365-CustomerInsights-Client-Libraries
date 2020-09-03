@@ -56,7 +56,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<AttributeDataProfile,GetAnAttributeProfileHeaders>> GetAnAttributeProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, string attributeName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,GetAnAttributeProfileHeaders>> GetAnAttributeProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, string attributeName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Fetches a collection of DataSourceInfo configured for the Customer
@@ -154,7 +154,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,CreateAnEntityHeaders>> CreateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, object body = default(object), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,CreateAnEntityHeaders>> CreateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string body = default(string), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Updates an entity instance in the store, g. Customer entity.
@@ -193,7 +193,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,UpdateAnEntityHeaders>> UpdateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string entityId, object body = default(object), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,UpdateAnEntityHeaders>> UpdateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string entityId, string body = default(string), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Submits an OData request to the service.
@@ -215,24 +215,28 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// Whether or not we are requesting data by proxy.
         /// </param>
         /// <param name='search'>
+        /// Search OData parameter.
         /// </param>
         /// <param name='select'>
-        /// </param>
-        /// <param name='skipToken'>
-        /// </param>
-        /// <param name='filter'>
-        /// </param>
-        /// <param name='orderBy'>
-        /// </param>
-        /// <param name='expand'>
-        /// </param>
-        /// <param name='top'>
-        /// Format - int32.
+        /// Select OData parameter.
         /// </param>
         /// <param name='skip'>
-        /// Format - int32.
+        /// Skip OData parameter.
         /// </param>
-        /// <param name='skipNullFilterParameters'>
+        /// <param name='skiptoken'>
+        /// SkipToken OData parameter.
+        /// </param>
+        /// <param name='filter'>
+        /// Filter OData parameter.
+        /// </param>
+        /// <param name='orderby'>
+        /// OrderBy OData parameter.
+        /// </param>
+        /// <param name='expand'>
+        /// Expand OData parameter.
+        /// </param>
+        /// <param name='top'>
+        /// Top OData parameter.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -240,7 +244,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,GetEntitiesWithODataQueryParametersHeaders>> GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,GetEntitiesWithODataPathHeaders>> GetEntitiesWithODataPathWithHttpMessagesAsync(string instanceId, string relativePath, bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skip = default(string), string skiptoken = default(string), string filter = default(string), string orderby = default(string), string expand = default(string), string top = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Retrieves the flattened entity model for the provided instanceId.
@@ -437,16 +441,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='body'>
         /// The instance creation request.
         /// </param>
-        /// <param name='isTrial'>
-        /// True if the new instance is a trial instance. False otherwise.
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,CreateAnInstanceHeaders>> CreateAnInstanceWithHttpMessagesAsync(InstanceCreationRequest body = default(InstanceCreationRequest), bool? isTrial = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,CreateAnInstanceHeaders>> CreateAnInstanceWithHttpMessagesAsync(InstanceCreationRequest body = default(InstanceCreationRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Patches the Market Verticals, Display name, Domain Name, CDS
@@ -478,16 +479,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='body'>
         /// The metadata to use to create the new instance.
         /// </param>
-        /// <param name='isTrial'>
-        /// True if the new instance is a trial instance. False otherwise.
-        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,CopyAnInstanceHeaders>> CopyAnInstanceWithHttpMessagesAsync(InstanceCopyRequest body = default(InstanceCopyRequest), bool? isTrial = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,CopyAnInstanceHeaders>> CopyAnInstanceWithHttpMessagesAsync(InstanceCopyRequest body = default(InstanceCopyRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Retrieves a list of measures metadata for the provided instanceId.
@@ -1016,7 +1014,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<DeletionResponse,DeleteSegmentHeaders>> DeleteSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,DeleteSegmentHeaders>> DeleteSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Retrieve information about a workflow job.
@@ -1256,7 +1254,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<EntityDataProfile,GetAnEntityProfileHeaders>> GetAnEntityProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,GetAnEntityProfileHeaders>> GetAnEntityProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

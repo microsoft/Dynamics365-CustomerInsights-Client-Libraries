@@ -41,7 +41,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'datahub', 'insights', 'derivedEntity'</param>
+        /// 'powerPlatformSource', 'datahub', 'insights',
+        /// 'derivedEntity'</param>
         /// <param name="datasourceId">Gets the original datasourceid of this
         /// entity, if no data source, return null or emptyString</param>
         /// <param name="entityType">Possible values include: 'unspecified',
@@ -75,8 +76,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// upsert data partitions.</param>
         /// <param name="incrementalDeletePartitions">Gets entity incremental
         /// delete data partitions.</param>
+        /// <param name="fullPartitionsParquet">Gets entity data parquet
+        /// partitions.</param>
+        /// <param name="incrementalUpsertPartitionsParquet">Gets entity
+        /// incremental upsert data parquet partitions.</param>
+        /// <param name="incrementalDeletePartitionsParquet">Gets entity
+        /// incremental delete data parquet partitions.</param>
         /// <param name="annotations">Gets base entity name</param>
-        public IEntityMetadata(string name = default(string), string qualifiedEntityName = default(string), string dataSourceName = default(string), string dataflowType = default(string), System.Guid? datasourceId = default(System.Guid?), string entityType = default(string), IList<IAttributeMetadata> attributes = default(IList<IAttributeMetadata>), IList<IList<IAttributeMetadata>> keys = default(IList<IList<IAttributeMetadata>>), IList<IRelationshipMetadata> relationships = default(IList<IRelationshipMetadata>), IAttributeMetadata timestampAttribute = default(IAttributeMetadata), string semanticType = default(string), System.DateTime? refreshTime = default(System.DateTime?), IList<PartitionMetadata> partitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalUpsertPartitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalDeletePartitions = default(IList<PartitionMetadata>), IList<Annotation> annotations = default(IList<Annotation>))
+        public IEntityMetadata(string name = default(string), string qualifiedEntityName = default(string), string dataSourceName = default(string), string dataflowType = default(string), System.Guid? datasourceId = default(System.Guid?), string entityType = default(string), IList<IAttributeMetadata> attributes = default(IList<IAttributeMetadata>), IList<IList<IAttributeMetadata>> keys = default(IList<IList<IAttributeMetadata>>), IList<IRelationshipMetadata> relationships = default(IList<IRelationshipMetadata>), IAttributeMetadata timestampAttribute = default(IAttributeMetadata), IAttributeMetadata incrementalAttribute = default(IAttributeMetadata), string semanticType = default(string), System.DateTime? refreshTime = default(System.DateTime?), IList<PartitionMetadata> partitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalUpsertPartitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalDeletePartitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> fullPartitionsParquet = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalUpsertPartitionsParquet = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalDeletePartitionsParquet = default(IList<PartitionMetadata>), IList<Annotation> annotations = default(IList<Annotation>))
         {
             Name = name;
             QualifiedEntityName = qualifiedEntityName;
@@ -88,11 +95,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             Keys = keys;
             Relationships = relationships;
             TimestampAttribute = timestampAttribute;
+            IncrementalAttribute = incrementalAttribute;
             SemanticType = semanticType;
             RefreshTime = refreshTime;
             Partitions = partitions;
             IncrementalUpsertPartitions = incrementalUpsertPartitions;
             IncrementalDeletePartitions = incrementalDeletePartitions;
+            FullPartitionsParquet = fullPartitionsParquet;
+            IncrementalUpsertPartitionsParquet = incrementalUpsertPartitionsParquet;
+            IncrementalDeletePartitionsParquet = incrementalDeletePartitionsParquet;
             Annotations = annotations;
             CustomInit();
         }
@@ -133,7 +144,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'datahub', 'insights', 'derivedEntity'
+        /// 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'
         /// </summary>
         [JsonProperty(PropertyName = "dataflowType")]
         public string DataflowType { get; set; }
@@ -178,6 +189,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public IAttributeMetadata TimestampAttribute { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "incrementalAttribute")]
+        public IAttributeMetadata IncrementalAttribute { get; set; }
+
+        /// <summary>
         /// Gets or sets possible values include: 'Account', 'AccountLeads',
         /// 'ActivityParty', 'ActivityPointer', 'Annotation', 'Appointment',
         /// 'BusinessUnit', 'Campaign', 'CampaignActivity', 'CampaignItem',
@@ -220,6 +236,24 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "incrementalDeletePartitions")]
         public IList<PartitionMetadata> IncrementalDeletePartitions { get; private set; }
+
+        /// <summary>
+        /// Gets entity data parquet partitions.
+        /// </summary>
+        [JsonProperty(PropertyName = "fullPartitionsParquet")]
+        public IList<PartitionMetadata> FullPartitionsParquet { get; private set; }
+
+        /// <summary>
+        /// Gets entity incremental upsert data parquet partitions.
+        /// </summary>
+        [JsonProperty(PropertyName = "incrementalUpsertPartitionsParquet")]
+        public IList<PartitionMetadata> IncrementalUpsertPartitionsParquet { get; private set; }
+
+        /// <summary>
+        /// Gets entity incremental delete data parquet partitions.
+        /// </summary>
+        [JsonProperty(PropertyName = "incrementalDeletePartitionsParquet")]
+        public IList<PartitionMetadata> IncrementalDeletePartitionsParquet { get; private set; }
 
         /// <summary>
         /// Gets base entity name

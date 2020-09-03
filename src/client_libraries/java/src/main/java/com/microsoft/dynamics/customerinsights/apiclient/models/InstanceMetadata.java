@@ -53,25 +53,6 @@ public class InstanceMetadata {
     private String region;
 
     /**
-     * Gets the Id of the BAP Environment associated with the current instance.
-     */
-    @JsonProperty(value = "bapEnvironmentId")
-    private String bapEnvironmentId;
-
-    /**
-     * Possible values include: 'notStarted', 'creating', 'created',
-     * 'attaching', 'attached', 'installing', 'installed', 'failed'.
-     */
-    @JsonProperty(value = "ppdfProvisionState")
-    private String ppdfProvisionState;
-
-    /**
-     * Possible values include: 'notStarted', 'creating', 'created', 'failed'.
-     */
-    @JsonProperty(value = "pbiProvisionState")
-    private String pbiProvisionState;
-
-    /**
      * The cdsOrgInfo property.
      */
     @JsonProperty(value = "cdsOrgInfo")
@@ -248,66 +229,6 @@ public class InstanceMetadata {
      */
     public InstanceMetadata withRegion(String region) {
         this.region = region;
-        return this;
-    }
-
-    /**
-     * Get gets the Id of the BAP Environment associated with the current instance.
-     *
-     * @return the bapEnvironmentId value
-     */
-    public String bapEnvironmentId() {
-        return this.bapEnvironmentId;
-    }
-
-    /**
-     * Set gets the Id of the BAP Environment associated with the current instance.
-     *
-     * @param bapEnvironmentId the bapEnvironmentId value to set
-     * @return the InstanceMetadata object itself.
-     */
-    public InstanceMetadata withBapEnvironmentId(String bapEnvironmentId) {
-        this.bapEnvironmentId = bapEnvironmentId;
-        return this;
-    }
-
-    /**
-     * Get possible values include: 'notStarted', 'creating', 'created', 'attaching', 'attached', 'installing', 'installed', 'failed'.
-     *
-     * @return the ppdfProvisionState value
-     */
-    public String ppdfProvisionState() {
-        return this.ppdfProvisionState;
-    }
-
-    /**
-     * Set possible values include: 'notStarted', 'creating', 'created', 'attaching', 'attached', 'installing', 'installed', 'failed'.
-     *
-     * @param ppdfProvisionState the ppdfProvisionState value to set
-     * @return the InstanceMetadata object itself.
-     */
-    public InstanceMetadata withPpdfProvisionState(String ppdfProvisionState) {
-        this.ppdfProvisionState = ppdfProvisionState;
-        return this;
-    }
-
-    /**
-     * Get possible values include: 'notStarted', 'creating', 'created', 'failed'.
-     *
-     * @return the pbiProvisionState value
-     */
-    public String pbiProvisionState() {
-        return this.pbiProvisionState;
-    }
-
-    /**
-     * Set possible values include: 'notStarted', 'creating', 'created', 'failed'.
-     *
-     * @param pbiProvisionState the pbiProvisionState value to set
-     * @return the InstanceMetadata object itself.
-     */
-    public InstanceMetadata withPbiProvisionState(String pbiProvisionState) {
-        this.pbiProvisionState = pbiProvisionState;
         return this;
     }
 

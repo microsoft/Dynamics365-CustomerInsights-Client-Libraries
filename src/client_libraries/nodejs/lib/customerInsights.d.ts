@@ -46,11 +46,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<AttributeDataProfile>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getAnAttributeProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, attributeName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.AttributeDataProfile>>;
+  getAnAttributeProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, attributeName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Gets the specific attribute profile for the entity.
@@ -75,7 +75,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned.
    *
-   *                      @resolve {AttributeDataProfile} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error|ServiceError} - The error object.
    *
@@ -83,16 +83,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {AttributeDataProfile} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link AttributeDataProfile} for more information.
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getAnAttributeProfile(instanceId: string, qualifiedEntityName: string, attributeName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.AttributeDataProfile>;
-  getAnAttributeProfile(instanceId: string, qualifiedEntityName: string, attributeName: string, callback: ServiceCallback<models.AttributeDataProfile>): void;
-  getAnAttributeProfile(instanceId: string, qualifiedEntityName: string, attributeName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.AttributeDataProfile>): void;
+  getAnAttributeProfile(instanceId: string, qualifiedEntityName: string, attributeName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAnAttributeProfile(instanceId: string, qualifiedEntityName: string, attributeName: string, callback: ServiceCallback<any>): void;
+  getAnAttributeProfile(instanceId: string, qualifiedEntityName: string, attributeName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -304,7 +303,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document representing the entity. The
+   * @param {string} [options.body] JSON document representing the entity. The
    * schema must be consistent with the entity metadata. Use GET action of this
    * resource to obtain an example.
    *
@@ -324,7 +323,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createAnEntityWithHttpOperationResponse(instanceId: string, entityName: string, options?: { body? : any, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createAnEntityWithHttpOperationResponse(instanceId: string, entityName: string, options?: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Writes an entity instance into the store, g. an activity entity.
@@ -339,7 +338,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document representing the entity. The
+   * @param {string} [options.body] JSON document representing the entity. The
    * schema must be consistent with the entity metadata. Use GET action of this
    * resource to obtain an example.
    *
@@ -374,9 +373,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createAnEntity(instanceId: string, entityName: string, options?: { body? : any, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createAnEntity(instanceId: string, entityName: string, options?: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createAnEntity(instanceId: string, entityName: string, callback: ServiceCallback<any>): void;
-  createAnEntity(instanceId: string, entityName: string, options: { body? : any, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createAnEntity(instanceId: string, entityName: string, options: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -394,7 +393,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document with set of changes to apply on
+   * @param {string} [options.body] JSON document with set of changes to apply on
    * the entity. Each change must be consistent with the entity metadata. Use GET
    * action of this resource to obtain an example.
    *
@@ -414,7 +413,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateAnEntityWithHttpOperationResponse(instanceId: string, entityName: string, entityId: string, options?: { body? : any, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateAnEntityWithHttpOperationResponse(instanceId: string, entityName: string, entityId: string, options?: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Updates an entity instance in the store, g. Customer entity.
@@ -431,7 +430,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document with set of changes to apply on
+   * @param {string} [options.body] JSON document with set of changes to apply on
    * the entity. Each change must be consistent with the entity metadata. Use GET
    * action of this resource to obtain an example.
    *
@@ -466,9 +465,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateAnEntity(instanceId: string, entityName: string, entityId: string, options?: { body? : any, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateAnEntity(instanceId: string, entityName: string, entityId: string, options?: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateAnEntity(instanceId: string, entityName: string, entityId: string, callback: ServiceCallback<any>): void;
-  updateAnEntity(instanceId: string, entityName: string, entityId: string, options: { body? : any, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateAnEntity(instanceId: string, entityName: string, entityId: string, options: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -478,10 +477,10 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id.
    *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {string} [options.relativePath] Relative OData path. See
+   * @param {string} relativePath Relative OData path. See
    * https://www.odata.org/getting-started/basic-tutorial/ for info.
+   *
+   * @param {object} [options] Optional Parameters.
    *
    * @param {boolean} [options.forceSearch] Whether force use search to support
    * the query.
@@ -489,23 +488,21 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
    *
-   * @param {string} [options.search]
+   * @param {string} [options.search] Search OData parameter.
    *
-   * @param {string} [options.select]
+   * @param {string} [options.select] Select OData parameter.
    *
-   * @param {string} [options.skipToken]
+   * @param {string} [options.skip] Skip OData parameter.
    *
-   * @param {string} [options.filter]
+   * @param {string} [options.skiptoken] SkipToken OData parameter.
    *
-   * @param {string} [options.orderBy]
+   * @param {string} [options.filter] Filter OData parameter.
    *
-   * @param {string} [options.expand]
+   * @param {string} [options.orderby] OrderBy OData parameter.
    *
-   * @param {number} [options.top] Format - int32.
+   * @param {string} [options.expand] Expand OData parameter.
    *
-   * @param {number} [options.skip] Format - int32.
-   *
-   * @param {boolean} [options.skipNullFilterParameters]
+   * @param {string} [options.top] Top OData parameter.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -516,7 +513,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getEntitiesWithODataQueryParametersWithHttpOperationResponse(instanceId: string, options?: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skipToken? : string, filter? : string, orderBy? : string, expand? : string, top? : number, skip? : number, skipNullFilterParameters? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  getEntitiesWithODataPathWithHttpOperationResponse(instanceId: string, relativePath: string, options?: { forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skip? : string, skiptoken? : string, filter? : string, orderby? : string, expand? : string, top? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Submits an OData request to the service.
@@ -525,10 +522,10 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id.
    *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {string} [options.relativePath] Relative OData path. See
+   * @param {string} relativePath Relative OData path. See
    * https://www.odata.org/getting-started/basic-tutorial/ for info.
+   *
+   * @param {object} [options] Optional Parameters.
    *
    * @param {boolean} [options.forceSearch] Whether force use search to support
    * the query.
@@ -536,23 +533,21 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
    *
-   * @param {string} [options.search]
+   * @param {string} [options.search] Search OData parameter.
    *
-   * @param {string} [options.select]
+   * @param {string} [options.select] Select OData parameter.
    *
-   * @param {string} [options.skipToken]
+   * @param {string} [options.skip] Skip OData parameter.
    *
-   * @param {string} [options.filter]
+   * @param {string} [options.skiptoken] SkipToken OData parameter.
    *
-   * @param {string} [options.orderBy]
+   * @param {string} [options.filter] Filter OData parameter.
    *
-   * @param {string} [options.expand]
+   * @param {string} [options.orderby] OrderBy OData parameter.
    *
-   * @param {number} [options.top] Format - int32.
+   * @param {string} [options.expand] Expand OData parameter.
    *
-   * @param {number} [options.skip] Format - int32.
-   *
-   * @param {boolean} [options.skipNullFilterParameters]
+   * @param {string} [options.top] Top OData parameter.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -578,9 +573,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getEntitiesWithODataQueryParameters(instanceId: string, options?: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skipToken? : string, filter? : string, orderBy? : string, expand? : string, top? : number, skip? : number, skipNullFilterParameters? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
-  getEntitiesWithODataQueryParameters(instanceId: string, callback: ServiceCallback<any>): void;
-  getEntitiesWithODataQueryParameters(instanceId: string, options: { relativePath? : string, forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skipToken? : string, filter? : string, orderBy? : string, expand? : string, top? : number, skip? : number, skipNullFilterParameters? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  getEntitiesWithODataPath(instanceId: string, relativePath: string, options?: { forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skip? : string, skiptoken? : string, filter? : string, orderby? : string, expand? : string, top? : string, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getEntitiesWithODataPath(instanceId: string, relativePath: string, callback: ServiceCallback<any>): void;
+  getEntitiesWithODataPath(instanceId: string, relativePath: string, options: { forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skip? : string, skiptoken? : string, filter? : string, orderby? : string, expand? : string, top? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1188,16 +1183,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -1248,9 +1233,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
    *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
-   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -1260,7 +1242,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCreationRequest, isTrial? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Creates a new instance.
@@ -1291,16 +1273,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -1351,9 +1323,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
    *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
-   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -1378,9 +1347,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createAnInstance(options?: { body? : models.InstanceCreationRequest, isTrial? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createAnInstance(options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createAnInstance(callback: ServiceCallback<any>): void;
-  createAnInstance(options: { body? : models.InstanceCreationRequest, isTrial? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createAnInstance(options: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1415,16 +1384,6 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
-   *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
    *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
@@ -1519,16 +1478,6 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
-   *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
    *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
@@ -1641,16 +1590,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -1701,9 +1640,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
    *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
-   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -1713,7 +1649,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  copyAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCopyRequest, isTrial? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  copyAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Create a new instance and copy metadata from an existing instance.
@@ -1747,16 +1683,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -1807,9 +1733,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
    *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
-   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -1834,9 +1757,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  copyAnInstance(options?: { body? : models.InstanceCopyRequest, isTrial? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  copyAnInstance(options?: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   copyAnInstance(callback: ServiceCallback<any>): void;
-  copyAnInstance(options: { body? : models.InstanceCopyRequest, isTrial? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  copyAnInstance(options: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -5070,11 +4993,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<DeletionResponse>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  deleteSegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.DeletionResponse>>;
+  deleteSegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Deletes the segment metadata for the provided instanceId and
@@ -5098,7 +5021,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned.
    *
-   *                      @resolve {DeletionResponse} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error|ServiceError} - The error object.
    *
@@ -5106,16 +5029,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {DeletionResponse} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link DeletionResponse} for more information.
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  deleteSegment(instanceId: string, segmentName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.DeletionResponse>;
-  deleteSegment(instanceId: string, segmentName: string, callback: ServiceCallback<models.DeletionResponse>): void;
-  deleteSegment(instanceId: string, segmentName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.DeletionResponse>): void;
+  deleteSegment(instanceId: string, segmentName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  deleteSegment(instanceId: string, segmentName: string, callback: ServiceCallback<any>): void;
+  deleteSegment(instanceId: string, segmentName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -5832,11 +5754,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<EntityDataProfile>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getAnEntityProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.EntityDataProfile>>;
+  getAnEntityProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary Gets the entityProfile for the entity.
@@ -5859,7 +5781,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned.
    *
-   *                      @resolve {EntityDataProfile} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error|ServiceError} - The error object.
    *
@@ -5867,16 +5789,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {EntityDataProfile} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link EntityDataProfile} for more information.
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.EntityDataProfile>;
-  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, callback: ServiceCallback<models.EntityDataProfile>): void;
-  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.EntityDataProfile>): void;
+  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, callback: ServiceCallback<any>): void;
+  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 }
 
 export { CustomerInsights, models as CustomerInsightsModels };

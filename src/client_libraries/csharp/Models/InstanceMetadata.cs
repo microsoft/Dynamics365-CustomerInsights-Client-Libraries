@@ -35,13 +35,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// expire.</param>
         /// <param name="region">Gets the Azure region where the instance
         /// lives.</param>
-        /// <param name="bapEnvironmentId">Gets the Id of the BAP Environment
-        /// associated with the current instance.</param>
-        /// <param name="ppdfProvisionState">Possible values include:
-        /// 'notStarted', 'creating', 'created', 'attaching', 'attached',
-        /// 'installing', 'installed', 'failed'</param>
-        /// <param name="pbiProvisionState">Possible values include:
-        /// 'notStarted', 'creating', 'created', 'failed'</param>
         /// <param name="maxTrialExtensionsAllowed">Gets the total number of
         /// extensions allowed if this is trial instance</param>
         /// <param name="trialExtensionHistory">Stores the details of trial
@@ -58,7 +51,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Gets the Customer Insights instance id
         /// associated with this object.</param>
-        public InstanceMetadata(string name = default(string), string provisioningState = default(string), string instanceType = default(string), DataRefreshSchedule refreshSchedule = default(DataRefreshSchedule), System.DateTime? expiryTimeUtc = default(System.DateTime?), string region = default(string), string bapEnvironmentId = default(string), string ppdfProvisionState = default(string), string pbiProvisionState = default(string), CdsOrgInfo cdsOrgInfo = default(CdsOrgInfo), CdsMdlInfo cdsMdlInfo = default(CdsMdlInfo), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public InstanceMetadata(string name = default(string), string provisioningState = default(string), string instanceType = default(string), DataRefreshSchedule refreshSchedule = default(DataRefreshSchedule), System.DateTime? expiryTimeUtc = default(System.DateTime?), string region = default(string), CdsOrgInfo cdsOrgInfo = default(CdsOrgInfo), CdsMdlInfo cdsMdlInfo = default(CdsMdlInfo), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             Name = name;
             ProvisioningState = provisioningState;
@@ -66,9 +59,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             RefreshSchedule = refreshSchedule;
             ExpiryTimeUtc = expiryTimeUtc;
             Region = region;
-            BapEnvironmentId = bapEnvironmentId;
-            PpdfProvisionState = ppdfProvisionState;
-            PbiProvisionState = pbiProvisionState;
             CdsOrgInfo = cdsOrgInfo;
             CdsMdlInfo = cdsMdlInfo;
             MaxTrialExtensionsAllowed = maxTrialExtensionsAllowed;
@@ -124,28 +114,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "region")]
         public string Region { get; set; }
-
-        /// <summary>
-        /// Gets the Id of the BAP Environment associated with the current
-        /// instance.
-        /// </summary>
-        [JsonProperty(PropertyName = "bapEnvironmentId")]
-        public string BapEnvironmentId { get; set; }
-
-        /// <summary>
-        /// Gets or sets possible values include: 'notStarted', 'creating',
-        /// 'created', 'attaching', 'attached', 'installing', 'installed',
-        /// 'failed'
-        /// </summary>
-        [JsonProperty(PropertyName = "ppdfProvisionState")]
-        public string PpdfProvisionState { get; set; }
-
-        /// <summary>
-        /// Gets or sets possible values include: 'notStarted', 'creating',
-        /// 'created', 'failed'
-        /// </summary>
-        [JsonProperty(PropertyName = "pbiProvisionState")]
-        public string PbiProvisionState { get; set; }
 
         /// <summary>
         /// </summary>

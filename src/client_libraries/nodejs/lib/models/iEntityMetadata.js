@@ -26,8 +26,8 @@ class IEntityMetadata {
    * 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
    * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
    * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
-   * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-   * 'derivedEntity'
+   * 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub',
+   * 'insights', 'derivedEntity'
    * @property {uuid} [datasourceId] Gets the original datasourceid of this
    * entity, if no data source, return null or emptyString
    * @property {string} [entityType] Possible values include: 'unspecified',
@@ -106,6 +106,76 @@ class IEntityMetadata {
    * bucket facet: "price,interval:10"
    * other type: "listPrice,values:10|25|100|500|1000|2500"
    * value facet: city,count:5
+   * @property {object} [incrementalAttribute]
+   * @property {string} [incrementalAttribute.name]
+   * @property {string} [incrementalAttribute.friendlyName]
+   * @property {string} [incrementalAttribute.baseName]
+   * @property {object} [incrementalAttribute.dataType]
+   * @property {string} [incrementalAttribute.dataType.clrType] Gets the CLR
+   * Type for this property type.
+   * @property {string} [incrementalAttribute.dataType.cdsaType] Possible
+   * values include: 'unclassified', 'string', 'int64', 'double', 'dateTime',
+   * 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
+   * @property {string} [incrementalAttribute.dataType.edmTypeName] Gets the
+   * EDM type name for the property type, in the format EdmTypeKind>".
+   * @property {boolean} [incrementalAttribute.dataType.isBoolean]
+   * @property {boolean} [incrementalAttribute.dataType.isDateTime]
+   * @property {boolean} [incrementalAttribute.dataType.isDecimal]
+   * @property {boolean} [incrementalAttribute.dataType.isNumber]
+   * @property {boolean} [incrementalAttribute.dataType.isValidType] Gets a
+   * value indicating whether this type valid and supported by the runtime.
+   * @property {string} [incrementalAttribute.dataType.name] Gets the name of
+   * the property type. Will default to the EdmTypeName but may be overridden
+   * by a property
+   * type.
+   * @property {object} [incrementalAttribute.dataType.equalityComparer]
+   * @property {object} [incrementalAttribute.dataType.comparer]
+   * @property {object} [incrementalAttribute.dataType.oDataType]
+   * @property {string} [incrementalAttribute.dataType.oDataType.typeKind]
+   * Possible values include: 'none', 'primitive', 'entity', 'complex',
+   * 'collection', 'entityReference', 'enum', 'typeDefinition', 'untyped',
+   * 'path'
+   * @property {boolean} [incrementalAttribute.dataType.isCollection]
+   * @property {string} [incrementalAttribute.semanticType] Possible values
+   * include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+   * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
+   * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
+   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
+   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
+   * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
+   * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
+   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+   * 'LocationContinent', 'LocationCountry', 'LocationCounty',
+   * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+   * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+   * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
+   * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
+   * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
+   * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+   * 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone',
+   * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
+   * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'
+   * @property {object} [incrementalAttribute.searchProperties]
+   * @property {boolean} [incrementalAttribute.searchProperties.isSearchable]
+   * Gets a value indicating whether the attribute supports full text search.
+   * @property {boolean} [incrementalAttribute.searchProperties.isFilterable]
+   * Gets a value indicating whether the attribute supports filtering.
+   * @property {boolean} [incrementalAttribute.searchProperties.isFacetable]
+   * Gets a value indicating whether the attribute can be included as facet
+   * results.
+   * @property {boolean} [incrementalAttribute.searchProperties.isSortable]
+   * Gets a value indicating whether the attribute can be included in orderby
+   * directives.
+   * @property {string}
+   * [incrementalAttribute.searchProperties.facetSpecification] Gets an
+   * optional specification for search faceting used at query time (advanced).
+   * this is the part behind the comma in the examples below.
+   * bucket facet: "price,interval:10"
+   * other type: "listPrice,values:10|25|100|500|1000|2500"
+   * value facet: city,count:5
    * @property {string} [semanticType] Possible values include: 'Account',
    * 'AccountLeads', 'ActivityParty', 'ActivityPointer', 'Annotation',
    * 'Appointment', 'BusinessUnit', 'Campaign', 'CampaignActivity',
@@ -126,6 +196,12 @@ class IEntityMetadata {
    * upsert data partitions.
    * @property {array} [incrementalDeletePartitions] Gets entity incremental
    * delete data partitions.
+   * @property {array} [fullPartitionsParquet] Gets entity data parquet
+   * partitions.
+   * @property {array} [incrementalUpsertPartitionsParquet] Gets entity
+   * incremental upsert data parquet partitions.
+   * @property {array} [incrementalDeletePartitionsParquet] Gets entity
+   * incremental delete data parquet partitions.
    * @property {array} [annotations] Gets base entity name
    */
   constructor() {
@@ -254,6 +330,14 @@ class IEntityMetadata {
               className: 'IAttributeMetadata'
             }
           },
+          incrementalAttribute: {
+            required: false,
+            serializedName: 'incrementalAttribute',
+            type: {
+              name: 'Composite',
+              className: 'IAttributeMetadata'
+            }
+          },
           semanticType: {
             required: false,
             serializedName: 'semanticType',
@@ -305,6 +389,54 @@ class IEntityMetadata {
             required: false,
             readOnly: true,
             serializedName: 'incrementalDeletePartitions',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'PartitionMetadataElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'PartitionMetadata'
+                  }
+              }
+            }
+          },
+          fullPartitionsParquet: {
+            required: false,
+            readOnly: true,
+            serializedName: 'fullPartitionsParquet',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'PartitionMetadataElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'PartitionMetadata'
+                  }
+              }
+            }
+          },
+          incrementalUpsertPartitionsParquet: {
+            required: false,
+            readOnly: true,
+            serializedName: 'incrementalUpsertPartitionsParquet',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'PartitionMetadataElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'PartitionMetadata'
+                  }
+              }
+            }
+          },
+          incrementalDeletePartitionsParquet: {
+            required: false,
+            readOnly: true,
+            serializedName: 'incrementalDeletePartitionsParquet',
             type: {
               name: 'Sequence',
               element: {

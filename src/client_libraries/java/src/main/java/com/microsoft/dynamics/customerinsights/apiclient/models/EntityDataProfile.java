@@ -44,6 +44,12 @@ public class EntityDataProfile {
     private String profiledAttributes;
 
     /**
+     * The corruptAttributes property.
+     */
+    @JsonProperty(value = "corruptAttributes")
+    private String corruptAttributes;
+
+    /**
      * Get the qualifiedEntityName value.
      *
      * @return the qualifiedEntityName value
@@ -140,6 +146,26 @@ public class EntityDataProfile {
      */
     public EntityDataProfile withProfiledAttributes(String profiledAttributes) {
         this.profiledAttributes = profiledAttributes;
+        return this;
+    }
+
+    /**
+     * Get the corruptAttributes value.
+     *
+     * @return the corruptAttributes value
+     */
+    public String corruptAttributes() {
+        return this.corruptAttributes;
+    }
+
+    /**
+     * Set the corruptAttributes value.
+     *
+     * @param corruptAttributes the corruptAttributes value to set
+     * @return the EntityDataProfile object itself.
+     */
+    public EntityDataProfile withCorruptAttributes(String corruptAttributes) {
+        this.corruptAttributes = corruptAttributes;
         return this;
     }
 

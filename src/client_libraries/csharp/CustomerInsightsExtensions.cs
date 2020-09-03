@@ -35,7 +35,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='attributeName'>
             /// Attribute Name.
             /// </param>
-            public static AttributeDataProfile GetAnAttributeProfile(this ICustomerInsights operations, string instanceId, string qualifiedEntityName, string attributeName)
+            public static object GetAnAttributeProfile(this ICustomerInsights operations, string instanceId, string qualifiedEntityName, string attributeName)
             {
                 return operations.GetAnAttributeProfileAsync(instanceId, qualifiedEntityName, attributeName).GetAwaiter().GetResult();
             }
@@ -61,7 +61,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<AttributeDataProfile> GetAnAttributeProfileAsync(this ICustomerInsights operations, string instanceId, string qualifiedEntityName, string attributeName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetAnAttributeProfileAsync(this ICustomerInsights operations, string instanceId, string qualifiedEntityName, string attributeName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetAnAttributeProfileWithHttpMessagesAsync(instanceId, qualifiedEntityName, attributeName, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -238,7 +238,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='caller'>
             /// String to identify the caller; optional.
             /// </param>
-            public static object CreateAnEntity(this ICustomerInsights operations, string instanceId, string entityName, object body = default(object), string validUntil = default(string), string caller = default(string))
+            public static object CreateAnEntity(this ICustomerInsights operations, string instanceId, string entityName, string body = default(string), string validUntil = default(string), string caller = default(string))
             {
                 return operations.CreateAnEntityAsync(instanceId, entityName, body, validUntil, caller).GetAwaiter().GetResult();
             }
@@ -275,7 +275,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateAnEntityAsync(this ICustomerInsights operations, string instanceId, string entityName, object body = default(object), string validUntil = default(string), string caller = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateAnEntityAsync(this ICustomerInsights operations, string instanceId, string entityName, string body = default(string), string validUntil = default(string), string caller = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateAnEntityWithHttpMessagesAsync(instanceId, entityName, body, validUntil, caller, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -315,7 +315,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='caller'>
             /// String to identify the caller; optional.
             /// </param>
-            public static object UpdateAnEntity(this ICustomerInsights operations, string instanceId, string entityName, string entityId, object body = default(object), string validUntil = default(string), string caller = default(string))
+            public static object UpdateAnEntity(this ICustomerInsights operations, string instanceId, string entityName, string entityId, string body = default(string), string validUntil = default(string), string caller = default(string))
             {
                 return operations.UpdateAnEntityAsync(instanceId, entityName, entityId, body, validUntil, caller).GetAwaiter().GetResult();
             }
@@ -355,7 +355,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateAnEntityAsync(this ICustomerInsights operations, string instanceId, string entityName, string entityId, object body = default(object), string validUntil = default(string), string caller = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateAnEntityAsync(this ICustomerInsights operations, string instanceId, string entityName, string entityId, string body = default(string), string validUntil = default(string), string caller = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateAnEntityWithHttpMessagesAsync(instanceId, entityName, entityId, body, validUntil, caller, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -386,28 +386,32 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// Whether or not we are requesting data by proxy.
             /// </param>
             /// <param name='search'>
+            /// Search OData parameter.
             /// </param>
             /// <param name='select'>
-            /// </param>
-            /// <param name='skipToken'>
-            /// </param>
-            /// <param name='filter'>
-            /// </param>
-            /// <param name='orderBy'>
-            /// </param>
-            /// <param name='expand'>
-            /// </param>
-            /// <param name='top'>
-            /// Format - int32.
+            /// Select OData parameter.
             /// </param>
             /// <param name='skip'>
-            /// Format - int32.
+            /// Skip OData parameter.
             /// </param>
-            /// <param name='skipNullFilterParameters'>
+            /// <param name='skiptoken'>
+            /// SkipToken OData parameter.
             /// </param>
-            public static object GetEntitiesWithODataQueryParameters(this ICustomerInsights operations, string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?))
+            /// <param name='filter'>
+            /// Filter OData parameter.
+            /// </param>
+            /// <param name='orderby'>
+            /// OrderBy OData parameter.
+            /// </param>
+            /// <param name='expand'>
+            /// Expand OData parameter.
+            /// </param>
+            /// <param name='top'>
+            /// Top OData parameter.
+            /// </param>
+            public static object GetEntitiesWithODataPath(this ICustomerInsights operations, string instanceId, string relativePath, bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skip = default(string), string skiptoken = default(string), string filter = default(string), string orderby = default(string), string expand = default(string), string top = default(string))
             {
-                return operations.GetEntitiesWithODataQueryParametersAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters).GetAwaiter().GetResult();
+                return operations.GetEntitiesWithODataPathAsync(instanceId, relativePath, forceSearch, proxy, search, select, skip, skiptoken, filter, orderby, expand, top).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -433,31 +437,35 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// Whether or not we are requesting data by proxy.
             /// </param>
             /// <param name='search'>
+            /// Search OData parameter.
             /// </param>
             /// <param name='select'>
-            /// </param>
-            /// <param name='skipToken'>
-            /// </param>
-            /// <param name='filter'>
-            /// </param>
-            /// <param name='orderBy'>
-            /// </param>
-            /// <param name='expand'>
-            /// </param>
-            /// <param name='top'>
-            /// Format - int32.
+            /// Select OData parameter.
             /// </param>
             /// <param name='skip'>
-            /// Format - int32.
+            /// Skip OData parameter.
             /// </param>
-            /// <param name='skipNullFilterParameters'>
+            /// <param name='skiptoken'>
+            /// SkipToken OData parameter.
+            /// </param>
+            /// <param name='filter'>
+            /// Filter OData parameter.
+            /// </param>
+            /// <param name='orderby'>
+            /// OrderBy OData parameter.
+            /// </param>
+            /// <param name='expand'>
+            /// Expand OData parameter.
+            /// </param>
+            /// <param name='top'>
+            /// Top OData parameter.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetEntitiesWithODataQueryParametersAsync(this ICustomerInsights operations, string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetEntitiesWithODataPathAsync(this ICustomerInsights operations, string instanceId, string relativePath, bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skip = default(string), string skiptoken = default(string), string filter = default(string), string orderby = default(string), string expand = default(string), string top = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetEntitiesWithODataPathWithHttpMessagesAsync(instanceId, relativePath, forceSearch, proxy, search, select, skip, skiptoken, filter, orderby, expand, top, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -893,12 +901,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The instance creation request.
             /// </param>
-            /// <param name='isTrial'>
-            /// True if the new instance is a trial instance. False otherwise.
-            /// </param>
-            public static object CreateAnInstance(this ICustomerInsights operations, InstanceCreationRequest body = default(InstanceCreationRequest), bool? isTrial = false)
+            public static object CreateAnInstance(this ICustomerInsights operations, InstanceCreationRequest body = default(InstanceCreationRequest))
             {
-                return operations.CreateAnInstanceAsync(body, isTrial).GetAwaiter().GetResult();
+                return operations.CreateAnInstanceAsync(body).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -913,15 +918,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The instance creation request.
             /// </param>
-            /// <param name='isTrial'>
-            /// True if the new instance is a trial instance. False otherwise.
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateAnInstanceAsync(this ICustomerInsights operations, InstanceCreationRequest body = default(InstanceCreationRequest), bool? isTrial = false, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateAnInstanceAsync(this ICustomerInsights operations, InstanceCreationRequest body = default(InstanceCreationRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.CreateAnInstanceWithHttpMessagesAsync(body, isTrial, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.CreateAnInstanceWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -987,12 +989,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The metadata to use to create the new instance.
             /// </param>
-            /// <param name='isTrial'>
-            /// True if the new instance is a trial instance. False otherwise.
-            /// </param>
-            public static object CopyAnInstance(this ICustomerInsights operations, InstanceCopyRequest body = default(InstanceCopyRequest), bool? isTrial = false)
+            public static object CopyAnInstance(this ICustomerInsights operations, InstanceCopyRequest body = default(InstanceCopyRequest))
             {
-                return operations.CopyAnInstanceAsync(body, isTrial).GetAwaiter().GetResult();
+                return operations.CopyAnInstanceAsync(body).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -1007,15 +1006,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The metadata to use to create the new instance.
             /// </param>
-            /// <param name='isTrial'>
-            /// True if the new instance is a trial instance. False otherwise.
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CopyAnInstanceAsync(this ICustomerInsights operations, InstanceCopyRequest body = default(InstanceCopyRequest), bool? isTrial = false, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CopyAnInstanceAsync(this ICustomerInsights operations, InstanceCopyRequest body = default(InstanceCopyRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.CopyAnInstanceWithHttpMessagesAsync(body, isTrial, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.CopyAnInstanceWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -2178,7 +2174,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='segmentName'>
             /// Unique name of a segment
             /// </param>
-            public static DeletionResponse DeleteSegment(this ICustomerInsights operations, string instanceId, string segmentName)
+            public static object DeleteSegment(this ICustomerInsights operations, string instanceId, string segmentName)
             {
                 return operations.DeleteSegmentAsync(instanceId, segmentName).GetAwaiter().GetResult();
             }
@@ -2201,7 +2197,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<DeletionResponse> DeleteSegmentAsync(this ICustomerInsights operations, string instanceId, string segmentName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> DeleteSegmentAsync(this ICustomerInsights operations, string instanceId, string segmentName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.DeleteSegmentWithHttpMessagesAsync(instanceId, segmentName, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -2718,7 +2714,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='qualifiedEntityName'>
             /// Qualified Entity Name.
             /// </param>
-            public static EntityDataProfile GetAnEntityProfile(this ICustomerInsights operations, string instanceId, string qualifiedEntityName)
+            public static object GetAnEntityProfile(this ICustomerInsights operations, string instanceId, string qualifiedEntityName)
             {
                 return operations.GetAnEntityProfileAsync(instanceId, qualifiedEntityName).GetAwaiter().GetResult();
             }
@@ -2741,7 +2737,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<EntityDataProfile> GetAnEntityProfileAsync(this ICustomerInsights operations, string instanceId, string qualifiedEntityName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetAnEntityProfileAsync(this ICustomerInsights operations, string instanceId, string qualifiedEntityName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetAnEntityProfileWithHttpMessagesAsync(instanceId, qualifiedEntityName, null, cancellationToken).ConfigureAwait(false))
                 {

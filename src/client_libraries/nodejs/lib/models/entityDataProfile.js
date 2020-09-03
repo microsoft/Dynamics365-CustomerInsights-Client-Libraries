@@ -17,6 +17,7 @@ class EntityDataProfile {
    * @property {number} [quarantineRowCount]
    * @property {date} [profilingDate]
    * @property {string} [profiledAttributes]
+   * @property {string} [corruptAttributes]
    */
   constructor() {
   }
@@ -66,6 +67,13 @@ class EntityDataProfile {
           profiledAttributes: {
             required: false,
             serializedName: 'profiledAttributes',
+            type: {
+              name: 'String'
+            }
+          },
+          corruptAttributes: {
+            required: false,
+            serializedName: 'corruptAttributes',
             type: {
               name: 'String'
             }

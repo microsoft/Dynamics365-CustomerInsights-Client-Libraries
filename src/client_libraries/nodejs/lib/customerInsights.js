@@ -40,7 +40,6 @@ const models = require('./models');
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
  *                      {object} [result]   - The deserialized result object if an error did not occur.
- *                      See {@link AttributeDataProfile} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
@@ -99,7 +98,7 @@ function _getAnAttributeProfile(instanceId, qualifiedEntityName, attributeName, 
       return callback(err);
     }
     let statusCode = response.statusCode;
-    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 500 && statusCode !== 503) {
+    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
       let error = new Error(responseBody);
       error.statusCode = response.statusCode;
       error.request = msRest.stripRequest(httpRequest);
@@ -139,6 +138,23 @@ function _getAnAttributeProfile(instanceId, qualifiedEntityName, attributeName, 
         deserializationError.request = msRest.stripRequest(httpRequest);
         deserializationError.response = msRest.stripResponse(response);
         return callback(deserializationError);
+      }
+    }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiError']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError1.request = msRest.stripRequest(httpRequest);
+        deserializationError1.response = msRest.stripResponse(response);
+        return callback(deserializationError1);
       }
     }
 
@@ -563,7 +579,7 @@ function _deleteADataSource(instanceId, dataSourceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['DeletionResponse']().mapper();
+          let resultMapper = new client.models['OkResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -625,7 +641,7 @@ function _deleteADataSource(instanceId, dataSourceId, options, callback) {
  *
  * @param {object} [options] Optional Parameters.
  *
- * @param {object} [options.body] JSON document representing the entity. The
+ * @param {string} [options.body] JSON document representing the entity. The
  * schema must be consistent with the entity metadata. Use GET action of this
  * resource to obtain an example.
  *
@@ -666,8 +682,8 @@ function _createAnEntity(instanceId, entityName, options, callback) {
   let caller = (options && options.caller !== undefined) ? options.caller : undefined;
   // Validate
   try {
-    if (body !== null && body !== undefined && typeof body !== 'object') {
-      throw new Error('body must be of type object.');
+    if (body !== null && body !== undefined && typeof body.valueOf() !== 'string') {
+      throw new Error('body must be of type string.');
     }
     if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
       throw new Error('instanceId cannot be null or undefined and it must be of type string.');
@@ -724,7 +740,7 @@ function _createAnEntity(instanceId, entityName, options, callback) {
         required: false,
         serializedName: 'body',
         type: {
-          name: 'Object'
+          name: 'String'
         }
       };
       requestModel = client.serialize(requestModelMapper, body, 'body');
@@ -855,7 +871,7 @@ function _createAnEntity(instanceId, entityName, options, callback) {
  *
  * @param {object} [options] Optional Parameters.
  *
- * @param {object} [options.body] JSON document with set of changes to apply on
+ * @param {string} [options.body] JSON document with set of changes to apply on
  * the entity. Each change must be consistent with the entity metadata. Use GET
  * action of this resource to obtain an example.
  *
@@ -896,8 +912,8 @@ function _updateAnEntity(instanceId, entityName, entityId, options, callback) {
   let caller = (options && options.caller !== undefined) ? options.caller : undefined;
   // Validate
   try {
-    if (body !== null && body !== undefined && typeof body !== 'object') {
-      throw new Error('body must be of type object.');
+    if (body !== null && body !== undefined && typeof body.valueOf() !== 'string') {
+      throw new Error('body must be of type string.');
     }
     if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
       throw new Error('instanceId cannot be null or undefined and it must be of type string.');
@@ -958,7 +974,7 @@ function _updateAnEntity(instanceId, entityName, entityId, options, callback) {
         required: false,
         serializedName: 'body',
         type: {
-          name: 'Object'
+          name: 'String'
         }
       };
       requestModel = client.serialize(requestModelMapper, body, 'body');
@@ -1064,10 +1080,10 @@ function _updateAnEntity(instanceId, entityName, entityId, options, callback) {
  *
  * @param {string} instanceId Format - uuid. Customer Insights instance id.
  *
- * @param {object} [options] Optional Parameters.
- *
- * @param {string} [options.relativePath] Relative OData path. See
+ * @param {string} relativePath Relative OData path. See
  * https://www.odata.org/getting-started/basic-tutorial/ for info.
+ *
+ * @param {object} [options] Optional Parameters.
  *
  * @param {boolean} [options.forceSearch] Whether force use search to support
  * the query.
@@ -1075,23 +1091,21 @@ function _updateAnEntity(instanceId, entityName, entityId, options, callback) {
  * @param {boolean} [options.proxy] Whether or not we are requesting data by
  * proxy.
  *
- * @param {string} [options.search]
+ * @param {string} [options.search] Search OData parameter.
  *
- * @param {string} [options.select]
+ * @param {string} [options.select] Select OData parameter.
  *
- * @param {string} [options.skipToken]
+ * @param {string} [options.skip] Skip OData parameter.
  *
- * @param {string} [options.filter]
+ * @param {string} [options.skiptoken] SkipToken OData parameter.
  *
- * @param {string} [options.orderBy]
+ * @param {string} [options.filter] Filter OData parameter.
  *
- * @param {string} [options.expand]
+ * @param {string} [options.orderby] OrderBy OData parameter.
  *
- * @param {number} [options.top] Format - int32.
+ * @param {string} [options.expand] Expand OData parameter.
  *
- * @param {number} [options.skip] Format - int32.
- *
- * @param {boolean} [options.skipNullFilterParameters]
+ * @param {string} [options.top] Top OData parameter.
  *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
@@ -1108,7 +1122,7 @@ function _updateAnEntity(instanceId, entityName, entityId, options, callback) {
  *
  *                      {stream} [response] - The HTTP Response stream if an error did not occur.
  */
-function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
+function _getEntitiesWithODataPath(instanceId, relativePath, options, callback) {
    /* jshint validthis: true */
   let client = this;
   if(!callback && typeof options === 'function') {
@@ -1118,25 +1132,23 @@ function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
   if (!callback) {
     throw new Error('callback cannot be null.');
   }
-  let relativePath = (options && options.relativePath !== undefined) ? options.relativePath : undefined;
   let forceSearch = (options && options.forceSearch !== undefined) ? options.forceSearch : undefined;
   let proxy = (options && options.proxy !== undefined) ? options.proxy : undefined;
   let search = (options && options.search !== undefined) ? options.search : undefined;
   let select = (options && options.select !== undefined) ? options.select : undefined;
-  let skipToken = (options && options.skipToken !== undefined) ? options.skipToken : undefined;
+  let skip = (options && options.skip !== undefined) ? options.skip : undefined;
+  let skiptoken = (options && options.skiptoken !== undefined) ? options.skiptoken : undefined;
   let filter = (options && options.filter !== undefined) ? options.filter : undefined;
-  let orderBy = (options && options.orderBy !== undefined) ? options.orderBy : undefined;
+  let orderby = (options && options.orderby !== undefined) ? options.orderby : undefined;
   let expand = (options && options.expand !== undefined) ? options.expand : undefined;
   let top = (options && options.top !== undefined) ? options.top : undefined;
-  let skip = (options && options.skip !== undefined) ? options.skip : undefined;
-  let skipNullFilterParameters = (options && options.skipNullFilterParameters !== undefined) ? options.skipNullFilterParameters : undefined;
   // Validate
   try {
     if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
       throw new Error('instanceId cannot be null or undefined and it must be of type string.');
     }
-    if (relativePath !== null && relativePath !== undefined && typeof relativePath.valueOf() !== 'string') {
-      throw new Error('relativePath must be of type string.');
+    if (relativePath === null || relativePath === undefined || typeof relativePath.valueOf() !== 'string') {
+      throw new Error('relativePath cannot be null or undefined and it must be of type string.');
     }
     if (forceSearch !== null && forceSearch !== undefined && typeof forceSearch !== 'boolean') {
       throw new Error('forceSearch must be of type boolean.');
@@ -1150,26 +1162,23 @@ function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
     if (select !== null && select !== undefined && typeof select.valueOf() !== 'string') {
       throw new Error('select must be of type string.');
     }
-    if (skipToken !== null && skipToken !== undefined && typeof skipToken.valueOf() !== 'string') {
-      throw new Error('skipToken must be of type string.');
+    if (skip !== null && skip !== undefined && typeof skip.valueOf() !== 'string') {
+      throw new Error('skip must be of type string.');
+    }
+    if (skiptoken !== null && skiptoken !== undefined && typeof skiptoken.valueOf() !== 'string') {
+      throw new Error('skiptoken must be of type string.');
     }
     if (filter !== null && filter !== undefined && typeof filter.valueOf() !== 'string') {
       throw new Error('filter must be of type string.');
     }
-    if (orderBy !== null && orderBy !== undefined && typeof orderBy.valueOf() !== 'string') {
-      throw new Error('orderBy must be of type string.');
+    if (orderby !== null && orderby !== undefined && typeof orderby.valueOf() !== 'string') {
+      throw new Error('orderby must be of type string.');
     }
     if (expand !== null && expand !== undefined && typeof expand.valueOf() !== 'string') {
       throw new Error('expand must be of type string.');
     }
-    if (top !== null && top !== undefined && typeof top !== 'number') {
-      throw new Error('top must be of type number.');
-    }
-    if (skip !== null && skip !== undefined && typeof skip !== 'number') {
-      throw new Error('skip must be of type number.');
-    }
-    if (skipNullFilterParameters !== null && skipNullFilterParameters !== undefined && typeof skipNullFilterParameters !== 'boolean') {
-      throw new Error('skipNullFilterParameters must be of type boolean.');
+    if (top !== null && top !== undefined && typeof top.valueOf() !== 'string') {
+      throw new Error('top must be of type string.');
     }
   } catch (error) {
     return callback(error);
@@ -1177,12 +1186,10 @@ function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
 
   // Construct URL
   let baseUrl = this.baseUri;
-  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/data';
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/data/{relativePath}';
   requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
+  requestUrl = requestUrl.replace('{relativePath}', encodeURIComponent(relativePath));
   let queryParameters = [];
-  if (relativePath !== null && relativePath !== undefined) {
-    queryParameters.push('relativePath=' + relativePath);
-  }
   if (forceSearch !== null && forceSearch !== undefined) {
     queryParameters.push('forceSearch=' + encodeURIComponent(forceSearch.toString()));
   }
@@ -1190,31 +1197,28 @@ function _getEntitiesWithODataQueryParameters(instanceId, options, callback) {
     queryParameters.push('proxy=' + encodeURIComponent(proxy.toString()));
   }
   if (search !== null && search !== undefined) {
-    queryParameters.push('Search=' + encodeURIComponent(search));
+    queryParameters.push('$search=' + encodeURIComponent(search));
   }
   if (select !== null && select !== undefined) {
-    queryParameters.push('Select=' + encodeURIComponent(select));
-  }
-  if (skipToken !== null && skipToken !== undefined) {
-    queryParameters.push('SkipToken=' + encodeURIComponent(skipToken));
-  }
-  if (filter !== null && filter !== undefined) {
-    queryParameters.push('Filter=' + encodeURIComponent(filter));
-  }
-  if (orderBy !== null && orderBy !== undefined) {
-    queryParameters.push('OrderBy=' + encodeURIComponent(orderBy));
-  }
-  if (expand !== null && expand !== undefined) {
-    queryParameters.push('Expand=' + encodeURIComponent(expand));
-  }
-  if (top !== null && top !== undefined) {
-    queryParameters.push('Top=' + encodeURIComponent(top.toString()));
+    queryParameters.push('$select=' + encodeURIComponent(select));
   }
   if (skip !== null && skip !== undefined) {
-    queryParameters.push('Skip=' + encodeURIComponent(skip.toString()));
+    queryParameters.push('$skip=' + encodeURIComponent(skip));
   }
-  if (skipNullFilterParameters !== null && skipNullFilterParameters !== undefined) {
-    queryParameters.push('SkipNullFilterParameters=' + encodeURIComponent(skipNullFilterParameters.toString()));
+  if (skiptoken !== null && skiptoken !== undefined) {
+    queryParameters.push('$skiptoken=' + encodeURIComponent(skiptoken));
+  }
+  if (filter !== null && filter !== undefined) {
+    queryParameters.push('$filter=' + encodeURIComponent(filter));
+  }
+  if (orderby !== null && orderby !== undefined) {
+    queryParameters.push('$orderby=' + encodeURIComponent(orderby));
+  }
+  if (expand !== null && expand !== undefined) {
+    queryParameters.push('$expand=' + encodeURIComponent(expand));
+  }
+  if (top !== null && top !== undefined) {
+    queryParameters.push('$top=' + encodeURIComponent(top));
   }
   if (queryParameters.length > 0) {
     requestUrl += '?' + queryParameters.join('&');
@@ -3035,16 +3039,6 @@ function _deleteAnInstance(instanceId, options, callback) {
  * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
  * where the instance lives.
  *
- * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
- * of the BAP Environment associated with the current instance.
- *
- * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
- * values include: 'notStarted', 'creating', 'created', 'attaching',
- * 'attached', 'installing', 'installed', 'failed'
- *
- * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
- * values include: 'notStarted', 'creating', 'created', 'failed'
- *
  * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
  *
  * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -3095,9 +3089,6 @@ function _deleteAnInstance(instanceId, options, callback) {
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
  *
- * @param {boolean} [options.isTrial] True if the new instance is a trial
- * instance. False otherwise.
- *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
  *
@@ -3124,26 +3115,10 @@ function _createAnInstance(options, callback) {
     throw new Error('callback cannot be null.');
   }
   let body = (options && options.body !== undefined) ? options.body : undefined;
-  let isTrial = (options && options.isTrial !== undefined) ? options.isTrial : false;
-  // Validate
-  try {
-    if (isTrial !== null && isTrial !== undefined && typeof isTrial !== 'boolean') {
-      throw new Error('isTrial must be of type boolean.');
-    }
-  } catch (error) {
-    return callback(error);
-  }
 
   // Construct URL
   let baseUrl = this.baseUri;
   let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/V2';
-  let queryParameters = [];
-  if (isTrial !== null && isTrial !== undefined) {
-    queryParameters.push('isTrial=' + encodeURIComponent(isTrial.toString()));
-  }
-  if (queryParameters.length > 0) {
-    requestUrl += '?' + queryParameters.join('&');
-  }
 
   // Create HTTP transport objects
   let httpRequest = new WebResource();
@@ -3327,16 +3302,6 @@ function _createAnInstance(options, callback) {
  *
  * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
  * where the instance lives.
- *
- * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
- * of the BAP Environment associated with the current instance.
- *
- * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
- * values include: 'notStarted', 'creating', 'created', 'attaching',
- * 'attached', 'installing', 'installed', 'failed'
- *
- * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
- * values include: 'notStarted', 'creating', 'created', 'failed'
  *
  * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
  *
@@ -3593,16 +3558,6 @@ function _updateAnInstance(instanceId, options, callback) {
  * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
  * where the instance lives.
  *
- * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
- * of the BAP Environment associated with the current instance.
- *
- * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
- * values include: 'notStarted', 'creating', 'created', 'attaching',
- * 'attached', 'installing', 'installed', 'failed'
- *
- * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
- * values include: 'notStarted', 'creating', 'created', 'failed'
- *
  * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
  *
  * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -3653,9 +3608,6 @@ function _updateAnInstance(instanceId, options, callback) {
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
  *
- * @param {boolean} [options.isTrial] True if the new instance is a trial
- * instance. False otherwise.
- *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
  *
@@ -3682,26 +3634,10 @@ function _copyAnInstance(options, callback) {
     throw new Error('callback cannot be null.');
   }
   let body = (options && options.body !== undefined) ? options.body : undefined;
-  let isTrial = (options && options.isTrial !== undefined) ? options.isTrial : false;
-  // Validate
-  try {
-    if (isTrial !== null && isTrial !== undefined && typeof isTrial !== 'boolean') {
-      throw new Error('isTrial must be of type boolean.');
-    }
-  } catch (error) {
-    return callback(error);
-  }
 
   // Construct URL
   let baseUrl = this.baseUri;
   let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/copy';
-  let queryParameters = [];
-  if (isTrial !== null && isTrial !== undefined) {
-    queryParameters.push('isTrial=' + encodeURIComponent(isTrial.toString()));
-  }
-  if (queryParameters.length > 0) {
-    requestUrl += '?' + queryParameters.join('&');
-  }
 
   // Create HTTP transport objects
   let httpRequest = new WebResource();
@@ -8427,7 +8363,6 @@ function _updateASegment(instanceId, segmentName, options, callback) {
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
  *                      {object} [result]   - The deserialized result object if an error did not occur.
- *                      See {@link DeletionResponse} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
@@ -8514,7 +8449,7 @@ function _deleteSegment(instanceId, segmentName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['DeletionResponse']().mapper();
+          let resultMapper = new client.models['OkResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -8531,7 +8466,7 @@ function _deleteSegment(instanceId, segmentName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['DeletionResponse']().mapper();
+          let resultMapper = new client.models['ApiError']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -10167,7 +10102,6 @@ function _createWorkflowRefreshSchedule(instanceId, workflowName, options, callb
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
  *                      {object} [result]   - The deserialized result object if an error did not occur.
- *                      See {@link EntityDataProfile} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
@@ -10222,7 +10156,7 @@ function _getAnEntityProfile(instanceId, qualifiedEntityName, options, callback)
       return callback(err);
     }
     let statusCode = response.statusCode;
-    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 500 && statusCode !== 503) {
+    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
       let error = new Error(responseBody);
       error.statusCode = response.statusCode;
       error.request = msRest.stripRequest(httpRequest);
@@ -10264,6 +10198,23 @@ function _getAnEntityProfile(instanceId, qualifiedEntityName, options, callback)
         return callback(deserializationError);
       }
     }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiError']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError1.request = msRest.stripRequest(httpRequest);
+        deserializationError1.response = msRest.stripResponse(response);
+        return callback(deserializationError1);
+      }
+    }
 
     return callback(null, result, httpRequest, response);
   });
@@ -10300,7 +10251,7 @@ class CustomerInsights extends ServiceClient {
     this._deleteADataSource = _deleteADataSource;
     this._createAnEntity = _createAnEntity;
     this._updateAnEntity = _updateAnEntity;
-    this._getEntitiesWithODataQueryParameters = _getEntitiesWithODataQueryParameters;
+    this._getEntitiesWithODataPath = _getEntitiesWithODataPath;
     this._getAllEntityMetadata = _getAllEntityMetadata;
     this._getEntityMetadata = _getEntityMetadata;
     this._getEntitySize = _getEntitySize;
@@ -10369,7 +10320,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<AttributeDataProfile>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
@@ -10410,7 +10361,7 @@ class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {AttributeDataProfile} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -10419,7 +10370,6 @@ class CustomerInsights extends ServiceClient {
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
    *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link AttributeDataProfile} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *
@@ -10735,7 +10685,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document representing the entity. The
+   * @param {string} [options.body] JSON document representing the entity. The
    * schema must be consistent with the entity metadata. Use GET action of this
    * resource to obtain an example.
    *
@@ -10782,7 +10732,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document representing the entity. The
+   * @param {string} [options.body] JSON document representing the entity. The
    * schema must be consistent with the entity metadata. Use GET action of this
    * resource to obtain an example.
    *
@@ -10852,7 +10802,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document with set of changes to apply on
+   * @param {string} [options.body] JSON document with set of changes to apply on
    * the entity. Each change must be consistent with the entity metadata. Use GET
    * action of this resource to obtain an example.
    *
@@ -10901,7 +10851,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
-   * @param {object} [options.body] JSON document with set of changes to apply on
+   * @param {string} [options.body] JSON document with set of changes to apply on
    * the entity. Each change must be consistent with the entity metadata. Use GET
    * action of this resource to obtain an example.
    *
@@ -10963,10 +10913,10 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id.
    *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {string} [options.relativePath] Relative OData path. See
+   * @param {string} relativePath Relative OData path. See
    * https://www.odata.org/getting-started/basic-tutorial/ for info.
+   *
+   * @param {object} [options] Optional Parameters.
    *
    * @param {boolean} [options.forceSearch] Whether force use search to support
    * the query.
@@ -10974,23 +10924,21 @@ class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
    *
-   * @param {string} [options.search]
+   * @param {string} [options.search] Search OData parameter.
    *
-   * @param {string} [options.select]
+   * @param {string} [options.select] Select OData parameter.
    *
-   * @param {string} [options.skipToken]
+   * @param {string} [options.skip] Skip OData parameter.
    *
-   * @param {string} [options.filter]
+   * @param {string} [options.skiptoken] SkipToken OData parameter.
    *
-   * @param {string} [options.orderBy]
+   * @param {string} [options.filter] Filter OData parameter.
    *
-   * @param {string} [options.expand]
+   * @param {string} [options.orderby] OrderBy OData parameter.
    *
-   * @param {number} [options.top] Format - int32.
+   * @param {string} [options.expand] Expand OData parameter.
    *
-   * @param {number} [options.skip] Format - int32.
-   *
-   * @param {boolean} [options.skipNullFilterParameters]
+   * @param {string} [options.top] Top OData parameter.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -11001,11 +10949,11 @@ class CustomerInsights extends ServiceClient {
    *
    * @reject {Error} - The error object.
    */
-  getEntitiesWithODataQueryParametersWithHttpOperationResponse(instanceId, options) {
+  getEntitiesWithODataPathWithHttpOperationResponse(instanceId, relativePath, options) {
     let client = this;
     let self = this;
     return new Promise((resolve, reject) => {
-      self._getEntitiesWithODataQueryParameters(instanceId, options, (err, result, request, response) => {
+      self._getEntitiesWithODataPath(instanceId, relativePath, options, (err, result, request, response) => {
         let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
         httpOperationResponse.body = result;
         if (err) { reject(err); }
@@ -11022,10 +10970,10 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id.
    *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {string} [options.relativePath] Relative OData path. See
+   * @param {string} relativePath Relative OData path. See
    * https://www.odata.org/getting-started/basic-tutorial/ for info.
+   *
+   * @param {object} [options] Optional Parameters.
    *
    * @param {boolean} [options.forceSearch] Whether force use search to support
    * the query.
@@ -11033,23 +10981,21 @@ class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.proxy] Whether or not we are requesting data by
    * proxy.
    *
-   * @param {string} [options.search]
+   * @param {string} [options.search] Search OData parameter.
    *
-   * @param {string} [options.select]
+   * @param {string} [options.select] Select OData parameter.
    *
-   * @param {string} [options.skipToken]
+   * @param {string} [options.skip] Skip OData parameter.
    *
-   * @param {string} [options.filter]
+   * @param {string} [options.skiptoken] SkipToken OData parameter.
    *
-   * @param {string} [options.orderBy]
+   * @param {string} [options.filter] Filter OData parameter.
    *
-   * @param {string} [options.expand]
+   * @param {string} [options.orderby] OrderBy OData parameter.
    *
-   * @param {number} [options.top] Format - int32.
+   * @param {string} [options.expand] Expand OData parameter.
    *
-   * @param {number} [options.skip] Format - int32.
-   *
-   * @param {boolean} [options.skipNullFilterParameters]
+   * @param {string} [options.top] Top OData parameter.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -11075,7 +11021,7 @@ class CustomerInsights extends ServiceClient {
    *
    *                      {stream} [response] - The HTTP Response stream if an error did not occur.
    */
-  getEntitiesWithODataQueryParameters(instanceId, options, optionalCallback) {
+  getEntitiesWithODataPath(instanceId, relativePath, options, optionalCallback) {
     let client = this;
     let self = this;
     if (!optionalCallback && typeof options === 'function') {
@@ -11084,14 +11030,14 @@ class CustomerInsights extends ServiceClient {
     }
     if (!optionalCallback) {
       return new Promise((resolve, reject) => {
-        self._getEntitiesWithODataQueryParameters(instanceId, options, (err, result, request, response) => {
+        self._getEntitiesWithODataPath(instanceId, relativePath, options, (err, result, request, response) => {
           if (err) { reject(err); }
           else { resolve(result); }
           return;
         });
       });
     } else {
-      return self._getEntitiesWithODataQueryParameters(instanceId, options, optionalCallback);
+      return self._getEntitiesWithODataPath(instanceId, relativePath, options, optionalCallback);
     }
   }
 
@@ -11943,16 +11889,6 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -12002,9 +11938,6 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
-   *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -12058,16 +11991,6 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -12117,9 +12040,6 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
-   *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -12197,16 +12117,6 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
-   *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
    *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
@@ -12313,16 +12223,6 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
-   *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
    *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
@@ -12450,16 +12350,6 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -12509,9 +12399,6 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
-   *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -12568,16 +12455,6 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.region] Gets the Azure region
    * where the instance lives.
    *
-   * @param {string} [options.body.instanceMetadata.bapEnvironmentId] Gets the Id
-   * of the BAP Environment associated with the current instance.
-   *
-   * @param {string} [options.body.instanceMetadata.ppdfProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'attaching',
-   * 'attached', 'installing', 'installed', 'failed'
-   *
-   * @param {string} [options.body.instanceMetadata.pbiProvisionState] Possible
-   * values include: 'notStarted', 'creating', 'created', 'failed'
-   *
    * @param {object} [options.body.instanceMetadata.cdsOrgInfo]
    *
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.friendlyName] Gets
@@ -12627,9 +12504,6 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
-   *
-   * @param {boolean} [options.isTrial] True if the new instance is a trial
-   * instance. False otherwise.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -16554,7 +16428,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<DeletionResponse>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
@@ -16594,7 +16468,7 @@ class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {DeletionResponse} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -16603,7 +16477,6 @@ class CustomerInsights extends ServiceClient {
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
    *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link DeletionResponse} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *
@@ -17586,7 +17459,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<EntityDataProfile>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
@@ -17625,7 +17498,7 @@ class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {EntityDataProfile} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -17634,7 +17507,6 @@ class CustomerInsights extends ServiceClient {
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
    *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link EntityDataProfile} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *

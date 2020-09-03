@@ -22,13 +22,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the EntityDataProfile class.
         /// </summary>
-        public EntityDataProfile(string qualifiedEntityName = default(string), long? rowCount = default(long?), long? quarantineRowCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), string profiledAttributes = default(string))
+        public EntityDataProfile(string qualifiedEntityName = default(string), long? rowCount = default(long?), long? quarantineRowCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), string profiledAttributes = default(string), string corruptAttributes = default(string))
         {
             QualifiedEntityName = qualifiedEntityName;
             RowCount = rowCount;
             QuarantineRowCount = quarantineRowCount;
             ProfilingDate = profilingDate;
             ProfiledAttributes = profiledAttributes;
+            CorruptAttributes = corruptAttributes;
             CustomInit();
         }
 
@@ -61,6 +62,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "profiledAttributes")]
         public string ProfiledAttributes { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "corruptAttributes")]
+        public string CorruptAttributes { get; set; }
 
     }
 }

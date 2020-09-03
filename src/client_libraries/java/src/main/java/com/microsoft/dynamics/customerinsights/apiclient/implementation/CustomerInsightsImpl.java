@@ -52,7 +52,7 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.GetARelationship
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAWorkflowJobInformationHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetCurrentUserRoleHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetDataSourceHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.GetEntitiesWithODataQueryParametersHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.GetEntitiesWithODataPathHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetEntityMetadataHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetEntitySizeHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetInstanceMetadataHeaders;
@@ -79,6 +79,7 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.MeasureMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.NoContentResult;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ODataEntityPayload;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ODataError;
+import com.microsoft.dynamics.customerinsights.apiclient.models.OkResult;
 import com.microsoft.dynamics.customerinsights.apiclient.models.OnDemandJobRequest;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ParsingError;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ProfileStoreStateInfo;
@@ -211,15 +212,15 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createAnEntity" })
         @POST("instances/{instanceId}/data/{entityName}")
-        Observable<Response<ResponseBody>> createAnEntity(@Path("instanceId") String instanceId, @Path("entityName") String entityName, @Body Object body, @Query("validUntil") String validUntil, @Query("caller") String caller);
+        Observable<Response<ResponseBody>> createAnEntity(@Path("instanceId") String instanceId, @Path("entityName") String entityName, @Body String body, @Query("validUntil") String validUntil, @Query("caller") String caller);
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateAnEntity" })
         @PATCH("instances/{instanceId}/data/{entityName}/{entityId}")
-        Observable<Response<ResponseBody>> updateAnEntity(@Path("instanceId") String instanceId, @Path("entityName") String entityName, @Path("entityId") String entityId, @Body Object body, @Query("validUntil") String validUntil, @Query("caller") String caller);
+        Observable<Response<ResponseBody>> updateAnEntity(@Path("instanceId") String instanceId, @Path("entityName") String entityName, @Path("entityId") String entityId, @Body String body, @Query("validUntil") String validUntil, @Query("caller") String caller);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getEntitiesWithODataQueryParameters" })
-        @GET("instances/{instanceId}/data")
-        Observable<Response<ResponseBody>> getEntitiesWithODataQueryParameters(@Path("instanceId") String instanceId, @Query(value = "relativePath", encoded = true) String relativePath, @Query("forceSearch") Boolean forceSearch, @Query("proxy") Boolean proxy, @Query("Search") String search, @Query("Select") String select, @Query("SkipToken") String skipToken, @Query("Filter") String filter, @Query("OrderBy") String orderBy, @Query("Expand") String expand, @Query("Top") Integer top, @Query("Skip") Integer skip, @Query("SkipNullFilterParameters") Boolean skipNullFilterParameters);
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getEntitiesWithODataPath" })
+        @GET("instances/{instanceId}/data/{relativePath}")
+        Observable<Response<ResponseBody>> getEntitiesWithODataPath(@Path("instanceId") String instanceId, @Path("relativePath") String relativePath, @Query("forceSearch") Boolean forceSearch, @Query("proxy") Boolean proxy, @Query("$search") String search, @Query("$select") String select, @Query("$skip") String skip, @Query("$skiptoken") String skiptoken, @Query("$filter") String filter, @Query("$orderby") String orderby, @Query("$expand") String expand, @Query("$top") String top);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllEntityMetadata" })
         @GET("instances/{instanceId}/manage/entities")
@@ -259,7 +260,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createAnInstance" })
         @POST("instances/V2")
-        Observable<Response<ResponseBody>> createAnInstance(@Body InstanceCreationRequest body, @Query("isTrial") Boolean isTrial);
+        Observable<Response<ResponseBody>> createAnInstance(@Body InstanceCreationRequest body);
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateAnInstance" })
         @PATCH("instances/{instanceId}/V2")
@@ -267,7 +268,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights copyAnInstance" })
         @POST("instances/copy")
-        Observable<Response<ResponseBody>> copyAnInstance(@Body InstanceCopyRequest body, @Query("isTrial") Boolean isTrial);
+        Observable<Response<ResponseBody>> copyAnInstance(@Body InstanceCopyRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAListOfMeasuresMetadata" })
         @GET("instances/{instanceId}/manage/measures")
@@ -421,9 +422,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the AttributeDataProfile object if successful.
+     * @return the Object object if successful.
      */
-    public AttributeDataProfile getAnAttributeProfile(String instanceId, String qualifiedEntityName, String attributeName) {
+    public Object getAnAttributeProfile(String instanceId, String qualifiedEntityName, String attributeName) {
         return getAnAttributeProfileWithServiceResponseAsync(instanceId, qualifiedEntityName, attributeName).toBlocking().single().body();
     }
 
@@ -438,7 +439,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<AttributeDataProfile> getAnAttributeProfileAsync(String instanceId, String qualifiedEntityName, String attributeName, final ServiceCallback<AttributeDataProfile> serviceCallback) {
+    public ServiceFuture<Object> getAnAttributeProfileAsync(String instanceId, String qualifiedEntityName, String attributeName, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(getAnAttributeProfileWithServiceResponseAsync(instanceId, qualifiedEntityName, attributeName), serviceCallback);
     }
 
@@ -450,12 +451,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param qualifiedEntityName Qualified Entity Name.
      * @param attributeName Attribute Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AttributeDataProfile object
+     * @return the observable to the Object object
      */
-    public Observable<AttributeDataProfile> getAnAttributeProfileAsync(String instanceId, String qualifiedEntityName, String attributeName) {
-        return getAnAttributeProfileWithServiceResponseAsync(instanceId, qualifiedEntityName, attributeName).map(new Func1<ServiceResponseWithHeaders<AttributeDataProfile, GetAnAttributeProfileHeaders>, AttributeDataProfile>() {
+    public Observable<Object> getAnAttributeProfileAsync(String instanceId, String qualifiedEntityName, String attributeName) {
+        return getAnAttributeProfileWithServiceResponseAsync(instanceId, qualifiedEntityName, attributeName).map(new Func1<ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders>, Object>() {
             @Override
-            public AttributeDataProfile call(ServiceResponseWithHeaders<AttributeDataProfile, GetAnAttributeProfileHeaders> response) {
+            public Object call(ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders> response) {
                 return response.body();
             }
         });
@@ -469,9 +470,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param qualifiedEntityName Qualified Entity Name.
      * @param attributeName Attribute Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the AttributeDataProfile object
+     * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<AttributeDataProfile, GetAnAttributeProfileHeaders>> getAnAttributeProfileWithServiceResponseAsync(String instanceId, String qualifiedEntityName, String attributeName) {
+    public Observable<ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders>> getAnAttributeProfileWithServiceResponseAsync(String instanceId, String qualifiedEntityName, String attributeName) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -482,11 +483,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             throw new IllegalArgumentException("Parameter attributeName is required and cannot be null.");
         }
         return service.getAnAttributeProfile(instanceId, qualifiedEntityName, attributeName)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<AttributeDataProfile, GetAnAttributeProfileHeaders>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<AttributeDataProfile, GetAnAttributeProfileHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<AttributeDataProfile, GetAnAttributeProfileHeaders> clientResponse = getAnAttributeProfileDelegate(response);
+                        ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders> clientResponse = getAnAttributeProfileDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -495,10 +496,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             });
     }
 
-    private ServiceResponseWithHeaders<AttributeDataProfile, GetAnAttributeProfileHeaders> getAnAttributeProfileDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<AttributeDataProfile, RestException>newInstance(this.serializerAdapter())
+    private ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders> getAnAttributeProfileDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<AttributeDataProfile>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
+                .register(404, new TypeToken<ApiError>() { }.getType())
                 .register(500, new TypeToken<Void>() { }.getType())
                 .register(503, new TypeToken<Void>() { }.getType())
                 .buildWithHeaders(response, GetAnAttributeProfileHeaders.class);
@@ -749,7 +751,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     private ServiceResponseWithHeaders<Object, DeleteADataSourceHeaders> deleteADataSourceDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<DeletionResponse>() { }.getType())
+                .register(200, new TypeToken<OkResult>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
                 .register(404, new TypeToken<ApiErrorResult>() { }.getType())
                 .register(500, new TypeToken<ApiErrorResult>() { }.getType())
@@ -820,7 +822,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (entityName == null) {
             throw new IllegalArgumentException("Parameter entityName is required and cannot be null.");
         }
-        final Object body = null;
+        final String body = null;
         final String validUntil = null;
         final String caller = null;
         return service.createAnEntity(instanceId, entityName, body, validUntil, caller)
@@ -851,7 +853,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object createAnEntity(String instanceId, String entityName, Object body, String validUntil, String caller) {
+    public Object createAnEntity(String instanceId, String entityName, String body, String validUntil, String caller) {
         return createAnEntityWithServiceResponseAsync(instanceId, entityName, body, validUntil, caller).toBlocking().single().body();
     }
 
@@ -868,7 +870,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> createAnEntityAsync(String instanceId, String entityName, Object body, String validUntil, String caller, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> createAnEntityAsync(String instanceId, String entityName, String body, String validUntil, String caller, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(createAnEntityWithServiceResponseAsync(instanceId, entityName, body, validUntil, caller), serviceCallback);
     }
 
@@ -884,7 +886,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> createAnEntityAsync(String instanceId, String entityName, Object body, String validUntil, String caller) {
+    public Observable<Object> createAnEntityAsync(String instanceId, String entityName, String body, String validUntil, String caller) {
         return createAnEntityWithServiceResponseAsync(instanceId, entityName, body, validUntil, caller).map(new Func1<ServiceResponseWithHeaders<Object, CreateAnEntityHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CreateAnEntityHeaders> response) {
@@ -905,7 +907,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CreateAnEntityHeaders>> createAnEntityWithServiceResponseAsync(String instanceId, String entityName, Object body, String validUntil, String caller) {
+    public Observable<ServiceResponseWithHeaders<Object, CreateAnEntityHeaders>> createAnEntityWithServiceResponseAsync(String instanceId, String entityName, String body, String validUntil, String caller) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -1009,7 +1011,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (entityId == null) {
             throw new IllegalArgumentException("Parameter entityId is required and cannot be null.");
         }
-        final Object body = null;
+        final String body = null;
         final String validUntil = null;
         final String caller = null;
         return service.updateAnEntity(instanceId, entityName, entityId, body, validUntil, caller)
@@ -1041,7 +1043,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object updateAnEntity(String instanceId, String entityName, String entityId, Object body, String validUntil, String caller) {
+    public Object updateAnEntity(String instanceId, String entityName, String entityId, String body, String validUntil, String caller) {
         return updateAnEntityWithServiceResponseAsync(instanceId, entityName, entityId, body, validUntil, caller).toBlocking().single().body();
     }
 
@@ -1059,7 +1061,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId, Object body, String validUntil, String caller, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId, String body, String validUntil, String caller, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(updateAnEntityWithServiceResponseAsync(instanceId, entityName, entityId, body, validUntil, caller), serviceCallback);
     }
 
@@ -1076,7 +1078,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId, Object body, String validUntil, String caller) {
+    public Observable<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId, String body, String validUntil, String caller) {
         return updateAnEntityWithServiceResponseAsync(instanceId, entityName, entityId, body, validUntil, caller).map(new Func1<ServiceResponseWithHeaders<Object, UpdateAnEntityHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, UpdateAnEntityHeaders> response) {
@@ -1098,7 +1100,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, UpdateAnEntityHeaders>> updateAnEntityWithServiceResponseAsync(String instanceId, String entityName, String entityId, Object body, String validUntil, String caller) {
+    public Observable<ServiceResponseWithHeaders<Object, UpdateAnEntityHeaders>> updateAnEntityWithServiceResponseAsync(String instanceId, String entityName, String entityId, String body, String validUntil, String caller) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -1139,13 +1141,14 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object getEntitiesWithODataQueryParameters(String instanceId) {
-        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId).toBlocking().single().body();
+    public Object getEntitiesWithODataPath(String instanceId, String relativePath) {
+        return getEntitiesWithODataPathWithServiceResponseAsync(instanceId, relativePath).toBlocking().single().body();
     }
 
     /**
@@ -1153,12 +1156,13 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId), serviceCallback);
+    public ServiceFuture<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getEntitiesWithODataPathWithServiceResponseAsync(instanceId, relativePath), serviceCallback);
     }
 
     /**
@@ -1166,13 +1170,14 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> getEntitiesWithODataQueryParametersAsync(String instanceId) {
-        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId).map(new Func1<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>, Object>() {
+    public Observable<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath) {
+        return getEntitiesWithODataPathWithServiceResponseAsync(instanceId, relativePath).map(new Func1<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>, Object>() {
             @Override
-            public Object call(ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders> response) {
+            public Object call(ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders> response) {
                 return response.body();
             }
         });
@@ -1183,31 +1188,33 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> getEntitiesWithODataQueryParametersWithServiceResponseAsync(String instanceId) {
+    public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>> getEntitiesWithODataPathWithServiceResponseAsync(String instanceId, String relativePath) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        final String relativePath = null;
+        if (relativePath == null) {
+            throw new IllegalArgumentException("Parameter relativePath is required and cannot be null.");
+        }
         final Boolean forceSearch = null;
         final Boolean proxy = null;
         final String search = null;
         final String select = null;
-        final String skipToken = null;
+        final String skip = null;
+        final String skiptoken = null;
         final String filter = null;
-        final String orderBy = null;
+        final String orderby = null;
         final String expand = null;
-        final Integer top = null;
-        final Integer skip = null;
-        final Boolean skipNullFilterParameters = null;
-        return service.getEntitiesWithODataQueryParameters(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>>>() {
+        final String top = null;
+        return service.getEntitiesWithODataPath(instanceId, relativePath, forceSearch, proxy, search, select, skip, skiptoken, filter, orderby, expand, top)
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders> clientResponse = getEntitiesWithODataQueryParametersDelegate(response);
+                        ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders> clientResponse = getEntitiesWithODataPathDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1224,22 +1231,21 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
-     * @param search the String value
-     * @param select the String value
-     * @param skipToken the String value
-     * @param filter the String value
-     * @param orderBy the String value
-     * @param expand the String value
-     * @param top Format - int32.
-     * @param skip Format - int32.
-     * @param skipNullFilterParameters the Boolean value
+     * @param search Search OData parameter.
+     * @param select Select OData parameter.
+     * @param skip Skip OData parameter.
+     * @param skiptoken SkipToken OData parameter.
+     * @param filter Filter OData parameter.
+     * @param orderby OrderBy OData parameter.
+     * @param expand Expand OData parameter.
+     * @param top Top OData parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object getEntitiesWithODataQueryParameters(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters) {
-        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters).toBlocking().single().body();
+    public Object getEntitiesWithODataPath(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top) {
+        return getEntitiesWithODataPathWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skip, skiptoken, filter, orderby, expand, top).toBlocking().single().body();
     }
 
     /**
@@ -1250,21 +1256,20 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
-     * @param search the String value
-     * @param select the String value
-     * @param skipToken the String value
-     * @param filter the String value
-     * @param orderBy the String value
-     * @param expand the String value
-     * @param top Format - int32.
-     * @param skip Format - int32.
-     * @param skipNullFilterParameters the Boolean value
+     * @param search Search OData parameter.
+     * @param select Select OData parameter.
+     * @param skip Skip OData parameter.
+     * @param skiptoken SkipToken OData parameter.
+     * @param filter Filter OData parameter.
+     * @param orderby OrderBy OData parameter.
+     * @param expand Expand OData parameter.
+     * @param top Top OData parameter.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters), serviceCallback);
+    public ServiceFuture<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getEntitiesWithODataPathWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skip, skiptoken, filter, orderby, expand, top), serviceCallback);
     }
 
     /**
@@ -1275,22 +1280,21 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
-     * @param search the String value
-     * @param select the String value
-     * @param skipToken the String value
-     * @param filter the String value
-     * @param orderBy the String value
-     * @param expand the String value
-     * @param top Format - int32.
-     * @param skip Format - int32.
-     * @param skipNullFilterParameters the Boolean value
+     * @param search Search OData parameter.
+     * @param select Select OData parameter.
+     * @param skip Skip OData parameter.
+     * @param skiptoken SkipToken OData parameter.
+     * @param filter Filter OData parameter.
+     * @param orderby OrderBy OData parameter.
+     * @param expand Expand OData parameter.
+     * @param top Top OData parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> getEntitiesWithODataQueryParametersAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters) {
-        return getEntitiesWithODataQueryParametersWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters).map(new Func1<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>, Object>() {
+    public Observable<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top) {
+        return getEntitiesWithODataPathWithServiceResponseAsync(instanceId, relativePath, forceSearch, proxy, search, select, skip, skiptoken, filter, orderby, expand, top).map(new Func1<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>, Object>() {
             @Override
-            public Object call(ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders> response) {
+            public Object call(ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders> response) {
                 return response.body();
             }
         });
@@ -1304,28 +1308,30 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param relativePath Relative OData path. See https://www.odata.org/getting-started/basic-tutorial/ for info.
      * @param forceSearch Whether force use search to support the query.
      * @param proxy Whether or not we are requesting data by proxy.
-     * @param search the String value
-     * @param select the String value
-     * @param skipToken the String value
-     * @param filter the String value
-     * @param orderBy the String value
-     * @param expand the String value
-     * @param top Format - int32.
-     * @param skip Format - int32.
-     * @param skipNullFilterParameters the Boolean value
+     * @param search Search OData parameter.
+     * @param select Select OData parameter.
+     * @param skip Skip OData parameter.
+     * @param skiptoken SkipToken OData parameter.
+     * @param filter Filter OData parameter.
+     * @param orderby OrderBy OData parameter.
+     * @param expand Expand OData parameter.
+     * @param top Top OData parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> getEntitiesWithODataQueryParametersWithServiceResponseAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skipToken, String filter, String orderBy, String expand, Integer top, Integer skip, Boolean skipNullFilterParameters) {
+    public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>> getEntitiesWithODataPathWithServiceResponseAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        return service.getEntitiesWithODataQueryParameters(instanceId, relativePath, forceSearch, proxy, search, select, skipToken, filter, orderBy, expand, top, skip, skipNullFilterParameters)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>>>() {
+        if (relativePath == null) {
+            throw new IllegalArgumentException("Parameter relativePath is required and cannot be null.");
+        }
+        return service.getEntitiesWithODataPath(instanceId, relativePath, forceSearch, proxy, search, select, skip, skiptoken, filter, orderby, expand, top)
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders> clientResponse = getEntitiesWithODataQueryParametersDelegate(response);
+                        ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders> clientResponse = getEntitiesWithODataPathDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -1334,7 +1340,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             });
     }
 
-    private ServiceResponseWithHeaders<Object, GetEntitiesWithODataQueryParametersHeaders> getEntitiesWithODataQueryParametersDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+    private ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders> getEntitiesWithODataPathDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<ODataEntityPayload>() { }.getType())
                 .register(400, new TypeToken<ODataError>() { }.getType())
@@ -1342,7 +1348,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
                 .register(404, new TypeToken<ODataError>() { }.getType())
                 .register(500, new TypeToken<ODataError>() { }.getType())
                 .register(503, new TypeToken<ODataError>() { }.getType())
-                .buildWithHeaders(response, GetEntitiesWithODataQueryParametersHeaders.class);
+                .buildWithHeaders(response, GetEntitiesWithODataPathHeaders.class);
     }
 
     /**
@@ -2436,8 +2442,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      */
     public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync() {
         final InstanceCreationRequest body = null;
-        final Boolean isTrial = null;
-        return service.createAnInstance(body, isTrial)
+        return service.createAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> call(Response<ResponseBody> response) {
@@ -2456,14 +2461,13 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Creates a new instance.
      *
      * @param body The instance creation request.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object createAnInstance(InstanceCreationRequest body, Boolean isTrial) {
-        return createAnInstanceWithServiceResponseAsync(body, isTrial).toBlocking().single().body();
+    public Object createAnInstance(InstanceCreationRequest body) {
+        return createAnInstanceWithServiceResponseAsync(body).toBlocking().single().body();
     }
 
     /**
@@ -2471,13 +2475,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Creates a new instance.
      *
      * @param body The instance creation request.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> createAnInstanceAsync(InstanceCreationRequest body, Boolean isTrial, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(createAnInstanceWithServiceResponseAsync(body, isTrial), serviceCallback);
+    public ServiceFuture<Object> createAnInstanceAsync(InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(createAnInstanceWithServiceResponseAsync(body), serviceCallback);
     }
 
     /**
@@ -2485,12 +2488,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Creates a new instance.
      *
      * @param body The instance creation request.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> createAnInstanceAsync(InstanceCreationRequest body, Boolean isTrial) {
-        return createAnInstanceWithServiceResponseAsync(body, isTrial).map(new Func1<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>, Object>() {
+    public Observable<Object> createAnInstanceAsync(InstanceCreationRequest body) {
+        return createAnInstanceWithServiceResponseAsync(body).map(new Func1<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders> response) {
                 return response.body();
@@ -2503,13 +2505,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Creates a new instance.
      *
      * @param body The instance creation request.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstanceCreationRequest body, Boolean isTrial) {
+    public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstanceCreationRequest body) {
         Validator.validate(body);
-        return service.createAnInstance(body, isTrial)
+        return service.createAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> call(Response<ResponseBody> response) {
@@ -2742,8 +2743,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      */
     public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync() {
         final InstanceCopyRequest body = null;
-        final Boolean isTrial = null;
-        return service.copyAnInstance(body, isTrial)
+        return service.copyAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> call(Response<ResponseBody> response) {
@@ -2762,14 +2762,13 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object copyAnInstance(InstanceCopyRequest body, Boolean isTrial) {
-        return copyAnInstanceWithServiceResponseAsync(body, isTrial).toBlocking().single().body();
+    public Object copyAnInstance(InstanceCopyRequest body) {
+        return copyAnInstanceWithServiceResponseAsync(body).toBlocking().single().body();
     }
 
     /**
@@ -2777,13 +2776,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> copyAnInstanceAsync(InstanceCopyRequest body, Boolean isTrial, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(copyAnInstanceWithServiceResponseAsync(body, isTrial), serviceCallback);
+    public ServiceFuture<Object> copyAnInstanceAsync(InstanceCopyRequest body, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(copyAnInstanceWithServiceResponseAsync(body), serviceCallback);
     }
 
     /**
@@ -2791,12 +2789,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> copyAnInstanceAsync(InstanceCopyRequest body, Boolean isTrial) {
-        return copyAnInstanceWithServiceResponseAsync(body, isTrial).map(new Func1<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>, Object>() {
+    public Observable<Object> copyAnInstanceAsync(InstanceCopyRequest body) {
+        return copyAnInstanceWithServiceResponseAsync(body).map(new Func1<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders> response) {
                 return response.body();
@@ -2809,13 +2806,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
-     * @param isTrial True if the new instance is a trial instance. False otherwise.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstanceCopyRequest body, Boolean isTrial) {
+    public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstanceCopyRequest body) {
         Validator.validate(body);
-        return service.copyAnInstance(body, isTrial)
+        return service.copyAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> call(Response<ResponseBody> response) {
@@ -5687,9 +5683,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletionResponse object if successful.
+     * @return the Object object if successful.
      */
-    public DeletionResponse deleteSegment(String instanceId, String segmentName) {
+    public Object deleteSegment(String instanceId, String segmentName) {
         return deleteSegmentWithServiceResponseAsync(instanceId, segmentName).toBlocking().single().body();
     }
 
@@ -5703,7 +5699,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DeletionResponse> deleteSegmentAsync(String instanceId, String segmentName, final ServiceCallback<DeletionResponse> serviceCallback) {
+    public ServiceFuture<Object> deleteSegmentAsync(String instanceId, String segmentName, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(deleteSegmentWithServiceResponseAsync(instanceId, segmentName), serviceCallback);
     }
 
@@ -5714,12 +5710,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletionResponse object
+     * @return the observable to the Object object
      */
-    public Observable<DeletionResponse> deleteSegmentAsync(String instanceId, String segmentName) {
-        return deleteSegmentWithServiceResponseAsync(instanceId, segmentName).map(new Func1<ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders>, DeletionResponse>() {
+    public Observable<Object> deleteSegmentAsync(String instanceId, String segmentName) {
+        return deleteSegmentWithServiceResponseAsync(instanceId, segmentName).map(new Func1<ServiceResponseWithHeaders<Object, DeleteSegmentHeaders>, Object>() {
             @Override
-            public DeletionResponse call(ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders> response) {
+            public Object call(ServiceResponseWithHeaders<Object, DeleteSegmentHeaders> response) {
                 return response.body();
             }
         });
@@ -5732,9 +5728,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletionResponse object
+     * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders>> deleteSegmentWithServiceResponseAsync(String instanceId, String segmentName) {
+    public Observable<ServiceResponseWithHeaders<Object, DeleteSegmentHeaders>> deleteSegmentWithServiceResponseAsync(String instanceId, String segmentName) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -5742,11 +5738,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             throw new IllegalArgumentException("Parameter segmentName is required and cannot be null.");
         }
         return service.deleteSegment(instanceId, segmentName)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, DeleteSegmentHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Object, DeleteSegmentHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders> clientResponse = deleteSegmentDelegate(response);
+                        ServiceResponseWithHeaders<Object, DeleteSegmentHeaders> clientResponse = deleteSegmentDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -5755,10 +5751,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             });
     }
 
-    private ServiceResponseWithHeaders<DeletionResponse, DeleteSegmentHeaders> deleteSegmentDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<DeletionResponse, RestException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<DeletionResponse>() { }.getType())
-                .register(400, new TypeToken<DeletionResponse>() { }.getType())
+    private ServiceResponseWithHeaders<Object, DeleteSegmentHeaders> deleteSegmentDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<OkResult>() { }.getType())
+                .register(400, new TypeToken<ApiError>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
                 .register(500, new TypeToken<Void>() { }.getType())
                 .register(503, new TypeToken<Void>() { }.getType())
@@ -7042,9 +7038,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the EntityDataProfile object if successful.
+     * @return the Object object if successful.
      */
-    public EntityDataProfile getAnEntityProfile(String instanceId, String qualifiedEntityName) {
+    public Object getAnEntityProfile(String instanceId, String qualifiedEntityName) {
         return getAnEntityProfileWithServiceResponseAsync(instanceId, qualifiedEntityName).toBlocking().single().body();
     }
 
@@ -7058,7 +7054,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<EntityDataProfile> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName, final ServiceCallback<EntityDataProfile> serviceCallback) {
+    public ServiceFuture<Object> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(getAnEntityProfileWithServiceResponseAsync(instanceId, qualifiedEntityName), serviceCallback);
     }
 
@@ -7069,12 +7065,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id.
      * @param qualifiedEntityName Qualified Entity Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the EntityDataProfile object
+     * @return the observable to the Object object
      */
-    public Observable<EntityDataProfile> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName) {
-        return getAnEntityProfileWithServiceResponseAsync(instanceId, qualifiedEntityName).map(new Func1<ServiceResponseWithHeaders<EntityDataProfile, GetAnEntityProfileHeaders>, EntityDataProfile>() {
+    public Observable<Object> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName) {
+        return getAnEntityProfileWithServiceResponseAsync(instanceId, qualifiedEntityName).map(new Func1<ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders>, Object>() {
             @Override
-            public EntityDataProfile call(ServiceResponseWithHeaders<EntityDataProfile, GetAnEntityProfileHeaders> response) {
+            public Object call(ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders> response) {
                 return response.body();
             }
         });
@@ -7087,9 +7083,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id.
      * @param qualifiedEntityName Qualified Entity Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the EntityDataProfile object
+     * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<EntityDataProfile, GetAnEntityProfileHeaders>> getAnEntityProfileWithServiceResponseAsync(String instanceId, String qualifiedEntityName) {
+    public Observable<ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders>> getAnEntityProfileWithServiceResponseAsync(String instanceId, String qualifiedEntityName) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -7097,11 +7093,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             throw new IllegalArgumentException("Parameter qualifiedEntityName is required and cannot be null.");
         }
         return service.getAnEntityProfile(instanceId, qualifiedEntityName)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<EntityDataProfile, GetAnEntityProfileHeaders>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<EntityDataProfile, GetAnEntityProfileHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<EntityDataProfile, GetAnEntityProfileHeaders> clientResponse = getAnEntityProfileDelegate(response);
+                        ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders> clientResponse = getAnEntityProfileDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -7110,10 +7106,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             });
     }
 
-    private ServiceResponseWithHeaders<EntityDataProfile, GetAnEntityProfileHeaders> getAnEntityProfileDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<EntityDataProfile, RestException>newInstance(this.serializerAdapter())
+    private ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders> getAnEntityProfileDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<EntityDataProfile>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
+                .register(404, new TypeToken<ApiError>() { }.getType())
                 .register(500, new TypeToken<Void>() { }.getType())
                 .register(503, new TypeToken<Void>() { }.getType())
                 .buildWithHeaders(response, GetAnEntityProfileHeaders.class);

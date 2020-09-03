@@ -5,35 +5,44 @@
 
 import * as moment from "moment";
 
+export interface ApiError {
+  /**
+   * Possible values include: 'notFound', 'ambiguousReference', 'malformedInput',
+   * 'serviceUnavailable', 'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
+  */
+  errorCode?: string;
+  message?: string;
+}
+
 /**
  * A value and the count of that value.
- */
+*/
 export interface ValueCount {
   /**
    * Gets or sets the value.
-   */
+  */
   value?: any;
   /**
    * Gets or sets the count of the value.
-   */
+  */
   count?: number;
 }
 
 /**
  * Histogram bin.
- */
+*/
 export interface HistogramBin {
   /**
    * Gets or sets the lower bound.
-   */
+  */
   lowerBound?: number;
   /**
    * Gets or sets the upper bound.
-   */
+  */
   upperBound?: number;
   /**
    * Gets or sets the count.
-   */
+  */
   count?: number;
 }
 
@@ -415,300 +424,6 @@ export interface CIResult {
    * Possible values include: 'system', 'user', 'external'
   */
   exceptionCulprit?: string;
-  /**
-   * Possible values include: 'unknown', 'errorCodeUnavailable', 'invalidApiParameter',
-   * 'invalidApiParameterCombination', 'internalServerError', 'invalidModelState',
-   * 'apiRequestSystemError', 'inputPayloadNotFound', 'contentKeyNotDefined',
-   * 'pbiBadRequestException', 'instanceNotFound', 'invalidInstanceId', 'invalidInstanceRegion',
-   * 'instanceExpired', 'invalidInstanceMetadata', 'invalidInstanceRequest', 'invalidInstanceName',
-   * 'instanceCreationDenied', 'instanceNotActive', 'instanceZeroNotAllowed',
-   * 'instanceCreationFailed', 'instanceDeletionFailed', 'instanceUpdateFailed',
-   * 'emailSubscriptionFailed', 'invalidInstanceProperty', 'instanceMetadataNotFound',
-   * 'instanceOperationNotAllowed', 'invalidTenantId', 'regionNotSupported', 'invalidDataSource',
-   * 'dataSourceInvalidKind', 'dataSourceDuplicateName', 'dataSourceCreateOrUpdateFailed',
-   * 'dataSourceEmptyMetadata', 'dataSourceCreationFailed', 'dataSourceDeletionFailed',
-   * 'dataSourceNotFound', 'dataSourceEmptyAttribute', 'dataSourceManifestNotFound',
-   * 'dataSourceModelAlreadyExists', 'dataSourceModelNotFound',
-   * 'dataSourceDependencyValidationFailed', 'dataSourceNotProvisioned', 'dataSourceHasNoEntities',
-   * 'dataSourceInvalidState', 'invalidDataRefreshSchedule', 'dataRefreshScheduleUpdateFailed',
-   * 'dataRefreshStatusFailed', 'dataRefreshCanceled', 'dataRefreshCancelFailed',
-   * 'dataRefreshFailed', 'dataRefreshFailedToStart', 'dataRefreshPauseFailed',
-   * 'dataRefreshPollingFailed', 'dataRefreshUnknownState', 'dataRefreshPostIngestionJobFailed',
-   * 'dataFlowAlreadyExists', 'dataFlowNotFound', 'dataFlowTypeNotSupported', 'valueNotSupported',
-   * 'invalidMashup', 'nativeQueriesNotSupported', 'parameterQueryKindNotSupported',
-   * 'invalidDataPreparationName', 'dataPreparationFailed', 'corruptRecordsThresholdExceeded',
-   * 'corruptRecordsFound', 'primaryKeyValidationFailed', 'addressStandardizationFailed',
-   * 'noDataFoundToProfile', 'noDataInEntity', 'noEntitiesToProfile', 'missingColumnsInInput',
-   * 'extraColumnsInInput', 'userNotFound', 'invalidServicePlan', 'restrictedCluster',
-   * 'maxInstancesExceeded', 'trialPlanAlreadyExists', 'userNotCompanyAdministrator',
-   * 'noBearerTokenAvailableInRequest', 'userIsNotInstanceAdministrator',
-   * 'dataSourceInvalidPQAttribute', 'dataSourcePQDuplicateName', 'dataSourcePQUnsupportedPath',
-   * 'dataSourcePQInvalidName', 'dataSourcePQUnsupportedDataType', 'dataSourcePQInvalidModel',
-   * 'entityMetaDataNotFound', 'entityMetadataPbiUnavailable', 'invalidEntityMetadata',
-   * 'entityMetadataNotFoundForInformation', 'attributeMetdataNotFoundForInformation',
-   * 'metaDataNotFound', 'metaDataAccessError', 'metadataAlreadyExists', 'metadataInvalidType',
-   * 'unifiedActivityMetadataUnavailable', 'metadataStoreUnavailable', 'httpResponseFailed',
-   * 'operationCancelled', 'operationFailed', 'featureNotImplemented', 'featureNotEnabled',
-   * 'bcdrReadOnly', 'deprecatedApi', 'bapEnvironmentNotAdmin', 'bapEnvironmentNotFound',
-   * 'bapDuplicateEnvironment', 'bapProvisioningFailed', 'bapEnvironmentAttachFailed',
-   * 'solutionInstallationFailed', 'instancePackageException',
-   * 'instanceNotAttachToBapEnvironmentException', 'failedToGetCdsEnvironment', 'cdsOrgNotFound',
-   * 'bapCreateOrAttachOnly', 'bapEnvironmentNotProvisioned', 'unableToAttachBapCds',
-   * 'cdsOrgUnauthorized', 'cdsAlreadyCreatedOrAttached', 'entityDataNotFound',
-   * 'entityDataUnsupportedQuery', 'entityDataGenericException', 'invalidModelIds',
-   * 'prereqNotMetAllEntitiesAvailable', 'prereqNotMetAllEntitiesHavePartitions',
-   * 'prereqNotMetLabelAttributeNotFound', 'prereqNotMetAttributeNotFound',
-   * 'metadataNotFoundAiBuilderModel', 'workflowInvalidInput', 'intelligenceModelBuilderError',
-   * 'workflowMissingAttributes', 'workflowMetadataNotFound', 'workflowModelBuildingFailed',
-   * 'unsupportedModelType', 'modelArgumentNull', 'invalidModelWrongNumberLabelAttributes',
-   * 'invalidModelAttributeNotFound', 'modelNameAlreadyExists', 'outputEntityNameAlreadyExists',
-   * 'invalidModelPrimaryKey', 'entityDataProviderNotFound', 'attributeNamesTooLong',
-   * 'invalidLabelAttributeConfiguration', 'unsupportedLabelMapping',
-   * 'unsupportedLabelMappingKind', 'invalidModelName', 'aiBuilderNoHaveAccessToCdsOrg',
-   * 'cdsOrgDisabled', 'oneOrMoreOrchestrationsFailedToStart', 'datasetTooSmall',
-   * 'datasetRequiresTwoLabels', 'datasetTooFewFeatures', 'datasetHasDuplicateKeyValues',
-   * 'datasetTooSmallWarning', 'datasetFeatureHasManyMissingValues',
-   * 'datasetFeatureHighlyCorrelatedWithLabel', 'missingTenantAuthenticationInformation',
-   * 'kindDoesNotMatch', 'resourceIdDoesNotMatch', 'unexpectedVirtualEntityDependency',
-   * 'aiBuilderTrainSuccessWithWarnings', 'aiBuilderTrainTimeout',
-   * 'aiBuilderTrainFailedWithUserError', 'aiBuilderScoreSuccessWithWarnings',
-   * 'aiBuilderScoreTimeout', 'intelligenceWorkspaceMetadataNotFound', 'amlWorkspaceNotFound',
-   * 'workspaceInvalidOrMissingValues', 'datastoreNotFound', 'datastoreInvalidOrMissingValues',
-   * 'pipelineInvalidOrMissingValues', 'pipelineNotFound', 'pipelineRunNotFound',
-   * 'amlDatasetNotFound', 'datasetInvalidOrMissingValues', 'duplicateAmlWorkspace',
-   * 'servicePrincpalNotFound', 'roleAssignementFailed', 'roleAssignementUnauthorized',
-   * 'invalidDatastoreOrPathParameter', 'invalidWorkspaceProvider',
-   * 'unsupportedWorkspaceOperation', 'tenantNotFound', 'updateTenantFailed', 'invalidTenant',
-   * 'storageContainerNotFound', 'storageValidationFailure', 'invalidStorageType',
-   * 'storageNotSupported', 'storageAccessForbidden', 'invalidFilterString', 'storageConflict',
-   * 'discoveredNoValidSubscriptions', 'invalidResourceType', 'propertyInvalid',
-   * 'resourceTypeNotMatched', 'resourceTypeNotSupported', 'invalidInstanceResourceProperty',
-   * 'invalidResourceProperty', 'cdsConnectionNotFound', 'failedToEnableCdsEntities',
-   * 'invalidModelJson', 'cdsInvalidStorageAccount', 'emptyModelJsonPath', 'retryFailed',
-   * 'missingResourceProperty', 'missingDataSourceProperty', 'invalidOrganizationUrlFormat',
-   * 'organizationUrlAlreadyInUse', 'organizationUrlAndResourceMismatch', 'cdsConnectionError',
-   * 'sparkJobConfigurationFailed', 'cdsUrlFormat', 'resourceUrlInUse', 'invalidResourceId',
-   * 'emptySasTokenFound', 'entityPartitionMissing', 'cdsOrganizationDisabledError',
-   * 'cdsEmptyMetadata', 'cdsUnableToGet', 'cdsNotReady', 'athenaModelJsonNotFound',
-   * 'athenaModelNotSync', 'invalidNotificationPayload', 'dataflowInsufficientPermissions',
-   * 'dataflowNotRunning', 'invalidJobOperationType', 'invalidJobIdentifiers',
-   * 'invalidJobSubmissionKind', 'deleteBlockedByDependencies', 'graphJobNotFound',
-   * 'graphJobAlreadyComplete', 'graphTaskNotFound', 'graphNodeNotFound', 'graphNotFound',
-   * 'dagNodeStartFailed', 'inactiveNode', 'cannotProcessNode', 'upstreamNodesAreSkipped',
-   * 'upstreamNodesAreFailed', 'workflowJobStuck', 'workflowCancelJobThirdPartyRequestFailed',
-   * 'flagsAlreadyEnabledForDagMigration', 'stateNotReadyForDagMigration',
-   * 'graphRegenerationFailed', 'segmentInactiveOrInvalid', 'segmentInactiveOrOutOfDate',
-   * 'individualSegmentEvaluationFailed', 'segmentationMetadataAccessError',
-   * 'measuresProcessingSkipped', 'measuresProcessingFailed', 'listOfValuesIncorrectLength',
-   * 'invalidListOfValuesEntry', 'dateTimeParsingError', 'stringToNumberParsingError',
-   * 'enrichmentResourceNotFound', 'enrichmentNotFound', 'enrichmentMetadataInvalid',
-   * 'enrichmentMetadataNullOrEmptyException', 'enrichmentInvalidInputEntity',
-   * 'enrichmentInvalidInputFields', 'conflatedCustomerEntityNotFoundForEnrichment',
-   * 'missingEntityAttributesForEnrichment', 'enrichmentUserProfileAttributeParsingError',
-   * 'enrichmentEntityInformationNotFound', 'attributeMetadataNotFound',
-   * 'deleteEnrichmentMetadataAccessError', 'getEnrichmentMetadataAccessError',
-   * 'getEnrichmentMetadataUnableToAccess', 'updateEnrichmentMetadataAccessError',
-   * 'createEnrichmentMetadataAccessError', 'enrichmentMetadataAccessNotFound', 'enrichmentFailed',
-   * 'zeroRowsEnriched', 'enrichmentInvalidConfiguration', 'enrichmentIncorrectMetadata',
-   * 'enrichmentIncorrectMetadataBrandAffinities',
-   * 'enrichmentIncorrectMetadataMinimumFieldsNotMapped',
-   * 'enrichmentIncorrectMetadataMandatoryFieldsNotMapped',
-   * 'enrichmentIncorrectMetadataUnknownInputEntity',
-   * 'enrichmentIncorrectMetadataUnknownAttribute',
-   * 'enrichmentIncorrectMetadataMissingOutputEntity', 'enrichmentIncorrectMetadataAlreadyExists',
-   * 'enrichmentAffinitiesFileIsEmpty', 'enrichmentStartFailed', 'enrichmentMetadataDoesNotExist',
-   * 'enrichmentStartThrottled', 'enrichmentResultsCouldNotBeCollected',
-   * 'enrichmentAffinitiesInputCouldNotBeFound', 'enrichmentMostRecentAffinityFileInvalid',
-   * 'enrichmentCancelled', 'enrichmentInvalidConnection',
-   * 'enrichmentInvalidConnectionMissingProperty', 'enrichmentInvalidToken',
-   * 'enrichmentBadRequest', 'enrichmentInsufficientCredits', 'enrichmentLeadspace',
-   * 'enrichmentLegalConsentNotAccepted', 'enrichmentUnableToRetrieveAIAffinityInformation',
-   * 'enrichmentExternalTimeout', 'enrichmentTypeValidationFailed', 'dataOutZeroRowsEnriched',
-   * 'enrichmentElementLookupInvalidArguments', 'enrichmentElementLookupError',
-   * 'tenantLicenseNotFound', 'instanceResetFailed', 'instanceResetAlreadyRunning',
-   * 'instanceResetCanceled', 'fieldNotExistsInMetadata', 'storeDuplicateItem',
-   * 'customerForActivityNotFound', 'relationshipsForActivityNotFound',
-   * 'mappingForActivityNotFound', 'mandatoryFieldsMissing', 'writeReadonlyField',
-   * 'unsupportedEntityType', 'unsupportedOperation', 'recordDoesNotExist',
-   * 'invalidValidUntilParameter', 'malformedInputParameters', 'keyRingNotFound',
-   * 'keyRingBadRequest', 'scaleUnitNotFound', 'noAvailableScaleUnitsFound',
-   * 'noAvailableRegionsFound', 'invalidEntitySizeAttribute', 'entitySizeNotFound',
-   * 'entityTypeUpdateFailed', 'invalidEntityTimestampDataType', 'entityDeletionFailed',
-   * 'invalidEntityDataProperty', 'templateProviderNotFound', 'templateNotFound',
-   * 'templatesNotFound', 'searchConfigurationInvalidEntityCount',
-   * 'searchConfigurationMissingCustomerEntity', 'searchConfigurationUnknownAttribute',
-   * 'searchConfigurationMissingAttributes', 'searchConfigurationAttributeNotSearchable',
-   * 'searchConfigurationAttributeNotSortable', 'searchConfigurationAttributeNotFilterable',
-   * 'searchConfigurationAttributeNotFacetable', 'searchConfigurationNotFound',
-   * 'searchConfigurationMetadataNotFound', 'searchConfigurationCannotAccessMetadata',
-   * 'searchConfigurationInvalid', 'searchConfigurationInvalidAttributeName',
-   * 'searchConfigurationTooManyAttributes', 'resourceNotFound', 'resourcePropertyNotFound',
-   * 'resourceTypeError', 'sftpConnectionFailed', 'exportConfigNotFound',
-   * 'exportConfigPropertyIsDuplicate', 'exportConfigPropertyIsInvalid',
-   * 'exportConfigPropertyValuesAreInvalid', 'exportConfigPropertyNotApproved',
-   * 'exportConfigPropertyNotFound', 'exportConfigPropertyInsufficient',
-   * 'exportConfigReportNotFound', 'exportConfigReportEntityNotFound', 'conflationNotFound',
-   * 'invalidConflationMetadata', 'ambiguousConflationEntityRef',
-   * 'entityConflationInformationNotFound', 'previewMatchPairsDataNotFound',
-   * 'internalConflationProvisioningError', 'conflationEntityMetadataNotFound',
-   * 'conflationEntityPrimaryKeyNotFound', 'primaryKeyTypeUnsupported',
-   * 'conflationMetadataNotFoundForColumn', 'getEntityMetadataPbiUnavailable',
-   * 'sourceEntitiesSizeExceedLimit', 'invalidEntityInformationEntityRemovalError',
-   * 'invalidEntityInformationAttributeRemovalError', 'invalidConflatedEntityDelete',
-   * 'conflationStorageError', 'emptyConflationPlan', 'conflationPlanInvalid',
-   * 'conflationPlanMissingRules', 'conflationPlanInvalidRuleName', 'conflationPlanInvalidRules',
-   * 'conflationPlanCopyMatchingCriteriaFound', 'conflationPlanEntitiesOutOfOrder',
-   * 'conflationPlanLeftEntitiesOrderMismatch', 'conflationPlanRightEntitiesOrderMismatch',
-   * 'matchedAttributeTypeMismatch', 'exactMatchAttributeNormalizedNotTextType',
-   * 'fuzzyMatchAttributeNormalizedNotTextType', 'normalizationNotSupported',
-   * 'multipleCriteriaNotAllowed', 'conflationPlanEntityCannotRemoved',
-   * 'conflationPlanFailedToIncludeSegmentOrMeasure', 'missingEntityConflationInfo',
-   * 'conflationOrderEntityMissingRules', 'conflictResolutionInvalid',
-   * 'conflictResolutionMissingConflatedEntity', 'conflictResolutionMissingPolicy',
-   * 'conflictResolutionMissingSourceColumn', 'conflictResolutionAttrReservedForAltColumn',
-   * 'conflictResolutionAttrReservedForSourceColumn', 'conflictResolutionAttrInvalid',
-   * 'conflictResolutionAttrNotAllowed', 'conflictResolutionFailedToIncludeSegmentOrMeasure',
-   * 'allMergeAttrNotSameType', 'conflictResolutionEntityMissing', 'issuesWithConflictResolution',
-   * 'matchCancelled', 'mergeCancelled', 'conflationMatchFailed', 'conflationMergeFailed',
-   * 'conflationMatchInvalidConfiguration', 'conflationMergeInvalidConfiguration',
-   * 'conflationMetadataDoesNotExist', 'conflationMetadataNotFoundForEntity',
-   * 'conflationConfigurationInvalid', 'staleMatchMetadataError', 'matchPairsEntityDataMissing',
-   * 'matchPairsEntityNotExist', 'conflationAttributeMetadataNotFound',
-   * 'referencedColumnNonExistentInSourceEntity', 'rowWinnerPolicyColumnNonExistent',
-   * 'rowWinnerPolicyColumnIsString', 'rowWinnerPolicyNotSpecified',
-   * 'selfConflationMoreThanOneEntity', 'selfConflationRightColumnSpecified',
-   * 'selfConflationConflatedEntitiesSpecified', 'selfConflationMoreThanOneConflationPlan',
-   * 'selfConflationNoEntities', 'selfConflationNoMainIdProvided',
-   * 'selfConflationMainIdDoesNotIncludeEntity', 'selfConflationWrongRequestFormat',
-   * 'selfConflationFeatureFlagNotEnabled', 'modelManagementTrainOrchestrationFailed',
-   * 'modelManagementScoreOrchestrationFailed', 'modelManagementTrainOrchestrationSucceeded',
-   * 'modelManagementScoreOrchestrationSucceeded', 'modelManagementJobTimedOut',
-   * 'modelManagementTrainingSkipped', 'unsupportedRefreshSchedule',
-   * 'modelGradeIneligibleForScoring', 'modelManagementMetadataNotFound',
-   * 'modelManagementMetadatasNotFound', 'activityCreationFailed',
-   * 'differentActivityMappingExists', 'invalidModelEntityMapping',
-   * 'invalidOrMissingRelationshipForActivity', 'modelRegistrationNotFound',
-   * 'modelScoreEntityDeletionFailed', 'fetchActivityMetadataFailed', 'duplicateEntityMapping',
-   * 'invalidActivityTypeEntityMapping', 'modelInputsChangedWithinMajorVersion',
-   * 'activityMappingDeletedOrUpdated', 'aiErrorCodeERR001', 'aiErrorCodeERR002',
-   * 'aiErrorCodeERR004', 'aiErrorCodeERR005', 'aiErrorCodeERR007', 'aiErrorCodeERR009',
-   * 'aiErrorCodeERR011', 'aiErrorCode1', 'aiErrorCode2', 'aiErrorCode3', 'aiErrorCode4',
-   * 'aiErrorCode5', 'aiErrorCode6', 'aiErrorCode7', 'aiErrorCode8', 'aiErrorCode9',
-   * 'aiErrorCode10', 'aiErrorCode11', 'aiErrorCode12', 'aiErrorCode13', 'aiErrorCode14',
-   * 'aiErrorCode15', 'aiErrorCode16', 'aiErrorCode17', 'aiErrorCode18', 'aiErrorCode19',
-   * 'aiErrorCode20', 'aiErrorCode21', 'aiErrorCode22', 'aiErrorCode23', 'aiErrorCode24',
-   * 'aiErrorCode25', 'aiErrorCode26', 'aiErrorCode27', 'aiErrorCode28', 'aiErrorCode29',
-   * 'aiErrorCode30', 'aiErrorCode31', 'aiErrorCode32', 'aiErrorCode33', 'aiErrorCode34',
-   * 'aiErrorCode35', 'aiErrorCode36', 'aiErrorCode37', 'aiErrorCode38', 'aiErrorCode39',
-   * 'aiErrorCode40', 'aiErrorCode41', 'aiErrorCode42', 'aiErrorCode43', 'aiErrorCode44',
-   * 'aiErrorCode45', 'aiErrorCode46', 'aiErrorCode47', 'aiErrorCode48', 'aiErrorCode49',
-   * 'aiErrorCode50', 'insightNotFound', 'insightsProcessingFailed', 'insightTypeNotSupported',
-   * 'insightInputCannotBeEmpty', 'insightTypeNotMatched', 'insightInputValidationFailed',
-   * 'insightInputNameCannotBeEmpty', 'insightInputNameMustBeUnique', 'insightInvalidInputName',
-   * 'insightInputNameCannotChange', 'insightInputSourceEntityCannotBeEmpty',
-   * 'insightInputSourceEntityMustBeEmpty', 'insightInputCandidateEntityCannotBeEmpty',
-   * 'insightInputSameSourceAndCandidate', 'insightInputUnexpectedEntityCount',
-   * 'insightInputDatasourceCannotBeDifferent', 'insightInputSameAttributeNameInGroup',
-   * 'insightInputUnexpectedAttributeCount', 'insightInputUniqueAttributeNameGroups',
-   * 'insightInputUniqueEntityNameInAttributeGroup', 'insightInputAllEntitiesInAttributeGroup',
-   * 'insightInputAttributesCannotBeEmpty', 'insightInputMetricsEntityMustBeUnique',
-   * 'insightInputAttributeMetadataNotFound', 'insightInputSourceEntityDoesNotExist',
-   * 'insightInputEntitiesDoNotExist', 'insightInputMetricsEntityDoesNotExist',
-   * 'insightInputMetricsSameAsCandidateOrSource', 'insightInputMetricsEntityMustBeEmpty',
-   * 'insightInputMetricsEntityMustContainAttribute', 'insightInputAttributeDoesNotExist',
-   * 'insightInputUnexpectedAttributeDataType', 'insightInputUnexpectedEntityNameInAttributeGroup',
-   * 'insightInputMustContainAttributeOrMetric', 'insightInputInvalidOutputSegmentSize',
-   * 'insightInputInvalidNameFormat', 'insightInputAttributeNotAllowed',
-   * 'insightOutputSegmentNameAlreadyExists', 'insightSegmentExpansionAttributesTooSimilar',
-   * 'insightSegmentExpansionInsufficientRecords', 'insightSegmentExpansionAttributesNotUsable',
-   * 'insightSegmentExpansionUnableToFindSimilarMembers', 'insightSegmentExpansionGenericFailure',
-   * 'insightAttributeCardinalityExceededLimit', 'insightAttributeNameIsEmpty',
-   * 'insightNameConflictsWithEntity', 'segmentMetadataNotFound', 'segmentMetadataAlreadyExists',
-   * 'invalidSegmentModificationRequest', 'invalidSegmentValidationRequest',
-   * 'invalidSegmentCreationRequest', 'segmentInputCannotBeEmpty', 'segmentNameIsInvalid',
-   * 'segmentNameExists', 'manualSegmentCreateInvalidState', 'invalidSegmentType',
-   * 'segmentNameEntityConflict', 'segmentSqlValidationDisabled',
-   * 'segmentValidationNotEnabledForType', 'segmentValidationNotAllowedForState',
-   * 'segmentValidationInvalidState', 'segmentQueryIsEmpty', 'segmentDependencyDoesNotExist',
-   * 'segmentDependencyHasOtherSegmentDependency', 'segmentInputHasCircularDependency',
-   * 'segmentCustomQueryIsEmpty', 'segmentQueryRowsetIsEmpty',
-   * 'segmentQueryParserValidationFailed', 'segmentRowsetHasMissingOperation',
-   * 'segmentMissingAttributeComparisonOp', 'segmentHasChildrenCriteria',
-   * 'segmentCriteriaHasNonexistentAttribute', 'segmentCriteriaUnreachableEntityUsingAutoPath',
-   * 'segmentCriteriaUnreachableEntityUsingPath', 'segmentAttributeDoesNotExistInEntity',
-   * 'segmentCriteriaContainsForbiddenObjects', 'segmentLogicalCriteriaUnexpectedChildrenCount',
-   * 'segmentDataTypeConversionFailed', 'segmentAllOperatorUnexpectedAttribute',
-   * 'segmentOperatorCannotContainValue', 'segmentStringOperatorIncompatibleDatatype',
-   * 'segmentNumericOperatorIncompatibleDataType', 'segmentOperatorDoesNotSupportCaseSensitivity',
-   * 'segmentOperatorMissingValue', 'segmentAudienceDoesNotExist', 'segmentPathIsNull',
-   * 'segmentPathEntityIncorrectOrder', 'segmentEntityInPathDoesNotExist',
-   * 'segmentEntityInPathNotReachable', 'segmentEntityRelationshipNotFound',
-   * 'segmentEntityInRelationshipNotReachable', 'segmentAdvancedEditorNotEnabled',
-   * 'measureMetadataNotFound', 'invalidMeasureCreationRequest',
-   * 'invalidMeasureModificationRequest', 'invalidMeasureValidationRequest',
-   * 'invalidMeasureRelationshipNotFound', 'measureRelationshipNotConnected',
-   * 'measurePrimaryKeyNotFound', 'measureContainsCustomQuery', 'structuredMeasureCannotBeManual',
-   * 'structuredMeasureHasManualScalar', 'measureContainsEmptyCollection',
-   * 'measureMissingBaseEntity', 'measureInvalidLinkedEntity', 'measureEmptyVariableName',
-   * 'measureInvalidVariableName', 'measureDuplicateVariableName',
-   * 'measureMissingVariableExpression', 'measureUnsupportedVariableKind', 'measureMissingAlias',
-   * 'measureContainsReservedAlias', 'measureNoDateTimeBucket', 'measureHasBucket',
-   * 'invalidSingleValueMeasure', 'measureEmptyFieldInCollection',
-   * 'measureAggregateInvalidForDateTime', 'measureAttributeNotPresentInVariables',
-   * 'measureAttributeSegmentFormat', 'measureLinkedEntityNotFound',
-   * 'measureAttributeInCollection', 'measureDefinitionKind', 'measureEmptyMetadata',
-   * 'measureStateConflict', 'measureInUnexpectedState', 'measureEmptyDefinition',
-   * 'invalidMeasureQueryType', 'invalidMeasureEntityNameFormat', 'measureNameCannotBeCustomer',
-   * 'measureNameConflict', 'invalidMeasureAttributeNameFormat', 'measureNameCannotBeUpdated',
-   * 'attributeMeasureImmutableBase', 'measureDefinitionKindChanged', 'entityMeasureNameChanged',
-   * 'advancedMeasureValidationNotEnabled', 'measureTypeValidationNotAllowed',
-   * 'measureStateValidationNotAllowed', 'measureQueryIsEmpty',
-   * 'measureDimensionCountExceededLimit', 'measureContainsSegmentDependency',
-   * 'measureContainsNonexistentDependency', 'measureContainsCompoundMeasureDependency',
-   * 'measureOutputIsADependency', 'parentMeasureIsADependency', 'measureSqlValidationFailed',
-   * 'measureLinkedEntityUnexpectedCount', 'measureMissingCustomerEntity',
-   * 'customerMeasureHasScalarManualQuery', 'advancedMeasureEditorNotEnabled',
-   * 'customerMeasureQueryMissingPrefix', 'customerMeasureQueryMissingGrouping',
-   * 'measureMissingAttributeComparisonOperator', 'measureCriteriaHasChildCriteria',
-   * 'measureCriteriaContainsUnreachableEntity', 'measureCriteriaContainsNonExistentAttribute',
-   * 'measureLogicalOperatorContainsInvalidOperators', 'measureLogicCriteriaMissingChildren',
-   * 'measureAllOperatorContainsInvalidAttribute', 'measureCriteriaOperatorContainsValue',
-   * 'measureStringOperatorInvalidDatatype', 'measureOperatorIsCaseInsensitive',
-   * 'measureOperatorMissingValues', 'measureConditionGroupsMustBeUnique',
-   * 'measureConditionGroupFromMustBeUnique', 'measureConditionGroupInvalidName',
-   * 'measureNumericalOperatorHasInvalidDataType', 'measureHasConflictingOutputAlias',
-   * 'measureHasEmptyEntityDefinition', 'attributeMeasureInvalidAggregateCount',
-   * 'attributeMeasureMissingName', 'measureHasDependencyIssues', 'measureQueryCannotBeParsed',
-   * 'measureSparkJobFailed', 'measureSparkJobTimedOut', 'measureSparkJobDidNotStart',
-   * 'measureOrchestrationError', 'customerAttributeMeasureDependencyConflict',
-   * 'measureCannotBeValidated', 'inactiveMeasureEvaluationSkipped',
-   * 'measureDataTypeConversionFailed', 'templatedMeasureMetadataNotFound',
-   * 'templateEntityMissing', 'templateAttributeMissing', 'templateScalarValueMissing',
-   * 'templateSchemaFilePathNotFound', 'derivedEntityMetadataEmpty', 'derivedEntityQueryIsEmpty',
-   * 'derivedEntityIsNotUnique', 'derivedEntityContainsNonExistentDependency',
-   * 'derivedEntitySqlValidationFailed', 'derivedEntityNotEnabled', 'derivedEntityNotFound',
-   * 'activityMappingInvalidMetadata', 'activityMappingRelationshipNotFound',
-   * 'activityMappingMissingField', 'activityMappingDuplicateMappingOnEntity',
-   * 'activityMappingReferencedEntityNotFound', 'activityMappingInvalidIconCode',
-   * 'activityMappingDuplicateMappingOnAttribute', 'activityMappingReferencedAttributeNotFound',
-   * 'activityMappingValidationError', 'activityTypeUpdateFailed',
-   * 'activityMappingInvalidExternalUrl', 'noSourceStreamOnActivityEntity',
-   * 'noRelationshipOnActivityEntity', 'noValidRelationshipOnActivityEntity',
-   * 'noActivityDisplayOnActivityEntity', 'noRangeIndexOnActivityEntity',
-   * 'moreThanOneRangeIndexOnActivityEntity', 'noStartOrEndTimeOnActivityEntity',
-   * 'noActivityIdOnActivityEntity', 'externalURLInvalidTypeOnActivityEntity',
-   * 'relationshipNotFound', 'invalidRelationshipName', 'relationshipNameAlreadyExists',
-   * 'relationEntityAlreadyExists', 'relationshipAttributeNotFound', 'relationshipNameMissing',
-   * 'relationshipInstanceZeroError', 'relationshipMetadataAccessError',
-   * 'discoveryOperationNotFound', 'cdsaModelNotFound', 'datasetCatalogRetrievalFailed',
-   * 'datasetCatalogItemNotFound', 'datasetCatalogItemNotAvailable', 'datasetNotFound',
-   * 'queryTypeNotSupported', 'queryContainsSemicolons', 'queryContainsComments',
-   * 'queryContainsFilePath', 'queryContainsRestrictedWords', 'systemInterruption',
-   * 'instanceCopyNotSupportedTypes', 'searchTextTooLong', 'apiSubscriptionNotFound',
-   * 'apiSubscriptionFailed', 'apiUnsubscribeFailed', 'apiProductsNotFound',
-   * 'apiKeyGenerationFailed', 'instanceTrialMaxExtensionsExceeded', 'instanceNotValidTrial',
-   * 'instanceTrialHasNoExpiry', 'cdmLoadManifestFailed'
-  */
   errorCode?: string;
   /**
    * Possible values include: 'error', 'warning'
@@ -724,317 +439,11 @@ export interface CIResult {
 */
 export interface ApiErrorResult {
   readonly exception?: any;
-  /**
-   * Possible values include: 'continue', 'switchingProtocols', 'ok', 'created', 'accepted',
-   * 'nonAuthoritativeInformation', 'noContent', 'resetContent', 'partialContent',
-   * 'multipleChoices', 'ambiguous', 'movedPermanently', 'moved', 'found', 'redirect', 'seeOther',
-   * 'redirectMethod', 'notModified', 'useProxy', 'unused', 'temporaryRedirect',
-   * 'redirectKeepVerb', 'badRequest', 'unauthorized', 'paymentRequired', 'forbidden', 'notFound',
-   * 'methodNotAllowed', 'notAcceptable', 'proxyAuthenticationRequired', 'requestTimeout',
-   * 'conflict', 'gone', 'lengthRequired', 'preconditionFailed', 'requestEntityTooLarge',
-   * 'requestUriTooLong', 'unsupportedMediaType', 'requestedRangeNotSatisfiable',
-   * 'expectationFailed', 'upgradeRequired', 'internalServerError', 'notImplemented', 'badGateway',
-   * 'serviceUnavailable', 'gatewayTimeout', 'httpVersionNotSupported'
-  */
   httpStatusCode?: string;
   /**
    * Possible values include: 'system', 'user', 'external'
   */
   exceptionCulprit?: string;
-  /**
-   * Possible values include: 'unknown', 'errorCodeUnavailable', 'invalidApiParameter',
-   * 'invalidApiParameterCombination', 'internalServerError', 'invalidModelState',
-   * 'apiRequestSystemError', 'inputPayloadNotFound', 'contentKeyNotDefined',
-   * 'pbiBadRequestException', 'instanceNotFound', 'invalidInstanceId', 'invalidInstanceRegion',
-   * 'instanceExpired', 'invalidInstanceMetadata', 'invalidInstanceRequest', 'invalidInstanceName',
-   * 'instanceCreationDenied', 'instanceNotActive', 'instanceZeroNotAllowed',
-   * 'instanceCreationFailed', 'instanceDeletionFailed', 'instanceUpdateFailed',
-   * 'emailSubscriptionFailed', 'invalidInstanceProperty', 'instanceMetadataNotFound',
-   * 'instanceOperationNotAllowed', 'invalidTenantId', 'regionNotSupported', 'invalidDataSource',
-   * 'dataSourceInvalidKind', 'dataSourceDuplicateName', 'dataSourceCreateOrUpdateFailed',
-   * 'dataSourceEmptyMetadata', 'dataSourceCreationFailed', 'dataSourceDeletionFailed',
-   * 'dataSourceNotFound', 'dataSourceEmptyAttribute', 'dataSourceManifestNotFound',
-   * 'dataSourceModelAlreadyExists', 'dataSourceModelNotFound',
-   * 'dataSourceDependencyValidationFailed', 'dataSourceNotProvisioned', 'dataSourceHasNoEntities',
-   * 'dataSourceInvalidState', 'invalidDataRefreshSchedule', 'dataRefreshScheduleUpdateFailed',
-   * 'dataRefreshStatusFailed', 'dataRefreshCanceled', 'dataRefreshCancelFailed',
-   * 'dataRefreshFailed', 'dataRefreshFailedToStart', 'dataRefreshPauseFailed',
-   * 'dataRefreshPollingFailed', 'dataRefreshUnknownState', 'dataRefreshPostIngestionJobFailed',
-   * 'dataFlowAlreadyExists', 'dataFlowNotFound', 'dataFlowTypeNotSupported', 'valueNotSupported',
-   * 'invalidMashup', 'nativeQueriesNotSupported', 'parameterQueryKindNotSupported',
-   * 'invalidDataPreparationName', 'dataPreparationFailed', 'corruptRecordsThresholdExceeded',
-   * 'corruptRecordsFound', 'primaryKeyValidationFailed', 'addressStandardizationFailed',
-   * 'noDataFoundToProfile', 'noDataInEntity', 'noEntitiesToProfile', 'missingColumnsInInput',
-   * 'extraColumnsInInput', 'userNotFound', 'invalidServicePlan', 'restrictedCluster',
-   * 'maxInstancesExceeded', 'trialPlanAlreadyExists', 'userNotCompanyAdministrator',
-   * 'noBearerTokenAvailableInRequest', 'userIsNotInstanceAdministrator',
-   * 'dataSourceInvalidPQAttribute', 'dataSourcePQDuplicateName', 'dataSourcePQUnsupportedPath',
-   * 'dataSourcePQInvalidName', 'dataSourcePQUnsupportedDataType', 'dataSourcePQInvalidModel',
-   * 'entityMetaDataNotFound', 'entityMetadataPbiUnavailable', 'invalidEntityMetadata',
-   * 'entityMetadataNotFoundForInformation', 'attributeMetdataNotFoundForInformation',
-   * 'metaDataNotFound', 'metaDataAccessError', 'metadataAlreadyExists', 'metadataInvalidType',
-   * 'unifiedActivityMetadataUnavailable', 'metadataStoreUnavailable', 'httpResponseFailed',
-   * 'operationCancelled', 'operationFailed', 'featureNotImplemented', 'featureNotEnabled',
-   * 'bcdrReadOnly', 'deprecatedApi', 'bapEnvironmentNotAdmin', 'bapEnvironmentNotFound',
-   * 'bapDuplicateEnvironment', 'bapProvisioningFailed', 'bapEnvironmentAttachFailed',
-   * 'solutionInstallationFailed', 'instancePackageException',
-   * 'instanceNotAttachToBapEnvironmentException', 'failedToGetCdsEnvironment', 'cdsOrgNotFound',
-   * 'bapCreateOrAttachOnly', 'bapEnvironmentNotProvisioned', 'unableToAttachBapCds',
-   * 'cdsOrgUnauthorized', 'cdsAlreadyCreatedOrAttached', 'entityDataNotFound',
-   * 'entityDataUnsupportedQuery', 'entityDataGenericException', 'invalidModelIds',
-   * 'prereqNotMetAllEntitiesAvailable', 'prereqNotMetAllEntitiesHavePartitions',
-   * 'prereqNotMetLabelAttributeNotFound', 'prereqNotMetAttributeNotFound',
-   * 'metadataNotFoundAiBuilderModel', 'workflowInvalidInput', 'intelligenceModelBuilderError',
-   * 'workflowMissingAttributes', 'workflowMetadataNotFound', 'workflowModelBuildingFailed',
-   * 'unsupportedModelType', 'modelArgumentNull', 'invalidModelWrongNumberLabelAttributes',
-   * 'invalidModelAttributeNotFound', 'modelNameAlreadyExists', 'outputEntityNameAlreadyExists',
-   * 'invalidModelPrimaryKey', 'entityDataProviderNotFound', 'attributeNamesTooLong',
-   * 'invalidLabelAttributeConfiguration', 'unsupportedLabelMapping',
-   * 'unsupportedLabelMappingKind', 'invalidModelName', 'aiBuilderNoHaveAccessToCdsOrg',
-   * 'cdsOrgDisabled', 'oneOrMoreOrchestrationsFailedToStart', 'datasetTooSmall',
-   * 'datasetRequiresTwoLabels', 'datasetTooFewFeatures', 'datasetHasDuplicateKeyValues',
-   * 'datasetTooSmallWarning', 'datasetFeatureHasManyMissingValues',
-   * 'datasetFeatureHighlyCorrelatedWithLabel', 'missingTenantAuthenticationInformation',
-   * 'kindDoesNotMatch', 'resourceIdDoesNotMatch', 'unexpectedVirtualEntityDependency',
-   * 'aiBuilderTrainSuccessWithWarnings', 'aiBuilderTrainTimeout',
-   * 'aiBuilderTrainFailedWithUserError', 'aiBuilderScoreSuccessWithWarnings',
-   * 'aiBuilderScoreTimeout', 'intelligenceWorkspaceMetadataNotFound', 'amlWorkspaceNotFound',
-   * 'workspaceInvalidOrMissingValues', 'datastoreNotFound', 'datastoreInvalidOrMissingValues',
-   * 'pipelineInvalidOrMissingValues', 'pipelineNotFound', 'pipelineRunNotFound',
-   * 'amlDatasetNotFound', 'datasetInvalidOrMissingValues', 'duplicateAmlWorkspace',
-   * 'servicePrincpalNotFound', 'roleAssignementFailed', 'roleAssignementUnauthorized',
-   * 'invalidDatastoreOrPathParameter', 'invalidWorkspaceProvider',
-   * 'unsupportedWorkspaceOperation', 'tenantNotFound', 'updateTenantFailed', 'invalidTenant',
-   * 'storageContainerNotFound', 'storageValidationFailure', 'invalidStorageType',
-   * 'storageNotSupported', 'storageAccessForbidden', 'invalidFilterString', 'storageConflict',
-   * 'discoveredNoValidSubscriptions', 'invalidResourceType', 'propertyInvalid',
-   * 'resourceTypeNotMatched', 'resourceTypeNotSupported', 'invalidInstanceResourceProperty',
-   * 'invalidResourceProperty', 'cdsConnectionNotFound', 'failedToEnableCdsEntities',
-   * 'invalidModelJson', 'cdsInvalidStorageAccount', 'emptyModelJsonPath', 'retryFailed',
-   * 'missingResourceProperty', 'missingDataSourceProperty', 'invalidOrganizationUrlFormat',
-   * 'organizationUrlAlreadyInUse', 'organizationUrlAndResourceMismatch', 'cdsConnectionError',
-   * 'sparkJobConfigurationFailed', 'cdsUrlFormat', 'resourceUrlInUse', 'invalidResourceId',
-   * 'emptySasTokenFound', 'entityPartitionMissing', 'cdsOrganizationDisabledError',
-   * 'cdsEmptyMetadata', 'cdsUnableToGet', 'cdsNotReady', 'athenaModelJsonNotFound',
-   * 'athenaModelNotSync', 'invalidNotificationPayload', 'dataflowInsufficientPermissions',
-   * 'dataflowNotRunning', 'invalidJobOperationType', 'invalidJobIdentifiers',
-   * 'invalidJobSubmissionKind', 'deleteBlockedByDependencies', 'graphJobNotFound',
-   * 'graphJobAlreadyComplete', 'graphTaskNotFound', 'graphNodeNotFound', 'graphNotFound',
-   * 'dagNodeStartFailed', 'inactiveNode', 'cannotProcessNode', 'upstreamNodesAreSkipped',
-   * 'upstreamNodesAreFailed', 'workflowJobStuck', 'workflowCancelJobThirdPartyRequestFailed',
-   * 'flagsAlreadyEnabledForDagMigration', 'stateNotReadyForDagMigration',
-   * 'graphRegenerationFailed', 'segmentInactiveOrInvalid', 'segmentInactiveOrOutOfDate',
-   * 'individualSegmentEvaluationFailed', 'segmentationMetadataAccessError',
-   * 'measuresProcessingSkipped', 'measuresProcessingFailed', 'listOfValuesIncorrectLength',
-   * 'invalidListOfValuesEntry', 'dateTimeParsingError', 'stringToNumberParsingError',
-   * 'enrichmentResourceNotFound', 'enrichmentNotFound', 'enrichmentMetadataInvalid',
-   * 'enrichmentMetadataNullOrEmptyException', 'enrichmentInvalidInputEntity',
-   * 'enrichmentInvalidInputFields', 'conflatedCustomerEntityNotFoundForEnrichment',
-   * 'missingEntityAttributesForEnrichment', 'enrichmentUserProfileAttributeParsingError',
-   * 'enrichmentEntityInformationNotFound', 'attributeMetadataNotFound',
-   * 'deleteEnrichmentMetadataAccessError', 'getEnrichmentMetadataAccessError',
-   * 'getEnrichmentMetadataUnableToAccess', 'updateEnrichmentMetadataAccessError',
-   * 'createEnrichmentMetadataAccessError', 'enrichmentMetadataAccessNotFound', 'enrichmentFailed',
-   * 'zeroRowsEnriched', 'enrichmentInvalidConfiguration', 'enrichmentIncorrectMetadata',
-   * 'enrichmentIncorrectMetadataBrandAffinities',
-   * 'enrichmentIncorrectMetadataMinimumFieldsNotMapped',
-   * 'enrichmentIncorrectMetadataMandatoryFieldsNotMapped',
-   * 'enrichmentIncorrectMetadataUnknownInputEntity',
-   * 'enrichmentIncorrectMetadataUnknownAttribute',
-   * 'enrichmentIncorrectMetadataMissingOutputEntity', 'enrichmentIncorrectMetadataAlreadyExists',
-   * 'enrichmentAffinitiesFileIsEmpty', 'enrichmentStartFailed', 'enrichmentMetadataDoesNotExist',
-   * 'enrichmentStartThrottled', 'enrichmentResultsCouldNotBeCollected',
-   * 'enrichmentAffinitiesInputCouldNotBeFound', 'enrichmentMostRecentAffinityFileInvalid',
-   * 'enrichmentCancelled', 'enrichmentInvalidConnection',
-   * 'enrichmentInvalidConnectionMissingProperty', 'enrichmentInvalidToken',
-   * 'enrichmentBadRequest', 'enrichmentInsufficientCredits', 'enrichmentLeadspace',
-   * 'enrichmentLegalConsentNotAccepted', 'enrichmentUnableToRetrieveAIAffinityInformation',
-   * 'enrichmentExternalTimeout', 'enrichmentTypeValidationFailed', 'dataOutZeroRowsEnriched',
-   * 'enrichmentElementLookupInvalidArguments', 'enrichmentElementLookupError',
-   * 'tenantLicenseNotFound', 'instanceResetFailed', 'instanceResetAlreadyRunning',
-   * 'instanceResetCanceled', 'fieldNotExistsInMetadata', 'storeDuplicateItem',
-   * 'customerForActivityNotFound', 'relationshipsForActivityNotFound',
-   * 'mappingForActivityNotFound', 'mandatoryFieldsMissing', 'writeReadonlyField',
-   * 'unsupportedEntityType', 'unsupportedOperation', 'recordDoesNotExist',
-   * 'invalidValidUntilParameter', 'malformedInputParameters', 'keyRingNotFound',
-   * 'keyRingBadRequest', 'scaleUnitNotFound', 'noAvailableScaleUnitsFound',
-   * 'noAvailableRegionsFound', 'invalidEntitySizeAttribute', 'entitySizeNotFound',
-   * 'entityTypeUpdateFailed', 'invalidEntityTimestampDataType', 'entityDeletionFailed',
-   * 'invalidEntityDataProperty', 'templateProviderNotFound', 'templateNotFound',
-   * 'templatesNotFound', 'searchConfigurationInvalidEntityCount',
-   * 'searchConfigurationMissingCustomerEntity', 'searchConfigurationUnknownAttribute',
-   * 'searchConfigurationMissingAttributes', 'searchConfigurationAttributeNotSearchable',
-   * 'searchConfigurationAttributeNotSortable', 'searchConfigurationAttributeNotFilterable',
-   * 'searchConfigurationAttributeNotFacetable', 'searchConfigurationNotFound',
-   * 'searchConfigurationMetadataNotFound', 'searchConfigurationCannotAccessMetadata',
-   * 'searchConfigurationInvalid', 'searchConfigurationInvalidAttributeName',
-   * 'searchConfigurationTooManyAttributes', 'resourceNotFound', 'resourcePropertyNotFound',
-   * 'resourceTypeError', 'sftpConnectionFailed', 'exportConfigNotFound',
-   * 'exportConfigPropertyIsDuplicate', 'exportConfigPropertyIsInvalid',
-   * 'exportConfigPropertyValuesAreInvalid', 'exportConfigPropertyNotApproved',
-   * 'exportConfigPropertyNotFound', 'exportConfigPropertyInsufficient',
-   * 'exportConfigReportNotFound', 'exportConfigReportEntityNotFound', 'conflationNotFound',
-   * 'invalidConflationMetadata', 'ambiguousConflationEntityRef',
-   * 'entityConflationInformationNotFound', 'previewMatchPairsDataNotFound',
-   * 'internalConflationProvisioningError', 'conflationEntityMetadataNotFound',
-   * 'conflationEntityPrimaryKeyNotFound', 'primaryKeyTypeUnsupported',
-   * 'conflationMetadataNotFoundForColumn', 'getEntityMetadataPbiUnavailable',
-   * 'sourceEntitiesSizeExceedLimit', 'invalidEntityInformationEntityRemovalError',
-   * 'invalidEntityInformationAttributeRemovalError', 'invalidConflatedEntityDelete',
-   * 'conflationStorageError', 'emptyConflationPlan', 'conflationPlanInvalid',
-   * 'conflationPlanMissingRules', 'conflationPlanInvalidRuleName', 'conflationPlanInvalidRules',
-   * 'conflationPlanCopyMatchingCriteriaFound', 'conflationPlanEntitiesOutOfOrder',
-   * 'conflationPlanLeftEntitiesOrderMismatch', 'conflationPlanRightEntitiesOrderMismatch',
-   * 'matchedAttributeTypeMismatch', 'exactMatchAttributeNormalizedNotTextType',
-   * 'fuzzyMatchAttributeNormalizedNotTextType', 'normalizationNotSupported',
-   * 'multipleCriteriaNotAllowed', 'conflationPlanEntityCannotRemoved',
-   * 'conflationPlanFailedToIncludeSegmentOrMeasure', 'missingEntityConflationInfo',
-   * 'conflationOrderEntityMissingRules', 'conflictResolutionInvalid',
-   * 'conflictResolutionMissingConflatedEntity', 'conflictResolutionMissingPolicy',
-   * 'conflictResolutionMissingSourceColumn', 'conflictResolutionAttrReservedForAltColumn',
-   * 'conflictResolutionAttrReservedForSourceColumn', 'conflictResolutionAttrInvalid',
-   * 'conflictResolutionAttrNotAllowed', 'conflictResolutionFailedToIncludeSegmentOrMeasure',
-   * 'allMergeAttrNotSameType', 'conflictResolutionEntityMissing', 'issuesWithConflictResolution',
-   * 'matchCancelled', 'mergeCancelled', 'conflationMatchFailed', 'conflationMergeFailed',
-   * 'conflationMatchInvalidConfiguration', 'conflationMergeInvalidConfiguration',
-   * 'conflationMetadataDoesNotExist', 'conflationMetadataNotFoundForEntity',
-   * 'conflationConfigurationInvalid', 'staleMatchMetadataError', 'matchPairsEntityDataMissing',
-   * 'matchPairsEntityNotExist', 'conflationAttributeMetadataNotFound',
-   * 'referencedColumnNonExistentInSourceEntity', 'rowWinnerPolicyColumnNonExistent',
-   * 'rowWinnerPolicyColumnIsString', 'rowWinnerPolicyNotSpecified',
-   * 'selfConflationMoreThanOneEntity', 'selfConflationRightColumnSpecified',
-   * 'selfConflationConflatedEntitiesSpecified', 'selfConflationMoreThanOneConflationPlan',
-   * 'selfConflationNoEntities', 'selfConflationNoMainIdProvided',
-   * 'selfConflationMainIdDoesNotIncludeEntity', 'selfConflationWrongRequestFormat',
-   * 'selfConflationFeatureFlagNotEnabled', 'modelManagementTrainOrchestrationFailed',
-   * 'modelManagementScoreOrchestrationFailed', 'modelManagementTrainOrchestrationSucceeded',
-   * 'modelManagementScoreOrchestrationSucceeded', 'modelManagementJobTimedOut',
-   * 'modelManagementTrainingSkipped', 'unsupportedRefreshSchedule',
-   * 'modelGradeIneligibleForScoring', 'modelManagementMetadataNotFound',
-   * 'modelManagementMetadatasNotFound', 'activityCreationFailed',
-   * 'differentActivityMappingExists', 'invalidModelEntityMapping',
-   * 'invalidOrMissingRelationshipForActivity', 'modelRegistrationNotFound',
-   * 'modelScoreEntityDeletionFailed', 'fetchActivityMetadataFailed', 'duplicateEntityMapping',
-   * 'invalidActivityTypeEntityMapping', 'modelInputsChangedWithinMajorVersion',
-   * 'activityMappingDeletedOrUpdated', 'aiErrorCodeERR001', 'aiErrorCodeERR002',
-   * 'aiErrorCodeERR004', 'aiErrorCodeERR005', 'aiErrorCodeERR007', 'aiErrorCodeERR009',
-   * 'aiErrorCodeERR011', 'aiErrorCode1', 'aiErrorCode2', 'aiErrorCode3', 'aiErrorCode4',
-   * 'aiErrorCode5', 'aiErrorCode6', 'aiErrorCode7', 'aiErrorCode8', 'aiErrorCode9',
-   * 'aiErrorCode10', 'aiErrorCode11', 'aiErrorCode12', 'aiErrorCode13', 'aiErrorCode14',
-   * 'aiErrorCode15', 'aiErrorCode16', 'aiErrorCode17', 'aiErrorCode18', 'aiErrorCode19',
-   * 'aiErrorCode20', 'aiErrorCode21', 'aiErrorCode22', 'aiErrorCode23', 'aiErrorCode24',
-   * 'aiErrorCode25', 'aiErrorCode26', 'aiErrorCode27', 'aiErrorCode28', 'aiErrorCode29',
-   * 'aiErrorCode30', 'aiErrorCode31', 'aiErrorCode32', 'aiErrorCode33', 'aiErrorCode34',
-   * 'aiErrorCode35', 'aiErrorCode36', 'aiErrorCode37', 'aiErrorCode38', 'aiErrorCode39',
-   * 'aiErrorCode40', 'aiErrorCode41', 'aiErrorCode42', 'aiErrorCode43', 'aiErrorCode44',
-   * 'aiErrorCode45', 'aiErrorCode46', 'aiErrorCode47', 'aiErrorCode48', 'aiErrorCode49',
-   * 'aiErrorCode50', 'insightNotFound', 'insightsProcessingFailed', 'insightTypeNotSupported',
-   * 'insightInputCannotBeEmpty', 'insightTypeNotMatched', 'insightInputValidationFailed',
-   * 'insightInputNameCannotBeEmpty', 'insightInputNameMustBeUnique', 'insightInvalidInputName',
-   * 'insightInputNameCannotChange', 'insightInputSourceEntityCannotBeEmpty',
-   * 'insightInputSourceEntityMustBeEmpty', 'insightInputCandidateEntityCannotBeEmpty',
-   * 'insightInputSameSourceAndCandidate', 'insightInputUnexpectedEntityCount',
-   * 'insightInputDatasourceCannotBeDifferent', 'insightInputSameAttributeNameInGroup',
-   * 'insightInputUnexpectedAttributeCount', 'insightInputUniqueAttributeNameGroups',
-   * 'insightInputUniqueEntityNameInAttributeGroup', 'insightInputAllEntitiesInAttributeGroup',
-   * 'insightInputAttributesCannotBeEmpty', 'insightInputMetricsEntityMustBeUnique',
-   * 'insightInputAttributeMetadataNotFound', 'insightInputSourceEntityDoesNotExist',
-   * 'insightInputEntitiesDoNotExist', 'insightInputMetricsEntityDoesNotExist',
-   * 'insightInputMetricsSameAsCandidateOrSource', 'insightInputMetricsEntityMustBeEmpty',
-   * 'insightInputMetricsEntityMustContainAttribute', 'insightInputAttributeDoesNotExist',
-   * 'insightInputUnexpectedAttributeDataType', 'insightInputUnexpectedEntityNameInAttributeGroup',
-   * 'insightInputMustContainAttributeOrMetric', 'insightInputInvalidOutputSegmentSize',
-   * 'insightInputInvalidNameFormat', 'insightInputAttributeNotAllowed',
-   * 'insightOutputSegmentNameAlreadyExists', 'insightSegmentExpansionAttributesTooSimilar',
-   * 'insightSegmentExpansionInsufficientRecords', 'insightSegmentExpansionAttributesNotUsable',
-   * 'insightSegmentExpansionUnableToFindSimilarMembers', 'insightSegmentExpansionGenericFailure',
-   * 'insightAttributeCardinalityExceededLimit', 'insightAttributeNameIsEmpty',
-   * 'insightNameConflictsWithEntity', 'segmentMetadataNotFound', 'segmentMetadataAlreadyExists',
-   * 'invalidSegmentModificationRequest', 'invalidSegmentValidationRequest',
-   * 'invalidSegmentCreationRequest', 'segmentInputCannotBeEmpty', 'segmentNameIsInvalid',
-   * 'segmentNameExists', 'manualSegmentCreateInvalidState', 'invalidSegmentType',
-   * 'segmentNameEntityConflict', 'segmentSqlValidationDisabled',
-   * 'segmentValidationNotEnabledForType', 'segmentValidationNotAllowedForState',
-   * 'segmentValidationInvalidState', 'segmentQueryIsEmpty', 'segmentDependencyDoesNotExist',
-   * 'segmentDependencyHasOtherSegmentDependency', 'segmentInputHasCircularDependency',
-   * 'segmentCustomQueryIsEmpty', 'segmentQueryRowsetIsEmpty',
-   * 'segmentQueryParserValidationFailed', 'segmentRowsetHasMissingOperation',
-   * 'segmentMissingAttributeComparisonOp', 'segmentHasChildrenCriteria',
-   * 'segmentCriteriaHasNonexistentAttribute', 'segmentCriteriaUnreachableEntityUsingAutoPath',
-   * 'segmentCriteriaUnreachableEntityUsingPath', 'segmentAttributeDoesNotExistInEntity',
-   * 'segmentCriteriaContainsForbiddenObjects', 'segmentLogicalCriteriaUnexpectedChildrenCount',
-   * 'segmentDataTypeConversionFailed', 'segmentAllOperatorUnexpectedAttribute',
-   * 'segmentOperatorCannotContainValue', 'segmentStringOperatorIncompatibleDatatype',
-   * 'segmentNumericOperatorIncompatibleDataType', 'segmentOperatorDoesNotSupportCaseSensitivity',
-   * 'segmentOperatorMissingValue', 'segmentAudienceDoesNotExist', 'segmentPathIsNull',
-   * 'segmentPathEntityIncorrectOrder', 'segmentEntityInPathDoesNotExist',
-   * 'segmentEntityInPathNotReachable', 'segmentEntityRelationshipNotFound',
-   * 'segmentEntityInRelationshipNotReachable', 'segmentAdvancedEditorNotEnabled',
-   * 'measureMetadataNotFound', 'invalidMeasureCreationRequest',
-   * 'invalidMeasureModificationRequest', 'invalidMeasureValidationRequest',
-   * 'invalidMeasureRelationshipNotFound', 'measureRelationshipNotConnected',
-   * 'measurePrimaryKeyNotFound', 'measureContainsCustomQuery', 'structuredMeasureCannotBeManual',
-   * 'structuredMeasureHasManualScalar', 'measureContainsEmptyCollection',
-   * 'measureMissingBaseEntity', 'measureInvalidLinkedEntity', 'measureEmptyVariableName',
-   * 'measureInvalidVariableName', 'measureDuplicateVariableName',
-   * 'measureMissingVariableExpression', 'measureUnsupportedVariableKind', 'measureMissingAlias',
-   * 'measureContainsReservedAlias', 'measureNoDateTimeBucket', 'measureHasBucket',
-   * 'invalidSingleValueMeasure', 'measureEmptyFieldInCollection',
-   * 'measureAggregateInvalidForDateTime', 'measureAttributeNotPresentInVariables',
-   * 'measureAttributeSegmentFormat', 'measureLinkedEntityNotFound',
-   * 'measureAttributeInCollection', 'measureDefinitionKind', 'measureEmptyMetadata',
-   * 'measureStateConflict', 'measureInUnexpectedState', 'measureEmptyDefinition',
-   * 'invalidMeasureQueryType', 'invalidMeasureEntityNameFormat', 'measureNameCannotBeCustomer',
-   * 'measureNameConflict', 'invalidMeasureAttributeNameFormat', 'measureNameCannotBeUpdated',
-   * 'attributeMeasureImmutableBase', 'measureDefinitionKindChanged', 'entityMeasureNameChanged',
-   * 'advancedMeasureValidationNotEnabled', 'measureTypeValidationNotAllowed',
-   * 'measureStateValidationNotAllowed', 'measureQueryIsEmpty',
-   * 'measureDimensionCountExceededLimit', 'measureContainsSegmentDependency',
-   * 'measureContainsNonexistentDependency', 'measureContainsCompoundMeasureDependency',
-   * 'measureOutputIsADependency', 'parentMeasureIsADependency', 'measureSqlValidationFailed',
-   * 'measureLinkedEntityUnexpectedCount', 'measureMissingCustomerEntity',
-   * 'customerMeasureHasScalarManualQuery', 'advancedMeasureEditorNotEnabled',
-   * 'customerMeasureQueryMissingPrefix', 'customerMeasureQueryMissingGrouping',
-   * 'measureMissingAttributeComparisonOperator', 'measureCriteriaHasChildCriteria',
-   * 'measureCriteriaContainsUnreachableEntity', 'measureCriteriaContainsNonExistentAttribute',
-   * 'measureLogicalOperatorContainsInvalidOperators', 'measureLogicCriteriaMissingChildren',
-   * 'measureAllOperatorContainsInvalidAttribute', 'measureCriteriaOperatorContainsValue',
-   * 'measureStringOperatorInvalidDatatype', 'measureOperatorIsCaseInsensitive',
-   * 'measureOperatorMissingValues', 'measureConditionGroupsMustBeUnique',
-   * 'measureConditionGroupFromMustBeUnique', 'measureConditionGroupInvalidName',
-   * 'measureNumericalOperatorHasInvalidDataType', 'measureHasConflictingOutputAlias',
-   * 'measureHasEmptyEntityDefinition', 'attributeMeasureInvalidAggregateCount',
-   * 'attributeMeasureMissingName', 'measureHasDependencyIssues', 'measureQueryCannotBeParsed',
-   * 'measureSparkJobFailed', 'measureSparkJobTimedOut', 'measureSparkJobDidNotStart',
-   * 'measureOrchestrationError', 'customerAttributeMeasureDependencyConflict',
-   * 'measureCannotBeValidated', 'inactiveMeasureEvaluationSkipped',
-   * 'measureDataTypeConversionFailed', 'templatedMeasureMetadataNotFound',
-   * 'templateEntityMissing', 'templateAttributeMissing', 'templateScalarValueMissing',
-   * 'templateSchemaFilePathNotFound', 'derivedEntityMetadataEmpty', 'derivedEntityQueryIsEmpty',
-   * 'derivedEntityIsNotUnique', 'derivedEntityContainsNonExistentDependency',
-   * 'derivedEntitySqlValidationFailed', 'derivedEntityNotEnabled', 'derivedEntityNotFound',
-   * 'activityMappingInvalidMetadata', 'activityMappingRelationshipNotFound',
-   * 'activityMappingMissingField', 'activityMappingDuplicateMappingOnEntity',
-   * 'activityMappingReferencedEntityNotFound', 'activityMappingInvalidIconCode',
-   * 'activityMappingDuplicateMappingOnAttribute', 'activityMappingReferencedAttributeNotFound',
-   * 'activityMappingValidationError', 'activityTypeUpdateFailed',
-   * 'activityMappingInvalidExternalUrl', 'noSourceStreamOnActivityEntity',
-   * 'noRelationshipOnActivityEntity', 'noValidRelationshipOnActivityEntity',
-   * 'noActivityDisplayOnActivityEntity', 'noRangeIndexOnActivityEntity',
-   * 'moreThanOneRangeIndexOnActivityEntity', 'noStartOrEndTimeOnActivityEntity',
-   * 'noActivityIdOnActivityEntity', 'externalURLInvalidTypeOnActivityEntity',
-   * 'relationshipNotFound', 'invalidRelationshipName', 'relationshipNameAlreadyExists',
-   * 'relationEntityAlreadyExists', 'relationshipAttributeNotFound', 'relationshipNameMissing',
-   * 'relationshipInstanceZeroError', 'relationshipMetadataAccessError',
-   * 'discoveryOperationNotFound', 'cdsaModelNotFound', 'datasetCatalogRetrievalFailed',
-   * 'datasetCatalogItemNotFound', 'datasetCatalogItemNotAvailable', 'datasetNotFound',
-   * 'queryTypeNotSupported', 'queryContainsSemicolons', 'queryContainsComments',
-   * 'queryContainsFilePath', 'queryContainsRestrictedWords', 'systemInterruption',
-   * 'instanceCopyNotSupportedTypes', 'searchTextTooLong', 'apiSubscriptionNotFound',
-   * 'apiSubscriptionFailed', 'apiUnsubscribeFailed', 'apiProductsNotFound',
-   * 'apiKeyGenerationFailed', 'instanceTrialMaxExtensionsExceeded', 'instanceNotValidTrial',
-   * 'instanceTrialHasNoExpiry', 'cdmLoadManifestFailed'
-  */
   errorCode?: string;
   /**
    * Possible values include: 'error', 'warning'
@@ -1045,24 +454,8 @@ export interface ApiErrorResult {
   ciResults?: CIResult[];
 }
 
-export interface DependencyValidationIssue {
-  /**
-   * Possible values include: 'mapInvalid', 'matchRuleInvalid', 'mergePolicyInvalid',
-   * 'relationshipInvalid', 'measureDefinitionInvalid', 'segmentDefinitionInvalid',
-   * 'unifiedActivitiyMappingInvalid', 'generic'
-  */
-  type?: string;
-  /**
-   * Possible values include: 'error', 'warning'
-  */
-  severity?: string;
-  id?: string;
-  description?: string;
-}
-
-export interface DeletionResponse {
-  isDeleted?: boolean;
-  issues?: DependencyValidationIssue[];
+export interface OkResult {
+  statusCode?: number;
 }
 
 export interface ODataErrorDetail {
@@ -1129,15 +522,6 @@ export interface ODataEntityPayload {
   odatacontext?: string;
   odatacount?: number;
   value?: any[];
-}
-
-export interface ApiError {
-  /**
-   * Possible values include: 'notFound', 'ambiguousReference', 'malformedInput',
-   * 'serviceUnavailable', 'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
-  */
-  errorCode?: string;
-  message?: string;
 }
 
 export interface IEdmType {
@@ -1282,7 +666,7 @@ export interface IEntityMetadata {
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-   * 'datahub', 'insights', 'derivedEntity'
+   * 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'
   */
   dataflowType?: string;
   /**
@@ -1308,6 +692,7 @@ export interface IEntityMetadata {
   */
   readonly relationships?: IRelationshipMetadata[];
   timestampAttribute?: IAttributeMetadata;
+  incrementalAttribute?: IAttributeMetadata;
   /**
    * Possible values include: 'Account', 'AccountLeads', 'ActivityParty', 'ActivityPointer',
    * 'Annotation', 'Appointment', 'BusinessUnit', 'Campaign', 'CampaignActivity', 'CampaignItem',
@@ -1337,6 +722,18 @@ export interface IEntityMetadata {
    * Gets entity incremental delete data partitions.
   */
   readonly incrementalDeletePartitions?: PartitionMetadata[];
+  /**
+   * Gets entity data parquet partitions.
+  */
+  readonly fullPartitionsParquet?: PartitionMetadata[];
+  /**
+   * Gets entity incremental upsert data parquet partitions.
+  */
+  readonly incrementalUpsertPartitionsParquet?: PartitionMetadata[];
+  /**
+   * Gets entity incremental delete data parquet partitions.
+  */
+  readonly incrementalDeletePartitionsParquet?: PartitionMetadata[];
   /**
    * Gets base entity name
   */
@@ -1375,7 +772,7 @@ export interface IC360EntityModel {
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-   * 'datahub', 'insights', 'derivedEntity'
+   * 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'
   */
   dataflowType?: string;
   /**
@@ -1615,19 +1012,6 @@ export interface InstanceMetadata {
    * Gets the Azure region where the instance lives.
   */
   region?: string;
-  /**
-   * Gets the Id of the BAP Environment associated with the current instance.
-  */
-  bapEnvironmentId?: string;
-  /**
-   * Possible values include: 'notStarted', 'creating', 'created', 'attaching', 'attached',
-   * 'installing', 'installed', 'failed'
-  */
-  ppdfProvisionState?: string;
-  /**
-   * Possible values include: 'notStarted', 'creating', 'created', 'failed'
-  */
-  pbiProvisionState?: string;
   cdsOrgInfo?: CdsOrgInfo;
   cdsMdlInfo?: CdsMdlInfo;
   /**
@@ -2224,6 +1608,26 @@ export interface ParsingError {
   code?: string;
 }
 
+export interface DependencyValidationIssue {
+  /**
+   * Possible values include: 'mapInvalid', 'matchRuleInvalid', 'mergePolicyInvalid',
+   * 'relationshipInvalid', 'measureDefinitionInvalid', 'segmentDefinitionInvalid',
+   * 'unifiedActivitiyMappingInvalid', 'generic'
+  */
+  type?: string;
+  /**
+   * Possible values include: 'error', 'warning'
+  */
+  severity?: string;
+  id?: string;
+  description?: string;
+}
+
+export interface DeletionResponse {
+  isDeleted?: boolean;
+  issues?: DependencyValidationIssue[];
+}
+
 export interface ProfileStoreModuleRunInfo {
   /**
    * Gets the LastSuccessfulRunId for every fullyQualifiedEntity.
@@ -2784,4 +2188,5 @@ export interface EntityDataProfile {
   quarantineRowCount?: number;
   profilingDate?: Date;
   profiledAttributes?: string;
+  corruptAttributes?: string;
 }

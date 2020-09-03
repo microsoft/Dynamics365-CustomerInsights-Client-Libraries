@@ -33,13 +33,6 @@ class InstanceMetadata {
    * expire.
    * @property {string} [region] Gets the Azure region where the instance
    * lives.
-   * @property {string} [bapEnvironmentId] Gets the Id of the BAP Environment
-   * associated with the current instance.
-   * @property {string} [ppdfProvisionState] Possible values include:
-   * 'notStarted', 'creating', 'created', 'attaching', 'attached',
-   * 'installing', 'installed', 'failed'
-   * @property {string} [pbiProvisionState] Possible values include:
-   * 'notStarted', 'creating', 'created', 'failed'
    * @property {object} [cdsOrgInfo]
    * @property {string} [cdsOrgInfo.friendlyName] Gets the Cds Organization
    * Friendly Name
@@ -127,27 +120,6 @@ class InstanceMetadata {
           region: {
             required: false,
             serializedName: 'region',
-            type: {
-              name: 'String'
-            }
-          },
-          bapEnvironmentId: {
-            required: false,
-            serializedName: 'bapEnvironmentId',
-            type: {
-              name: 'String'
-            }
-          },
-          ppdfProvisionState: {
-            required: false,
-            serializedName: 'ppdfProvisionState',
-            type: {
-              name: 'String'
-            }
-          },
-          pbiProvisionState: {
-            required: false,
-            serializedName: 'pbiProvisionState',
             type: {
               name: 'String'
             }

@@ -45,8 +45,8 @@ public class IEntityMetadata {
      * 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
      * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
      * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
-     * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-     * 'derivedEntity'.
+     * 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource',
+     * 'datahub', 'insights', 'derivedEntity'.
      */
     @JsonProperty(value = "dataflowType")
     private String dataflowType;
@@ -90,6 +90,12 @@ public class IEntityMetadata {
      */
     @JsonProperty(value = "timestampAttribute")
     private IAttributeMetadata timestampAttribute;
+
+    /**
+     * The incrementalAttribute property.
+     */
+    @JsonProperty(value = "incrementalAttribute")
+    private IAttributeMetadata incrementalAttribute;
 
     /**
      * Possible values include: 'Account', 'AccountLeads', 'ActivityParty',
@@ -136,6 +142,24 @@ public class IEntityMetadata {
     private List<PartitionMetadata> incrementalDeletePartitions;
 
     /**
+     * Gets entity data parquet partitions.
+     */
+    @JsonProperty(value = "fullPartitionsParquet", access = JsonProperty.Access.WRITE_ONLY)
+    private List<PartitionMetadata> fullPartitionsParquet;
+
+    /**
+     * Gets entity incremental upsert data parquet partitions.
+     */
+    @JsonProperty(value = "incrementalUpsertPartitionsParquet", access = JsonProperty.Access.WRITE_ONLY)
+    private List<PartitionMetadata> incrementalUpsertPartitionsParquet;
+
+    /**
+     * Gets entity incremental delete data parquet partitions.
+     */
+    @JsonProperty(value = "incrementalDeletePartitionsParquet", access = JsonProperty.Access.WRITE_ONLY)
+    private List<PartitionMetadata> incrementalDeletePartitionsParquet;
+
+    /**
      * Gets base entity name.
      */
     @JsonProperty(value = "annotations", access = JsonProperty.Access.WRITE_ONLY)
@@ -171,7 +195,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity'.
+     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'.
      *
      * @return the dataflowType value
      */
@@ -180,7 +204,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity'.
+     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'.
      *
      * @param dataflowType the dataflowType value to set
      * @return the IEntityMetadata object itself.
@@ -267,6 +291,26 @@ public class IEntityMetadata {
     }
 
     /**
+     * Get the incrementalAttribute value.
+     *
+     * @return the incrementalAttribute value
+     */
+    public IAttributeMetadata incrementalAttribute() {
+        return this.incrementalAttribute;
+    }
+
+    /**
+     * Set the incrementalAttribute value.
+     *
+     * @param incrementalAttribute the incrementalAttribute value to set
+     * @return the IEntityMetadata object itself.
+     */
+    public IEntityMetadata withIncrementalAttribute(IAttributeMetadata incrementalAttribute) {
+        this.incrementalAttribute = incrementalAttribute;
+        return this;
+    }
+
+    /**
      * Get possible values include: 'Account', 'AccountLeads', 'ActivityParty', 'ActivityPointer', 'Annotation', 'Appointment', 'BusinessUnit', 'Campaign', 'CampaignActivity', 'CampaignItem', 'CampaignResponse', 'Characteristic', 'Competitor', 'CompetitorAddress', 'CompetitorProduct', 'Connection', 'ConnectionRole', 'Contact', 'Contract', 'ContractDetail', 'Customer', 'CustomerAddress', 'CustomerRelationship', 'Discount', 'DiscountType', 'Email', 'Entitlement', 'Equipment', 'Fax', 'Feedback', 'Goal', 'Incident', 'Invoice', 'InvoiceDetail', 'KbArticle', 'KnowledgeArticle', 'Lead', 'LeadAddress', 'Letter', 'Metric', 'Opportunity', 'Organization', 'Owner', 'PhoneCall', 'Position', 'PriceLevel', 'Product', 'Quote', 'RatingModel', 'Resource', 'ResourceGroup', 'SalesLiterature', 'SalesOrder', 'Service', 'ServiceAppointment', 'Site', 'SLA', 'SocialActivity', 'SocialProfile', 'SystemUser', 'Task', 'Team', 'Territory', 'UoM'.
      *
      * @return the semanticType value
@@ -320,6 +364,33 @@ public class IEntityMetadata {
      */
     public List<PartitionMetadata> incrementalDeletePartitions() {
         return this.incrementalDeletePartitions;
+    }
+
+    /**
+     * Get gets entity data parquet partitions.
+     *
+     * @return the fullPartitionsParquet value
+     */
+    public List<PartitionMetadata> fullPartitionsParquet() {
+        return this.fullPartitionsParquet;
+    }
+
+    /**
+     * Get gets entity incremental upsert data parquet partitions.
+     *
+     * @return the incrementalUpsertPartitionsParquet value
+     */
+    public List<PartitionMetadata> incrementalUpsertPartitionsParquet() {
+        return this.incrementalUpsertPartitionsParquet;
+    }
+
+    /**
+     * Get gets entity incremental delete data parquet partitions.
+     *
+     * @return the incrementalDeletePartitionsParquet value
+     */
+    public List<PartitionMetadata> incrementalDeletePartitionsParquet() {
+        return this.incrementalDeletePartitionsParquet;
     }
 
     /**

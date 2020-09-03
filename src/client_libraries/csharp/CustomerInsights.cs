@@ -193,7 +193,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<AttributeDataProfile,GetAnAttributeProfileHeaders>> GetAnAttributeProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, string attributeName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,GetAnAttributeProfileHeaders>> GetAnAttributeProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, string attributeName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
@@ -262,7 +262,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 200 && (int)_statusCode != 401 && (int)_statusCode != 500 && (int)_statusCode != 503)
+            if ((int)_statusCode != 200 && (int)_statusCode != 401 && (int)_statusCode != 404 && (int)_statusCode != 500 && (int)_statusCode != 503)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 if (_httpResponse.Content != null) {
@@ -285,7 +285,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<AttributeDataProfile,GetAnAttributeProfileHeaders>();
+            var _result = new HttpOperationResponse<object,GetAnAttributeProfileHeaders>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -295,6 +295,24 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 try
                 {
                     _result.Body = SafeJsonConvert.DeserializeObject<AttributeDataProfile>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 404)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<ApiError>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -823,7 +841,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<DeletionResponse>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<OkResult>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -938,7 +956,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object,CreateAnEntityHeaders>> CreateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, object body = default(object), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,CreateAnEntityHeaders>> CreateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string body = default(string), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
@@ -1191,7 +1209,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object,UpdateAnEntityHeaders>> UpdateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string entityId, object body = default(object), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,UpdateAnEntityHeaders>> UpdateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string entityId, string body = default(string), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
@@ -1402,24 +1420,28 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// Whether or not we are requesting data by proxy.
         /// </param>
         /// <param name='search'>
+        /// Search OData parameter.
         /// </param>
         /// <param name='select'>
-        /// </param>
-        /// <param name='skipToken'>
-        /// </param>
-        /// <param name='filter'>
-        /// </param>
-        /// <param name='orderBy'>
-        /// </param>
-        /// <param name='expand'>
-        /// </param>
-        /// <param name='top'>
-        /// Format - int32.
+        /// Select OData parameter.
         /// </param>
         /// <param name='skip'>
-        /// Format - int32.
+        /// Skip OData parameter.
         /// </param>
-        /// <param name='skipNullFilterParameters'>
+        /// <param name='skiptoken'>
+        /// SkipToken OData parameter.
+        /// </param>
+        /// <param name='filter'>
+        /// Filter OData parameter.
+        /// </param>
+        /// <param name='orderby'>
+        /// OrderBy OData parameter.
+        /// </param>
+        /// <param name='expand'>
+        /// Expand OData parameter.
+        /// </param>
+        /// <param name='top'>
+        /// Top OData parameter.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -1442,11 +1464,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object,GetEntitiesWithODataQueryParametersHeaders>> GetEntitiesWithODataQueryParametersWithHttpMessagesAsync(string instanceId, string relativePath = default(string), bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skipToken = default(string), string filter = default(string), string orderBy = default(string), string expand = default(string), int? top = default(int?), int? skip = default(int?), bool? skipNullFilterParameters = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,GetEntitiesWithODataPathHeaders>> GetEntitiesWithODataPathWithHttpMessagesAsync(string instanceId, string relativePath, bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skip = default(string), string skiptoken = default(string), string filter = default(string), string orderby = default(string), string expand = default(string), string top = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "instanceId");
+            }
+            if (relativePath == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "relativePath");
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1461,25 +1487,21 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 tracingParameters.Add("proxy", proxy);
                 tracingParameters.Add("search", search);
                 tracingParameters.Add("select", select);
-                tracingParameters.Add("skipToken", skipToken);
+                tracingParameters.Add("skip", skip);
+                tracingParameters.Add("skiptoken", skiptoken);
                 tracingParameters.Add("filter", filter);
-                tracingParameters.Add("orderBy", orderBy);
+                tracingParameters.Add("orderby", orderby);
                 tracingParameters.Add("expand", expand);
                 tracingParameters.Add("top", top);
-                tracingParameters.Add("skip", skip);
-                tracingParameters.Add("skipNullFilterParameters", skipNullFilterParameters);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetEntitiesWithODataQueryParameters", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "GetEntitiesWithODataPath", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "instances/{instanceId}/data").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "instances/{instanceId}/data/{relativePath}").ToString();
             _url = _url.Replace("{instanceId}", System.Uri.EscapeDataString(instanceId));
+            _url = _url.Replace("{relativePath}", System.Uri.EscapeDataString(relativePath));
             List<string> _queryParameters = new List<string>();
-            if (relativePath != null)
-            {
-                _queryParameters.Add(string.Format("relativePath={0}", relativePath));
-            }
             if (forceSearch != null)
             {
                 _queryParameters.Add(string.Format("forceSearch={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(forceSearch, SerializationSettings).Trim('"'))));
@@ -1490,39 +1512,35 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
             if (search != null)
             {
-                _queryParameters.Add(string.Format("Search={0}", System.Uri.EscapeDataString(search)));
+                _queryParameters.Add(string.Format("$search={0}", System.Uri.EscapeDataString(search)));
             }
             if (select != null)
             {
-                _queryParameters.Add(string.Format("Select={0}", System.Uri.EscapeDataString(select)));
-            }
-            if (skipToken != null)
-            {
-                _queryParameters.Add(string.Format("SkipToken={0}", System.Uri.EscapeDataString(skipToken)));
-            }
-            if (filter != null)
-            {
-                _queryParameters.Add(string.Format("Filter={0}", System.Uri.EscapeDataString(filter)));
-            }
-            if (orderBy != null)
-            {
-                _queryParameters.Add(string.Format("OrderBy={0}", System.Uri.EscapeDataString(orderBy)));
-            }
-            if (expand != null)
-            {
-                _queryParameters.Add(string.Format("Expand={0}", System.Uri.EscapeDataString(expand)));
-            }
-            if (top != null)
-            {
-                _queryParameters.Add(string.Format("Top={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(top, SerializationSettings).Trim('"'))));
+                _queryParameters.Add(string.Format("$select={0}", System.Uri.EscapeDataString(select)));
             }
             if (skip != null)
             {
-                _queryParameters.Add(string.Format("Skip={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(skip, SerializationSettings).Trim('"'))));
+                _queryParameters.Add(string.Format("$skip={0}", System.Uri.EscapeDataString(skip)));
             }
-            if (skipNullFilterParameters != null)
+            if (skiptoken != null)
             {
-                _queryParameters.Add(string.Format("SkipNullFilterParameters={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(skipNullFilterParameters, SerializationSettings).Trim('"'))));
+                _queryParameters.Add(string.Format("$skiptoken={0}", System.Uri.EscapeDataString(skiptoken)));
+            }
+            if (filter != null)
+            {
+                _queryParameters.Add(string.Format("$filter={0}", System.Uri.EscapeDataString(filter)));
+            }
+            if (orderby != null)
+            {
+                _queryParameters.Add(string.Format("$orderby={0}", System.Uri.EscapeDataString(orderby)));
+            }
+            if (expand != null)
+            {
+                _queryParameters.Add(string.Format("$expand={0}", System.Uri.EscapeDataString(expand)));
+            }
+            if (top != null)
+            {
+                _queryParameters.Add(string.Format("$top={0}", System.Uri.EscapeDataString(top)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -1587,7 +1605,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<object,GetEntitiesWithODataQueryParametersHeaders>();
+            var _result = new HttpOperationResponse<object,GetEntitiesWithODataPathHeaders>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -1682,7 +1700,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
             try
             {
-                _result.Headers = _httpResponse.GetHeadersAsJson().ToObject<GetEntitiesWithODataQueryParametersHeaders>(JsonSerializer.Create(DeserializationSettings));
+                _result.Headers = _httpResponse.GetHeadersAsJson().ToObject<GetEntitiesWithODataPathHeaders>(JsonSerializer.Create(DeserializationSettings));
             }
             catch (JsonException ex)
             {
@@ -3619,9 +3637,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='body'>
         /// The instance creation request.
         /// </param>
-        /// <param name='isTrial'>
-        /// True if the new instance is a trial instance. False otherwise.
-        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -3637,7 +3652,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object,CreateAnInstanceHeaders>> CreateAnInstanceWithHttpMessagesAsync(InstanceCreationRequest body = default(InstanceCreationRequest), bool? isTrial = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,CreateAnInstanceHeaders>> CreateAnInstanceWithHttpMessagesAsync(InstanceCreationRequest body = default(InstanceCreationRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -3647,22 +3662,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
-                tracingParameters.Add("isTrial", isTrial);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreateAnInstance", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "instances/V2").ToString();
-            List<string> _queryParameters = new List<string>();
-            if (isTrial != null)
-            {
-                _queryParameters.Add(string.Format("isTrial={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(isTrial, SerializationSettings).Trim('"'))));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -4066,9 +4071,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='body'>
         /// The metadata to use to create the new instance.
         /// </param>
-        /// <param name='isTrial'>
-        /// True if the new instance is a trial instance. False otherwise.
-        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -4084,7 +4086,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object,CopyAnInstanceHeaders>> CopyAnInstanceWithHttpMessagesAsync(InstanceCopyRequest body = default(InstanceCopyRequest), bool? isTrial = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,CopyAnInstanceHeaders>> CopyAnInstanceWithHttpMessagesAsync(InstanceCopyRequest body = default(InstanceCopyRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -4094,22 +4096,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
-                tracingParameters.Add("isTrial", isTrial);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CopyAnInstance", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "instances/copy").ToString();
-            List<string> _queryParameters = new List<string>();
-            if (isTrial != null)
-            {
-                _queryParameters.Add(string.Format("isTrial={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(isTrial, SerializationSettings).Trim('"'))));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -8793,7 +8785,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<DeletionResponse,DeleteSegmentHeaders>> DeleteSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,DeleteSegmentHeaders>> DeleteSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
@@ -8879,7 +8871,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<DeletionResponse,DeleteSegmentHeaders>();
+            var _result = new HttpOperationResponse<object,DeleteSegmentHeaders>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -8888,7 +8880,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<DeletionResponse>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<OkResult>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -8906,7 +8898,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<DeletionResponse>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<ApiError>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -10802,7 +10794,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<EntityDataProfile,GetAnEntityProfileHeaders>> GetAnEntityProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,GetAnEntityProfileHeaders>> GetAnEntityProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
@@ -10865,7 +10857,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 200 && (int)_statusCode != 401 && (int)_statusCode != 500 && (int)_statusCode != 503)
+            if ((int)_statusCode != 200 && (int)_statusCode != 401 && (int)_statusCode != 404 && (int)_statusCode != 500 && (int)_statusCode != 503)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 if (_httpResponse.Content != null) {
@@ -10888,7 +10880,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<EntityDataProfile,GetAnEntityProfileHeaders>();
+            var _result = new HttpOperationResponse<object,GetAnEntityProfileHeaders>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -10898,6 +10890,24 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 try
                 {
                     _result.Body = SafeJsonConvert.DeserializeObject<EntityDataProfile>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 404)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<ApiError>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
