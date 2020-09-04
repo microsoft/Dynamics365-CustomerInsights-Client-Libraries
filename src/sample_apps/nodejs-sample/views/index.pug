@@ -1,0 +1,60 @@
+extends layout
+
+block headContent
+  title= title
+  
+block bodyContent
+  #preSignin.text-center.mt-5
+    h3 Please sign in
+  #customerSearch.d-none.mt-5
+    .row
+      .col
+        .form-group.w-75
+          #instancesLoading.loader.d-none
+          label(for='instanceSelection') Customer Insights Instance:
+          select#instanceSelection.custom-select
+            option(selected) Select an instance
+
+    #instanceSpecificRow.row.mt-5.invisible
+      .col-6
+        form(action='#')#customerSearchForm
+          h2 Select an entity
+          .form-group
+            #entitySelectionLoading.loader.d-none
+            label(for='entitySelection') Entities:
+            select(disabled)#entitySelection.custom-select
+              option(selected) Select an entity
+            small#whyEntitiesDisabled.form-text.text-muted You must select an instance before an entity.
+          h2 Search for entity
+          .form-group
+            label(for='customerSearchInput') Search entities:
+            input(type='text' disabled, placeholder='Search for a customer')#customerSearchInput.form-control
+            small#whySearchDisabled.form-text.text-muted You must select All Customers before searching.
+
+          button(type='submit' disabled)#searchButton.btn.btn-primary Search
+          small#whyButtonDisabled.form-text.text-muted You must enter a search term before submitting search.
+
+      
+      .col-6
+        #resultsLoading.loader.d-none
+        #searchResults.invisible
+          h2 Results
+          .table-responsive
+            table#resultsTable.table.table-hover.table-sm
+              thead
+              tbody
+
+  #customerCardModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='customerCardModalLabel' aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5#customerCardModalLabel.modal-title
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+        .modal-footer
+          button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+
+block bottomScripts
+  script(type='text/javascript' src='static/js/ci.js')
+  script(type='text/javascript' src='static/js/index.js')

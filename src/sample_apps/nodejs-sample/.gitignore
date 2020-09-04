@@ -1,0 +1,6 @@
+node_modules
+package-lock.json
+
+# do not track changes to files where secrets will be added
+secrets.json
+/static/js/authConfig.js
