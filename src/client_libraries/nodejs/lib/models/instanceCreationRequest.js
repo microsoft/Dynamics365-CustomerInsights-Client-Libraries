@@ -76,7 +76,7 @@ class InstanceCreationRequest {
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    * @property {uuid} [byosaResourceMetadata.resourceId] Gets the Id of the
    * resource.
    * @property {uuid} [byosaResourceMetadata.operationId] Gets the Id of the
@@ -85,7 +85,7 @@ class InstanceCreationRequest {
    * include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    * @property {string} [byosaResourceMetadata.name] Gets the Name of the
    * resource.
    * @property {string} [byosaResourceMetadata.description] Gets the
@@ -107,7 +107,7 @@ class InstanceCreationRequest {
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    * @property {uuid} [cdsResourceMetadata.resourceId] Gets the Id of the
    * resource.
    * @property {uuid} [cdsResourceMetadata.operationId] Gets the Id of the
@@ -116,7 +116,7 @@ class InstanceCreationRequest {
    * include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    * @property {string} [cdsResourceMetadata.name] Gets the Name of the
    * resource.
    * @property {string} [cdsResourceMetadata.description] Gets the Description

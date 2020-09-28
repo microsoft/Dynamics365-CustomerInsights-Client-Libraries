@@ -36,7 +36,8 @@ class MeasureDefinition {
    * include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo',
    * 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith',
    * 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast',
-   * 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
+   * 'dayOfWeek'
    * @property {array} [filteringCriteria.childCriterias] Gets the list of
    * Child criteria of segment.
    * @property {string} [filteringCriteria.value] Gets the Value in criteria.

@@ -75,6 +75,7 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceCreation
 import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceInfo;
 import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceSearchConfiguration;
+import com.microsoft.dynamics.customerinsights.apiclient.models.KeyRingResponse;
 import com.microsoft.dynamics.customerinsights.apiclient.models.MeasureMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.NoContentResult;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ODataEntityPayload;
@@ -85,7 +86,6 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.ParsingError;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ProfileStoreStateInfo;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RelationshipMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ResetAnInstanceHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.ResetInstanceForScopeHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleAssignment;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleDefinition;
 import com.microsoft.dynamics.customerinsights.apiclient.models.SegmentMetadata;
@@ -237,10 +237,6 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights resetAnInstance" })
         @HTTP(path = "instances/{instanceId}/manage/reset", method = "DELETE", hasBody = true)
         Observable<Response<ResponseBody>> resetAnInstance(@Path("instanceId") String instanceId, @Query("instanceManagementOperationScope") String instanceManagementOperationScope);
-
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights resetInstanceForScope" })
-        @HTTP(path = "instances/{instanceId}/manage/reset/operationScope/{instanceManagementOperationScope}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> resetInstanceForScope(@Path("instanceId") String instanceId, @Path("instanceManagementOperationScope") String instanceManagementOperationScope);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllInstances" })
         @GET("instances")
@@ -413,7 +409,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -429,7 +425,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -444,7 +440,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -463,7 +459,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -500,15 +496,15 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<AttributeDataProfile>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
-                .register(404, new TypeToken<ApiError>() { }.getType())
+                .register(404, new TypeToken<ApiErrorResult>() { }.getType())
                 .register(500, new TypeToken<Void>() { }.getType())
                 .register(503, new TypeToken<Void>() { }.getType())
                 .buildWithHeaders(response, GetAnAttributeProfileHeaders.class);
     }
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -521,8 +517,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -534,8 +530,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -551,8 +547,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -587,8 +583,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -602,8 +598,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -616,8 +612,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -634,8 +630,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -673,7 +669,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -688,7 +684,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -702,7 +698,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -720,7 +716,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -760,8 +756,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -775,8 +771,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -789,8 +785,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -807,8 +803,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -840,8 +836,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -858,8 +854,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -875,8 +871,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -896,8 +892,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -942,8 +938,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -958,8 +954,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -973,8 +969,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -992,8 +988,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1029,8 +1025,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1048,8 +1044,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1066,8 +1062,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1088,8 +1084,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1137,7 +1133,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1152,7 +1148,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1166,7 +1162,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1184,7 +1180,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1224,7 +1220,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1249,7 +1245,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1273,7 +1269,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1301,7 +1297,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1352,7 +1348,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1366,7 +1362,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1379,7 +1375,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1396,7 +1392,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1424,7 +1420,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1440,7 +1436,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1455,7 +1451,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1474,7 +1470,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -1513,7 +1509,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1528,7 +1524,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1542,7 +1538,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1560,7 +1556,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1591,7 +1587,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1607,7 +1603,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1622,7 +1618,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1641,7 +1637,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1683,7 +1679,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1698,7 +1694,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1712,7 +1708,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1730,7 +1726,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1770,8 +1766,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1784,8 +1780,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1797,8 +1793,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1814,8 +1810,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1841,8 +1837,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -1856,8 +1852,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -1870,8 +1866,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -1888,8 +1884,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -1927,96 +1923,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws RestException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the Object object if successful.
-     */
-    public Object resetInstanceForScope(String instanceId, String instanceManagementOperationScope) {
-        return resetInstanceForScopeWithServiceResponseAsync(instanceId, instanceManagementOperationScope).toBlocking().single().body();
-    }
-
-    /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<Object> resetInstanceForScopeAsync(String instanceId, String instanceManagementOperationScope, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(resetInstanceForScopeWithServiceResponseAsync(instanceId, instanceManagementOperationScope), serviceCallback);
-    }
-
-    /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    public Observable<Object> resetInstanceForScopeAsync(String instanceId, String instanceManagementOperationScope) {
-        return resetInstanceForScopeWithServiceResponseAsync(instanceId, instanceManagementOperationScope).map(new Func1<ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders>, Object>() {
-            @Override
-            public Object call(ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    public Observable<ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders>> resetInstanceForScopeWithServiceResponseAsync(String instanceId, String instanceManagementOperationScope) {
-        if (instanceId == null) {
-            throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
-        }
-        if (instanceManagementOperationScope == null) {
-            throw new IllegalArgumentException("Parameter instanceManagementOperationScope is required and cannot be null.");
-        }
-        return service.resetInstanceForScope(instanceId, instanceManagementOperationScope)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders> clientResponse = resetInstanceForScopeDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders> resetInstanceForScopeDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<Boolean>() { }.getType())
-                .register(400, new TypeToken<ApiErrorResult>() { }.getType())
-                .register(401, new TypeToken<Void>() { }.getType())
-                .register(403, new TypeToken<ApiErrorResult>() { }.getType())
-                .register(404, new TypeToken<ApiErrorResult>() { }.getType())
-                .register(500, new TypeToken<ApiErrorResult>() { }.getType())
-                .register(503, new TypeToken<Void>() { }.getType())
-                .buildWithHeaders(response, ResetInstanceForScopeHeaders.class);
-    }
-
-    /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2029,7 +1936,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2041,7 +1948,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2057,7 +1964,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2089,7 +1996,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2102,7 +2009,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2114,7 +2021,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2130,7 +2037,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2153,7 +2060,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -2167,7 +2074,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -2180,7 +2087,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -2197,7 +2104,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -2231,7 +2138,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -2245,7 +2152,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -2258,7 +2165,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -2275,7 +2182,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -2311,8 +2218,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2325,8 +2232,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2338,8 +2245,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2355,8 +2262,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2393,7 +2300,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2406,7 +2313,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2418,7 +2325,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2434,7 +2341,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2457,7 +2364,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -2471,7 +2378,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -2484,7 +2391,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -2501,7 +2408,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -2537,7 +2444,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2551,7 +2458,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2564,7 +2471,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2581,7 +2488,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2608,7 +2515,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2623,7 +2530,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2637,7 +2544,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2655,7 +2562,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -2694,7 +2601,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2707,7 +2614,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2719,7 +2626,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2735,7 +2642,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2758,7 +2665,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -2772,7 +2679,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -2785,7 +2692,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -2802,7 +2709,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -2838,8 +2745,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2852,8 +2759,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2865,8 +2772,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2882,8 +2789,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2918,8 +2825,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2932,8 +2839,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2945,8 +2852,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2962,8 +2869,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2989,8 +2896,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -3004,8 +2911,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -3018,8 +2925,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -3036,8 +2943,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -3075,7 +2982,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3090,7 +2997,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3104,7 +3011,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3122,7 +3029,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3154,7 +3061,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3171,7 +3078,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3187,7 +3094,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3207,7 +3114,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3249,8 +3156,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3266,8 +3172,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3282,8 +3187,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3302,8 +3206,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3335,8 +3238,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3353,8 +3255,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3370,8 +3271,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3391,8 +3291,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -3436,7 +3335,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3451,7 +3350,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3465,7 +3364,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3483,7 +3382,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3524,7 +3423,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -3534,14 +3433,14 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ApiErrorResult object if successful.
+     * @return the Object object if successful.
      */
-    public ApiErrorResult getKeyRing(String instanceId, String dataSourceName, String entityName, String key) {
+    public Object getKeyRing(String instanceId, String dataSourceName, String entityName, String key) {
         return getKeyRingWithServiceResponseAsync(instanceId, dataSourceName, entityName, key).toBlocking().single().body();
     }
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -3552,12 +3451,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<ApiErrorResult> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key, final ServiceCallback<ApiErrorResult> serviceCallback) {
+    public ServiceFuture<Object> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(getKeyRingWithServiceResponseAsync(instanceId, dataSourceName, entityName, key), serviceCallback);
     }
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -3565,19 +3464,19 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param entityName The name of the entity that contains the given key.
      * @param key The value of the alternate key provided.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ApiErrorResult object
+     * @return the observable to the Object object
      */
-    public Observable<ApiErrorResult> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key) {
-        return getKeyRingWithServiceResponseAsync(instanceId, dataSourceName, entityName, key).map(new Func1<ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders>, ApiErrorResult>() {
+    public Observable<Object> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key) {
+        return getKeyRingWithServiceResponseAsync(instanceId, dataSourceName, entityName, key).map(new Func1<ServiceResponseWithHeaders<Object, GetKeyRingHeaders>, Object>() {
             @Override
-            public ApiErrorResult call(ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders> response) {
+            public Object call(ServiceResponseWithHeaders<Object, GetKeyRingHeaders> response) {
                 return response.body();
             }
         });
     }
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -3585,9 +3484,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param entityName The name of the entity that contains the given key.
      * @param key The value of the alternate key provided.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ApiErrorResult object
+     * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders>> getKeyRingWithServiceResponseAsync(String instanceId, String dataSourceName, String entityName, String key) {
+    public Observable<ServiceResponseWithHeaders<Object, GetKeyRingHeaders>> getKeyRingWithServiceResponseAsync(String instanceId, String dataSourceName, String entityName, String key) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -3601,11 +3500,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             throw new IllegalArgumentException("Parameter key is required and cannot be null.");
         }
         return service.getKeyRing(instanceId, dataSourceName, entityName, key)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetKeyRingHeaders>>>() {
                 @Override
-                public Observable<ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponseWithHeaders<Object, GetKeyRingHeaders>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders> clientResponse = getKeyRingDelegate(response);
+                        ServiceResponseWithHeaders<Object, GetKeyRingHeaders> clientResponse = getKeyRingDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -3614,8 +3513,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
             });
     }
 
-    private ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders> getKeyRingDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<ApiErrorResult, RestException>newInstance(this.serializerAdapter())
+    private ServiceResponseWithHeaders<Object, GetKeyRingHeaders> getKeyRingDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<KeyRingResponse>() { }.getType())
                 .register(400, new TypeToken<ApiErrorResult>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
                 .register(404, new TypeToken<ApiErrorResult>() { }.getType())
@@ -3625,7 +3525,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3639,7 +3539,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3652,7 +3552,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3669,7 +3569,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3705,7 +3605,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -3719,7 +3619,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -3732,7 +3632,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -3749,7 +3649,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -3784,7 +3684,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3798,7 +3698,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3811,7 +3711,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3828,7 +3728,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3863,7 +3763,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3878,7 +3778,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3892,7 +3792,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3910,7 +3810,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3941,7 +3841,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3957,7 +3857,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3972,7 +3872,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3991,7 +3891,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4032,7 +3932,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4046,7 +3946,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4060,7 +3960,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4078,7 +3978,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4117,7 +4017,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4131,7 +4031,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4144,7 +4044,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4161,7 +4061,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4196,7 +4096,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4210,7 +4110,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4223,7 +4123,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4240,7 +4140,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4276,7 +4176,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4290,7 +4190,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4303,7 +4203,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4320,7 +4220,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4347,7 +4247,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4362,7 +4262,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4376,7 +4276,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4394,7 +4294,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4433,7 +4333,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4448,7 +4348,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4462,7 +4362,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4480,7 +4380,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4520,7 +4420,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4535,7 +4435,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4549,7 +4449,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4567,7 +4467,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4607,7 +4507,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4622,7 +4522,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4636,7 +4536,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4654,7 +4554,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4685,7 +4585,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4701,7 +4601,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4716,7 +4616,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4735,7 +4635,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -4778,7 +4678,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4792,7 +4692,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4805,7 +4705,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4822,7 +4722,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -4858,8 +4758,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -4872,8 +4772,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -4885,8 +4785,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -4902,8 +4802,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -4929,8 +4829,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -4944,8 +4844,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -4958,8 +4858,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -4976,8 +4876,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -5015,7 +4915,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5029,7 +4929,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5042,7 +4942,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5059,7 +4959,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5087,7 +4987,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5103,7 +5003,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5118,7 +5018,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5137,7 +5037,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5175,8 +5075,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -5189,8 +5089,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -5202,8 +5102,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -5219,8 +5119,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -5246,8 +5146,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -5261,8 +5161,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -5275,8 +5175,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -5293,8 +5193,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -5331,7 +5231,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5346,7 +5246,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5360,7 +5260,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5378,7 +5278,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5418,7 +5318,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5433,7 +5333,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5447,7 +5347,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5465,7 +5365,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5505,7 +5405,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5520,7 +5420,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5534,7 +5434,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5552,7 +5452,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5583,7 +5483,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5599,7 +5499,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5614,7 +5514,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5633,7 +5533,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -5675,8 +5575,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -5690,8 +5590,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -5704,8 +5604,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -5722,8 +5622,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -5762,8 +5662,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5778,8 +5678,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5793,8 +5693,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5812,8 +5712,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5847,8 +5747,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5864,8 +5764,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5880,8 +5780,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5900,8 +5800,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -5945,7 +5845,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -5961,7 +5861,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -5976,7 +5876,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -5995,7 +5895,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6039,7 +5939,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6054,7 +5954,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6068,7 +5968,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6086,7 +5986,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6118,7 +6018,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6135,7 +6035,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6151,7 +6051,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6171,7 +6071,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6213,11 +6113,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6232,11 +6131,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6250,11 +6148,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6272,11 +6169,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6311,11 +6207,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6334,11 +6229,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6356,11 +6250,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6382,11 +6275,10 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6433,7 +6325,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6448,7 +6340,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6462,7 +6354,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6480,7 +6372,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6511,7 +6403,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6527,7 +6419,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6542,7 +6434,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6561,7 +6453,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6602,7 +6494,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6617,7 +6509,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6631,7 +6523,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6649,7 +6541,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6689,7 +6581,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -6704,7 +6596,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -6718,7 +6610,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -6736,7 +6628,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -6775,8 +6667,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -6790,8 +6682,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -6804,8 +6696,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -6822,8 +6714,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -6861,7 +6753,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6876,7 +6768,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6890,7 +6782,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6908,7 +6800,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6939,7 +6831,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6955,7 +6847,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6970,7 +6862,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -6989,7 +6881,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -7030,7 +6922,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -7045,7 +6937,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -7059,7 +6951,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -7077,7 +6969,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -7110,7 +7002,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<EntityDataProfile>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
-                .register(404, new TypeToken<ApiError>() { }.getType())
+                .register(404, new TypeToken<ApiErrorResult>() { }.getType())
                 .register(500, new TypeToken<Void>() { }.getType())
                 .register(503, new TypeToken<Void>() { }.getType())
                 .buildWithHeaders(response, GetAnEntityProfileHeaders.class);

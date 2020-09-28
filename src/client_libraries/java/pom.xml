@@ -6,12 +6,19 @@
 
   <groupId>com.microsoft.dynamics.customerinsights</groupId>
   <artifactId>api-client</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <packaging>jar</packaging>
   <name>Customer Insights API Client for Java</name>
   <description>Client libraries to interact with the Dynamic 365 Customer Insights APIs.</description>
   <url>https://developer.ci.ai.dynamics.com</url>
-  
+
+  <scm>
+    <connection>scm:git:git://github.com/microsoft/Dynamics365-CustomerInsights-Client-Libraries.git</connection>
+    <developerConnection>scm:git:git@github.com:microsoft/Dynamics365-CustomerInsights-Client-Libraries.git</developerConnection>
+    <url>https://github.com/microsoft/Dynamics365-CustomerInsights-Client-Libraries</url>
+    <tag>HEAD</tag>
+  </scm>
+
   <licenses>
     <license>
       <name>The MIT License (MIT)</name>
@@ -60,9 +67,22 @@
           <executions>
             <execution>
               <id>sign-artifacts</id>
-              <phase>verify</phase>
+              <phase>deploy</phase>
               <goals>
                 <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+          <executions>
+            <execution>
+              <id>default-deploy</id>
+              <phase>deploy</phase>
+              <goals>
+                <goal>deploy</goal>
               </goals>
             </execution>
           </executions>
@@ -158,3 +178,4 @@
     </profile>
   </profiles>
 </project>
+

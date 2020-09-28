@@ -35,7 +35,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
         /// 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
         /// 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-        /// 'isNotBetween', 'yearToDate'</param>
+        /// 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
+        /// 'dayOfWeek'</param>
         /// <param name="childCriterias">Gets the list of Child criteria of
         /// segment.</param>
         /// <param name="value">Gets the Value in criteria.</param>
@@ -77,7 +78,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
         /// 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
         /// 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-        /// 'isNotBetween', 'yearToDate'
+        /// 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
+        /// 'dayOfWeek'
         /// </summary>
         [JsonProperty(PropertyName = "comparisonOperator")]
         public string ComparisonOperator { get; set; }

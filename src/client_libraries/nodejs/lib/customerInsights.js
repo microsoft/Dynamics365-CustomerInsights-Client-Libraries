@@ -18,7 +18,7 @@ const models = require('./models');
 
 
 /**
- * @summary Gets the specific attribute profile for the entity.
+ * @summary GetAttributeProfile
  *
  * Gets the specific attribute profile for the entity.
  *
@@ -147,7 +147,7 @@ function _getAnAttributeProfile(instanceId, qualifiedEntityName, attributeName, 
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -163,11 +163,10 @@ function _getAnAttributeProfile(instanceId, qualifiedEntityName, attributeName, 
 }
 
 /**
- * @summary Fetches a collection of DataSourceInfo configured for the Customer
- * Insights instance.
+ * @summary GetAllDataSources
  *
- * Fetches a collection of DataSourceInfo configured for the Customer Insights
- * instance.
+ * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+ * configured for the Customer Insights instance.
  *
  * @param {string} instanceId Format - uuid. The instance id for which to fetch
  * data source info.
@@ -330,11 +329,10 @@ function _getAllDataSources(instanceId, options, callback) {
 }
 
 /**
- * @summary Fetches a DataSourceInfo matching the dataSourceId configured for
- * the Customer Insights instance.
+ * @summary GetDataSource
  *
- * Fetches a DataSourceInfo matching the dataSourceId configured for the
- * Customer Insights instance.
+ * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+ * dataSourceId configured for the Customer Insights instance.
  *
  * @param {string} instanceId Format - uuid. The instance id to fetch data
  * source info for.
@@ -473,7 +471,7 @@ function _getDataSource(instanceId, dataSourceId, options, callback) {
 }
 
 /**
- * @summary Deletes a data source from the instance.
+ * @summary DeleteDataSource
  *
  * Deletes a data source from the instance.
  *
@@ -629,10 +627,9 @@ function _deleteADataSource(instanceId, dataSourceId, options, callback) {
 }
 
 /**
- * @summary Writes an entity instance into the store, g. an activity entity.
- * (Preview)
+ * @summary CreateEntity (Preview)
  *
- * Writes an entity instance into the store, g. an activity entity. (Preview)
+ * Writes an entity instance into the store, e.g. an activity entity.
  *
  * @param {string} instanceId Format - uuid. Customer Insights instance Id.
  *
@@ -857,10 +854,9 @@ function _createAnEntity(instanceId, entityName, options, callback) {
 }
 
 /**
- * @summary Updates an entity instance in the store, g. Customer entity.
- * (Preview)
+ * @summary UpdateEntity (Preview)
  *
- * Updates an entity instance in the store, g. Customer entity. (Preview)
+ * Updates an entity instance in the store, e.g. Customer entity.
  *
  * @param {string} instanceId Format - uuid. Customer Insights instance Id.
  *
@@ -1074,7 +1070,7 @@ function _updateAnEntity(instanceId, entityName, entityId, options, callback) {
 }
 
 /**
- * @summary Submits an OData request to the service.
+ * @summary GetEntityByODataQuery
  *
  * Submits an OData request to the service.
  *
@@ -1361,7 +1357,7 @@ function _getEntitiesWithODataPath(instanceId, relativePath, options, callback) 
 }
 
 /**
- * @summary Retrieves the flattened entity model for the provided instanceId.
+ * @summary GetAllEntitiesMetadata
  *
  * Retrieves the flattened entity model for the provided instanceId.
  *
@@ -1552,8 +1548,7 @@ function _getAllEntityMetadata(instanceId, options, callback) {
 }
 
 /**
- * @summary Retrieves the entity metadata for the provided instanceId and
- * entityName.
+ * @summary GetEntityMetadata
  *
  * Retrieves the entity metadata for the provided instanceId and entityName.
  *
@@ -1740,8 +1735,7 @@ function _getEntityMetadata(instanceId, entityName, options, callback) {
 }
 
 /**
- * @summary Retrieves the entity size for the provided instanceId and
- * entityName.
+ * @summary GetEntitySize
  *
  * Retrieves the entity size for the provided instanceId and entityName.
  *
@@ -1914,11 +1908,10 @@ function _getEntitySize(instanceId, entityName, options, callback) {
 }
 
 /**
- * @summary Reset scopes in the given instance. Provide optional management
- * operation scope to reset only that scope. (Preview)
+ * @summary ResetInstance (Preview)
  *
  * Reset scopes in the given instance. Provide optional management operation
- * scope to reset only that scope. (Preview)
+ * scope to reset only that scope.
  *
  * @param {string} instanceId Format - uuid. The instance Id.
  *
@@ -2120,206 +2113,7 @@ function _resetAnInstance(instanceId, options, callback) {
 }
 
 /**
- * @summary Reset scopes in the given instance. Provide optional management
- * operation scope to reset only that scope. (Preview)
- *
- * Reset scopes in the given instance. Provide optional management operation
- * scope to reset only that scope. (Preview)
- *
- * @param {string} instanceId Format - uuid. The instance Id.
- *
- * @param {string} instanceManagementOperationScope The management operation
- * scope for reset.
- *
- * @param {object} [options] Optional Parameters.
- *
- * @param {object} [options.customHeaders] Headers that will be added to the
- * request
- *
- * @param {function} callback - The callback.
- *
- * @returns {function} callback(err, result, request, response)
- *
- *                      {Error}  err        - The Error object if an error occurred, null otherwise.
- *
- *                      {object} [result]   - The deserialized result object if an error did not occur.
- *
- *                      {object} [request]  - The HTTP Request object if an error did not occur.
- *
- *                      {stream} [response] - The HTTP Response stream if an error did not occur.
- */
-function _resetInstanceForScope(instanceId, instanceManagementOperationScope, options, callback) {
-   /* jshint validthis: true */
-  let client = this;
-  if(!callback && typeof options === 'function') {
-    callback = options;
-    options = null;
-  }
-  if (!callback) {
-    throw new Error('callback cannot be null.');
-  }
-  // Validate
-  try {
-    if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
-      throw new Error('instanceId cannot be null or undefined and it must be of type string.');
-    }
-    if (instanceManagementOperationScope === null || instanceManagementOperationScope === undefined || typeof instanceManagementOperationScope.valueOf() !== 'string') {
-      throw new Error('instanceManagementOperationScope cannot be null or undefined and it must be of type string.');
-    }
-  } catch (error) {
-    return callback(error);
-  }
-
-  // Construct URL
-  let baseUrl = this.baseUri;
-  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/manage/reset/operationScope/{instanceManagementOperationScope}';
-  requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
-  requestUrl = requestUrl.replace('{instanceManagementOperationScope}', encodeURIComponent(instanceManagementOperationScope));
-
-  // Create HTTP transport objects
-  let httpRequest = new WebResource();
-  httpRequest.method = 'DELETE';
-  httpRequest.url = requestUrl;
-  httpRequest.headers = {};
-  // Set Headers
-  httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-  if(options) {
-    for(let headerName in options['customHeaders']) {
-      if (options['customHeaders'].hasOwnProperty(headerName)) {
-        httpRequest.headers[headerName] = options['customHeaders'][headerName];
-      }
-    }
-  }
-  httpRequest.body = null;
-  // Send Request
-  return client.pipeline(httpRequest, (err, response, responseBody) => {
-    if (err) {
-      return callback(err);
-    }
-    let statusCode = response.statusCode;
-    if (statusCode !== 200 && statusCode !== 400 && statusCode !== 401 && statusCode !== 403 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
-      let error = new Error(responseBody);
-      error.statusCode = response.statusCode;
-      error.request = msRest.stripRequest(httpRequest);
-      error.response = msRest.stripResponse(response);
-      if (responseBody === '') responseBody = null;
-      let parsedErrorResponse;
-      try {
-        parsedErrorResponse = JSON.parse(responseBody);
-        if (parsedErrorResponse) {
-          let internalError = null;
-          if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-          error.code = internalError ? internalError.code : parsedErrorResponse.code;
-          error.message = internalError ? internalError.message : parsedErrorResponse.message;
-        }
-      } catch (defaultError) {
-        error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                         `- "${responseBody}" for the default response.`;
-        return callback(error);
-      }
-      return callback(error);
-    }
-    // Create Result
-    let result = null;
-    if (responseBody === '') responseBody = null;
-    // Deserialize Response
-    if (statusCode === 200) {
-      let parsedResponse = null;
-      try {
-        parsedResponse = JSON.parse(responseBody);
-        result = JSON.parse(responseBody);
-        if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = {
-            required: false,
-            serializedName: 'parsedResponse',
-            type: {
-              name: 'Boolean'
-            }
-          };
-          result = client.deserialize(resultMapper, parsedResponse, 'result');
-        }
-      } catch (error) {
-        let deserializationError = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
-        return callback(deserializationError);
-      }
-    }
-    // Deserialize Response
-    if (statusCode === 400) {
-      let parsedResponse = null;
-      try {
-        parsedResponse = JSON.parse(responseBody);
-        result = JSON.parse(responseBody);
-        if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiErrorResult']().mapper();
-          result = client.deserialize(resultMapper, parsedResponse, 'result');
-        }
-      } catch (error) {
-        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
-        deserializationError1.request = msRest.stripRequest(httpRequest);
-        deserializationError1.response = msRest.stripResponse(response);
-        return callback(deserializationError1);
-      }
-    }
-    // Deserialize Response
-    if (statusCode === 403) {
-      let parsedResponse = null;
-      try {
-        parsedResponse = JSON.parse(responseBody);
-        result = JSON.parse(responseBody);
-        if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiErrorResult']().mapper();
-          result = client.deserialize(resultMapper, parsedResponse, 'result');
-        }
-      } catch (error) {
-        let deserializationError2 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
-        deserializationError2.request = msRest.stripRequest(httpRequest);
-        deserializationError2.response = msRest.stripResponse(response);
-        return callback(deserializationError2);
-      }
-    }
-    // Deserialize Response
-    if (statusCode === 404) {
-      let parsedResponse = null;
-      try {
-        parsedResponse = JSON.parse(responseBody);
-        result = JSON.parse(responseBody);
-        if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiErrorResult']().mapper();
-          result = client.deserialize(resultMapper, parsedResponse, 'result');
-        }
-      } catch (error) {
-        let deserializationError3 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
-        deserializationError3.request = msRest.stripRequest(httpRequest);
-        deserializationError3.response = msRest.stripResponse(response);
-        return callback(deserializationError3);
-      }
-    }
-    // Deserialize Response
-    if (statusCode === 500) {
-      let parsedResponse = null;
-      try {
-        parsedResponse = JSON.parse(responseBody);
-        result = JSON.parse(responseBody);
-        if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiErrorResult']().mapper();
-          result = client.deserialize(resultMapper, parsedResponse, 'result');
-        }
-      } catch (error) {
-        let deserializationError4 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
-        deserializationError4.request = msRest.stripRequest(httpRequest);
-        deserializationError4.response = msRest.stripResponse(response);
-        return callback(deserializationError4);
-      }
-    }
-
-    return callback(null, result, httpRequest, response);
-  });
-}
-
-/**
- * @summary Retrieves all instances of the current user.
+ * @summary ListAllInstances
  *
  * Retrieves all instances of the current user.
  *
@@ -2472,8 +2266,7 @@ function _getAllInstances(options, callback) {
 }
 
 /**
- * @summary Retrieves instances based on instance ids, it can only accept batch
- * of instances.
+ * @summary ListInstancesByInstanceIds
  *
  * Retrieves instances based on instance ids, it can only accept batch of
  * instances.
@@ -2669,8 +2462,7 @@ function _getAllInstancesInBatchesByInstanceids(options, callback) {
 }
 
 /**
- * @summary Retrieves metadata for a Customer Insights instance based on its
- * instanceId.
+ * @summary GetInstance
  *
  * Retrieves metadata for a Customer Insights instance based on its instanceId.
  *
@@ -2821,9 +2613,9 @@ function _getInstanceMetadata(instanceId, options, callback) {
 }
 
 /**
- * @summary Detele an instance.
+ * @summary DeleteInstance
  *
- * Detele an instance.
+ * Delete an instance.
  *
  * @param {string} instanceId Format - uuid. The instance id.
  *
@@ -3011,7 +2803,7 @@ function _deleteAnInstance(instanceId, options, callback) {
 }
 
 /**
- * @summary Creates a new instance.
+ * @summary CreateInstance
  *
  * Creates a new instance.
  *
@@ -3078,13 +2870,13 @@ function _deleteAnInstance(instanceId, options, callback) {
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
  * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
- * 'http', 'mailchimp', 'googleAds'
+ * 'http', 'mailchimp', 'googleAds', 'marketo'
  *
  * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
  * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
  * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
- * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+ * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
  *
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
@@ -3271,8 +3063,7 @@ function _createAnInstance(options, callback) {
 }
 
 /**
- * @summary Patches the Market Verticals, Display name, Domain Name, CDS
- * environment and BYOSA secret to the instance.
+ * @summary UpdateInstance
  *
  * Patches the Market Verticals, Display name, Domain Name, CDS environment and
  * BYOSA secret to the instance.
@@ -3342,13 +3133,13 @@ function _createAnInstance(options, callback) {
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
  * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
- * 'http', 'mailchimp', 'googleAds'
+ * 'http', 'mailchimp', 'googleAds', 'marketo'
  *
  * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
  * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
  * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
- * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+ * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
  *
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
@@ -3527,7 +3318,7 @@ function _updateAnInstance(instanceId, options, callback) {
 }
 
 /**
- * @summary Create a new instance and copy metadata from an existing instance.
+ * @summary CopyInstance
  *
  * Create a new instance and copy metadata from an existing instance.
  *
@@ -3597,13 +3388,13 @@ function _updateAnInstance(instanceId, options, callback) {
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
  * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
- * 'http', 'mailchimp', 'googleAds'
+ * 'http', 'mailchimp', 'googleAds', 'marketo'
  *
  * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
  * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
  * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
- * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+ * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
  *
  * @param {string} [options.body.bapProvisioningType] Possible values include:
  * 'skip', 'create', 'attach'
@@ -3790,9 +3581,9 @@ function _copyAnInstance(options, callback) {
 }
 
 /**
- * @summary Retrieves a list of measures metadata for the provided instanceId.
+ * @summary ListAllMeasuresMetadata
  *
- * Retrieves a list of measures metadata for the provided instanceId.
+ * ListAllMeasuresMetadata
  *
  * @param {string} instanceId Format - uuid. Customer Insights instance id
  *
@@ -3937,9 +3728,9 @@ function _getAListOfMeasuresMetadata(instanceId, options, callback) {
 }
 
 /**
- * @summary Create new measure metadata with measureMetadata on instanceId.
+ * @summary CreateMeasure
  *
- * Create new measure metadata with measureMetadata on instanceId.
+ * CreateMeasure
  *
  * @param {string} instanceId Format - uuid. Customer Insights instance id
  *
@@ -3979,7 +3770,8 @@ function _getAListOfMeasuresMetadata(instanceId, options, callback) {
  * values include: 'equals', 'notEquals', 'greaterThan',
  * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
  * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
- * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+ * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+ * 'monthOf', 'yearOf', 'dayOfWeek'
  *
  * @param {array} [options.body.definition.filteringCriteria.childCriterias]
  * Gets the list of Child criteria of segment.
@@ -4317,8 +4109,7 @@ function _createAMeasure(instanceId, options, callback) {
 }
 
 /**
- * @summary Retrieves the measure metadata for the provided instanceId and
- * measureName.
+ * @summary GetMeasureMetadata
  *
  * Retrieves the measure metadata for the provided instanceId and measureName.
  *
@@ -4480,9 +4271,7 @@ function _getMetadataForAMeasure(instanceId, measureName, options, callback) {
 }
 
 /**
- * @summary Updates measures metadata for the provided instanceId and
- * measureMetadata.
- * Existing measure is retrieved using measureName.
+ * @summary UpdateMeasure
  *
  * Updates measures metadata for the provided instanceId and measureMetadata.
  * Existing measure is retrieved using measureName.
@@ -4527,7 +4316,8 @@ function _getMetadataForAMeasure(instanceId, measureName, options, callback) {
  * values include: 'equals', 'notEquals', 'greaterThan',
  * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
  * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
- * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+ * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+ * 'monthOf', 'yearOf', 'dayOfWeek'
  *
  * @param {array} [options.body.definition.filteringCriteria.childCriterias]
  * Gets the list of Child criteria of segment.
@@ -4869,8 +4659,7 @@ function _updateAMeasure(instanceId, measureName, options, callback) {
 }
 
 /**
- * @summary Deletes the measure metadata for the provided instanceId using
- * measureName.
+ * @summary DeleteMeasure
  *
  * Deletes the measure metadata for the provided instanceId using measureName.
  *
@@ -5026,8 +4815,7 @@ function _deleteAMeasure(instanceId, measureName, options, callback) {
 }
 
 /**
- * @summary Gets the KeyRing (collection of all alternate keys) for the given
- * instance by alternate key.
+ * @summary GetKeyRing
  *
  * Gets the KeyRing (collection of all alternate keys) for the given instance
  * by alternate key.
@@ -5054,7 +4842,6 @@ function _deleteAMeasure(instanceId, measureName, options, callback) {
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
  *                      {object} [result]   - The deserialized result object if an error did not occur.
- *                      See {@link ApiErrorResult} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
@@ -5121,7 +4908,7 @@ function _getKeyRing(instanceId, dataSourceName, entityName, key, options, callb
       return callback(err);
     }
     let statusCode = response.statusCode;
-    if (statusCode !== 400 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
+    if (statusCode !== 200 && statusCode !== 400 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
       let error = new Error(responseBody);
       error.statusCode = response.statusCode;
       error.request = msRest.stripRequest(httpRequest);
@@ -5147,13 +4934,13 @@ function _getKeyRing(instanceId, dataSourceName, entityName, key, options, callb
     let result = null;
     if (responseBody === '') responseBody = null;
     // Deserialize Response
-    if (statusCode === 400) {
+    if (statusCode === 200) {
       let parsedResponse = null;
       try {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiErrorResult']().mapper();
+          let resultMapper = new client.models['KeyRingResponse']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -5164,7 +4951,7 @@ function _getKeyRing(instanceId, dataSourceName, entityName, key, options, callb
       }
     }
     // Deserialize Response
-    if (statusCode === 404) {
+    if (statusCode === 400) {
       let parsedResponse = null;
       try {
         parsedResponse = JSON.parse(responseBody);
@@ -5180,13 +4967,30 @@ function _getKeyRing(instanceId, dataSourceName, entityName, key, options, callb
         return callback(deserializationError1);
       }
     }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError2 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError2.request = msRest.stripRequest(httpRequest);
+        deserializationError2.response = msRest.stripResponse(response);
+        return callback(deserializationError2);
+      }
+    }
 
     return callback(null, result, httpRequest, response);
   });
 }
 
 /**
- * @summary Gets the profile store state infoformation.
+ * @summary GetProfileStoreState
  *
  * Gets the profile store state infoformation.
  *
@@ -5336,7 +5140,7 @@ function _getProfileStoreState(instanceId, options, callback) {
 }
 
 /**
- * @summary Get all role definitions.
+ * @summary ListAllRoles
  *
  * Get all role definitions.
  *
@@ -5466,7 +5270,7 @@ function _getAllRoleDefinitions(instanceId, options, callback) {
 }
 
 /**
- * @summary Get role of current user.
+ * @summary GetCurrentUserRole
  *
  * Get role of current user.
  *
@@ -5583,7 +5387,7 @@ function _getCurrentUserRole(instanceId, options, callback) {
 }
 
 /**
- * @summary Adds or updates a role assignment for a principal.
+ * @summary UpdateRoleAssignment
  *
  * Adds or updates a role assignment for a principal.
  *
@@ -5743,7 +5547,7 @@ function _updateARoleAssignment(instanceId, principalId, options, callback) {
 }
 
 /**
- * @summary Deletes a role assignment for the principal.
+ * @summary DeleteRoleAssignment
  *
  * Deletes a role assignment for the principal.
  *
@@ -5848,7 +5652,7 @@ function _deletesARoleAssignment(instanceId, principalId, options, callback) {
 }
 
 /**
- * @summary Gets all role assignments for the instance.
+ * @summary ListAllRoleAssignments
  *
  * Gets all role assignments for the instance.
  *
@@ -5978,7 +5782,7 @@ function _getAllRoleAssignments(instanceId, options, callback) {
 }
 
 /**
- * @summary Gets all relationship metadata for the provided instanceId.
+ * @summary ListAllRelationships
  *
  * Gets all relationship metadata for the provided instanceId.
  *
@@ -6142,8 +5946,7 @@ function _getAllRelationships(instanceId, options, callback) {
 }
 
 /**
- * @summary Creates new relationship metadata for the provided instanceId,
- * using input.
+ * @summary CreateRelationship
  *
  * Creates new relationship metadata for the provided instanceId, using input.
  *
@@ -6354,8 +6157,7 @@ function _createARelationship(instanceId, options, callback) {
 }
 
 /**
- * @summary Gets the relationship metadata for the provided instanceId and
- * relationshipName.
+ * @summary GetRelationship
  *
  * Gets the relationship metadata for the provided instanceId and
  * relationshipName.
@@ -6512,8 +6314,7 @@ function _getARelationship(instanceId, relationshipName, options, callback) {
 }
 
 /**
- * @summary Deletes the relationship metadata for the provided instanceId and
- * relationshipName.
+ * @summary DeleteRelationship
  *
  * Deletes the relationship metadata for the provided instanceId and
  * relationshipName.
@@ -6670,8 +6471,7 @@ function _deleteARelationship(instanceId, relationshipName, options, callback) {
 }
 
 /**
- * @summary Updates the relationship metadata for the provided instanceId and
- * relationshipName, using input.
+ * @summary UpdateRelationshhip
  *
  * Updates the relationship metadata for the provided instanceId and
  * relationshipName, using input.
@@ -6889,7 +6689,7 @@ function _updateARelationship(instanceId, relationshipName, options, callback) {
 }
 
 /**
- * @summary Gets the search configuration for the instance.
+ * @summary GetSearchConfiguration
  *
  * Gets the search configuration for the instance.
  *
@@ -7039,9 +6839,9 @@ function _getSearchConfiguration(instanceId, options, callback) {
 }
 
 /**
- * @summary Updates the search configuration for the instance.
+ * @summary UpdateSearchConfiguration
  *
- * Updates the search configuration for the instance.
+ * UpdateSearchConfiguration
  *
  * @param {string} instanceId Format - uuid. The instance id.
  *
@@ -7229,7 +7029,7 @@ function _updateSearchConfiguration(instanceId, options, callback) {
 }
 
 /**
- * @summary Retrieves a list of segment metadata for the provided instanceId.
+ * @summary ListAllSegments
  *
  * Retrieves a list of segment metadata for the provided instanceId.
  *
@@ -7400,9 +7200,9 @@ function _getAllSegments(instanceId, options, callback) {
 }
 
 /**
- * @summary Create new segment metadata with segmentMetadata on instanceId.
+ * @summary CreateSegment
  *
- * Create new segment metadata with segmentMetadata on instanceId.
+ * CreateSegment
  *
  * @param {string} instanceId Format - uuid. Customer Insights instance id
  *
@@ -7722,7 +7522,7 @@ function _createASegment(instanceId, options, callback) {
 }
 
 /**
- * @summary Activate segment on instanceId with segmentName.
+ * @summary ActivateSegment
  *
  * Activate segment on instanceId with segmentName.
  *
@@ -7867,7 +7667,7 @@ function _activateSegment(instanceId, segmentName, options, callback) {
 }
 
 /**
- * @summary Deactivate segment on instanceId with segmentName.
+ * @summary DeactivateSegment
  *
  * Deactivate segment on instanceId with segmentName.
  *
@@ -8012,8 +7812,7 @@ function _deactivateSegment(instanceId, segmentName, options, callback) {
 }
 
 /**
- * @summary Updates segment metadata for the provided instanceId and
- * segmentName with segmentMetadata.
+ * @summary UpdateSegments
  *
  * Updates segment metadata for the provided instanceId and segmentName with
  * segmentMetadata.
@@ -8342,10 +8141,9 @@ function _updateASegment(instanceId, segmentName, options, callback) {
 }
 
 /**
- * @summary Deletes the segment metadata for the provided instanceId and
- * segmentName.
+ * @summary DeleteSegment
  *
- * Deletes the segment metadata for the provided instanceId and segmentName.
+ * DeleteSegment
  *
  * @param {string} instanceId Format - uuid. Customer Insights instance id
  *
@@ -8482,9 +8280,9 @@ function _deleteSegment(instanceId, segmentName, options, callback) {
 }
 
 /**
- * @summary Retrieve information about a workflow job.
+ * @summary GetWorkflowJobInformation
  *
- * Retrieve information about a workflow job.
+ * GetWorkflowJobInformation
  *
  * @param {string} instanceId Format - uuid. The instance id.
  *
@@ -8657,7 +8455,7 @@ function _getAWorkflowJobInformation(instanceId, workflowName, jobId, options, c
 }
 
 /**
- * @summary Cancel a job.
+ * @summary CancelWorkflowJob
  *
  * Cancel a job.
  *
@@ -8819,7 +8617,7 @@ function _cancelAWorkflowJob(instanceId, workflowName, jobId, options, callback)
 }
 
 /**
- * @summary Retrieves a list of recent job information.
+ * @summary ListWorkFlowJobs
  *
  * Retrieves a list of recent job information.
  *
@@ -9012,16 +8810,14 @@ function _getListOfRecentWorkflowJobs(instanceId, workflowName, options, callbac
 }
 
 /**
- * @summary Submits a workflow of OperationTypeoperationType for the instance
- * specified in instanceId.
- * Optionally takes a list of identifiers, only if operationType is not
- * OperationType.All and a flag
+ * @summary SubmitWorkflowJob
  * forceRunRequested indicating whether to force run.
  *
- * Submits a workflow of OperationTypeoperationType for the instance specified
- * in instanceId.
+ * Submits a workflow of
+ * Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+ * instance specified in instanceId.
  * Optionally takes a list of identifiers, only if operationType is not
- * OperationType.All and a flag
+ * Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
  * forceRunRequested indicating whether to force run.
  *
  * @param {string} instanceId Format - uuid. The Customer Insights instance id.
@@ -9250,7 +9046,7 @@ function _submitAWorkflowJob(instanceId, workflowName, options, callback) {
 }
 
 /**
- * @summary Retrieves a list of historic task information for a workflow.
+ * @summary ListWorkflowHistory
  *
  * Retrieves a list of historic task information for a workflow.
  *
@@ -9434,7 +9230,7 @@ function _getListOfWorkflowTaskInformationHistory(instanceId, workflowName, opti
 }
 
 /**
- * @summary Gets the current status for a workflow.
+ * @summary GetWorkflowStatus
  *
  * Gets the current status for a workflow.
  *
@@ -9604,7 +9400,7 @@ function _getWorkflowStatus(instanceId, workflowName, options, callback) {
 }
 
 /**
- * @summary Gets a list of supported timezones for creating workflow schedules.
+ * @summary ListSupportedTimezones
  *
  * Gets a list of supported timezones for creating workflow schedules.
  *
@@ -9757,9 +9553,9 @@ function _getSupportedTimezones(workflowName, instanceId, options, callback) {
 }
 
 /**
- * @summary Gets all workflow refresh schedules.
+ * @summary ListAllWorkflowSchedules
  *
- * Gets all workflow refresh schedules.
+ * ListAllWorkflowSchedules
  *
  * @param {string} instanceId Format - uuid. The instance id.
  *
@@ -9910,7 +9706,7 @@ function _getWorkflowSchedules(instanceId, workflowName, options, callback) {
 }
 
 /**
- * @summary Create a workflow refresh schedule.
+ * @summary CreateWorkflowRefreshSchedule
  *
  * Create a workflow refresh schedule.
  *
@@ -10082,7 +9878,7 @@ function _createWorkflowRefreshSchedule(instanceId, workflowName, options, callb
 }
 
 /**
- * @summary Gets the entityProfile for the entity.
+ * @summary GetEntityProfile
  *
  * Gets the entityProfile for the entity.
  *
@@ -10205,7 +10001,7 @@ function _getAnEntityProfile(instanceId, qualifiedEntityName, options, callback)
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -10256,7 +10052,6 @@ class CustomerInsights extends ServiceClient {
     this._getEntityMetadata = _getEntityMetadata;
     this._getEntitySize = _getEntitySize;
     this._resetAnInstance = _resetAnInstance;
-    this._resetInstanceForScope = _resetInstanceForScope;
     this._getAllInstances = _getAllInstances;
     this._getAllInstancesInBatchesByInstanceids = _getAllInstancesInBatchesByInstanceids;
     this._getInstanceMetadata = _getInstanceMetadata;
@@ -10303,7 +10098,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the specific attribute profile for the entity.
+   * @summary GetAttributeProfile
    *
    * Gets the specific attribute profile for the entity.
    *
@@ -10339,7 +10134,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the specific attribute profile for the entity.
+   * @summary GetAttributeProfile
    *
    * Gets the specific attribute profile for the entity.
    *
@@ -10396,11 +10191,10 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Fetches a collection of DataSourceInfo configured for the Customer
-   * Insights instance.
+   * @summary GetAllDataSources
    *
-   * Fetches a collection of DataSourceInfo configured for the Customer Insights
-   * instance.
+   * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+   * configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id for which to fetch
    * data source info.
@@ -10431,11 +10225,10 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Fetches a collection of DataSourceInfo configured for the Customer
-   * Insights instance.
+   * @summary GetAllDataSources
    *
-   * Fetches a collection of DataSourceInfo configured for the Customer Insights
-   * instance.
+   * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+   * configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id for which to fetch
    * data source info.
@@ -10487,11 +10280,10 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Fetches a DataSourceInfo matching the dataSourceId configured for
-   * the Customer Insights instance.
+   * @summary GetDataSource
    *
-   * Fetches a DataSourceInfo matching the dataSourceId configured for the
-   * Customer Insights instance.
+   * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+   * dataSourceId configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id to fetch data
    * source info for.
@@ -10525,11 +10317,10 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Fetches a DataSourceInfo matching the dataSourceId configured for
-   * the Customer Insights instance.
+   * @summary GetDataSource
    *
-   * Fetches a DataSourceInfo matching the dataSourceId configured for the
-   * Customer Insights instance.
+   * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+   * dataSourceId configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id to fetch data
    * source info for.
@@ -10584,7 +10375,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes a data source from the instance.
+   * @summary DeleteDataSource
    *
    * Deletes a data source from the instance.
    *
@@ -10618,7 +10409,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes a data source from the instance.
+   * @summary DeleteDataSource
    *
    * Deletes a data source from the instance.
    *
@@ -10673,10 +10464,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Writes an entity instance into the store, g. an activity entity.
-   * (Preview)
+   * @summary CreateEntity (Preview)
    *
-   * Writes an entity instance into the store, g. an activity entity. (Preview)
+   * Writes an entity instance into the store, e.g. an activity entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -10720,10 +10510,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Writes an entity instance into the store, g. an activity entity.
-   * (Preview)
+   * @summary CreateEntity (Preview)
    *
-   * Writes an entity instance into the store, g. an activity entity. (Preview)
+   * Writes an entity instance into the store, e.g. an activity entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -10788,10 +10577,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates an entity instance in the store, g. Customer entity.
-   * (Preview)
+   * @summary UpdateEntity (Preview)
    *
-   * Updates an entity instance in the store, g. Customer entity. (Preview)
+   * Updates an entity instance in the store, e.g. Customer entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -10837,10 +10625,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates an entity instance in the store, g. Customer entity.
-   * (Preview)
+   * @summary UpdateEntity (Preview)
    *
-   * Updates an entity instance in the store, g. Customer entity. (Preview)
+   * Updates an entity instance in the store, e.g. Customer entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -10907,7 +10694,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Submits an OData request to the service.
+   * @summary GetEntityByODataQuery
    *
    * Submits an OData request to the service.
    *
@@ -10964,7 +10751,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Submits an OData request to the service.
+   * @summary GetEntityByODataQuery
    *
    * Submits an OData request to the service.
    *
@@ -11042,7 +10829,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the flattened entity model for the provided instanceId.
+   * @summary GetAllEntitiesMetadata
    *
    * Retrieves the flattened entity model for the provided instanceId.
    *
@@ -11080,7 +10867,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the flattened entity model for the provided instanceId.
+   * @summary GetAllEntitiesMetadata
    *
    * Retrieves the flattened entity model for the provided instanceId.
    *
@@ -11139,8 +10926,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the entity metadata for the provided instanceId and
-   * entityName.
+   * @summary GetEntityMetadata
    *
    * Retrieves the entity metadata for the provided instanceId and entityName.
    *
@@ -11177,8 +10963,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the entity metadata for the provided instanceId and
-   * entityName.
+   * @summary GetEntityMetadata
    *
    * Retrieves the entity metadata for the provided instanceId and entityName.
    *
@@ -11236,8 +11021,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the entity size for the provided instanceId and
-   * entityName.
+   * @summary GetEntitySize
    *
    * Retrieves the entity size for the provided instanceId and entityName.
    *
@@ -11271,8 +11055,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the entity size for the provided instanceId and
-   * entityName.
+   * @summary GetEntitySize
    *
    * Retrieves the entity size for the provided instanceId and entityName.
    *
@@ -11327,11 +11110,10 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
+   * @summary ResetInstance (Preview)
    *
    * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
+   * scope to reset only that scope.
    *
    * @param {string} instanceId Format - uuid. The instance Id.
    *
@@ -11364,11 +11146,10 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
+   * @summary ResetInstance (Preview)
    *
    * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
+   * scope to reset only that scope.
    *
    * @param {string} instanceId Format - uuid. The instance Id.
    *
@@ -11422,102 +11203,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
-   *
-   * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
-   *
-   * @param {string} instanceId Format - uuid. The instance Id.
-   *
-   * @param {string} instanceManagementOperationScope The management operation
-   * scope for reset.
-   *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {object} [options.customHeaders] Headers that will be added to the
-   * request
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
-   *
-   * @reject {Error} - The error object.
-   */
-  resetInstanceForScopeWithHttpOperationResponse(instanceId, instanceManagementOperationScope, options) {
-    let client = this;
-    let self = this;
-    return new Promise((resolve, reject) => {
-      self._resetInstanceForScope(instanceId, instanceManagementOperationScope, options, (err, result, request, response) => {
-        let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
-        httpOperationResponse.body = result;
-        if (err) { reject(err); }
-        else { resolve(httpOperationResponse); }
-        return;
-      });
-    });
-  }
-
-  /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
-   *
-   * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
-   *
-   * @param {string} instanceId Format - uuid. The instance Id.
-   *
-   * @param {string} instanceManagementOperationScope The management operation
-   * scope for reset.
-   *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {object} [options.customHeaders] Headers that will be added to the
-   * request
-   *
-   * @param {function} [optionalCallback] - The optional callback.
-   *
-   * @returns {function|Promise} If a callback was passed as the last parameter
-   * then it returns the callback else returns a Promise.
-   *
-   * {Promise} A promise is returned
-   *
-   *                      @resolve {Object} - The deserialized result object.
-   *
-   *                      @reject {Error} - The error object.
-   *
-   * {function} optionalCallback(err, result, request, response)
-   *
-   *                      {Error}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {object} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {stream} [response] - The HTTP Response stream if an error did not occur.
-   */
-  resetInstanceForScope(instanceId, instanceManagementOperationScope, options, optionalCallback) {
-    let client = this;
-    let self = this;
-    if (!optionalCallback && typeof options === 'function') {
-      optionalCallback = options;
-      options = null;
-    }
-    if (!optionalCallback) {
-      return new Promise((resolve, reject) => {
-        self._resetInstanceForScope(instanceId, instanceManagementOperationScope, options, (err, result, request, response) => {
-          if (err) { reject(err); }
-          else { resolve(result); }
-          return;
-        });
-      });
-    } else {
-      return self._resetInstanceForScope(instanceId, instanceManagementOperationScope, options, optionalCallback);
-    }
-  }
-
-  /**
-   * @summary Retrieves all instances of the current user.
+   * @summary ListAllInstances
    *
    * Retrieves all instances of the current user.
    *
@@ -11547,7 +11233,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves all instances of the current user.
+   * @summary ListAllInstances
    *
    * Retrieves all instances of the current user.
    *
@@ -11598,8 +11284,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves instances based on instance ids, it can only accept batch
-   * of instances.
+   * @summary ListInstancesByInstanceIds
    *
    * Retrieves instances based on instance ids, it can only accept batch of
    * instances.
@@ -11632,8 +11317,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves instances based on instance ids, it can only accept batch
-   * of instances.
+   * @summary ListInstancesByInstanceIds
    *
    * Retrieves instances based on instance ids, it can only accept batch of
    * instances.
@@ -11687,8 +11371,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves metadata for a Customer Insights instance based on its
-   * instanceId.
+   * @summary GetInstance
    *
    * Retrieves metadata for a Customer Insights instance based on its instanceId.
    *
@@ -11721,8 +11404,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves metadata for a Customer Insights instance based on its
-   * instanceId.
+   * @summary GetInstance
    *
    * Retrieves metadata for a Customer Insights instance based on its instanceId.
    *
@@ -11776,9 +11458,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Detele an instance.
+   * @summary DeleteInstance
    *
-   * Detele an instance.
+   * Delete an instance.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -11808,9 +11490,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Detele an instance.
+   * @summary DeleteInstance
    *
-   * Detele an instance.
+   * Delete an instance.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -11861,7 +11543,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Creates a new instance.
+   * @summary CreateInstance
    *
    * Creates a new instance.
    *
@@ -11928,13 +11610,13 @@ class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -11963,7 +11645,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Creates a new instance.
+   * @summary CreateInstance
    *
    * Creates a new instance.
    *
@@ -12030,13 +11712,13 @@ class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12086,8 +11768,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Patches the Market Verticals, Display name, Domain Name, CDS
-   * environment and BYOSA secret to the instance.
+   * @summary UpdateInstance
    *
    * Patches the Market Verticals, Display name, Domain Name, CDS environment and
    * BYOSA secret to the instance.
@@ -12157,13 +11838,13 @@ class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12192,8 +11873,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Patches the Market Verticals, Display name, Domain Name, CDS
-   * environment and BYOSA secret to the instance.
+   * @summary UpdateInstance
    *
    * Patches the Market Verticals, Display name, Domain Name, CDS environment and
    * BYOSA secret to the instance.
@@ -12263,13 +11943,13 @@ class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12319,7 +11999,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create a new instance and copy metadata from an existing instance.
+   * @summary CopyInstance
    *
    * Create a new instance and copy metadata from an existing instance.
    *
@@ -12389,13 +12069,13 @@ class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12424,7 +12104,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create a new instance and copy metadata from an existing instance.
+   * @summary CopyInstance
    *
    * Create a new instance and copy metadata from an existing instance.
    *
@@ -12494,13 +12174,13 @@ class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -12550,9 +12230,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of measures metadata for the provided instanceId.
+   * @summary ListAllMeasuresMetadata
    *
-   * Retrieves a list of measures metadata for the provided instanceId.
+   * ListAllMeasuresMetadata
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -12582,9 +12262,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of measures metadata for the provided instanceId.
+   * @summary ListAllMeasuresMetadata
    *
-   * Retrieves a list of measures metadata for the provided instanceId.
+   * ListAllMeasuresMetadata
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -12635,9 +12315,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create new measure metadata with measureMetadata on instanceId.
+   * @summary CreateMeasure
    *
-   * Create new measure metadata with measureMetadata on instanceId.
+   * CreateMeasure
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -12677,7 +12357,8 @@ class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -12882,9 +12563,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create new measure metadata with measureMetadata on instanceId.
+   * @summary CreateMeasure
    *
-   * Create new measure metadata with measureMetadata on instanceId.
+   * CreateMeasure
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -12924,7 +12605,8 @@ class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -13150,8 +12832,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the measure metadata for the provided instanceId and
-   * measureName.
+   * @summary GetMeasureMetadata
    *
    * Retrieves the measure metadata for the provided instanceId and measureName.
    *
@@ -13190,8 +12871,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves the measure metadata for the provided instanceId and
-   * measureName.
+   * @summary GetMeasureMetadata
    *
    * Retrieves the measure metadata for the provided instanceId and measureName.
    *
@@ -13251,9 +12931,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates measures metadata for the provided instanceId and
-   * measureMetadata.
-   * Existing measure is retrieved using measureName.
+   * @summary UpdateMeasure
    *
    * Updates measures metadata for the provided instanceId and measureMetadata.
    * Existing measure is retrieved using measureName.
@@ -13298,7 +12976,8 @@ class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -13503,9 +13182,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates measures metadata for the provided instanceId and
-   * measureMetadata.
-   * Existing measure is retrieved using measureName.
+   * @summary UpdateMeasure
    *
    * Updates measures metadata for the provided instanceId and measureMetadata.
    * Existing measure is retrieved using measureName.
@@ -13550,7 +13227,8 @@ class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -13776,8 +13454,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes the measure metadata for the provided instanceId using
-   * measureName.
+   * @summary DeleteMeasure
    *
    * Deletes the measure metadata for the provided instanceId using measureName.
    *
@@ -13811,8 +13488,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes the measure metadata for the provided instanceId using
-   * measureName.
+   * @summary DeleteMeasure
    *
    * Deletes the measure metadata for the provided instanceId using measureName.
    *
@@ -13867,8 +13543,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the KeyRing (collection of all alternate keys) for the given
-   * instance by alternate key.
+   * @summary GetKeyRing
    *
    * Gets the KeyRing (collection of all alternate keys) for the given instance
    * by alternate key.
@@ -13890,7 +13565,7 @@ class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<ApiErrorResult>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
@@ -13909,8 +13584,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the KeyRing (collection of all alternate keys) for the given
-   * instance by alternate key.
+   * @summary GetKeyRing
    *
    * Gets the KeyRing (collection of all alternate keys) for the given instance
    * by alternate key.
@@ -13937,7 +13611,7 @@ class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {ApiErrorResult} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -13946,7 +13620,6 @@ class CustomerInsights extends ServiceClient {
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
    *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link ApiErrorResult} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *
@@ -13973,7 +13646,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the profile store state infoformation.
+   * @summary GetProfileStoreState
    *
    * Gets the profile store state infoformation.
    *
@@ -14005,7 +13678,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the profile store state infoformation.
+   * @summary GetProfileStoreState
    *
    * Gets the profile store state infoformation.
    *
@@ -14058,7 +13731,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Get all role definitions.
+   * @summary ListAllRoles
    *
    * Get all role definitions.
    *
@@ -14090,7 +13763,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Get all role definitions.
+   * @summary ListAllRoles
    *
    * Get all role definitions.
    *
@@ -14143,7 +13816,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Get role of current user.
+   * @summary GetCurrentUserRole
    *
    * Get role of current user.
    *
@@ -14175,7 +13848,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Get role of current user.
+   * @summary GetCurrentUserRole
    *
    * Get role of current user.
    *
@@ -14229,7 +13902,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Adds or updates a role assignment for a principal.
+   * @summary UpdateRoleAssignment
    *
    * Adds or updates a role assignment for a principal.
    *
@@ -14272,7 +13945,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Adds or updates a role assignment for a principal.
+   * @summary UpdateRoleAssignment
    *
    * Adds or updates a role assignment for a principal.
    *
@@ -14336,7 +14009,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes a role assignment for the principal.
+   * @summary DeleteRoleAssignment
    *
    * Deletes a role assignment for the principal.
    *
@@ -14370,7 +14043,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes a role assignment for the principal.
+   * @summary DeleteRoleAssignment
    *
    * Deletes a role assignment for the principal.
    *
@@ -14425,7 +14098,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets all role assignments for the instance.
+   * @summary ListAllRoleAssignments
    *
    * Gets all role assignments for the instance.
    *
@@ -14457,7 +14130,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets all role assignments for the instance.
+   * @summary ListAllRoleAssignments
    *
    * Gets all role assignments for the instance.
    *
@@ -14510,7 +14183,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets all relationship metadata for the provided instanceId.
+   * @summary ListAllRelationships
    *
    * Gets all relationship metadata for the provided instanceId.
    *
@@ -14542,7 +14215,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets all relationship metadata for the provided instanceId.
+   * @summary ListAllRelationships
    *
    * Gets all relationship metadata for the provided instanceId.
    *
@@ -14595,8 +14268,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Creates new relationship metadata for the provided instanceId,
-   * using input.
+   * @summary CreateRelationship
    *
    * Creates new relationship metadata for the provided instanceId, using input.
    *
@@ -14657,8 +14329,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Creates new relationship metadata for the provided instanceId,
-   * using input.
+   * @summary CreateRelationship
    *
    * Creates new relationship metadata for the provided instanceId, using input.
    *
@@ -14740,8 +14411,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary GetRelationship
    *
    * Gets the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -14776,8 +14446,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary GetRelationship
    *
    * Gets the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -14833,8 +14502,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary DeleteRelationship
    *
    * Deletes the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -14869,8 +14537,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary DeleteRelationship
    *
    * Deletes the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -14926,8 +14593,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates the relationship metadata for the provided instanceId and
-   * relationshipName, using input.
+   * @summary UpdateRelationshhip
    *
    * Updates the relationship metadata for the provided instanceId and
    * relationshipName, using input.
@@ -14991,8 +14657,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates the relationship metadata for the provided instanceId and
-   * relationshipName, using input.
+   * @summary UpdateRelationshhip
    *
    * Updates the relationship metadata for the provided instanceId and
    * relationshipName, using input.
@@ -15077,7 +14742,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the search configuration for the instance.
+   * @summary GetSearchConfiguration
    *
    * Gets the search configuration for the instance.
    *
@@ -15109,7 +14774,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the search configuration for the instance.
+   * @summary GetSearchConfiguration
    *
    * Gets the search configuration for the instance.
    *
@@ -15162,9 +14827,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates the search configuration for the instance.
+   * @summary UpdateSearchConfiguration
    *
-   * Updates the search configuration for the instance.
+   * UpdateSearchConfiguration
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -15202,9 +14867,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates the search configuration for the instance.
+   * @summary UpdateSearchConfiguration
    *
-   * Updates the search configuration for the instance.
+   * UpdateSearchConfiguration
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -15263,7 +14928,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of segment metadata for the provided instanceId.
+   * @summary ListAllSegments
    *
    * Retrieves a list of segment metadata for the provided instanceId.
    *
@@ -15301,7 +14966,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of segment metadata for the provided instanceId.
+   * @summary ListAllSegments
    *
    * Retrieves a list of segment metadata for the provided instanceId.
    *
@@ -15360,9 +15025,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create new segment metadata with segmentMetadata on instanceId.
+   * @summary CreateSegment
    *
-   * Create new segment metadata with segmentMetadata on instanceId.
+   * CreateSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -15566,9 +15231,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create new segment metadata with segmentMetadata on instanceId.
+   * @summary CreateSegment
    *
-   * Create new segment metadata with segmentMetadata on instanceId.
+   * CreateSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -15793,7 +15458,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Activate segment on instanceId with segmentName.
+   * @summary ActivateSegment
    *
    * Activate segment on instanceId with segmentName.
    *
@@ -15827,7 +15492,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Activate segment on instanceId with segmentName.
+   * @summary ActivateSegment
    *
    * Activate segment on instanceId with segmentName.
    *
@@ -15882,7 +15547,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deactivate segment on instanceId with segmentName.
+   * @summary DeactivateSegment
    *
    * Deactivate segment on instanceId with segmentName.
    *
@@ -15916,7 +15581,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deactivate segment on instanceId with segmentName.
+   * @summary DeactivateSegment
    *
    * Deactivate segment on instanceId with segmentName.
    *
@@ -15971,8 +15636,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates segment metadata for the provided instanceId and
-   * segmentName with segmentMetadata.
+   * @summary UpdateSegments
    *
    * Updates segment metadata for the provided instanceId and segmentName with
    * segmentMetadata.
@@ -16181,8 +15845,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Updates segment metadata for the provided instanceId and
-   * segmentName with segmentMetadata.
+   * @summary UpdateSegments
    *
    * Updates segment metadata for the provided instanceId and segmentName with
    * segmentMetadata.
@@ -16412,10 +16075,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes the segment metadata for the provided instanceId and
-   * segmentName.
+   * @summary DeleteSegment
    *
-   * Deletes the segment metadata for the provided instanceId and segmentName.
+   * DeleteSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -16447,10 +16109,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Deletes the segment metadata for the provided instanceId and
-   * segmentName.
+   * @summary DeleteSegment
    *
-   * Deletes the segment metadata for the provided instanceId and segmentName.
+   * DeleteSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -16503,9 +16164,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieve information about a workflow job.
+   * @summary GetWorkflowJobInformation
    *
-   * Retrieve information about a workflow job.
+   * GetWorkflowJobInformation
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16541,9 +16202,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieve information about a workflow job.
+   * @summary GetWorkflowJobInformation
    *
-   * Retrieve information about a workflow job.
+   * GetWorkflowJobInformation
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -16600,7 +16261,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Cancel a job.
+   * @summary CancelWorkflowJob
    *
    * Cancel a job.
    *
@@ -16636,7 +16297,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Cancel a job.
+   * @summary CancelWorkflowJob
    *
    * Cancel a job.
    *
@@ -16693,7 +16354,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of recent job information.
+   * @summary ListWorkFlowJobs
    *
    * Retrieves a list of recent job information.
    *
@@ -16732,7 +16393,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of recent job information.
+   * @summary ListWorkFlowJobs
    *
    * Retrieves a list of recent job information.
    *
@@ -16792,16 +16453,14 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Submits a workflow of OperationTypeoperationType for the instance
-   * specified in instanceId.
-   * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * @summary SubmitWorkflowJob
    * forceRunRequested indicating whether to force run.
    *
-   * Submits a workflow of OperationTypeoperationType for the instance specified
-   * in instanceId.
+   * Submits a workflow of
+   * Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+   * instance specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
    * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
@@ -16864,16 +16523,14 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Submits a workflow of OperationTypeoperationType for the instance
-   * specified in instanceId.
-   * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * @summary SubmitWorkflowJob
    * forceRunRequested indicating whether to force run.
    *
-   * Submits a workflow of OperationTypeoperationType for the instance specified
-   * in instanceId.
+   * Submits a workflow of
+   * Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+   * instance specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
    * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
@@ -16957,7 +16614,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of historic task information for a workflow.
+   * @summary ListWorkflowHistory
    *
    * Retrieves a list of historic task information for a workflow.
    *
@@ -16994,7 +16651,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Retrieves a list of historic task information for a workflow.
+   * @summary ListWorkflowHistory
    *
    * Retrieves a list of historic task information for a workflow.
    *
@@ -17052,7 +16709,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the current status for a workflow.
+   * @summary GetWorkflowStatus
    *
    * Gets the current status for a workflow.
    *
@@ -17086,7 +16743,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the current status for a workflow.
+   * @summary GetWorkflowStatus
    *
    * Gets the current status for a workflow.
    *
@@ -17141,7 +16798,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets a list of supported timezones for creating workflow schedules.
+   * @summary ListSupportedTimezones
    *
    * Gets a list of supported timezones for creating workflow schedules.
    *
@@ -17175,7 +16832,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets a list of supported timezones for creating workflow schedules.
+   * @summary ListSupportedTimezones
    *
    * Gets a list of supported timezones for creating workflow schedules.
    *
@@ -17230,9 +16887,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets all workflow refresh schedules.
+   * @summary ListAllWorkflowSchedules
    *
-   * Gets all workflow refresh schedules.
+   * ListAllWorkflowSchedules
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -17264,9 +16921,9 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets all workflow refresh schedules.
+   * @summary ListAllWorkflowSchedules
    *
-   * Gets all workflow refresh schedules.
+   * ListAllWorkflowSchedules
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -17319,7 +16976,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create a workflow refresh schedule.
+   * @summary CreateWorkflowRefreshSchedule
    *
    * Create a workflow refresh schedule.
    *
@@ -17371,7 +17028,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Create a workflow refresh schedule.
+   * @summary CreateWorkflowRefreshSchedule
    *
    * Create a workflow refresh schedule.
    *
@@ -17444,7 +17101,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the entityProfile for the entity.
+   * @summary GetEntityProfile
    *
    * Gets the entityProfile for the entity.
    *
@@ -17478,7 +17135,7 @@ class CustomerInsights extends ServiceClient {
   }
 
   /**
-   * @summary Gets the entityProfile for the entity.
+   * @summary GetEntityProfile
    *
    * Gets the entityProfile for the entity.
    *

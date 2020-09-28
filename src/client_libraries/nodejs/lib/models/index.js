@@ -10,7 +10,8 @@
 
 'use strict';
 
-exports.ApiError = require('./apiError');
+exports.CIResult = require('./cIResult');
+exports.ApiErrorResult = require('./apiErrorResult');
 exports.ValueCount = require('./valueCount');
 exports.HistogramBin = require('./histogramBin');
 exports.StringLengthCount = require('./stringLengthCount');
@@ -29,8 +30,6 @@ exports.Relationship = require('./relationship');
 exports.ReferenceModel = require('./referenceModel');
 exports.Model = require('./model');
 exports.DataSourceInfo = require('./dataSourceInfo');
-exports.CIResult = require('./cIResult');
-exports.ApiErrorResult = require('./apiErrorResult');
 exports.OkResult = require('./okResult');
 exports.ODataErrorDetail = require('./oDataErrorDetail');
 exports.ODataTypeAnnotation = require('./oDataTypeAnnotation');
@@ -42,8 +41,8 @@ exports.CreatedResult = require('./createdResult');
 exports.AcceptedResult = require('./acceptedResult');
 exports.NoContentResult = require('./noContentResult');
 exports.ODataEntityPayload = require('./oDataEntityPayload');
+exports.ApiError = require('./apiError');
 exports.IEdmType = require('./iEdmType');
-exports.AttributeType = require('./attributeType');
 exports.IAttributeSearchProperties = require('./iAttributeSearchProperties');
 exports.IAttributeMetadata = require('./iAttributeMetadata');
 exports.PartitionMetadata = require('./partitionMetadata');
@@ -86,6 +85,7 @@ exports.LogMessage = require('./logMessage');
 exports.ParsingError = require('./parsingError');
 exports.DependencyValidationIssue = require('./dependencyValidationIssue');
 exports.DeletionResponse = require('./deletionResponse');
+exports.KeyRingResponse = require('./keyRingResponse');
 exports.ProfileStoreModuleRunInfo = require('./profileStoreModuleRunInfo');
 exports.ProfileStoreCollectionInfo = require('./profileStoreCollectionInfo');
 exports.ProfileStoreStateInfo = require('./profileStoreStateInfo');

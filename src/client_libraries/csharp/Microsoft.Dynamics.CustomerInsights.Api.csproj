@@ -3,14 +3,15 @@
     <PackageId>Microsoft.Dynamics.CustomerInsights.Api</PackageId>
     <Description>Microsoft CustomerInsights Library</Description>
     <AssemblyName>Microsoft.Dynamics.CustomerInsights.Api</AssemblyName>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0;net452</TargetFrameworks>
     <Copyright>&#169; Microsoft Corporation. All rights reserved.</Copyright>
     <NuspecFile>.\.nuspec</NuspecFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.7" />
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.21" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 </Project>
+

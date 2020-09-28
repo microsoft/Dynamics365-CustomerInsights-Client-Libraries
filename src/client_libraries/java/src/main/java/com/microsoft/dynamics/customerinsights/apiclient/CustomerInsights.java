@@ -7,7 +7,6 @@
 package com.microsoft.dynamics.customerinsights.apiclient;
 
 import com.microsoft.dynamics.customerinsights.apiclient.models.ActivateSegmentHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.ApiErrorResult;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CancelAWorkflowJobHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CopyAnInstanceHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAMeasureHeaders;
@@ -58,7 +57,6 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.MeasureMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.OnDemandJobRequest;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RelationshipMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ResetAnInstanceHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.ResetInstanceForScopeHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleAssignment;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleDefinition;
 import com.microsoft.dynamics.customerinsights.apiclient.models.SegmentMetadata;
@@ -98,7 +96,7 @@ public interface CustomerInsights {
     String DEFAULT_BASE_URL = "https://api.ci.ai.dynamics.com/v1";
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -112,7 +110,7 @@ public interface CustomerInsights {
     Object getAnAttributeProfile(String instanceId, String qualifiedEntityName, String attributeName);
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -125,7 +123,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAnAttributeProfileAsync(String instanceId, String qualifiedEntityName, String attributeName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -137,7 +135,7 @@ public interface CustomerInsights {
     Observable<Object> getAnAttributeProfileAsync(String instanceId, String qualifiedEntityName, String attributeName);
 
     /**
-     * Gets the specific attribute profile for the entity.
+     * GetAttributeProfile.
      * Gets the specific attribute profile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -149,8 +147,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAnAttributeProfileHeaders>> getAnAttributeProfileWithServiceResponseAsync(String instanceId, String qualifiedEntityName, String attributeName);
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -161,8 +159,8 @@ public interface CustomerInsights {
     Object getAllDataSources(String instanceId);
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -172,8 +170,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllDataSourcesAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -182,8 +180,8 @@ public interface CustomerInsights {
     Observable<Object> getAllDataSourcesAsync(String instanceId);
 
     /**
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
-     * Fetches a collection of DataSourceInfo configured for the Customer Insights instance.
+     * GetAllDataSources.
+     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -192,8 +190,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAllDataSourcesHeaders>> getAllDataSourcesWithServiceResponseAsync(String instanceId);
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -205,8 +203,8 @@ public interface CustomerInsights {
     Object getDataSource(String instanceId, String dataSourceId);
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -217,8 +215,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getDataSourceAsync(String instanceId, String dataSourceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -228,8 +226,8 @@ public interface CustomerInsights {
     Observable<Object> getDataSourceAsync(String instanceId, String dataSourceId);
 
     /**
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
-     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * GetDataSource.
+     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -239,7 +237,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetDataSourceHeaders>> getDataSourceWithServiceResponseAsync(String instanceId, String dataSourceId);
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -252,7 +250,7 @@ public interface CustomerInsights {
     Object deleteADataSource(String instanceId, String dataSourceId);
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -264,7 +262,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> deleteADataSourceAsync(String instanceId, String dataSourceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -275,7 +273,7 @@ public interface CustomerInsights {
     Observable<Object> deleteADataSourceAsync(String instanceId, String dataSourceId);
 
     /**
-     * Deletes a data source from the instance.
+     * DeleteDataSource.
      * Deletes a data source from the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -286,8 +284,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, DeleteADataSourceHeaders>> deleteADataSourceWithServiceResponseAsync(String instanceId, String dataSourceId);
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -299,8 +297,8 @@ public interface CustomerInsights {
     Object createAnEntity(String instanceId, String entityName);
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -311,8 +309,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> createAnEntityAsync(String instanceId, String entityName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -322,8 +320,8 @@ public interface CustomerInsights {
     Observable<Object> createAnEntityAsync(String instanceId, String entityName);
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -332,8 +330,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, CreateAnEntityHeaders>> createAnEntityWithServiceResponseAsync(String instanceId, String entityName);
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -348,8 +346,8 @@ public interface CustomerInsights {
     Object createAnEntity(String instanceId, String entityName, String body, String validUntil, String caller);
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -363,8 +361,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> createAnEntityAsync(String instanceId, String entityName, String body, String validUntil, String caller, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -377,8 +375,8 @@ public interface CustomerInsights {
     Observable<Object> createAnEntityAsync(String instanceId, String entityName, String body, String validUntil, String caller);
 
     /**
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
-     * Writes an entity instance into the store, g. an activity entity. (Preview).
+     * CreateEntity (Preview).
+     * Writes an entity instance into the store, e.g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -391,8 +389,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CreateAnEntityHeaders>> createAnEntityWithServiceResponseAsync(String instanceId, String entityName, String body, String validUntil, String caller);
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -405,8 +403,8 @@ public interface CustomerInsights {
     Object updateAnEntity(String instanceId, String entityName, String entityId);
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -418,8 +416,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -430,8 +428,8 @@ public interface CustomerInsights {
     Observable<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId);
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -441,8 +439,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, UpdateAnEntityHeaders>> updateAnEntityWithServiceResponseAsync(String instanceId, String entityName, String entityId);
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -458,8 +456,8 @@ public interface CustomerInsights {
     Object updateAnEntity(String instanceId, String entityName, String entityId, String body, String validUntil, String caller);
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -474,8 +472,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId, String body, String validUntil, String caller, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -489,8 +487,8 @@ public interface CustomerInsights {
     Observable<Object> updateAnEntityAsync(String instanceId, String entityName, String entityId, String body, String validUntil, String caller);
 
     /**
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
-     * Updates an entity instance in the store, g. Customer entity. (Preview).
+     * UpdateEntity (Preview).
+     * Updates an entity instance in the store, e.g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -504,7 +502,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, UpdateAnEntityHeaders>> updateAnEntityWithServiceResponseAsync(String instanceId, String entityName, String entityId, String body, String validUntil, String caller);
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -517,7 +515,7 @@ public interface CustomerInsights {
     Object getEntitiesWithODataPath(String instanceId, String relativePath);
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -529,7 +527,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -540,7 +538,7 @@ public interface CustomerInsights {
     Observable<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath);
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -550,7 +548,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>> getEntitiesWithODataPathWithServiceResponseAsync(String instanceId, String relativePath);
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -573,7 +571,7 @@ public interface CustomerInsights {
     Object getEntitiesWithODataPath(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top);
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -595,7 +593,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -616,7 +614,7 @@ public interface CustomerInsights {
     Observable<Object> getEntitiesWithODataPathAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top);
 
     /**
-     * Submits an OData request to the service.
+     * GetEntityByODataQuery.
      * Submits an OData request to the service.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -637,7 +635,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetEntitiesWithODataPathHeaders>> getEntitiesWithODataPathWithServiceResponseAsync(String instanceId, String relativePath, Boolean forceSearch, Boolean proxy, String search, String select, String skip, String skiptoken, String filter, String orderby, String expand, String top);
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -649,7 +647,7 @@ public interface CustomerInsights {
     Object getAllEntityMetadata(String instanceId);
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -660,7 +658,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllEntityMetadataAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -670,7 +668,7 @@ public interface CustomerInsights {
     Observable<Object> getAllEntityMetadataAsync(String instanceId);
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -679,7 +677,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>> getAllEntityMetadataWithServiceResponseAsync(String instanceId);
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -693,7 +691,7 @@ public interface CustomerInsights {
     Object getAllEntityMetadata(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined);
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -706,7 +704,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllEntityMetadataAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -718,7 +716,7 @@ public interface CustomerInsights {
     Observable<Object> getAllEntityMetadataAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined);
 
     /**
-     * Retrieves the flattened entity model for the provided instanceId.
+     * GetAllEntitiesMetadata.
      * Retrieves the flattened entity model for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -730,7 +728,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>> getAllEntityMetadataWithServiceResponseAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined);
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -743,7 +741,7 @@ public interface CustomerInsights {
     Object getEntityMetadata(String instanceId, String entityName);
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -755,7 +753,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getEntityMetadataAsync(String instanceId, String entityName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -766,7 +764,7 @@ public interface CustomerInsights {
     Observable<Object> getEntityMetadataAsync(String instanceId, String entityName);
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -776,7 +774,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetEntityMetadataHeaders>> getEntityMetadataWithServiceResponseAsync(String instanceId, String entityName);
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -790,7 +788,7 @@ public interface CustomerInsights {
     Object getEntityMetadata(String instanceId, String entityName, Boolean attributesAnnotations);
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -803,7 +801,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getEntityMetadataAsync(String instanceId, String entityName, Boolean attributesAnnotations, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -815,7 +813,7 @@ public interface CustomerInsights {
     Observable<Object> getEntityMetadataAsync(String instanceId, String entityName, Boolean attributesAnnotations);
 
     /**
-     * Retrieves the entity metadata for the provided instanceId and entityName.
+     * GetEntityMetadata.
      * Retrieves the entity metadata for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -827,7 +825,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetEntityMetadataHeaders>> getEntityMetadataWithServiceResponseAsync(String instanceId, String entityName, Boolean attributesAnnotations);
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -840,7 +838,7 @@ public interface CustomerInsights {
     Object getEntitySize(String instanceId, String entityName);
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -852,7 +850,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getEntitySizeAsync(String instanceId, String entityName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -863,7 +861,7 @@ public interface CustomerInsights {
     Observable<Object> getEntitySizeAsync(String instanceId, String entityName);
 
     /**
-     * Retrieves the entity size for the provided instanceId and entityName.
+     * GetEntitySize.
      * Retrieves the entity size for the provided instanceId and entityName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -874,8 +872,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetEntitySizeHeaders>> getEntitySizeWithServiceResponseAsync(String instanceId, String entityName);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -886,8 +884,8 @@ public interface CustomerInsights {
     Object resetAnInstance(String instanceId);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -897,8 +895,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> resetAnInstanceAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -907,8 +905,8 @@ public interface CustomerInsights {
     Observable<Object> resetAnInstanceAsync(String instanceId);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -916,8 +914,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, ResetAnInstanceHeaders>> resetAnInstanceWithServiceResponseAsync(String instanceId);
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -929,8 +927,8 @@ public interface CustomerInsights {
     Object resetAnInstance(String instanceId, String instanceManagementOperationScope);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -941,8 +939,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> resetAnInstanceAsync(String instanceId, String instanceManagementOperationScope, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -952,8 +950,8 @@ public interface CustomerInsights {
     Observable<Object> resetAnInstanceAsync(String instanceId, String instanceManagementOperationScope);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
+     * ResetInstance (Preview).
+     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
      * @param instanceManagementOperationScope The management operation scope for reset.
@@ -963,54 +961,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, ResetAnInstanceHeaders>> resetAnInstanceWithServiceResponseAsync(String instanceId, String instanceManagementOperationScope);
 
     /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws RestException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the Object object if successful.
-     */
-    Object resetInstanceForScope(String instanceId, String instanceManagementOperationScope);
-
-    /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    ServiceFuture<Object> resetInstanceForScopeAsync(String instanceId, String instanceManagementOperationScope, final ServiceCallback<Object> serviceCallback);
-
-    /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    Observable<Object> resetInstanceForScopeAsync(String instanceId, String instanceManagementOperationScope);
-
-    /**
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope. (Preview).
-     *
-     * @param instanceId Format - uuid. The instance Id.
-     * @param instanceManagementOperationScope The management operation scope for reset.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    Observable<ServiceResponseWithHeaders<Object, ResetInstanceForScopeHeaders>> resetInstanceForScopeWithServiceResponseAsync(String instanceId, String instanceManagementOperationScope);
-
-    /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1021,7 +972,7 @@ public interface CustomerInsights {
     Object getAllInstances();
 
     /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1031,7 +982,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllInstancesAsync(final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1040,7 +991,7 @@ public interface CustomerInsights {
     Observable<Object> getAllInstancesAsync();
 
     /**
-     * Retrieves all instances of the current user.
+     * ListAllInstances.
      * Retrieves all instances of the current user.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1049,7 +1000,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAllInstancesHeaders>> getAllInstancesWithServiceResponseAsync();
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1060,7 +1011,7 @@ public interface CustomerInsights {
     Object getAllInstancesInBatchesByInstanceids();
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1070,7 +1021,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllInstancesInBatchesByInstanceidsAsync(final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1079,7 +1030,7 @@ public interface CustomerInsights {
     Observable<Object> getAllInstancesInBatchesByInstanceidsAsync();
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1087,7 +1038,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>> getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync();
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -1099,7 +1050,7 @@ public interface CustomerInsights {
     Object getAllInstancesInBatchesByInstanceids(List<UUID> body);
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -1110,7 +1061,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllInstancesInBatchesByInstanceidsAsync(List<UUID> body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -1120,7 +1071,7 @@ public interface CustomerInsights {
     Observable<Object> getAllInstancesInBatchesByInstanceidsAsync(List<UUID> body);
 
     /**
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
+     * ListInstancesByInstanceIds.
      * Retrieves instances based on instance ids, it can only accept batch of instances.
      *
      * @param body Instance ids of instances to get.
@@ -1130,7 +1081,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>> getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync(List<UUID> body);
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -1142,7 +1093,7 @@ public interface CustomerInsights {
     Object getInstanceMetadata(String instanceId);
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -1153,7 +1104,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getInstanceMetadataAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -1163,7 +1114,7 @@ public interface CustomerInsights {
     Observable<Object> getInstanceMetadataAsync(String instanceId);
 
     /**
-     * Retrieves metadata for a Customer Insights instance based on its instanceId.
+     * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
      * @param instanceId Format - uuid. Unique id for the Customer Insights instance.
@@ -1173,8 +1124,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetInstanceMetadataHeaders>> getInstanceMetadataWithServiceResponseAsync(String instanceId);
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1185,8 +1136,8 @@ public interface CustomerInsights {
     Object deleteAnInstance(String instanceId);
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1196,8 +1147,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> deleteAnInstanceAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1206,8 +1157,8 @@ public interface CustomerInsights {
     Observable<Object> deleteAnInstanceAsync(String instanceId);
 
     /**
-     * Detele an instance.
-     * Detele an instance.
+     * DeleteInstance.
+     * Delete an instance.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1216,7 +1167,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, DeleteAnInstanceHeaders>> deleteAnInstanceWithServiceResponseAsync(String instanceId);
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1227,7 +1178,7 @@ public interface CustomerInsights {
     Object createAnInstance();
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1237,7 +1188,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> createAnInstanceAsync(final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1246,7 +1197,7 @@ public interface CustomerInsights {
     Observable<Object> createAnInstanceAsync();
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1254,7 +1205,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync();
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -1266,7 +1217,7 @@ public interface CustomerInsights {
     Object createAnInstance(InstanceCreationRequest body);
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -1277,7 +1228,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> createAnInstanceAsync(InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -1287,7 +1238,7 @@ public interface CustomerInsights {
     Observable<Object> createAnInstanceAsync(InstanceCreationRequest body);
 
     /**
-     * Creates a new instance.
+     * CreateInstance.
      * Creates a new instance.
      *
      * @param body The instance creation request.
@@ -1297,7 +1248,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstanceCreationRequest body);
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1309,7 +1260,7 @@ public interface CustomerInsights {
     Object updateAnInstance(String instanceId);
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1320,7 +1271,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateAnInstanceAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1330,7 +1281,7 @@ public interface CustomerInsights {
     Observable<Object> updateAnInstanceAsync(String instanceId);
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1339,7 +1290,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId);
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1352,7 +1303,7 @@ public interface CustomerInsights {
     Object updateAnInstance(String instanceId, InstanceCreationRequest body);
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1364,7 +1315,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1375,7 +1326,7 @@ public interface CustomerInsights {
     Observable<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body);
 
     /**
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
@@ -1386,7 +1337,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId, InstanceCreationRequest body);
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1397,7 +1348,7 @@ public interface CustomerInsights {
     Object copyAnInstance();
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1407,7 +1358,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> copyAnInstanceAsync(final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1416,7 +1367,7 @@ public interface CustomerInsights {
     Observable<Object> copyAnInstanceAsync();
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1424,7 +1375,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync();
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -1436,7 +1387,7 @@ public interface CustomerInsights {
     Object copyAnInstance(InstanceCopyRequest body);
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -1447,7 +1398,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> copyAnInstanceAsync(InstanceCopyRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -1457,7 +1408,7 @@ public interface CustomerInsights {
     Observable<Object> copyAnInstanceAsync(InstanceCopyRequest body);
 
     /**
-     * Create a new instance and copy metadata from an existing instance.
+     * CopyInstance.
      * Create a new instance and copy metadata from an existing instance.
      *
      * @param body The metadata to use to create the new instance.
@@ -1467,8 +1418,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstanceCopyRequest body);
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1479,8 +1430,8 @@ public interface CustomerInsights {
     Object getAListOfMeasuresMetadata(String instanceId);
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1490,8 +1441,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAListOfMeasuresMetadataAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1500,8 +1451,8 @@ public interface CustomerInsights {
     Observable<Object> getAListOfMeasuresMetadataAsync(String instanceId);
 
     /**
-     * Retrieves a list of measures metadata for the provided instanceId.
-     * Retrieves a list of measures metadata for the provided instanceId.
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1510,8 +1461,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders>> getAListOfMeasuresMetadataWithServiceResponseAsync(String instanceId);
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1522,8 +1473,8 @@ public interface CustomerInsights {
     Object createAMeasure(String instanceId);
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -1533,8 +1484,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> createAMeasureAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1543,8 +1494,8 @@ public interface CustomerInsights {
     Observable<Object> createAMeasureAsync(String instanceId);
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -1552,8 +1503,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId);
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -1565,8 +1516,8 @@ public interface CustomerInsights {
     Object createAMeasure(String instanceId, MeasureMetadata body);
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -1577,8 +1528,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> createAMeasureAsync(String instanceId, MeasureMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -1588,8 +1539,8 @@ public interface CustomerInsights {
     Observable<Object> createAMeasureAsync(String instanceId, MeasureMetadata body);
 
     /**
-     * Create new measure metadata with measureMetadata on instanceId.
-     * Create new measure metadata with measureMetadata on instanceId.
+     * CreateMeasure.
+     * CreateMeasure.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Measure metadata to be created
@@ -1599,7 +1550,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId, MeasureMetadata body);
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1612,7 +1563,7 @@ public interface CustomerInsights {
     Object getMetadataForAMeasure(String instanceId, String measureName);
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1624,7 +1575,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getMetadataForAMeasureAsync(String instanceId, String measureName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1635,7 +1586,7 @@ public interface CustomerInsights {
     Observable<Object> getMetadataForAMeasureAsync(String instanceId, String measureName);
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1645,7 +1596,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetMetadataForAMeasureHeaders>> getMetadataForAMeasureWithServiceResponseAsync(String instanceId, String measureName);
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1660,7 +1611,7 @@ public interface CustomerInsights {
     Object getMetadataForAMeasure(String instanceId, String measureName, Boolean includeHistoricStats, Integer historicStatsDays);
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1674,7 +1625,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getMetadataForAMeasureAsync(String instanceId, String measureName, Boolean includeHistoricStats, Integer historicStatsDays, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1687,7 +1638,7 @@ public interface CustomerInsights {
     Observable<Object> getMetadataForAMeasureAsync(String instanceId, String measureName, Boolean includeHistoricStats, Integer historicStatsDays);
 
     /**
-     * Retrieves the measure metadata for the provided instanceId and measureName.
+     * GetMeasureMetadata.
      * Retrieves the measure metadata for the provided instanceId and measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1700,8 +1651,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetMetadataForAMeasureHeaders>> getMetadataForAMeasureWithServiceResponseAsync(String instanceId, String measureName, Boolean includeHistoricStats, Integer historicStatsDays);
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1715,8 +1665,7 @@ public interface CustomerInsights {
     Object updateAMeasure(String instanceId, String measureName);
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1729,8 +1678,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1742,8 +1690,7 @@ public interface CustomerInsights {
     Observable<Object> updateAMeasureAsync(String instanceId, String measureName);
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1754,8 +1701,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName);
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1770,8 +1716,7 @@ public interface CustomerInsights {
     Object updateAMeasure(String instanceId, String measureName, MeasureMetadata body);
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1785,8 +1730,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1799,8 +1743,7 @@ public interface CustomerInsights {
     Observable<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body);
 
     /**
-     * Updates measures metadata for the provided instanceId and measureMetadata.
-     Existing measure is retrieved using measureName.
+     * UpdateMeasure.
      * Updates measures metadata for the provided instanceId and measureMetadata.
      Existing measure is retrieved using measureName.
      *
@@ -1813,7 +1756,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName, MeasureMetadata body);
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1826,7 +1769,7 @@ public interface CustomerInsights {
     Object deleteAMeasure(String instanceId, String measureName);
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1838,7 +1781,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> deleteAMeasureAsync(String instanceId, String measureName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1849,7 +1792,7 @@ public interface CustomerInsights {
     Observable<Object> deleteAMeasureAsync(String instanceId, String measureName);
 
     /**
-     * Deletes the measure metadata for the provided instanceId using measureName.
+     * DeleteMeasure.
      * Deletes the measure metadata for the provided instanceId using measureName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -1860,7 +1803,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, DeleteAMeasureHeaders>> deleteAMeasureWithServiceResponseAsync(String instanceId, String measureName);
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -1870,12 +1813,12 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the ApiErrorResult object if successful.
+     * @return the Object object if successful.
      */
-    ApiErrorResult getKeyRing(String instanceId, String dataSourceName, String entityName, String key);
+    Object getKeyRing(String instanceId, String dataSourceName, String entityName, String key);
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -1886,10 +1829,10 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<ApiErrorResult> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key, final ServiceCallback<ApiErrorResult> serviceCallback);
+    ServiceFuture<Object> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -1897,12 +1840,12 @@ public interface CustomerInsights {
      * @param entityName The name of the entity that contains the given key.
      * @param key The value of the alternate key provided.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ApiErrorResult object
+     * @return the observable to the Object object
      */
-    Observable<ApiErrorResult> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key);
+    Observable<Object> getKeyRingAsync(String instanceId, String dataSourceName, String entityName, String key);
 
     /**
-     * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
+     * GetKeyRing.
      * Gets the KeyRing (collection of all alternate keys) for the given instance by alternate key.
      *
      * @param instanceId Format - uuid. Identifier for the instance
@@ -1910,12 +1853,12 @@ public interface CustomerInsights {
      * @param entityName The name of the entity that contains the given key.
      * @param key The value of the alternate key provided.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the ApiErrorResult object
+     * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<ApiErrorResult, GetKeyRingHeaders>> getKeyRingWithServiceResponseAsync(String instanceId, String dataSourceName, String entityName, String key);
+    Observable<ServiceResponseWithHeaders<Object, GetKeyRingHeaders>> getKeyRingWithServiceResponseAsync(String instanceId, String dataSourceName, String entityName, String key);
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -1927,7 +1870,7 @@ public interface CustomerInsights {
     Object getProfileStoreState(String instanceId);
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -1938,7 +1881,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getProfileStoreStateAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -1948,7 +1891,7 @@ public interface CustomerInsights {
     Observable<Object> getProfileStoreStateAsync(String instanceId);
 
     /**
-     * Gets the profile store state infoformation.
+     * GetProfileStoreState.
      * Gets the profile store state infoformation.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -1958,7 +1901,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetProfileStoreStateHeaders>> getProfileStoreStateWithServiceResponseAsync(String instanceId);
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -1970,7 +1913,7 @@ public interface CustomerInsights {
     List<RoleDefinition> getAllRoleDefinitions(String instanceId);
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -1981,7 +1924,7 @@ public interface CustomerInsights {
     ServiceFuture<List<RoleDefinition>> getAllRoleDefinitionsAsync(String instanceId, final ServiceCallback<List<RoleDefinition>> serviceCallback);
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -1991,7 +1934,7 @@ public interface CustomerInsights {
     Observable<List<RoleDefinition>> getAllRoleDefinitionsAsync(String instanceId);
 
     /**
-     * Get all role definitions.
+     * ListAllRoles.
      * Get all role definitions.
      *
      * @param instanceId the String value
@@ -2001,7 +1944,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<List<RoleDefinition>, GetAllRoleDefinitionsHeaders>> getAllRoleDefinitionsWithServiceResponseAsync(String instanceId);
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2013,7 +1956,7 @@ public interface CustomerInsights {
     RoleAssignment getCurrentUserRole(String instanceId);
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2024,7 +1967,7 @@ public interface CustomerInsights {
     ServiceFuture<RoleAssignment> getCurrentUserRoleAsync(String instanceId, final ServiceCallback<RoleAssignment> serviceCallback);
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2034,7 +1977,7 @@ public interface CustomerInsights {
     Observable<RoleAssignment> getCurrentUserRoleAsync(String instanceId);
 
     /**
-     * Get role of current user.
+     * GetCurrentUserRole.
      * Get role of current user.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2044,7 +1987,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<RoleAssignment, GetCurrentUserRoleHeaders>> getCurrentUserRoleWithServiceResponseAsync(String instanceId);
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2057,7 +2000,7 @@ public interface CustomerInsights {
     List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId);
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2069,7 +2012,7 @@ public interface CustomerInsights {
     ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, final ServiceCallback<List<RoleAssignment>> serviceCallback);
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2080,7 +2023,7 @@ public interface CustomerInsights {
     Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId);
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2090,7 +2033,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId);
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2104,7 +2047,7 @@ public interface CustomerInsights {
     List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId, RoleAssignment body);
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2117,7 +2060,7 @@ public interface CustomerInsights {
     ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body, final ServiceCallback<List<RoleAssignment>> serviceCallback);
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2129,7 +2072,7 @@ public interface CustomerInsights {
     Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body);
 
     /**
-     * Adds or updates a role assignment for a principal.
+     * UpdateRoleAssignment.
      * Adds or updates a role assignment for a principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2141,7 +2084,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId, RoleAssignment body);
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2153,7 +2096,7 @@ public interface CustomerInsights {
     void deletesARoleAssignment(String instanceId, String principalId);
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2165,7 +2108,7 @@ public interface CustomerInsights {
     ServiceFuture<Void> deletesARoleAssignmentAsync(String instanceId, String principalId, final ServiceCallback<Void> serviceCallback);
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2176,7 +2119,7 @@ public interface CustomerInsights {
     Observable<Void> deletesARoleAssignmentAsync(String instanceId, String principalId);
 
     /**
-     * Deletes a role assignment for the principal.
+     * DeleteRoleAssignment.
      * Deletes a role assignment for the principal.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2187,7 +2130,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Void, DeletesARoleAssignmentHeaders>> deletesARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId);
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2199,7 +2142,7 @@ public interface CustomerInsights {
     List<RoleAssignment> getAllRoleAssignments(String instanceId);
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2210,7 +2153,7 @@ public interface CustomerInsights {
     ServiceFuture<List<RoleAssignment>> getAllRoleAssignmentsAsync(String instanceId, final ServiceCallback<List<RoleAssignment>> serviceCallback);
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2220,7 +2163,7 @@ public interface CustomerInsights {
     Observable<List<RoleAssignment>> getAllRoleAssignmentsAsync(String instanceId);
 
     /**
-     * Gets all role assignments for the instance.
+     * ListAllRoleAssignments.
      * Gets all role assignments for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2230,7 +2173,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<List<RoleAssignment>, GetAllRoleAssignmentsHeaders>> getAllRoleAssignmentsWithServiceResponseAsync(String instanceId);
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2242,7 +2185,7 @@ public interface CustomerInsights {
     Object getAllRelationships(String instanceId);
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2253,7 +2196,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllRelationshipsAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2263,7 +2206,7 @@ public interface CustomerInsights {
     Observable<Object> getAllRelationshipsAsync(String instanceId);
 
     /**
-     * Gets all relationship metadata for the provided instanceId.
+     * ListAllRelationships.
      * Gets all relationship metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2273,7 +2216,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAllRelationshipsHeaders>> getAllRelationshipsWithServiceResponseAsync(String instanceId);
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2285,7 +2228,7 @@ public interface CustomerInsights {
     Object createARelationship(String instanceId);
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2296,7 +2239,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> createARelationshipAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2306,7 +2249,7 @@ public interface CustomerInsights {
     Observable<Object> createARelationshipAsync(String instanceId);
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2315,7 +2258,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId);
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2328,7 +2271,7 @@ public interface CustomerInsights {
     Object createARelationship(String instanceId, RelationshipMetadata body);
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2340,7 +2283,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2351,7 +2294,7 @@ public interface CustomerInsights {
     Observable<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body);
 
     /**
-     * Creates new relationship metadata for the provided instanceId, using input.
+     * CreateRelationship.
      * Creates new relationship metadata for the provided instanceId, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2362,7 +2305,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId, RelationshipMetadata body);
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2375,7 +2318,7 @@ public interface CustomerInsights {
     Object getARelationship(String instanceId, String relationshipName);
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2387,7 +2330,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getARelationshipAsync(String instanceId, String relationshipName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2398,7 +2341,7 @@ public interface CustomerInsights {
     Observable<Object> getARelationshipAsync(String instanceId, String relationshipName);
 
     /**
-     * Gets the relationship metadata for the provided instanceId and relationshipName.
+     * GetRelationship.
      * Gets the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2409,7 +2352,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetARelationshipHeaders>> getARelationshipWithServiceResponseAsync(String instanceId, String relationshipName);
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2422,7 +2365,7 @@ public interface CustomerInsights {
     Object deleteARelationship(String instanceId, String relationshipName);
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2434,7 +2377,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> deleteARelationshipAsync(String instanceId, String relationshipName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2445,7 +2388,7 @@ public interface CustomerInsights {
     Observable<Object> deleteARelationshipAsync(String instanceId, String relationshipName);
 
     /**
-     * Deletes the relationship metadata for the provided instanceId and relationshipName.
+     * DeleteRelationship.
      * Deletes the relationship metadata for the provided instanceId and relationshipName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2456,7 +2399,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, DeleteARelationshipHeaders>> deleteARelationshipWithServiceResponseAsync(String instanceId, String relationshipName);
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2469,7 +2412,7 @@ public interface CustomerInsights {
     Object updateARelationship(String instanceId, String relationshipName);
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2481,7 +2424,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2492,7 +2435,7 @@ public interface CustomerInsights {
     Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName);
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2502,7 +2445,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName);
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2516,7 +2459,7 @@ public interface CustomerInsights {
     Object updateARelationship(String instanceId, String relationshipName, RelationshipMetadata body);
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2529,7 +2472,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2541,7 +2484,7 @@ public interface CustomerInsights {
     Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body);
 
     /**
-     * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
+     * UpdateRelationshhip.
      * Updates the relationship metadata for the provided instanceId and relationshipName, using input.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2553,7 +2496,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName, RelationshipMetadata body);
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2565,7 +2508,7 @@ public interface CustomerInsights {
     Object getSearchConfiguration(String instanceId);
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2576,7 +2519,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getSearchConfigurationAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2586,7 +2529,7 @@ public interface CustomerInsights {
     Observable<Object> getSearchConfigurationAsync(String instanceId);
 
     /**
-     * Gets the search configuration for the instance.
+     * GetSearchConfiguration.
      * Gets the search configuration for the instance.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -2596,8 +2539,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetSearchConfigurationHeaders>> getSearchConfigurationWithServiceResponseAsync(String instanceId);
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2608,8 +2551,8 @@ public interface CustomerInsights {
     Object updateSearchConfiguration(String instanceId);
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2619,8 +2562,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2629,8 +2572,8 @@ public interface CustomerInsights {
     Observable<Object> updateSearchConfigurationAsync(String instanceId);
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2638,8 +2581,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId);
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -2651,8 +2594,8 @@ public interface CustomerInsights {
     Object updateSearchConfiguration(String instanceId, InstanceSearchConfiguration body);
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -2663,8 +2606,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -2674,8 +2617,8 @@ public interface CustomerInsights {
     Observable<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body);
 
     /**
-     * Updates the search configuration for the instance.
-     * Updates the search configuration for the instance.
+     * UpdateSearchConfiguration.
+     * UpdateSearchConfiguration.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param body The search configuration for the instance.
@@ -2685,7 +2628,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId, InstanceSearchConfiguration body);
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2697,7 +2640,7 @@ public interface CustomerInsights {
     Object getAllSegments(String instanceId);
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2708,7 +2651,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllSegmentsAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2718,7 +2661,7 @@ public interface CustomerInsights {
     Observable<Object> getAllSegmentsAsync(String instanceId);
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2727,7 +2670,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> getAllSegmentsWithServiceResponseAsync(String instanceId);
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2741,7 +2684,7 @@ public interface CustomerInsights {
     Object getAllSegments(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays);
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2754,7 +2697,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2766,7 +2709,7 @@ public interface CustomerInsights {
     Observable<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays);
 
     /**
-     * Retrieves a list of segment metadata for the provided instanceId.
+     * ListAllSegments.
      * Retrieves a list of segment metadata for the provided instanceId.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2778,8 +2721,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> getAllSegmentsWithServiceResponseAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays);
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2790,8 +2733,8 @@ public interface CustomerInsights {
     Object createASegment(String instanceId);
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2801,8 +2744,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> createASegmentAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2811,8 +2754,8 @@ public interface CustomerInsights {
     Observable<Object> createASegmentAsync(String instanceId);
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2820,8 +2763,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId);
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -2833,8 +2776,8 @@ public interface CustomerInsights {
     Object createASegment(String instanceId, SegmentMetadata body);
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -2845,8 +2788,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> createASegmentAsync(String instanceId, SegmentMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -2856,8 +2799,8 @@ public interface CustomerInsights {
     Observable<Object> createASegmentAsync(String instanceId, SegmentMetadata body);
 
     /**
-     * Create new segment metadata with segmentMetadata on instanceId.
-     * Create new segment metadata with segmentMetadata on instanceId.
+     * CreateSegment.
+     * CreateSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param body New Segment metadata to be created
@@ -2867,7 +2810,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId, SegmentMetadata body);
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2880,7 +2823,7 @@ public interface CustomerInsights {
     Object activateSegment(String instanceId, String segmentName);
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2892,7 +2835,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> activateSegmentAsync(String instanceId, String segmentName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2903,7 +2846,7 @@ public interface CustomerInsights {
     Observable<Object> activateSegmentAsync(String instanceId, String segmentName);
 
     /**
-     * Activate segment on instanceId with segmentName.
+     * ActivateSegment.
      * Activate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2914,7 +2857,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, ActivateSegmentHeaders>> activateSegmentWithServiceResponseAsync(String instanceId, String segmentName);
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2927,7 +2870,7 @@ public interface CustomerInsights {
     Object deactivateSegment(String instanceId, String segmentName);
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2939,7 +2882,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> deactivateSegmentAsync(String instanceId, String segmentName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2950,7 +2893,7 @@ public interface CustomerInsights {
     Observable<Object> deactivateSegmentAsync(String instanceId, String segmentName);
 
     /**
-     * Deactivate segment on instanceId with segmentName.
+     * DeactivateSegment.
      * Deactivate segment on instanceId with segmentName.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2961,7 +2904,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, DeactivateSegmentHeaders>> deactivateSegmentWithServiceResponseAsync(String instanceId, String segmentName);
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2974,7 +2917,7 @@ public interface CustomerInsights {
     Object updateASegment(String instanceId, String segmentName);
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2986,7 +2929,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -2997,7 +2940,7 @@ public interface CustomerInsights {
     Observable<Object> updateASegmentAsync(String instanceId, String segmentName);
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3007,7 +2950,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName);
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3021,7 +2964,7 @@ public interface CustomerInsights {
     Object updateASegment(String instanceId, String segmentName, SegmentMetadata body);
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3034,7 +2977,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3046,7 +2989,7 @@ public interface CustomerInsights {
     Observable<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body);
 
     /**
-     * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
+     * UpdateSegments.
      * Updates segment metadata for the provided instanceId and segmentName with segmentMetadata.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
@@ -3058,8 +3001,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName, SegmentMetadata body);
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -3071,8 +3014,8 @@ public interface CustomerInsights {
     Object deleteSegment(String instanceId, String segmentName);
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -3083,8 +3026,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> deleteSegmentAsync(String instanceId, String segmentName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -3094,8 +3037,8 @@ public interface CustomerInsights {
     Observable<Object> deleteSegmentAsync(String instanceId, String segmentName);
 
     /**
-     * Deletes the segment metadata for the provided instanceId and segmentName.
-     * Deletes the segment metadata for the provided instanceId and segmentName.
+     * DeleteSegment.
+     * DeleteSegment.
      *
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param segmentName Unique name of a segment
@@ -3105,8 +3048,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, DeleteSegmentHeaders>> deleteSegmentWithServiceResponseAsync(String instanceId, String segmentName);
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3119,8 +3062,8 @@ public interface CustomerInsights {
     Object getAWorkflowJobInformation(String instanceId, String workflowName, String jobId);
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3132,8 +3075,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3144,8 +3087,8 @@ public interface CustomerInsights {
     Observable<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId);
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3155,8 +3098,8 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetAWorkflowJobInformationHeaders>> getAWorkflowJobInformationWithServiceResponseAsync(String instanceId, String workflowName, String jobId);
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3170,8 +3113,8 @@ public interface CustomerInsights {
     Object getAWorkflowJobInformation(String instanceId, String workflowName, String jobId, Boolean includeTasks);
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3184,8 +3127,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId, Boolean includeTasks, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3197,8 +3140,8 @@ public interface CustomerInsights {
     Observable<Object> getAWorkflowJobInformationAsync(String instanceId, String workflowName, String jobId, Boolean includeTasks);
 
     /**
-     * Retrieve information about a workflow job.
-     * Retrieve information about a workflow job.
+     * GetWorkflowJobInformation.
+     * GetWorkflowJobInformation.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName The name of the workflow.
@@ -3210,7 +3153,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetAWorkflowJobInformationHeaders>> getAWorkflowJobInformationWithServiceResponseAsync(String instanceId, String workflowName, String jobId, Boolean includeTasks);
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3224,7 +3167,7 @@ public interface CustomerInsights {
     Object cancelAWorkflowJob(String instanceId, String workflowName, String jobId);
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3237,7 +3180,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> cancelAWorkflowJobAsync(String instanceId, String workflowName, String jobId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3249,7 +3192,7 @@ public interface CustomerInsights {
     Observable<Object> cancelAWorkflowJobAsync(String instanceId, String workflowName, String jobId);
 
     /**
-     * Cancel a job.
+     * CancelWorkflowJob.
      * Cancel a job.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3261,7 +3204,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CancelAWorkflowJobHeaders>> cancelAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, String jobId);
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3274,7 +3217,7 @@ public interface CustomerInsights {
     Object getListOfRecentWorkflowJobs(String instanceId, String workflowName);
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3286,7 +3229,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3297,7 +3240,7 @@ public interface CustomerInsights {
     Observable<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName);
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3307,7 +3250,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetListOfRecentWorkflowJobsHeaders>> getListOfRecentWorkflowJobsWithServiceResponseAsync(String instanceId, String workflowName);
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3322,7 +3265,7 @@ public interface CustomerInsights {
     Object getListOfRecentWorkflowJobs(String instanceId, String workflowName, Integer top, Boolean includeTasks);
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3336,7 +3279,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName, Integer top, Boolean includeTasks, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3349,7 +3292,7 @@ public interface CustomerInsights {
     Observable<Object> getListOfRecentWorkflowJobsAsync(String instanceId, String workflowName, Integer top, Boolean includeTasks);
 
     /**
-     * Retrieves a list of recent job information.
+     * ListWorkFlowJobs.
      * Retrieves a list of recent job information.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3362,11 +3305,10 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetListOfRecentWorkflowJobsHeaders>> getListOfRecentWorkflowJobsWithServiceResponseAsync(String instanceId, String workflowName, Integer top, Boolean includeTasks);
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3379,11 +3321,10 @@ public interface CustomerInsights {
     Object submitAWorkflowJob(String instanceId, String workflowName);
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3395,11 +3336,10 @@ public interface CustomerInsights {
     ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3410,11 +3350,10 @@ public interface CustomerInsights {
     Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName);
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3424,11 +3363,10 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName);
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3445,11 +3383,10 @@ public interface CustomerInsights {
     Object submitAWorkflowJob(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3465,11 +3402,10 @@ public interface CustomerInsights {
     ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3484,11 +3420,10 @@ public interface CustomerInsights {
     Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * SubmitWorkflowJob
      forceRunRequested indicating whether to force run.
-     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
+     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3503,7 +3438,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3516,7 +3451,7 @@ public interface CustomerInsights {
     Object getListOfWorkflowTaskInformationHistory(String instanceId, String workflowName);
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3528,7 +3463,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getListOfWorkflowTaskInformationHistoryAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3539,7 +3474,7 @@ public interface CustomerInsights {
     Observable<Object> getListOfWorkflowTaskInformationHistoryAsync(String instanceId, String workflowName);
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3549,7 +3484,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, GetListOfWorkflowTaskInformationHistoryHeaders>> getListOfWorkflowTaskInformationHistoryWithServiceResponseAsync(String instanceId, String workflowName);
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3563,7 +3498,7 @@ public interface CustomerInsights {
     Object getListOfWorkflowTaskInformationHistory(String instanceId, String workflowName, Integer top);
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3576,7 +3511,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getListOfWorkflowTaskInformationHistoryAsync(String instanceId, String workflowName, Integer top, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3588,7 +3523,7 @@ public interface CustomerInsights {
     Observable<Object> getListOfWorkflowTaskInformationHistoryAsync(String instanceId, String workflowName, Integer top);
 
     /**
-     * Retrieves a list of historic task information for a workflow.
+     * ListWorkflowHistory.
      * Retrieves a list of historic task information for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3600,7 +3535,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetListOfWorkflowTaskInformationHistoryHeaders>> getListOfWorkflowTaskInformationHistoryWithServiceResponseAsync(String instanceId, String workflowName, Integer top);
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3613,7 +3548,7 @@ public interface CustomerInsights {
     Object getWorkflowStatus(String instanceId, String workflowName);
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3625,7 +3560,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getWorkflowStatusAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3636,7 +3571,7 @@ public interface CustomerInsights {
     Observable<Object> getWorkflowStatusAsync(String instanceId, String workflowName);
 
     /**
-     * Gets the current status for a workflow.
+     * GetWorkflowStatus.
      * Gets the current status for a workflow.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3647,7 +3582,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetWorkflowStatusHeaders>> getWorkflowStatusWithServiceResponseAsync(String instanceId, String workflowName);
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -3660,7 +3595,7 @@ public interface CustomerInsights {
     Object getSupportedTimezones(String workflowName, String instanceId);
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -3672,7 +3607,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getSupportedTimezonesAsync(String workflowName, String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -3683,7 +3618,7 @@ public interface CustomerInsights {
     Observable<Object> getSupportedTimezonesAsync(String workflowName, String instanceId);
 
     /**
-     * Gets a list of supported timezones for creating workflow schedules.
+     * ListSupportedTimezones.
      * Gets a list of supported timezones for creating workflow schedules.
      *
      * @param workflowName Any workflow name.
@@ -3694,8 +3629,8 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetSupportedTimezonesHeaders>> getSupportedTimezonesWithServiceResponseAsync(String workflowName, String instanceId);
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -3707,8 +3642,8 @@ public interface CustomerInsights {
     Object getWorkflowSchedules(String instanceId, String workflowName);
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -3719,8 +3654,8 @@ public interface CustomerInsights {
     ServiceFuture<Object> getWorkflowSchedulesAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -3730,8 +3665,8 @@ public interface CustomerInsights {
     Observable<Object> getWorkflowSchedulesAsync(String instanceId, String workflowName);
 
     /**
-     * Gets all workflow refresh schedules.
-     * Gets all workflow refresh schedules.
+     * ListAllWorkflowSchedules.
+     * ListAllWorkflowSchedules.
      *
      * @param instanceId Format - uuid. The instance id.
      * @param workflowName Any workflow name.
@@ -3741,7 +3676,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetWorkflowSchedulesHeaders>> getWorkflowSchedulesWithServiceResponseAsync(String instanceId, String workflowName);
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3754,7 +3689,7 @@ public interface CustomerInsights {
     Object createWorkflowRefreshSchedule(String instanceId, String workflowName);
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3766,7 +3701,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3777,7 +3712,7 @@ public interface CustomerInsights {
     Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName);
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3787,7 +3722,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName);
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3801,7 +3736,7 @@ public interface CustomerInsights {
     Object createWorkflowRefreshSchedule(String instanceId, String workflowName, WorkflowRefreshSchedule body);
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3814,7 +3749,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3826,7 +3761,7 @@ public interface CustomerInsights {
     Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body);
 
     /**
-     * Create a workflow refresh schedule.
+     * CreateWorkflowRefreshSchedule.
      * Create a workflow refresh schedule.
      *
      * @param instanceId Format - uuid. The instance id.
@@ -3838,7 +3773,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body);
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -3851,7 +3786,7 @@ public interface CustomerInsights {
     Object getAnEntityProfile(String instanceId, String qualifiedEntityName);
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -3863,7 +3798,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
@@ -3874,7 +3809,7 @@ public interface CustomerInsights {
     Observable<Object> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName);
 
     /**
-     * Gets the entityProfile for the entity.
+     * GetEntityProfile.
      * Gets the entityProfile for the entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance id.

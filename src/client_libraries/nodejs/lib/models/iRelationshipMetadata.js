@@ -18,50 +18,26 @@ class IRelationshipMetadata {
    * @property {string} [fromAttribute.name]
    * @property {string} [fromAttribute.friendlyName]
    * @property {string} [fromAttribute.baseName]
-   * @property {object} [fromAttribute.dataType]
-   * @property {string} [fromAttribute.dataType.clrType] Gets the CLR Type for
-   * this property type.
-   * @property {string} [fromAttribute.dataType.cdsaType] Possible values
-   * include: 'unclassified', 'string', 'int64', 'double', 'dateTime',
-   * 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
-   * @property {string} [fromAttribute.dataType.edmTypeName] Gets the EDM type
-   * name for the property type, in the format EdmTypeKind>".
-   * @property {boolean} [fromAttribute.dataType.isBoolean]
-   * @property {boolean} [fromAttribute.dataType.isDateTime]
-   * @property {boolean} [fromAttribute.dataType.isDecimal]
-   * @property {boolean} [fromAttribute.dataType.isNumber]
-   * @property {boolean} [fromAttribute.dataType.isValidType] Gets a value
-   * indicating whether this type valid and supported by the runtime.
-   * @property {string} [fromAttribute.dataType.name] Gets the name of the
-   * property type. Will default to the EdmTypeName but may be overridden by a
-   * property
-   * type.
-   * @property {object} [fromAttribute.dataType.equalityComparer]
-   * @property {object} [fromAttribute.dataType.comparer]
-   * @property {object} [fromAttribute.dataType.oDataType]
-   * @property {string} [fromAttribute.dataType.oDataType.typeKind] Possible
-   * values include: 'none', 'primitive', 'entity', 'complex', 'collection',
-   * 'entityReference', 'enum', 'typeDefinition', 'untyped', 'path'
-   * @property {boolean} [fromAttribute.dataType.isCollection]
-   * @property {string} [fromAttribute.semanticType] Possible values include:
-   * 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
-   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
-   * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
-   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
-   * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
-   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
-   * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
-   * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
-   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
-   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
-   * 'LocationContinent', 'LocationCountry', 'LocationCounty',
-   * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
-   * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
-   * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
-   * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
-   * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
-   * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+   * @property {string} [fromAttribute.dataType] Gets data type for property.
+   * @property {string} [fromAttribute.semanticType] Gets semantic type for
+   * property. Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
+   * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
+   * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
+   * 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
+   * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+   * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
+   * 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
+   * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+   * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
+   * 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit',
+   * 'Person', 'Product', 'ProductGroup', 'LocationAddress',
+   * 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
+   * 'LocationCountry', 'LocationCounty', 'LocationLatitude',
+   * 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
+   * 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone',
+   * 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus',
+   * 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID',
+   * 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
    * 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone',
    * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
    * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'
@@ -86,50 +62,26 @@ class IRelationshipMetadata {
    * @property {string} [toAttribute.name]
    * @property {string} [toAttribute.friendlyName]
    * @property {string} [toAttribute.baseName]
-   * @property {object} [toAttribute.dataType]
-   * @property {string} [toAttribute.dataType.clrType] Gets the CLR Type for
-   * this property type.
-   * @property {string} [toAttribute.dataType.cdsaType] Possible values
-   * include: 'unclassified', 'string', 'int64', 'double', 'dateTime',
-   * 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
-   * @property {string} [toAttribute.dataType.edmTypeName] Gets the EDM type
-   * name for the property type, in the format EdmTypeKind>".
-   * @property {boolean} [toAttribute.dataType.isBoolean]
-   * @property {boolean} [toAttribute.dataType.isDateTime]
-   * @property {boolean} [toAttribute.dataType.isDecimal]
-   * @property {boolean} [toAttribute.dataType.isNumber]
-   * @property {boolean} [toAttribute.dataType.isValidType] Gets a value
-   * indicating whether this type valid and supported by the runtime.
-   * @property {string} [toAttribute.dataType.name] Gets the name of the
-   * property type. Will default to the EdmTypeName but may be overridden by a
-   * property
-   * type.
-   * @property {object} [toAttribute.dataType.equalityComparer]
-   * @property {object} [toAttribute.dataType.comparer]
-   * @property {object} [toAttribute.dataType.oDataType]
-   * @property {string} [toAttribute.dataType.oDataType.typeKind] Possible
-   * values include: 'none', 'primitive', 'entity', 'complex', 'collection',
-   * 'entityReference', 'enum', 'typeDefinition', 'untyped', 'path'
-   * @property {boolean} [toAttribute.dataType.isCollection]
-   * @property {string} [toAttribute.semanticType] Possible values include:
-   * 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
-   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
-   * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
-   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
-   * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
-   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
-   * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
-   * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
-   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
-   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
-   * 'LocationContinent', 'LocationCountry', 'LocationCounty',
-   * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
-   * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
-   * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
-   * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
-   * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
-   * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+   * @property {string} [toAttribute.dataType] Gets data type for property.
+   * @property {string} [toAttribute.semanticType] Gets semantic type for
+   * property. Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
+   * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
+   * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
+   * 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
+   * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+   * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
+   * 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
+   * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+   * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
+   * 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit',
+   * 'Person', 'Product', 'ProductGroup', 'LocationAddress',
+   * 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
+   * 'LocationCountry', 'LocationCounty', 'LocationLatitude',
+   * 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
+   * 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone',
+   * 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus',
+   * 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID',
+   * 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
    * 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone',
    * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
    * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'
@@ -169,8 +121,8 @@ class IRelationshipMetadata {
    * 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery',
    * 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown',
-   * 'powerPlatform', 'powerPlatformSource', 'datahub', 'insights',
-   * 'derivedEntity'
+   * 'powerPlatform', 'datahub', 'insights', 'derivedEntity',
+   * 'powerPlatformSource'
    * @property {uuid} [dataSourceEntity.datasourceId] Gets the original
    * datasourceid of this entity, if no data source, return null or emptyString
    * @property {string} [dataSourceEntity.entityType] Possible values include:
@@ -186,60 +138,28 @@ class IRelationshipMetadata {
    * @property {string} [dataSourceEntity.timestampAttribute.name]
    * @property {string} [dataSourceEntity.timestampAttribute.friendlyName]
    * @property {string} [dataSourceEntity.timestampAttribute.baseName]
-   * @property {object} [dataSourceEntity.timestampAttribute.dataType]
-   * @property {string} [dataSourceEntity.timestampAttribute.dataType.clrType]
-   * Gets the CLR Type for this property type.
-   * @property {string} [dataSourceEntity.timestampAttribute.dataType.cdsaType]
-   * Possible values include: 'unclassified', 'string', 'int64', 'double',
-   * 'dateTime', 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
-   * @property {string}
-   * [dataSourceEntity.timestampAttribute.dataType.edmTypeName] Gets the EDM
-   * type name for the property type, in the format EdmTypeKind>".
-   * @property {boolean}
-   * [dataSourceEntity.timestampAttribute.dataType.isBoolean]
-   * @property {boolean}
-   * [dataSourceEntity.timestampAttribute.dataType.isDateTime]
-   * @property {boolean}
-   * [dataSourceEntity.timestampAttribute.dataType.isDecimal]
-   * @property {boolean}
-   * [dataSourceEntity.timestampAttribute.dataType.isNumber]
-   * @property {boolean}
-   * [dataSourceEntity.timestampAttribute.dataType.isValidType] Gets a value
-   * indicating whether this type valid and supported by the runtime.
-   * @property {string} [dataSourceEntity.timestampAttribute.dataType.name]
-   * Gets the name of the property type. Will default to the EdmTypeName but
-   * may be overridden by a property
-   * type.
-   * @property {object}
-   * [dataSourceEntity.timestampAttribute.dataType.equalityComparer]
-   * @property {object} [dataSourceEntity.timestampAttribute.dataType.comparer]
-   * @property {object}
-   * [dataSourceEntity.timestampAttribute.dataType.oDataType]
-   * @property {string}
-   * [dataSourceEntity.timestampAttribute.dataType.oDataType.typeKind] Possible
-   * values include: 'none', 'primitive', 'entity', 'complex', 'collection',
-   * 'entityReference', 'enum', 'typeDefinition', 'untyped', 'path'
-   * @property {boolean}
-   * [dataSourceEntity.timestampAttribute.dataType.isCollection]
-   * @property {string} [dataSourceEntity.timestampAttribute.semanticType]
-   * Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
-   * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
-   * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
-   * 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
-   * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
-   * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
-   * 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
-   * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
-   * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
-   * 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit',
-   * 'Person', 'Product', 'ProductGroup', 'LocationAddress',
-   * 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
-   * 'LocationCountry', 'LocationCounty', 'LocationLatitude',
-   * 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
-   * 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone',
-   * 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus',
-   * 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID',
-   * 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+   * @property {string} [dataSourceEntity.timestampAttribute.dataType] Gets
+   * data type for property.
+   * @property {string} [dataSourceEntity.timestampAttribute.semanticType] Gets
+   * semantic type for property. Possible values include: 'CalendarDate',
+   * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
+   * 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
+   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
+   * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
+   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
+   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
+   * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
+   * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
+   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+   * 'LocationContinent', 'LocationCountry', 'LocationCounty',
+   * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+   * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+   * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
+   * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
+   * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
+   * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
    * 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone',
    * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
    * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'
@@ -269,64 +189,28 @@ class IRelationshipMetadata {
    * @property {string} [dataSourceEntity.incrementalAttribute.name]
    * @property {string} [dataSourceEntity.incrementalAttribute.friendlyName]
    * @property {string} [dataSourceEntity.incrementalAttribute.baseName]
-   * @property {object} [dataSourceEntity.incrementalAttribute.dataType]
-   * @property {string}
-   * [dataSourceEntity.incrementalAttribute.dataType.clrType] Gets the CLR Type
-   * for this property type.
-   * @property {string}
-   * [dataSourceEntity.incrementalAttribute.dataType.cdsaType] Possible values
-   * include: 'unclassified', 'string', 'int64', 'double', 'dateTime',
-   * 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
-   * @property {string}
-   * [dataSourceEntity.incrementalAttribute.dataType.edmTypeName] Gets the EDM
-   * type name for the property type, in the format EdmTypeKind>".
-   * @property {boolean}
-   * [dataSourceEntity.incrementalAttribute.dataType.isBoolean]
-   * @property {boolean}
-   * [dataSourceEntity.incrementalAttribute.dataType.isDateTime]
-   * @property {boolean}
-   * [dataSourceEntity.incrementalAttribute.dataType.isDecimal]
-   * @property {boolean}
-   * [dataSourceEntity.incrementalAttribute.dataType.isNumber]
-   * @property {boolean}
-   * [dataSourceEntity.incrementalAttribute.dataType.isValidType] Gets a value
-   * indicating whether this type valid and supported by the runtime.
-   * @property {string} [dataSourceEntity.incrementalAttribute.dataType.name]
-   * Gets the name of the property type. Will default to the EdmTypeName but
-   * may be overridden by a property
-   * type.
-   * @property {object}
-   * [dataSourceEntity.incrementalAttribute.dataType.equalityComparer]
-   * @property {object}
-   * [dataSourceEntity.incrementalAttribute.dataType.comparer]
-   * @property {object}
-   * [dataSourceEntity.incrementalAttribute.dataType.oDataType]
-   * @property {string}
-   * [dataSourceEntity.incrementalAttribute.dataType.oDataType.typeKind]
-   * Possible values include: 'none', 'primitive', 'entity', 'complex',
-   * 'collection', 'entityReference', 'enum', 'typeDefinition', 'untyped',
-   * 'path'
-   * @property {boolean}
-   * [dataSourceEntity.incrementalAttribute.dataType.isCollection]
+   * @property {string} [dataSourceEntity.incrementalAttribute.dataType] Gets
+   * data type for property.
    * @property {string} [dataSourceEntity.incrementalAttribute.semanticType]
-   * Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
-   * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
-   * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
-   * 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
-   * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
-   * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
-   * 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
-   * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
-   * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
-   * 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit',
-   * 'Person', 'Product', 'ProductGroup', 'LocationAddress',
-   * 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
-   * 'LocationCountry', 'LocationCounty', 'LocationLatitude',
-   * 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
-   * 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone',
-   * 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus',
-   * 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID',
-   * 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+   * Gets semantic type for property. Possible values include: 'CalendarDate',
+   * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
+   * 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
+   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
+   * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
+   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
+   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
+   * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
+   * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
+   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+   * 'LocationContinent', 'LocationCountry', 'LocationCounty',
+   * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+   * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+   * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
+   * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
+   * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
+   * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
    * 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone',
    * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
    * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'

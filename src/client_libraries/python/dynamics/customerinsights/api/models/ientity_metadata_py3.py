@@ -30,8 +30,8 @@ class IEntityMetadata(Model):
      'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
      'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
      'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
-     'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub',
-     'insights', 'derivedEntity'
+     'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
+     'derivedEntity', 'powerPlatformSource'
     :type dataflow_type: str or ~dynamics.customerinsights.api.models.enum
     :ivar datasource_id: Gets the original datasourceid of this entity, if no
      data source, return null or emptyString

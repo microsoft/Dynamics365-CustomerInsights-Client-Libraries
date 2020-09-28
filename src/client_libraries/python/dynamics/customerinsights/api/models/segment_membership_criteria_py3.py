@@ -20,7 +20,7 @@ class SegmentMembershipCriteria(Model):
      'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
      'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
      'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-     'isNotBetween', 'yearToDate'
+     'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
     :type comparison_operator: str or
      ~dynamics.customerinsights.api.models.enum
     :param child_criterias: Gets the list of Child criteria of segment.

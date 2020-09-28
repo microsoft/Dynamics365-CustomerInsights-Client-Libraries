@@ -29,7 +29,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets the specific attribute profile for the entity.
+   * @summary GetAttributeProfile
    *
    * Gets the specific attribute profile for the entity.
    *
@@ -53,7 +53,7 @@ export default class CustomerInsights extends ServiceClient {
   getAnAttributeProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, attributeName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets the specific attribute profile for the entity.
+   * @summary GetAttributeProfile
    *
    * Gets the specific attribute profile for the entity.
    *
@@ -95,11 +95,10 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Fetches a collection of DataSourceInfo configured for the Customer
-   * Insights instance.
+   * @summary GetAllDataSources
    *
-   * Fetches a collection of DataSourceInfo configured for the Customer Insights
-   * instance.
+   * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+   * configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id for which to fetch
    * data source info.
@@ -118,11 +117,10 @@ export default class CustomerInsights extends ServiceClient {
   getAllDataSourcesWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Fetches a collection of DataSourceInfo configured for the Customer
-   * Insights instance.
+   * @summary GetAllDataSources
    *
-   * Fetches a collection of DataSourceInfo configured for the Customer Insights
-   * instance.
+   * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+   * configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id for which to fetch
    * data source info.
@@ -159,11 +157,10 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Fetches a DataSourceInfo matching the dataSourceId configured for
-   * the Customer Insights instance.
+   * @summary GetDataSource
    *
-   * Fetches a DataSourceInfo matching the dataSourceId configured for the
-   * Customer Insights instance.
+   * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+   * dataSourceId configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id to fetch data
    * source info for.
@@ -185,11 +182,10 @@ export default class CustomerInsights extends ServiceClient {
   getDataSourceWithHttpOperationResponse(instanceId: string, dataSourceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Fetches a DataSourceInfo matching the dataSourceId configured for
-   * the Customer Insights instance.
+   * @summary GetDataSource
    *
-   * Fetches a DataSourceInfo matching the dataSourceId configured for the
-   * Customer Insights instance.
+   * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+   * dataSourceId configured for the Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id to fetch data
    * source info for.
@@ -229,7 +225,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Deletes a data source from the instance.
+   * @summary DeleteDataSource
    *
    * Deletes a data source from the instance.
    *
@@ -251,7 +247,7 @@ export default class CustomerInsights extends ServiceClient {
   deleteADataSourceWithHttpOperationResponse(instanceId: string, dataSourceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Deletes a data source from the instance.
+   * @summary DeleteDataSource
    *
    * Deletes a data source from the instance.
    *
@@ -291,10 +287,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Writes an entity instance into the store, g. an activity entity.
-   * (Preview)
+   * @summary CreateEntity (Preview)
    *
-   * Writes an entity instance into the store, g. an activity entity. (Preview)
+   * Writes an entity instance into the store, e.g. an activity entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -326,10 +321,9 @@ export default class CustomerInsights extends ServiceClient {
   createAnEntityWithHttpOperationResponse(instanceId: string, entityName: string, options?: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Writes an entity instance into the store, g. an activity entity.
-   * (Preview)
+   * @summary CreateEntity (Preview)
    *
-   * Writes an entity instance into the store, g. an activity entity. (Preview)
+   * Writes an entity instance into the store, e.g. an activity entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -379,10 +373,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Updates an entity instance in the store, g. Customer entity.
-   * (Preview)
+   * @summary UpdateEntity (Preview)
    *
-   * Updates an entity instance in the store, g. Customer entity. (Preview)
+   * Updates an entity instance in the store, e.g. Customer entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -416,10 +409,9 @@ export default class CustomerInsights extends ServiceClient {
   updateAnEntityWithHttpOperationResponse(instanceId: string, entityName: string, entityId: string, options?: { body? : string, validUntil? : string, caller? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Updates an entity instance in the store, g. Customer entity.
-   * (Preview)
+   * @summary UpdateEntity (Preview)
    *
-   * Updates an entity instance in the store, g. Customer entity. (Preview)
+   * Updates an entity instance in the store, e.g. Customer entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -471,7 +463,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Submits an OData request to the service.
+   * @summary GetEntityByODataQuery
    *
    * Submits an OData request to the service.
    *
@@ -516,7 +508,7 @@ export default class CustomerInsights extends ServiceClient {
   getEntitiesWithODataPathWithHttpOperationResponse(instanceId: string, relativePath: string, options?: { forceSearch? : boolean, proxy? : boolean, search? : string, select? : string, skip? : string, skiptoken? : string, filter? : string, orderby? : string, expand? : string, top? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Submits an OData request to the service.
+   * @summary GetEntityByODataQuery
    *
    * Submits an OData request to the service.
    *
@@ -579,7 +571,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves the flattened entity model for the provided instanceId.
+   * @summary GetAllEntitiesMetadata
    *
    * Retrieves the flattened entity model for the provided instanceId.
    *
@@ -605,7 +597,7 @@ export default class CustomerInsights extends ServiceClient {
   getAllEntityMetadataWithHttpOperationResponse(instanceId: string, options?: { attributesAnnotations? : boolean, includeQuarantined? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves the flattened entity model for the provided instanceId.
+   * @summary GetAllEntitiesMetadata
    *
    * Retrieves the flattened entity model for the provided instanceId.
    *
@@ -649,8 +641,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves the entity metadata for the provided instanceId and
-   * entityName.
+   * @summary GetEntityMetadata
    *
    * Retrieves the entity metadata for the provided instanceId and entityName.
    *
@@ -675,8 +666,7 @@ export default class CustomerInsights extends ServiceClient {
   getEntityMetadataWithHttpOperationResponse(instanceId: string, entityName: string, options?: { attributesAnnotations? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves the entity metadata for the provided instanceId and
-   * entityName.
+   * @summary GetEntityMetadata
    *
    * Retrieves the entity metadata for the provided instanceId and entityName.
    *
@@ -719,8 +709,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves the entity size for the provided instanceId and
-   * entityName.
+   * @summary GetEntitySize
    *
    * Retrieves the entity size for the provided instanceId and entityName.
    *
@@ -742,8 +731,7 @@ export default class CustomerInsights extends ServiceClient {
   getEntitySizeWithHttpOperationResponse(instanceId: string, entityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves the entity size for the provided instanceId and
-   * entityName.
+   * @summary GetEntitySize
    *
    * Retrieves the entity size for the provided instanceId and entityName.
    *
@@ -783,11 +771,10 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
+   * @summary ResetInstance (Preview)
    *
    * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
+   * scope to reset only that scope.
    *
    * @param {string} instanceId Format - uuid. The instance Id.
    *
@@ -808,11 +795,10 @@ export default class CustomerInsights extends ServiceClient {
   resetAnInstanceWithHttpOperationResponse(instanceId: string, options?: { instanceManagementOperationScope? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
+   * @summary ResetInstance (Preview)
    *
    * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
+   * scope to reset only that scope.
    *
    * @param {string} instanceId Format - uuid. The instance Id.
    *
@@ -851,75 +837,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
-   *
-   * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
-   *
-   * @param {string} instanceId Format - uuid. The instance Id.
-   *
-   * @param {string} instanceManagementOperationScope The management operation
-   * scope for reset.
-   *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {object} [options.customHeaders] Headers that will be added to the
-   * request
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
-   *
-   * @reject {Error|ServiceError} - The error object.
-   */
-  resetInstanceForScopeWithHttpOperationResponse(instanceId: string, instanceManagementOperationScope: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
-
-  /**
-   * @summary Reset scopes in the given instance. Provide optional management
-   * operation scope to reset only that scope. (Preview)
-   *
-   * Reset scopes in the given instance. Provide optional management operation
-   * scope to reset only that scope. (Preview)
-   *
-   * @param {string} instanceId Format - uuid. The instance Id.
-   *
-   * @param {string} instanceManagementOperationScope The management operation
-   * scope for reset.
-   *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {object} [options.customHeaders] Headers that will be added to the
-   * request
-   *
-   * @param {ServiceCallback} [optionalCallback] - The optional callback.
-   *
-   * @returns {ServiceCallback|Promise} If a callback was passed as the last
-   * parameter then it returns the callback else returns a Promise.
-   *
-   * {Promise} A promise is returned.
-   *
-   *                      @resolve {Object} - The deserialized result object.
-   *
-   *                      @reject {Error|ServiceError} - The error object.
-   *
-   * {ServiceCallback} optionalCallback(err, result, request, response)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {Object} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-   */
-  resetInstanceForScope(instanceId: string, instanceManagementOperationScope: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
-  resetInstanceForScope(instanceId: string, instanceManagementOperationScope: string, callback: ServiceCallback<any>): void;
-  resetInstanceForScope(instanceId: string, instanceManagementOperationScope: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
-
-
-  /**
-   * @summary Retrieves all instances of the current user.
+   * @summary ListAllInstances
    *
    * Retrieves all instances of the current user.
    *
@@ -937,7 +855,7 @@ export default class CustomerInsights extends ServiceClient {
   getAllInstancesWithHttpOperationResponse(options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves all instances of the current user.
+   * @summary ListAllInstances
    *
    * Retrieves all instances of the current user.
    *
@@ -973,8 +891,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves instances based on instance ids, it can only accept batch
-   * of instances.
+   * @summary ListInstancesByInstanceIds
    *
    * Retrieves instances based on instance ids, it can only accept batch of
    * instances.
@@ -995,8 +912,7 @@ export default class CustomerInsights extends ServiceClient {
   getAllInstancesInBatchesByInstanceidsWithHttpOperationResponse(options?: { body? : string[], customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves instances based on instance ids, it can only accept batch
-   * of instances.
+   * @summary ListInstancesByInstanceIds
    *
    * Retrieves instances based on instance ids, it can only accept batch of
    * instances.
@@ -1035,8 +951,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves metadata for a Customer Insights instance based on its
-   * instanceId.
+   * @summary GetInstance
    *
    * Retrieves metadata for a Customer Insights instance based on its instanceId.
    *
@@ -1057,8 +972,7 @@ export default class CustomerInsights extends ServiceClient {
   getInstanceMetadataWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves metadata for a Customer Insights instance based on its
-   * instanceId.
+   * @summary GetInstance
    *
    * Retrieves metadata for a Customer Insights instance based on its instanceId.
    *
@@ -1097,9 +1011,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Detele an instance.
+   * @summary DeleteInstance
    *
-   * Detele an instance.
+   * Delete an instance.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -1117,9 +1031,9 @@ export default class CustomerInsights extends ServiceClient {
   deleteAnInstanceWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Detele an instance.
+   * @summary DeleteInstance
    *
-   * Detele an instance.
+   * Delete an instance.
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -1155,7 +1069,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Creates a new instance.
+   * @summary CreateInstance
    *
    * Creates a new instance.
    *
@@ -1222,13 +1136,13 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1245,7 +1159,7 @@ export default class CustomerInsights extends ServiceClient {
   createAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Creates a new instance.
+   * @summary CreateInstance
    *
    * Creates a new instance.
    *
@@ -1312,13 +1226,13 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1353,8 +1267,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Patches the Market Verticals, Display name, Domain Name, CDS
-   * environment and BYOSA secret to the instance.
+   * @summary UpdateInstance
    *
    * Patches the Market Verticals, Display name, Domain Name, CDS environment and
    * BYOSA secret to the instance.
@@ -1424,13 +1337,13 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1447,8 +1360,7 @@ export default class CustomerInsights extends ServiceClient {
   updateAnInstanceWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Patches the Market Verticals, Display name, Domain Name, CDS
-   * environment and BYOSA secret to the instance.
+   * @summary UpdateInstance
    *
    * Patches the Market Verticals, Display name, Domain Name, CDS environment and
    * BYOSA secret to the instance.
@@ -1518,13 +1430,13 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1559,7 +1471,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Create a new instance and copy metadata from an existing instance.
+   * @summary CopyInstance
    *
    * Create a new instance and copy metadata from an existing instance.
    *
@@ -1629,13 +1541,13 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1652,7 +1564,7 @@ export default class CustomerInsights extends ServiceClient {
   copyAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Create a new instance and copy metadata from an existing instance.
+   * @summary CopyInstance
    *
    * Create a new instance and copy metadata from an existing instance.
    *
@@ -1722,13 +1634,13 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds'
+   * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1763,9 +1675,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves a list of measures metadata for the provided instanceId.
+   * @summary ListAllMeasuresMetadata
    *
-   * Retrieves a list of measures metadata for the provided instanceId.
+   * ListAllMeasuresMetadata
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -1783,9 +1695,9 @@ export default class CustomerInsights extends ServiceClient {
   getAListOfMeasuresMetadataWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves a list of measures metadata for the provided instanceId.
+   * @summary ListAllMeasuresMetadata
    *
-   * Retrieves a list of measures metadata for the provided instanceId.
+   * ListAllMeasuresMetadata
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -1821,9 +1733,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Create new measure metadata with measureMetadata on instanceId.
+   * @summary CreateMeasure
    *
-   * Create new measure metadata with measureMetadata on instanceId.
+   * CreateMeasure
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -1863,7 +1775,8 @@ export default class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2056,9 +1969,9 @@ export default class CustomerInsights extends ServiceClient {
   createAMeasureWithHttpOperationResponse(instanceId: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Create new measure metadata with measureMetadata on instanceId.
+   * @summary CreateMeasure
    *
-   * Create new measure metadata with measureMetadata on instanceId.
+   * CreateMeasure
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -2098,7 +2011,8 @@ export default class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2309,8 +2223,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves the measure metadata for the provided instanceId and
-   * measureName.
+   * @summary GetMeasureMetadata
    *
    * Retrieves the measure metadata for the provided instanceId and measureName.
    *
@@ -2337,8 +2250,7 @@ export default class CustomerInsights extends ServiceClient {
   getMetadataForAMeasureWithHttpOperationResponse(instanceId: string, measureName: string, options?: { includeHistoricStats? : boolean, historicStatsDays? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves the measure metadata for the provided instanceId and
-   * measureName.
+   * @summary GetMeasureMetadata
    *
    * Retrieves the measure metadata for the provided instanceId and measureName.
    *
@@ -2383,9 +2295,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Updates measures metadata for the provided instanceId and
-   * measureMetadata.
-   * Existing measure is retrieved using measureName.
+   * @summary UpdateMeasure
    *
    * Updates measures metadata for the provided instanceId and measureMetadata.
    * Existing measure is retrieved using measureName.
@@ -2430,7 +2340,8 @@ export default class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2623,9 +2534,7 @@ export default class CustomerInsights extends ServiceClient {
   updateAMeasureWithHttpOperationResponse(instanceId: string, measureName: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Updates measures metadata for the provided instanceId and
-   * measureMetadata.
-   * Existing measure is retrieved using measureName.
+   * @summary UpdateMeasure
    *
    * Updates measures metadata for the provided instanceId and measureMetadata.
    * Existing measure is retrieved using measureName.
@@ -2670,7 +2579,8 @@ export default class CustomerInsights extends ServiceClient {
    * values include: 'equals', 'notEquals', 'greaterThan',
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
-   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
+   * 'monthOf', 'yearOf', 'dayOfWeek'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2881,8 +2791,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Deletes the measure metadata for the provided instanceId using
-   * measureName.
+   * @summary DeleteMeasure
    *
    * Deletes the measure metadata for the provided instanceId using measureName.
    *
@@ -2904,8 +2813,7 @@ export default class CustomerInsights extends ServiceClient {
   deleteAMeasureWithHttpOperationResponse(instanceId: string, measureName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Deletes the measure metadata for the provided instanceId using
-   * measureName.
+   * @summary DeleteMeasure
    *
    * Deletes the measure metadata for the provided instanceId using measureName.
    *
@@ -2945,8 +2853,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets the KeyRing (collection of all alternate keys) for the given
-   * instance by alternate key.
+   * @summary GetKeyRing
    *
    * Gets the KeyRing (collection of all alternate keys) for the given instance
    * by alternate key.
@@ -2968,15 +2875,14 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<ApiErrorResult>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getKeyRingWithHttpOperationResponse(instanceId: string, dataSourceName: string, entityName: string, key: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.ApiErrorResult>>;
+  getKeyRingWithHttpOperationResponse(instanceId: string, dataSourceName: string, entityName: string, key: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets the KeyRing (collection of all alternate keys) for the given
-   * instance by alternate key.
+   * @summary GetKeyRing
    *
    * Gets the KeyRing (collection of all alternate keys) for the given instance
    * by alternate key.
@@ -3003,7 +2909,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * {Promise} A promise is returned.
    *
-   *                      @resolve {ApiErrorResult} - The deserialized result object.
+   *                      @resolve {Object} - The deserialized result object.
    *
    *                      @reject {Error|ServiceError} - The error object.
    *
@@ -3011,20 +2917,19 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {ApiErrorResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link ApiErrorResult} for more information.
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getKeyRing(instanceId: string, dataSourceName: string, entityName: string, key: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.ApiErrorResult>;
-  getKeyRing(instanceId: string, dataSourceName: string, entityName: string, key: string, callback: ServiceCallback<models.ApiErrorResult>): void;
-  getKeyRing(instanceId: string, dataSourceName: string, entityName: string, key: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.ApiErrorResult>): void;
+  getKeyRing(instanceId: string, dataSourceName: string, entityName: string, key: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getKeyRing(instanceId: string, dataSourceName: string, entityName: string, key: string, callback: ServiceCallback<any>): void;
+  getKeyRing(instanceId: string, dataSourceName: string, entityName: string, key: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
-   * @summary Gets the profile store state infoformation.
+   * @summary GetProfileStoreState
    *
    * Gets the profile store state infoformation.
    *
@@ -3044,7 +2949,7 @@ export default class CustomerInsights extends ServiceClient {
   getProfileStoreStateWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets the profile store state infoformation.
+   * @summary GetProfileStoreState
    *
    * Gets the profile store state infoformation.
    *
@@ -3082,7 +2987,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Get all role definitions.
+   * @summary ListAllRoles
    *
    * Get all role definitions.
    *
@@ -3102,7 +3007,7 @@ export default class CustomerInsights extends ServiceClient {
   getAllRoleDefinitionsWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleDefinition[]>>;
 
   /**
-   * @summary Get all role definitions.
+   * @summary ListAllRoles
    *
    * Get all role definitions.
    *
@@ -3140,7 +3045,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Get role of current user.
+   * @summary GetCurrentUserRole
    *
    * Get role of current user.
    *
@@ -3160,7 +3065,7 @@ export default class CustomerInsights extends ServiceClient {
   getCurrentUserRoleWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleAssignment>>;
 
   /**
-   * @summary Get role of current user.
+   * @summary GetCurrentUserRole
    *
    * Get role of current user.
    *
@@ -3199,7 +3104,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Adds or updates a role assignment for a principal.
+   * @summary UpdateRoleAssignment
    *
    * Adds or updates a role assignment for a principal.
    *
@@ -3230,7 +3135,7 @@ export default class CustomerInsights extends ServiceClient {
   updateARoleAssignmentWithHttpOperationResponse(instanceId: string, principalId: string, options?: { body? : models.RoleAssignment, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleAssignment[]>>;
 
   /**
-   * @summary Adds or updates a role assignment for a principal.
+   * @summary UpdateRoleAssignment
    *
    * Adds or updates a role assignment for a principal.
    *
@@ -3279,7 +3184,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Deletes a role assignment for the principal.
+   * @summary DeleteRoleAssignment
    *
    * Deletes a role assignment for the principal.
    *
@@ -3301,7 +3206,7 @@ export default class CustomerInsights extends ServiceClient {
   deletesARoleAssignmentWithHttpOperationResponse(instanceId: string, principalId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<void>>;
 
   /**
-   * @summary Deletes a role assignment for the principal.
+   * @summary DeleteRoleAssignment
    *
    * Deletes a role assignment for the principal.
    *
@@ -3341,7 +3246,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets all role assignments for the instance.
+   * @summary ListAllRoleAssignments
    *
    * Gets all role assignments for the instance.
    *
@@ -3361,7 +3266,7 @@ export default class CustomerInsights extends ServiceClient {
   getAllRoleAssignmentsWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleAssignment[]>>;
 
   /**
-   * @summary Gets all role assignments for the instance.
+   * @summary ListAllRoleAssignments
    *
    * Gets all role assignments for the instance.
    *
@@ -3399,7 +3304,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets all relationship metadata for the provided instanceId.
+   * @summary ListAllRelationships
    *
    * Gets all relationship metadata for the provided instanceId.
    *
@@ -3419,7 +3324,7 @@ export default class CustomerInsights extends ServiceClient {
   getAllRelationshipsWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets all relationship metadata for the provided instanceId.
+   * @summary ListAllRelationships
    *
    * Gets all relationship metadata for the provided instanceId.
    *
@@ -3457,8 +3362,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Creates new relationship metadata for the provided instanceId,
-   * using input.
+   * @summary CreateRelationship
    *
    * Creates new relationship metadata for the provided instanceId, using input.
    *
@@ -3507,8 +3411,7 @@ export default class CustomerInsights extends ServiceClient {
   createARelationshipWithHttpOperationResponse(instanceId: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Creates new relationship metadata for the provided instanceId,
-   * using input.
+   * @summary CreateRelationship
    *
    * Creates new relationship metadata for the provided instanceId, using input.
    *
@@ -3575,8 +3478,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary GetRelationship
    *
    * Gets the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -3599,8 +3501,7 @@ export default class CustomerInsights extends ServiceClient {
   getARelationshipWithHttpOperationResponse(instanceId: string, relationshipName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary GetRelationship
    *
    * Gets the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -3641,8 +3542,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Deletes the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary DeleteRelationship
    *
    * Deletes the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -3665,8 +3565,7 @@ export default class CustomerInsights extends ServiceClient {
   deleteARelationshipWithHttpOperationResponse(instanceId: string, relationshipName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Deletes the relationship metadata for the provided instanceId and
-   * relationshipName.
+   * @summary DeleteRelationship
    *
    * Deletes the relationship metadata for the provided instanceId and
    * relationshipName.
@@ -3707,8 +3606,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Updates the relationship metadata for the provided instanceId and
-   * relationshipName, using input.
+   * @summary UpdateRelationshhip
    *
    * Updates the relationship metadata for the provided instanceId and
    * relationshipName, using input.
@@ -3760,8 +3658,7 @@ export default class CustomerInsights extends ServiceClient {
   updateARelationshipWithHttpOperationResponse(instanceId: string, relationshipName: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Updates the relationship metadata for the provided instanceId and
-   * relationshipName, using input.
+   * @summary UpdateRelationshhip
    *
    * Updates the relationship metadata for the provided instanceId and
    * relationshipName, using input.
@@ -3831,7 +3728,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets the search configuration for the instance.
+   * @summary GetSearchConfiguration
    *
    * Gets the search configuration for the instance.
    *
@@ -3851,7 +3748,7 @@ export default class CustomerInsights extends ServiceClient {
   getSearchConfigurationWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets the search configuration for the instance.
+   * @summary GetSearchConfiguration
    *
    * Gets the search configuration for the instance.
    *
@@ -3889,9 +3786,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Updates the search configuration for the instance.
+   * @summary UpdateSearchConfiguration
    *
-   * Updates the search configuration for the instance.
+   * UpdateSearchConfiguration
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -3917,9 +3814,9 @@ export default class CustomerInsights extends ServiceClient {
   updateSearchConfigurationWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstanceSearchConfiguration, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Updates the search configuration for the instance.
+   * @summary UpdateSearchConfiguration
    *
-   * Updates the search configuration for the instance.
+   * UpdateSearchConfiguration
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -3963,7 +3860,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves a list of segment metadata for the provided instanceId.
+   * @summary ListAllSegments
    *
    * Retrieves a list of segment metadata for the provided instanceId.
    *
@@ -3989,7 +3886,7 @@ export default class CustomerInsights extends ServiceClient {
   getAllSegmentsWithHttpOperationResponse(instanceId: string, options?: { includeHistoricStats? : boolean, historicStatsDays? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves a list of segment metadata for the provided instanceId.
+   * @summary ListAllSegments
    *
    * Retrieves a list of segment metadata for the provided instanceId.
    *
@@ -4033,9 +3930,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Create new segment metadata with segmentMetadata on instanceId.
+   * @summary CreateSegment
    *
-   * Create new segment metadata with segmentMetadata on instanceId.
+   * CreateSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -4227,9 +4124,9 @@ export default class CustomerInsights extends ServiceClient {
   createASegmentWithHttpOperationResponse(instanceId: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Create new segment metadata with segmentMetadata on instanceId.
+   * @summary CreateSegment
    *
-   * Create new segment metadata with segmentMetadata on instanceId.
+   * CreateSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -4439,7 +4336,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Activate segment on instanceId with segmentName.
+   * @summary ActivateSegment
    *
    * Activate segment on instanceId with segmentName.
    *
@@ -4461,7 +4358,7 @@ export default class CustomerInsights extends ServiceClient {
   activateSegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Activate segment on instanceId with segmentName.
+   * @summary ActivateSegment
    *
    * Activate segment on instanceId with segmentName.
    *
@@ -4501,7 +4398,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Deactivate segment on instanceId with segmentName.
+   * @summary DeactivateSegment
    *
    * Deactivate segment on instanceId with segmentName.
    *
@@ -4523,7 +4420,7 @@ export default class CustomerInsights extends ServiceClient {
   deactivateSegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Deactivate segment on instanceId with segmentName.
+   * @summary DeactivateSegment
    *
    * Deactivate segment on instanceId with segmentName.
    *
@@ -4563,8 +4460,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Updates segment metadata for the provided instanceId and
-   * segmentName with segmentMetadata.
+   * @summary UpdateSegments
    *
    * Updates segment metadata for the provided instanceId and segmentName with
    * segmentMetadata.
@@ -4761,8 +4657,7 @@ export default class CustomerInsights extends ServiceClient {
   updateASegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Updates segment metadata for the provided instanceId and
-   * segmentName with segmentMetadata.
+   * @summary UpdateSegments
    *
    * Updates segment metadata for the provided instanceId and segmentName with
    * segmentMetadata.
@@ -4977,10 +4872,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Deletes the segment metadata for the provided instanceId and
-   * segmentName.
+   * @summary DeleteSegment
    *
-   * Deletes the segment metadata for the provided instanceId and segmentName.
+   * DeleteSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -5000,10 +4894,9 @@ export default class CustomerInsights extends ServiceClient {
   deleteSegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Deletes the segment metadata for the provided instanceId and
-   * segmentName.
+   * @summary DeleteSegment
    *
-   * Deletes the segment metadata for the provided instanceId and segmentName.
+   * DeleteSegment
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
@@ -5041,9 +4934,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieve information about a workflow job.
+   * @summary GetWorkflowJobInformation
    *
-   * Retrieve information about a workflow job.
+   * GetWorkflowJobInformation
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5067,9 +4960,9 @@ export default class CustomerInsights extends ServiceClient {
   getAWorkflowJobInformationWithHttpOperationResponse(instanceId: string, workflowName: string, jobId: string, options?: { includeTasks? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieve information about a workflow job.
+   * @summary GetWorkflowJobInformation
    *
-   * Retrieve information about a workflow job.
+   * GetWorkflowJobInformation
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5111,7 +5004,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Cancel a job.
+   * @summary CancelWorkflowJob
    *
    * Cancel a job.
    *
@@ -5135,7 +5028,7 @@ export default class CustomerInsights extends ServiceClient {
   cancelAWorkflowJobWithHttpOperationResponse(instanceId: string, workflowName: string, jobId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Cancel a job.
+   * @summary CancelWorkflowJob
    *
    * Cancel a job.
    *
@@ -5177,7 +5070,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves a list of recent job information.
+   * @summary ListWorkFlowJobs
    *
    * Retrieves a list of recent job information.
    *
@@ -5204,7 +5097,7 @@ export default class CustomerInsights extends ServiceClient {
   getListOfRecentWorkflowJobsWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { top? : number, includeTasks? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves a list of recent job information.
+   * @summary ListWorkFlowJobs
    *
    * Retrieves a list of recent job information.
    *
@@ -5249,16 +5142,14 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Submits a workflow of OperationTypeoperationType for the instance
-   * specified in instanceId.
-   * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * @summary SubmitWorkflowJob
    * forceRunRequested indicating whether to force run.
    *
-   * Submits a workflow of OperationTypeoperationType for the instance specified
-   * in instanceId.
+   * Submits a workflow of
+   * Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+   * instance specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
    * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
@@ -5309,16 +5200,14 @@ export default class CustomerInsights extends ServiceClient {
   submitAWorkflowJobWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.OnDemandJobRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Submits a workflow of OperationTypeoperationType for the instance
-   * specified in instanceId.
-   * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * @summary SubmitWorkflowJob
    * forceRunRequested indicating whether to force run.
    *
-   * Submits a workflow of OperationTypeoperationType for the instance specified
-   * in instanceId.
+   * Submits a workflow of
+   * Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+   * instance specified in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
-   * OperationType.All and a flag
+   * Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
    * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
@@ -5387,7 +5276,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Retrieves a list of historic task information for a workflow.
+   * @summary ListWorkflowHistory
    *
    * Retrieves a list of historic task information for a workflow.
    *
@@ -5412,7 +5301,7 @@ export default class CustomerInsights extends ServiceClient {
   getListOfWorkflowTaskInformationHistoryWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { top? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Retrieves a list of historic task information for a workflow.
+   * @summary ListWorkflowHistory
    *
    * Retrieves a list of historic task information for a workflow.
    *
@@ -5455,7 +5344,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets the current status for a workflow.
+   * @summary GetWorkflowStatus
    *
    * Gets the current status for a workflow.
    *
@@ -5477,7 +5366,7 @@ export default class CustomerInsights extends ServiceClient {
   getWorkflowStatusWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets the current status for a workflow.
+   * @summary GetWorkflowStatus
    *
    * Gets the current status for a workflow.
    *
@@ -5517,7 +5406,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets a list of supported timezones for creating workflow schedules.
+   * @summary ListSupportedTimezones
    *
    * Gets a list of supported timezones for creating workflow schedules.
    *
@@ -5539,7 +5428,7 @@ export default class CustomerInsights extends ServiceClient {
   getSupportedTimezonesWithHttpOperationResponse(workflowName: string, instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets a list of supported timezones for creating workflow schedules.
+   * @summary ListSupportedTimezones
    *
    * Gets a list of supported timezones for creating workflow schedules.
    *
@@ -5579,9 +5468,9 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets all workflow refresh schedules.
+   * @summary ListAllWorkflowSchedules
    *
-   * Gets all workflow refresh schedules.
+   * ListAllWorkflowSchedules
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5601,9 +5490,9 @@ export default class CustomerInsights extends ServiceClient {
   getWorkflowSchedulesWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets all workflow refresh schedules.
+   * @summary ListAllWorkflowSchedules
    *
-   * Gets all workflow refresh schedules.
+   * ListAllWorkflowSchedules
    *
    * @param {string} instanceId Format - uuid. The instance id.
    *
@@ -5641,7 +5530,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Create a workflow refresh schedule.
+   * @summary CreateWorkflowRefreshSchedule
    *
    * Create a workflow refresh schedule.
    *
@@ -5681,7 +5570,7 @@ export default class CustomerInsights extends ServiceClient {
   createWorkflowRefreshScheduleWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Create a workflow refresh schedule.
+   * @summary CreateWorkflowRefreshSchedule
    *
    * Create a workflow refresh schedule.
    *
@@ -5739,7 +5628,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary Gets the entityProfile for the entity.
+   * @summary GetEntityProfile
    *
    * Gets the entityProfile for the entity.
    *
@@ -5761,7 +5650,7 @@ export default class CustomerInsights extends ServiceClient {
   getAnEntityProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary Gets the entityProfile for the entity.
+   * @summary GetEntityProfile
    *
    * Gets the entityProfile for the entity.
    *

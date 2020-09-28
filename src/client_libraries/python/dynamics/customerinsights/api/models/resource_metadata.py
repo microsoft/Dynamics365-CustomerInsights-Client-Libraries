@@ -17,7 +17,8 @@ class ResourceMetadata(Model):
     :param kind: Possible values include: 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
      'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-     'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+     'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds',
+     'marketo'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :ivar resource_id: Gets the Id of the resource.
     :vartype resource_id: str
@@ -28,7 +29,7 @@ class ResourceMetadata(Model):
      'cds', 'ftp', 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
      'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-     'googleAds'
+     'googleAds', 'marketo'
     :type resource_type: str or ~dynamics.customerinsights.api.models.enum
     :ivar name: Gets the Name of the resource.
     :vartype name: str

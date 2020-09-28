@@ -29,7 +29,8 @@ public class SegmentMembershipCriteria {
      * Possible values include: 'equals', 'notEquals', 'greaterThan',
      * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any',
      * 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all',
-     * 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'.
+     * 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
+     * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'.
      */
     @JsonProperty(value = "comparisonOperator")
     private String comparisonOperator;
@@ -99,7 +100,7 @@ public class SegmentMembershipCriteria {
     }
 
     /**
-     * Get possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'.
+     * Get possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'.
      *
      * @return the comparisonOperator value
      */
@@ -108,7 +109,7 @@ public class SegmentMembershipCriteria {
     }
 
     /**
-     * Set possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'.
+     * Set possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'.
      *
      * @param comparisonOperator the comparisonOperator value to set
      * @return the SegmentMembershipCriteria object itself.

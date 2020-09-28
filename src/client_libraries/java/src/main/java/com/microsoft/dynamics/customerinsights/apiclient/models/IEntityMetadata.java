@@ -45,8 +45,8 @@ public class IEntityMetadata {
      * 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
      * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
      * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
-     * 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource',
-     * 'datahub', 'insights', 'derivedEntity'.
+     * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
+     * 'derivedEntity', 'powerPlatformSource'.
      */
     @JsonProperty(value = "dataflowType")
     private String dataflowType;
@@ -195,7 +195,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'.
+     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'.
      *
      * @return the dataflowType value
      */
@@ -204,7 +204,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'.
+     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'.
      *
      * @param dataflowType the dataflowType value to set
      * @return the IEntityMetadata object itself.

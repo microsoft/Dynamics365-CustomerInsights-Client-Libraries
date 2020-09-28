@@ -15,49 +15,26 @@ class IAttributeMetadata {
    * @property {string} [name]
    * @property {string} [friendlyName]
    * @property {string} [baseName]
-   * @property {object} [dataType]
-   * @property {string} [dataType.clrType] Gets the CLR Type for this property
-   * type.
-   * @property {string} [dataType.cdsaType] Possible values include:
-   * 'unclassified', 'string', 'int64', 'double', 'dateTime', 'dateTimeOffset',
-   * 'decimal', 'boolean', 'guid', 'json'
-   * @property {string} [dataType.edmTypeName] Gets the EDM type name for the
-   * property type, in the format EdmTypeKind>".
-   * @property {boolean} [dataType.isBoolean]
-   * @property {boolean} [dataType.isDateTime]
-   * @property {boolean} [dataType.isDecimal]
-   * @property {boolean} [dataType.isNumber]
-   * @property {boolean} [dataType.isValidType] Gets a value indicating whether
-   * this type valid and supported by the runtime.
-   * @property {string} [dataType.name] Gets the name of the property type.
-   * Will default to the EdmTypeName but may be overridden by a property
-   * type.
-   * @property {object} [dataType.equalityComparer]
-   * @property {object} [dataType.comparer]
-   * @property {object} [dataType.oDataType]
-   * @property {string} [dataType.oDataType.typeKind] Possible values include:
-   * 'none', 'primitive', 'entity', 'complex', 'collection', 'entityReference',
-   * 'enum', 'typeDefinition', 'untyped', 'path'
-   * @property {boolean} [dataType.isCollection]
-   * @property {string} [semanticType] Possible values include: 'CalendarDate',
-   * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
-   * 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
-   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
-   * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
-   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
-   * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
-   * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
-   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
-   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
-   * 'LocationContinent', 'LocationCountry', 'LocationCounty',
-   * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
-   * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
-   * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
-   * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
-   * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
-   * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+   * @property {string} [dataType] Gets data type for property.
+   * @property {string} [semanticType] Gets semantic type for property.
+   * Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
+   * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
+   * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
+   * 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
+   * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+   * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
+   * 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
+   * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+   * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
+   * 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit',
+   * 'Person', 'Product', 'ProductGroup', 'LocationAddress',
+   * 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
+   * 'LocationCountry', 'LocationCounty', 'LocationLatitude',
+   * 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
+   * 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone',
+   * 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus',
+   * 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID',
+   * 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
    * 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone',
    * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
    * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'
@@ -122,8 +99,7 @@ class IAttributeMetadata {
             required: false,
             serializedName: 'dataType',
             type: {
-              name: 'Composite',
-              className: 'AttributeType'
+              name: 'String'
             }
           },
           semanticType: {

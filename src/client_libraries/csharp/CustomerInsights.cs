@@ -158,7 +158,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             CustomInitialize();
         }
         /// <summary>
-        /// Gets the specific attribute profile for the entity.
+        /// GetAttributeProfile
         /// </summary>
         /// <remarks>
         /// Gets the specific attribute profile for the entity.
@@ -312,7 +312,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ApiError>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<ApiErrorResult>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -345,12 +345,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Fetches a collection of DataSourceInfo configured for the Customer Insights
-        /// instance.
+        /// GetAllDataSources
         /// </summary>
         /// <remarks>
-        /// Fetches a collection of DataSourceInfo configured for the Customer Insights
-        /// instance.
+        /// Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+        /// configured for the Customer Insights instance.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id for which to fetch data source info.
@@ -534,12 +533,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Fetches a DataSourceInfo matching the dataSourceId configured for the
-        /// Customer Insights instance.
+        /// GetDataSource
         /// </summary>
         /// <remarks>
-        /// Fetches a DataSourceInfo matching the dataSourceId configured for the
-        /// Customer Insights instance.
+        /// Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+        /// dataSourceId configured for the Customer Insights instance.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id to fetch data source info for.
@@ -714,7 +712,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Deletes a data source from the instance.
+        /// DeleteDataSource
         /// </summary>
         /// <remarks>
         /// Deletes a data source from the instance.
@@ -910,10 +908,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Writes an entity instance into the store, g. an activity entity. (Preview)
+        /// CreateEntity (Preview)
         /// </summary>
         /// <remarks>
-        /// Writes an entity instance into the store, g. an activity entity. (Preview)
+        /// Writes an entity instance into the store, e.g. an activity entity.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance Id.
@@ -1160,10 +1158,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Updates an entity instance in the store, g. Customer entity. (Preview)
+        /// UpdateEntity (Preview)
         /// </summary>
         /// <remarks>
-        /// Updates an entity instance in the store, g. Customer entity. (Preview)
+        /// Updates an entity instance in the store, e.g. Customer entity.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance Id.
@@ -1401,7 +1399,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Submits an OData request to the service.
+        /// GetEntityByODataQuery
         /// </summary>
         /// <remarks>
         /// Submits an OData request to the service.
@@ -1719,7 +1717,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves the flattened entity model for the provided instanceId.
+        /// GetAllEntitiesMetadata
         /// </summary>
         /// <remarks>
         /// Retrieves the flattened entity model for the provided instanceId.
@@ -1947,7 +1945,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves the entity metadata for the provided instanceId and entityName.
+        /// GetEntityMetadata
         /// </summary>
         /// <remarks>
         /// Retrieves the entity metadata for the provided instanceId and entityName.
@@ -2175,7 +2173,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves the entity size for the provided instanceId and entityName.
+        /// GetEntitySize
         /// </summary>
         /// <remarks>
         /// Retrieves the entity size for the provided instanceId and entityName.
@@ -2389,12 +2387,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Reset scopes in the given instance. Provide optional management operation
-        /// scope to reset only that scope. (Preview)
+        /// ResetInstance (Preview)
         /// </summary>
         /// <remarks>
         /// Reset scopes in the given instance. Provide optional management operation
-        /// scope to reset only that scope. (Preview)
+        /// scope to reset only that scope.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance Id.
@@ -2627,241 +2624,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Reset scopes in the given instance. Provide optional management operation
-        /// scope to reset only that scope. (Preview)
-        /// </summary>
-        /// <remarks>
-        /// Reset scopes in the given instance. Provide optional management operation
-        /// scope to reset only that scope. (Preview)
-        /// </remarks>
-        /// <param name='instanceId'>
-        /// Format - uuid. The instance Id.
-        /// </param>
-        /// <param name='instanceManagementOperationScope'>
-        /// The management operation scope for reset.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// Headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="HttpOperationException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <exception cref="SerializationException">
-        /// Thrown when unable to deserialize the response
-        /// </exception>
-        /// <exception cref="ValidationException">
-        /// Thrown when a required parameter is null
-        /// </exception>
-        /// <exception cref="System.ArgumentNullException">
-        /// Thrown when a required parameter is null
-        /// </exception>
-        /// <return>
-        /// A response object containing the response body and response headers.
-        /// </return>
-        public async Task<HttpOperationResponse<object,ResetInstanceForScopeHeaders>> ResetInstanceForScopeWithHttpMessagesAsync(string instanceId, string instanceManagementOperationScope, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (instanceId == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "instanceId");
-            }
-            if (instanceManagementOperationScope == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "instanceManagementOperationScope");
-            }
-            // Tracing
-            bool _shouldTrace = ServiceClientTracing.IsEnabled;
-            string _invocationId = null;
-            if (_shouldTrace)
-            {
-                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
-                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("instanceId", instanceId);
-                tracingParameters.Add("instanceManagementOperationScope", instanceManagementOperationScope);
-                tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "ResetInstanceForScope", tracingParameters);
-            }
-            // Construct URL
-            var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "instances/{instanceId}/manage/reset/operationScope/{instanceManagementOperationScope}").ToString();
-            _url = _url.Replace("{instanceId}", System.Uri.EscapeDataString(instanceId));
-            _url = _url.Replace("{instanceManagementOperationScope}", System.Uri.EscapeDataString(instanceManagementOperationScope));
-            // Create HTTP transport objects
-            var _httpRequest = new HttpRequestMessage();
-            HttpResponseMessage _httpResponse = null;
-            _httpRequest.Method = new HttpMethod("DELETE");
-            _httpRequest.RequestUri = new System.Uri(_url);
-            // Set Headers
-
-
-            if (customHeaders != null)
-            {
-                foreach(var _header in customHeaders)
-                {
-                    if (_httpRequest.Headers.Contains(_header.Key))
-                    {
-                        _httpRequest.Headers.Remove(_header.Key);
-                    }
-                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
-                }
-            }
-
-            // Serialize Request
-            string _requestContent = null;
-            // Send Request
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
-            }
-            cancellationToken.ThrowIfCancellationRequested();
-            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
-            }
-            HttpStatusCode _statusCode = _httpResponse.StatusCode;
-            cancellationToken.ThrowIfCancellationRequested();
-            string _responseContent = null;
-            if ((int)_statusCode != 200 && (int)_statusCode != 400 && (int)_statusCode != 401 && (int)_statusCode != 403 && (int)_statusCode != 404 && (int)_statusCode != 500 && (int)_statusCode != 503)
-            {
-                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
-                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                }
-                else {
-                    _responseContent = string.Empty;
-                }
-                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
-                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
-                if (_shouldTrace)
-                {
-                    ServiceClientTracing.Error(_invocationId, ex);
-                }
-                _httpRequest.Dispose();
-                if (_httpResponse != null)
-                {
-                    _httpResponse.Dispose();
-                }
-                throw ex;
-            }
-            // Create Result
-            var _result = new HttpOperationResponse<object,ResetInstanceForScopeHeaders>();
-            _result.Request = _httpRequest;
-            _result.Response = _httpResponse;
-            // Deserialize Response
-            if ((int)_statusCode == 200)
-            {
-                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                try
-                {
-                    _result.Body = SafeJsonConvert.DeserializeObject<bool?>(_responseContent, DeserializationSettings);
-                }
-                catch (JsonException ex)
-                {
-                    _httpRequest.Dispose();
-                    if (_httpResponse != null)
-                    {
-                        _httpResponse.Dispose();
-                    }
-                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
-                }
-            }
-            // Deserialize Response
-            if ((int)_statusCode == 400)
-            {
-                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                try
-                {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ApiErrorResult>(_responseContent, DeserializationSettings);
-                }
-                catch (JsonException ex)
-                {
-                    _httpRequest.Dispose();
-                    if (_httpResponse != null)
-                    {
-                        _httpResponse.Dispose();
-                    }
-                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
-                }
-            }
-            // Deserialize Response
-            if ((int)_statusCode == 403)
-            {
-                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                try
-                {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ApiErrorResult>(_responseContent, DeserializationSettings);
-                }
-                catch (JsonException ex)
-                {
-                    _httpRequest.Dispose();
-                    if (_httpResponse != null)
-                    {
-                        _httpResponse.Dispose();
-                    }
-                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
-                }
-            }
-            // Deserialize Response
-            if ((int)_statusCode == 404)
-            {
-                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                try
-                {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ApiErrorResult>(_responseContent, DeserializationSettings);
-                }
-                catch (JsonException ex)
-                {
-                    _httpRequest.Dispose();
-                    if (_httpResponse != null)
-                    {
-                        _httpResponse.Dispose();
-                    }
-                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
-                }
-            }
-            // Deserialize Response
-            if ((int)_statusCode == 500)
-            {
-                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                try
-                {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ApiErrorResult>(_responseContent, DeserializationSettings);
-                }
-                catch (JsonException ex)
-                {
-                    _httpRequest.Dispose();
-                    if (_httpResponse != null)
-                    {
-                        _httpResponse.Dispose();
-                    }
-                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
-                }
-            }
-            try
-            {
-                _result.Headers = _httpResponse.GetHeadersAsJson().ToObject<ResetInstanceForScopeHeaders>(JsonSerializer.Create(DeserializationSettings));
-            }
-            catch (JsonException ex)
-            {
-                _httpRequest.Dispose();
-                if (_httpResponse != null)
-                {
-                    _httpResponse.Dispose();
-                }
-                throw new SerializationException("Unable to deserialize the headers.", _httpResponse.GetHeadersAsJson().ToString(), ex);
-            }
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.Exit(_invocationId, _result);
-            }
-            return _result;
-        }
-
-        /// <summary>
-        /// Retrieves all instances of the current user.
+        /// ListAllInstances
         /// </summary>
         /// <remarks>
         /// Retrieves all instances of the current user.
@@ -3033,8 +2796,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves instances based on instance ids, it can only accept batch of
-        /// instances.
+        /// ListInstancesByInstanceIds
         /// </summary>
         /// <remarks>
         /// Retrieves instances based on instance ids, it can only accept batch of
@@ -3217,8 +2979,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves metadata for a Customer Insights instance based on its
-        /// instanceId.
+        /// GetInstance
         /// </summary>
         /// <remarks>
         /// Retrieves metadata for a Customer Insights instance based on its
@@ -3406,10 +3167,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Detele an instance.
+        /// DeleteInstance
         /// </summary>
         /// <remarks>
-        /// Detele an instance.
+        /// Delete an instance.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -3629,7 +3390,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Creates a new instance.
+        /// CreateInstance
         /// </summary>
         /// <remarks>
         /// Creates a new instance.
@@ -3847,8 +3608,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Patches the Market Verticals, Display name, Domain Name, CDS environment
-        /// and BYOSA secret to the instance.
+        /// UpdateInstance
         /// </summary>
         /// <remarks>
         /// Patches the Market Verticals, Display name, Domain Name, CDS environment
@@ -4063,7 +3823,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Create a new instance and copy metadata from an existing instance.
+        /// CopyInstance
         /// </summary>
         /// <remarks>
         /// Create a new instance and copy metadata from an existing instance.
@@ -4281,10 +4041,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves a list of measures metadata for the provided instanceId.
+        /// ListAllMeasuresMetadata
         /// </summary>
         /// <remarks>
-        /// Retrieves a list of measures metadata for the provided instanceId.
+        /// ListAllMeasuresMetadata
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -4450,10 +4210,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Create new measure metadata with measureMetadata on instanceId.
+        /// CreateMeasure
         /// </summary>
         /// <remarks>
-        /// Create new measure metadata with measureMetadata on instanceId.
+        /// CreateMeasure
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -4647,7 +4407,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves the measure metadata for the provided instanceId and measureName.
+        /// GetMeasureMetadata
         /// </summary>
         /// <remarks>
         /// Retrieves the measure metadata for the provided instanceId and measureName.
@@ -4846,8 +4606,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Updates measures metadata for the provided instanceId and measureMetadata.
-        /// Existing measure is retrieved using measureName.
+        /// UpdateMeasure
         /// </summary>
         /// <remarks>
         /// Updates measures metadata for the provided instanceId and measureMetadata.
@@ -5054,7 +4813,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Deletes the measure metadata for the provided instanceId using measureName.
+        /// DeleteMeasure
         /// </summary>
         /// <remarks>
         /// Deletes the measure metadata for the provided instanceId using measureName.
@@ -5250,8 +5009,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets the KeyRing (collection of all alternate keys) for the given instance
-        /// by alternate key.
+        /// GetKeyRing
         /// </summary>
         /// <remarks>
         /// Gets the KeyRing (collection of all alternate keys) for the given instance
@@ -5290,7 +5048,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ApiErrorResult,GetKeyRingHeaders>> GetKeyRingWithHttpMessagesAsync(string instanceId, string dataSourceName, string entityName, string key, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object,GetKeyRingHeaders>> GetKeyRingWithHttpMessagesAsync(string instanceId, string dataSourceName, string entityName, string key, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (instanceId == null)
             {
@@ -5379,7 +5137,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 400 && (int)_statusCode != 401 && (int)_statusCode != 404 && (int)_statusCode != 500 && (int)_statusCode != 503)
+            if ((int)_statusCode != 200 && (int)_statusCode != 400 && (int)_statusCode != 401 && (int)_statusCode != 404 && (int)_statusCode != 500 && (int)_statusCode != 503)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 if (_httpResponse.Content != null) {
@@ -5402,9 +5160,27 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<ApiErrorResult,GetKeyRingHeaders>();
+            var _result = new HttpOperationResponse<object,GetKeyRingHeaders>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<KeyRingResponse>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
             // Deserialize Response
             if ((int)_statusCode == 400)
             {
@@ -5462,7 +5238,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets the profile store state infoformation.
+        /// GetProfileStoreState
         /// </summary>
         /// <remarks>
         /// Gets the profile store state infoformation.
@@ -5649,7 +5425,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Get all role definitions.
+        /// ListAllRoles
         /// </summary>
         /// <remarks>
         /// Get all role definitions.
@@ -5799,7 +5575,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Get role of current user.
+        /// GetCurrentUserRole
         /// </summary>
         /// <remarks>
         /// Get role of current user.
@@ -5950,7 +5726,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Adds or updates a role assignment for a principal.
+        /// UpdateRoleAssignment
         /// </summary>
         /// <remarks>
         /// Adds or updates a role assignment for a principal.
@@ -6120,7 +5896,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Deletes a role assignment for the principal.
+        /// DeleteRoleAssignment
         /// </summary>
         /// <remarks>
         /// Deletes a role assignment for the principal.
@@ -6259,7 +6035,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets all role assignments for the instance.
+        /// ListAllRoleAssignments
         /// </summary>
         /// <remarks>
         /// Gets all role assignments for the instance.
@@ -6410,7 +6186,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets all relationship metadata for the provided instanceId.
+        /// ListAllRelationships
         /// </summary>
         /// <remarks>
         /// Gets all relationship metadata for the provided instanceId.
@@ -6597,7 +6373,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Creates new relationship metadata for the provided instanceId, using input.
+        /// CreateRelationship
         /// </summary>
         /// <remarks>
         /// Creates new relationship metadata for the provided instanceId, using input.
@@ -6812,8 +6588,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets the relationship metadata for the provided instanceId and
-        /// relationshipName.
+        /// GetRelationship
         /// </summary>
         /// <remarks>
         /// Gets the relationship metadata for the provided instanceId and
@@ -7010,8 +6785,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Deletes the relationship metadata for the provided instanceId and
-        /// relationshipName.
+        /// DeleteRelationship
         /// </summary>
         /// <remarks>
         /// Deletes the relationship metadata for the provided instanceId and
@@ -7208,8 +6982,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Updates the relationship metadata for the provided instanceId and
-        /// relationshipName, using input.
+        /// UpdateRelationshhip
         /// </summary>
         /// <remarks>
         /// Updates the relationship metadata for the provided instanceId and
@@ -7434,7 +7207,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets the search configuration for the instance.
+        /// GetSearchConfiguration
         /// </summary>
         /// <remarks>
         /// Gets the search configuration for the instance.
@@ -7621,10 +7394,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Updates the search configuration for the instance.
+        /// UpdateSearchConfiguration
         /// </summary>
         /// <remarks>
-        /// Updates the search configuration for the instance.
+        /// UpdateSearchConfiguration
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -7836,7 +7609,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves a list of segment metadata for the provided instanceId.
+        /// ListAllSegments
         /// </summary>
         /// <remarks>
         /// Retrieves a list of segment metadata for the provided instanceId.
@@ -8028,10 +7801,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Create new segment metadata with segmentMetadata on instanceId.
+        /// CreateSegment
         /// </summary>
         /// <remarks>
-        /// Create new segment metadata with segmentMetadata on instanceId.
+        /// CreateSegment
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -8207,7 +7980,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Activate segment on instanceId with segmentName.
+        /// ActivateSegment
         /// </summary>
         /// <remarks>
         /// Activate segment on instanceId with segmentName.
@@ -8385,7 +8158,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Deactivate segment on instanceId with segmentName.
+        /// DeactivateSegment
         /// </summary>
         /// <remarks>
         /// Deactivate segment on instanceId with segmentName.
@@ -8563,8 +8336,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Updates segment metadata for the provided instanceId and segmentName with
-        /// segmentMetadata.
+        /// UpdateSegments
         /// </summary>
         /// <remarks>
         /// Updates segment metadata for the provided instanceId and segmentName with
@@ -8753,10 +8525,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Deletes the segment metadata for the provided instanceId and segmentName.
+        /// DeleteSegment
         /// </summary>
         /// <remarks>
-        /// Deletes the segment metadata for the provided instanceId and segmentName.
+        /// DeleteSegment
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -8931,10 +8703,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieve information about a workflow job.
+        /// GetWorkflowJobInformation
         /// </summary>
         /// <remarks>
-        /// Retrieve information about a workflow job.
+        /// GetWorkflowJobInformation
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -9149,7 +8921,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Cancel a job.
+        /// CancelWorkflowJob
         /// </summary>
         /// <remarks>
         /// Cancel a job.
@@ -9354,7 +9126,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves a list of recent job information.
+        /// ListWorkFlowJobs
         /// </summary>
         /// <remarks>
         /// Retrieves a list of recent job information.
@@ -9571,17 +9343,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Submits a workflow of OperationTypeoperationType for the instance specified
-        /// in instanceId.
-        /// Optionally takes a list of identifiers, only if operationType is not
-        /// OperationType.All and a flag
+        /// SubmitWorkflowJob
         /// forceRunRequested indicating whether to force run.
         /// </summary>
         /// <remarks>
-        /// Submits a workflow of OperationTypeoperationType for the instance specified
-        /// in instanceId.
+        /// Submits a workflow of
+        /// Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+        /// instance specified in instanceId.
         /// Optionally takes a list of identifiers, only if operationType is not
-        /// OperationType.All and a flag
+        /// Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
         /// forceRunRequested indicating whether to force run.
         /// </remarks>
         /// <param name='instanceId'>
@@ -9814,7 +9584,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Retrieves a list of historic task information for a workflow.
+        /// ListWorkflowHistory
         /// </summary>
         /// <remarks>
         /// Retrieves a list of historic task information for a workflow.
@@ -10023,7 +9793,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets the current status for a workflow.
+        /// GetWorkflowStatus
         /// </summary>
         /// <remarks>
         /// Gets the current status for a workflow.
@@ -10219,7 +9989,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets a list of supported timezones for creating workflow schedules.
+        /// ListSupportedTimezones
         /// </summary>
         /// <remarks>
         /// Gets a list of supported timezones for creating workflow schedules.
@@ -10396,10 +10166,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets all workflow refresh schedules.
+        /// ListAllWorkflowSchedules
         /// </summary>
         /// <remarks>
-        /// Gets all workflow refresh schedules.
+        /// ListAllWorkflowSchedules
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -10574,7 +10344,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Create a workflow refresh schedule.
+        /// CreateWorkflowRefreshSchedule
         /// </summary>
         /// <remarks>
         /// Create a workflow refresh schedule.
@@ -10762,7 +10532,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         }
 
         /// <summary>
-        /// Gets the entityProfile for the entity.
+        /// GetEntityProfile
         /// </summary>
         /// <remarks>
         /// Gets the entityProfile for the entity.
@@ -10907,7 +10677,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ApiError>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<ApiErrorResult>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {

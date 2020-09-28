@@ -13,10 +13,10 @@ class AttributeSemanticInformation(Model):
 
     :param attribute_name: Gets the name of the attribute.
     :type attribute_name: str
-    :param label: Possible values include: 'CalendarDate',
-     'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
-     'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-     'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+    :param label: Gets the semantic label. Possible values include:
+     'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+     'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+     'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
      'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
      'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
      'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',

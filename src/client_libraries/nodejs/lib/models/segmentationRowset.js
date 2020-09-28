@@ -24,7 +24,7 @@ class SegmentationRowset {
    * 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
    * 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
    * 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-   * 'isNotBetween', 'yearToDate'
+   * 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
    * @property {array} [criteria.childCriterias] Gets the list of Child
    * criteria of segment.
    * @property {string} [criteria.value] Gets the Value in criteria.

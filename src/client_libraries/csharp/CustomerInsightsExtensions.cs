@@ -18,7 +18,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
     public static partial class CustomerInsightsExtensions
     {
             /// <summary>
-            /// Gets the specific attribute profile for the entity.
+            /// GetAttributeProfile
             /// </summary>
             /// <remarks>
             /// Gets the specific attribute profile for the entity.
@@ -41,7 +41,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the specific attribute profile for the entity.
+            /// GetAttributeProfile
             /// </summary>
             /// <remarks>
             /// Gets the specific attribute profile for the entity.
@@ -70,12 +70,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Fetches a collection of DataSourceInfo configured for the Customer Insights
-            /// instance.
+            /// GetAllDataSources
             /// </summary>
             /// <remarks>
-            /// Fetches a collection of DataSourceInfo configured for the Customer Insights
-            /// instance.
+            /// Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+            /// configured for the Customer Insights instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -89,12 +88,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Fetches a collection of DataSourceInfo configured for the Customer Insights
-            /// instance.
+            /// GetAllDataSources
             /// </summary>
             /// <remarks>
-            /// Fetches a collection of DataSourceInfo configured for the Customer Insights
-            /// instance.
+            /// Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
+            /// configured for the Customer Insights instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -114,12 +112,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Fetches a DataSourceInfo matching the dataSourceId configured for the
-            /// Customer Insights instance.
+            /// GetDataSource
             /// </summary>
             /// <remarks>
-            /// Fetches a DataSourceInfo matching the dataSourceId configured for the
-            /// Customer Insights instance.
+            /// Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+            /// dataSourceId configured for the Customer Insights instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -136,12 +133,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Fetches a DataSourceInfo matching the dataSourceId configured for the
-            /// Customer Insights instance.
+            /// GetDataSource
             /// </summary>
             /// <remarks>
-            /// Fetches a DataSourceInfo matching the dataSourceId configured for the
-            /// Customer Insights instance.
+            /// Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
+            /// dataSourceId configured for the Customer Insights instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -164,7 +160,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes a data source from the instance.
+            /// DeleteDataSource
             /// </summary>
             /// <remarks>
             /// Deletes a data source from the instance.
@@ -184,7 +180,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes a data source from the instance.
+            /// DeleteDataSource
             /// </summary>
             /// <remarks>
             /// Deletes a data source from the instance.
@@ -210,10 +206,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Writes an entity instance into the store, g. an activity entity. (Preview)
+            /// CreateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Writes an entity instance into the store, g. an activity entity. (Preview)
+            /// Writes an entity instance into the store, e.g. an activity entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -244,10 +240,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Writes an entity instance into the store, g. an activity entity. (Preview)
+            /// CreateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Writes an entity instance into the store, g. an activity entity. (Preview)
+            /// Writes an entity instance into the store, e.g. an activity entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -284,10 +280,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates an entity instance in the store, g. Customer entity. (Preview)
+            /// UpdateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Updates an entity instance in the store, g. Customer entity. (Preview)
+            /// Updates an entity instance in the store, e.g. Customer entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -321,10 +317,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates an entity instance in the store, g. Customer entity. (Preview)
+            /// UpdateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Updates an entity instance in the store, g. Customer entity. (Preview)
+            /// Updates an entity instance in the store, e.g. Customer entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -364,7 +360,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Submits an OData request to the service.
+            /// GetEntityByODataQuery
             /// </summary>
             /// <remarks>
             /// Submits an OData request to the service.
@@ -415,7 +411,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Submits an OData request to the service.
+            /// GetEntityByODataQuery
             /// </summary>
             /// <remarks>
             /// Submits an OData request to the service.
@@ -472,7 +468,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the flattened entity model for the provided instanceId.
+            /// GetAllEntitiesMetadata
             /// </summary>
             /// <remarks>
             /// Retrieves the flattened entity model for the provided instanceId.
@@ -497,7 +493,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the flattened entity model for the provided instanceId.
+            /// GetAllEntitiesMetadata
             /// </summary>
             /// <remarks>
             /// Retrieves the flattened entity model for the provided instanceId.
@@ -528,7 +524,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the entity metadata for the provided instanceId and entityName.
+            /// GetEntityMetadata
             /// </summary>
             /// <remarks>
             /// Retrieves the entity metadata for the provided instanceId and entityName.
@@ -552,7 +548,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the entity metadata for the provided instanceId and entityName.
+            /// GetEntityMetadata
             /// </summary>
             /// <remarks>
             /// Retrieves the entity metadata for the provided instanceId and entityName.
@@ -582,7 +578,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the entity size for the provided instanceId and entityName.
+            /// GetEntitySize
             /// </summary>
             /// <remarks>
             /// Retrieves the entity size for the provided instanceId and entityName.
@@ -602,7 +598,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the entity size for the provided instanceId and entityName.
+            /// GetEntitySize
             /// </summary>
             /// <remarks>
             /// Retrieves the entity size for the provided instanceId and entityName.
@@ -628,12 +624,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
+            /// ResetInstance (Preview)
             /// </summary>
             /// <remarks>
             /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
+            /// scope to reset only that scope.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -650,12 +645,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
+            /// ResetInstance (Preview)
             /// </summary>
             /// <remarks>
             /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
+            /// scope to reset only that scope.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -678,57 +672,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
-            /// </summary>
-            /// <remarks>
-            /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='instanceId'>
-            /// Format - uuid. The instance Id.
-            /// </param>
-            /// <param name='instanceManagementOperationScope'>
-            /// The management operation scope for reset.
-            /// </param>
-            public static object ResetInstanceForScope(this ICustomerInsights operations, string instanceId, string instanceManagementOperationScope)
-            {
-                return operations.ResetInstanceForScopeAsync(instanceId, instanceManagementOperationScope).GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
-            /// </summary>
-            /// <remarks>
-            /// Reset scopes in the given instance. Provide optional management operation
-            /// scope to reset only that scope. (Preview)
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='instanceId'>
-            /// Format - uuid. The instance Id.
-            /// </param>
-            /// <param name='instanceManagementOperationScope'>
-            /// The management operation scope for reset.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<object> ResetInstanceForScopeAsync(this ICustomerInsights operations, string instanceId, string instanceManagementOperationScope, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                using (var _result = await operations.ResetInstanceForScopeWithHttpMessagesAsync(instanceId, instanceManagementOperationScope, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
-            }
-
-            /// <summary>
-            /// Retrieves all instances of the current user.
+            /// ListAllInstances
             /// </summary>
             /// <remarks>
             /// Retrieves all instances of the current user.
@@ -742,7 +686,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves all instances of the current user.
+            /// ListAllInstances
             /// </summary>
             /// <remarks>
             /// Retrieves all instances of the current user.
@@ -762,8 +706,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves instances based on instance ids, it can only accept batch of
-            /// instances.
+            /// ListInstancesByInstanceIds
             /// </summary>
             /// <remarks>
             /// Retrieves instances based on instance ids, it can only accept batch of
@@ -781,8 +724,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves instances based on instance ids, it can only accept batch of
-            /// instances.
+            /// ListInstancesByInstanceIds
             /// </summary>
             /// <remarks>
             /// Retrieves instances based on instance ids, it can only accept batch of
@@ -806,8 +748,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves metadata for a Customer Insights instance based on its
-            /// instanceId.
+            /// GetInstance
             /// </summary>
             /// <remarks>
             /// Retrieves metadata for a Customer Insights instance based on its
@@ -825,8 +766,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves metadata for a Customer Insights instance based on its
-            /// instanceId.
+            /// GetInstance
             /// </summary>
             /// <remarks>
             /// Retrieves metadata for a Customer Insights instance based on its
@@ -850,10 +790,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Detele an instance.
+            /// DeleteInstance
             /// </summary>
             /// <remarks>
-            /// Detele an instance.
+            /// Delete an instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -867,10 +807,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Detele an instance.
+            /// DeleteInstance
             /// </summary>
             /// <remarks>
-            /// Detele an instance.
+            /// Delete an instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -890,7 +830,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Creates a new instance.
+            /// CreateInstance
             /// </summary>
             /// <remarks>
             /// Creates a new instance.
@@ -907,7 +847,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Creates a new instance.
+            /// CreateInstance
             /// </summary>
             /// <remarks>
             /// Creates a new instance.
@@ -930,8 +870,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Patches the Market Verticals, Display name, Domain Name, CDS environment
-            /// and BYOSA secret to the instance.
+            /// UpdateInstance
             /// </summary>
             /// <remarks>
             /// Patches the Market Verticals, Display name, Domain Name, CDS environment
@@ -951,8 +890,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Patches the Market Verticals, Display name, Domain Name, CDS environment
-            /// and BYOSA secret to the instance.
+            /// UpdateInstance
             /// </summary>
             /// <remarks>
             /// Patches the Market Verticals, Display name, Domain Name, CDS environment
@@ -978,7 +916,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create a new instance and copy metadata from an existing instance.
+            /// CopyInstance
             /// </summary>
             /// <remarks>
             /// Create a new instance and copy metadata from an existing instance.
@@ -995,7 +933,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create a new instance and copy metadata from an existing instance.
+            /// CopyInstance
             /// </summary>
             /// <remarks>
             /// Create a new instance and copy metadata from an existing instance.
@@ -1018,10 +956,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of measures metadata for the provided instanceId.
+            /// ListAllMeasuresMetadata
             /// </summary>
             /// <remarks>
-            /// Retrieves a list of measures metadata for the provided instanceId.
+            /// ListAllMeasuresMetadata
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1035,10 +973,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of measures metadata for the provided instanceId.
+            /// ListAllMeasuresMetadata
             /// </summary>
             /// <remarks>
-            /// Retrieves a list of measures metadata for the provided instanceId.
+            /// ListAllMeasuresMetadata
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1058,10 +996,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create new measure metadata with measureMetadata on instanceId.
+            /// CreateMeasure
             /// </summary>
             /// <remarks>
-            /// Create new measure metadata with measureMetadata on instanceId.
+            /// CreateMeasure
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1078,10 +1016,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create new measure metadata with measureMetadata on instanceId.
+            /// CreateMeasure
             /// </summary>
             /// <remarks>
-            /// Create new measure metadata with measureMetadata on instanceId.
+            /// CreateMeasure
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1104,7 +1042,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the measure metadata for the provided instanceId and measureName.
+            /// GetMeasureMetadata
             /// </summary>
             /// <remarks>
             /// Retrieves the measure metadata for the provided instanceId and measureName.
@@ -1130,7 +1068,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves the measure metadata for the provided instanceId and measureName.
+            /// GetMeasureMetadata
             /// </summary>
             /// <remarks>
             /// Retrieves the measure metadata for the provided instanceId and measureName.
@@ -1162,8 +1100,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates measures metadata for the provided instanceId and measureMetadata.
-            /// Existing measure is retrieved using measureName.
+            /// UpdateMeasure
             /// </summary>
             /// <remarks>
             /// Updates measures metadata for the provided instanceId and measureMetadata.
@@ -1187,8 +1124,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates measures metadata for the provided instanceId and measureMetadata.
-            /// Existing measure is retrieved using measureName.
+            /// UpdateMeasure
             /// </summary>
             /// <remarks>
             /// Updates measures metadata for the provided instanceId and measureMetadata.
@@ -1218,7 +1154,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes the measure metadata for the provided instanceId using measureName.
+            /// DeleteMeasure
             /// </summary>
             /// <remarks>
             /// Deletes the measure metadata for the provided instanceId using measureName.
@@ -1238,7 +1174,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes the measure metadata for the provided instanceId using measureName.
+            /// DeleteMeasure
             /// </summary>
             /// <remarks>
             /// Deletes the measure metadata for the provided instanceId using measureName.
@@ -1264,8 +1200,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the KeyRing (collection of all alternate keys) for the given instance
-            /// by alternate key.
+            /// GetKeyRing
             /// </summary>
             /// <remarks>
             /// Gets the KeyRing (collection of all alternate keys) for the given instance
@@ -1286,14 +1221,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='key'>
             /// The value of the alternate key provided.
             /// </param>
-            public static ApiErrorResult GetKeyRing(this ICustomerInsights operations, string instanceId, string dataSourceName, string entityName, string key)
+            public static object GetKeyRing(this ICustomerInsights operations, string instanceId, string dataSourceName, string entityName, string key)
             {
                 return operations.GetKeyRingAsync(instanceId, dataSourceName, entityName, key).GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Gets the KeyRing (collection of all alternate keys) for the given instance
-            /// by alternate key.
+            /// GetKeyRing
             /// </summary>
             /// <remarks>
             /// Gets the KeyRing (collection of all alternate keys) for the given instance
@@ -1317,7 +1251,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<ApiErrorResult> GetKeyRingAsync(this ICustomerInsights operations, string instanceId, string dataSourceName, string entityName, string key, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetKeyRingAsync(this ICustomerInsights operations, string instanceId, string dataSourceName, string entityName, string key, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetKeyRingWithHttpMessagesAsync(instanceId, dataSourceName, entityName, key, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1326,7 +1260,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the profile store state infoformation.
+            /// GetProfileStoreState
             /// </summary>
             /// <remarks>
             /// Gets the profile store state infoformation.
@@ -1343,7 +1277,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the profile store state infoformation.
+            /// GetProfileStoreState
             /// </summary>
             /// <remarks>
             /// Gets the profile store state infoformation.
@@ -1366,7 +1300,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Get all role definitions.
+            /// ListAllRoles
             /// </summary>
             /// <remarks>
             /// Get all role definitions.
@@ -1382,7 +1316,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Get all role definitions.
+            /// ListAllRoles
             /// </summary>
             /// <remarks>
             /// Get all role definitions.
@@ -1404,7 +1338,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Get role of current user.
+            /// GetCurrentUserRole
             /// </summary>
             /// <remarks>
             /// Get role of current user.
@@ -1421,7 +1355,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Get role of current user.
+            /// GetCurrentUserRole
             /// </summary>
             /// <remarks>
             /// Get role of current user.
@@ -1444,7 +1378,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Adds or updates a role assignment for a principal.
+            /// UpdateRoleAssignment
             /// </summary>
             /// <remarks>
             /// Adds or updates a role assignment for a principal.
@@ -1467,7 +1401,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Adds or updates a role assignment for a principal.
+            /// UpdateRoleAssignment
             /// </summary>
             /// <remarks>
             /// Adds or updates a role assignment for a principal.
@@ -1496,7 +1430,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes a role assignment for the principal.
+            /// DeleteRoleAssignment
             /// </summary>
             /// <remarks>
             /// Deletes a role assignment for the principal.
@@ -1516,7 +1450,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes a role assignment for the principal.
+            /// DeleteRoleAssignment
             /// </summary>
             /// <remarks>
             /// Deletes a role assignment for the principal.
@@ -1542,7 +1476,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets all role assignments for the instance.
+            /// ListAllRoleAssignments
             /// </summary>
             /// <remarks>
             /// Gets all role assignments for the instance.
@@ -1559,7 +1493,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets all role assignments for the instance.
+            /// ListAllRoleAssignments
             /// </summary>
             /// <remarks>
             /// Gets all role assignments for the instance.
@@ -1582,7 +1516,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets all relationship metadata for the provided instanceId.
+            /// ListAllRelationships
             /// </summary>
             /// <remarks>
             /// Gets all relationship metadata for the provided instanceId.
@@ -1599,7 +1533,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets all relationship metadata for the provided instanceId.
+            /// ListAllRelationships
             /// </summary>
             /// <remarks>
             /// Gets all relationship metadata for the provided instanceId.
@@ -1622,7 +1556,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Creates new relationship metadata for the provided instanceId, using input.
+            /// CreateRelationship
             /// </summary>
             /// <remarks>
             /// Creates new relationship metadata for the provided instanceId, using input.
@@ -1642,7 +1576,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Creates new relationship metadata for the provided instanceId, using input.
+            /// CreateRelationship
             /// </summary>
             /// <remarks>
             /// Creates new relationship metadata for the provided instanceId, using input.
@@ -1668,8 +1602,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the relationship metadata for the provided instanceId and
-            /// relationshipName.
+            /// GetRelationship
             /// </summary>
             /// <remarks>
             /// Gets the relationship metadata for the provided instanceId and
@@ -1690,8 +1623,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the relationship metadata for the provided instanceId and
-            /// relationshipName.
+            /// GetRelationship
             /// </summary>
             /// <remarks>
             /// Gets the relationship metadata for the provided instanceId and
@@ -1718,8 +1650,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes the relationship metadata for the provided instanceId and
-            /// relationshipName.
+            /// DeleteRelationship
             /// </summary>
             /// <remarks>
             /// Deletes the relationship metadata for the provided instanceId and
@@ -1740,8 +1671,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes the relationship metadata for the provided instanceId and
-            /// relationshipName.
+            /// DeleteRelationship
             /// </summary>
             /// <remarks>
             /// Deletes the relationship metadata for the provided instanceId and
@@ -1768,8 +1698,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates the relationship metadata for the provided instanceId and
-            /// relationshipName, using input.
+            /// UpdateRelationshhip
             /// </summary>
             /// <remarks>
             /// Updates the relationship metadata for the provided instanceId and
@@ -1793,8 +1722,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates the relationship metadata for the provided instanceId and
-            /// relationshipName, using input.
+            /// UpdateRelationshhip
             /// </summary>
             /// <remarks>
             /// Updates the relationship metadata for the provided instanceId and
@@ -1824,7 +1752,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the search configuration for the instance.
+            /// GetSearchConfiguration
             /// </summary>
             /// <remarks>
             /// Gets the search configuration for the instance.
@@ -1841,7 +1769,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the search configuration for the instance.
+            /// GetSearchConfiguration
             /// </summary>
             /// <remarks>
             /// Gets the search configuration for the instance.
@@ -1864,10 +1792,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates the search configuration for the instance.
+            /// UpdateSearchConfiguration
             /// </summary>
             /// <remarks>
-            /// Updates the search configuration for the instance.
+            /// UpdateSearchConfiguration
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1884,10 +1812,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates the search configuration for the instance.
+            /// UpdateSearchConfiguration
             /// </summary>
             /// <remarks>
-            /// Updates the search configuration for the instance.
+            /// UpdateSearchConfiguration
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1910,7 +1838,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of segment metadata for the provided instanceId.
+            /// ListAllSegments
             /// </summary>
             /// <remarks>
             /// Retrieves a list of segment metadata for the provided instanceId.
@@ -1935,7 +1863,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of segment metadata for the provided instanceId.
+            /// ListAllSegments
             /// </summary>
             /// <remarks>
             /// Retrieves a list of segment metadata for the provided instanceId.
@@ -1966,10 +1894,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create new segment metadata with segmentMetadata on instanceId.
+            /// CreateSegment
             /// </summary>
             /// <remarks>
-            /// Create new segment metadata with segmentMetadata on instanceId.
+            /// CreateSegment
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1986,10 +1914,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create new segment metadata with segmentMetadata on instanceId.
+            /// CreateSegment
             /// </summary>
             /// <remarks>
-            /// Create new segment metadata with segmentMetadata on instanceId.
+            /// CreateSegment
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2012,7 +1940,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Activate segment on instanceId with segmentName.
+            /// ActivateSegment
             /// </summary>
             /// <remarks>
             /// Activate segment on instanceId with segmentName.
@@ -2032,7 +1960,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Activate segment on instanceId with segmentName.
+            /// ActivateSegment
             /// </summary>
             /// <remarks>
             /// Activate segment on instanceId with segmentName.
@@ -2058,7 +1986,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deactivate segment on instanceId with segmentName.
+            /// DeactivateSegment
             /// </summary>
             /// <remarks>
             /// Deactivate segment on instanceId with segmentName.
@@ -2078,7 +2006,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deactivate segment on instanceId with segmentName.
+            /// DeactivateSegment
             /// </summary>
             /// <remarks>
             /// Deactivate segment on instanceId with segmentName.
@@ -2104,8 +2032,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates segment metadata for the provided instanceId and segmentName with
-            /// segmentMetadata.
+            /// UpdateSegments
             /// </summary>
             /// <remarks>
             /// Updates segment metadata for the provided instanceId and segmentName with
@@ -2129,8 +2056,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Updates segment metadata for the provided instanceId and segmentName with
-            /// segmentMetadata.
+            /// UpdateSegments
             /// </summary>
             /// <remarks>
             /// Updates segment metadata for the provided instanceId and segmentName with
@@ -2160,10 +2086,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes the segment metadata for the provided instanceId and segmentName.
+            /// DeleteSegment
             /// </summary>
             /// <remarks>
-            /// Deletes the segment metadata for the provided instanceId and segmentName.
+            /// DeleteSegment
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2180,10 +2106,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Deletes the segment metadata for the provided instanceId and segmentName.
+            /// DeleteSegment
             /// </summary>
             /// <remarks>
-            /// Deletes the segment metadata for the provided instanceId and segmentName.
+            /// DeleteSegment
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2206,10 +2132,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieve information about a workflow job.
+            /// GetWorkflowJobInformation
             /// </summary>
             /// <remarks>
-            /// Retrieve information about a workflow job.
+            /// GetWorkflowJobInformation
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2232,10 +2158,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieve information about a workflow job.
+            /// GetWorkflowJobInformation
             /// </summary>
             /// <remarks>
-            /// Retrieve information about a workflow job.
+            /// GetWorkflowJobInformation
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2264,7 +2190,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Cancel a job.
+            /// CancelWorkflowJob
             /// </summary>
             /// <remarks>
             /// Cancel a job.
@@ -2287,7 +2213,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Cancel a job.
+            /// CancelWorkflowJob
             /// </summary>
             /// <remarks>
             /// Cancel a job.
@@ -2316,7 +2242,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of recent job information.
+            /// ListWorkFlowJobs
             /// </summary>
             /// <remarks>
             /// Retrieves a list of recent job information.
@@ -2342,7 +2268,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of recent job information.
+            /// ListWorkFlowJobs
             /// </summary>
             /// <remarks>
             /// Retrieves a list of recent job information.
@@ -2374,17 +2300,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Submits a workflow of OperationTypeoperationType for the instance specified
-            /// in instanceId.
-            /// Optionally takes a list of identifiers, only if operationType is not
-            /// OperationType.All and a flag
+            /// SubmitWorkflowJob
             /// forceRunRequested indicating whether to force run.
             /// </summary>
             /// <remarks>
-            /// Submits a workflow of OperationTypeoperationType for the instance specified
-            /// in instanceId.
+            /// Submits a workflow of
+            /// Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+            /// instance specified in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
-            /// OperationType.All and a flag
+            /// Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
             /// forceRunRequested indicating whether to force run.
             /// </remarks>
             /// <param name='operations'>
@@ -2414,17 +2338,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Submits a workflow of OperationTypeoperationType for the instance specified
-            /// in instanceId.
-            /// Optionally takes a list of identifiers, only if operationType is not
-            /// OperationType.All and a flag
+            /// SubmitWorkflowJob
             /// forceRunRequested indicating whether to force run.
             /// </summary>
             /// <remarks>
-            /// Submits a workflow of OperationTypeoperationType for the instance specified
-            /// in instanceId.
+            /// Submits a workflow of
+            /// Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+            /// instance specified in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
-            /// OperationType.All and a flag
+            /// Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
             /// forceRunRequested indicating whether to force run.
             /// </remarks>
             /// <param name='operations'>
@@ -2460,7 +2382,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of historic task information for a workflow.
+            /// ListWorkflowHistory
             /// </summary>
             /// <remarks>
             /// Retrieves a list of historic task information for a workflow.
@@ -2483,7 +2405,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Retrieves a list of historic task information for a workflow.
+            /// ListWorkflowHistory
             /// </summary>
             /// <remarks>
             /// Retrieves a list of historic task information for a workflow.
@@ -2512,7 +2434,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the current status for a workflow.
+            /// GetWorkflowStatus
             /// </summary>
             /// <remarks>
             /// Gets the current status for a workflow.
@@ -2532,7 +2454,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the current status for a workflow.
+            /// GetWorkflowStatus
             /// </summary>
             /// <remarks>
             /// Gets the current status for a workflow.
@@ -2558,7 +2480,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets a list of supported timezones for creating workflow schedules.
+            /// ListSupportedTimezones
             /// </summary>
             /// <remarks>
             /// Gets a list of supported timezones for creating workflow schedules.
@@ -2577,7 +2499,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets a list of supported timezones for creating workflow schedules.
+            /// ListSupportedTimezones
             /// </summary>
             /// <remarks>
             /// Gets a list of supported timezones for creating workflow schedules.
@@ -2602,10 +2524,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets all workflow refresh schedules.
+            /// ListAllWorkflowSchedules
             /// </summary>
             /// <remarks>
-            /// Gets all workflow refresh schedules.
+            /// ListAllWorkflowSchedules
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2622,10 +2544,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets all workflow refresh schedules.
+            /// ListAllWorkflowSchedules
             /// </summary>
             /// <remarks>
-            /// Gets all workflow refresh schedules.
+            /// ListAllWorkflowSchedules
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -2648,7 +2570,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create a workflow refresh schedule.
+            /// CreateWorkflowRefreshSchedule
             /// </summary>
             /// <remarks>
             /// Create a workflow refresh schedule.
@@ -2671,7 +2593,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Create a workflow refresh schedule.
+            /// CreateWorkflowRefreshSchedule
             /// </summary>
             /// <remarks>
             /// Create a workflow refresh schedule.
@@ -2700,7 +2622,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the entityProfile for the entity.
+            /// GetEntityProfile
             /// </summary>
             /// <remarks>
             /// Gets the entityProfile for the entity.
@@ -2720,7 +2642,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// Gets the entityProfile for the entity.
+            /// GetEntityProfile
             /// </summary>
             /// <remarks>
             /// Gets the entityProfile for the entity.

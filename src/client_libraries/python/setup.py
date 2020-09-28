@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="microsoft_customerinsights",
-    version="1.0.4",
+    name="customerinsights",
+    version="1.0.5",
     author="Microsoft Corp.",
     author_email="cihelp@microsoft.com",
     description="Client library for interacting with Customer Insights APIs",

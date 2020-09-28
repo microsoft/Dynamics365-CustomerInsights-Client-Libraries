@@ -36,7 +36,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
 
 
         /// <summary>
-        /// Gets the specific attribute profile for the entity.
+        /// GetAttributeProfile
         /// </summary>
         /// <remarks>
         /// Gets the specific attribute profile for the entity.
@@ -59,12 +59,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAnAttributeProfileHeaders>> GetAnAttributeProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, string attributeName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Fetches a collection of DataSourceInfo configured for the Customer
-        /// Insights instance.
+        /// GetAllDataSources
         /// </summary>
         /// <remarks>
-        /// Fetches a collection of DataSourceInfo configured for the Customer
-        /// Insights instance.
+        /// Fetches a collection of
+        /// Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for
+        /// the Customer Insights instance.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id for which to fetch data source info.
@@ -78,12 +78,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAllDataSourcesHeaders>> GetAllDataSourcesWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Fetches a DataSourceInfo matching the dataSourceId configured for
-        /// the Customer Insights instance.
+        /// GetDataSource
         /// </summary>
         /// <remarks>
-        /// Fetches a DataSourceInfo matching the dataSourceId configured for
-        /// the Customer Insights instance.
+        /// Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo
+        /// matching the dataSourceId configured for the Customer Insights
+        /// instance.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id to fetch data source info for.
@@ -100,7 +100,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetDataSourceHeaders>> GetDataSourceWithHttpMessagesAsync(string instanceId, string dataSourceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deletes a data source from the instance.
+        /// DeleteDataSource
         /// </summary>
         /// <remarks>
         /// Deletes a data source from the instance.
@@ -120,12 +120,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,DeleteADataSourceHeaders>> DeleteADataSourceWithHttpMessagesAsync(string instanceId, string dataSourceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Writes an entity instance into the store, g. an activity entity.
-        /// (Preview)
+        /// CreateEntity (Preview)
         /// </summary>
         /// <remarks>
-        /// Writes an entity instance into the store, g. an activity entity.
-        /// (Preview)
+        /// Writes an entity instance into the store, e.g. an activity entity.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance Id.
@@ -157,12 +155,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CreateAnEntityHeaders>> CreateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string body = default(string), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Updates an entity instance in the store, g. Customer entity.
-        /// (Preview)
+        /// UpdateEntity (Preview)
         /// </summary>
         /// <remarks>
-        /// Updates an entity instance in the store, g. Customer entity.
-        /// (Preview)
+        /// Updates an entity instance in the store, e.g. Customer entity.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance Id.
@@ -196,7 +192,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,UpdateAnEntityHeaders>> UpdateAnEntityWithHttpMessagesAsync(string instanceId, string entityName, string entityId, string body = default(string), string validUntil = default(string), string caller = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Submits an OData request to the service.
+        /// GetEntityByODataQuery
         /// </summary>
         /// <remarks>
         /// Submits an OData request to the service.
@@ -247,7 +243,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetEntitiesWithODataPathHeaders>> GetEntitiesWithODataPathWithHttpMessagesAsync(string instanceId, string relativePath, bool? forceSearch = default(bool?), bool? proxy = default(bool?), string search = default(string), string select = default(string), string skip = default(string), string skiptoken = default(string), string filter = default(string), string orderby = default(string), string expand = default(string), string top = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves the flattened entity model for the provided instanceId.
+        /// GetAllEntitiesMetadata
         /// </summary>
         /// <remarks>
         /// Retrieves the flattened entity model for the provided instanceId.
@@ -272,8 +268,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAllEntityMetadataHeaders>> GetAllEntityMetadataWithHttpMessagesAsync(string instanceId, bool? attributesAnnotations = false, bool? includeQuarantined = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves the entity metadata for the provided instanceId and
-        /// entityName.
+        /// GetEntityMetadata
         /// </summary>
         /// <remarks>
         /// Retrieves the entity metadata for the provided instanceId and
@@ -298,8 +293,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetEntityMetadataHeaders>> GetEntityMetadataWithHttpMessagesAsync(string instanceId, string entityName, bool? attributesAnnotations = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves the entity size for the provided instanceId and
-        /// entityName.
+        /// GetEntitySize
         /// </summary>
         /// <remarks>
         /// Retrieves the entity size for the provided instanceId and
@@ -320,12 +314,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetEntitySizeHeaders>> GetEntitySizeWithHttpMessagesAsync(string instanceId, string entityName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Reset scopes in the given instance. Provide optional management
-        /// operation scope to reset only that scope. (Preview)
+        /// ResetInstance (Preview)
         /// </summary>
         /// <remarks>
         /// Reset scopes in the given instance. Provide optional management
-        /// operation scope to reset only that scope. (Preview)
+        /// operation scope to reset only that scope.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance Id.
@@ -342,29 +335,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,ResetAnInstanceHeaders>> ResetAnInstanceWithHttpMessagesAsync(string instanceId, string instanceManagementOperationScope = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Reset scopes in the given instance. Provide optional management
-        /// operation scope to reset only that scope. (Preview)
-        /// </summary>
-        /// <remarks>
-        /// Reset scopes in the given instance. Provide optional management
-        /// operation scope to reset only that scope. (Preview)
-        /// </remarks>
-        /// <param name='instanceId'>
-        /// Format - uuid. The instance Id.
-        /// </param>
-        /// <param name='instanceManagementOperationScope'>
-        /// The management operation scope for reset.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<HttpOperationResponse<object,ResetInstanceForScopeHeaders>> ResetInstanceForScopeWithHttpMessagesAsync(string instanceId, string instanceManagementOperationScope, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Retrieves all instances of the current user.
+        /// ListAllInstances
         /// </summary>
         /// <remarks>
         /// Retrieves all instances of the current user.
@@ -378,8 +349,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAllInstancesHeaders>> GetAllInstancesWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves instances based on instance ids, it can only accept batch
-        /// of instances.
+        /// ListInstancesByInstanceIds
         /// </summary>
         /// <remarks>
         /// Retrieves instances based on instance ids, it can only accept batch
@@ -397,8 +367,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAllInstancesInBatchesByInstanceidsHeaders>> GetAllInstancesInBatchesByInstanceidsWithHttpMessagesAsync(IList<System.Guid?> body = default(IList<System.Guid?>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves metadata for a Customer Insights instance based on its
-        /// instanceId.
+        /// GetInstance
         /// </summary>
         /// <remarks>
         /// Retrieves metadata for a Customer Insights instance based on its
@@ -416,10 +385,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetInstanceMetadataHeaders>> GetInstanceMetadataWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Detele an instance.
+        /// DeleteInstance
         /// </summary>
         /// <remarks>
-        /// Detele an instance.
+        /// Delete an instance.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -433,7 +402,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,DeleteAnInstanceHeaders>> DeleteAnInstanceWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Creates a new instance.
+        /// CreateInstance
         /// </summary>
         /// <remarks>
         /// Creates a new instance.
@@ -450,8 +419,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CreateAnInstanceHeaders>> CreateAnInstanceWithHttpMessagesAsync(InstanceCreationRequest body = default(InstanceCreationRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Patches the Market Verticals, Display name, Domain Name, CDS
-        /// environment and BYOSA secret to the instance.
+        /// UpdateInstance
         /// </summary>
         /// <remarks>
         /// Patches the Market Verticals, Display name, Domain Name, CDS
@@ -471,7 +439,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,UpdateAnInstanceHeaders>> UpdateAnInstanceWithHttpMessagesAsync(string instanceId, InstanceCreationRequest body = default(InstanceCreationRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Create a new instance and copy metadata from an existing instance.
+        /// CopyInstance
         /// </summary>
         /// <remarks>
         /// Create a new instance and copy metadata from an existing instance.
@@ -488,10 +456,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CopyAnInstanceHeaders>> CopyAnInstanceWithHttpMessagesAsync(InstanceCopyRequest body = default(InstanceCopyRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves a list of measures metadata for the provided instanceId.
+        /// ListAllMeasuresMetadata
         /// </summary>
         /// <remarks>
-        /// Retrieves a list of measures metadata for the provided instanceId.
+        /// ListAllMeasuresMetadata
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -505,10 +473,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAListOfMeasuresMetadataHeaders>> GetAListOfMeasuresMetadataWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Create new measure metadata with measureMetadata on instanceId.
+        /// CreateMeasure
         /// </summary>
         /// <remarks>
-        /// Create new measure metadata with measureMetadata on instanceId.
+        /// CreateMeasure
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -525,8 +493,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CreateAMeasureHeaders>> CreateAMeasureWithHttpMessagesAsync(string instanceId, MeasureMetadata body = default(MeasureMetadata), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves the measure metadata for the provided instanceId and
-        /// measureName.
+        /// GetMeasureMetadata
         /// </summary>
         /// <remarks>
         /// Retrieves the measure metadata for the provided instanceId and
@@ -553,9 +520,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetMetadataForAMeasureHeaders>> GetMetadataForAMeasureWithHttpMessagesAsync(string instanceId, string measureName, bool? includeHistoricStats = false, int? historicStatsDays = 30, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Updates measures metadata for the provided instanceId and
-        /// measureMetadata.
-        /// Existing measure is retrieved using measureName.
+        /// UpdateMeasure
         /// </summary>
         /// <remarks>
         /// Updates measures metadata for the provided instanceId and
@@ -580,8 +545,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,UpdateAMeasureHeaders>> UpdateAMeasureWithHttpMessagesAsync(string instanceId, string measureName, MeasureMetadata body = default(MeasureMetadata), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deletes the measure metadata for the provided instanceId using
-        /// measureName.
+        /// DeleteMeasure
         /// </summary>
         /// <remarks>
         /// Deletes the measure metadata for the provided instanceId using
@@ -602,8 +566,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,DeleteAMeasureHeaders>> DeleteAMeasureWithHttpMessagesAsync(string instanceId, string measureName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the KeyRing (collection of all alternate keys) for the given
-        /// instance by alternate key.
+        /// GetKeyRing
         /// </summary>
         /// <remarks>
         /// Gets the KeyRing (collection of all alternate keys) for the given
@@ -627,10 +590,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<ApiErrorResult,GetKeyRingHeaders>> GetKeyRingWithHttpMessagesAsync(string instanceId, string dataSourceName, string entityName, string key, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,GetKeyRingHeaders>> GetKeyRingWithHttpMessagesAsync(string instanceId, string dataSourceName, string entityName, string key, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the profile store state infoformation.
+        /// GetProfileStoreState
         /// </summary>
         /// <remarks>
         /// Gets the profile store state infoformation.
@@ -647,7 +610,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetProfileStoreStateHeaders>> GetProfileStoreStateWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Get all role definitions.
+        /// ListAllRoles
         /// </summary>
         /// <remarks>
         /// Get all role definitions.
@@ -663,7 +626,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<IList<RoleDefinition>,GetAllRoleDefinitionsHeaders>> GetAllRoleDefinitionsWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Get role of current user.
+        /// GetCurrentUserRole
         /// </summary>
         /// <remarks>
         /// Get role of current user.
@@ -680,7 +643,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<RoleAssignment,GetCurrentUserRoleHeaders>> GetCurrentUserRoleWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Adds or updates a role assignment for a principal.
+        /// UpdateRoleAssignment
         /// </summary>
         /// <remarks>
         /// Adds or updates a role assignment for a principal.
@@ -703,7 +666,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<IList<RoleAssignment>,UpdateARoleAssignmentHeaders>> UpdateARoleAssignmentWithHttpMessagesAsync(string instanceId, string principalId, RoleAssignment body = default(RoleAssignment), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deletes a role assignment for the principal.
+        /// DeleteRoleAssignment
         /// </summary>
         /// <remarks>
         /// Deletes a role assignment for the principal.
@@ -723,7 +686,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationHeaderResponse<DeletesARoleAssignmentHeaders>> DeletesARoleAssignmentWithHttpMessagesAsync(string instanceId, string principalId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets all role assignments for the instance.
+        /// ListAllRoleAssignments
         /// </summary>
         /// <remarks>
         /// Gets all role assignments for the instance.
@@ -740,7 +703,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<IList<RoleAssignment>,GetAllRoleAssignmentsHeaders>> GetAllRoleAssignmentsWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets all relationship metadata for the provided instanceId.
+        /// ListAllRelationships
         /// </summary>
         /// <remarks>
         /// Gets all relationship metadata for the provided instanceId.
@@ -757,8 +720,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAllRelationshipsHeaders>> GetAllRelationshipsWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Creates new relationship metadata for the provided instanceId,
-        /// using input.
+        /// CreateRelationship
         /// </summary>
         /// <remarks>
         /// Creates new relationship metadata for the provided instanceId,
@@ -779,8 +741,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CreateARelationshipHeaders>> CreateARelationshipWithHttpMessagesAsync(string instanceId, RelationshipMetadata body = default(RelationshipMetadata), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the relationship metadata for the provided instanceId and
-        /// relationshipName.
+        /// GetRelationship
         /// </summary>
         /// <remarks>
         /// Gets the relationship metadata for the provided instanceId and
@@ -801,8 +762,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetARelationshipHeaders>> GetARelationshipWithHttpMessagesAsync(string instanceId, string relationshipName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deletes the relationship metadata for the provided instanceId and
-        /// relationshipName.
+        /// DeleteRelationship
         /// </summary>
         /// <remarks>
         /// Deletes the relationship metadata for the provided instanceId and
@@ -823,8 +783,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,DeleteARelationshipHeaders>> DeleteARelationshipWithHttpMessagesAsync(string instanceId, string relationshipName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Updates the relationship metadata for the provided instanceId and
-        /// relationshipName, using input.
+        /// UpdateRelationshhip
         /// </summary>
         /// <remarks>
         /// Updates the relationship metadata for the provided instanceId and
@@ -848,7 +807,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,UpdateARelationshipHeaders>> UpdateARelationshipWithHttpMessagesAsync(string instanceId, string relationshipName, RelationshipMetadata body = default(RelationshipMetadata), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the search configuration for the instance.
+        /// GetSearchConfiguration
         /// </summary>
         /// <remarks>
         /// Gets the search configuration for the instance.
@@ -865,10 +824,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetSearchConfigurationHeaders>> GetSearchConfigurationWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Updates the search configuration for the instance.
+        /// UpdateSearchConfiguration
         /// </summary>
         /// <remarks>
-        /// Updates the search configuration for the instance.
+        /// UpdateSearchConfiguration
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -885,7 +844,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,UpdateSearchConfigurationHeaders>> UpdateSearchConfigurationWithHttpMessagesAsync(string instanceId, InstanceSearchConfiguration body = default(InstanceSearchConfiguration), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves a list of segment metadata for the provided instanceId.
+        /// ListAllSegments
         /// </summary>
         /// <remarks>
         /// Retrieves a list of segment metadata for the provided instanceId.
@@ -910,10 +869,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAllSegmentsHeaders>> GetAllSegmentsWithHttpMessagesAsync(string instanceId, bool? includeHistoricStats = false, int? historicStatsDays = 10, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Create new segment metadata with segmentMetadata on instanceId.
+        /// CreateSegment
         /// </summary>
         /// <remarks>
-        /// Create new segment metadata with segmentMetadata on instanceId.
+        /// CreateSegment
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -930,7 +889,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CreateASegmentHeaders>> CreateASegmentWithHttpMessagesAsync(string instanceId, SegmentMetadata body = default(SegmentMetadata), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Activate segment on instanceId with segmentName.
+        /// ActivateSegment
         /// </summary>
         /// <remarks>
         /// Activate segment on instanceId with segmentName.
@@ -950,7 +909,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,ActivateSegmentHeaders>> ActivateSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deactivate segment on instanceId with segmentName.
+        /// DeactivateSegment
         /// </summary>
         /// <remarks>
         /// Deactivate segment on instanceId with segmentName.
@@ -970,8 +929,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,DeactivateSegmentHeaders>> DeactivateSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Updates segment metadata for the provided instanceId and
-        /// segmentName with segmentMetadata.
+        /// UpdateSegments
         /// </summary>
         /// <remarks>
         /// Updates segment metadata for the provided instanceId and
@@ -995,12 +953,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,UpdateASegmentHeaders>> UpdateASegmentWithHttpMessagesAsync(string instanceId, string segmentName, SegmentMetadata body = default(SegmentMetadata), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deletes the segment metadata for the provided instanceId and
-        /// segmentName.
+        /// DeleteSegment
         /// </summary>
         /// <remarks>
-        /// Deletes the segment metadata for the provided instanceId and
-        /// segmentName.
+        /// DeleteSegment
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
@@ -1017,10 +973,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,DeleteSegmentHeaders>> DeleteSegmentWithHttpMessagesAsync(string instanceId, string segmentName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieve information about a workflow job.
+        /// GetWorkflowJobInformation
         /// </summary>
         /// <remarks>
-        /// Retrieve information about a workflow job.
+        /// GetWorkflowJobInformation
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -1043,7 +999,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAWorkflowJobInformationHeaders>> GetAWorkflowJobInformationWithHttpMessagesAsync(string instanceId, string workflowName, string jobId, bool? includeTasks = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Cancel a job.
+        /// CancelWorkflowJob
         /// </summary>
         /// <remarks>
         /// Cancel a job.
@@ -1066,7 +1022,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CancelAWorkflowJobHeaders>> CancelAWorkflowJobWithHttpMessagesAsync(string instanceId, string workflowName, string jobId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves a list of recent job information.
+        /// ListWorkFlowJobs
         /// </summary>
         /// <remarks>
         /// Retrieves a list of recent job information.
@@ -1092,17 +1048,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetListOfRecentWorkflowJobsHeaders>> GetListOfRecentWorkflowJobsWithHttpMessagesAsync(string instanceId, string workflowName, int? top = 10, bool? includeTasks = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Submits a workflow of OperationTypeoperationType for the instance
-        /// specified in instanceId.
-        /// Optionally takes a list of identifiers, only if operationType is
-        /// not OperationType.All and a flag
+        /// SubmitWorkflowJob
         /// forceRunRequested indicating whether to force run.
         /// </summary>
         /// <remarks>
-        /// Submits a workflow of OperationTypeoperationType for the instance
-        /// specified in instanceId.
+        /// Submits a workflow of
+        /// Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for
+        /// the instance specified in instanceId.
         /// Optionally takes a list of identifiers, only if operationType is
-        /// not OperationType.All and a flag
+        /// not Microsoft.Customer360.Core.Metadata.OperationType.All and a
+        /// flag
         /// forceRunRequested indicating whether to force run.
         /// </remarks>
         /// <param name='instanceId'>
@@ -1132,7 +1087,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,SubmitAWorkflowJobHeaders>> SubmitAWorkflowJobWithHttpMessagesAsync(string instanceId, string workflowName, OnDemandJobRequest body = default(OnDemandJobRequest), string operationType = default(string), IList<string> identifiers = default(IList<string>), bool? forceRunRequested = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Retrieves a list of historic task information for a workflow.
+        /// ListWorkflowHistory
         /// </summary>
         /// <remarks>
         /// Retrieves a list of historic task information for a workflow.
@@ -1155,7 +1110,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetListOfWorkflowTaskInformationHistoryHeaders>> GetListOfWorkflowTaskInformationHistoryWithHttpMessagesAsync(string instanceId, string workflowName, int? top = 10, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the current status for a workflow.
+        /// GetWorkflowStatus
         /// </summary>
         /// <remarks>
         /// Gets the current status for a workflow.
@@ -1175,7 +1130,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetWorkflowStatusHeaders>> GetWorkflowStatusWithHttpMessagesAsync(string instanceId, string workflowName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets a list of supported timezones for creating workflow schedules.
+        /// ListSupportedTimezones
         /// </summary>
         /// <remarks>
         /// Gets a list of supported timezones for creating workflow schedules.
@@ -1194,10 +1149,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetSupportedTimezonesHeaders>> GetSupportedTimezonesWithHttpMessagesAsync(string workflowName, string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets all workflow refresh schedules.
+        /// ListAllWorkflowSchedules
         /// </summary>
         /// <remarks>
-        /// Gets all workflow refresh schedules.
+        /// ListAllWorkflowSchedules
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid. The instance id.
@@ -1214,7 +1169,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetWorkflowSchedulesHeaders>> GetWorkflowSchedulesWithHttpMessagesAsync(string instanceId, string workflowName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Create a workflow refresh schedule.
+        /// CreateWorkflowRefreshSchedule
         /// </summary>
         /// <remarks>
         /// Create a workflow refresh schedule.
@@ -1237,7 +1192,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CreateWorkflowRefreshScheduleHeaders>> CreateWorkflowRefreshScheduleWithHttpMessagesAsync(string instanceId, string workflowName, WorkflowRefreshSchedule body = default(WorkflowRefreshSchedule), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the entityProfile for the entity.
+        /// GetEntityProfile
         /// </summary>
         /// <remarks>
         /// Gets the entityProfile for the entity.

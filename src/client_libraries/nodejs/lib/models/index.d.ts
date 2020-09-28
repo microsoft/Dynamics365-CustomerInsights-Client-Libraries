@@ -5,13 +5,39 @@
 
 import * as moment from "moment";
 
-export interface ApiError {
+export interface CIResult {
   /**
-   * Possible values include: 'notFound', 'ambiguousReference', 'malformedInput',
-   * 'serviceUnavailable', 'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
+   * Possible values include: 'system', 'user', 'external'
   */
+  exceptionCulprit?: string;
   errorCode?: string;
+  /**
+   * Possible values include: 'error', 'warning'
+  */
+  resultSeverity?: string;
   message?: string;
+  params?: { [propertyName: string]: any };
+  ciResults?: CIResult[];
+}
+
+/**
+ * Api Error response class (DTO)
+*/
+export interface ApiErrorResult {
+  readonly exception?: any;
+  httpStatusCode?: string;
+  /**
+   * Possible values include: 'system', 'user', 'external'
+  */
+  exceptionCulprit?: string;
+  errorCode?: string;
+  /**
+   * Possible values include: 'error', 'warning'
+  */
+  resultSeverity?: string;
+  message?: string;
+  params?: { [propertyName: string]: any };
+  ciResults?: CIResult[];
 }
 
 /**
@@ -191,16 +217,16 @@ export interface AttributeSemanticInformation {
   */
   attributeName?: string;
   /**
-   * Possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
-   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
-   * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
-   * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek',
-   * 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
-   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress',
-   * 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry',
-   * 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+   * Gets the semantic label. Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
+   * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+   * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+   * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
+   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+   * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer',
+   * 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
+   * 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
    * 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState',
    * 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus',
    * 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
@@ -419,41 +445,6 @@ export interface DataSourceInfo {
   model?: Model;
 }
 
-export interface CIResult {
-  /**
-   * Possible values include: 'system', 'user', 'external'
-  */
-  exceptionCulprit?: string;
-  errorCode?: string;
-  /**
-   * Possible values include: 'error', 'warning'
-  */
-  resultSeverity?: string;
-  message?: string;
-  params?: { [propertyName: string]: any };
-  ciResults?: CIResult[];
-}
-
-/**
- * Api Error response class (DTO)
-*/
-export interface ApiErrorResult {
-  readonly exception?: any;
-  httpStatusCode?: string;
-  /**
-   * Possible values include: 'system', 'user', 'external'
-  */
-  exceptionCulprit?: string;
-  errorCode?: string;
-  /**
-   * Possible values include: 'error', 'warning'
-  */
-  resultSeverity?: string;
-  message?: string;
-  params?: { [propertyName: string]: any };
-  ciResults?: CIResult[];
-}
-
 export interface OkResult {
   statusCode?: number;
 }
@@ -524,51 +515,21 @@ export interface ODataEntityPayload {
   value?: any[];
 }
 
+export interface ApiError {
+  /**
+   * Possible values include: 'notFound', 'ambiguousReference', 'malformedInput',
+   * 'serviceUnavailable', 'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
+  */
+  errorCode?: string;
+  message?: string;
+}
+
 export interface IEdmType {
   /**
    * Possible values include: 'none', 'primitive', 'entity', 'complex', 'collection',
    * 'entityReference', 'enum', 'typeDefinition', 'untyped', 'path'
   */
   typeKind?: string;
-}
-
-/**
- * Represents a property type backed by an EDM type and a CLR type. Enables conversion of values
- * from strings, as
- * well as various other type-based operations.
-*/
-export interface AttributeType {
-  /**
-   * Gets the CLR Type for this property type.
-  */
-  readonly clrType?: string;
-  /**
-   * Possible values include: 'unclassified', 'string', 'int64', 'double', 'dateTime',
-   * 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
-  */
-  cdsaType?: string;
-  /**
-   * Gets the EDM type name for the property type, in the format EdmTypeKind>".
-  */
-  readonly edmTypeName?: string;
-  readonly isBoolean?: boolean;
-  readonly isDateTime?: boolean;
-  readonly isDecimal?: boolean;
-  readonly isNumber?: boolean;
-  /**
-   * Gets a value indicating whether this type valid and supported by the runtime.
-  */
-  readonly isValidType?: boolean;
-  /**
-   * Gets the name of the property type. Will default to the EdmTypeName but may be overridden by a
-   * property
-   * type.
-  */
-  readonly name?: string;
-  equalityComparer?: any;
-  comparer?: any;
-  oDataType?: IEdmType;
-  readonly isCollection?: boolean;
 }
 
 export interface IAttributeSearchProperties {
@@ -602,18 +563,21 @@ export interface IAttributeMetadata {
   readonly name?: string;
   readonly friendlyName?: string;
   readonly baseName?: string;
-  dataType?: AttributeType;
   /**
-   * Possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
-   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
-   * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-   * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
-   * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek',
-   * 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
-   * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress',
-   * 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry',
-   * 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+   * Gets data type for property.
+  */
+  dataType?: string;
+  /**
+   * Gets semantic type for property. Possible values include: 'CalendarDate',
+   * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
+   * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+   * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
+   * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+   * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer',
+   * 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+   * 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
+   * 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
    * 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState',
    * 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus',
    * 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
@@ -666,7 +630,7 @@ export interface IEntityMetadata {
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-   * 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'
+   * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'
   */
   dataflowType?: string;
   /**
@@ -772,7 +736,7 @@ export interface IC360EntityModel {
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-   * 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'
+   * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'
   */
   dataflowType?: string;
   /**
@@ -1055,7 +1019,8 @@ export interface ResourceMetadata {
   /**
    * Possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales',
-   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds',
+   * 'marketo'
   */
   kind?: string;
   /**
@@ -1070,7 +1035,7 @@ export interface ResourceMetadata {
    * Possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http',
-   * 'mailchimp', 'googleAds'
+   * 'mailchimp', 'googleAds', 'marketo'
   */
   resourceType?: string;
   /**
@@ -1224,7 +1189,8 @@ export interface SegmentMembershipCriteria {
   /**
    * Possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo',
    * 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull',
-   * 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate'
+   * 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
+   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
   */
   comparisonOperator?: string;
   /**
@@ -1626,6 +1592,12 @@ export interface DependencyValidationIssue {
 export interface DeletionResponse {
   isDeleted?: boolean;
   issues?: DependencyValidationIssue[];
+}
+
+export interface KeyRingResponse {
+  instanceId?: string;
+  customerId?: string;
+  keyRing?: any;
 }
 
 export interface ProfileStoreModuleRunInfo {

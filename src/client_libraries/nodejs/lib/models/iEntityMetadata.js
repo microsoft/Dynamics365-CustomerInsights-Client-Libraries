@@ -26,8 +26,8 @@ class IEntityMetadata {
    * 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
    * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
    * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
-   * 'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub',
-   * 'insights', 'derivedEntity'
+   * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
+   * 'derivedEntity', 'powerPlatformSource'
    * @property {uuid} [datasourceId] Gets the original datasourceid of this
    * entity, if no data source, return null or emptyString
    * @property {string} [entityType] Possible values include: 'unspecified',
@@ -41,36 +41,13 @@ class IEntityMetadata {
    * @property {string} [timestampAttribute.name]
    * @property {string} [timestampAttribute.friendlyName]
    * @property {string} [timestampAttribute.baseName]
-   * @property {object} [timestampAttribute.dataType]
-   * @property {string} [timestampAttribute.dataType.clrType] Gets the CLR Type
-   * for this property type.
-   * @property {string} [timestampAttribute.dataType.cdsaType] Possible values
-   * include: 'unclassified', 'string', 'int64', 'double', 'dateTime',
-   * 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
-   * @property {string} [timestampAttribute.dataType.edmTypeName] Gets the EDM
-   * type name for the property type, in the format EdmTypeKind>".
-   * @property {boolean} [timestampAttribute.dataType.isBoolean]
-   * @property {boolean} [timestampAttribute.dataType.isDateTime]
-   * @property {boolean} [timestampAttribute.dataType.isDecimal]
-   * @property {boolean} [timestampAttribute.dataType.isNumber]
-   * @property {boolean} [timestampAttribute.dataType.isValidType] Gets a value
-   * indicating whether this type valid and supported by the runtime.
-   * @property {string} [timestampAttribute.dataType.name] Gets the name of the
-   * property type. Will default to the EdmTypeName but may be overridden by a
-   * property
-   * type.
-   * @property {object} [timestampAttribute.dataType.equalityComparer]
-   * @property {object} [timestampAttribute.dataType.comparer]
-   * @property {object} [timestampAttribute.dataType.oDataType]
-   * @property {string} [timestampAttribute.dataType.oDataType.typeKind]
-   * Possible values include: 'none', 'primitive', 'entity', 'complex',
-   * 'collection', 'entityReference', 'enum', 'typeDefinition', 'untyped',
-   * 'path'
-   * @property {boolean} [timestampAttribute.dataType.isCollection]
-   * @property {string} [timestampAttribute.semanticType] Possible values
-   * include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
-   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
-   * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * @property {string} [timestampAttribute.dataType] Gets data type for
+   * property.
+   * @property {string} [timestampAttribute.semanticType] Gets semantic type
+   * for property. Possible values include: 'CalendarDate',
+   * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
+   * 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
+   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
    * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
    * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
    * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
@@ -110,36 +87,13 @@ class IEntityMetadata {
    * @property {string} [incrementalAttribute.name]
    * @property {string} [incrementalAttribute.friendlyName]
    * @property {string} [incrementalAttribute.baseName]
-   * @property {object} [incrementalAttribute.dataType]
-   * @property {string} [incrementalAttribute.dataType.clrType] Gets the CLR
-   * Type for this property type.
-   * @property {string} [incrementalAttribute.dataType.cdsaType] Possible
-   * values include: 'unclassified', 'string', 'int64', 'double', 'dateTime',
-   * 'dateTimeOffset', 'decimal', 'boolean', 'guid', 'json'
-   * @property {string} [incrementalAttribute.dataType.edmTypeName] Gets the
-   * EDM type name for the property type, in the format EdmTypeKind>".
-   * @property {boolean} [incrementalAttribute.dataType.isBoolean]
-   * @property {boolean} [incrementalAttribute.dataType.isDateTime]
-   * @property {boolean} [incrementalAttribute.dataType.isDecimal]
-   * @property {boolean} [incrementalAttribute.dataType.isNumber]
-   * @property {boolean} [incrementalAttribute.dataType.isValidType] Gets a
-   * value indicating whether this type valid and supported by the runtime.
-   * @property {string} [incrementalAttribute.dataType.name] Gets the name of
-   * the property type. Will default to the EdmTypeName but may be overridden
-   * by a property
-   * type.
-   * @property {object} [incrementalAttribute.dataType.equalityComparer]
-   * @property {object} [incrementalAttribute.dataType.comparer]
-   * @property {object} [incrementalAttribute.dataType.oDataType]
-   * @property {string} [incrementalAttribute.dataType.oDataType.typeKind]
-   * Possible values include: 'none', 'primitive', 'entity', 'complex',
-   * 'collection', 'entityReference', 'enum', 'typeDefinition', 'untyped',
-   * 'path'
-   * @property {boolean} [incrementalAttribute.dataType.isCollection]
-   * @property {string} [incrementalAttribute.semanticType] Possible values
-   * include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
-   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
-   * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * @property {string} [incrementalAttribute.dataType] Gets data type for
+   * property.
+   * @property {string} [incrementalAttribute.semanticType] Gets semantic type
+   * for property. Possible values include: 'CalendarDate',
+   * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
+   * 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
+   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
    * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
    * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
    * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',

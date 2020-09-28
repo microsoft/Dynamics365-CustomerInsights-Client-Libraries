@@ -17,7 +17,7 @@ class ResourceMetadata {
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds'
+   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    * @property {uuid} [resourceId] Gets the Id of the resource.
    * @property {uuid} [operationId] Gets the Id of the operation being
    * performed on the resource.
@@ -25,7 +25,7 @@ class ResourceMetadata {
    * 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection',
    * 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
    * 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-   * 'googleAds'
+   * 'googleAds', 'marketo'
    * @property {string} [name] Gets the Name of the resource.
    * @property {string} [description] Gets the Description of the resource.
    * @property {number} [version] Gets the version number of this object.

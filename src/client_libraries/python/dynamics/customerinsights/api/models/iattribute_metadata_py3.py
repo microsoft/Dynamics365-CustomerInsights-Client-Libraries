@@ -20,12 +20,12 @@ class IAttributeMetadata(Model):
     :vartype friendly_name: str
     :ivar base_name:
     :vartype base_name: str
-    :param data_type:
-    :type data_type: ~dynamics.customerinsights.api.models.AttributeType
-    :param semantic_type: Possible values include: 'CalendarDate',
-     'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
-     'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-     'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+    :param data_type: Gets data type for property.
+    :type data_type: str
+    :param semantic_type: Gets semantic type for property. Possible values
+     include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+     'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+     'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
      'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
      'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
      'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
@@ -60,12 +60,12 @@ class IAttributeMetadata(Model):
         'name': {'key': 'name', 'type': 'str'},
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
         'base_name': {'key': 'baseName', 'type': 'str'},
-        'data_type': {'key': 'dataType', 'type': 'AttributeType'},
+        'data_type': {'key': 'dataType', 'type': 'str'},
         'semantic_type': {'key': 'semanticType', 'type': 'str'},
         'search_properties': {'key': 'searchProperties', 'type': 'IAttributeSearchProperties'},
     }
 
-    def __init__(self, *, data_type=None, semantic_type=None, search_properties=None, **kwargs) -> None:
+    def __init__(self, *, data_type: str=None, semantic_type=None, search_properties=None, **kwargs) -> None:
         super(IAttributeMetadata, self).__init__(**kwargs)
         self.name = None
         self.friendly_name = None

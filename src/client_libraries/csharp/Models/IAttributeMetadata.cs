@@ -22,23 +22,24 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the IAttributeMetadata class.
         /// </summary>
-        /// <param name="semanticType">Possible values include: 'CalendarDate',
-        /// 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
-        /// 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-        /// 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
-        /// 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
-        /// 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-        /// 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
-        /// 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
-        /// 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek',
-        /// 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer',
-        /// 'Language', 'Organization', 'OrganizationUnit', 'Person',
-        /// 'Product', 'ProductGroup', 'LocationAddress',
-        /// 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
-        /// 'LocationCountry', 'LocationCounty', 'LocationLatitude',
-        /// 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
-        /// 'LocationProvince', 'LocationRegion', 'LocationState',
-        /// 'LocationTimezone', 'MeasurementDateCreation',
+        /// <param name="dataType">Gets data type for property.</param>
+        /// <param name="semanticType">Gets semantic type for property.
+        /// Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
+        /// 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
+        /// 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek',
+        /// 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
+        /// 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+        /// 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
+        /// 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
+        /// 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+        /// 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
+        /// 'Contact', 'Customer', 'Language', 'Organization',
+        /// 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+        /// 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+        /// 'LocationContinent', 'LocationCountry', 'LocationCounty',
+        /// 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+        /// 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+        /// 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
         /// 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
         /// 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
         /// 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
@@ -46,7 +47,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place',
         /// 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic',
         /// 'ReferenceURL'</param>
-        public IAttributeMetadata(string name = default(string), string friendlyName = default(string), string baseName = default(string), AttributeType dataType = default(AttributeType), string semanticType = default(string), IAttributeSearchProperties searchProperties = default(IAttributeSearchProperties))
+        public IAttributeMetadata(string name = default(string), string friendlyName = default(string), string baseName = default(string), string dataType = default(string), string semanticType = default(string), IAttributeSearchProperties searchProperties = default(IAttributeSearchProperties))
         {
             Name = name;
             FriendlyName = friendlyName;
@@ -78,28 +79,29 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string BaseName { get; private set; }
 
         /// <summary>
+        /// Gets data type for property.
         /// </summary>
         [JsonProperty(PropertyName = "dataType")]
-        public AttributeType DataType { get; set; }
+        public string DataType { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'CalendarDate',
-        /// 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
-        /// 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-        /// 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
-        /// 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
-        /// 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-        /// 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
-        /// 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
-        /// 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek',
-        /// 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer',
-        /// 'Language', 'Organization', 'OrganizationUnit', 'Person',
-        /// 'Product', 'ProductGroup', 'LocationAddress',
-        /// 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
-        /// 'LocationCountry', 'LocationCounty', 'LocationLatitude',
-        /// 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
-        /// 'LocationProvince', 'LocationRegion', 'LocationState',
-        /// 'LocationTimezone', 'MeasurementDateCreation',
+        /// Gets semantic type for property. Possible values include:
+        /// 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+        /// 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+        /// 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
+        /// 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
+        /// 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+        /// 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
+        /// 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
+        /// 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+        /// 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
+        /// 'Contact', 'Customer', 'Language', 'Organization',
+        /// 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+        /// 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+        /// 'LocationContinent', 'LocationCountry', 'LocationCounty',
+        /// 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+        /// 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+        /// 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
         /// 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
         /// 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
         /// 'PersonFullName', 'PersonLastName', 'PersonMiddleName',

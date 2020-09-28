@@ -55,7 +55,7 @@ class CustomerInsights(SDKClient):
 
     def get_an_attribute_profile(
             self, instance_id, qualified_entity_name, attribute_name, custom_headers=None, raw=False, **operation_config):
-        """Gets the specific attribute profile for the entity.
+        """GetAttributeProfile.
 
         Gets the specific attribute profile for the entity.
 
@@ -109,7 +109,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -124,11 +124,11 @@ class CustomerInsights(SDKClient):
 
     def get_all_data_sources(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Fetches a collection of DataSourceInfo configured for the Customer
-        Insights instance.
+        """GetAllDataSources.
 
-        Fetches a collection of DataSourceInfo configured for the Customer
-        Insights instance.
+        Fetches a collection of
+        Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the
+        Customer Insights instance.
 
         :param instance_id: Format - uuid. The instance id for which to fetch
          data source info.
@@ -195,11 +195,10 @@ class CustomerInsights(SDKClient):
 
     def get_data_source(
             self, instance_id, data_source_id, custom_headers=None, raw=False, **operation_config):
-        """Fetches a DataSourceInfo matching the dataSourceId configured for the
-        Customer Insights instance.
+        """GetDataSource.
 
-        Fetches a DataSourceInfo matching the dataSourceId configured for the
-        Customer Insights instance.
+        Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching
+        the dataSourceId configured for the Customer Insights instance.
 
         :param instance_id: Format - uuid. The instance id to fetch data
          source info for.
@@ -265,7 +264,7 @@ class CustomerInsights(SDKClient):
 
     def delete_a_data_source(
             self, instance_id, data_source_id, custom_headers=None, raw=False, **operation_config):
-        """Deletes a data source from the instance.
+        """DeleteDataSource.
 
         Deletes a data source from the instance.
 
@@ -336,11 +335,9 @@ class CustomerInsights(SDKClient):
 
     def create_an_entity(
             self, instance_id, entity_name, body=None, valid_until=None, caller=None, custom_headers=None, raw=False, **operation_config):
-        """Writes an entity instance into the store, g. an activity entity.
-        (Preview).
+        """CreateEntity (Preview).
 
-        Writes an entity instance into the store, g. an activity entity.
-        (Preview).
+        Writes an entity instance into the store, e.g. an activity entity.
 
         :param instance_id: Format - uuid. Customer Insights instance Id.
         :type instance_id: str
@@ -442,9 +439,9 @@ class CustomerInsights(SDKClient):
 
     def update_an_entity(
             self, instance_id, entity_name, entity_id, body=None, valid_until=None, caller=None, custom_headers=None, raw=False, **operation_config):
-        """Updates an entity instance in the store, g. Customer entity. (Preview).
+        """UpdateEntity (Preview).
 
-        Updates an entity instance in the store, g. Customer entity. (Preview).
+        Updates an entity instance in the store, e.g. Customer entity.
 
         :param instance_id: Format - uuid. Customer Insights instance Id.
         :type instance_id: str
@@ -543,7 +540,7 @@ class CustomerInsights(SDKClient):
 
     def get_entities_with_odata_path(
             self, instance_id, relative_path, force_search=None, proxy=None, search=None, select=None, skip=None, skiptoken=None, filter=None, orderby=None, expand=None, top=None, custom_headers=None, raw=False, **operation_config):
-        """Submits an OData request to the service.
+        """GetEntityByODataQuery.
 
         Submits an OData request to the service.
 
@@ -665,7 +662,7 @@ class CustomerInsights(SDKClient):
 
     def get_all_entity_metadata(
             self, instance_id, attributes_annotations=False, include_quarantined=False, custom_headers=None, raw=False, **operation_config):
-        """Retrieves the flattened entity model for the provided instanceId.
+        """GetAllEntitiesMetadata.
 
         Retrieves the flattened entity model for the provided instanceId.
 
@@ -748,8 +745,7 @@ class CustomerInsights(SDKClient):
 
     def get_entity_metadata(
             self, instance_id, entity_name, attributes_annotations=False, custom_headers=None, raw=False, **operation_config):
-        """Retrieves the entity metadata for the provided instanceId and
-        entityName.
+        """GetEntityMetadata.
 
         Retrieves the entity metadata for the provided instanceId and
         entityName.
@@ -831,7 +827,7 @@ class CustomerInsights(SDKClient):
 
     def get_entity_size(
             self, instance_id, entity_name, custom_headers=None, raw=False, **operation_config):
-        """Retrieves the entity size for the provided instanceId and entityName.
+        """GetEntitySize.
 
         Retrieves the entity size for the provided instanceId and entityName.
 
@@ -907,11 +903,10 @@ class CustomerInsights(SDKClient):
 
     def reset_an_instance(
             self, instance_id, instance_management_operation_scope=None, custom_headers=None, raw=False, **operation_config):
-        """Reset scopes in the given instance. Provide optional management
-        operation scope to reset only that scope. (Preview).
+        """ResetInstance (Preview).
 
         Reset scopes in the given instance. Provide optional management
-        operation scope to reset only that scope. (Preview).
+        operation scope to reset only that scope.
 
         :param instance_id: Format - uuid. The instance Id.
         :type instance_id: str
@@ -990,93 +985,9 @@ class CustomerInsights(SDKClient):
         return deserialized
     reset_an_instance.metadata = {'url': '/instances/{instanceId}/manage/reset'}
 
-    def reset_instance_for_scope(
-            self, instance_id, instance_management_operation_scope, custom_headers=None, raw=False, **operation_config):
-        """Reset scopes in the given instance. Provide optional management
-        operation scope to reset only that scope. (Preview).
-
-        Reset scopes in the given instance. Provide optional management
-        operation scope to reset only that scope. (Preview).
-
-        :param instance_id: Format - uuid. The instance Id.
-        :type instance_id: str
-        :param instance_management_operation_scope: The management operation
-         scope for reset.
-        :type instance_management_operation_scope: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: object or ClientRawResponse if raw=true
-        :rtype: object or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
-        """
-        # Construct URL
-        url = self.reset_instance_for_scope.metadata['url']
-        path_format_arguments = {
-            'instanceId': self._serialize.url("instance_id", instance_id, 'str'),
-            'instanceManagementOperationScope': self._serialize.url("instance_management_operation_scope", instance_management_operation_scope, 'str')
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
-
-        if response.status_code not in [200, 400, 401, 403, 404, 500, 503]:
-            raise HttpOperationError(self._deserialize, response)
-
-        deserialized = None
-        header_dict = {}
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('bool', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-        if response.status_code == 400:
-            deserialized = self._deserialize('ApiErrorResult', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-        if response.status_code == 403:
-            deserialized = self._deserialize('ApiErrorResult', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-        if response.status_code == 404:
-            deserialized = self._deserialize('ApiErrorResult', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-        if response.status_code == 500:
-            deserialized = self._deserialize('ApiErrorResult', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
-
-        return deserialized
-    reset_instance_for_scope.metadata = {'url': '/instances/{instanceId}/manage/reset/operationScope/{instanceManagementOperationScope}'}
-
     def get_all_instances(
             self, custom_headers=None, raw=False, **operation_config):
-        """Retrieves all instances of the current user.
+        """ListAllInstances.
 
         Retrieves all instances of the current user.
 
@@ -1138,8 +1049,7 @@ class CustomerInsights(SDKClient):
 
     def get_all_instances_in_batches_by_instanceids(
             self, body=None, custom_headers=None, raw=False, **operation_config):
-        """Retrieves instances based on instance ids, it can only accept batch of
-        instances.
+        """ListInstancesByInstanceIds.
 
         Retrieves instances based on instance ids, it can only accept batch of
         instances.
@@ -1211,8 +1121,7 @@ class CustomerInsights(SDKClient):
 
     def get_instance_metadata(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Retrieves metadata for a Customer Insights instance based on its
-        instanceId.
+        """GetInstance.
 
         Retrieves metadata for a Customer Insights instance based on its
         instanceId.
@@ -1282,9 +1191,9 @@ class CustomerInsights(SDKClient):
 
     def delete_an_instance(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Detele an instance.
+        """DeleteInstance.
 
-        Detele an instance.
+        Delete an instance.
 
         :param instance_id: Format - uuid. The instance id.
         :type instance_id: str
@@ -1360,7 +1269,7 @@ class CustomerInsights(SDKClient):
 
     def create_an_instance(
             self, body=None, custom_headers=None, raw=False, **operation_config):
-        """Creates a new instance.
+        """CreateInstance.
 
         Creates a new instance.
 
@@ -1442,8 +1351,7 @@ class CustomerInsights(SDKClient):
 
     def update_an_instance(
             self, instance_id, body=None, custom_headers=None, raw=False, **operation_config):
-        """Patches the Market Verticals, Display name, Domain Name, CDS
-        environment and BYOSA secret to the instance.
+        """UpdateInstance.
 
         Patches the Market Verticals, Display name, Domain Name, CDS
         environment and BYOSA secret to the instance.
@@ -1527,7 +1435,7 @@ class CustomerInsights(SDKClient):
 
     def copy_an_instance(
             self, body=None, custom_headers=None, raw=False, **operation_config):
-        """Create a new instance and copy metadata from an existing instance.
+        """CopyInstance.
 
         Create a new instance and copy metadata from an existing instance.
 
@@ -1608,9 +1516,9 @@ class CustomerInsights(SDKClient):
 
     def get_a_list_of_measures_metadata(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Retrieves a list of measures metadata for the provided instanceId.
+        """ListAllMeasuresMetadata.
 
-        Retrieves a list of measures metadata for the provided instanceId.
+        ListAllMeasuresMetadata.
 
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
@@ -1671,9 +1579,9 @@ class CustomerInsights(SDKClient):
 
     def create_a_measure(
             self, instance_id, body=None, custom_headers=None, raw=False, **operation_config):
-        """Create new measure metadata with measureMetadata on instanceId.
+        """CreateMeasure.
 
-        Create new measure metadata with measureMetadata on instanceId.
+        CreateMeasure.
 
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
@@ -1748,8 +1656,7 @@ class CustomerInsights(SDKClient):
 
     def get_metadata_for_a_measure(
             self, instance_id, measure_name, include_historic_stats=False, historic_stats_days=30, custom_headers=None, raw=False, **operation_config):
-        """Retrieves the measure metadata for the provided instanceId and
-        measureName.
+        """GetMeasureMetadata.
 
         Retrieves the measure metadata for the provided instanceId and
         measureName.
@@ -1824,9 +1731,7 @@ class CustomerInsights(SDKClient):
 
     def update_a_measure(
             self, instance_id, measure_name, body=None, custom_headers=None, raw=False, **operation_config):
-        """Updates measures metadata for the provided instanceId and
-        measureMetadata.
-        Existing measure is retrieved using measureName.
+        """UpdateMeasure.
 
         Updates measures metadata for the provided instanceId and
         measureMetadata.
@@ -1908,8 +1813,7 @@ class CustomerInsights(SDKClient):
 
     def delete_a_measure(
             self, instance_id, measure_name, custom_headers=None, raw=False, **operation_config):
-        """Deletes the measure metadata for the provided instanceId using
-        measureName.
+        """DeleteMeasure.
 
         Deletes the measure metadata for the provided instanceId using
         measureName.
@@ -1981,8 +1885,7 @@ class CustomerInsights(SDKClient):
 
     def get_key_ring(
             self, instance_id, data_source_name, entity_name, key, custom_headers=None, raw=False, **operation_config):
-        """Gets the KeyRing (collection of all alternate keys) for the given
-        instance by alternate key.
+        """GetKeyRing.
 
         Gets the KeyRing (collection of all alternate keys) for the given
         instance by alternate key.
@@ -2002,9 +1905,8 @@ class CustomerInsights(SDKClient):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: ApiErrorResult or ClientRawResponse if raw=true
-        :rtype: ~dynamics.customerinsights.api.models.ApiErrorResult or
-         ~msrest.pipeline.ClientRawResponse
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -2031,12 +1933,17 @@ class CustomerInsights(SDKClient):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code not in [400, 401, 404, 500, 503]:
+        if response.status_code not in [200, 400, 401, 404, 500, 503]:
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
 
+        if response.status_code == 200:
+            deserialized = self._deserialize('KeyRingResponse', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
         if response.status_code == 400:
             deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
@@ -2058,7 +1965,7 @@ class CustomerInsights(SDKClient):
 
     def get_profile_store_state(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Gets the profile store state infoformation.
+        """GetProfileStoreState.
 
         Gets the profile store state infoformation.
 
@@ -2126,7 +2033,7 @@ class CustomerInsights(SDKClient):
 
     def get_all_role_definitions(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Get all role definitions.
+        """ListAllRoles.
 
         Get all role definitions.
 
@@ -2185,7 +2092,7 @@ class CustomerInsights(SDKClient):
 
     def get_current_user_role(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Get role of current user.
+        """GetCurrentUserRole.
 
         Get role of current user.
 
@@ -2244,7 +2151,7 @@ class CustomerInsights(SDKClient):
 
     def update_a_role_assignment(
             self, instance_id, principal_id, body=None, custom_headers=None, raw=False, **operation_config):
-        """Adds or updates a role assignment for a principal.
+        """UpdateRoleAssignment.
 
         Adds or updates a role assignment for a principal.
 
@@ -2315,7 +2222,7 @@ class CustomerInsights(SDKClient):
 
     def deletes_a_role_assignment(
             self, instance_id, principal_id, custom_headers=None, raw=False, **operation_config):
-        """Deletes a role assignment for the principal.
+        """DeleteRoleAssignment.
 
         Deletes a role assignment for the principal.
 
@@ -2366,7 +2273,7 @@ class CustomerInsights(SDKClient):
 
     def get_all_role_assignments(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Gets all role assignments for the instance.
+        """ListAllRoleAssignments.
 
         Gets all role assignments for the instance.
 
@@ -2425,7 +2332,7 @@ class CustomerInsights(SDKClient):
 
     def get_all_relationships(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Gets all relationship metadata for the provided instanceId.
+        """ListAllRelationships.
 
         Gets all relationship metadata for the provided instanceId.
 
@@ -2493,8 +2400,7 @@ class CustomerInsights(SDKClient):
 
     def create_a_relationship(
             self, instance_id, body=None, custom_headers=None, raw=False, **operation_config):
-        """Creates new relationship metadata for the provided instanceId, using
-        input.
+        """CreateRelationship.
 
         Creates new relationship metadata for the provided instanceId, using
         input.
@@ -2577,8 +2483,7 @@ class CustomerInsights(SDKClient):
 
     def get_a_relationship(
             self, instance_id, relationship_name, custom_headers=None, raw=False, **operation_config):
-        """Gets the relationship metadata for the provided instanceId and
-        relationshipName.
+        """GetRelationship.
 
         Gets the relationship metadata for the provided instanceId and
         relationshipName.
@@ -2650,8 +2555,7 @@ class CustomerInsights(SDKClient):
 
     def delete_a_relationship(
             self, instance_id, relationship_name, custom_headers=None, raw=False, **operation_config):
-        """Deletes the relationship metadata for the provided instanceId and
-        relationshipName.
+        """DeleteRelationship.
 
         Deletes the relationship metadata for the provided instanceId and
         relationshipName.
@@ -2723,8 +2627,7 @@ class CustomerInsights(SDKClient):
 
     def update_a_relationship(
             self, instance_id, relationship_name, body=None, custom_headers=None, raw=False, **operation_config):
-        """Updates the relationship metadata for the provided instanceId and
-        relationshipName, using input.
+        """UpdateRelationshhip.
 
         Updates the relationship metadata for the provided instanceId and
         relationshipName, using input.
@@ -2810,7 +2713,7 @@ class CustomerInsights(SDKClient):
 
     def get_search_configuration(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Gets the search configuration for the instance.
+        """GetSearchConfiguration.
 
         Gets the search configuration for the instance.
 
@@ -2878,9 +2781,9 @@ class CustomerInsights(SDKClient):
 
     def update_search_configuration(
             self, instance_id, body=None, custom_headers=None, raw=False, **operation_config):
-        """Updates the search configuration for the instance.
+        """UpdateSearchConfiguration.
 
-        Updates the search configuration for the instance.
+        UpdateSearchConfiguration.
 
         :param instance_id: Format - uuid. The instance id.
         :type instance_id: str
@@ -2961,7 +2864,7 @@ class CustomerInsights(SDKClient):
 
     def get_all_segments(
             self, instance_id, include_historic_stats=False, historic_stats_days=10, custom_headers=None, raw=False, **operation_config):
-        """Retrieves a list of segment metadata for the provided instanceId.
+        """ListAllSegments.
 
         Retrieves a list of segment metadata for the provided instanceId.
 
@@ -3034,9 +2937,9 @@ class CustomerInsights(SDKClient):
 
     def create_a_segment(
             self, instance_id, body=None, custom_headers=None, raw=False, **operation_config):
-        """Create new segment metadata with segmentMetadata on instanceId.
+        """CreateSegment.
 
-        Create new segment metadata with segmentMetadata on instanceId.
+        CreateSegment.
 
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
@@ -3106,7 +3009,7 @@ class CustomerInsights(SDKClient):
 
     def activate_segment(
             self, instance_id, segment_name, custom_headers=None, raw=False, **operation_config):
-        """Activate segment on instanceId with segmentName.
+        """ActivateSegment.
 
         Activate segment on instanceId with segmentName.
 
@@ -3172,7 +3075,7 @@ class CustomerInsights(SDKClient):
 
     def deactivate_segment(
             self, instance_id, segment_name, custom_headers=None, raw=False, **operation_config):
-        """Deactivate segment on instanceId with segmentName.
+        """DeactivateSegment.
 
         Deactivate segment on instanceId with segmentName.
 
@@ -3238,8 +3141,7 @@ class CustomerInsights(SDKClient):
 
     def update_a_segment(
             self, instance_id, segment_name, body=None, custom_headers=None, raw=False, **operation_config):
-        """Updates segment metadata for the provided instanceId and segmentName
-        with segmentMetadata.
+        """UpdateSegments.
 
         Updates segment metadata for the provided instanceId and segmentName
         with segmentMetadata.
@@ -3315,11 +3217,9 @@ class CustomerInsights(SDKClient):
 
     def delete_segment(
             self, instance_id, segment_name, custom_headers=None, raw=False, **operation_config):
-        """Deletes the segment metadata for the provided instanceId and
-        segmentName.
+        """DeleteSegment.
 
-        Deletes the segment metadata for the provided instanceId and
-        segmentName.
+        DeleteSegment.
 
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
@@ -3383,9 +3283,9 @@ class CustomerInsights(SDKClient):
 
     def get_a_workflow_job_information(
             self, instance_id, workflow_name, job_id, include_tasks=False, custom_headers=None, raw=False, **operation_config):
-        """Retrieve information about a workflow job.
+        """GetWorkflowJobInformation.
 
-        Retrieve information about a workflow job.
+        GetWorkflowJobInformation.
 
         :param instance_id: Format - uuid. The instance id.
         :type instance_id: str
@@ -3461,7 +3361,7 @@ class CustomerInsights(SDKClient):
 
     def cancel_a_workflow_job(
             self, instance_id, workflow_name, job_id, custom_headers=None, raw=False, **operation_config):
-        """Cancel a job.
+        """CancelWorkflowJob.
 
         Cancel a job.
 
@@ -3535,7 +3435,7 @@ class CustomerInsights(SDKClient):
 
     def get_list_of_recent_workflow_jobs(
             self, instance_id, workflow_name, top=10, include_tasks=False, custom_headers=None, raw=False, **operation_config):
-        """Retrieves a list of recent job information.
+        """ListWorkFlowJobs.
 
         Retrieves a list of recent job information.
 
@@ -3615,16 +3515,14 @@ class CustomerInsights(SDKClient):
 
     def submit_a_workflow_job(
             self, instance_id, workflow_name, body=None, operation_type=None, identifiers=None, force_run_requested=False, custom_headers=None, raw=False, **operation_config):
-        """Submits a workflow of OperationTypeoperationType for the instance
-        specified in instanceId.
-        Optionally takes a list of identifiers, only if operationType is not
-        OperationType.All and a flag
+        """SubmitWorkflowJob
         forceRunRequested indicating whether to force run.
 
-        Submits a workflow of OperationTypeoperationType for the instance
-        specified in instanceId.
+        Submits a workflow of
+        Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
+        instance specified in instanceId.
         Optionally takes a list of identifiers, only if operationType is not
-        OperationType.All and a flag
+        Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
         forceRunRequested indicating whether to force run.
 
         :param instance_id: Format - uuid. The Customer Insights instance id.
@@ -3715,7 +3613,7 @@ class CustomerInsights(SDKClient):
 
     def get_list_of_workflow_task_information_history(
             self, instance_id, workflow_name, top=10, custom_headers=None, raw=False, **operation_config):
-        """Retrieves a list of historic task information for a workflow.
+        """ListWorkflowHistory.
 
         Retrieves a list of historic task information for a workflow.
 
@@ -3791,7 +3689,7 @@ class CustomerInsights(SDKClient):
 
     def get_workflow_status(
             self, instance_id, workflow_name, custom_headers=None, raw=False, **operation_config):
-        """Gets the current status for a workflow.
+        """GetWorkflowStatus.
 
         Gets the current status for a workflow.
 
@@ -3862,7 +3760,7 @@ class CustomerInsights(SDKClient):
 
     def get_supported_timezones(
             self, workflow_name, instance_id, custom_headers=None, raw=False, **operation_config):
-        """Gets a list of supported timezones for creating workflow schedules.
+        """ListSupportedTimezones.
 
         Gets a list of supported timezones for creating workflow schedules.
 
@@ -3928,9 +3826,9 @@ class CustomerInsights(SDKClient):
 
     def get_workflow_schedules(
             self, instance_id, workflow_name, custom_headers=None, raw=False, **operation_config):
-        """Gets all workflow refresh schedules.
+        """ListAllWorkflowSchedules.
 
-        Gets all workflow refresh schedules.
+        ListAllWorkflowSchedules.
 
         :param instance_id: Format - uuid. The instance id.
         :type instance_id: str
@@ -3994,7 +3892,7 @@ class CustomerInsights(SDKClient):
 
     def create_workflow_refresh_schedule(
             self, instance_id, workflow_name, body=None, custom_headers=None, raw=False, **operation_config):
-        """Create a workflow refresh schedule.
+        """CreateWorkflowRefreshSchedule.
 
         Create a workflow refresh schedule.
 
@@ -4070,7 +3968,7 @@ class CustomerInsights(SDKClient):
 
     def get_an_entity_profile(
             self, instance_id, qualified_entity_name, custom_headers=None, raw=False, **operation_config):
-        """Gets the entityProfile for the entity.
+        """GetEntityProfile.
 
         Gets the entityProfile for the entity.
 
@@ -4121,7 +4019,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }

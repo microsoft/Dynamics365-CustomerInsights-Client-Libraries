@@ -25,8 +25,8 @@ class IC360EntityModel(Model):
      'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
      'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
      'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
-     'attachCds', 'unknown', 'powerPlatform', 'powerPlatformSource', 'datahub',
-     'insights', 'derivedEntity'
+     'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
+     'derivedEntity', 'powerPlatformSource'
     :type dataflow_type: str or ~dynamics.customerinsights.api.models.enum
     :ivar entities: Gets entities in the model.
     :vartype entities:

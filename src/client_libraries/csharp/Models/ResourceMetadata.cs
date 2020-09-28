@@ -29,7 +29,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
         /// 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
         /// 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-        /// 'facebookAds', 'http', 'mailchimp', 'googleAds'</param>
+        /// 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'</param>
         /// <param name="resourceId">Gets the Id of the resource.</param>
         /// <param name="operationId">Gets the Id of the operation being
         /// performed on the resource.</param>
@@ -37,7 +37,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection',
         /// 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
         /// 'basicAuthenticationConnection', 'facebookAds', 'http',
-        /// 'mailchimp', 'googleAds'</param>
+        /// 'mailchimp', 'googleAds', 'marketo'</param>
         /// <param name="name">Gets the Name of the resource.</param>
         /// <param name="description">Gets the Description of the
         /// resource.</param>
@@ -80,7 +80,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
         /// 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
         /// 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-        /// 'facebookAds', 'http', 'mailchimp', 'googleAds'
+        /// 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }
@@ -102,7 +102,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'cds', 'ftp', 'bearerAuthenticationConnection',
         /// 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
         /// 'basicAuthenticationConnection', 'facebookAds', 'http',
-        /// 'mailchimp', 'googleAds'
+        /// 'mailchimp', 'googleAds', 'marketo'
         /// </summary>
         [JsonProperty(PropertyName = "resourceType")]
         public string ResourceType { get; set; }

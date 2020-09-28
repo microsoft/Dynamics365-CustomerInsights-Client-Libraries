@@ -19,28 +19,29 @@ public class AttributeSemanticInformation {
     private String attributeName;
 
     /**
-     * Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
-     * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
-     * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
-     * 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
-     * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
-     * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
-     * 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
-     * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
-     * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
-     * 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit',
-     * 'Person', 'Product', 'ProductGroup', 'LocationAddress',
-     * 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
-     * 'LocationCountry', 'LocationCounty', 'LocationLatitude',
-     * 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
-     * 'LocationProvince', 'LocationRegion', 'LocationState',
-     * 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify',
-     * 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand',
-     * 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName',
-     * 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail',
-     * 'IdentityServiceFacebook', 'IdentityServicePhone',
-     * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
-     * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
+     * Gets the semantic label. Possible values include: 'CalendarDate',
+     * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
+     * 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
+     * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+     * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
+     * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
+     * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
+     * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
+     * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
+     * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
+     * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+     * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+     * 'LocationContinent', 'LocationCountry', 'LocationCounty',
+     * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+     * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+     * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
+     * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
+     * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
+     * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+     * 'IdentityServiceEmail', 'IdentityServiceFacebook',
+     * 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place',
+     * 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic',
+     * 'ReferenceURL'.
      */
     @JsonProperty(value = "label")
     private String label;
@@ -66,7 +67,7 @@ public class AttributeSemanticInformation {
     }
 
     /**
-     * Get possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
+     * Get gets the semantic label. Possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
      *
      * @return the label value
      */
@@ -75,7 +76,7 @@ public class AttributeSemanticInformation {
     }
 
     /**
-     * Set possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
+     * Set gets the semantic label. Possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
      *
      * @param label the label value to set
      * @return the AttributeSemanticInformation object itself.

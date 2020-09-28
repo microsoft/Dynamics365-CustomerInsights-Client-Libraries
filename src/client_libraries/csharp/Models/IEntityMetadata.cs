@@ -41,8 +41,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'powerPlatformSource', 'datahub', 'insights',
-        /// 'derivedEntity'</param>
+        /// 'datahub', 'insights', 'derivedEntity',
+        /// 'powerPlatformSource'</param>
         /// <param name="datasourceId">Gets the original datasourceid of this
         /// entity, if no data source, return null or emptyString</param>
         /// <param name="entityType">Possible values include: 'unspecified',
@@ -144,7 +144,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'
+        /// 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'
         /// </summary>
         [JsonProperty(PropertyName = "dataflowType")]
         public string DataflowType { get; set; }

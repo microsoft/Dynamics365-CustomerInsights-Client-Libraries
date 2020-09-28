@@ -31,34 +31,35 @@ public class IAttributeMetadata {
     private String baseName;
 
     /**
-     * The dataType property.
+     * Gets data type for property.
      */
     @JsonProperty(value = "dataType")
-    private AttributeType dataType;
+    private String dataType;
 
     /**
-     * Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
-     * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear',
-     * 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
-     * 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
-     * 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
-     * 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
-     * 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
-     * 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
-     * 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
-     * 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit',
-     * 'Person', 'Product', 'ProductGroup', 'LocationAddress',
-     * 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
-     * 'LocationCountry', 'LocationCounty', 'LocationLatitude',
-     * 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
-     * 'LocationProvince', 'LocationRegion', 'LocationState',
-     * 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify',
-     * 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand',
-     * 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName',
-     * 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail',
-     * 'IdentityServiceFacebook', 'IdentityServicePhone',
-     * 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription',
-     * 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
+     * Gets semantic type for property. Possible values include:
+     * 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+     * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+     * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+     * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
+     * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
+     * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
+     * 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
+     * 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear',
+     * 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization',
+     * 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+     * 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+     * 'LocationContinent', 'LocationCountry', 'LocationCounty',
+     * 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+     * 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+     * 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
+     * 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
+     * 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
+     * 'PersonFullName', 'PersonLastName', 'PersonMiddleName',
+     * 'IdentityServiceEmail', 'IdentityServiceFacebook',
+     * 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place',
+     * 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic',
+     * 'ReferenceURL'.
      */
     @JsonProperty(value = "semanticType")
     private String semanticType;
@@ -97,27 +98,27 @@ public class IAttributeMetadata {
     }
 
     /**
-     * Get the dataType value.
+     * Get gets data type for property.
      *
      * @return the dataType value
      */
-    public AttributeType dataType() {
+    public String dataType() {
         return this.dataType;
     }
 
     /**
-     * Set the dataType value.
+     * Set gets data type for property.
      *
      * @param dataType the dataType value to set
      * @return the IAttributeMetadata object itself.
      */
-    public IAttributeMetadata withDataType(AttributeType dataType) {
+    public IAttributeMetadata withDataType(String dataType) {
         this.dataType = dataType;
         return this;
     }
 
     /**
-     * Get possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
+     * Get gets semantic type for property. Possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
      *
      * @return the semanticType value
      */
@@ -126,7 +127,7 @@ public class IAttributeMetadata {
     }
 
     /**
-     * Set possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
+     * Set gets semantic type for property. Possible values include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth', 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer', 'Language', 'Organization', 'OrganizationUnit', 'Person', 'Product', 'ProductGroup', 'LocationAddress', 'LocationAddressStreet', 'LocationCity', 'LocationContinent', 'LocationCountry', 'LocationCounty', 'LocationLatitude', 'LocationLongitude', 'LocationPoint', 'LocationPostalCode', 'LocationProvince', 'LocationRegion', 'LocationState', 'LocationTimezone', 'MeasurementDateCreation', 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion', 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName', 'PersonFullName', 'PersonLastName', 'PersonMiddleName', 'IdentityServiceEmail', 'IdentityServiceFacebook', 'IdentityServicePhone', 'IdentityServiceTwitter', 'Image', 'Place', 'ReferenceDescription', 'ReferenceImageURL', 'ReferencePhonetic', 'ReferenceURL'.
      *
      * @param semanticType the semanticType value to set
      * @return the IAttributeMetadata object itself.

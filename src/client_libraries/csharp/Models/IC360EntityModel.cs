@@ -36,8 +36,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'powerPlatformSource', 'datahub', 'insights',
-        /// 'derivedEntity'</param>
+        /// 'datahub', 'insights', 'derivedEntity',
+        /// 'powerPlatformSource'</param>
         /// <param name="entities">Gets entities in the model.</param>
         public IC360EntityModel(System.Guid? instanceId = default(System.Guid?), System.Guid? dataflowId = default(System.Guid?), System.Guid? datasourceId = default(System.Guid?), string dataflowType = default(string), IList<IEntityMetadata> entities = default(IList<IEntityMetadata>))
         {
@@ -79,7 +79,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'powerPlatformSource', 'datahub', 'insights', 'derivedEntity'
+        /// 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'
         /// </summary>
         [JsonProperty(PropertyName = "dataflowType")]
         public string DataflowType { get; set; }

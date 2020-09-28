@@ -14,10 +14,10 @@ class AttributeSemanticInformation {
   /**
    * Create a AttributeSemanticInformation.
    * @property {string} [attributeName] Gets the name of the attribute.
-   * @property {string} [label] Possible values include: 'CalendarDate',
-   * 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
-   * 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-   * 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+   * @property {string} [label] Gets the semantic label. Possible values
+   * include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+   * 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+   * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
    * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
    * 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
    * 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
