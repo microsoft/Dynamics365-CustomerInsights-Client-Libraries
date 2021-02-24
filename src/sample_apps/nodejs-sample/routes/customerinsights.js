@@ -25,13 +25,16 @@ router.get('/instances', function (req, res) {
 router.get('/search', function (req, res) {
   var searchString = req.query.searchQuery;
   var instanceId = req.query.instanceId;
-  var segment = req.query.segment;
-  ciApi.getEntitiesWithODataQueryParameters(
+  ciApi.getEntitiesWithODataPath(
     instanceId,
+    'Customer',
     {
-      relativePath: `Customer&$search=${searchString}&$select=*&$skip=0&$top=100`,
       forceSearch: true,
-      customHeaders: getCiHeadersFromRequest(req)
+      customHeaders: getCiHeadersFromRequest(req),
+      select: '*',
+      search: searchString,
+      skip: '0',
+      top: '100'
     }
   ).then(resp => {
     res.status(200).send(resp);
@@ -41,12 +44,15 @@ router.get('/search', function (req, res) {
 router.get('/entities', function (req, res) {
   var instanceId = req.query.instanceId;
   var entityName = req.query.entityName;
-  ciApi.getEntitiesWithODataQueryParameters(
+  ciApi.getEntitiesWithODataPath(
     instanceId,
+    entityName, 
     {
-      relativePath: `${entityName}&$select=*&$skip=0&$top=100`,
       forceSearch: false,
-      customHeaders: getCiHeadersFromRequest(req)
+      customHeaders: getCiHeadersFromRequest(req),
+      select: '*',
+      skip: '0',
+      top: '100'
     }
   ).then(resp => {
     res.status(200).send(resp);
