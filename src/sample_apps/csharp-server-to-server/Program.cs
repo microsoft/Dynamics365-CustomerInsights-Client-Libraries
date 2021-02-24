@@ -87,7 +87,7 @@
             // With client credentials flows, the scope is always of the shape "resource/.default" because the
             // application permissions need to be set statically (in the portal or by PowerShell), and then granted by
             // a tenant administrator.
-            var scopes = new string[] { "38c77d00-5fcb-4cce-9d93-af4738258e3c/.default" };
+            var scopes = new string[] { "https://api.ci.ai.microsoft.com/.default" };
 
             AuthenticationResult result;
             try
