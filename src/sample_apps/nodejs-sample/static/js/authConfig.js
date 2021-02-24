@@ -10,9 +10,9 @@ const msalConfig = {
   };  
     
   const loginRequest = {
-    scopes: ["38c77d00-5fcb-4cce-9d93-af4738258e3c/.default"]
+    scopes: ["https://api.ci.ai.microsoft.com/.default"]
   };
   
   const tokenRequest = {
-    scopes: ["38c77d00-5fcb-4cce-9d93-af4738258e3c/.default"]
+    scopes: ["https://api.ci.ai.microsoft.com/.default"]
   };
