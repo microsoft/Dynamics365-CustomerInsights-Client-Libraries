@@ -11,60 +11,45 @@ from msrest.serialization import Model
 class MeasureDefinition(Model):
     """Represents a measure definition.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param kind: Possible values include: 'entity', 'attribute'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
-    :ivar is_scalar: Gets a value indicating whether the current measure is a
+    :param is_scalar: Gets a value indicating whether the current measure is a
      scalar measure e doesn't have any dimensions
-    :vartype is_scalar: bool
-    :ivar linked_entities: Gets list of linked entities associated with the
+    :type is_scalar: bool
+    :param linked_entities: Gets list of linked entities associated with the
      measure.
-    :vartype linked_entities:
+    :type linked_entities:
      list[~dynamics.customerinsights.api.models.MeasureLinkedEntity]
-    :ivar variables: Gets list of variables (computed columns) for the
+    :param variables: Gets list of variables (computed columns) for the
      measure.
-    :vartype variables:
+    :type variables:
      list[~dynamics.customerinsights.api.models.MeasureVariable]
     :param filters:
     :type filters: ~dynamics.customerinsights.api.models.MeasureExpression
     :param filtering_criteria:
     :type filtering_criteria:
      ~dynamics.customerinsights.api.models.SegmentMembershipCriteria
-    :ivar dimensions: Gets list of dimensions with the measure.
-    :vartype dimensions:
+    :param dimensions: Gets list of dimensions with the measure.
+    :type dimensions:
      list[~dynamics.customerinsights.api.models.MeasureDimension]
-    :ivar aggregates: Gets list of aggregates of the measure.
-    :vartype aggregates:
+    :param aggregates: Gets list of aggregates of the measure.
+    :type aggregates:
      list[~dynamics.customerinsights.api.models.MeasureAggregate]
-    :ivar is_profile: Gets a value indicating whether the current measure is a
-     profile measure
-    :vartype is_profile: bool
-    :ivar measure_query_sql: Gets the user specified custom SQL query.
-    :vartype measure_query_sql: str
+    :param is_profile: Gets a value indicating whether the current measure is
+     a profile measure
+    :type is_profile: bool
+    :param measure_query_sql: Gets the user specified custom SQL query.
+    :type measure_query_sql: str
     :param type: Possible values include: 'structured', 'manual'
     :type type: str or ~dynamics.customerinsights.api.models.enum
-    :ivar is_manual_query_scalar: Gets the indicating whether the Business
+    :param is_manual_query_scalar: Gets the indicating whether the Business
      Measure is Scalar or not.
-    :vartype is_manual_query_scalar: bool
-    :ivar dependencies: Gets the list of measures that this measure depends
+    :type is_manual_query_scalar: bool
+    :param dependencies: Gets the list of measures that this measure depends
      on.
-    :vartype dependencies:
+    :type dependencies:
      list[~dynamics.customerinsights.api.models.EntityDependency]
     """
-
-    _validation = {
-        'is_scalar': {'readonly': True},
-        'linked_entities': {'readonly': True},
-        'variables': {'readonly': True},
-        'dimensions': {'readonly': True},
-        'aggregates': {'readonly': True},
-        'is_profile': {'readonly': True},
-        'measure_query_sql': {'readonly': True},
-        'is_manual_query_scalar': {'readonly': True},
-        'dependencies': {'readonly': True},
-    }
 
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
@@ -82,18 +67,18 @@ class MeasureDefinition(Model):
         'dependencies': {'key': 'dependencies', 'type': '[EntityDependency]'},
     }
 
-    def __init__(self, *, kind=None, filters=None, filtering_criteria=None, type=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, is_scalar: bool=None, linked_entities=None, variables=None, filters=None, filtering_criteria=None, dimensions=None, aggregates=None, is_profile: bool=None, measure_query_sql: str=None, type=None, is_manual_query_scalar: bool=None, dependencies=None, **kwargs) -> None:
         super(MeasureDefinition, self).__init__(**kwargs)
         self.kind = kind
-        self.is_scalar = None
-        self.linked_entities = None
-        self.variables = None
+        self.is_scalar = is_scalar
+        self.linked_entities = linked_entities
+        self.variables = variables
         self.filters = filters
         self.filtering_criteria = filtering_criteria
-        self.dimensions = None
-        self.aggregates = None
-        self.is_profile = None
-        self.measure_query_sql = None
+        self.dimensions = dimensions
+        self.aggregates = aggregates
+        self.is_profile = is_profile
+        self.measure_query_sql = measure_query_sql
         self.type = type
-        self.is_manual_query_scalar = None
-        self.dependencies = None
+        self.is_manual_query_scalar = is_manual_query_scalar
+        self.dependencies = dependencies

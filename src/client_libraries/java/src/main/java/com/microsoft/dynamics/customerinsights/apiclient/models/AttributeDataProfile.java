@@ -11,67 +11,59 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The AttributeDataProfile model.
+ * Attribute data profile.
  */
 public class AttributeDataProfile {
     /**
-     * Gets or sets the distribution of the top 100 values.
+     * Represents Distribution of the top 100 values.
      */
     @JsonProperty(value = "valueCounts")
     private List<ValueCount> valueCounts;
 
     /**
-     * Gets or sets the histogram information. Ordered from smallest to largest
-     * bin.
+     * Represents histogram information Ordered from smallest to largest bin.
      */
     @JsonProperty(value = "histogram")
     private List<HistogramBin> histogram;
 
     /**
-     * Gets or sets the string lengths and the count of string values with
-     * those lengths.
-     */
-    @JsonProperty(value = "stringLengthCounts")
-    private List<StringLengthCount> stringLengthCounts;
-
-    /**
-     * Gets or sets the qualified entity name.
+     * Qualified entity name.
      */
     @JsonProperty(value = "qualifiedEntityName")
     private String qualifiedEntityName;
 
     /**
-     * Gets or sets the attribute name.
+     * Attribute name.
      */
     @JsonProperty(value = "attributeName")
     private String attributeName;
 
     /**
-     * Gets or sets the minimum value.
+     * Minimum value.
      */
     @JsonProperty(value = "min")
     private Object min;
 
     /**
-     * Gets or sets the maximum value.
+     * Maximum value.
      */
     @JsonProperty(value = "max")
     private Object max;
 
     /**
-     * Gets or sets the total row count.
+     * Total row count.
      */
     @JsonProperty(value = "count")
     private Long count;
 
     /**
-     * Gets or sets the row count of missing values.
+     * Row count of missing values.
      */
     @JsonProperty(value = "missingCount")
     private Long missingCount;
 
     /**
-     * Gets or sets the number of error values.
+     * Number of error values.
      */
     @JsonProperty(value = "errorCount")
     private Long errorCount;
@@ -89,26 +81,26 @@ public class AttributeDataProfile {
     private Moments moments;
 
     /**
-     * Gets or sets the number of unique values.
+     * Number of unique values.
      */
     @JsonProperty(value = "uniqueValueCount")
     private Long uniqueValueCount;
 
     /**
-     * Gets or sets the profiling date.
+     * Profiling date.
      */
     @JsonProperty(value = "profilingDate")
     private DateTime profilingDate;
 
     /**
-     * Gets a value indicating whether this attribute can be used as a primary
-     * key of the entity.
+     * Represents a value indicating whether this attribute can be used as a
+     * primary key of the entity.
      */
-    @JsonProperty(value = "isSuggestedPrimaryKey", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isSuggestedPrimaryKey")
     private Boolean isSuggestedPrimaryKey;
 
     /**
-     * Get gets or sets the distribution of the top 100 values.
+     * Get represents Distribution of the top 100 values.
      *
      * @return the valueCounts value
      */
@@ -117,7 +109,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the distribution of the top 100 values.
+     * Set represents Distribution of the top 100 values.
      *
      * @param valueCounts the valueCounts value to set
      * @return the AttributeDataProfile object itself.
@@ -128,7 +120,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the histogram information. Ordered from smallest to largest bin.
+     * Get represents histogram information Ordered from smallest to largest bin.
      *
      * @return the histogram value
      */
@@ -137,7 +129,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the histogram information. Ordered from smallest to largest bin.
+     * Set represents histogram information Ordered from smallest to largest bin.
      *
      * @param histogram the histogram value to set
      * @return the AttributeDataProfile object itself.
@@ -148,27 +140,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the string lengths and the count of string values with those lengths.
-     *
-     * @return the stringLengthCounts value
-     */
-    public List<StringLengthCount> stringLengthCounts() {
-        return this.stringLengthCounts;
-    }
-
-    /**
-     * Set gets or sets the string lengths and the count of string values with those lengths.
-     *
-     * @param stringLengthCounts the stringLengthCounts value to set
-     * @return the AttributeDataProfile object itself.
-     */
-    public AttributeDataProfile withStringLengthCounts(List<StringLengthCount> stringLengthCounts) {
-        this.stringLengthCounts = stringLengthCounts;
-        return this;
-    }
-
-    /**
-     * Get gets or sets the qualified entity name.
+     * Get qualified entity name.
      *
      * @return the qualifiedEntityName value
      */
@@ -177,7 +149,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the qualified entity name.
+     * Set qualified entity name.
      *
      * @param qualifiedEntityName the qualifiedEntityName value to set
      * @return the AttributeDataProfile object itself.
@@ -188,7 +160,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the attribute name.
+     * Get attribute name.
      *
      * @return the attributeName value
      */
@@ -197,7 +169,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the attribute name.
+     * Set attribute name.
      *
      * @param attributeName the attributeName value to set
      * @return the AttributeDataProfile object itself.
@@ -208,7 +180,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the minimum value.
+     * Get minimum value.
      *
      * @return the min value
      */
@@ -217,7 +189,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the minimum value.
+     * Set minimum value.
      *
      * @param min the min value to set
      * @return the AttributeDataProfile object itself.
@@ -228,7 +200,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the maximum value.
+     * Get maximum value.
      *
      * @return the max value
      */
@@ -237,7 +209,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the maximum value.
+     * Set maximum value.
      *
      * @param max the max value to set
      * @return the AttributeDataProfile object itself.
@@ -248,7 +220,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the total row count.
+     * Get total row count.
      *
      * @return the count value
      */
@@ -257,7 +229,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the total row count.
+     * Set total row count.
      *
      * @param count the count value to set
      * @return the AttributeDataProfile object itself.
@@ -268,7 +240,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the row count of missing values.
+     * Get row count of missing values.
      *
      * @return the missingCount value
      */
@@ -277,7 +249,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the row count of missing values.
+     * Set row count of missing values.
      *
      * @param missingCount the missingCount value to set
      * @return the AttributeDataProfile object itself.
@@ -288,7 +260,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the number of error values.
+     * Get number of error values.
      *
      * @return the errorCount value
      */
@@ -297,7 +269,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the number of error values.
+     * Set number of error values.
      *
      * @param errorCount the errorCount value to set
      * @return the AttributeDataProfile object itself.
@@ -348,7 +320,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the number of unique values.
+     * Get number of unique values.
      *
      * @return the uniqueValueCount value
      */
@@ -357,7 +329,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the number of unique values.
+     * Set number of unique values.
      *
      * @param uniqueValueCount the uniqueValueCount value to set
      * @return the AttributeDataProfile object itself.
@@ -368,7 +340,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets or sets the profiling date.
+     * Get profiling date.
      *
      * @return the profilingDate value
      */
@@ -377,7 +349,7 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Set gets or sets the profiling date.
+     * Set profiling date.
      *
      * @param profilingDate the profilingDate value to set
      * @return the AttributeDataProfile object itself.
@@ -388,12 +360,23 @@ public class AttributeDataProfile {
     }
 
     /**
-     * Get gets a value indicating whether this attribute can be used as a primary key of the entity.
+     * Get represents a value indicating whether this attribute can be used as a primary key of the entity.
      *
      * @return the isSuggestedPrimaryKey value
      */
     public Boolean isSuggestedPrimaryKey() {
         return this.isSuggestedPrimaryKey;
+    }
+
+    /**
+     * Set represents a value indicating whether this attribute can be used as a primary key of the entity.
+     *
+     * @param isSuggestedPrimaryKey the isSuggestedPrimaryKey value to set
+     * @return the AttributeDataProfile object itself.
+     */
+    public AttributeDataProfile withIsSuggestedPrimaryKey(Boolean isSuggestedPrimaryKey) {
+        this.isSuggestedPrimaryKey = isSuggestedPrimaryKey;
+        return this;
     }
 
 }

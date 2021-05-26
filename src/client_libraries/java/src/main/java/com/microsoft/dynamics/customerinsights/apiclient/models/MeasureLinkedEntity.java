@@ -21,13 +21,13 @@ public class MeasureLinkedEntity {
     /**
      * Gets the name of the entity.
      */
-    @JsonProperty(value = "entity", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "entity")
     private String entity;
 
     /**
      * Gets the alias of the entity.
      */
-    @JsonProperty(value = "alias", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "alias")
     private String alias;
 
     /**
@@ -60,12 +60,34 @@ public class MeasureLinkedEntity {
     }
 
     /**
+     * Set gets the name of the entity.
+     *
+     * @param entity the entity value to set
+     * @return the MeasureLinkedEntity object itself.
+     */
+    public MeasureLinkedEntity withEntity(String entity) {
+        this.entity = entity;
+        return this;
+    }
+
+    /**
      * Get gets the alias of the entity.
      *
      * @return the alias value
      */
     public String alias() {
         return this.alias;
+    }
+
+    /**
+     * Set gets the alias of the entity.
+     *
+     * @param alias the alias value to set
+     * @return the MeasureLinkedEntity object itself.
+     */
+    public MeasureLinkedEntity withAlias(String alias) {
+        this.alias = alias;
+        return this;
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The CIResult model.
+ * Represents response result type.
  */
 public class CIResult {
     /**
@@ -33,7 +33,7 @@ public class CIResult {
     private String resultSeverity;
 
     /**
-     * The message property.
+     * Message providing more information about the event.
      */
     @JsonProperty(value = "message")
     private String message;
@@ -45,7 +45,8 @@ public class CIResult {
     private Map<String, Object> params;
 
     /**
-     * The ciResults property.
+     * List of CiResult contining CI result error code and information (if
+     * any).
      */
     @JsonProperty(value = "ciResults")
     private List<CIResult> ciResults;
@@ -111,7 +112,7 @@ public class CIResult {
     }
 
     /**
-     * Get the message value.
+     * Get message providing more information about the event.
      *
      * @return the message value
      */
@@ -120,7 +121,7 @@ public class CIResult {
     }
 
     /**
-     * Set the message value.
+     * Set message providing more information about the event.
      *
      * @param message the message value to set
      * @return the CIResult object itself.
@@ -151,7 +152,7 @@ public class CIResult {
     }
 
     /**
-     * Get the ciResults value.
+     * Get list of CiResult contining CI result error code and information (if any).
      *
      * @return the ciResults value
      */
@@ -160,7 +161,7 @@ public class CIResult {
     }
 
     /**
-     * Set the ciResults value.
+     * Set list of CiResult contining CI result error code and information (if any).
      *
      * @param ciResults the ciResults value to set
      * @return the CIResult object itself.

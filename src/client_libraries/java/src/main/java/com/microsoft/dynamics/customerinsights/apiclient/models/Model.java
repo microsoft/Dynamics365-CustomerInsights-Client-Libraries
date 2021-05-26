@@ -65,25 +65,25 @@ public class Model {
     /**
      * The annotations property.
      */
-    @JsonProperty(value = "annotations", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "annotations")
     private List<Annotation> annotations;
 
     /**
      * The entities property.
      */
-    @JsonProperty(value = "entities", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "entities")
     private List<Entity> entities;
 
     /**
      * The relationships property.
      */
-    @JsonProperty(value = "relationships", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "relationships")
     private List<Relationship> relationships;
 
     /**
      * The referenceModels property.
      */
-    @JsonProperty(value = "referenceModels", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "referenceModels")
     private List<ReferenceModel> referenceModels;
 
     /**
@@ -256,12 +256,34 @@ public class Model {
     }
 
     /**
+     * Set the annotations value.
+     *
+     * @param annotations the annotations value to set
+     * @return the Model object itself.
+     */
+    public Model withAnnotations(List<Annotation> annotations) {
+        this.annotations = annotations;
+        return this;
+    }
+
+    /**
      * Get the entities value.
      *
      * @return the entities value
      */
     public List<Entity> entities() {
         return this.entities;
+    }
+
+    /**
+     * Set the entities value.
+     *
+     * @param entities the entities value to set
+     * @return the Model object itself.
+     */
+    public Model withEntities(List<Entity> entities) {
+        this.entities = entities;
+        return this;
     }
 
     /**
@@ -274,12 +296,34 @@ public class Model {
     }
 
     /**
+     * Set the relationships value.
+     *
+     * @param relationships the relationships value to set
+     * @return the Model object itself.
+     */
+    public Model withRelationships(List<Relationship> relationships) {
+        this.relationships = relationships;
+        return this;
+    }
+
+    /**
      * Get the referenceModels value.
      *
      * @return the referenceModels value
      */
     public List<ReferenceModel> referenceModels() {
         return this.referenceModels;
+    }
+
+    /**
+     * Set the referenceModels value.
+     *
+     * @param referenceModels the referenceModels value to set
+     * @return the Model object itself.
+     */
+    public Model withReferenceModels(List<ReferenceModel> referenceModels) {
+        this.referenceModels = referenceModels;
+        return this;
     }
 
 }

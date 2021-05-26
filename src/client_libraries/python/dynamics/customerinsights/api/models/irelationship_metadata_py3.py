@@ -9,15 +9,12 @@ from msrest.serialization import Model
 
 
 class IRelationshipMetadata(Model):
-    """IRelationshipMetadata.
+    """Represents Relationship Metadata.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar name:
-    :vartype name: str
-    :ivar friendly_name:
-    :vartype friendly_name: str
+    :param name: Unique Name for relationship
+    :type name: str
+    :param friendly_name: User Friendly Name for relationship
+    :type friendly_name: str
     :param from_attribute:
     :type from_attribute:
      ~dynamics.customerinsights.api.models.IAttributeMetadata
@@ -31,16 +28,11 @@ class IRelationshipMetadata(Model):
     :param data_source_entity:
     :type data_source_entity:
      ~dynamics.customerinsights.api.models.IEntityMetadata
-    :ivar data_source_mapping_attributes:
-    :vartype data_source_mapping_attributes:
+    :param data_source_mapping_attributes: List of data source mapping
+     attributes
+    :type data_source_mapping_attributes:
      list[~dynamics.customerinsights.api.models.IAttributeMetadata]
     """
-
-    _validation = {
-        'name': {'readonly': True},
-        'friendly_name': {'readonly': True},
-        'data_source_mapping_attributes': {'readonly': True},
-    }
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
@@ -52,12 +44,12 @@ class IRelationshipMetadata(Model):
         'data_source_mapping_attributes': {'key': 'dataSourceMappingAttributes', 'type': '[IAttributeMetadata]'},
     }
 
-    def __init__(self, *, from_attribute=None, to_attribute=None, relationship_type=None, data_source_entity=None, **kwargs) -> None:
+    def __init__(self, *, name: str=None, friendly_name: str=None, from_attribute=None, to_attribute=None, relationship_type=None, data_source_entity=None, data_source_mapping_attributes=None, **kwargs) -> None:
         super(IRelationshipMetadata, self).__init__(**kwargs)
-        self.name = None
-        self.friendly_name = None
+        self.name = name
+        self.friendly_name = friendly_name
         self.from_attribute = from_attribute
         self.to_attribute = to_attribute
         self.relationship_type = relationship_type
         self.data_source_entity = data_source_entity
-        self.data_source_mapping_attributes = None
+        self.data_source_mapping_attributes = data_source_mapping_attributes

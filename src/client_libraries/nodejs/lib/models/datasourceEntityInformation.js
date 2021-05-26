@@ -13,16 +13,15 @@
 class DatasourceEntityInformation {
   /**
    * Create a DatasourceEntityInformation.
-   * @property {string} [entityName] Gets the name of the entity.
-   * @property {string} [primaryKey] Gets the primary key name of the entity.
-   * We require the entity to have a single column primary key column
+   * @property {string} [entityName] Name of the entity.
+   * @property {string} [primaryKey] Primary key name of the entity. We require
+   * the entity to have a single column primary key column
    * @property {string} [entityType] Possible values include: 'unspecified',
    * 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
    * 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
    * 'enrichment', 'insights', 'derivedEntity', 'quarantine'
-   * @property {string} [timestampFieldName] Gets the time stamp field name.
-   * @property {array} [semanticLabels] Gets the semantic labels, by attribute
-   * name.
+   * @property {string} [timestampFieldName] Time stamp field name.
+   * @property {array} [semanticLabels] Semantic labels by attribute name.
    */
   constructor() {
   }

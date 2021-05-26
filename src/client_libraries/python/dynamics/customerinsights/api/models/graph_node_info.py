@@ -18,8 +18,9 @@ class GraphNodeInfo(Model):
      'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
      'relationship', 'roleAssignment', 'analysis', 'all'
     :type operation_type: str or ~dynamics.customerinsights.api.models.enum
-    :param sub_type: Possible values include: 'templatedMeasures',
-     'createAnalysisModel', 'linkAnalysisModel'
+    :param sub_type: Possible values include: 'noSubType',
+     'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+     'singleActivityMapping', 'powerPlatform'
     :type sub_type: str or ~dynamics.customerinsights.api.models.enum
     :param identifier:
     :type identifier: str

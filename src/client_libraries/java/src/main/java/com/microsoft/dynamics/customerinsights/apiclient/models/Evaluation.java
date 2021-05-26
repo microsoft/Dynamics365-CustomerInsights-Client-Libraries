@@ -32,14 +32,13 @@ public class Evaluation {
     private String state;
 
     /**
-     * Gets or sets the evaluation completion time.
+     * Evaluation completion time.
      */
     @JsonProperty(value = "endTime")
     private DateTime endTime;
 
     /**
-     * Gets or sets the error (if any) that occured during the measure
-     * evaluation.
+     * Error Information (if any) that occured during the measure evaluation.
      */
     @JsonProperty(value = "error")
     private String error;
@@ -85,7 +84,7 @@ public class Evaluation {
     }
 
     /**
-     * Get gets or sets the evaluation completion time.
+     * Get evaluation completion time.
      *
      * @return the endTime value
      */
@@ -94,7 +93,7 @@ public class Evaluation {
     }
 
     /**
-     * Set gets or sets the evaluation completion time.
+     * Set evaluation completion time.
      *
      * @param endTime the endTime value to set
      * @return the Evaluation object itself.
@@ -105,7 +104,7 @@ public class Evaluation {
     }
 
     /**
-     * Get gets or sets the error (if any) that occured during the measure evaluation.
+     * Get error Information (if any) that occured during the measure evaluation.
      *
      * @return the error value
      */
@@ -114,7 +113,7 @@ public class Evaluation {
     }
 
     /**
-     * Set gets or sets the error (if any) that occured during the measure evaluation.
+     * Set error Information (if any) that occured during the measure evaluation.
      *
      * @param error the error value to set
      * @return the Evaluation object itself.

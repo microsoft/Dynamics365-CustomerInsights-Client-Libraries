@@ -7,7 +7,8 @@
 'use strict';
 
 /**
- * Class representing a IAttributeSearchProperties.
+ * Represents seachable attribute properties
+ *
  */
 class IAttributeSearchProperties {
   /**
@@ -46,7 +47,6 @@ class IAttributeSearchProperties {
         modelProperties: {
           isSearchable: {
             required: false,
-            readOnly: true,
             serializedName: 'isSearchable',
             type: {
               name: 'Boolean'
@@ -54,7 +54,6 @@ class IAttributeSearchProperties {
           },
           isFilterable: {
             required: false,
-            readOnly: true,
             serializedName: 'isFilterable',
             type: {
               name: 'Boolean'
@@ -62,7 +61,6 @@ class IAttributeSearchProperties {
           },
           isFacetable: {
             required: false,
-            readOnly: true,
             serializedName: 'isFacetable',
             type: {
               name: 'Boolean'
@@ -70,7 +68,6 @@ class IAttributeSearchProperties {
           },
           isSortable: {
             required: false,
-            readOnly: true,
             serializedName: 'isSortable',
             type: {
               name: 'Boolean'
@@ -78,7 +75,6 @@ class IAttributeSearchProperties {
           },
           facetSpecification: {
             required: false,
-            readOnly: true,
             serializedName: 'facetSpecification',
             type: {
               name: 'String'

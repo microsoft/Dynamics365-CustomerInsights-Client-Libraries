@@ -10,47 +10,47 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The EntityDataProfile model.
+ * Represents Entity Data Profile information.
  */
 public class EntityDataProfile {
     /**
-     * The qualifiedEntityName property.
+     * Qualified Entity Name.
      */
     @JsonProperty(value = "qualifiedEntityName")
     private String qualifiedEntityName;
 
     /**
-     * The rowCount property.
+     * Row count.
      */
     @JsonProperty(value = "rowCount")
     private Long rowCount;
 
     /**
-     * The quarantineRowCount property.
+     * Quarentine row count.
      */
     @JsonProperty(value = "quarantineRowCount")
     private Long quarantineRowCount;
 
     /**
-     * The profilingDate property.
+     * Date for Profiling.
      */
     @JsonProperty(value = "profilingDate")
     private DateTime profilingDate;
 
     /**
-     * The profiledAttributes property.
+     * Profiling attributes.
      */
     @JsonProperty(value = "profiledAttributes")
     private String profiledAttributes;
 
     /**
-     * The corruptAttributes property.
+     * Respresents currupt attributes.
      */
     @JsonProperty(value = "corruptAttributes")
     private String corruptAttributes;
 
     /**
-     * Get the qualifiedEntityName value.
+     * Get qualified Entity Name.
      *
      * @return the qualifiedEntityName value
      */
@@ -59,7 +59,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Set the qualifiedEntityName value.
+     * Set qualified Entity Name.
      *
      * @param qualifiedEntityName the qualifiedEntityName value to set
      * @return the EntityDataProfile object itself.
@@ -70,7 +70,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Get the rowCount value.
+     * Get row count.
      *
      * @return the rowCount value
      */
@@ -79,7 +79,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Set the rowCount value.
+     * Set row count.
      *
      * @param rowCount the rowCount value to set
      * @return the EntityDataProfile object itself.
@@ -90,7 +90,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Get the quarantineRowCount value.
+     * Get quarentine row count.
      *
      * @return the quarantineRowCount value
      */
@@ -99,7 +99,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Set the quarantineRowCount value.
+     * Set quarentine row count.
      *
      * @param quarantineRowCount the quarantineRowCount value to set
      * @return the EntityDataProfile object itself.
@@ -110,7 +110,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Get the profilingDate value.
+     * Get date for Profiling.
      *
      * @return the profilingDate value
      */
@@ -119,7 +119,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Set the profilingDate value.
+     * Set date for Profiling.
      *
      * @param profilingDate the profilingDate value to set
      * @return the EntityDataProfile object itself.
@@ -130,7 +130,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Get the profiledAttributes value.
+     * Get profiling attributes.
      *
      * @return the profiledAttributes value
      */
@@ -139,7 +139,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Set the profiledAttributes value.
+     * Set profiling attributes.
      *
      * @param profiledAttributes the profiledAttributes value to set
      * @return the EntityDataProfile object itself.
@@ -150,7 +150,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Get the corruptAttributes value.
+     * Get respresents currupt attributes.
      *
      * @return the corruptAttributes value
      */
@@ -159,7 +159,7 @@ public class EntityDataProfile {
     }
 
     /**
-     * Set the corruptAttributes value.
+     * Set respresents currupt attributes.
      *
      * @param corruptAttributes the corruptAttributes value to set
      * @return the EntityDataProfile object itself.

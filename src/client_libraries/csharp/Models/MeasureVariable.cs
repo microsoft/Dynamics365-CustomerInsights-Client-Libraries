@@ -60,25 +60,25 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets the name of the variable
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the data type of the variable
         /// </summary>
         [JsonProperty(PropertyName = "dataType")]
-        public string DataType { get; private set; }
+        public string DataType { get; set; }
 
         /// <summary>
         /// Gets the expression text for computing the variable
         /// </summary>
         [JsonProperty(PropertyName = "expressionText")]
-        public string ExpressionText { get; private set; }
+        public string ExpressionText { get; set; }
 
         /// <summary>
         /// Gets the variable conditions
         /// </summary>
         [JsonProperty(PropertyName = "variableConditionGroups")]
-        public IList<MeasureVariableConditionGroup> VariableConditionGroups { get; private set; }
+        public IList<MeasureVariableConditionGroup> VariableConditionGroups { get; set; }
 
     }
 }

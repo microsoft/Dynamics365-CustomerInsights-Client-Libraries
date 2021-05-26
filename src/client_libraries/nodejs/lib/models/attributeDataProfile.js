@@ -7,47 +7,43 @@
 'use strict';
 
 /**
- * Class representing a AttributeDataProfile.
+ * Attribute data profile
+ *
  */
 class AttributeDataProfile {
   /**
    * Create a AttributeDataProfile.
-   * @property {array} [valueCounts] Gets or sets the distribution of the top
-   * 100 values
-   * @property {array} [histogram] Gets or sets the histogram information.
-   * Ordered from smallest to largest bin.
-   * @property {array} [stringLengthCounts] Gets or sets the string lengths and
-   * the count of string values with those lengths.
-   * @property {string} [qualifiedEntityName] Gets or sets the qualified entity
-   * name
-   * @property {string} [attributeName] Gets or sets the attribute name.
-   * @property {object} [min] Gets or sets the minimum value.
-   * @property {object} [max] Gets or sets the maximum value.
-   * @property {number} [count] Gets or sets the total row count.
-   * @property {number} [missingCount] Gets or sets the row count of missing
+   * @property {array} [valueCounts] Represents Distribution of the top 100
    * values.
-   * @property {number} [errorCount] Gets or sets the number of error values.
+   * @property {array} [histogram] Represents histogram information Ordered
+   * from smallest to largest bin.
+   * @property {string} [qualifiedEntityName] Qualified entity name.
+   * @property {string} [attributeName] Attribute name.
+   * @property {object} [min] Minimum value.
+   * @property {object} [max] Maximum value.
+   * @property {number} [count] Total row count.
+   * @property {number} [missingCount] Row count of missing values.
+   * @property {number} [errorCount] Number of error values.
    * @property {object} [quantiles]
-   * @property {number} [quantiles.p0D1] Gets or sets the 1% quantile.
-   * @property {number} [quantiles.p1] Gets or sets the 1% quantile.
-   * @property {number} [quantiles.p5] Gets or sets the 5% quantile.
-   * @property {number} [quantiles.p25] Gets or sets the 25% quantile.
-   * @property {number} [quantiles.p50] Gets or sets the 50% quantile.
-   * @property {number} [quantiles.p75] Gets or sets the 75% quantile.
-   * @property {number} [quantiles.p95] Gets or sets the 95% quantile.
-   * @property {number} [quantiles.p99] Gets or sets the 99% quantile.
-   * @property {number} [quantiles.p99D9] Gets or sets the 9% quantile.
+   * @property {number} [quantiles.p0D1] Represents 1% quantile.
+   * @property {number} [quantiles.p1] Represents 1% quantile.
+   * @property {number} [quantiles.p5] Represents 5% quantile.
+   * @property {number} [quantiles.p25] Represents 25% quantile.
+   * @property {number} [quantiles.p50] Represents 50% quantile.
+   * @property {number} [quantiles.p75] Represents 75% quantile.
+   * @property {number} [quantiles.p95] Represents 95% quantile.
+   * @property {number} [quantiles.p99] Represents 99% quantile.
+   * @property {number} [quantiles.p99D9] Represents 9% quantile.
    * @property {object} [moments]
-   * @property {number} [moments.mean] Gets or sets the mean.
-   * @property {number} [moments.standardDeviation] Gets or sets the standard
+   * @property {number} [moments.mean] Represents the mean.
+   * @property {number} [moments.standardDeviation] Represents standard
    * deviation.
-   * @property {number} [moments.variance] Gets or sets the variance.
-   * @property {number} [moments.skewness] Gets or sets the skewness.
-   * @property {number} [moments.kurtosis] Gets or sets the kurtosis.
-   * @property {number} [uniqueValueCount] Gets or sets the number of unique
-   * values.
-   * @property {date} [profilingDate] Gets or sets the profiling date
-   * @property {boolean} [isSuggestedPrimaryKey] Gets a value indicating
+   * @property {number} [moments.variance] Represents variance.
+   * @property {number} [moments.skewness] Represents skewness in data.
+   * @property {number} [moments.kurtosis] Represents kurtosis.
+   * @property {number} [uniqueValueCount] Number of unique values.
+   * @property {date} [profilingDate] Profiling date
+   * @property {boolean} [isSuggestedPrimaryKey] Represents a value indicating
    * whether this attribute can be used as a primary key of the entity
    */
   constructor() {
@@ -93,21 +89,6 @@ class AttributeDataProfile {
                   type: {
                     name: 'Composite',
                     className: 'HistogramBin'
-                  }
-              }
-            }
-          },
-          stringLengthCounts: {
-            required: false,
-            serializedName: 'stringLengthCounts',
-            type: {
-              name: 'Sequence',
-              element: {
-                  required: false,
-                  serializedName: 'StringLengthCountElementType',
-                  type: {
-                    name: 'Composite',
-                    className: 'StringLengthCount'
                   }
               }
             }
@@ -193,7 +174,6 @@ class AttributeDataProfile {
           },
           isSuggestedPrimaryKey: {
             required: false,
-            readOnly: true,
             serializedName: 'isSuggestedPrimaryKey',
             type: {
               name: 'Boolean'

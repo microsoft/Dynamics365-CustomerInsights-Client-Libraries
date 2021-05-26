@@ -12,8 +12,7 @@
 class ScalarOutput {
   /**
    * Create a ScalarOutput.
-   * @property {object} [values] Gets the output folder path for the
-   * evaluation.
+   * @property {object} [values] Output folder path for the evaluation.
    * @property {string} [measureName]
    * @property {date} [evaluationTime] Gets the evaluation start time.
    */

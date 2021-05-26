@@ -38,9 +38,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'intelligence', 'aiBuilder', 'insights', 'export',
         /// 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
         /// 'all'</param>
-        /// <param name="subType">Possible values include: 'templatedMeasures',
-        /// 'createAnalysisModel', 'linkAnalysisModel'</param>
-        public GraphJobInfo(System.Guid? jobId = default(System.Guid?), string jobType = default(string), string jobSubmissionKind = default(string), string jobStatus = default(string), string operationType = default(string), string subType = default(string), System.DateTime? endTimestamp = default(System.DateTime?), bool? shouldForceRunRequestedNodes = default(bool?), IList<GraphTaskInfo> tasks = default(IList<GraphTaskInfo>), IList<string> idList = default(IList<string>), System.DateTime? submittedTimestamp = default(System.DateTime?))
+        /// <param name="subType">Possible values include: 'noSubType',
+        /// 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+        /// 'singleActivityMapping', 'powerPlatform'</param>
+        public GraphJobInfo(System.Guid? jobId = default(System.Guid?), string jobType = default(string), string jobSubmissionKind = default(string), string jobStatus = default(string), string operationType = default(string), string subType = default(string), System.DateTime? endTimestamp = default(System.DateTime?), bool? shouldForceRunRequestedNodes = default(bool?), IList<GraphTaskInfo> tasks = default(IList<GraphTaskInfo>), IList<string> idList = default(IList<string>), GraphJobOptions options = default(GraphJobOptions), System.DateTime? submittedTimestamp = default(System.DateTime?))
         {
             JobId = jobId;
             JobType = jobType;
@@ -52,6 +53,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             ShouldForceRunRequestedNodes = shouldForceRunRequestedNodes;
             Tasks = tasks;
             IdList = idList;
+            Options = options;
             SubmittedTimestamp = submittedTimestamp;
             CustomInit();
         }
@@ -99,8 +101,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string OperationType { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'templatedMeasures',
-        /// 'createAnalysisModel', 'linkAnalysisModel'
+        /// Gets or sets possible values include: 'noSubType',
+        /// 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+        /// 'singleActivityMapping', 'powerPlatform'
         /// </summary>
         [JsonProperty(PropertyName = "subType")]
         public string SubType { get; set; }
@@ -124,6 +127,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "idList")]
         public IList<string> IdList { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "options")]
+        public GraphJobOptions Options { get; set; }
 
         /// <summary>
         /// </summary>

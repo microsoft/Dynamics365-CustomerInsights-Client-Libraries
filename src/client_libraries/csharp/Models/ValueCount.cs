@@ -25,8 +25,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the ValueCount class.
         /// </summary>
-        /// <param name="value">Gets or sets the value.</param>
-        /// <param name="count">Gets or sets the count of the value.</param>
+        /// <param name="value">Represents the value.</param>
+        /// <param name="count">Represents Count of the value.</param>
         public ValueCount(object value = default(object), long? count = default(long?))
         {
             Value = value;
@@ -40,13 +40,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the value.
+        /// Gets or sets represents the value.
         /// </summary>
         [JsonProperty(PropertyName = "value")]
         public object Value { get; set; }
 
         /// <summary>
-        /// Gets or sets the count of the value.
+        /// Gets or sets represents Count of the value.
         /// </summary>
         [JsonProperty(PropertyName = "count")]
         public long? Count { get; set; }

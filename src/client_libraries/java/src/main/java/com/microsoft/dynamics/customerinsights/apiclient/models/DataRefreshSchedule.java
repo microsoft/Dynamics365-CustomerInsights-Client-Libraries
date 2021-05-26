@@ -17,31 +17,31 @@ public class DataRefreshSchedule {
     /**
      * Gets a value indicating whether the schedule is active.
      */
-    @JsonProperty(value = "isActive", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isActive")
     private Boolean isActive;
 
     /**
      * Gets the ID of the timezone.
      */
-    @JsonProperty(value = "timezoneId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "timezoneId")
     private String timezoneId;
 
     /**
      * Gets the schedule in CRON format.
      */
-    @JsonProperty(value = "cronSchedules", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "cronSchedules")
     private List<String> cronSchedules;
 
     /**
      * Gets the ID of the schedule.
      */
-    @JsonProperty(value = "scheduleId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "scheduleId")
     private UUID scheduleId;
 
     /**
-     * Gets the Customer Insights instance id associated with this object.
+     * Customer Insights instance id associated with this object.
      */
-    @JsonProperty(value = "instanceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "instanceId")
     private UUID instanceId;
 
     /**
@@ -54,12 +54,34 @@ public class DataRefreshSchedule {
     }
 
     /**
+     * Set gets a value indicating whether the schedule is active.
+     *
+     * @param isActive the isActive value to set
+     * @return the DataRefreshSchedule object itself.
+     */
+    public DataRefreshSchedule withIsActive(Boolean isActive) {
+        this.isActive = isActive;
+        return this;
+    }
+
+    /**
      * Get gets the ID of the timezone.
      *
      * @return the timezoneId value
      */
     public String timezoneId() {
         return this.timezoneId;
+    }
+
+    /**
+     * Set gets the ID of the timezone.
+     *
+     * @param timezoneId the timezoneId value to set
+     * @return the DataRefreshSchedule object itself.
+     */
+    public DataRefreshSchedule withTimezoneId(String timezoneId) {
+        this.timezoneId = timezoneId;
+        return this;
     }
 
     /**
@@ -72,6 +94,17 @@ public class DataRefreshSchedule {
     }
 
     /**
+     * Set gets the schedule in CRON format.
+     *
+     * @param cronSchedules the cronSchedules value to set
+     * @return the DataRefreshSchedule object itself.
+     */
+    public DataRefreshSchedule withCronSchedules(List<String> cronSchedules) {
+        this.cronSchedules = cronSchedules;
+        return this;
+    }
+
+    /**
      * Get gets the ID of the schedule.
      *
      * @return the scheduleId value
@@ -81,12 +114,34 @@ public class DataRefreshSchedule {
     }
 
     /**
-     * Get gets the Customer Insights instance id associated with this object.
+     * Set gets the ID of the schedule.
+     *
+     * @param scheduleId the scheduleId value to set
+     * @return the DataRefreshSchedule object itself.
+     */
+    public DataRefreshSchedule withScheduleId(UUID scheduleId) {
+        this.scheduleId = scheduleId;
+        return this;
+    }
+
+    /**
+     * Get customer Insights instance id associated with this object.
      *
      * @return the instanceId value
      */
     public UUID instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Set customer Insights instance id associated with this object.
+     *
+     * @param instanceId the instanceId value to set
+     * @return the DataRefreshSchedule object itself.
+     */
+    public DataRefreshSchedule withInstanceId(UUID instanceId) {
+        this.instanceId = instanceId;
+        return this;
     }
 
 }

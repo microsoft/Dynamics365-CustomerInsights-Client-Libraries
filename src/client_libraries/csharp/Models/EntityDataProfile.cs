@@ -9,6 +9,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using Newtonsoft.Json;
     using System.Linq;
 
+    /// <summary>
+    /// Represents Entity Data Profile information.
+    /// </summary>
     public partial class EntityDataProfile
     {
         /// <summary>
@@ -22,6 +25,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the EntityDataProfile class.
         /// </summary>
+        /// <param name="qualifiedEntityName">Qualified Entity Name.</param>
+        /// <param name="rowCount">Row count.</param>
+        /// <param name="quarantineRowCount">Quarentine row count</param>
+        /// <param name="profilingDate">Date for Profiling.</param>
+        /// <param name="profiledAttributes">Profiling attributes.</param>
+        /// <param name="corruptAttributes">Respresents currupt
+        /// attributes.</param>
         public EntityDataProfile(string qualifiedEntityName = default(string), long? rowCount = default(long?), long? quarantineRowCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), string profiledAttributes = default(string), string corruptAttributes = default(string))
         {
             QualifiedEntityName = qualifiedEntityName;
@@ -39,31 +49,37 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
+        /// Gets or sets qualified Entity Name.
         /// </summary>
         [JsonProperty(PropertyName = "qualifiedEntityName")]
         public string QualifiedEntityName { get; set; }
 
         /// <summary>
+        /// Gets or sets row count.
         /// </summary>
         [JsonProperty(PropertyName = "rowCount")]
         public long? RowCount { get; set; }
 
         /// <summary>
+        /// Gets or sets quarentine row count
         /// </summary>
         [JsonProperty(PropertyName = "quarantineRowCount")]
         public long? QuarantineRowCount { get; set; }
 
         /// <summary>
+        /// Gets or sets date for Profiling.
         /// </summary>
         [JsonProperty(PropertyName = "profilingDate")]
         public System.DateTime? ProfilingDate { get; set; }
 
         /// <summary>
+        /// Gets or sets profiling attributes.
         /// </summary>
         [JsonProperty(PropertyName = "profiledAttributes")]
         public string ProfiledAttributes { get; set; }
 
         /// <summary>
+        /// Gets or sets respresents currupt attributes.
         /// </summary>
         [JsonProperty(PropertyName = "corruptAttributes")]
         public string CorruptAttributes { get; set; }

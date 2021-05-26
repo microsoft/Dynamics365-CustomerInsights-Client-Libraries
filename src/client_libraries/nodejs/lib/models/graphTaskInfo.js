@@ -22,8 +22,9 @@ class GraphTaskInfo {
    * 'entityMeasures', 'measures', 'segmentation', 'enrichment',
    * 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
    * 'relationship', 'roleAssignment', 'analysis', 'all'
-   * @property {string} [subType] Possible values include: 'templatedMeasures',
-   * 'createAnalysisModel', 'linkAnalysisModel'
+   * @property {string} [subType] Possible values include: 'noSubType',
+   * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+   * 'singleActivityMapping', 'powerPlatform'
    * @property {array} [jobIds]
    * @property {string} [friendlyName]
    * @property {date} [endTimestamp]
@@ -33,14 +34,17 @@ class GraphTaskInfo {
    * @property {string} [ciError.errorCode]
    * @property {string} [ciError.resultSeverity] Possible values include:
    * 'error', 'warning'
-   * @property {string} [ciError.message]
+   * @property {string} [ciError.message] Message providing more information
+   * about the event.
    * @property {object} [ciError.params]
-   * @property {array} [ciError.ciResults]
+   * @property {array} [ciError.ciResults] List of CiResult contining CI result
+   * error code and information (if any).
    * @property {array} [ciErrors]
    * @property {array} [waitingTaskIds]
    * @property {object} [additionalInfo]
    * @property {string} [additionalInfo.kind] Possible values include: 'test',
-   * 'segmentation', 'measures', 'export'
+   * 'segmentation', 'measures', 'export', 'incrementalIngestion',
+   * 'incrementalMatch'
    * @property {date} [submittedTimestamp]
    */
   constructor() {

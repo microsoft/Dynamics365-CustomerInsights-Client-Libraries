@@ -12,7 +12,7 @@
 class ProfileStoreModuleRunInfo {
   /**
    * Create a ProfileStoreModuleRunInfo.
-   * @property {object} [runInfo] Gets the LastSuccessfulRunId for every
+   * @property {object} [runInfo] LastSuccessfulRunId Info for every
    * fullyQualifiedEntity.
    */
   constructor() {

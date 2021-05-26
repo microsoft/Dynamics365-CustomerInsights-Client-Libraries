@@ -30,8 +30,9 @@ class GraphJobInfo(Model):
      'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
      'relationship', 'roleAssignment', 'analysis', 'all'
     :type operation_type: str or ~dynamics.customerinsights.api.models.enum
-    :param sub_type: Possible values include: 'templatedMeasures',
-     'createAnalysisModel', 'linkAnalysisModel'
+    :param sub_type: Possible values include: 'noSubType',
+     'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+     'singleActivityMapping', 'powerPlatform'
     :type sub_type: str or ~dynamics.customerinsights.api.models.enum
     :param end_timestamp:
     :type end_timestamp: datetime
@@ -41,6 +42,8 @@ class GraphJobInfo(Model):
     :type tasks: list[~dynamics.customerinsights.api.models.GraphTaskInfo]
     :param id_list:
     :type id_list: list[str]
+    :param options:
+    :type options: ~dynamics.customerinsights.api.models.GraphJobOptions
     :param submitted_timestamp:
     :type submitted_timestamp: datetime
     """
@@ -56,6 +59,7 @@ class GraphJobInfo(Model):
         'should_force_run_requested_nodes': {'key': 'shouldForceRunRequestedNodes', 'type': 'bool'},
         'tasks': {'key': 'tasks', 'type': '[GraphTaskInfo]'},
         'id_list': {'key': 'idList', 'type': '[str]'},
+        'options': {'key': 'options', 'type': 'GraphJobOptions'},
         'submitted_timestamp': {'key': 'submittedTimestamp', 'type': 'iso-8601'},
     }
 
@@ -71,4 +75,5 @@ class GraphJobInfo(Model):
         self.should_force_run_requested_nodes = kwargs.get('should_force_run_requested_nodes', None)
         self.tasks = kwargs.get('tasks', None)
         self.id_list = kwargs.get('id_list', None)
+        self.options = kwargs.get('options', None)
         self.submitted_timestamp = kwargs.get('submitted_timestamp', None)

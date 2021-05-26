@@ -26,12 +26,15 @@ class GraphJobInfo {
    * 'entityMeasures', 'measures', 'segmentation', 'enrichment',
    * 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
    * 'relationship', 'roleAssignment', 'analysis', 'all'
-   * @property {string} [subType] Possible values include: 'templatedMeasures',
-   * 'createAnalysisModel', 'linkAnalysisModel'
+   * @property {string} [subType] Possible values include: 'noSubType',
+   * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+   * 'singleActivityMapping', 'powerPlatform'
    * @property {date} [endTimestamp]
    * @property {boolean} [shouldForceRunRequestedNodes]
    * @property {array} [tasks]
    * @property {array} [idList]
+   * @property {object} [options]
+   * @property {boolean} [options.runDownstreamAfterMerge]
    * @property {date} [submittedTimestamp]
    */
   constructor() {
@@ -134,6 +137,26 @@ class GraphJobInfo {
                     name: 'String'
                   }
               }
+            }
+          },
+          options: {
+            required: false,
+            serializedName: 'options',
+            type: {
+              name: 'Composite',
+              additionalProperties: {
+                type: {
+                  name: 'Dictionary',
+                  value: {
+                      required: false,
+                      serializedName: 'ObjectElementType',
+                      type: {
+                        name: 'Object'
+                      }
+                  }
+                }
+              },
+              className: 'GraphJobOptions'
             }
           },
           submittedTimestamp: {

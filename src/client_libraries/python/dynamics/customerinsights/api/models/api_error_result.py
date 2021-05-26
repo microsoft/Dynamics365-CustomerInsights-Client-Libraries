@@ -11,11 +11,8 @@ from msrest.serialization import Model
 class ApiErrorResult(Model):
     """Api Error response class (DTO).
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar exception:
-    :vartype exception: object
+    :param exception:
+    :type exception: object
     :param http_status_code:
     :type http_status_code: str
     :param exception_culprit: Possible values include: 'system', 'user',
@@ -25,17 +22,14 @@ class ApiErrorResult(Model):
     :type error_code: str
     :param result_severity: Possible values include: 'error', 'warning'
     :type result_severity: str or ~dynamics.customerinsights.api.models.enum
-    :param message:
+    :param message: Message providing more information about the event.
     :type message: str
     :param params:
     :type params: dict[str, object]
-    :param ci_results:
+    :param ci_results: List of CiResult contining CI result error code and
+     information (if any).
     :type ci_results: list[~dynamics.customerinsights.api.models.CIResult]
     """
-
-    _validation = {
-        'exception': {'readonly': True},
-    }
 
     _attribute_map = {
         'exception': {'key': 'exception', 'type': 'object'},
@@ -50,7 +44,7 @@ class ApiErrorResult(Model):
 
     def __init__(self, **kwargs):
         super(ApiErrorResult, self).__init__(**kwargs)
-        self.exception = None
+        self.exception = kwargs.get('exception', None)
         self.http_status_code = kwargs.get('http_status_code', None)
         self.exception_culprit = kwargs.get('exception_culprit', None)
         self.error_code = kwargs.get('error_code', None)

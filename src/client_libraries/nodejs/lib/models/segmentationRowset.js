@@ -24,7 +24,8 @@ class SegmentationRowset {
    * 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
    * 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
    * 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-   * 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek',
+   * 'timeAt'
    * @property {array} [criteria.childCriterias] Gets the list of Child
    * criteria of segment.
    * @property {string} [criteria.value] Gets the Value in criteria.
@@ -32,6 +33,8 @@ class SegmentationRowset {
    * case is ignored for this criteria.
    * @property {array} [criteria.listOfValues] Gets the list of values in
    * criteria.
+   * @property {boolean} [criteria.isTime] flag set to true if entries are of
+   * time format
    * @property {array} [paths] Gets the relationship path to use for segment
    * criteria.
    */

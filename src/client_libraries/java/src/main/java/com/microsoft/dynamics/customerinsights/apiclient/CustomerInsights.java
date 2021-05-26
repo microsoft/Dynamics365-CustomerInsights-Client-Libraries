@@ -50,16 +50,22 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.GetSearchConfigu
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetSupportedTimezonesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetWorkflowSchedulesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetWorkflowStatusHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceCopyRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceCreationRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceSearchConfiguration;
-import com.microsoft.dynamics.customerinsights.apiclient.models.MeasureMetadata;
-import com.microsoft.dynamics.customerinsights.apiclient.models.OnDemandJobRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.RelationshipMetadata;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesCopyPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageMeasuresPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageRelationshipsPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSearchPutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSegmentsPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdV2PatchRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesV2PostRequest;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ResetAnInstanceHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleAssignment;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleDefinition;
-import com.microsoft.dynamics.customerinsights.apiclient.models.SegmentMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.SubmitAWorkflowJobHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateAMeasureHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateAnEntityHeaders;
@@ -68,7 +74,6 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateARelations
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateARoleAssignmentHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateASegmentHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateSearchConfigurationHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.WorkflowRefreshSchedule;
 import com.microsoft.rest.RestException;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
@@ -148,7 +153,7 @@ public interface CustomerInsights {
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -160,7 +165,7 @@ public interface CustomerInsights {
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -171,7 +176,7 @@ public interface CustomerInsights {
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -181,7 +186,7 @@ public interface CustomerInsights {
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -191,7 +196,7 @@ public interface CustomerInsights {
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -204,7 +209,7 @@ public interface CustomerInsights {
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -216,7 +221,7 @@ public interface CustomerInsights {
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -227,7 +232,7 @@ public interface CustomerInsights {
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -285,7 +290,7 @@ public interface CustomerInsights {
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -298,7 +303,7 @@ public interface CustomerInsights {
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -310,7 +315,7 @@ public interface CustomerInsights {
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -321,7 +326,7 @@ public interface CustomerInsights {
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -331,7 +336,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, CreateAnEntityHeaders>> createAnEntityWithServiceResponseAsync(String instanceId, String entityName);
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -347,7 +352,7 @@ public interface CustomerInsights {
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -362,7 +367,7 @@ public interface CustomerInsights {
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -376,7 +381,7 @@ public interface CustomerInsights {
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -390,7 +395,7 @@ public interface CustomerInsights {
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -404,7 +409,7 @@ public interface CustomerInsights {
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -417,7 +422,7 @@ public interface CustomerInsights {
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -429,7 +434,7 @@ public interface CustomerInsights {
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -440,7 +445,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, UpdateAnEntityHeaders>> updateAnEntityWithServiceResponseAsync(String instanceId, String entityName, String entityId);
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -457,7 +462,7 @@ public interface CustomerInsights {
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -473,7 +478,7 @@ public interface CustomerInsights {
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -488,7 +493,7 @@ public interface CustomerInsights {
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -872,7 +877,7 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetEntitySizeHeaders>> getEntitySizeWithServiceResponseAsync(String instanceId, String entityName);
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -884,7 +889,7 @@ public interface CustomerInsights {
     Object resetAnInstance(String instanceId);
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -895,7 +900,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> resetAnInstanceAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -905,7 +910,7 @@ public interface CustomerInsights {
     Observable<Object> resetAnInstanceAsync(String instanceId);
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -914,7 +919,7 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, ResetAnInstanceHeaders>> resetAnInstanceWithServiceResponseAsync(String instanceId);
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -927,7 +932,7 @@ public interface CustomerInsights {
     Object resetAnInstance(String instanceId, String instanceManagementOperationScope);
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -939,7 +944,7 @@ public interface CustomerInsights {
     ServiceFuture<Object> resetAnInstanceAsync(String instanceId, String instanceManagementOperationScope, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -950,7 +955,7 @@ public interface CustomerInsights {
     Observable<Object> resetAnInstanceAsync(String instanceId, String instanceManagementOperationScope);
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1214,7 +1219,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createAnInstance(InstanceCreationRequest body);
+    Object createAnInstance(InstancesV2PostRequest body);
 
     /**
      * CreateInstance.
@@ -1225,7 +1230,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createAnInstanceAsync(InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createAnInstanceAsync(InstancesV2PostRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateInstance.
@@ -1235,7 +1240,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createAnInstanceAsync(InstanceCreationRequest body);
+    Observable<Object> createAnInstanceAsync(InstancesV2PostRequest body);
 
     /**
      * CreateInstance.
@@ -1245,7 +1250,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstanceCreationRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstancesV2PostRequest body);
 
     /**
      * UpdateInstance.
@@ -1294,47 +1299,47 @@ public interface CustomerInsights {
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateAnInstance(String instanceId, InstanceCreationRequest body);
+    Object updateAnInstance(String instanceId, InstancesInstanceIdV2PatchRequest body);
 
     /**
      * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateAnInstanceAsync(String instanceId, InstancesInstanceIdV2PatchRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body);
+    Observable<Object> updateAnInstanceAsync(String instanceId, InstancesInstanceIdV2PatchRequest body);
 
     /**
      * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId, InstanceCreationRequest body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId, InstancesInstanceIdV2PatchRequest body);
 
     /**
      * CopyInstance.
@@ -1384,7 +1389,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object copyAnInstance(InstanceCopyRequest body);
+    Object copyAnInstance(InstancesCopyPostRequest body);
 
     /**
      * CopyInstance.
@@ -1395,7 +1400,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> copyAnInstanceAsync(InstanceCopyRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> copyAnInstanceAsync(InstancesCopyPostRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CopyInstance.
@@ -1405,7 +1410,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> copyAnInstanceAsync(InstanceCopyRequest body);
+    Observable<Object> copyAnInstanceAsync(InstancesCopyPostRequest body);
 
     /**
      * CopyInstance.
@@ -1415,7 +1420,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstanceCopyRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstancesCopyPostRequest body);
 
     /**
      * ListAllMeasuresMetadata.
@@ -1513,7 +1518,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createAMeasure(String instanceId, MeasureMetadata body);
+    Object createAMeasure(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body);
 
     /**
      * CreateMeasure.
@@ -1525,7 +1530,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createAMeasureAsync(String instanceId, MeasureMetadata body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createAMeasureAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateMeasure.
@@ -1536,7 +1541,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createAMeasureAsync(String instanceId, MeasureMetadata body);
+    Observable<Object> createAMeasureAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body);
 
     /**
      * CreateMeasure.
@@ -1547,7 +1552,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId, MeasureMetadata body);
+    Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body);
 
     /**
      * GetMeasureMetadata.
@@ -1713,7 +1718,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateAMeasure(String instanceId, String measureName, MeasureMetadata body);
+    Object updateAMeasure(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body);
 
     /**
      * UpdateMeasure.
@@ -1727,7 +1732,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateMeasure.
@@ -1740,7 +1745,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body);
+    Observable<Object> updateAMeasureAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body);
 
     /**
      * UpdateMeasure.
@@ -1753,7 +1758,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName, MeasureMetadata body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body);
 
     /**
      * DeleteMeasure.
@@ -2044,7 +2049,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the List&lt;RoleAssignment&gt; object if successful.
      */
-    List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId, RoleAssignment body);
+    List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body);
 
     /**
      * UpdateRoleAssignment.
@@ -2057,7 +2062,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body, final ServiceCallback<List<RoleAssignment>> serviceCallback);
+    ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body, final ServiceCallback<List<RoleAssignment>> serviceCallback);
 
     /**
      * UpdateRoleAssignment.
@@ -2069,7 +2074,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;RoleAssignment&gt; object
      */
-    Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body);
+    Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body);
 
     /**
      * UpdateRoleAssignment.
@@ -2081,7 +2086,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;RoleAssignment&gt; object
      */
-    Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId, RoleAssignment body);
+    Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body);
 
     /**
      * DeleteRoleAssignment.
@@ -2268,7 +2273,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createARelationship(String instanceId, RelationshipMetadata body);
+    Object createARelationship(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body);
 
     /**
      * CreateRelationship.
@@ -2280,7 +2285,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createARelationshipAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateRelationship.
@@ -2291,7 +2296,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body);
+    Observable<Object> createARelationshipAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body);
 
     /**
      * CreateRelationship.
@@ -2302,7 +2307,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId, RelationshipMetadata body);
+    Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body);
 
     /**
      * GetRelationship.
@@ -2456,7 +2461,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateARelationship(String instanceId, String relationshipName, RelationshipMetadata body);
+    Object updateARelationship(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body);
 
     /**
      * UpdateRelationshhip.
@@ -2469,7 +2474,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateRelationshhip.
@@ -2481,7 +2486,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body);
+    Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body);
 
     /**
      * UpdateRelationshhip.
@@ -2493,7 +2498,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName, RelationshipMetadata body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body);
 
     /**
      * GetSearchConfiguration.
@@ -2591,7 +2596,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateSearchConfiguration(String instanceId, InstanceSearchConfiguration body);
+    Object updateSearchConfiguration(String instanceId, InstancesInstanceIdManageSearchPutRequest body);
 
     /**
      * UpdateSearchConfiguration.
@@ -2603,7 +2608,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateSearchConfiguration.
@@ -2614,7 +2619,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body);
+    Observable<Object> updateSearchConfigurationAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body);
 
     /**
      * UpdateSearchConfiguration.
@@ -2625,7 +2630,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId, InstanceSearchConfiguration body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body);
 
     /**
      * ListAllSegments.
@@ -2676,12 +2681,13 @@ public interface CustomerInsights {
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object getAllSegments(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays);
+    Object getAllSegments(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments);
 
     /**
      * ListAllSegments.
@@ -2690,11 +2696,12 @@ public interface CustomerInsights {
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments, final ServiceCallback<Object> serviceCallback);
 
     /**
      * ListAllSegments.
@@ -2703,10 +2710,11 @@ public interface CustomerInsights {
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays);
+    Observable<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments);
 
     /**
      * ListAllSegments.
@@ -2715,10 +2723,11 @@ public interface CustomerInsights {
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> getAllSegmentsWithServiceResponseAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays);
+    Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> getAllSegmentsWithServiceResponseAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments);
 
     /**
      * CreateSegment.
@@ -2773,7 +2782,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createASegment(String instanceId, SegmentMetadata body);
+    Object createASegment(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body);
 
     /**
      * CreateSegment.
@@ -2785,7 +2794,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createASegmentAsync(String instanceId, SegmentMetadata body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createASegmentAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateSegment.
@@ -2796,7 +2805,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createASegmentAsync(String instanceId, SegmentMetadata body);
+    Observable<Object> createASegmentAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body);
 
     /**
      * CreateSegment.
@@ -2807,7 +2816,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId, SegmentMetadata body);
+    Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body);
 
     /**
      * ActivateSegment.
@@ -2961,7 +2970,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateASegment(String instanceId, String segmentName, SegmentMetadata body);
+    Object updateASegment(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body);
 
     /**
      * UpdateSegments.
@@ -2974,7 +2983,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateSegments.
@@ -2986,7 +2995,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body);
+    Observable<Object> updateASegmentAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body);
 
     /**
      * UpdateSegments.
@@ -2998,7 +3007,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName, SegmentMetadata body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body);
 
     /**
      * DeleteSegment.
@@ -3305,10 +3314,9 @@ public interface CustomerInsights {
     Observable<ServiceResponseWithHeaders<Object, GetListOfRecentWorkflowJobsHeaders>> getListOfRecentWorkflowJobsWithServiceResponseAsync(String instanceId, String workflowName, Integer top, Boolean includeTasks);
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3321,10 +3329,9 @@ public interface CustomerInsights {
     Object submitAWorkflowJob(String instanceId, String workflowName);
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3336,10 +3343,9 @@ public interface CustomerInsights {
     ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3350,10 +3356,9 @@ public interface CustomerInsights {
     Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName);
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3363,10 +3368,9 @@ public interface CustomerInsights {
      */
     Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName);
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3380,13 +3384,12 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object submitAWorkflowJob(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
+    Object submitAWorkflowJob(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3399,13 +3402,12 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested, final ServiceCallback<Object> serviceCallback);
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3417,13 +3419,12 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
+    Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -3435,7 +3436,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
+    Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
      * ListWorkflowHistory.
@@ -3733,7 +3734,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createWorkflowRefreshSchedule(String instanceId, String workflowName, WorkflowRefreshSchedule body);
+    Object createWorkflowRefreshSchedule(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body);
 
     /**
      * CreateWorkflowRefreshSchedule.
@@ -3746,7 +3747,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateWorkflowRefreshSchedule.
@@ -3758,7 +3759,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body);
+    Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body);
 
     /**
      * CreateWorkflowRefreshSchedule.
@@ -3770,7 +3771,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body);
+    Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body);
 
     /**
      * GetEntityProfile.

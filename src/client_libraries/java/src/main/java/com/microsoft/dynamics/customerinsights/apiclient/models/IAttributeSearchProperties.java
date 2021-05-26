@@ -9,33 +9,33 @@ package com.microsoft.dynamics.customerinsights.apiclient.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The IAttributeSearchProperties model.
+ * Represents seachable attribute properties.
  */
 public class IAttributeSearchProperties {
     /**
      * Gets a value indicating whether the attribute supports full text search.
      */
-    @JsonProperty(value = "isSearchable", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isSearchable")
     private Boolean isSearchable;
 
     /**
      * Gets a value indicating whether the attribute supports filtering.
      */
-    @JsonProperty(value = "isFilterable", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isFilterable")
     private Boolean isFilterable;
 
     /**
      * Gets a value indicating whether the attribute can be included as facet
      * results.
      */
-    @JsonProperty(value = "isFacetable", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isFacetable")
     private Boolean isFacetable;
 
     /**
      * Gets a value indicating whether the attribute can be included in orderby
      * directives.
      */
-    @JsonProperty(value = "isSortable", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isSortable")
     private Boolean isSortable;
 
     /**
@@ -46,7 +46,7 @@ public class IAttributeSearchProperties {
      * other type: "listPrice,values:10|25|100|500|1000|2500"
      * value facet: city,count:5.
      */
-    @JsonProperty(value = "facetSpecification", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "facetSpecification")
     private String facetSpecification;
 
     /**
@@ -59,12 +59,34 @@ public class IAttributeSearchProperties {
     }
 
     /**
+     * Set gets a value indicating whether the attribute supports full text search.
+     *
+     * @param isSearchable the isSearchable value to set
+     * @return the IAttributeSearchProperties object itself.
+     */
+    public IAttributeSearchProperties withIsSearchable(Boolean isSearchable) {
+        this.isSearchable = isSearchable;
+        return this;
+    }
+
+    /**
      * Get gets a value indicating whether the attribute supports filtering.
      *
      * @return the isFilterable value
      */
     public Boolean isFilterable() {
         return this.isFilterable;
+    }
+
+    /**
+     * Set gets a value indicating whether the attribute supports filtering.
+     *
+     * @param isFilterable the isFilterable value to set
+     * @return the IAttributeSearchProperties object itself.
+     */
+    public IAttributeSearchProperties withIsFilterable(Boolean isFilterable) {
+        this.isFilterable = isFilterable;
+        return this;
     }
 
     /**
@@ -77,12 +99,34 @@ public class IAttributeSearchProperties {
     }
 
     /**
+     * Set gets a value indicating whether the attribute can be included as facet results.
+     *
+     * @param isFacetable the isFacetable value to set
+     * @return the IAttributeSearchProperties object itself.
+     */
+    public IAttributeSearchProperties withIsFacetable(Boolean isFacetable) {
+        this.isFacetable = isFacetable;
+        return this;
+    }
+
+    /**
      * Get gets a value indicating whether the attribute can be included in orderby directives.
      *
      * @return the isSortable value
      */
     public Boolean isSortable() {
         return this.isSortable;
+    }
+
+    /**
+     * Set gets a value indicating whether the attribute can be included in orderby directives.
+     *
+     * @param isSortable the isSortable value to set
+     * @return the IAttributeSearchProperties object itself.
+     */
+    public IAttributeSearchProperties withIsSortable(Boolean isSortable) {
+        this.isSortable = isSortable;
+        return this;
     }
 
     /**
@@ -96,6 +140,21 @@ public class IAttributeSearchProperties {
      */
     public String facetSpecification() {
         return this.facetSpecification;
+    }
+
+    /**
+     * Set gets an optional specification for search faceting used at query time (advanced).
+     this is the part behind the comma in the examples below.
+     bucket facet: "price,interval:10"
+     other type: "listPrice,values:10|25|100|500|1000|2500"
+     value facet: city,count:5.
+     *
+     * @param facetSpecification the facetSpecification value to set
+     * @return the IAttributeSearchProperties object itself.
+     */
+    public IAttributeSearchProperties withFacetSpecification(String facetSpecification) {
+        this.facetSpecification = facetSpecification;
+        return this;
     }
 
 }

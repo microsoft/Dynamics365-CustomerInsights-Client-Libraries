@@ -11,8 +11,7 @@ from msrest.serialization import Model
 class ProfileStoreModuleRunInfo(Model):
     """ProfileStoreModuleRunInfo.
 
-    :param run_info: Gets the LastSuccessfulRunId for every
-     fullyQualifiedEntity.
+    :param run_info: LastSuccessfulRunId Info for every fullyQualifiedEntity.
     :type run_info: dict[str, str]
     """
 

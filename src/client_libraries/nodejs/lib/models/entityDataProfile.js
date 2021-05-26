@@ -7,17 +7,18 @@
 'use strict';
 
 /**
- * Class representing a EntityDataProfile.
+ * Represents Entity Data Profile information.
+ *
  */
 class EntityDataProfile {
   /**
    * Create a EntityDataProfile.
-   * @property {string} [qualifiedEntityName]
-   * @property {number} [rowCount]
-   * @property {number} [quarantineRowCount]
-   * @property {date} [profilingDate]
-   * @property {string} [profiledAttributes]
-   * @property {string} [corruptAttributes]
+   * @property {string} [qualifiedEntityName] Qualified Entity Name.
+   * @property {number} [rowCount] Row count.
+   * @property {number} [quarantineRowCount] Quarentine row count
+   * @property {date} [profilingDate] Date for Profiling.
+   * @property {string} [profiledAttributes] Profiling attributes.
+   * @property {string} [corruptAttributes] Respresents currupt attributes.
    */
   constructor() {
   }

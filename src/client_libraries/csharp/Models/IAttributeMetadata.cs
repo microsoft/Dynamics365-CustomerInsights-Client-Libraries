@@ -9,6 +9,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using Newtonsoft.Json;
     using System.Linq;
 
+    /// <summary>
+    /// Represents attribute Metadata
+    /// </summary>
     public partial class IAttributeMetadata
     {
         /// <summary>
@@ -22,6 +25,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the IAttributeMetadata class.
         /// </summary>
+        /// <param name="name">Unique Name for Attribute Metadata</param>
+        /// <param name="friendlyName">User friendly Name for Attribute
+        /// Metadata</param>
+        /// <param name="baseName">Base Name for Attribute Metadata</param>
         /// <param name="dataType">Gets data type for property.</param>
         /// <param name="semanticType">Gets semantic type for property.
         /// Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
@@ -64,19 +71,22 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
+        /// Gets or sets unique Name for Attribute Metadata
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets user friendly Name for Attribute Metadata
         /// </summary>
         [JsonProperty(PropertyName = "friendlyName")]
-        public string FriendlyName { get; private set; }
+        public string FriendlyName { get; set; }
 
         /// <summary>
+        /// Gets or sets base Name for Attribute Metadata
         /// </summary>
         [JsonProperty(PropertyName = "baseName")]
-        public string BaseName { get; private set; }
+        public string BaseName { get; set; }
 
         /// <summary>
         /// Gets data type for property.

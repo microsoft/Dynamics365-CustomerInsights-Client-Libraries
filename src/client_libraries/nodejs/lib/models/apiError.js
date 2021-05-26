@@ -7,7 +7,8 @@
 'use strict';
 
 /**
- * Class representing a ApiError.
+ * Represents API error code and message
+ *
  */
 class ApiError {
   /**
@@ -15,7 +16,7 @@ class ApiError {
    * @property {string} [errorCode] Possible values include: 'notFound',
    * 'ambiguousReference', 'malformedInput', 'serviceUnavailable',
    * 'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
-   * @property {string} [message]
+   * @property {string} [message] Message associated with the error
    */
   constructor() {
   }

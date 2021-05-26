@@ -5,18 +5,27 @@
 
 import * as moment from "moment";
 
+/**
+ * Represents response result type
+ */
 export interface CIResult {
   /**
    * Possible values include: 'system', 'user', 'external'
-  */
+   */
   exceptionCulprit?: string;
   errorCode?: string;
   /**
    * Possible values include: 'error', 'warning'
   */
   resultSeverity?: string;
+  /**
+   * Message providing more information about the event.
+  */
   message?: string;
   params?: { [propertyName: string]: any };
+  /**
+   * List of CiResult contining CI result error code and information (if any).
+  */
   ciResults?: CIResult[];
 }
 
@@ -24,7 +33,7 @@ export interface CIResult {
  * Api Error response class (DTO)
 */
 export interface ApiErrorResult {
-  readonly exception?: any;
+  exception?: any;
   httpStatusCode?: string;
   /**
    * Possible values include: 'system', 'user', 'external'
@@ -35,8 +44,14 @@ export interface ApiErrorResult {
    * Possible values include: 'error', 'warning'
   */
   resultSeverity?: string;
+  /**
+   * Message providing more information about the event.
+  */
   message?: string;
   params?: { [propertyName: string]: any };
+  /**
+   * List of CiResult contining CI result error code and information (if any).
+  */
   ciResults?: CIResult[];
 }
 
@@ -45,11 +60,11 @@ export interface ApiErrorResult {
 */
 export interface ValueCount {
   /**
-   * Gets or sets the value.
+   * Represents the value.
   */
   value?: any;
   /**
-   * Gets or sets the count of the value.
+   * Represents Count of the value.
   */
   count?: number;
 }
@@ -59,26 +74,15 @@ export interface ValueCount {
 */
 export interface HistogramBin {
   /**
-   * Gets or sets the lower bound.
+   * Lower bound of Histogram bin.
   */
   lowerBound?: number;
   /**
-   * Gets or sets the upper bound.
+   * Upper bound Histogram bin.
   */
   upperBound?: number;
   /**
-   * Gets or sets the count.
-  */
-  count?: number;
-}
-
-export interface StringLengthCount {
-  /**
-   * Gets or sets the string length.
-  */
-  length?: number;
-  /**
-   * Gets or sets the count of string values with the Length.
+   * Represents an approximation count of the bin count.
   */
   count?: number;
 }
@@ -88,39 +92,39 @@ export interface StringLengthCount {
 */
 export interface Quantiles {
   /**
-   * Gets or sets the 1% quantile.
+   * Represents 1% quantile.
   */
   p0D1?: number;
   /**
-   * Gets or sets the 1% quantile.
+   * Represents 1% quantile.
   */
   p1?: number;
   /**
-   * Gets or sets the 5% quantile.
+   * Represents 5% quantile.
   */
   p5?: number;
   /**
-   * Gets or sets the 25% quantile.
+   * Represents 25% quantile.
   */
   p25?: number;
   /**
-   * Gets or sets the 50% quantile.
+   * Represents 50% quantile.
   */
   p50?: number;
   /**
-   * Gets or sets the 75% quantile.
+   * Represents 75% quantile.
   */
   p75?: number;
   /**
-   * Gets or sets the 95% quantile.
+   * Represents 95% quantile.
   */
   p95?: number;
   /**
-   * Gets or sets the 99% quantile.
+   * Represents 99% quantile.
   */
   p99?: number;
   /**
-   * Gets or sets the 9% quantile.
+   * Represents 9% quantile.
   */
   p99D9?: number;
 }
@@ -130,82 +134,82 @@ export interface Quantiles {
 */
 export interface Moments {
   /**
-   * Gets or sets the mean.
+   * Represents the mean.
   */
   mean?: number;
   /**
-   * Gets or sets the standard deviation.
+   * Represents standard deviation.
   */
   standardDeviation?: number;
   /**
-   * Gets or sets the variance.
+   * Represents variance.
   */
   variance?: number;
   /**
-   * Gets or sets the skewness.
+   * Represents skewness in data.
   */
   skewness?: number;
   /**
-   * Gets or sets the kurtosis.
+   * Represents kurtosis.
   */
   kurtosis?: number;
 }
 
+/**
+ * Attribute data profile
+*/
 export interface AttributeDataProfile {
   /**
-   * Gets or sets the distribution of the top 100 values
+   * Represents Distribution of the top 100 values.
   */
   valueCounts?: ValueCount[];
   /**
-   * Gets or sets the histogram information. Ordered from smallest to largest bin.
+   * Represents histogram information Ordered from smallest to largest bin.
   */
   histogram?: HistogramBin[];
   /**
-   * Gets or sets the string lengths and the count of string values with those lengths.
-  */
-  stringLengthCounts?: StringLengthCount[];
-  /**
-   * Gets or sets the qualified entity name
+   * Qualified entity name.
   */
   qualifiedEntityName?: string;
   /**
-   * Gets or sets the attribute name.
+   * Attribute name.
   */
   attributeName?: string;
   /**
-   * Gets or sets the minimum value.
+   * Minimum value.
   */
   min?: any;
   /**
-   * Gets or sets the maximum value.
+   * Maximum value.
   */
   max?: any;
   /**
-   * Gets or sets the total row count.
+   * Total row count.
   */
   count?: number;
   /**
-   * Gets or sets the row count of missing values.
+   * Row count of missing values.
   */
   missingCount?: number;
   /**
-   * Gets or sets the number of error values.
+   * Number of error values.
   */
   errorCount?: number;
   quantiles?: Quantiles;
   moments?: Moments;
   /**
-   * Gets or sets the number of unique values.
+   * Number of unique values.
   */
   uniqueValueCount?: number;
   /**
-   * Gets or sets the profiling date
+   * Profiling date
   */
   profilingDate?: Date;
   /**
-   * Gets a value indicating whether this attribute can be used as a primary key of the entity
+   * Represents a value indicating whether this attribute can be used as a primary key of the
+   * entity
   */
-  readonly isSuggestedPrimaryKey?: boolean;
+  isSuggestedPrimaryKey?: boolean;
 }
 
 /**
@@ -213,11 +217,11 @@ export interface AttributeDataProfile {
 */
 export interface AttributeSemanticInformation {
   /**
-   * Gets the name of the attribute.
+   * Name of the attribute.
   */
   attributeName?: string;
   /**
-   * Gets the semantic label. Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
+   * Semantic label. Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
    * 'CalendarDayOfWeek', 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
    * 'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
    * 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
@@ -242,12 +246,12 @@ export interface AttributeSemanticInformation {
 */
 export interface DatasourceEntityInformation {
   /**
-   * Gets the name of the entity.
+   * Name of the entity.
   */
   entityName?: string;
   /**
-   * Gets the primary key name of the entity. We require the entity to have a single column primary
-   * key column
+   * Primary key name of the entity. We require the entity to have a single column primary key
+   * column
   */
   primaryKey?: string;
   /**
@@ -257,11 +261,11 @@ export interface DatasourceEntityInformation {
   */
   entityType?: string;
   /**
-   * Gets the time stamp field name.
+   * Time stamp field name.
   */
   timestampFieldName?: string;
   /**
-   * Gets the semantic labels, by attribute name.
+   * Semantic labels by attribute name.
   */
   semanticLabels?: AttributeSemanticInformation[];
 }
@@ -271,43 +275,43 @@ export interface DatasourceEntityInformation {
 */
 export interface IncrementalRefreshProperties {
   /**
-   * Gets the name of the entity.
+   * Name of the entity.
   */
   entityName?: string;
   /**
-   * Gets the column to detect changes.
+   * Column to detect changes.
   */
   detectChangesAttributeName?: string;
   /**
-   * Gets the column to get incremental data.
+   * Column to get incremental data.
   */
   filterByAttributeName?: string;
   /**
-   * Gets the granularity of the incremental refresh.
+   * Granularity of the incremental refresh.
   */
   incrementalGranularity?: string;
   /**
-   * Gets the incremental period.
+   * Incremental period.
   */
   incrementalPeriods?: number;
   /**
-   * Gets a value indicating whether to refresh completed periods or not.
+   * Indicating whether to refresh completed periods or not.
   */
   refreshCompletePeriods?: boolean;
   /**
-   * Gets the off set period.
+   * Off set period.
   */
   incrementalPeriodsOffset?: number;
   /**
-   * Gets the primary key of the entity.
+   * Primary key of the entity.
   */
   primaryKeyAttributeName?: string;
   /**
-   * Gets the rolling window granularity.
+   * Rolling window granularity.
   */
   rollingWindowGranularity?: string;
   /**
-   * Gets the Rolling window period.
+   * Rolling window period.
   */
   rollingWindowPeriods?: number;
 }
@@ -321,70 +325,76 @@ export interface DataSourceMetadata {
    * 'powerPlatform', 'datahub'
   */
   kind?: string;
-  readonly isActive?: boolean;
-  readonly entityNames?: string[];
   /**
-   * Gets the unique identity for this object.
+   * Represents if still in active state
   */
-  readonly dataSourceId?: string;
+  isActive?: boolean;
   /**
-   * Gets the unique name of the dataSource.
+   * List of all Entity Names
   */
-  readonly name?: string;
+  entityNames?: string[];
   /**
-   * Gets the friendlyName of the dataSource.
+   * Unique identity for this object.
   */
-  readonly friendlyName?: string;
+  dataSourceId?: string;
   /**
-   * Gets the entity information, by entity name.
+   * Unique name of the dataSource.
   */
-  readonly entityInformation?: DatasourceEntityInformation[];
+  name?: string;
+  /**
+   * FriendlyName of the dataSource.
+  */
+  friendlyName?: string;
+  /**
+   * Entity information, by entity name.
+  */
+  entityInformation?: DatasourceEntityInformation[];
   /**
    * Possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
    * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
   */
   provisioningState?: string;
   /**
-   * Gets the time datasource was last refreshed.
+   * Represents the time datasource was last refreshed.
   */
-  readonly lastRefresh?: Date;
+  lastRefresh?: Date;
   /**
    * Possible values include: 'notUpdated', 'updated', 'updating', 'updateFailed',
    * 'updateCancelled'
   */
   refreshState?: string;
   /**
-   * Gets the Incremental refresh properties for entities.
+   * Incremental refresh properties for entities.
   */
-  readonly incrementalRefreshProperties?: IncrementalRefreshProperties[];
+  incrementalRefreshProperties?: IncrementalRefreshProperties[];
   /**
-   * Gets the model path for CDM data source.
+   * Model path for CDM data source.
   */
-  readonly modelJsonPath?: string;
+  modelJsonPath?: string;
   /**
-   * Gets the version number of this object.
+   * Version number of this object.
   */
-  readonly version?: number;
+  version?: number;
   /**
-   * Gets the UPN of the user who last updated this record.
+   * UPN of the user who last updated this record.
   */
-  readonly updatedBy?: string;
+  updatedBy?: string;
   /**
-   * Gets the time the object was last updated.
+   * Time this object was last updated.
   */
-  readonly updatedUtc?: Date;
+  updatedUtc?: Date;
   /**
-   * Gets the email address of the user who created this record.
+   * Email address of the user who created this record.
   */
-  readonly createdBy?: string;
+  createdBy?: string;
   /**
-   * Gets the time the object was initially created.
+   * Time this object was initially created.
   */
-  readonly createdUtc?: Date;
+  createdUtc?: Date;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 export interface QueryMetadata {
@@ -411,13 +421,13 @@ export interface Entity {
   name?: string;
   description?: string;
   isHidden?: boolean;
-  readonly annotations?: Annotation[];
+  annotations?: Annotation[];
 }
 
 export interface Relationship {
   name?: string;
   description?: string;
-  readonly annotations?: Annotation[];
+  annotations?: Annotation[];
 }
 
 export interface ReferenceModel {
@@ -434,12 +444,15 @@ export interface Model {
   pbitimeZone?: string;
   modifiedTime?: Date;
   pbimashup?: Mashup;
-  readonly annotations?: Annotation[];
-  readonly entities?: Entity[];
-  readonly relationships?: Relationship[];
-  readonly referenceModels?: ReferenceModel[];
+  annotations?: Annotation[];
+  entities?: Entity[];
+  relationships?: Relationship[];
+  referenceModels?: ReferenceModel[];
 }
 
+/**
+ * Data source Information
+*/
 export interface DataSourceInfo {
   dataSourceMetadata?: DataSourceMetadata;
   model?: Model;
@@ -515,12 +528,18 @@ export interface ODataEntityPayload {
   value?: any[];
 }
 
+/**
+ * Represents API error code and message
+*/
 export interface ApiError {
   /**
    * Possible values include: 'notFound', 'ambiguousReference', 'malformedInput',
    * 'serviceUnavailable', 'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
   */
   errorCode?: string;
+  /**
+   * Message associated with the error
+  */
   message?: string;
 }
 
@@ -532,23 +551,26 @@ export interface IEdmType {
   typeKind?: string;
 }
 
+/**
+ * Represents seachable attribute properties
+*/
 export interface IAttributeSearchProperties {
   /**
    * Gets a value indicating whether the attribute supports full text search.
   */
-  readonly isSearchable?: boolean;
+  isSearchable?: boolean;
   /**
    * Gets a value indicating whether the attribute supports filtering.
   */
-  readonly isFilterable?: boolean;
+  isFilterable?: boolean;
   /**
    * Gets a value indicating whether the attribute can be included as facet results.
   */
-  readonly isFacetable?: boolean;
+  isFacetable?: boolean;
   /**
    * Gets a value indicating whether the attribute can be included in orderby directives.
   */
-  readonly isSortable?: boolean;
+  isSortable?: boolean;
   /**
    * Gets an optional specification for search faceting used at query time (advanced).
    * this is the part behind the comma in the examples below.
@@ -556,13 +578,25 @@ export interface IAttributeSearchProperties {
    * other type: "listPrice,values:10|25|100|500|1000|2500"
    * value facet: city,count:5
   */
-  readonly facetSpecification?: string;
+  facetSpecification?: string;
 }
 
+/**
+ * Represents attribute Metadata
+*/
 export interface IAttributeMetadata {
-  readonly name?: string;
-  readonly friendlyName?: string;
-  readonly baseName?: string;
+  /**
+   * Unique Name for Attribute Metadata
+  */
+  name?: string;
+  /**
+   * User friendly Name for Attribute Metadata
+  */
+  friendlyName?: string;
+  /**
+   * Base Name for Attribute Metadata
+  */
+  baseName?: string;
   /**
    * Gets data type for property.
   */
@@ -606,25 +640,35 @@ export interface PartitionMetadata {
   */
   refreshTime?: Date;
   fileFormatSettings?: any;
-  readonly hasHeader?: boolean;
+  /**
+   * Gets a value indicating whether a partition need to be forced for SAS authentication.
+  */
+  forceSasAuth?: boolean;
+  /**
+   * Flad to represent header presence (if any)
+  */
+  hasHeader?: boolean;
 }
 
+/**
+ * Represents Entity Metadata.
+*/
 export interface IEntityMetadata {
   /**
    * Gets the name of the entity. eg: Contact.
   */
-  readonly name?: string;
+  name?: string;
   /**
    * Gets the unqiue logical name for the entity
    * If entity is from a datasource, QualifiedEntityName = datasourceId_EntityName eg:
    * d8d3b26a-a8ad-42f7-901e-f7f745003a84_Contact.
    * If entity is generated by C360, QualifiedEntityName = EntityName eg: Contact.
   */
-  readonly qualifiedEntityName?: string;
+  qualifiedEntityName?: string;
   /**
    * Gets the datasource name of this entity, if no data source, return null or emptyString
   */
-  readonly dataSourceName?: string;
+  dataSourceName?: string;
   /**
    * Possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine',
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
@@ -634,9 +678,13 @@ export interface IEntityMetadata {
   */
   dataflowType?: string;
   /**
+   * Gets a value indicating whether Sas Auth is used for the entity.
+  */
+  shouldUseSparkSasAuth?: boolean;
+  /**
    * Gets the original datasourceid of this entity, if no data source, return null or emptyString
   */
-  readonly datasourceId?: string;
+  datasourceId?: string;
   /**
    * Possible values include: 'unspecified', 'profile', 'conflationMap', 'activity',
    * 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
@@ -646,15 +694,15 @@ export interface IEntityMetadata {
   /**
    * Gets entity attributes.
   */
-  readonly attributes?: IAttributeMetadata[];
+  attributes?: IAttributeMetadata[];
   /**
    * Gets the keys of the entity.
   */
-  readonly keys?: IAttributeMetadata[][];
+  keys?: IAttributeMetadata[][];
   /**
    * Gets entity relationships.
   */
-  readonly relationships?: IRelationshipMetadata[];
+  relationships?: IRelationshipMetadata[];
   timestampAttribute?: IAttributeMetadata;
   incrementalAttribute?: IAttributeMetadata;
   /**
@@ -673,40 +721,49 @@ export interface IEntityMetadata {
   /**
    * Gets last refresh time for entity.
   */
-  readonly refreshTime?: Date;
+  refreshTime?: Date;
   /**
    * Gets entity data partitions.
   */
-  readonly partitions?: PartitionMetadata[];
+  partitions?: PartitionMetadata[];
   /**
    * Gets entity incremental upsert data partitions.
   */
-  readonly incrementalUpsertPartitions?: PartitionMetadata[];
+  incrementalUpsertPartitions?: PartitionMetadata[];
   /**
    * Gets entity incremental delete data partitions.
   */
-  readonly incrementalDeletePartitions?: PartitionMetadata[];
+  incrementalDeletePartitions?: PartitionMetadata[];
   /**
    * Gets entity data parquet partitions.
   */
-  readonly fullPartitionsParquet?: PartitionMetadata[];
+  fullPartitionsParquet?: PartitionMetadata[];
   /**
    * Gets entity incremental upsert data parquet partitions.
   */
-  readonly incrementalUpsertPartitionsParquet?: PartitionMetadata[];
+  incrementalUpsertPartitionsParquet?: PartitionMetadata[];
   /**
    * Gets entity incremental delete data parquet partitions.
   */
-  readonly incrementalDeletePartitionsParquet?: PartitionMetadata[];
+  incrementalDeletePartitionsParquet?: PartitionMetadata[];
   /**
    * Gets base entity name
   */
-  readonly annotations?: Annotation[];
+  annotations?: Annotation[];
 }
 
+/**
+ * Represents Relationship Metadata
+*/
 export interface IRelationshipMetadata {
-  readonly name?: string;
-  readonly friendlyName?: string;
+  /**
+   * Unique Name for relationship
+  */
+  name?: string;
+  /**
+   * User Friendly Name for relationship
+  */
+  friendlyName?: string;
   fromAttribute?: IAttributeMetadata;
   toAttribute?: IAttributeMetadata;
   /**
@@ -715,22 +772,28 @@ export interface IRelationshipMetadata {
   */
   relationshipType?: string;
   dataSourceEntity?: IEntityMetadata;
-  readonly dataSourceMappingAttributes?: IAttributeMetadata[];
+  /**
+   * List of data source mapping attributes
+  */
+  dataSourceMappingAttributes?: IAttributeMetadata[];
 }
 
+/**
+ * Represents Entity Model.
+*/
 export interface IC360EntityModel {
   /**
    * Gets the instance ID associated with the model.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
   /**
    * Gets the dataflow ID associated with the model.
   */
-  readonly dataflowId?: string;
+  dataflowId?: string;
   /**
    * Gets the datasource ID associated with the model.
   */
-  readonly datasourceId?: string;
+  datasourceId?: string;
   /**
    * Possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine',
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
@@ -742,7 +805,7 @@ export interface IC360EntityModel {
   /**
    * Gets entities in the model.
   */
-  readonly entities?: IEntityMetadata[];
+  entities?: IEntityMetadata[];
 }
 
 /**
@@ -873,23 +936,23 @@ export interface DataRefreshSchedule {
   /**
    * Gets a value indicating whether the schedule is active.
   */
-  readonly isActive?: boolean;
+  isActive?: boolean;
   /**
    * Gets the ID of the timezone
   */
-  readonly timezoneId?: string;
+  timezoneId?: string;
   /**
    * Gets the schedule in CRON format
   */
-  readonly cronSchedules?: string[];
+  cronSchedules?: string[];
   /**
    * Gets the ID of the schedule
   */
-  readonly scheduleId?: string;
+  scheduleId?: string;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 /**
@@ -929,25 +992,25 @@ export interface CdsOrgInfo {
 }
 
 /**
- * The information for workspace in CDS
+ * The information for datalake folder in CDS
 */
-export interface WorkSpaceDetail {
+export interface DatalakeFolderDetail {
   /**
-   * Gets the Workspace Friendly Name
+   * Gets the datalake folder Friendly Name
   */
   name?: string;
   /**
-   * Gets the Cds workspace unique Name
+   * Gets the Cds datalake folder unique Name
   */
   uniqueName?: string;
 }
 
 /**
- * The information on CDS MDL workspaces
+ * The information on CDS MDL datalake folders
 */
 export interface CdsMdlInfo {
-  privateWorkSpace?: WorkSpaceDetail;
-  publicWorkSpace?: WorkSpaceDetail;
+  privateWorkSpace?: DatalakeFolderDetail;
+  publicWorkSpace?: DatalakeFolderDetail;
 }
 
 /**
@@ -987,29 +1050,29 @@ export interface InstanceMetadata {
   */
   trialExtensionHistory?: string;
   /**
-   * Gets the version number of this object.
+   * Version number of this object.
   */
-  readonly version?: number;
+  version?: number;
   /**
-   * Gets the UPN of the user who last updated this record.
+   * UPN of the user who last updated this record.
   */
-  readonly updatedBy?: string;
+  updatedBy?: string;
   /**
-   * Gets the time the object was last updated.
+   * Time this object was last updated.
   */
-  readonly updatedUtc?: Date;
+  updatedUtc?: Date;
   /**
-   * Gets the email address of the user who created this record.
+   * Email address of the user who created this record.
   */
-  readonly createdBy?: string;
+  createdBy?: string;
   /**
-   * Gets the time the object was initially created.
+   * Time this object was initially created.
   */
-  readonly createdUtc?: Date;
+  createdUtc?: Date;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 /**
@@ -1026,11 +1089,11 @@ export interface ResourceMetadata {
   /**
    * Gets the Id of the resource.
   */
-  readonly resourceId?: string;
+  resourceId?: string;
   /**
    * Gets the Id of the operation being performed on the resource.
   */
-  readonly operationId?: string;
+  operationId?: string;
   /**
    * Possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
@@ -1041,35 +1104,35 @@ export interface ResourceMetadata {
   /**
    * Gets the Name of the resource.
   */
-  readonly name?: string;
+  name?: string;
   /**
    * Gets the Description of the resource.
   */
-  readonly description?: string;
+  description?: string;
   /**
-   * Gets the version number of this object.
+   * Version number of this object.
   */
-  readonly version?: number;
+  version?: number;
   /**
-   * Gets the UPN of the user who last updated this record.
+   * UPN of the user who last updated this record.
   */
-  readonly updatedBy?: string;
+  updatedBy?: string;
   /**
-   * Gets the time the object was last updated.
+   * Time this object was last updated.
   */
-  readonly updatedUtc?: Date;
+  updatedUtc?: Date;
   /**
-   * Gets the email address of the user who created this record.
+   * Email address of the user who created this record.
   */
-  readonly createdBy?: string;
+  createdBy?: string;
   /**
-   * Gets the time the object was initially created.
+   * Time this object was initially created.
   */
-  readonly createdUtc?: Date;
+  createdUtc?: Date;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 export interface InstanceCreationRequest {
@@ -1104,11 +1167,11 @@ export interface MeasureLinkedEntity {
   /**
    * Gets the name of the entity.
   */
-  readonly entity?: string;
+  entity?: string;
   /**
    * Gets the alias of the entity.
   */
-  readonly alias?: string;
+  alias?: string;
 }
 
 /**
@@ -1146,19 +1209,19 @@ export interface MeasureVariable {
   /**
    * Gets the name of the variable
   */
-  readonly name?: string;
+  name?: string;
   /**
    * Gets the data type of the variable
   */
-  readonly dataType?: string;
+  dataType?: string;
   /**
    * Gets the expression text for computing the variable
   */
-  readonly expressionText?: string;
+  expressionText?: string;
   /**
    * Gets the variable conditions
   */
-  readonly variableConditionGroups?: MeasureVariableConditionGroup[];
+  variableConditionGroups?: MeasureVariableConditionGroup[];
 }
 
 /**
@@ -1190,7 +1253,7 @@ export interface SegmentMembershipCriteria {
    * Possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo',
    * 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull',
    * 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
-   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
   */
   comparisonOperator?: string;
   /**
@@ -1209,6 +1272,10 @@ export interface SegmentMembershipCriteria {
    * Gets the list of values in criteria.
   */
   listOfValues?: string[];
+  /**
+   * flag set to true if entries are of time format
+  */
+  isTime?: boolean;
 }
 
 /**
@@ -1303,33 +1370,33 @@ export interface MeasureDefinition {
    * Gets a value indicating whether the current measure is a scalar measure e doesn't have any
    * dimensions
   */
-  readonly isScalar?: boolean;
+  isScalar?: boolean;
   /**
    * Gets list of linked entities associated with the measure.
   */
-  readonly linkedEntities?: MeasureLinkedEntity[];
+  linkedEntities?: MeasureLinkedEntity[];
   /**
    * Gets list of variables (computed columns) for the measure.
   */
-  readonly variables?: MeasureVariable[];
+  variables?: MeasureVariable[];
   filters?: MeasureExpression;
   filteringCriteria?: SegmentMembershipCriteria;
   /**
    * Gets list of dimensions with the measure.
   */
-  readonly dimensions?: MeasureDimension[];
+  dimensions?: MeasureDimension[];
   /**
    * Gets list of aggregates of the measure.
   */
-  readonly aggregates?: MeasureAggregate[];
+  aggregates?: MeasureAggregate[];
   /**
    * Gets a value indicating whether the current measure is a profile measure
   */
-  readonly isProfile?: boolean;
+  isProfile?: boolean;
   /**
    * Gets the user specified custom SQL query.
   */
-  readonly measureQuerySql?: string;
+  measureQuerySql?: string;
   /**
    * Possible values include: 'structured', 'manual'
   */
@@ -1337,11 +1404,11 @@ export interface MeasureDefinition {
   /**
    * Gets the indicating whether the Business Measure is Scalar or not.
   */
-  readonly isManualQueryScalar?: boolean;
+  isManualQueryScalar?: boolean;
   /**
    * Gets the list of measures that this measure depends on.
   */
-  readonly dependencies?: EntityDependency[];
+  dependencies?: EntityDependency[];
 }
 
 /**
@@ -1358,18 +1425,18 @@ export interface Evaluation {
   */
   state?: string;
   /**
-   * Gets or sets the evaluation completion time.
+   * Evaluation completion time.
   */
   endTime?: Date;
   /**
-   * Gets or sets the error (if any) that occured during the measure evaluation.
+   * Error Information (if any) that occured during the measure evaluation.
   */
   error?: string;
 }
 
 export interface ScalarOutput {
   /**
-   * Gets the output folder path for the evaluation.
+   * Output folder path for the evaluation.
   */
   values?: { [propertyName: string]: string };
   measureName?: string;
@@ -1384,11 +1451,11 @@ export interface ScalarOutput {
 */
 export interface EvaluationStats {
   /**
-   * Gets the last successful evaluation
+   * Last successful evaluation
   */
   lastSuccessful?: Date;
   /**
-   * Gets the number of consecutive failures
+   * Represents Number of consecutive failures
   */
   consecutiveFailureCount?: number;
 }
@@ -1493,7 +1560,7 @@ export interface StringInfo {
 */
 export interface SqlValidationStats {
   /**
-   * Gets the last validation evaluation date
+   * Date of Validation evaluation
   */
   validationDate?: Date;
   /**
@@ -1506,13 +1573,13 @@ export interface SqlValidationStats {
  * Represents metadata for a measure (or KPI).
 */
 export interface MeasureMetadata {
-  readonly displayName?: string;
+  displayName?: string;
   /**
-   * Gets the unique name of the measure
+   * Unique name of the measure
   */
   name?: string;
   /**
-   * Gets the description of the measure.
+   * Description of the measure.
   */
   description?: string;
   definition?: MeasureDefinition;
@@ -1522,37 +1589,37 @@ export interface MeasureMetadata {
   errorDescription?: StringInfo;
   sqlValidationStats?: SqlValidationStats;
   /**
-   * Gets the evaluation history for the measure. (not persisted in store)
+   * Evaluation history for the measure. (not persisted in store)
   */
   evaluationHistory?: Evaluation[];
   /**
-   * Gets the output history for the measure. (not persisted in store)
+   * Output history for the measure. (not persisted in store)
   */
   outputHistory?: ScalarOutput[];
   /**
-   * Gets the version number of this object.
+   * Version number of this object.
   */
-  readonly version?: number;
+  version?: number;
   /**
-   * Gets the UPN of the user who last updated this record.
+   * UPN of the user who last updated this record.
   */
-  readonly updatedBy?: string;
+  updatedBy?: string;
   /**
-   * Gets the time the object was last updated.
+   * Time this object was last updated.
   */
-  readonly updatedUtc?: Date;
+  updatedUtc?: Date;
   /**
-   * Gets the email address of the user who created this record.
+   * Email address of the user who created this record.
   */
-  readonly createdBy?: string;
+  createdBy?: string;
   /**
-   * Gets the time the object was initially created.
+   * Time this object was initially created.
   */
-  readonly createdUtc?: Date;
+  createdUtc?: Date;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 export interface SourceLocation {
@@ -1602,7 +1669,7 @@ export interface KeyRingResponse {
 
 export interface ProfileStoreModuleRunInfo {
   /**
-   * Gets the LastSuccessfulRunId for every fullyQualifiedEntity.
+   * LastSuccessfulRunId Info for every fullyQualifiedEntity.
   */
   runInfo?: { [propertyName: string]: string };
 }
@@ -1641,14 +1708,14 @@ export interface ProfileStoreStateInfo {
   primaryInfo?: ProfileStoreCollectionInfo;
   secondaryInfo?: ProfileStoreCollectionInfo;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 export interface RoleDefinition {
-  readonly description?: string;
-  readonly roleName?: string;
+  description?: string;
+  roleName?: string;
 }
 
 /**
@@ -1668,9 +1735,9 @@ export interface RoleAssignment {
   */
   roles?: string[];
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 /**
@@ -1715,29 +1782,29 @@ export interface RelationshipMetadata {
   */
   cardinality?: string;
   /**
-   * Gets the version number of this object.
+   * Version number of this object.
   */
-  readonly version?: number;
+  version?: number;
   /**
-   * Gets the UPN of the user who last updated this record.
+   * UPN of the user who last updated this record.
   */
-  readonly updatedBy?: string;
+  updatedBy?: string;
   /**
-   * Gets the time the object was last updated.
+   * Time this object was last updated.
   */
-  readonly updatedUtc?: Date;
+  updatedUtc?: Date;
   /**
-   * Gets the email address of the user who created this record.
+   * Email address of the user who created this record.
   */
-  readonly createdBy?: string;
+  createdBy?: string;
   /**
-   * Gets the time the object was initially created.
+   * Time this object was initially created.
   */
-  readonly createdUtc?: Date;
+  createdUtc?: Date;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 /**
@@ -1798,29 +1865,29 @@ export interface InstanceSearchConfiguration {
   */
   isSystemGenerated?: boolean;
   /**
-   * Gets the version number of this object.
+   * Version number of this object.
   */
-  readonly version?: number;
+  version?: number;
   /**
-   * Gets the UPN of the user who last updated this record.
+   * UPN of the user who last updated this record.
   */
-  readonly updatedBy?: string;
+  updatedBy?: string;
   /**
-   * Gets the time the object was last updated.
+   * Time this object was last updated.
   */
-  readonly updatedUtc?: Date;
+  updatedUtc?: Date;
   /**
-   * Gets the email address of the user who created this record.
+   * Email address of the user who created this record.
   */
-  readonly createdBy?: string;
+  createdBy?: string;
   /**
-   * Gets the time the object was initially created.
+   * Time this object was initially created.
   */
-  readonly createdUtc?: Date;
+  createdUtc?: Date;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 /**
@@ -1928,29 +1995,29 @@ export interface SegmentMetadata {
   */
   evaluationStatusHistory?: HistoricalSegmentStats[];
   /**
-   * Gets the version number of this object.
+   * Version number of this object.
   */
-  readonly version?: number;
+  version?: number;
   /**
-   * Gets the UPN of the user who last updated this record.
+   * UPN of the user who last updated this record.
   */
-  readonly updatedBy?: string;
+  updatedBy?: string;
   /**
-   * Gets the time the object was last updated.
+   * Time this object was last updated.
   */
-  readonly updatedUtc?: Date;
+  updatedUtc?: Date;
   /**
-   * Gets the email address of the user who created this record.
+   * Email address of the user who created this record.
   */
-  readonly createdBy?: string;
+  createdBy?: string;
   /**
-   * Gets the time the object was initially created.
+   * Time this object was initially created.
   */
-  readonly createdUtc?: Date;
+  createdUtc?: Date;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
 /**
@@ -1958,7 +2025,8 @@ export interface SegmentMetadata {
 */
 export interface CustomTaskInformation {
   /**
-   * Possible values include: 'test', 'segmentation', 'measures', 'export'
+   * Possible values include: 'test', 'segmentation', 'measures', 'export', 'incrementalIngestion',
+   * 'incrementalMatch'
   */
   kind?: string;
 }
@@ -1988,7 +2056,8 @@ export interface GraphTaskInfo {
   */
   operationType?: string;
   /**
-   * Possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'
+   * Possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel',
+   * 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'
   */
   subType?: string;
   jobIds?: string[];
@@ -1999,6 +2068,14 @@ export interface GraphTaskInfo {
   waitingTaskIds?: string[];
   additionalInfo?: CustomTaskInformation;
   submittedTimestamp?: Date;
+}
+
+export interface GraphJobOptions {
+  runDownstreamAfterMerge?: boolean;
+  /**
+   * Describes unknown properties. The value of an unknown property can be of "any" type.
+  */
+  [additionalPropertyName: string]: any;
 }
 
 export interface GraphJobInfo {
@@ -2024,13 +2101,15 @@ export interface GraphJobInfo {
   */
   operationType?: string;
   /**
-   * Possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'
+   * Possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel',
+   * 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'
   */
   subType?: string;
   endTimestamp?: Date;
   shouldForceRunRequestedNodes?: boolean;
   tasks?: GraphTaskInfo[];
   idList?: string[];
+  options?: GraphJobOptions;
   submittedTimestamp?: Date;
 }
 
@@ -2055,9 +2134,10 @@ export interface OnDemandJobRequest {
   forceRunRequested?: boolean;
   /**
    * Possible values include: 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified',
-   * 'Failed'
+   * 'Failed', 'None'
   */
   inputRefreshMode?: string;
+  options?: GraphJobOptions;
 }
 
 export interface DataInfo {
@@ -2084,7 +2164,8 @@ export interface GraphNodeInfo {
   */
   operationType?: string;
   /**
-   * Possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'
+   * Possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel',
+   * 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'
   */
   subType?: string;
   identifier?: string;
@@ -2121,7 +2202,8 @@ export interface WorkflowRefreshSchedule {
   */
   operationType?: string;
   /**
-   * Possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'
+   * Possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel',
+   * 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'
   */
   subType?: string;
   /**
@@ -2135,30 +2217,209 @@ export interface WorkflowRefreshSchedule {
   /**
    * Gets a value indicating whether the schedule is active.
   */
-  readonly isActive?: boolean;
+  isActive?: boolean;
   /**
    * Gets the ID of the timezone
   */
-  readonly timezoneId?: string;
+  timezoneId?: string;
   /**
    * Gets the schedule in CRON format
   */
-  readonly cronSchedules?: string[];
+  cronSchedules?: string[];
   /**
    * Gets the ID of the schedule
   */
-  readonly scheduleId?: string;
+  scheduleId?: string;
   /**
-   * Gets the Customer Insights instance id associated with this object.
+   * Customer Insights instance id associated with this object.
   */
-  readonly instanceId?: string;
+  instanceId?: string;
 }
 
+/**
+ * Represents Entity Data Profile information.
+*/
 export interface EntityDataProfile {
+  /**
+   * Qualified Entity Name.
+  */
   qualifiedEntityName?: string;
+  /**
+   * Row count.
+  */
   rowCount?: number;
+  /**
+   * Quarentine row count
+  */
   quarantineRowCount?: number;
+  /**
+   * Date for Profiling.
+  */
   profilingDate?: Date;
+  /**
+   * Profiling attributes.
+  */
   profiledAttributes?: string;
+  /**
+   * Respresents currupt attributes.
+  */
   corruptAttributes?: string;
+}
+
+/**
+ * The instance creation request.
+*/
+export interface InstancesV2PostRequest extends InstanceCreationRequest {
+}
+
+/**
+ * The instance creation request.
+*/
+export interface InstancesV2PostRequest1 extends InstanceCreationRequest {
+}
+
+export interface InstancesInstanceIdV2PatchRequest extends InstanceCreationRequest {
+}
+
+export interface InstancesInstanceIdV2PatchRequest1 extends InstanceCreationRequest {
+}
+
+/**
+ * The metadata to use to create the new instance.
+*/
+export interface InstancesCopyPostRequest extends InstanceCopyRequest {
+}
+
+/**
+ * The metadata to use to create the new instance.
+*/
+export interface InstancesCopyPostRequest1 extends InstanceCopyRequest {
+}
+
+/**
+ * Represents metadata for a measure (or KPI).
+*/
+export interface InstancesInstanceIdManageMeasuresPostRequest extends MeasureMetadata {
+}
+
+/**
+ * Represents metadata for a measure (or KPI).
+*/
+export interface InstancesInstanceIdManageMeasuresPostRequest1 extends MeasureMetadata {
+}
+
+/**
+ * Represents metadata for a measure (or KPI).
+*/
+export interface InstancesInstanceIdManageMeasuresMeasureNamePutRequest extends MeasureMetadata {
+}
+
+/**
+ * Represents metadata for a measure (or KPI).
+*/
+export interface InstancesInstanceIdManageMeasuresMeasureNamePutRequest1 extends MeasureMetadata {
+}
+
+/**
+ * Represents a role assignment Metadata.
+*/
+export interface InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest extends
+RoleAssignment {
+}
+
+/**
+ * Represents a role assignment Metadata.
+*/
+export interface InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1 extends
+RoleAssignment {
+}
+
+/**
+ * Represents a Relationship
+*/
+export interface InstancesInstanceIdManageRelationshipsPostRequest extends RelationshipMetadata {
+}
+
+/**
+ * Represents a Relationship
+*/
+export interface InstancesInstanceIdManageRelationshipsPostRequest1 extends RelationshipMetadata {
+}
+
+/**
+ * Represents a Relationship
+*/
+export interface InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest extends
+RelationshipMetadata {
+}
+
+/**
+ * Represents a Relationship
+*/
+export interface InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1 extends
+RelationshipMetadata {
+}
+
+/**
+ * Represents search configuration of an instance
+*/
+export interface InstancesInstanceIdManageSearchPutRequest extends InstanceSearchConfiguration {
+}
+
+/**
+ * Represents search configuration of an instance
+*/
+export interface InstancesInstanceIdManageSearchPutRequest1 extends InstanceSearchConfiguration {
+}
+
+/**
+ * Represents a Segment Metadata.
+*/
+export interface InstancesInstanceIdManageSegmentsPostRequest extends SegmentMetadata {
+}
+
+/**
+ * Represents a Segment Metadata.
+*/
+export interface InstancesInstanceIdManageSegmentsPostRequest1 extends SegmentMetadata {
+}
+
+/**
+ * Represents a Segment Metadata.
+*/
+export interface InstancesInstanceIdManageSegmentsSegmentNamePutRequest extends SegmentMetadata {
+}
+
+/**
+ * Represents a Segment Metadata.
+*/
+export interface InstancesInstanceIdManageSegmentsSegmentNamePutRequest1 extends SegmentMetadata {
+}
+
+/**
+ * Job Creation Request.
+*/
+export interface InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest extends OnDemandJobRequest
+{
+}
+
+/**
+ * Job Creation Request.
+*/
+export interface InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1 extends
+OnDemandJobRequest {
+}
+
+/**
+ * Represents a DAG refresh schedule
+*/
+export interface InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest extends
+WorkflowRefreshSchedule {
+}
+
+/**
+ * Represents a DAG refresh schedule
+*/
+export interface InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1 extends
+WorkflowRefreshSchedule {
 }

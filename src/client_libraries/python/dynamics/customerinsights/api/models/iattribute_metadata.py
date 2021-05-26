@@ -9,17 +9,14 @@ from msrest.serialization import Model
 
 
 class IAttributeMetadata(Model):
-    """IAttributeMetadata.
+    """Represents attribute Metadata.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar name:
-    :vartype name: str
-    :ivar friendly_name:
-    :vartype friendly_name: str
-    :ivar base_name:
-    :vartype base_name: str
+    :param name: Unique Name for Attribute Metadata
+    :type name: str
+    :param friendly_name: User friendly Name for Attribute Metadata
+    :type friendly_name: str
+    :param base_name: Base Name for Attribute Metadata
+    :type base_name: str
     :param data_type: Gets data type for property.
     :type data_type: str
     :param semantic_type: Gets semantic type for property. Possible values
@@ -50,12 +47,6 @@ class IAttributeMetadata(Model):
      ~dynamics.customerinsights.api.models.IAttributeSearchProperties
     """
 
-    _validation = {
-        'name': {'readonly': True},
-        'friendly_name': {'readonly': True},
-        'base_name': {'readonly': True},
-    }
-
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
@@ -67,9 +58,9 @@ class IAttributeMetadata(Model):
 
     def __init__(self, **kwargs):
         super(IAttributeMetadata, self).__init__(**kwargs)
-        self.name = None
-        self.friendly_name = None
-        self.base_name = None
+        self.name = kwargs.get('name', None)
+        self.friendly_name = kwargs.get('friendly_name', None)
+        self.base_name = kwargs.get('base_name', None)
         self.data_type = kwargs.get('data_type', None)
         self.semantic_type = kwargs.get('semantic_type', None)
         self.search_properties = kwargs.get('search_properties', None)

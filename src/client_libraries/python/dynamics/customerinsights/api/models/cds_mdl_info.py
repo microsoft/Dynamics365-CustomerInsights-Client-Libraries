@@ -9,19 +9,19 @@ from msrest.serialization import Model
 
 
 class CdsMdlInfo(Model):
-    """The information on CDS MDL workspaces.
+    """The information on CDS MDL datalake folders.
 
     :param private_work_space:
     :type private_work_space:
-     ~dynamics.customerinsights.api.models.WorkSpaceDetail
+     ~dynamics.customerinsights.api.models.DatalakeFolderDetail
     :param public_work_space:
     :type public_work_space:
-     ~dynamics.customerinsights.api.models.WorkSpaceDetail
+     ~dynamics.customerinsights.api.models.DatalakeFolderDetail
     """
 
     _attribute_map = {
-        'private_work_space': {'key': 'privateWorkSpace', 'type': 'WorkSpaceDetail'},
-        'public_work_space': {'key': 'publicWorkSpace', 'type': 'WorkSpaceDetail'},
+        'private_work_space': {'key': 'privateWorkSpace', 'type': 'DatalakeFolderDetail'},
+        'public_work_space': {'key': 'publicWorkSpace', 'type': 'DatalakeFolderDetail'},
     }
 
     def __init__(self, **kwargs):

@@ -105,7 +105,6 @@ class Model {
           },
           annotations: {
             required: false,
-            readOnly: true,
             serializedName: 'annotations',
             type: {
               name: 'Sequence',
@@ -121,7 +120,6 @@ class Model {
           },
           entities: {
             required: false,
-            readOnly: true,
             serializedName: 'entities',
             type: {
               name: 'Sequence',
@@ -137,7 +135,6 @@ class Model {
           },
           relationships: {
             required: false,
-            readOnly: true,
             serializedName: 'relationships',
             type: {
               name: 'Sequence',
@@ -153,7 +150,6 @@ class Model {
           },
           referenceModels: {
             required: false,
-            readOnly: true,
             serializedName: 'referenceModels',
             type: {
               name: 'Sequence',

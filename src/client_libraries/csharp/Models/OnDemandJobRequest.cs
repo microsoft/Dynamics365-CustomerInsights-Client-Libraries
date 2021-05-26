@@ -37,8 +37,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'incremental'</param>
         /// <param name="inputRefreshMode">Possible values include:
         /// 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified',
-        /// 'Failed'</param>
-        public OnDemandJobRequest(string graphName = default(string), string operationType = default(string), string submissionKind = default(string), string jobType = default(string), IList<string> identifiers = default(IList<string>), bool? forceRunRequested = default(bool?), string inputRefreshMode = default(string))
+        /// 'Failed', 'None'</param>
+        public OnDemandJobRequest(string graphName = default(string), string operationType = default(string), string submissionKind = default(string), string jobType = default(string), IList<string> identifiers = default(IList<string>), bool? forceRunRequested = default(bool?), string inputRefreshMode = default(string), GraphJobOptions options = default(GraphJobOptions))
         {
             GraphName = graphName;
             OperationType = operationType;
@@ -47,6 +47,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             Identifiers = identifiers;
             ForceRunRequested = forceRunRequested;
             InputRefreshMode = inputRefreshMode;
+            Options = options;
             CustomInit();
         }
 
@@ -96,10 +97,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'FailedOrModifiedRecursive',
-        /// 'FailedRecursive', 'FailedOrModified', 'Failed'
+        /// 'FailedRecursive', 'FailedOrModified', 'Failed', 'None'
         /// </summary>
         [JsonProperty(PropertyName = "inputRefreshMode")]
         public string InputRefreshMode { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "options")]
+        public GraphJobOptions Options { get; set; }
 
     }
 }

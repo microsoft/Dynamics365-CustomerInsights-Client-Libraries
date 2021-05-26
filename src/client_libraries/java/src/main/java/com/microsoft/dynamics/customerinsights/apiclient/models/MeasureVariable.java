@@ -22,25 +22,25 @@ public class MeasureVariable {
     /**
      * Gets the name of the variable.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "name")
     private String name;
 
     /**
      * Gets the data type of the variable.
      */
-    @JsonProperty(value = "dataType", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dataType")
     private String dataType;
 
     /**
      * Gets the expression text for computing the variable.
      */
-    @JsonProperty(value = "expressionText", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "expressionText")
     private String expressionText;
 
     /**
      * Gets the variable conditions.
      */
-    @JsonProperty(value = "variableConditionGroups", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "variableConditionGroups")
     private List<MeasureVariableConditionGroup> variableConditionGroups;
 
     /**
@@ -73,12 +73,34 @@ public class MeasureVariable {
     }
 
     /**
+     * Set gets the name of the variable.
+     *
+     * @param name the name value to set
+     * @return the MeasureVariable object itself.
+     */
+    public MeasureVariable withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
      * Get gets the data type of the variable.
      *
      * @return the dataType value
      */
     public String dataType() {
         return this.dataType;
+    }
+
+    /**
+     * Set gets the data type of the variable.
+     *
+     * @param dataType the dataType value to set
+     * @return the MeasureVariable object itself.
+     */
+    public MeasureVariable withDataType(String dataType) {
+        this.dataType = dataType;
+        return this;
     }
 
     /**
@@ -91,12 +113,34 @@ public class MeasureVariable {
     }
 
     /**
+     * Set gets the expression text for computing the variable.
+     *
+     * @param expressionText the expressionText value to set
+     * @return the MeasureVariable object itself.
+     */
+    public MeasureVariable withExpressionText(String expressionText) {
+        this.expressionText = expressionText;
+        return this;
+    }
+
+    /**
      * Get gets the variable conditions.
      *
      * @return the variableConditionGroups value
      */
     public List<MeasureVariableConditionGroup> variableConditionGroups() {
         return this.variableConditionGroups;
+    }
+
+    /**
+     * Set gets the variable conditions.
+     *
+     * @param variableConditionGroups the variableConditionGroups value to set
+     * @return the MeasureVariable object itself.
+     */
+    public MeasureVariable withVariableConditionGroups(List<MeasureVariableConditionGroup> variableConditionGroups) {
+        this.variableConditionGroups = variableConditionGroups;
+        return this;
     }
 
 }

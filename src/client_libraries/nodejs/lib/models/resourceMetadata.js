@@ -28,16 +28,15 @@ class ResourceMetadata {
    * 'googleAds', 'marketo'
    * @property {string} [name] Gets the Name of the resource.
    * @property {string} [description] Gets the Description of the resource.
-   * @property {number} [version] Gets the version number of this object.
-   * @property {string} [updatedBy] Gets the UPN of the user who last updated
-   * this record.
-   * @property {date} [updatedUtc] Gets the time the object was last updated.
-   * @property {string} [createdBy] Gets the email address of the user who
-   * created this record.
-   * @property {date} [createdUtc] Gets the time the object was initially
-   * created.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {number} [version] Version number of this object.
+   * @property {string} [updatedBy] UPN of the user who last updated this
+   * record.
+   * @property {date} [updatedUtc] Time this object was last updated.
+   * @property {string} [createdBy] Email address of the user who created this
+   * record.
+   * @property {date} [createdUtc] Time this object was initially created.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -65,7 +64,6 @@ class ResourceMetadata {
           },
           resourceId: {
             required: false,
-            readOnly: true,
             serializedName: 'resourceId',
             type: {
               name: 'String'
@@ -73,7 +71,6 @@ class ResourceMetadata {
           },
           operationId: {
             required: false,
-            readOnly: true,
             serializedName: 'operationId',
             type: {
               name: 'String'
@@ -88,7 +85,6 @@ class ResourceMetadata {
           },
           name: {
             required: false,
-            readOnly: true,
             serializedName: 'name',
             type: {
               name: 'String'
@@ -96,7 +92,6 @@ class ResourceMetadata {
           },
           description: {
             required: false,
-            readOnly: true,
             serializedName: 'description',
             type: {
               name: 'String'
@@ -104,7 +99,6 @@ class ResourceMetadata {
           },
           version: {
             required: false,
-            readOnly: true,
             serializedName: 'version',
             type: {
               name: 'Number'
@@ -112,7 +106,6 @@ class ResourceMetadata {
           },
           updatedBy: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedBy',
             type: {
               name: 'String'
@@ -120,7 +113,6 @@ class ResourceMetadata {
           },
           updatedUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedUtc',
             type: {
               name: 'DateTime'
@@ -128,7 +120,6 @@ class ResourceMetadata {
           },
           createdBy: {
             required: false,
-            readOnly: true,
             serializedName: 'createdBy',
             type: {
               name: 'String'
@@ -136,7 +127,6 @@ class ResourceMetadata {
           },
           createdUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'createdUtc',
             type: {
               name: 'DateTime'
@@ -144,7 +134,6 @@ class ResourceMetadata {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

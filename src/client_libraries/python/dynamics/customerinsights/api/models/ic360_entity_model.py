@@ -9,17 +9,14 @@ from msrest.serialization import Model
 
 
 class IC360EntityModel(Model):
-    """IC360EntityModel.
+    """Represents Entity Model.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar instance_id: Gets the instance ID associated with the model.
-    :vartype instance_id: str
-    :ivar dataflow_id: Gets the dataflow ID associated with the model.
-    :vartype dataflow_id: str
-    :ivar datasource_id: Gets the datasource ID associated with the model.
-    :vartype datasource_id: str
+    :param instance_id: Gets the instance ID associated with the model.
+    :type instance_id: str
+    :param dataflow_id: Gets the dataflow ID associated with the model.
+    :type dataflow_id: str
+    :param datasource_id: Gets the datasource ID associated with the model.
+    :type datasource_id: str
     :param dataflow_type: Possible values include: 'dynamics365',
      'salesforce', 'conflationSortAndRefine', 'conflationDeduplication',
      'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi',
@@ -28,17 +25,10 @@ class IC360EntityModel(Model):
      'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
      'derivedEntity', 'powerPlatformSource'
     :type dataflow_type: str or ~dynamics.customerinsights.api.models.enum
-    :ivar entities: Gets entities in the model.
-    :vartype entities:
+    :param entities: Gets entities in the model.
+    :type entities:
      list[~dynamics.customerinsights.api.models.IEntityMetadata]
     """
-
-    _validation = {
-        'instance_id': {'readonly': True},
-        'dataflow_id': {'readonly': True},
-        'datasource_id': {'readonly': True},
-        'entities': {'readonly': True},
-    }
 
     _attribute_map = {
         'instance_id': {'key': 'instanceId', 'type': 'str'},
@@ -50,8 +40,8 @@ class IC360EntityModel(Model):
 
     def __init__(self, **kwargs):
         super(IC360EntityModel, self).__init__(**kwargs)
-        self.instance_id = None
-        self.dataflow_id = None
-        self.datasource_id = None
+        self.instance_id = kwargs.get('instance_id', None)
+        self.dataflow_id = kwargs.get('dataflow_id', None)
+        self.datasource_id = kwargs.get('datasource_id', None)
         self.dataflow_type = kwargs.get('dataflow_type', None)
-        self.entities = None
+        self.entities = kwargs.get('entities', None)

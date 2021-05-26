@@ -9,7 +9,7 @@ package com.microsoft.dynamics.customerinsights.apiclient.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The DataSourceInfo model.
+ * Data source Information.
  */
 public class DataSourceInfo {
     /**

@@ -11,29 +11,18 @@ from msrest.serialization import Model
 class DataRefreshSchedule(Model):
     """Represents a refresh schedule for the state machine.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar is_active: Gets a value indicating whether the schedule is active.
-    :vartype is_active: bool
-    :ivar timezone_id: Gets the ID of the timezone
-    :vartype timezone_id: str
-    :ivar cron_schedules: Gets the schedule in CRON format
-    :vartype cron_schedules: list[str]
-    :ivar schedule_id: Gets the ID of the schedule
-    :vartype schedule_id: str
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param is_active: Gets a value indicating whether the schedule is active.
+    :type is_active: bool
+    :param timezone_id: Gets the ID of the timezone
+    :type timezone_id: str
+    :param cron_schedules: Gets the schedule in CRON format
+    :type cron_schedules: list[str]
+    :param schedule_id: Gets the ID of the schedule
+    :type schedule_id: str
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'is_active': {'readonly': True},
-        'timezone_id': {'readonly': True},
-        'cron_schedules': {'readonly': True},
-        'schedule_id': {'readonly': True},
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'is_active': {'key': 'isActive', 'type': 'bool'},
@@ -43,10 +32,10 @@ class DataRefreshSchedule(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, *, is_active: bool=None, timezone_id: str=None, cron_schedules=None, schedule_id: str=None, instance_id: str=None, **kwargs) -> None:
         super(DataRefreshSchedule, self).__init__(**kwargs)
-        self.is_active = None
-        self.timezone_id = None
-        self.cron_schedules = None
-        self.schedule_id = None
-        self.instance_id = None
+        self.is_active = is_active
+        self.timezone_id = timezone_id
+        self.cron_schedules = cron_schedules
+        self.schedule_id = schedule_id
+        self.instance_id = instance_id

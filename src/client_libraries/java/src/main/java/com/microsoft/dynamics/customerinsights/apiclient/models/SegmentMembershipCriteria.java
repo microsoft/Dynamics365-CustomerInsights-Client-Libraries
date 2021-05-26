@@ -30,7 +30,7 @@ public class SegmentMembershipCriteria {
      * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any',
      * 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all',
      * 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
-     * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'.
+     * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'.
      */
     @JsonProperty(value = "comparisonOperator")
     private String comparisonOperator;
@@ -58,6 +58,12 @@ public class SegmentMembershipCriteria {
      */
     @JsonProperty(value = "listOfValues")
     private List<String> listOfValues;
+
+    /**
+     * flag set to true if entries are of time format.
+     */
+    @JsonProperty(value = "isTime")
+    private Boolean isTime;
 
     /**
      * Get possible values include: 'and', 'or'.
@@ -100,7 +106,7 @@ public class SegmentMembershipCriteria {
     }
 
     /**
-     * Get possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'.
+     * Get possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'.
      *
      * @return the comparisonOperator value
      */
@@ -109,7 +115,7 @@ public class SegmentMembershipCriteria {
     }
 
     /**
-     * Set possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'.
+     * Set possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'.
      *
      * @param comparisonOperator the comparisonOperator value to set
      * @return the SegmentMembershipCriteria object itself.
@@ -196,6 +202,26 @@ public class SegmentMembershipCriteria {
      */
     public SegmentMembershipCriteria withListOfValues(List<String> listOfValues) {
         this.listOfValues = listOfValues;
+        return this;
+    }
+
+    /**
+     * Get flag set to true if entries are of time format.
+     *
+     * @return the isTime value
+     */
+    public Boolean isTime() {
+        return this.isTime;
+    }
+
+    /**
+     * Set flag set to true if entries are of time format.
+     *
+     * @param isTime the isTime value to set
+     * @return the SegmentMembershipCriteria object itself.
+     */
+    public SegmentMembershipCriteria withIsTime(Boolean isTime) {
+        this.isTime = isTime;
         return this;
     }
 

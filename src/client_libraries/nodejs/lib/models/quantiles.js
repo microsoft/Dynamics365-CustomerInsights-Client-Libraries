@@ -13,15 +13,15 @@
 class Quantiles {
   /**
    * Create a Quantiles.
-   * @property {number} [p0D1] Gets or sets the 1% quantile.
-   * @property {number} [p1] Gets or sets the 1% quantile.
-   * @property {number} [p5] Gets or sets the 5% quantile.
-   * @property {number} [p25] Gets or sets the 25% quantile.
-   * @property {number} [p50] Gets or sets the 50% quantile.
-   * @property {number} [p75] Gets or sets the 75% quantile.
-   * @property {number} [p95] Gets or sets the 95% quantile.
-   * @property {number} [p99] Gets or sets the 99% quantile.
-   * @property {number} [p99D9] Gets or sets the 9% quantile.
+   * @property {number} [p0D1] Represents 1% quantile.
+   * @property {number} [p1] Represents 1% quantile.
+   * @property {number} [p5] Represents 5% quantile.
+   * @property {number} [p25] Represents 25% quantile.
+   * @property {number} [p50] Represents 50% quantile.
+   * @property {number} [p75] Represents 75% quantile.
+   * @property {number} [p95] Represents 95% quantile.
+   * @property {number} [p99] Represents 99% quantile.
+   * @property {number} [p99D9] Represents 9% quantile.
    */
   constructor() {
   }

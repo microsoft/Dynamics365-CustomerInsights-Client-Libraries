@@ -30,36 +30,33 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="kind">Possible values include: 'salesforce',
         /// 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
         /// 'powerPlatform', 'datahub'</param>
-        /// <param name="dataSourceId">Gets the unique identity for this
-        /// object.</param>
-        /// <param name="name">Gets the unique name of the dataSource.</param>
-        /// <param name="friendlyName">Gets the friendlyName of the
-        /// dataSource.</param>
-        /// <param name="entityInformation">Gets the entity information, by
-        /// entity name.</param>
+        /// <param name="isActive">Represents if still in active state</param>
+        /// <param name="entityNames">List of all Entity Names</param>
+        /// <param name="dataSourceId">Unique identity for this object.</param>
+        /// <param name="name">Unique name of the dataSource.</param>
+        /// <param name="friendlyName">FriendlyName of the dataSource.</param>
+        /// <param name="entityInformation">Entity information, by entity
+        /// name.</param>
         /// <param name="provisioningState">Possible values include: 'new',
         /// 'creating', 'active', 'createFailed', 'updateFailed', 'deleting',
         /// 'refreshCredentials', 'resetInstanceInProgress'</param>
-        /// <param name="lastRefresh">Gets the time datasource was last
+        /// <param name="lastRefresh">Represents the time datasource was last
         /// refreshed.</param>
         /// <param name="refreshState">Possible values include: 'notUpdated',
         /// 'updated', 'updating', 'updateFailed', 'updateCancelled'</param>
-        /// <param name="incrementalRefreshProperties">Gets the Incremental
-        /// refresh properties for entities.</param>
-        /// <param name="modelJsonPath">Gets the model path for CDM data
-        /// source.</param>
-        /// <param name="version">Gets the version number of this
-        /// object.</param>
-        /// <param name="updatedBy">Gets the UPN of the user who last updated
-        /// this record.</param>
-        /// <param name="updatedUtc">Gets the time the object was last
-        /// updated.</param>
-        /// <param name="createdBy">Gets the email address of the user who
-        /// created this record.</param>
-        /// <param name="createdUtc">Gets the time the object was initially
+        /// <param name="incrementalRefreshProperties">Incremental refresh
+        /// properties for entities.</param>
+        /// <param name="modelJsonPath">Model path for CDM data source.</param>
+        /// <param name="version">Version number of this object.</param>
+        /// <param name="updatedBy">UPN of the user who last updated this
+        /// record.</param>
+        /// <param name="updatedUtc">Time this object was last updated.</param>
+        /// <param name="createdBy">Email address of the user who created this
+        /// record.</param>
+        /// <param name="createdUtc">Time this object was initially
         /// created.</param>
-        /// <param name="instanceId">Gets the Customer Insights instance id
-        /// associated with this object.</param>
+        /// <param name="instanceId">Customer Insights instance id associated
+        /// with this object.</param>
         public DataSourceMetadata(string kind = default(string), bool? isActive = default(bool?), IList<string> entityNames = default(IList<string>), System.Guid? dataSourceId = default(System.Guid?), string name = default(string), string friendlyName = default(string), IList<DatasourceEntityInformation> entityInformation = default(IList<DatasourceEntityInformation>), string provisioningState = default(string), System.DateTime? lastRefresh = default(System.DateTime?), string refreshState = default(string), IList<IncrementalRefreshProperties> incrementalRefreshProperties = default(IList<IncrementalRefreshProperties>), string modelJsonPath = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             Kind = kind;
@@ -96,38 +93,40 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string Kind { get; set; }
 
         /// <summary>
+        /// Gets or sets represents if still in active state
         /// </summary>
         [JsonProperty(PropertyName = "isActive")]
-        public bool? IsActive { get; private set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
+        /// Gets or sets list of all Entity Names
         /// </summary>
         [JsonProperty(PropertyName = "entityNames")]
-        public IList<string> EntityNames { get; private set; }
+        public IList<string> EntityNames { get; set; }
 
         /// <summary>
-        /// Gets the unique identity for this object.
+        /// Gets or sets unique identity for this object.
         /// </summary>
         [JsonProperty(PropertyName = "dataSourceId")]
-        public System.Guid? DataSourceId { get; private set; }
+        public System.Guid? DataSourceId { get; set; }
 
         /// <summary>
-        /// Gets the unique name of the dataSource.
+        /// Gets or sets unique name of the dataSource.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Gets the friendlyName of the dataSource.
+        /// Gets or sets friendlyName of the dataSource.
         /// </summary>
         [JsonProperty(PropertyName = "friendlyName")]
-        public string FriendlyName { get; private set; }
+        public string FriendlyName { get; set; }
 
         /// <summary>
-        /// Gets the entity information, by entity name.
+        /// Gets or sets entity information, by entity name.
         /// </summary>
         [JsonProperty(PropertyName = "entityInformation")]
-        public IList<DatasourceEntityInformation> EntityInformation { get; private set; }
+        public IList<DatasourceEntityInformation> EntityInformation { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'new', 'creating', 'active',
@@ -138,10 +137,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string ProvisioningState { get; set; }
 
         /// <summary>
-        /// Gets the time datasource was last refreshed.
+        /// Gets or sets represents the time datasource was last refreshed.
         /// </summary>
         [JsonProperty(PropertyName = "lastRefresh")]
-        public System.DateTime? LastRefresh { get; private set; }
+        public System.DateTime? LastRefresh { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'notUpdated', 'updated',
@@ -151,52 +150,53 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string RefreshState { get; set; }
 
         /// <summary>
-        /// Gets the Incremental refresh properties for entities.
+        /// Gets or sets incremental refresh properties for entities.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalRefreshProperties")]
-        public IList<IncrementalRefreshProperties> IncrementalRefreshProperties { get; private set; }
+        public IList<IncrementalRefreshProperties> IncrementalRefreshProperties { get; set; }
 
         /// <summary>
-        /// Gets the model path for CDM data source.
+        /// Gets or sets model path for CDM data source.
         /// </summary>
         [JsonProperty(PropertyName = "modelJsonPath")]
-        public string ModelJsonPath { get; private set; }
+        public string ModelJsonPath { get; set; }
 
         /// <summary>
-        /// Gets the version number of this object.
+        /// Gets or sets version number of this object.
         /// </summary>
         [JsonProperty(PropertyName = "version")]
-        public long? Version { get; private set; }
+        public long? Version { get; set; }
 
         /// <summary>
-        /// Gets the UPN of the user who last updated this record.
+        /// Gets or sets UPN of the user who last updated this record.
         /// </summary>
         [JsonProperty(PropertyName = "updatedBy")]
-        public string UpdatedBy { get; private set; }
+        public string UpdatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was last updated.
+        /// Gets or sets time this object was last updated.
         /// </summary>
         [JsonProperty(PropertyName = "updatedUtc")]
-        public System.DateTime? UpdatedUtc { get; private set; }
+        public System.DateTime? UpdatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the email address of the user who created this record.
+        /// Gets or sets email address of the user who created this record.
         /// </summary>
         [JsonProperty(PropertyName = "createdBy")]
-        public string CreatedBy { get; private set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was initially created.
+        /// Gets or sets time this object was initially created.
         /// </summary>
         [JsonProperty(PropertyName = "createdUtc")]
-        public System.DateTime? CreatedUtc { get; private set; }
+        public System.DateTime? CreatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the Customer Insights instance id associated with this object.
+        /// Gets or sets customer Insights instance id associated with this
+        /// object.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
     }
 }

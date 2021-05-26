@@ -38,9 +38,16 @@ public class PartitionMetadata {
     private Object fileFormatSettings;
 
     /**
-     * The hasHeader property.
+     * Gets a value indicating whether a partition need to be forced for SAS
+     * authentication.
      */
-    @JsonProperty(value = "hasHeader", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "forceSasAuth")
+    private Boolean forceSasAuth;
+
+    /**
+     * Flad to represent header presence (if any).
+     */
+    @JsonProperty(value = "hasHeader")
     private Boolean hasHeader;
 
     /**
@@ -124,12 +131,43 @@ public class PartitionMetadata {
     }
 
     /**
-     * Get the hasHeader value.
+     * Get gets a value indicating whether a partition need to be forced for SAS authentication.
+     *
+     * @return the forceSasAuth value
+     */
+    public Boolean forceSasAuth() {
+        return this.forceSasAuth;
+    }
+
+    /**
+     * Set gets a value indicating whether a partition need to be forced for SAS authentication.
+     *
+     * @param forceSasAuth the forceSasAuth value to set
+     * @return the PartitionMetadata object itself.
+     */
+    public PartitionMetadata withForceSasAuth(Boolean forceSasAuth) {
+        this.forceSasAuth = forceSasAuth;
+        return this;
+    }
+
+    /**
+     * Get flad to represent header presence (if any).
      *
      * @return the hasHeader value
      */
     public Boolean hasHeader() {
         return this.hasHeader;
+    }
+
+    /**
+     * Set flad to represent header presence (if any).
+     *
+     * @param hasHeader the hasHeader value to set
+     * @return the PartitionMetadata object itself.
+     */
+    public PartitionMetadata withHasHeader(Boolean hasHeader) {
+        this.hasHeader = hasHeader;
+        return this;
     }
 
 }

@@ -37,7 +37,7 @@ class MeasureDefinition {
    * 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith',
    * 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast',
    * 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
-   * 'dayOfWeek'
+   * 'dayOfWeek', 'timeAt'
    * @property {array} [filteringCriteria.childCriterias] Gets the list of
    * Child criteria of segment.
    * @property {string} [filteringCriteria.value] Gets the Value in criteria.
@@ -45,6 +45,8 @@ class MeasureDefinition {
    * whether case is ignored for this criteria.
    * @property {array} [filteringCriteria.listOfValues] Gets the list of values
    * in criteria.
+   * @property {boolean} [filteringCriteria.isTime] flag set to true if entries
+   * are of time format
    * @property {array} [dimensions] Gets list of dimensions with the measure.
    * @property {array} [aggregates] Gets list of aggregates of the measure.
    * @property {boolean} [isProfile] Gets a value indicating whether the
@@ -83,7 +85,6 @@ class MeasureDefinition {
           },
           isScalar: {
             required: false,
-            readOnly: true,
             serializedName: 'isScalar',
             type: {
               name: 'Boolean'
@@ -91,7 +92,6 @@ class MeasureDefinition {
           },
           linkedEntities: {
             required: false,
-            readOnly: true,
             serializedName: 'linkedEntities',
             type: {
               name: 'Sequence',
@@ -107,7 +107,6 @@ class MeasureDefinition {
           },
           variables: {
             required: false,
-            readOnly: true,
             serializedName: 'variables',
             type: {
               name: 'Sequence',
@@ -139,7 +138,6 @@ class MeasureDefinition {
           },
           dimensions: {
             required: false,
-            readOnly: true,
             serializedName: 'dimensions',
             type: {
               name: 'Sequence',
@@ -155,7 +153,6 @@ class MeasureDefinition {
           },
           aggregates: {
             required: false,
-            readOnly: true,
             serializedName: 'aggregates',
             type: {
               name: 'Sequence',
@@ -171,7 +168,6 @@ class MeasureDefinition {
           },
           isProfile: {
             required: false,
-            readOnly: true,
             serializedName: 'isProfile',
             type: {
               name: 'Boolean'
@@ -179,7 +175,6 @@ class MeasureDefinition {
           },
           measureQuerySql: {
             required: false,
-            readOnly: true,
             serializedName: 'measureQuerySql',
             type: {
               name: 'String'
@@ -194,7 +189,6 @@ class MeasureDefinition {
           },
           isManualQueryScalar: {
             required: false,
-            readOnly: true,
             serializedName: 'isManualQueryScalar',
             type: {
               name: 'Boolean'
@@ -202,7 +196,6 @@ class MeasureDefinition {
           },
           dependencies: {
             required: false,
-            readOnly: true,
             serializedName: 'dependencies',
             type: {
               name: 'Sequence',

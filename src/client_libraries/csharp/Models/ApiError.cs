@@ -9,6 +9,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using Newtonsoft.Json;
     using System.Linq;
 
+    /// <summary>
+    /// Represents API error code and message
+    /// </summary>
     public partial class ApiError
     {
         /// <summary>
@@ -26,6 +29,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'ambiguousReference', 'malformedInput', 'serviceUnavailable',
         /// 'badRequest', 'notAllowed', 'conflict', 'locked',
         /// 'forbidden'</param>
+        /// <param name="message">Message associated with the error</param>
         public ApiError(string errorCode = default(string), string message = default(string))
         {
             ErrorCode = errorCode;
@@ -47,6 +51,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string ErrorCode { get; set; }
 
         /// <summary>
+        /// Gets or sets message associated with the error
         /// </summary>
         [JsonProperty(PropertyName = "message")]
         public string Message { get; set; }

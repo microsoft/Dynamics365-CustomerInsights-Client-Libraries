@@ -31,6 +31,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'user', 'external'</param>
         /// <param name="resultSeverity">Possible values include: 'error',
         /// 'warning'</param>
+        /// <param name="message">Message providing more information about the
+        /// event.</param>
+        /// <param name="ciResults">List of CiResult contining CI result error
+        /// code and information (if any).</param>
         public ApiErrorResult(object exception = default(object), string httpStatusCode = default(string), string exceptionCulprit = default(string), string errorCode = default(string), string resultSeverity = default(string), string message = default(string), IDictionary<string, object> paramsProperty = default(IDictionary<string, object>), IList<CIResult> ciResults = default(IList<CIResult>))
         {
             Exception = exception;
@@ -52,7 +56,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "exception")]
-        public object Exception { get; private set; }
+        public object Exception { get; set; }
 
         /// <summary>
         /// </summary>
@@ -77,6 +81,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string ResultSeverity { get; set; }
 
         /// <summary>
+        /// Gets or sets message providing more information about the event.
         /// </summary>
         [JsonProperty(PropertyName = "message")]
         public string Message { get; set; }
@@ -87,6 +92,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public IDictionary<string, object> ParamsProperty { get; set; }
 
         /// <summary>
+        /// Gets or sets list of CiResult contining CI result error code and
+        /// information (if any).
         /// </summary>
         [JsonProperty(PropertyName = "ciResults")]
         public IList<CIResult> CiResults { get; set; }

@@ -34,7 +34,7 @@ public class Entity {
     /**
      * The annotations property.
      */
-    @JsonProperty(value = "annotations", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "annotations")
     private List<Annotation> annotations;
 
     /**
@@ -104,6 +104,17 @@ public class Entity {
      */
     public List<Annotation> annotations() {
         return this.annotations;
+    }
+
+    /**
+     * Set the annotations value.
+     *
+     * @param annotations the annotations value to set
+     * @return the Entity object itself.
+     */
+    public Entity withAnnotations(List<Annotation> annotations) {
+        this.annotations = annotations;
+        return this;
     }
 
 }

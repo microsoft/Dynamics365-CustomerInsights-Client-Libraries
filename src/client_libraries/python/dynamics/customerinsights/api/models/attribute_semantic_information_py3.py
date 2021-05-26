@@ -11,12 +11,12 @@ from msrest.serialization import Model
 class AttributeSemanticInformation(Model):
     """Represents the semantic info used in API requests (attribute level).
 
-    :param attribute_name: Gets the name of the attribute.
+    :param attribute_name: Name of the attribute.
     :type attribute_name: str
-    :param label: Gets the semantic label. Possible values include:
-     'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
-     'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
-     'CalendarMonth', 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
+    :param label: Semantic label. Possible values include: 'CalendarDate',
+     'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
+     'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
+     'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
      'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
      'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
      'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',

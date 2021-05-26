@@ -10,19 +10,19 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The IRelationshipMetadata model.
+ * Represents Relationship Metadata.
  */
 public class IRelationshipMetadata {
     /**
-     * The name property.
+     * Unique Name for relationship.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "name")
     private String name;
 
     /**
-     * The friendlyName property.
+     * User Friendly Name for relationship.
      */
-    @JsonProperty(value = "friendlyName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "friendlyName")
     private String friendlyName;
 
     /**
@@ -52,13 +52,13 @@ public class IRelationshipMetadata {
     private IEntityMetadata dataSourceEntity;
 
     /**
-     * The dataSourceMappingAttributes property.
+     * List of data source mapping attributes.
      */
-    @JsonProperty(value = "dataSourceMappingAttributes", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dataSourceMappingAttributes")
     private List<IAttributeMetadata> dataSourceMappingAttributes;
 
     /**
-     * Get the name value.
+     * Get unique Name for relationship.
      *
      * @return the name value
      */
@@ -67,12 +67,34 @@ public class IRelationshipMetadata {
     }
 
     /**
-     * Get the friendlyName value.
+     * Set unique Name for relationship.
+     *
+     * @param name the name value to set
+     * @return the IRelationshipMetadata object itself.
+     */
+    public IRelationshipMetadata withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get user Friendly Name for relationship.
      *
      * @return the friendlyName value
      */
     public String friendlyName() {
         return this.friendlyName;
+    }
+
+    /**
+     * Set user Friendly Name for relationship.
+     *
+     * @param friendlyName the friendlyName value to set
+     * @return the IRelationshipMetadata object itself.
+     */
+    public IRelationshipMetadata withFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
+        return this;
     }
 
     /**
@@ -156,12 +178,23 @@ public class IRelationshipMetadata {
     }
 
     /**
-     * Get the dataSourceMappingAttributes value.
+     * Get list of data source mapping attributes.
      *
      * @return the dataSourceMappingAttributes value
      */
     public List<IAttributeMetadata> dataSourceMappingAttributes() {
         return this.dataSourceMappingAttributes;
+    }
+
+    /**
+     * Set list of data source mapping attributes.
+     *
+     * @param dataSourceMappingAttributes the dataSourceMappingAttributes value to set
+     * @return the IRelationshipMetadata object itself.
+     */
+    public IRelationshipMetadata withDataSourceMappingAttributes(List<IAttributeMetadata> dataSourceMappingAttributes) {
+        this.dataSourceMappingAttributes = dataSourceMappingAttributes;
+        return this;
     }
 
 }

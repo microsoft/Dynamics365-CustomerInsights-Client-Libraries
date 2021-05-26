@@ -31,8 +31,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'intelligence', 'aiBuilder', 'insights', 'export',
         /// 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
         /// 'all'</param>
-        /// <param name="subType">Possible values include: 'templatedMeasures',
-        /// 'createAnalysisModel', 'linkAnalysisModel'</param>
+        /// <param name="subType">Possible values include: 'noSubType',
+        /// 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+        /// 'singleActivityMapping', 'powerPlatform'</param>
         /// <param name="taskStatus">Possible values include: 'queued',
         /// 'needsUpdate', 'running', 'failed', 'timedOut', 'aborted',
         /// 'deleted', 'successful', 'skipped'</param>
@@ -72,8 +73,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string OperationType { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'templatedMeasures',
-        /// 'createAnalysisModel', 'linkAnalysisModel'
+        /// Gets or sets possible values include: 'noSubType',
+        /// 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+        /// 'singleActivityMapping', 'powerPlatform'
         /// </summary>
         [JsonProperty(PropertyName = "subType")]
         public string SubType { get; set; }

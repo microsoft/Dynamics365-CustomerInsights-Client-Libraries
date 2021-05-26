@@ -52,8 +52,9 @@ public class GraphJobInfo {
     private String operationType;
 
     /**
-     * Possible values include: 'templatedMeasures', 'createAnalysisModel',
-     * 'linkAnalysisModel'.
+     * Possible values include: 'noSubType', 'templatedMeasures',
+     * 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping',
+     * 'powerPlatform'.
      */
     @JsonProperty(value = "subType")
     private String subType;
@@ -81,6 +82,12 @@ public class GraphJobInfo {
      */
     @JsonProperty(value = "idList")
     private List<String> idList;
+
+    /**
+     * The options property.
+     */
+    @JsonProperty(value = "options")
+    private GraphJobOptions options;
 
     /**
      * The submittedTimestamp property.
@@ -189,7 +196,7 @@ public class GraphJobInfo {
     }
 
     /**
-     * Get possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'.
+     * Get possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'.
      *
      * @return the subType value
      */
@@ -198,7 +205,7 @@ public class GraphJobInfo {
     }
 
     /**
-     * Set possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'.
+     * Set possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'.
      *
      * @param subType the subType value to set
      * @return the GraphJobInfo object itself.
@@ -285,6 +292,26 @@ public class GraphJobInfo {
      */
     public GraphJobInfo withIdList(List<String> idList) {
         this.idList = idList;
+        return this;
+    }
+
+    /**
+     * Get the options value.
+     *
+     * @return the options value
+     */
+    public GraphJobOptions options() {
+        return this.options;
+    }
+
+    /**
+     * Set the options value.
+     *
+     * @param options the options value to set
+     * @return the GraphJobInfo object itself.
+     */
+    public GraphJobInfo withOptions(GraphJobOptions options) {
+        this.options = options;
         return this;
     }
 

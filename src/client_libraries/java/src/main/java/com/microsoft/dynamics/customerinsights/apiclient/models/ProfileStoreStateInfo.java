@@ -33,9 +33,9 @@ public class ProfileStoreStateInfo {
     private ProfileStoreCollectionInfo secondaryInfo;
 
     /**
-     * Gets the Customer Insights instance id associated with this object.
+     * Customer Insights instance id associated with this object.
      */
-    @JsonProperty(value = "instanceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "instanceId")
     private UUID instanceId;
 
     /**
@@ -99,12 +99,23 @@ public class ProfileStoreStateInfo {
     }
 
     /**
-     * Get gets the Customer Insights instance id associated with this object.
+     * Get customer Insights instance id associated with this object.
      *
      * @return the instanceId value
      */
     public UUID instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Set customer Insights instance id associated with this object.
+     *
+     * @param instanceId the instanceId value to set
+     * @return the ProfileStoreStateInfo object itself.
+     */
+    public ProfileStoreStateInfo withInstanceId(UUID instanceId) {
+        this.instanceId = instanceId;
+        return this;
     }
 
 }

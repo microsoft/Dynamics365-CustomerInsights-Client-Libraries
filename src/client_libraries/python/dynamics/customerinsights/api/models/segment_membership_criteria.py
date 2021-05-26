@@ -20,7 +20,8 @@ class SegmentMembershipCriteria(Model):
      'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
      'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
      'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-     'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
+     'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek',
+     'timeAt'
     :type comparison_operator: str or
      ~dynamics.customerinsights.api.models.enum
     :param child_criterias: Gets the list of Child criteria of segment.
@@ -33,6 +34,8 @@ class SegmentMembershipCriteria(Model):
     :type ignore_case: bool
     :param list_of_values: Gets the list of values in criteria.
     :type list_of_values: list[str]
+    :param is_time: flag set to true if entries are of time format
+    :type is_time: bool
     """
 
     _attribute_map = {
@@ -43,6 +46,7 @@ class SegmentMembershipCriteria(Model):
         'value': {'key': 'value', 'type': 'str'},
         'ignore_case': {'key': 'ignoreCase', 'type': 'bool'},
         'list_of_values': {'key': 'listOfValues', 'type': '[str]'},
+        'is_time': {'key': 'isTime', 'type': 'bool'},
     }
 
     def __init__(self, **kwargs):
@@ -54,3 +58,4 @@ class SegmentMembershipCriteria(Model):
         self.value = kwargs.get('value', None)
         self.ignore_case = kwargs.get('ignore_case', None)
         self.list_of_values = kwargs.get('list_of_values', None)
+        self.is_time = kwargs.get('is_time', None)

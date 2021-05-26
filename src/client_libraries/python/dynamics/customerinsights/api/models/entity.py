@@ -11,23 +11,15 @@ from msrest.serialization import Model
 class Entity(Model):
     """Entity.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param name:
     :type name: str
     :param description:
     :type description: str
     :param is_hidden:
     :type is_hidden: bool
-    :ivar annotations:
-    :vartype annotations:
-     list[~dynamics.customerinsights.api.models.Annotation]
+    :param annotations:
+    :type annotations: list[~dynamics.customerinsights.api.models.Annotation]
     """
-
-    _validation = {
-        'annotations': {'readonly': True},
-    }
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
@@ -41,4 +33,4 @@ class Entity(Model):
         self.name = kwargs.get('name', None)
         self.description = kwargs.get('description', None)
         self.is_hidden = kwargs.get('is_hidden', None)
-        self.annotations = None
+        self.annotations = kwargs.get('annotations', None)

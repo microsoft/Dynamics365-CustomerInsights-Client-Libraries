@@ -13,67 +13,67 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class IncrementalRefreshProperties {
     /**
-     * Gets the name of the entity.
+     * Name of the entity.
      */
     @JsonProperty(value = "entityName")
     private String entityName;
 
     /**
-     * Gets the column to detect changes.
+     * Column to detect changes.
      */
     @JsonProperty(value = "detectChangesAttributeName")
     private String detectChangesAttributeName;
 
     /**
-     * Gets the column to get incremental data.
+     * Column to get incremental data.
      */
     @JsonProperty(value = "filterByAttributeName")
     private String filterByAttributeName;
 
     /**
-     * Gets the granularity of the incremental refresh.
+     * Granularity of the incremental refresh.
      */
     @JsonProperty(value = "incrementalGranularity")
     private String incrementalGranularity;
 
     /**
-     * Gets the incremental period.
+     * Incremental period.
      */
     @JsonProperty(value = "incrementalPeriods")
     private Integer incrementalPeriods;
 
     /**
-     * Gets a value indicating whether to refresh completed periods or not.
+     * Indicating whether to refresh completed periods or not.
      */
     @JsonProperty(value = "refreshCompletePeriods")
     private Boolean refreshCompletePeriods;
 
     /**
-     * Gets the off set period.
+     * Off set period.
      */
     @JsonProperty(value = "incrementalPeriodsOffset")
     private Integer incrementalPeriodsOffset;
 
     /**
-     * Gets the primary key of the entity.
+     * Primary key of the entity.
      */
     @JsonProperty(value = "primaryKeyAttributeName")
     private String primaryKeyAttributeName;
 
     /**
-     * Gets the rolling window granularity.
+     * Rolling window granularity.
      */
     @JsonProperty(value = "rollingWindowGranularity")
     private String rollingWindowGranularity;
 
     /**
-     * Gets the Rolling window period.
+     * Rolling window period.
      */
     @JsonProperty(value = "rollingWindowPeriods")
     private Integer rollingWindowPeriods;
 
     /**
-     * Get gets the name of the entity.
+     * Get name of the entity.
      *
      * @return the entityName value
      */
@@ -82,7 +82,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the name of the entity.
+     * Set name of the entity.
      *
      * @param entityName the entityName value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -93,7 +93,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the column to detect changes.
+     * Get column to detect changes.
      *
      * @return the detectChangesAttributeName value
      */
@@ -102,7 +102,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the column to detect changes.
+     * Set column to detect changes.
      *
      * @param detectChangesAttributeName the detectChangesAttributeName value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -113,7 +113,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the column to get incremental data.
+     * Get column to get incremental data.
      *
      * @return the filterByAttributeName value
      */
@@ -122,7 +122,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the column to get incremental data.
+     * Set column to get incremental data.
      *
      * @param filterByAttributeName the filterByAttributeName value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -133,7 +133,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the granularity of the incremental refresh.
+     * Get granularity of the incremental refresh.
      *
      * @return the incrementalGranularity value
      */
@@ -142,7 +142,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the granularity of the incremental refresh.
+     * Set granularity of the incremental refresh.
      *
      * @param incrementalGranularity the incrementalGranularity value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -153,7 +153,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the incremental period.
+     * Get incremental period.
      *
      * @return the incrementalPeriods value
      */
@@ -162,7 +162,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the incremental period.
+     * Set incremental period.
      *
      * @param incrementalPeriods the incrementalPeriods value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -173,7 +173,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets a value indicating whether to refresh completed periods or not.
+     * Get indicating whether to refresh completed periods or not.
      *
      * @return the refreshCompletePeriods value
      */
@@ -182,7 +182,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets a value indicating whether to refresh completed periods or not.
+     * Set indicating whether to refresh completed periods or not.
      *
      * @param refreshCompletePeriods the refreshCompletePeriods value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -193,7 +193,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the off set period.
+     * Get off set period.
      *
      * @return the incrementalPeriodsOffset value
      */
@@ -202,7 +202,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the off set period.
+     * Set off set period.
      *
      * @param incrementalPeriodsOffset the incrementalPeriodsOffset value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -213,7 +213,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the primary key of the entity.
+     * Get primary key of the entity.
      *
      * @return the primaryKeyAttributeName value
      */
@@ -222,7 +222,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the primary key of the entity.
+     * Set primary key of the entity.
      *
      * @param primaryKeyAttributeName the primaryKeyAttributeName value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -233,7 +233,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the rolling window granularity.
+     * Get rolling window granularity.
      *
      * @return the rollingWindowGranularity value
      */
@@ -242,7 +242,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the rolling window granularity.
+     * Set rolling window granularity.
      *
      * @param rollingWindowGranularity the rollingWindowGranularity value to set
      * @return the IncrementalRefreshProperties object itself.
@@ -253,7 +253,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Get gets the Rolling window period.
+     * Get rolling window period.
      *
      * @return the rollingWindowPeriods value
      */
@@ -262,7 +262,7 @@ public class IncrementalRefreshProperties {
     }
 
     /**
-     * Set gets the Rolling window period.
+     * Set rolling window period.
      *
      * @param rollingWindowPeriods the rollingWindowPeriods value to set
      * @return the IncrementalRefreshProperties object itself.

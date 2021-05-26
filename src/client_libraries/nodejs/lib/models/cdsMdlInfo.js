@@ -7,21 +7,22 @@
 'use strict';
 
 /**
- * The information on CDS MDL workspaces
+ * The information on CDS MDL datalake folders
  *
  */
 class CdsMdlInfo {
   /**
    * Create a CdsMdlInfo.
    * @property {object} [privateWorkSpace]
-   * @property {string} [privateWorkSpace.name] Gets the Workspace Friendly
-   * Name
-   * @property {string} [privateWorkSpace.uniqueName] Gets the Cds workspace
-   * unique Name
+   * @property {string} [privateWorkSpace.name] Gets the datalake folder
+   * Friendly Name
+   * @property {string} [privateWorkSpace.uniqueName] Gets the Cds datalake
+   * folder unique Name
    * @property {object} [publicWorkSpace]
-   * @property {string} [publicWorkSpace.name] Gets the Workspace Friendly Name
-   * @property {string} [publicWorkSpace.uniqueName] Gets the Cds workspace
-   * unique Name
+   * @property {string} [publicWorkSpace.name] Gets the datalake folder
+   * Friendly Name
+   * @property {string} [publicWorkSpace.uniqueName] Gets the Cds datalake
+   * folder unique Name
    */
   constructor() {
   }
@@ -45,7 +46,7 @@ class CdsMdlInfo {
             serializedName: 'privateWorkSpace',
             type: {
               name: 'Composite',
-              className: 'WorkSpaceDetail'
+              className: 'DatalakeFolderDetail'
             }
           },
           publicWorkSpace: {
@@ -53,7 +54,7 @@ class CdsMdlInfo {
             serializedName: 'publicWorkSpace',
             type: {
               name: 'Composite',
-              className: 'WorkSpaceDetail'
+              className: 'DatalakeFolderDetail'
             }
           }
         }

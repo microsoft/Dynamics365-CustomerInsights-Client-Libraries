@@ -11,7 +11,7 @@ from msrest.serialization import Model
 class SqlValidationStats(Model):
     """Represents measure sql validation stats.
 
-    :param validation_date: Gets the last validation evaluation date
+    :param validation_date: Date of Validation evaluation
     :type validation_date: datetime
     :param error: Gets the number of consecutive failures
     :type error: str

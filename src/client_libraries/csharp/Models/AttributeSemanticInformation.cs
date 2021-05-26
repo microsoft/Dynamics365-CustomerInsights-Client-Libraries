@@ -27,9 +27,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the AttributeSemanticInformation
         /// class.
         /// </summary>
-        /// <param name="attributeName">Gets the name of the attribute.</param>
-        /// <param name="label">Gets the semantic label. Possible values
-        /// include: 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <param name="label">Semantic label. Possible values include:
+        /// 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
         /// 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
         /// 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
         /// 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
@@ -65,29 +65,29 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets the name of the attribute.
+        /// Gets or sets name of the attribute.
         /// </summary>
         [JsonProperty(PropertyName = "attributeName")]
         public string AttributeName { get; set; }
 
         /// <summary>
-        /// Gets the semantic label. Possible values include: 'CalendarDate',
-        /// 'CalendarDayOfMonth', 'CalendarDayOfWeek', 'CalendarDayOfYear',
-        /// 'CalendarHalfYear', 'CalendarMonthOfYear', 'CalendarMonth',
-        /// 'CalendarWeek', 'CalendarYear', 'CalendarFiscalDate',
-        /// 'CalendarFiscalDayOfMonth', 'CalendarFiscalDayOfWeek',
-        /// 'CalendarFiscalDayOfYear', 'CalendarFiscalHalfYear',
-        /// 'CalendarFiscalMonthOfYear', 'CalendarFiscalMonth',
-        /// 'CalendarFiscalQuarter', 'CalendarFiscalWeekOfMonth',
-        /// 'CalendarFiscalWeekOfYear', 'CalendarFiscalWeek',
-        /// 'CalendarFiscalYear', 'Account', 'Channel', 'Contact', 'Customer',
-        /// 'Language', 'Organization', 'OrganizationUnit', 'Person',
-        /// 'Product', 'ProductGroup', 'LocationAddress',
-        /// 'LocationAddressStreet', 'LocationCity', 'LocationContinent',
-        /// 'LocationCountry', 'LocationCounty', 'LocationLatitude',
-        /// 'LocationLongitude', 'LocationPoint', 'LocationPostalCode',
-        /// 'LocationProvince', 'LocationRegion', 'LocationState',
-        /// 'LocationTimezone', 'MeasurementDateCreation',
+        /// Gets or sets semantic label. Possible values include:
+        /// 'CalendarDate', 'CalendarDayOfMonth', 'CalendarDayOfWeek',
+        /// 'CalendarDayOfYear', 'CalendarHalfYear', 'CalendarMonthOfYear',
+        /// 'CalendarMonth', 'CalendarWeek', 'CalendarYear',
+        /// 'CalendarFiscalDate', 'CalendarFiscalDayOfMonth',
+        /// 'CalendarFiscalDayOfWeek', 'CalendarFiscalDayOfYear',
+        /// 'CalendarFiscalHalfYear', 'CalendarFiscalMonthOfYear',
+        /// 'CalendarFiscalMonth', 'CalendarFiscalQuarter',
+        /// 'CalendarFiscalWeekOfMonth', 'CalendarFiscalWeekOfYear',
+        /// 'CalendarFiscalWeek', 'CalendarFiscalYear', 'Account', 'Channel',
+        /// 'Contact', 'Customer', 'Language', 'Organization',
+        /// 'OrganizationUnit', 'Person', 'Product', 'ProductGroup',
+        /// 'LocationAddress', 'LocationAddressStreet', 'LocationCity',
+        /// 'LocationContinent', 'LocationCountry', 'LocationCounty',
+        /// 'LocationLatitude', 'LocationLongitude', 'LocationPoint',
+        /// 'LocationPostalCode', 'LocationProvince', 'LocationRegion',
+        /// 'LocationState', 'LocationTimezone', 'MeasurementDateCreation',
         /// 'MeasurementDateModify', 'MeasurementStatus', 'MeasurementVersion',
         /// 'BarCode', 'Brand', 'IdentityGovernmentID', 'PersonFirstName',
         /// 'PersonFullName', 'PersonLastName', 'PersonMiddleName',

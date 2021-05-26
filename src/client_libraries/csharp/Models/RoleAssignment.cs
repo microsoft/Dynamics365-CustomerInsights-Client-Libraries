@@ -32,8 +32,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'group', 'app'</param>
         /// <param name="roles">Gets the roles the principal belongs
         /// to.</param>
-        /// <param name="instanceId">Gets the Customer Insights instance id
-        /// associated with this object.</param>
+        /// <param name="instanceId">Customer Insights instance id associated
+        /// with this object.</param>
         public RoleAssignment(string principalId = default(string), string principalType = default(string), IList<string> roles = default(IList<string>), System.Guid? instanceId = default(System.Guid?))
         {
             PrincipalId = principalId;
@@ -67,10 +67,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public IList<string> Roles { get; set; }
 
         /// <summary>
-        /// Gets the Customer Insights instance id associated with this object.
+        /// Gets or sets customer Insights instance id associated with this
+        /// object.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
     }
 }

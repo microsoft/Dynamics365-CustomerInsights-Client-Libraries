@@ -56,10 +56,16 @@ public class OnDemandJobRequest {
 
     /**
      * Possible values include: 'FailedOrModifiedRecursive', 'FailedRecursive',
-     * 'FailedOrModified', 'Failed'.
+     * 'FailedOrModified', 'Failed', 'None'.
      */
     @JsonProperty(value = "inputRefreshMode")
     private String inputRefreshMode;
+
+    /**
+     * The options property.
+     */
+    @JsonProperty(value = "options")
+    private GraphJobOptions options;
 
     /**
      * Get the graphName value.
@@ -182,7 +188,7 @@ public class OnDemandJobRequest {
     }
 
     /**
-     * Get possible values include: 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified', 'Failed'.
+     * Get possible values include: 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified', 'Failed', 'None'.
      *
      * @return the inputRefreshMode value
      */
@@ -191,13 +197,33 @@ public class OnDemandJobRequest {
     }
 
     /**
-     * Set possible values include: 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified', 'Failed'.
+     * Set possible values include: 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified', 'Failed', 'None'.
      *
      * @param inputRefreshMode the inputRefreshMode value to set
      * @return the OnDemandJobRequest object itself.
      */
     public OnDemandJobRequest withInputRefreshMode(String inputRefreshMode) {
         this.inputRefreshMode = inputRefreshMode;
+        return this;
+    }
+
+    /**
+     * Get the options value.
+     *
+     * @return the options value
+     */
+    public GraphJobOptions options() {
+        return this.options;
+    }
+
+    /**
+     * Set the options value.
+     *
+     * @param options the options value to set
+     * @return the OnDemandJobRequest object itself.
+     */
+    public OnDemandJobRequest withOptions(GraphJobOptions options) {
+        this.options = options;
         return this;
     }
 

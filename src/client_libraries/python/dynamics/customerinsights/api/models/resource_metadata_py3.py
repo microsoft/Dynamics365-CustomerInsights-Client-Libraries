@@ -11,58 +11,41 @@ from msrest.serialization import Model
 class ResourceMetadata(Model):
     """Represents a Resource metadata.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param kind: Possible values include: 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
      'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
      'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds',
      'marketo'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
-    :ivar resource_id: Gets the Id of the resource.
-    :vartype resource_id: str
-    :ivar operation_id: Gets the Id of the operation being performed on the
+    :param resource_id: Gets the Id of the resource.
+    :type resource_id: str
+    :param operation_id: Gets the Id of the operation being performed on the
      resource.
-    :vartype operation_id: str
+    :type operation_id: str
     :param resource_type: Possible values include: 'adlsGen2', 'd365Sales',
      'cds', 'ftp', 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
      'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
      'googleAds', 'marketo'
     :type resource_type: str or ~dynamics.customerinsights.api.models.enum
-    :ivar name: Gets the Name of the resource.
-    :vartype name: str
-    :ivar description: Gets the Description of the resource.
-    :vartype description: str
-    :ivar version: Gets the version number of this object.
-    :vartype version: long
-    :ivar updated_by: Gets the UPN of the user who last updated this record.
-    :vartype updated_by: str
-    :ivar updated_utc: Gets the time the object was last updated.
-    :vartype updated_utc: datetime
-    :ivar created_by: Gets the email address of the user who created this
-     record.
-    :vartype created_by: str
-    :ivar created_utc: Gets the time the object was initially created.
-    :vartype created_utc: datetime
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param name: Gets the Name of the resource.
+    :type name: str
+    :param description: Gets the Description of the resource.
+    :type description: str
+    :param version: Version number of this object.
+    :type version: long
+    :param updated_by: UPN of the user who last updated this record.
+    :type updated_by: str
+    :param updated_utc: Time this object was last updated.
+    :type updated_utc: datetime
+    :param created_by: Email address of the user who created this record.
+    :type created_by: str
+    :param created_utc: Time this object was initially created.
+    :type created_utc: datetime
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'resource_id': {'readonly': True},
-        'operation_id': {'readonly': True},
-        'name': {'readonly': True},
-        'description': {'readonly': True},
-        'version': {'readonly': True},
-        'updated_by': {'readonly': True},
-        'updated_utc': {'readonly': True},
-        'created_by': {'readonly': True},
-        'created_utc': {'readonly': True},
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
@@ -79,17 +62,17 @@ class ResourceMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, kind=None, resource_type=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, resource_id: str=None, operation_id: str=None, resource_type=None, name: str=None, description: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(ResourceMetadata, self).__init__(**kwargs)
         self.kind = kind
-        self.resource_id = None
-        self.operation_id = None
+        self.resource_id = resource_id
+        self.operation_id = operation_id
         self.resource_type = resource_type
-        self.name = None
-        self.description = None
-        self.version = None
-        self.updated_by = None
-        self.updated_utc = None
-        self.created_by = None
-        self.created_utc = None
-        self.instance_id = None
+        self.name = name
+        self.description = description
+        self.version = version
+        self.updated_by = updated_by
+        self.updated_utc = updated_utc
+        self.created_by = created_by
+        self.created_utc = created_utc
+        self.instance_id = instance_id

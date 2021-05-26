@@ -16,16 +16,15 @@ class InstanceSearchConfiguration {
    * @property {array} [entityConfig] Gets search configurations for entities
    * @property {boolean} [isSystemGenerated] Gets a value indicating whether
    * the configuration was system generated
-   * @property {number} [version] Gets the version number of this object.
-   * @property {string} [updatedBy] Gets the UPN of the user who last updated
-   * this record.
-   * @property {date} [updatedUtc] Gets the time the object was last updated.
-   * @property {string} [createdBy] Gets the email address of the user who
-   * created this record.
-   * @property {date} [createdUtc] Gets the time the object was initially
-   * created.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {number} [version] Version number of this object.
+   * @property {string} [updatedBy] UPN of the user who last updated this
+   * record.
+   * @property {date} [updatedUtc] Time this object was last updated.
+   * @property {string} [createdBy] Email address of the user who created this
+   * record.
+   * @property {date} [createdUtc] Time this object was initially created.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -68,7 +67,6 @@ class InstanceSearchConfiguration {
           },
           version: {
             required: false,
-            readOnly: true,
             serializedName: 'version',
             type: {
               name: 'Number'
@@ -76,7 +74,6 @@ class InstanceSearchConfiguration {
           },
           updatedBy: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedBy',
             type: {
               name: 'String'
@@ -84,7 +81,6 @@ class InstanceSearchConfiguration {
           },
           updatedUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedUtc',
             type: {
               name: 'DateTime'
@@ -92,7 +88,6 @@ class InstanceSearchConfiguration {
           },
           createdBy: {
             required: false,
-            readOnly: true,
             serializedName: 'createdBy',
             type: {
               name: 'String'
@@ -100,7 +95,6 @@ class InstanceSearchConfiguration {
           },
           createdUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'createdUtc',
             type: {
               name: 'DateTime'
@@ -108,7 +102,6 @@ class InstanceSearchConfiguration {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

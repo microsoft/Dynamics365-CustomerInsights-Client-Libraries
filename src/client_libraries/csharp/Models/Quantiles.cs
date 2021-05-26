@@ -25,15 +25,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the Quantiles class.
         /// </summary>
-        /// <param name="p0D1">Gets or sets the 1% quantile.</param>
-        /// <param name="p1">Gets or sets the 1% quantile.</param>
-        /// <param name="p5">Gets or sets the 5% quantile.</param>
-        /// <param name="p25">Gets or sets the 25% quantile.</param>
-        /// <param name="p50">Gets or sets the 50% quantile.</param>
-        /// <param name="p75">Gets or sets the 75% quantile.</param>
-        /// <param name="p95">Gets or sets the 95% quantile.</param>
-        /// <param name="p99">Gets or sets the 99% quantile.</param>
-        /// <param name="p99D9">Gets or sets the 9% quantile.</param>
+        /// <param name="p0D1">Represents 1% quantile.</param>
+        /// <param name="p1">Represents 1% quantile.</param>
+        /// <param name="p5">Represents 5% quantile.</param>
+        /// <param name="p25">Represents 25% quantile.</param>
+        /// <param name="p50">Represents 50% quantile.</param>
+        /// <param name="p75">Represents 75% quantile.</param>
+        /// <param name="p95">Represents 95% quantile.</param>
+        /// <param name="p99">Represents 99% quantile.</param>
+        /// <param name="p99D9">Represents 9% quantile.</param>
         public Quantiles(double? p0D1 = default(double?), double? p1 = default(double?), double? p5 = default(double?), double? p25 = default(double?), double? p50 = default(double?), double? p75 = default(double?), double? p95 = default(double?), double? p99 = default(double?), double? p99D9 = default(double?))
         {
             P0D1 = p0D1;
@@ -54,55 +54,55 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the 1% quantile.
+        /// Gets or sets represents 1% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p0D1")]
         public double? P0D1 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 1% quantile.
+        /// Gets or sets represents 1% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p1")]
         public double? P1 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 5% quantile.
+        /// Gets or sets represents 5% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p5")]
         public double? P5 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 25% quantile.
+        /// Gets or sets represents 25% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p25")]
         public double? P25 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 50% quantile.
+        /// Gets or sets represents 50% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p50")]
         public double? P50 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 75% quantile.
+        /// Gets or sets represents 75% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p75")]
         public double? P75 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 95% quantile.
+        /// Gets or sets represents 95% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p95")]
         public double? P95 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 99% quantile.
+        /// Gets or sets represents 99% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p99")]
         public double? P99 { get; set; }
 
         /// <summary>
-        /// Gets or sets the 9% quantile.
+        /// Gets or sets represents 9% quantile.
         /// </summary>
         [JsonProperty(PropertyName = "p99D9")]
         public double? P99D9 { get; set; }

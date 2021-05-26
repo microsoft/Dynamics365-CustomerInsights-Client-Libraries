@@ -13,25 +13,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class HistogramBin {
     /**
-     * Gets or sets the lower bound.
+     * Lower bound of Histogram bin.
      */
     @JsonProperty(value = "lowerBound")
     private Double lowerBound;
 
     /**
-     * Gets or sets the upper bound.
+     * Upper bound Histogram bin.
      */
     @JsonProperty(value = "upperBound")
     private Double upperBound;
 
     /**
-     * Gets or sets the count.
+     * Represents an approximation count of the bin count.
      */
     @JsonProperty(value = "count")
     private Double count;
 
     /**
-     * Get gets or sets the lower bound.
+     * Get lower bound of Histogram bin.
      *
      * @return the lowerBound value
      */
@@ -40,7 +40,7 @@ public class HistogramBin {
     }
 
     /**
-     * Set gets or sets the lower bound.
+     * Set lower bound of Histogram bin.
      *
      * @param lowerBound the lowerBound value to set
      * @return the HistogramBin object itself.
@@ -51,7 +51,7 @@ public class HistogramBin {
     }
 
     /**
-     * Get gets or sets the upper bound.
+     * Get upper bound Histogram bin.
      *
      * @return the upperBound value
      */
@@ -60,7 +60,7 @@ public class HistogramBin {
     }
 
     /**
-     * Set gets or sets the upper bound.
+     * Set upper bound Histogram bin.
      *
      * @param upperBound the upperBound value to set
      * @return the HistogramBin object itself.
@@ -71,7 +71,7 @@ public class HistogramBin {
     }
 
     /**
-     * Get gets or sets the count.
+     * Get represents an approximation count of the bin count.
      *
      * @return the count value
      */
@@ -80,7 +80,7 @@ public class HistogramBin {
     }
 
     /**
-     * Set gets or sets the count.
+     * Set represents an approximation count of the bin count.
      *
      * @param count the count value to set
      * @return the HistogramBin object itself.

@@ -9,39 +9,28 @@ from msrest.serialization import Model
 
 
 class IAttributeSearchProperties(Model):
-    """IAttributeSearchProperties.
+    """Represents seachable attribute properties.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar is_searchable: Gets a value indicating whether the attribute
+    :param is_searchable: Gets a value indicating whether the attribute
      supports full text search.
-    :vartype is_searchable: bool
-    :ivar is_filterable: Gets a value indicating whether the attribute
+    :type is_searchable: bool
+    :param is_filterable: Gets a value indicating whether the attribute
      supports filtering.
-    :vartype is_filterable: bool
-    :ivar is_facetable: Gets a value indicating whether the attribute can be
+    :type is_filterable: bool
+    :param is_facetable: Gets a value indicating whether the attribute can be
      included as facet results.
-    :vartype is_facetable: bool
-    :ivar is_sortable: Gets a value indicating whether the attribute can be
+    :type is_facetable: bool
+    :param is_sortable: Gets a value indicating whether the attribute can be
      included in orderby directives.
-    :vartype is_sortable: bool
-    :ivar facet_specification: Gets an optional specification for search
+    :type is_sortable: bool
+    :param facet_specification: Gets an optional specification for search
      faceting used at query time (advanced).
      this is the part behind the comma in the examples below.
      bucket facet: "price,interval:10"
      other type: "listPrice,values:10|25|100|500|1000|2500"
      value facet: city,count:5
-    :vartype facet_specification: str
+    :type facet_specification: str
     """
-
-    _validation = {
-        'is_searchable': {'readonly': True},
-        'is_filterable': {'readonly': True},
-        'is_facetable': {'readonly': True},
-        'is_sortable': {'readonly': True},
-        'facet_specification': {'readonly': True},
-    }
 
     _attribute_map = {
         'is_searchable': {'key': 'isSearchable', 'type': 'bool'},
@@ -53,8 +42,8 @@ class IAttributeSearchProperties(Model):
 
     def __init__(self, **kwargs):
         super(IAttributeSearchProperties, self).__init__(**kwargs)
-        self.is_searchable = None
-        self.is_filterable = None
-        self.is_facetable = None
-        self.is_sortable = None
-        self.facet_specification = None
+        self.is_searchable = kwargs.get('is_searchable', None)
+        self.is_filterable = kwargs.get('is_filterable', None)
+        self.is_facetable = kwargs.get('is_facetable', None)
+        self.is_sortable = kwargs.get('is_sortable', None)
+        self.facet_specification = kwargs.get('facet_specification', None)

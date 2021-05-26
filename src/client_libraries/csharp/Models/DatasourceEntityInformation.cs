@@ -29,18 +29,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the DatasourceEntityInformation
         /// class.
         /// </summary>
-        /// <param name="entityName">Gets the name of the entity.</param>
-        /// <param name="primaryKey">Gets the primary key name of the entity.
-        /// We require the entity to have a single column primary key
-        /// column</param>
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="primaryKey">Primary key name of the entity. We require
+        /// the entity to have a single column primary key column</param>
         /// <param name="entityType">Possible values include: 'unspecified',
         /// 'profile', 'conflationMap', 'activity', 'aggregateKpi',
         /// 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
         /// 'genericPrediction', 'enrichment', 'insights', 'derivedEntity',
         /// 'quarantine'</param>
-        /// <param name="timestampFieldName">Gets the time stamp field
-        /// name.</param>
-        /// <param name="semanticLabels">Gets the semantic labels, by attribute
+        /// <param name="timestampFieldName">Time stamp field name.</param>
+        /// <param name="semanticLabels">Semantic labels by attribute
         /// name.</param>
         public DatasourceEntityInformation(string entityName = default(string), string primaryKey = default(string), string entityType = default(string), string timestampFieldName = default(string), IList<AttributeSemanticInformation> semanticLabels = default(IList<AttributeSemanticInformation>))
         {
@@ -58,14 +56,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets the name of the entity.
+        /// Gets or sets name of the entity.
         /// </summary>
         [JsonProperty(PropertyName = "entityName")]
         public string EntityName { get; set; }
 
         /// <summary>
-        /// Gets the primary key name of the entity. We require the entity to
-        /// have a single column primary key column
+        /// Gets or sets primary key name of the entity. We require the entity
+        /// to have a single column primary key column
         /// </summary>
         [JsonProperty(PropertyName = "primaryKey")]
         public string PrimaryKey { get; set; }
@@ -80,13 +78,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string EntityType { get; set; }
 
         /// <summary>
-        /// Gets the time stamp field name.
+        /// Gets or sets time stamp field name.
         /// </summary>
         [JsonProperty(PropertyName = "timestampFieldName")]
         public string TimestampFieldName { get; set; }
 
         /// <summary>
-        /// Gets the semantic labels, by attribute name.
+        /// Gets or sets semantic labels by attribute name.
         /// </summary>
         [JsonProperty(PropertyName = "semanticLabels")]
         public IList<AttributeSemanticInformation> SemanticLabels { get; set; }

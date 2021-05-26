@@ -11,74 +11,52 @@ from msrest.serialization import Model
 class DataSourceMetadata(Model):
     """Represents metadata for a Customer Insights data source.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param kind: Possible values include: 'salesforce', 'dynamics365',
      'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
-    :ivar is_active:
-    :vartype is_active: bool
-    :ivar entity_names:
-    :vartype entity_names: list[str]
-    :ivar data_source_id: Gets the unique identity for this object.
-    :vartype data_source_id: str
-    :ivar name: Gets the unique name of the dataSource.
-    :vartype name: str
-    :ivar friendly_name: Gets the friendlyName of the dataSource.
-    :vartype friendly_name: str
-    :ivar entity_information: Gets the entity information, by entity name.
-    :vartype entity_information:
+    :param is_active: Represents if still in active state
+    :type is_active: bool
+    :param entity_names: List of all Entity Names
+    :type entity_names: list[str]
+    :param data_source_id: Unique identity for this object.
+    :type data_source_id: str
+    :param name: Unique name of the dataSource.
+    :type name: str
+    :param friendly_name: FriendlyName of the dataSource.
+    :type friendly_name: str
+    :param entity_information: Entity information, by entity name.
+    :type entity_information:
      list[~dynamics.customerinsights.api.models.DatasourceEntityInformation]
     :param provisioning_state: Possible values include: 'new', 'creating',
      'active', 'createFailed', 'updateFailed', 'deleting',
      'refreshCredentials', 'resetInstanceInProgress'
     :type provisioning_state: str or
      ~dynamics.customerinsights.api.models.enum
-    :ivar last_refresh: Gets the time datasource was last refreshed.
-    :vartype last_refresh: datetime
+    :param last_refresh: Represents the time datasource was last refreshed.
+    :type last_refresh: datetime
     :param refresh_state: Possible values include: 'notUpdated', 'updated',
      'updating', 'updateFailed', 'updateCancelled'
     :type refresh_state: str or ~dynamics.customerinsights.api.models.enum
-    :ivar incremental_refresh_properties: Gets the Incremental refresh
-     properties for entities.
-    :vartype incremental_refresh_properties:
+    :param incremental_refresh_properties: Incremental refresh properties for
+     entities.
+    :type incremental_refresh_properties:
      list[~dynamics.customerinsights.api.models.IncrementalRefreshProperties]
-    :ivar model_json_path: Gets the model path for CDM data source.
-    :vartype model_json_path: str
-    :ivar version: Gets the version number of this object.
-    :vartype version: long
-    :ivar updated_by: Gets the UPN of the user who last updated this record.
-    :vartype updated_by: str
-    :ivar updated_utc: Gets the time the object was last updated.
-    :vartype updated_utc: datetime
-    :ivar created_by: Gets the email address of the user who created this
-     record.
-    :vartype created_by: str
-    :ivar created_utc: Gets the time the object was initially created.
-    :vartype created_utc: datetime
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param model_json_path: Model path for CDM data source.
+    :type model_json_path: str
+    :param version: Version number of this object.
+    :type version: long
+    :param updated_by: UPN of the user who last updated this record.
+    :type updated_by: str
+    :param updated_utc: Time this object was last updated.
+    :type updated_utc: datetime
+    :param created_by: Email address of the user who created this record.
+    :type created_by: str
+    :param created_utc: Time this object was initially created.
+    :type created_utc: datetime
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'is_active': {'readonly': True},
-        'entity_names': {'readonly': True},
-        'data_source_id': {'readonly': True},
-        'name': {'readonly': True},
-        'friendly_name': {'readonly': True},
-        'entity_information': {'readonly': True},
-        'last_refresh': {'readonly': True},
-        'incremental_refresh_properties': {'readonly': True},
-        'model_json_path': {'readonly': True},
-        'version': {'readonly': True},
-        'updated_by': {'readonly': True},
-        'updated_utc': {'readonly': True},
-        'created_by': {'readonly': True},
-        'created_utc': {'readonly': True},
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
@@ -104,20 +82,20 @@ class DataSourceMetadata(Model):
     def __init__(self, **kwargs):
         super(DataSourceMetadata, self).__init__(**kwargs)
         self.kind = kwargs.get('kind', None)
-        self.is_active = None
-        self.entity_names = None
-        self.data_source_id = None
-        self.name = None
-        self.friendly_name = None
-        self.entity_information = None
+        self.is_active = kwargs.get('is_active', None)
+        self.entity_names = kwargs.get('entity_names', None)
+        self.data_source_id = kwargs.get('data_source_id', None)
+        self.name = kwargs.get('name', None)
+        self.friendly_name = kwargs.get('friendly_name', None)
+        self.entity_information = kwargs.get('entity_information', None)
         self.provisioning_state = kwargs.get('provisioning_state', None)
-        self.last_refresh = None
+        self.last_refresh = kwargs.get('last_refresh', None)
         self.refresh_state = kwargs.get('refresh_state', None)
-        self.incremental_refresh_properties = None
-        self.model_json_path = None
-        self.version = None
-        self.updated_by = None
-        self.updated_utc = None
-        self.created_by = None
-        self.created_utc = None
-        self.instance_id = None
+        self.incremental_refresh_properties = kwargs.get('incremental_refresh_properties', None)
+        self.model_json_path = kwargs.get('model_json_path', None)
+        self.version = kwargs.get('version', None)
+        self.updated_by = kwargs.get('updated_by', None)
+        self.updated_utc = kwargs.get('updated_utc', None)
+        self.created_by = kwargs.get('created_by', None)
+        self.created_utc = kwargs.get('created_utc', None)
+        self.instance_id = kwargs.get('instance_id', None)

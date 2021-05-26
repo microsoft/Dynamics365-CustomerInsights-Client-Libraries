@@ -11,9 +11,6 @@ from msrest.serialization import Model
 class PartitionMetadata(Model):
     """Represents a DCI entity data partition.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param name: Gets the name of the data partition
     :type name: str
     :param location: Gets the uri location of the data
@@ -22,19 +19,19 @@ class PartitionMetadata(Model):
     :type refresh_time: datetime
     :param file_format_settings:
     :type file_format_settings: object
-    :ivar has_header:
-    :vartype has_header: bool
+    :param force_sas_auth: Gets a value indicating whether a partition need to
+     be forced for SAS authentication.
+    :type force_sas_auth: bool
+    :param has_header: Flad to represent header presence (if any)
+    :type has_header: bool
     """
-
-    _validation = {
-        'has_header': {'readonly': True},
-    }
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'refresh_time': {'key': 'refreshTime', 'type': 'iso-8601'},
         'file_format_settings': {'key': 'fileFormatSettings', 'type': 'object'},
+        'force_sas_auth': {'key': 'forceSasAuth', 'type': 'bool'},
         'has_header': {'key': 'hasHeader', 'type': 'bool'},
     }
 
@@ -44,4 +41,5 @@ class PartitionMetadata(Model):
         self.location = kwargs.get('location', None)
         self.refresh_time = kwargs.get('refresh_time', None)
         self.file_format_settings = kwargs.get('file_format_settings', None)
-        self.has_header = None
+        self.force_sas_auth = kwargs.get('force_sas_auth', None)
+        self.has_header = kwargs.get('has_header', None)

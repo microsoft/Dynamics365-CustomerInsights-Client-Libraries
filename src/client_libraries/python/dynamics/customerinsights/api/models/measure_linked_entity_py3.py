@@ -11,21 +11,13 @@ from msrest.serialization import Model
 class MeasureLinkedEntity(Model):
     """Represents the base linked entity.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param kind: Possible values include: 'base', 'join'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
-    :ivar entity: Gets the name of the entity.
-    :vartype entity: str
-    :ivar alias: Gets the alias of the entity.
-    :vartype alias: str
+    :param entity: Gets the name of the entity.
+    :type entity: str
+    :param alias: Gets the alias of the entity.
+    :type alias: str
     """
-
-    _validation = {
-        'entity': {'readonly': True},
-        'alias': {'readonly': True},
-    }
 
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
@@ -33,8 +25,8 @@ class MeasureLinkedEntity(Model):
         'alias': {'key': 'alias', 'type': 'str'},
     }
 
-    def __init__(self, *, kind=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, entity: str=None, alias: str=None, **kwargs) -> None:
         super(MeasureLinkedEntity, self).__init__(**kwargs)
         self.kind = kind
-        self.entity = None
-        self.alias = None
+        self.entity = entity
+        self.alias = alias

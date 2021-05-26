@@ -11,28 +11,19 @@ from msrest.serialization import Model
 class MeasureVariable(Model):
     """Represents a variable (computed column) in a measure.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param kind: Possible values include: 'arithmetic', 'date'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
-    :ivar name: Gets the name of the variable
-    :vartype name: str
-    :ivar data_type: Gets the data type of the variable
-    :vartype data_type: str
-    :ivar expression_text: Gets the expression text for computing the variable
-    :vartype expression_text: str
-    :ivar variable_condition_groups: Gets the variable conditions
-    :vartype variable_condition_groups:
+    :param name: Gets the name of the variable
+    :type name: str
+    :param data_type: Gets the data type of the variable
+    :type data_type: str
+    :param expression_text: Gets the expression text for computing the
+     variable
+    :type expression_text: str
+    :param variable_condition_groups: Gets the variable conditions
+    :type variable_condition_groups:
      list[~dynamics.customerinsights.api.models.MeasureVariableConditionGroup]
     """
-
-    _validation = {
-        'name': {'readonly': True},
-        'data_type': {'readonly': True},
-        'expression_text': {'readonly': True},
-        'variable_condition_groups': {'readonly': True},
-    }
 
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
@@ -45,7 +36,7 @@ class MeasureVariable(Model):
     def __init__(self, **kwargs):
         super(MeasureVariable, self).__init__(**kwargs)
         self.kind = kwargs.get('kind', None)
-        self.name = None
-        self.data_type = None
-        self.expression_text = None
-        self.variable_condition_groups = None
+        self.name = kwargs.get('name', None)
+        self.data_type = kwargs.get('data_type', None)
+        self.expression_text = kwargs.get('expression_text', None)
+        self.variable_condition_groups = kwargs.get('variable_condition_groups', None)

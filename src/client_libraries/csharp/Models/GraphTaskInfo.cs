@@ -34,8 +34,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'intelligence', 'aiBuilder', 'insights', 'export',
         /// 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
         /// 'all'</param>
-        /// <param name="subType">Possible values include: 'templatedMeasures',
-        /// 'createAnalysisModel', 'linkAnalysisModel'</param>
+        /// <param name="subType">Possible values include: 'noSubType',
+        /// 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+        /// 'singleActivityMapping', 'powerPlatform'</param>
         public GraphTaskInfo(System.Guid? taskId = default(System.Guid?), string taskStatus = default(string), string operationType = default(string), string subType = default(string), IList<System.Guid?> jobIds = default(IList<System.Guid?>), string friendlyName = default(string), System.DateTime? endTimestamp = default(System.DateTime?), CIResult ciError = default(CIResult), IList<CIResult> ciErrors = default(IList<CIResult>), IList<System.Guid?> waitingTaskIds = default(IList<System.Guid?>), CustomTaskInformation additionalInfo = default(CustomTaskInformation), System.DateTime? submittedTimestamp = default(System.DateTime?))
         {
             TaskId = taskId;
@@ -84,8 +85,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string OperationType { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'templatedMeasures',
-        /// 'createAnalysisModel', 'linkAnalysisModel'
+        /// Gets or sets possible values include: 'noSubType',
+        /// 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+        /// 'singleActivityMapping', 'powerPlatform'
         /// </summary>
         [JsonProperty(PropertyName = "subType")]
         public string SubType { get; set; }

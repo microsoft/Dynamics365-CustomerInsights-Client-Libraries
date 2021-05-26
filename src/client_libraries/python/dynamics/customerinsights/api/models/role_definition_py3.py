@@ -11,26 +11,18 @@ from msrest.serialization import Model
 class RoleDefinition(Model):
     """RoleDefinition.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar description:
-    :vartype description: str
-    :ivar role_name:
-    :vartype role_name: str
+    :param description:
+    :type description: str
+    :param role_name:
+    :type role_name: str
     """
-
-    _validation = {
-        'description': {'readonly': True},
-        'role_name': {'readonly': True},
-    }
 
     _attribute_map = {
         'description': {'key': 'description', 'type': 'str'},
         'role_name': {'key': 'roleName', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, *, description: str=None, role_name: str=None, **kwargs) -> None:
         super(RoleDefinition, self).__init__(**kwargs)
-        self.description = None
-        self.role_name = None
+        self.description = description
+        self.role_name = role_name

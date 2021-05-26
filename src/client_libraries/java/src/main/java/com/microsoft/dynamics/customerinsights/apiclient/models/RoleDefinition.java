@@ -15,13 +15,13 @@ public class RoleDefinition {
     /**
      * The description property.
      */
-    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "description")
     private String description;
 
     /**
      * The roleName property.
      */
-    @JsonProperty(value = "roleName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "roleName")
     private String roleName;
 
     /**
@@ -34,12 +34,34 @@ public class RoleDefinition {
     }
 
     /**
+     * Set the description value.
+     *
+     * @param description the description value to set
+     * @return the RoleDefinition object itself.
+     */
+    public RoleDefinition withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
      * Get the roleName value.
      *
      * @return the roleName value
      */
     public String roleName() {
         return this.roleName;
+    }
+
+    /**
+     * Set the roleName value.
+     *
+     * @param roleName the roleName value to set
+     * @return the RoleDefinition object itself.
+     */
+    public RoleDefinition withRoleName(String roleName) {
+        this.roleName = roleName;
+        return this;
     }
 
 }

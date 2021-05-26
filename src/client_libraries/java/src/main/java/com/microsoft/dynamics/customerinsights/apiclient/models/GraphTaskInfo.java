@@ -40,8 +40,9 @@ public class GraphTaskInfo {
     private String operationType;
 
     /**
-     * Possible values include: 'templatedMeasures', 'createAnalysisModel',
-     * 'linkAnalysisModel'.
+     * Possible values include: 'noSubType', 'templatedMeasures',
+     * 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping',
+     * 'powerPlatform'.
      */
     @JsonProperty(value = "subType")
     private String subType;
@@ -155,7 +156,7 @@ public class GraphTaskInfo {
     }
 
     /**
-     * Get possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'.
+     * Get possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'.
      *
      * @return the subType value
      */
@@ -164,7 +165,7 @@ public class GraphTaskInfo {
     }
 
     /**
-     * Set possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'.
+     * Set possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'.
      *
      * @param subType the subType value to set
      * @return the GraphTaskInfo object itself.

@@ -11,9 +11,6 @@ from msrest.serialization import Model
 class Model(Model):
     """Model.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param name:
     :type name: str
     :param description:
@@ -30,25 +27,17 @@ class Model(Model):
     :type modified_time: datetime
     :param pbimashup:
     :type pbimashup: ~dynamics.customerinsights.api.models.Mashup
-    :ivar annotations:
-    :vartype annotations:
-     list[~dynamics.customerinsights.api.models.Annotation]
-    :ivar entities:
-    :vartype entities: list[~dynamics.customerinsights.api.models.Entity]
-    :ivar relationships:
-    :vartype relationships:
+    :param annotations:
+    :type annotations: list[~dynamics.customerinsights.api.models.Annotation]
+    :param entities:
+    :type entities: list[~dynamics.customerinsights.api.models.Entity]
+    :param relationships:
+    :type relationships:
      list[~dynamics.customerinsights.api.models.Relationship]
-    :ivar reference_models:
-    :vartype reference_models:
+    :param reference_models:
+    :type reference_models:
      list[~dynamics.customerinsights.api.models.ReferenceModel]
     """
-
-    _validation = {
-        'annotations': {'readonly': True},
-        'entities': {'readonly': True},
-        'relationships': {'readonly': True},
-        'reference_models': {'readonly': True},
-    }
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
@@ -65,7 +54,7 @@ class Model(Model):
         'reference_models': {'key': 'referenceModels', 'type': '[ReferenceModel]'},
     }
 
-    def __init__(self, *, name: str=None, description: str=None, is_hidden: bool=None, version: str=None, culture: str=None, pbitime_zone: str=None, modified_time=None, pbimashup=None, **kwargs) -> None:
+    def __init__(self, *, name: str=None, description: str=None, is_hidden: bool=None, version: str=None, culture: str=None, pbitime_zone: str=None, modified_time=None, pbimashup=None, annotations=None, entities=None, relationships=None, reference_models=None, **kwargs) -> None:
         super(Model, self).__init__(**kwargs)
         self.name = name
         self.description = description
@@ -75,7 +64,7 @@ class Model(Model):
         self.pbitime_zone = pbitime_zone
         self.modified_time = modified_time
         self.pbimashup = pbimashup
-        self.annotations = None
-        self.entities = None
-        self.relationships = None
-        self.reference_models = None
+        self.annotations = annotations
+        self.entities = entities
+        self.relationships = relationships
+        self.reference_models = reference_models

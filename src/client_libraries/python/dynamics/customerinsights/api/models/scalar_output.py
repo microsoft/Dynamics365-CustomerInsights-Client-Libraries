@@ -11,7 +11,7 @@ from msrest.serialization import Model
 class ScalarOutput(Model):
     """ScalarOutput.
 
-    :param values: Gets the output folder path for the evaluation.
+    :param values: Output folder path for the evaluation.
     :type values: dict[str, str]
     :param measure_name:
     :type measure_name: str

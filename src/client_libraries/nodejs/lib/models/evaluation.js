@@ -21,9 +21,9 @@ class Evaluation {
    * @property {uuid} [lastSuccessfulRunId]
    * @property {string} [state] Possible values include: 'none', 'running',
    * 'failed', 'completed'
-   * @property {date} [endTime] Gets or sets the evaluation completion time.
-   * @property {string} [error] Gets or sets the error (if any) that occured
-   * during the measure evaluation.
+   * @property {date} [endTime] Evaluation completion time.
+   * @property {string} [error] Error Information (if any) that occured during
+   * the measure evaluation.
    */
   constructor() {
   }

@@ -20,9 +20,11 @@ class ApiErrorResult {
    * @property {string} [errorCode]
    * @property {string} [resultSeverity] Possible values include: 'error',
    * 'warning'
-   * @property {string} [message]
+   * @property {string} [message] Message providing more information about the
+   * event.
    * @property {object} [params]
-   * @property {array} [ciResults]
+   * @property {array} [ciResults] List of CiResult contining CI result error
+   * code and information (if any).
    */
   constructor() {
   }
@@ -43,7 +45,6 @@ class ApiErrorResult {
         modelProperties: {
           exception: {
             required: false,
-            readOnly: true,
             serializedName: 'exception',
             type: {
               name: 'Object'

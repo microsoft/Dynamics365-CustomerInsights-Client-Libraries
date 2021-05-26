@@ -9,7 +9,7 @@ package com.microsoft.dynamics.customerinsights.apiclient.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The ApiError model.
+ * Represents API error code and message.
  */
 public class ApiError {
     /**
@@ -21,7 +21,7 @@ public class ApiError {
     private String errorCode;
 
     /**
-     * The message property.
+     * Message associated with the error.
      */
     @JsonProperty(value = "message")
     private String message;
@@ -47,7 +47,7 @@ public class ApiError {
     }
 
     /**
-     * Get the message value.
+     * Get message associated with the error.
      *
      * @return the message value
      */
@@ -56,7 +56,7 @@ public class ApiError {
     }
 
     /**
-     * Set the message value.
+     * Set message associated with the error.
      *
      * @param message the message value to set
      * @return the ApiError object itself.

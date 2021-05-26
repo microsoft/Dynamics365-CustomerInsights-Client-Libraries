@@ -43,7 +43,6 @@ class MeasureLinkedEntity {
           },
           entity: {
             required: false,
-            readOnly: true,
             serializedName: 'entity',
             type: {
               name: 'String'
@@ -51,7 +50,6 @@ class MeasureLinkedEntity {
           },
           alias: {
             required: false,
-            readOnly: true,
             serializedName: 'alias',
             type: {
               name: 'String'

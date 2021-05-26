@@ -25,12 +25,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the Moments class.
         /// </summary>
-        /// <param name="mean">Gets or sets the mean.</param>
-        /// <param name="standardDeviation">Gets or sets the standard
+        /// <param name="mean">Represents the mean.</param>
+        /// <param name="standardDeviation">Represents standard
         /// deviation.</param>
-        /// <param name="variance">Gets or sets the variance.</param>
-        /// <param name="skewness">Gets or sets the skewness.</param>
-        /// <param name="kurtosis">Gets or sets the kurtosis.</param>
+        /// <param name="variance">Represents variance.</param>
+        /// <param name="skewness">Represents skewness in data.</param>
+        /// <param name="kurtosis">Represents kurtosis.</param>
         public Moments(double? mean = default(double?), double? standardDeviation = default(double?), double? variance = default(double?), double? skewness = default(double?), double? kurtosis = default(double?))
         {
             Mean = mean;
@@ -47,31 +47,31 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the mean.
+        /// Gets or sets represents the mean.
         /// </summary>
         [JsonProperty(PropertyName = "mean")]
         public double? Mean { get; set; }
 
         /// <summary>
-        /// Gets or sets the standard deviation.
+        /// Gets or sets represents standard deviation.
         /// </summary>
         [JsonProperty(PropertyName = "standardDeviation")]
         public double? StandardDeviation { get; set; }
 
         /// <summary>
-        /// Gets or sets the variance.
+        /// Gets or sets represents variance.
         /// </summary>
         [JsonProperty(PropertyName = "variance")]
         public double? Variance { get; set; }
 
         /// <summary>
-        /// Gets or sets the skewness.
+        /// Gets or sets represents skewness in data.
         /// </summary>
         [JsonProperty(PropertyName = "skewness")]
         public double? Skewness { get; set; }
 
         /// <summary>
-        /// Gets or sets the kurtosis.
+        /// Gets or sets represents kurtosis.
         /// </summary>
         [JsonProperty(PropertyName = "kurtosis")]
         public double? Kurtosis { get; set; }

@@ -10,7 +10,6 @@ try:
     from .api_error_result_py3 import ApiErrorResult
     from .value_count_py3 import ValueCount
     from .histogram_bin_py3 import HistogramBin
-    from .string_length_count_py3 import StringLengthCount
     from .quantiles_py3 import Quantiles
     from .moments_py3 import Moments
     from .attribute_data_profile_py3 import AttributeDataProfile
@@ -54,7 +53,7 @@ try:
     from .data_refresh_schedule_py3 import DataRefreshSchedule
     from .trial_info_py3 import TrialInfo
     from .cds_org_info_py3 import CdsOrgInfo
-    from .work_space_detail_py3 import WorkSpaceDetail
+    from .datalake_folder_detail_py3 import DatalakeFolderDetail
     from .cds_mdl_info_py3 import CdsMdlInfo
     from .instance_metadata_py3 import InstanceMetadata
     from .resource_metadata_py3 import ResourceMetadata
@@ -100,6 +99,7 @@ try:
     from .custom_task_information_py3 import CustomTaskInformation
     from .selection_reason_py3 import SelectionReason
     from .graph_task_info_py3 import GraphTaskInfo
+    from .graph_job_options_py3 import GraphJobOptions
     from .graph_job_info_py3 import GraphJobInfo
     from .on_demand_job_request_py3 import OnDemandJobRequest
     from .data_info_py3 import DataInfo
@@ -107,12 +107,37 @@ try:
     from .timezone_detail_py3 import TimezoneDetail
     from .workflow_refresh_schedule_py3 import WorkflowRefreshSchedule
     from .entity_data_profile_py3 import EntityDataProfile
+    from .instances_v2_post_request_py3 import InstancesV2PostRequest
+    from .instances_v2_post_request1_py3 import InstancesV2PostRequest1
+    from .instances_instance_id_v2_patch_request_py3 import InstancesInstanceIdV2PatchRequest
+    from .instances_instance_id_v2_patch_request1_py3 import InstancesInstanceIdV2PatchRequest1
+    from .instances_copy_post_request_py3 import InstancesCopyPostRequest
+    from .instances_copy_post_request1_py3 import InstancesCopyPostRequest1
+    from .instances_instance_id_manage_measures_post_request_py3 import InstancesInstanceIdManageMeasuresPostRequest
+    from .instances_instance_id_manage_measures_post_request1_py3 import InstancesInstanceIdManageMeasuresPostRequest1
+    from .instances_instance_id_manage_measures_measure_name_put_request_py3 import InstancesInstanceIdManageMeasuresMeasureNamePutRequest
+    from .instances_instance_id_manage_measures_measure_name_put_request1_py3 import InstancesInstanceIdManageMeasuresMeasureNamePutRequest1
+    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request_py3 import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest
+    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request1_py3 import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1
+    from .instances_instance_id_manage_relationships_post_request_py3 import InstancesInstanceIdManageRelationshipsPostRequest
+    from .instances_instance_id_manage_relationships_post_request1_py3 import InstancesInstanceIdManageRelationshipsPostRequest1
+    from .instances_instance_id_manage_relationships_relationship_name_put_request_py3 import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest
+    from .instances_instance_id_manage_relationships_relationship_name_put_request1_py3 import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1
+    from .instances_instance_id_manage_search_put_request_py3 import InstancesInstanceIdManageSearchPutRequest
+    from .instances_instance_id_manage_search_put_request1_py3 import InstancesInstanceIdManageSearchPutRequest1
+    from .instances_instance_id_manage_segments_post_request_py3 import InstancesInstanceIdManageSegmentsPostRequest
+    from .instances_instance_id_manage_segments_post_request1_py3 import InstancesInstanceIdManageSegmentsPostRequest1
+    from .instances_instance_id_manage_segments_segment_name_put_request_py3 import InstancesInstanceIdManageSegmentsSegmentNamePutRequest
+    from .instances_instance_id_manage_segments_segment_name_put_request1_py3 import InstancesInstanceIdManageSegmentsSegmentNamePutRequest1
+    from .instances_instance_id_workflows_workflow_name_jobs_post_request_py3 import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest
+    from .instances_instance_id_workflows_workflow_name_jobs_post_request1_py3 import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1
+    from .instances_instance_id_workflows_workflow_name_schedules_post_request_py3 import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest
+    from .instances_instance_id_workflows_workflow_name_schedules_post_request1_py3 import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1
 except (SyntaxError, ImportError):
     from .ci_result import CIResult
     from .api_error_result import ApiErrorResult
     from .value_count import ValueCount
     from .histogram_bin import HistogramBin
-    from .string_length_count import StringLengthCount
     from .quantiles import Quantiles
     from .moments import Moments
     from .attribute_data_profile import AttributeDataProfile
@@ -156,7 +181,7 @@ except (SyntaxError, ImportError):
     from .data_refresh_schedule import DataRefreshSchedule
     from .trial_info import TrialInfo
     from .cds_org_info import CdsOrgInfo
-    from .work_space_detail import WorkSpaceDetail
+    from .datalake_folder_detail import DatalakeFolderDetail
     from .cds_mdl_info import CdsMdlInfo
     from .instance_metadata import InstanceMetadata
     from .resource_metadata import ResourceMetadata
@@ -202,6 +227,7 @@ except (SyntaxError, ImportError):
     from .custom_task_information import CustomTaskInformation
     from .selection_reason import SelectionReason
     from .graph_task_info import GraphTaskInfo
+    from .graph_job_options import GraphJobOptions
     from .graph_job_info import GraphJobInfo
     from .on_demand_job_request import OnDemandJobRequest
     from .data_info import DataInfo
@@ -209,13 +235,38 @@ except (SyntaxError, ImportError):
     from .timezone_detail import TimezoneDetail
     from .workflow_refresh_schedule import WorkflowRefreshSchedule
     from .entity_data_profile import EntityDataProfile
+    from .instances_v2_post_request import InstancesV2PostRequest
+    from .instances_v2_post_request1 import InstancesV2PostRequest1
+    from .instances_instance_id_v2_patch_request import InstancesInstanceIdV2PatchRequest
+    from .instances_instance_id_v2_patch_request1 import InstancesInstanceIdV2PatchRequest1
+    from .instances_copy_post_request import InstancesCopyPostRequest
+    from .instances_copy_post_request1 import InstancesCopyPostRequest1
+    from .instances_instance_id_manage_measures_post_request import InstancesInstanceIdManageMeasuresPostRequest
+    from .instances_instance_id_manage_measures_post_request1 import InstancesInstanceIdManageMeasuresPostRequest1
+    from .instances_instance_id_manage_measures_measure_name_put_request import InstancesInstanceIdManageMeasuresMeasureNamePutRequest
+    from .instances_instance_id_manage_measures_measure_name_put_request1 import InstancesInstanceIdManageMeasuresMeasureNamePutRequest1
+    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest
+    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request1 import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1
+    from .instances_instance_id_manage_relationships_post_request import InstancesInstanceIdManageRelationshipsPostRequest
+    from .instances_instance_id_manage_relationships_post_request1 import InstancesInstanceIdManageRelationshipsPostRequest1
+    from .instances_instance_id_manage_relationships_relationship_name_put_request import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest
+    from .instances_instance_id_manage_relationships_relationship_name_put_request1 import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1
+    from .instances_instance_id_manage_search_put_request import InstancesInstanceIdManageSearchPutRequest
+    from .instances_instance_id_manage_search_put_request1 import InstancesInstanceIdManageSearchPutRequest1
+    from .instances_instance_id_manage_segments_post_request import InstancesInstanceIdManageSegmentsPostRequest
+    from .instances_instance_id_manage_segments_post_request1 import InstancesInstanceIdManageSegmentsPostRequest1
+    from .instances_instance_id_manage_segments_segment_name_put_request import InstancesInstanceIdManageSegmentsSegmentNamePutRequest
+    from .instances_instance_id_manage_segments_segment_name_put_request1 import InstancesInstanceIdManageSegmentsSegmentNamePutRequest1
+    from .instances_instance_id_workflows_workflow_name_jobs_post_request import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest
+    from .instances_instance_id_workflows_workflow_name_jobs_post_request1 import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1
+    from .instances_instance_id_workflows_workflow_name_schedules_post_request import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest
+    from .instances_instance_id_workflows_workflow_name_schedules_post_request1 import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1
 
 __all__ = [
     'CIResult',
     'ApiErrorResult',
     'ValueCount',
     'HistogramBin',
-    'StringLengthCount',
     'Quantiles',
     'Moments',
     'AttributeDataProfile',
@@ -259,7 +310,7 @@ __all__ = [
     'DataRefreshSchedule',
     'TrialInfo',
     'CdsOrgInfo',
-    'WorkSpaceDetail',
+    'DatalakeFolderDetail',
     'CdsMdlInfo',
     'InstanceMetadata',
     'ResourceMetadata',
@@ -305,6 +356,7 @@ __all__ = [
     'CustomTaskInformation',
     'SelectionReason',
     'GraphTaskInfo',
+    'GraphJobOptions',
     'GraphJobInfo',
     'OnDemandJobRequest',
     'DataInfo',
@@ -312,4 +364,30 @@ __all__ = [
     'TimezoneDetail',
     'WorkflowRefreshSchedule',
     'EntityDataProfile',
+    'InstancesV2PostRequest',
+    'InstancesV2PostRequest1',
+    'InstancesInstanceIdV2PatchRequest',
+    'InstancesInstanceIdV2PatchRequest1',
+    'InstancesCopyPostRequest',
+    'InstancesCopyPostRequest1',
+    'InstancesInstanceIdManageMeasuresPostRequest',
+    'InstancesInstanceIdManageMeasuresPostRequest1',
+    'InstancesInstanceIdManageMeasuresMeasureNamePutRequest',
+    'InstancesInstanceIdManageMeasuresMeasureNamePutRequest1',
+    'InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest',
+    'InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1',
+    'InstancesInstanceIdManageRelationshipsPostRequest',
+    'InstancesInstanceIdManageRelationshipsPostRequest1',
+    'InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest',
+    'InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1',
+    'InstancesInstanceIdManageSearchPutRequest',
+    'InstancesInstanceIdManageSearchPutRequest1',
+    'InstancesInstanceIdManageSegmentsPostRequest',
+    'InstancesInstanceIdManageSegmentsPostRequest1',
+    'InstancesInstanceIdManageSegmentsSegmentNamePutRequest',
+    'InstancesInstanceIdManageSegmentsSegmentNamePutRequest1',
+    'InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest',
+    'InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1',
+    'InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest',
+    'InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1',
 ]

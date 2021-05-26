@@ -97,8 +97,8 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary GetAllDataSources
    *
-   * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
-   * configured for the Customer Insights instance.
+   * Returns a collections of DataSourceInfo configured for the given Customer
+   * Insights instance
    *
    * @param {string} instanceId Format - uuid. The instance id for which to fetch
    * data source info.
@@ -119,8 +119,8 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary GetAllDataSources
    *
-   * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
-   * configured for the Customer Insights instance.
+   * Returns a collections of DataSourceInfo configured for the given Customer
+   * Insights instance
    *
    * @param {string} instanceId Format - uuid. The instance id for which to fetch
    * data source info.
@@ -159,8 +159,8 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary GetDataSource
    *
-   * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
-   * dataSourceId configured for the Customer Insights instance.
+   * Fetches a DataSourceInfo matching the dataSourceId configured for the
+   * Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id to fetch data
    * source info for.
@@ -184,8 +184,8 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary GetDataSource
    *
-   * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
-   * dataSourceId configured for the Customer Insights instance.
+   * Fetches a DataSourceInfo matching the dataSourceId configured for the
+   * Customer Insights instance.
    *
    * @param {string} instanceId Format - uuid. The instance id to fetch data
    * source info for.
@@ -289,7 +289,7 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary CreateEntity (Preview)
    *
-   * Writes an entity instance into the store, e.g. an activity entity.
+   * Writes an entity instance into the store, g. an activity entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -323,7 +323,7 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary CreateEntity (Preview)
    *
-   * Writes an entity instance into the store, e.g. an activity entity.
+   * Writes an entity instance into the store, g. an activity entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -375,7 +375,7 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary UpdateEntity (Preview)
    *
-   * Updates an entity instance in the store, e.g. Customer entity.
+   * Updates an entity instance in the store, g. Customer entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -411,7 +411,7 @@ export default class CustomerInsights extends ServiceClient {
   /**
    * @summary UpdateEntity (Preview)
    *
-   * Updates an entity instance in the store, e.g. Customer entity.
+   * Updates an entity instance in the store, g. Customer entity.
    *
    * @param {string} instanceId Format - uuid. Customer Insights instance Id.
    *
@@ -771,7 +771,7 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary ResetInstance (Preview)
+   * @summary ResetInstance
    *
    * Reset scopes in the given instance. Provide optional management operation
    * scope to reset only that scope.
@@ -795,7 +795,7 @@ export default class CustomerInsights extends ServiceClient {
   resetAnInstanceWithHttpOperationResponse(instanceId: string, options?: { instanceManagementOperationScope? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary ResetInstance (Preview)
+   * @summary ResetInstance
    *
    * Reset scopes in the given instance. Provide optional management operation
    * scope to reset only that scope.
@@ -1091,6 +1091,21 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
+   * @param {boolean} [options.body.instanceMetadata.refreshSchedule.isActive]
+   * Gets a value indicating whether the schedule is active.
+   *
+   * @param {string} [options.body.instanceMetadata.refreshSchedule.timezoneId]
+   * Gets the ID of the timezone
+   *
+   * @param {array} [options.body.instanceMetadata.refreshSchedule.cronSchedules]
+   * Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.scheduleId]
+   * Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.instanceId]
+   * Customer Insights instance id associated with this object.
+   *
    * @param {date} [options.body.instanceMetadata.expiryTimeUtc] Gets the time
    * the instance is set to expire.
    *
@@ -1116,17 +1131,35 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.name] Gets the
-   * Workspace Friendly Name
+   * datalake folder Friendly Name
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.uniqueName] Gets
-   * the Cds workspace unique Name
+   * the Cds datalake folder unique Name
    *
    * @param {number} [options.body.instanceMetadata.maxTrialExtensionsAllowed]
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
    * the details of trial extensions done if this is a trial instance
+   *
+   * @param {number} [options.body.instanceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.instanceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.instanceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.instanceMetadata.createdBy] Email address of
+   * the user who created this record.
+   *
+   * @param {date} [options.body.instanceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.instanceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    *
    * @param {object} [options.body.byosaResourceMetadata]
    *
@@ -1138,11 +1171,41 @@ export default class CustomerInsights extends ServiceClient {
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
    * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
+   * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
+   * the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
+   * the operation being performed on the resource.
+   *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   *
+   * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
+   * resource.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.description] Gets the
+   * Description of the resource.
+   *
+   * @param {number} [options.body.cdsResourceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.createdBy] Email address
+   * of the user who created this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
+   * Insights instance id associated with this object.
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1156,7 +1219,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createAnInstanceWithHttpOperationResponse(options?: { body? : models.InstancesV2PostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateInstance
@@ -1181,6 +1244,21 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
+   * @param {boolean} [options.body.instanceMetadata.refreshSchedule.isActive]
+   * Gets a value indicating whether the schedule is active.
+   *
+   * @param {string} [options.body.instanceMetadata.refreshSchedule.timezoneId]
+   * Gets the ID of the timezone
+   *
+   * @param {array} [options.body.instanceMetadata.refreshSchedule.cronSchedules]
+   * Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.scheduleId]
+   * Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.instanceId]
+   * Customer Insights instance id associated with this object.
+   *
    * @param {date} [options.body.instanceMetadata.expiryTimeUtc] Gets the time
    * the instance is set to expire.
    *
@@ -1206,17 +1284,35 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.name] Gets the
-   * Workspace Friendly Name
+   * datalake folder Friendly Name
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.uniqueName] Gets
-   * the Cds workspace unique Name
+   * the Cds datalake folder unique Name
    *
    * @param {number} [options.body.instanceMetadata.maxTrialExtensionsAllowed]
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
    * the details of trial extensions done if this is a trial instance
+   *
+   * @param {number} [options.body.instanceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.instanceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.instanceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.instanceMetadata.createdBy] Email address of
+   * the user who created this record.
+   *
+   * @param {date} [options.body.instanceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.instanceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    *
    * @param {object} [options.body.byosaResourceMetadata]
    *
@@ -1228,11 +1324,41 @@ export default class CustomerInsights extends ServiceClient {
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
    * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
+   * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
+   * the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
+   * the operation being performed on the resource.
+   *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   *
+   * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
+   * resource.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.description] Gets the
+   * Description of the resource.
+   *
+   * @param {number} [options.body.cdsResourceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.createdBy] Email address
+   * of the user who created this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
+   * Insights instance id associated with this object.
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1261,9 +1387,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createAnInstance(options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createAnInstance(options?: { body? : models.InstancesV2PostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createAnInstance(callback: ServiceCallback<any>): void;
-  createAnInstance(options: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createAnInstance(options: { body? : models.InstancesV2PostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1292,6 +1418,21 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
+   * @param {boolean} [options.body.instanceMetadata.refreshSchedule.isActive]
+   * Gets a value indicating whether the schedule is active.
+   *
+   * @param {string} [options.body.instanceMetadata.refreshSchedule.timezoneId]
+   * Gets the ID of the timezone
+   *
+   * @param {array} [options.body.instanceMetadata.refreshSchedule.cronSchedules]
+   * Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.scheduleId]
+   * Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.instanceId]
+   * Customer Insights instance id associated with this object.
+   *
    * @param {date} [options.body.instanceMetadata.expiryTimeUtc] Gets the time
    * the instance is set to expire.
    *
@@ -1317,17 +1458,35 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.name] Gets the
-   * Workspace Friendly Name
+   * datalake folder Friendly Name
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.uniqueName] Gets
-   * the Cds workspace unique Name
+   * the Cds datalake folder unique Name
    *
    * @param {number} [options.body.instanceMetadata.maxTrialExtensionsAllowed]
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
    * the details of trial extensions done if this is a trial instance
+   *
+   * @param {number} [options.body.instanceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.instanceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.instanceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.instanceMetadata.createdBy] Email address of
+   * the user who created this record.
+   *
+   * @param {date} [options.body.instanceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.instanceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    *
    * @param {object} [options.body.byosaResourceMetadata]
    *
@@ -1339,11 +1498,41 @@ export default class CustomerInsights extends ServiceClient {
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
    * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
+   * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
+   * the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
+   * the operation being performed on the resource.
+   *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   *
+   * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
+   * resource.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.description] Gets the
+   * Description of the resource.
+   *
+   * @param {number} [options.body.cdsResourceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.createdBy] Email address
+   * of the user who created this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
+   * Insights instance id associated with this object.
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1357,7 +1546,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateAnInstanceWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateAnInstanceWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdV2PatchRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateInstance
@@ -1385,6 +1574,21 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
+   * @param {boolean} [options.body.instanceMetadata.refreshSchedule.isActive]
+   * Gets a value indicating whether the schedule is active.
+   *
+   * @param {string} [options.body.instanceMetadata.refreshSchedule.timezoneId]
+   * Gets the ID of the timezone
+   *
+   * @param {array} [options.body.instanceMetadata.refreshSchedule.cronSchedules]
+   * Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.scheduleId]
+   * Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.instanceId]
+   * Customer Insights instance id associated with this object.
+   *
    * @param {date} [options.body.instanceMetadata.expiryTimeUtc] Gets the time
    * the instance is set to expire.
    *
@@ -1410,17 +1614,35 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.name] Gets the
-   * Workspace Friendly Name
+   * datalake folder Friendly Name
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.uniqueName] Gets
-   * the Cds workspace unique Name
+   * the Cds datalake folder unique Name
    *
    * @param {number} [options.body.instanceMetadata.maxTrialExtensionsAllowed]
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
    * the details of trial extensions done if this is a trial instance
+   *
+   * @param {number} [options.body.instanceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.instanceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.instanceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.instanceMetadata.createdBy] Email address of
+   * the user who created this record.
+   *
+   * @param {date} [options.body.instanceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.instanceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    *
    * @param {object} [options.body.byosaResourceMetadata]
    *
@@ -1432,11 +1654,41 @@ export default class CustomerInsights extends ServiceClient {
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
    * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
+   * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
+   * the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
+   * the operation being performed on the resource.
+   *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   *
+   * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
+   * resource.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.description] Gets the
+   * Description of the resource.
+   *
+   * @param {number} [options.body.cdsResourceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.createdBy] Email address
+   * of the user who created this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
+   * Insights instance id associated with this object.
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1465,9 +1717,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateAnInstance(instanceId: string, options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateAnInstance(instanceId: string, options?: { body? : models.InstancesInstanceIdV2PatchRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateAnInstance(instanceId: string, callback: ServiceCallback<any>): void;
-  updateAnInstance(instanceId: string, options: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateAnInstance(instanceId: string, options: { body? : models.InstancesInstanceIdV2PatchRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1496,6 +1748,21 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
+   * @param {boolean} [options.body.instanceMetadata.refreshSchedule.isActive]
+   * Gets a value indicating whether the schedule is active.
+   *
+   * @param {string} [options.body.instanceMetadata.refreshSchedule.timezoneId]
+   * Gets the ID of the timezone
+   *
+   * @param {array} [options.body.instanceMetadata.refreshSchedule.cronSchedules]
+   * Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.scheduleId]
+   * Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.instanceId]
+   * Customer Insights instance id associated with this object.
+   *
    * @param {date} [options.body.instanceMetadata.expiryTimeUtc] Gets the time
    * the instance is set to expire.
    *
@@ -1521,17 +1788,35 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.name] Gets the
-   * Workspace Friendly Name
+   * datalake folder Friendly Name
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.uniqueName] Gets
-   * the Cds workspace unique Name
+   * the Cds datalake folder unique Name
    *
    * @param {number} [options.body.instanceMetadata.maxTrialExtensionsAllowed]
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
    * the details of trial extensions done if this is a trial instance
+   *
+   * @param {number} [options.body.instanceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.instanceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.instanceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.instanceMetadata.createdBy] Email address of
+   * the user who created this record.
+   *
+   * @param {date} [options.body.instanceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.instanceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    *
    * @param {object} [options.body.byosaResourceMetadata]
    *
@@ -1543,11 +1828,41 @@ export default class CustomerInsights extends ServiceClient {
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
    * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
+   * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
+   * the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
+   * the operation being performed on the resource.
+   *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   *
+   * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
+   * resource.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.description] Gets the
+   * Description of the resource.
+   *
+   * @param {number} [options.body.cdsResourceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.createdBy] Email address
+   * of the user who created this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
+   * Insights instance id associated with this object.
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1561,7 +1876,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  copyAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  copyAnInstanceWithHttpOperationResponse(options?: { body? : models.InstancesCopyPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CopyInstance
@@ -1589,6 +1904,21 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
+   * @param {boolean} [options.body.instanceMetadata.refreshSchedule.isActive]
+   * Gets a value indicating whether the schedule is active.
+   *
+   * @param {string} [options.body.instanceMetadata.refreshSchedule.timezoneId]
+   * Gets the ID of the timezone
+   *
+   * @param {array} [options.body.instanceMetadata.refreshSchedule.cronSchedules]
+   * Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.scheduleId]
+   * Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceMetadata.refreshSchedule.instanceId]
+   * Customer Insights instance id associated with this object.
+   *
    * @param {date} [options.body.instanceMetadata.expiryTimeUtc] Gets the time
    * the instance is set to expire.
    *
@@ -1614,17 +1944,35 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.name] Gets the
-   * Workspace Friendly Name
+   * datalake folder Friendly Name
    *
    * @param {string}
    * [options.body.instanceMetadata.cdsMdlInfo.publicWorkSpace.uniqueName] Gets
-   * the Cds workspace unique Name
+   * the Cds datalake folder unique Name
    *
    * @param {number} [options.body.instanceMetadata.maxTrialExtensionsAllowed]
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
    * the details of trial extensions done if this is a trial instance
+   *
+   * @param {number} [options.body.instanceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.instanceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.instanceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.instanceMetadata.createdBy] Email address of
+   * the user who created this record.
+   *
+   * @param {date} [options.body.instanceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.instanceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    *
    * @param {object} [options.body.byosaResourceMetadata]
    *
@@ -1636,11 +1984,41 @@ export default class CustomerInsights extends ServiceClient {
    * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
    * 'http', 'mailchimp', 'googleAds', 'marketo'
    *
+   * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
+   * the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
+   * the operation being performed on the resource.
+   *
    * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
    * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
    * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   *
+   * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
+   * resource.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.description] Gets the
+   * Description of the resource.
+   *
+   * @param {number} [options.body.cdsResourceMetadata.version] Version number of
+   * this object.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.updatedBy] UPN of the user
+   * who last updated this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.updatedUtc] Time this object
+   * was last updated.
+   *
+   * @param {string} [options.body.cdsResourceMetadata.createdBy] Email address
+   * of the user who created this record.
+   *
+   * @param {date} [options.body.cdsResourceMetadata.createdUtc] Time this object
+   * was initially created.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
+   * Insights instance id associated with this object.
    *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
@@ -1669,9 +2047,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  copyAnInstance(options?: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  copyAnInstance(options?: { body? : models.InstancesCopyPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   copyAnInstance(callback: ServiceCallback<any>): void;
-  copyAnInstance(options: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  copyAnInstance(options: { body? : models.InstancesCopyPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1743,15 +2121,26 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] New Measure metadata to be created
    *
-   * @param {string} [options.body.name] Gets the unique name of the measure
+   * @param {string} [options.body.displayName]
    *
-   * @param {string} [options.body.description] Gets the description of the
-   * measure.
+   * @param {string} [options.body.name] Unique name of the measure
+   *
+   * @param {string} [options.body.description] Description of the measure.
    *
    * @param {object} [options.body.definition]
    *
    * @param {string} [options.body.definition.kind] Possible values include:
    * 'entity', 'attribute'
+   *
+   * @param {boolean} [options.body.definition.isScalar] Gets a value indicating
+   * whether the current measure is a scalar measure e doesn't have any
+   * dimensions
+   *
+   * @param {array} [options.body.definition.linkedEntities] Gets list of linked
+   * entities associated with the measure.
+   *
+   * @param {array} [options.body.definition.variables] Gets list of variables
+   * (computed columns) for the measure.
    *
    * @param {object} [options.body.definition.filters]
    *
@@ -1776,7 +2165,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -1790,8 +2179,29 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.definition.filteringCriteria.listOfValues] Gets
    * the list of values in criteria.
    *
+   * @param {boolean} [options.body.definition.filteringCriteria.isTime] flag set
+   * to true if entries are of time format
+   *
+   * @param {array} [options.body.definition.dimensions] Gets list of dimensions
+   * with the measure.
+   *
+   * @param {array} [options.body.definition.aggregates] Gets list of aggregates
+   * of the measure.
+   *
+   * @param {boolean} [options.body.definition.isProfile] Gets a value indicating
+   * whether the current measure is a profile measure
+   *
+   * @param {string} [options.body.definition.measureQuerySql] Gets the user
+   * specified custom SQL query.
+   *
    * @param {string} [options.body.definition.type] Possible values include:
    * 'structured', 'manual'
+   *
+   * @param {boolean} [options.body.definition.isManualQueryScalar] Gets the
+   * indicating whether the Business Measure is Scalar or not.
+   *
+   * @param {array} [options.body.definition.dependencies] Gets the list of
+   * measures that this measure depends on.
    *
    * @param {object} [options.body.latestEvaluation]
    *
@@ -1800,16 +2210,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.latestEvaluation.state] Possible values
    * include: 'none', 'running', 'failed', 'completed'
    *
-   * @param {date} [options.body.latestEvaluation.endTime] Gets or sets the
-   * evaluation completion time.
+   * @param {date} [options.body.latestEvaluation.endTime] Evaluation completion
+   * time.
    *
-   * @param {string} [options.body.latestEvaluation.error] Gets or sets the error
-   * (if any) that occured during the measure evaluation.
+   * @param {string} [options.body.latestEvaluation.error] Error Information (if
+   * any) that occured during the measure evaluation.
    *
    * @param {object} [options.body.output]
    *
-   * @param {object} [options.body.output.values] Gets the output folder path for
-   * the evaluation.
+   * @param {object} [options.body.output.values] Output folder path for the
+   * evaluation.
    *
    * @param {string} [options.body.output.measureName]
    *
@@ -1818,11 +2228,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.evaluationStats]
    *
-   * @param {date} [options.body.evaluationStats.lastSuccessful] Gets the last
-   * successful evaluation
+   * @param {date} [options.body.evaluationStats.lastSuccessful] Last successful
+   * evaluation
    *
-   * @param {number} [options.body.evaluationStats.consecutiveFailureCount] Gets
-   * the number of consecutive failures
+   * @param {number} [options.body.evaluationStats.consecutiveFailureCount]
+   * Represents Number of consecutive failures
    *
    * @param {object} [options.body.errorDescription]
    *
@@ -1945,17 +2355,33 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
-   * @param {array} [options.body.evaluationHistory] Gets the evaluation history
-   * for the measure. (not persisted in store)
-   *
-   * @param {array} [options.body.outputHistory] Gets the output history for the
+   * @param {array} [options.body.evaluationHistory] Evaluation history for the
    * measure. (not persisted in store)
+   *
+   * @param {array} [options.body.outputHistory] Output history for the measure.
+   * (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1966,7 +2392,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createAMeasureWithHttpOperationResponse(instanceId: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createAMeasureWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageMeasuresPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateMeasure
@@ -1979,15 +2405,26 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] New Measure metadata to be created
    *
-   * @param {string} [options.body.name] Gets the unique name of the measure
+   * @param {string} [options.body.displayName]
    *
-   * @param {string} [options.body.description] Gets the description of the
-   * measure.
+   * @param {string} [options.body.name] Unique name of the measure
+   *
+   * @param {string} [options.body.description] Description of the measure.
    *
    * @param {object} [options.body.definition]
    *
    * @param {string} [options.body.definition.kind] Possible values include:
    * 'entity', 'attribute'
+   *
+   * @param {boolean} [options.body.definition.isScalar] Gets a value indicating
+   * whether the current measure is a scalar measure e doesn't have any
+   * dimensions
+   *
+   * @param {array} [options.body.definition.linkedEntities] Gets list of linked
+   * entities associated with the measure.
+   *
+   * @param {array} [options.body.definition.variables] Gets list of variables
+   * (computed columns) for the measure.
    *
    * @param {object} [options.body.definition.filters]
    *
@@ -2012,7 +2449,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2026,8 +2463,29 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.definition.filteringCriteria.listOfValues] Gets
    * the list of values in criteria.
    *
+   * @param {boolean} [options.body.definition.filteringCriteria.isTime] flag set
+   * to true if entries are of time format
+   *
+   * @param {array} [options.body.definition.dimensions] Gets list of dimensions
+   * with the measure.
+   *
+   * @param {array} [options.body.definition.aggregates] Gets list of aggregates
+   * of the measure.
+   *
+   * @param {boolean} [options.body.definition.isProfile] Gets a value indicating
+   * whether the current measure is a profile measure
+   *
+   * @param {string} [options.body.definition.measureQuerySql] Gets the user
+   * specified custom SQL query.
+   *
    * @param {string} [options.body.definition.type] Possible values include:
    * 'structured', 'manual'
+   *
+   * @param {boolean} [options.body.definition.isManualQueryScalar] Gets the
+   * indicating whether the Business Measure is Scalar or not.
+   *
+   * @param {array} [options.body.definition.dependencies] Gets the list of
+   * measures that this measure depends on.
    *
    * @param {object} [options.body.latestEvaluation]
    *
@@ -2036,16 +2494,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.latestEvaluation.state] Possible values
    * include: 'none', 'running', 'failed', 'completed'
    *
-   * @param {date} [options.body.latestEvaluation.endTime] Gets or sets the
-   * evaluation completion time.
+   * @param {date} [options.body.latestEvaluation.endTime] Evaluation completion
+   * time.
    *
-   * @param {string} [options.body.latestEvaluation.error] Gets or sets the error
-   * (if any) that occured during the measure evaluation.
+   * @param {string} [options.body.latestEvaluation.error] Error Information (if
+   * any) that occured during the measure evaluation.
    *
    * @param {object} [options.body.output]
    *
-   * @param {object} [options.body.output.values] Gets the output folder path for
-   * the evaluation.
+   * @param {object} [options.body.output.values] Output folder path for the
+   * evaluation.
    *
    * @param {string} [options.body.output.measureName]
    *
@@ -2054,11 +2512,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.evaluationStats]
    *
-   * @param {date} [options.body.evaluationStats.lastSuccessful] Gets the last
-   * successful evaluation
+   * @param {date} [options.body.evaluationStats.lastSuccessful] Last successful
+   * evaluation
    *
-   * @param {number} [options.body.evaluationStats.consecutiveFailureCount] Gets
-   * the number of consecutive failures
+   * @param {number} [options.body.evaluationStats.consecutiveFailureCount]
+   * Represents Number of consecutive failures
    *
    * @param {object} [options.body.errorDescription]
    *
@@ -2181,17 +2639,33 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
-   * @param {array} [options.body.evaluationHistory] Gets the evaluation history
-   * for the measure. (not persisted in store)
-   *
-   * @param {array} [options.body.outputHistory] Gets the output history for the
+   * @param {array} [options.body.evaluationHistory] Evaluation history for the
    * measure. (not persisted in store)
+   *
+   * @param {array} [options.body.outputHistory] Output history for the measure.
+   * (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -2217,9 +2691,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createAMeasure(instanceId: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createAMeasure(instanceId: string, options?: { body? : models.InstancesInstanceIdManageMeasuresPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createAMeasure(instanceId: string, callback: ServiceCallback<any>): void;
-  createAMeasure(instanceId: string, options: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createAMeasure(instanceId: string, options: { body? : models.InstancesInstanceIdManageMeasuresPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -2308,15 +2782,26 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] Update measure metadata
    *
-   * @param {string} [options.body.name] Gets the unique name of the measure
+   * @param {string} [options.body.displayName]
    *
-   * @param {string} [options.body.description] Gets the description of the
-   * measure.
+   * @param {string} [options.body.name] Unique name of the measure
+   *
+   * @param {string} [options.body.description] Description of the measure.
    *
    * @param {object} [options.body.definition]
    *
    * @param {string} [options.body.definition.kind] Possible values include:
    * 'entity', 'attribute'
+   *
+   * @param {boolean} [options.body.definition.isScalar] Gets a value indicating
+   * whether the current measure is a scalar measure e doesn't have any
+   * dimensions
+   *
+   * @param {array} [options.body.definition.linkedEntities] Gets list of linked
+   * entities associated with the measure.
+   *
+   * @param {array} [options.body.definition.variables] Gets list of variables
+   * (computed columns) for the measure.
    *
    * @param {object} [options.body.definition.filters]
    *
@@ -2341,7 +2826,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2355,8 +2840,29 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.definition.filteringCriteria.listOfValues] Gets
    * the list of values in criteria.
    *
+   * @param {boolean} [options.body.definition.filteringCriteria.isTime] flag set
+   * to true if entries are of time format
+   *
+   * @param {array} [options.body.definition.dimensions] Gets list of dimensions
+   * with the measure.
+   *
+   * @param {array} [options.body.definition.aggregates] Gets list of aggregates
+   * of the measure.
+   *
+   * @param {boolean} [options.body.definition.isProfile] Gets a value indicating
+   * whether the current measure is a profile measure
+   *
+   * @param {string} [options.body.definition.measureQuerySql] Gets the user
+   * specified custom SQL query.
+   *
    * @param {string} [options.body.definition.type] Possible values include:
    * 'structured', 'manual'
+   *
+   * @param {boolean} [options.body.definition.isManualQueryScalar] Gets the
+   * indicating whether the Business Measure is Scalar or not.
+   *
+   * @param {array} [options.body.definition.dependencies] Gets the list of
+   * measures that this measure depends on.
    *
    * @param {object} [options.body.latestEvaluation]
    *
@@ -2365,16 +2871,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.latestEvaluation.state] Possible values
    * include: 'none', 'running', 'failed', 'completed'
    *
-   * @param {date} [options.body.latestEvaluation.endTime] Gets or sets the
-   * evaluation completion time.
+   * @param {date} [options.body.latestEvaluation.endTime] Evaluation completion
+   * time.
    *
-   * @param {string} [options.body.latestEvaluation.error] Gets or sets the error
-   * (if any) that occured during the measure evaluation.
+   * @param {string} [options.body.latestEvaluation.error] Error Information (if
+   * any) that occured during the measure evaluation.
    *
    * @param {object} [options.body.output]
    *
-   * @param {object} [options.body.output.values] Gets the output folder path for
-   * the evaluation.
+   * @param {object} [options.body.output.values] Output folder path for the
+   * evaluation.
    *
    * @param {string} [options.body.output.measureName]
    *
@@ -2383,11 +2889,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.evaluationStats]
    *
-   * @param {date} [options.body.evaluationStats.lastSuccessful] Gets the last
-   * successful evaluation
+   * @param {date} [options.body.evaluationStats.lastSuccessful] Last successful
+   * evaluation
    *
-   * @param {number} [options.body.evaluationStats.consecutiveFailureCount] Gets
-   * the number of consecutive failures
+   * @param {number} [options.body.evaluationStats.consecutiveFailureCount]
+   * Represents Number of consecutive failures
    *
    * @param {object} [options.body.errorDescription]
    *
@@ -2510,17 +3016,33 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
-   * @param {array} [options.body.evaluationHistory] Gets the evaluation history
-   * for the measure. (not persisted in store)
-   *
-   * @param {array} [options.body.outputHistory] Gets the output history for the
+   * @param {array} [options.body.evaluationHistory] Evaluation history for the
    * measure. (not persisted in store)
+   *
+   * @param {array} [options.body.outputHistory] Output history for the measure.
+   * (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -2531,7 +3053,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateAMeasureWithHttpOperationResponse(instanceId: string, measureName: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateAMeasureWithHttpOperationResponse(instanceId: string, measureName: string, options?: { body? : models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateMeasure
@@ -2547,15 +3069,26 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] Update measure metadata
    *
-   * @param {string} [options.body.name] Gets the unique name of the measure
+   * @param {string} [options.body.displayName]
    *
-   * @param {string} [options.body.description] Gets the description of the
-   * measure.
+   * @param {string} [options.body.name] Unique name of the measure
+   *
+   * @param {string} [options.body.description] Description of the measure.
    *
    * @param {object} [options.body.definition]
    *
    * @param {string} [options.body.definition.kind] Possible values include:
    * 'entity', 'attribute'
+   *
+   * @param {boolean} [options.body.definition.isScalar] Gets a value indicating
+   * whether the current measure is a scalar measure e doesn't have any
+   * dimensions
+   *
+   * @param {array} [options.body.definition.linkedEntities] Gets list of linked
+   * entities associated with the measure.
+   *
+   * @param {array} [options.body.definition.variables] Gets list of variables
+   * (computed columns) for the measure.
    *
    * @param {object} [options.body.definition.filters]
    *
@@ -2580,7 +3113,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2594,8 +3127,29 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.definition.filteringCriteria.listOfValues] Gets
    * the list of values in criteria.
    *
+   * @param {boolean} [options.body.definition.filteringCriteria.isTime] flag set
+   * to true if entries are of time format
+   *
+   * @param {array} [options.body.definition.dimensions] Gets list of dimensions
+   * with the measure.
+   *
+   * @param {array} [options.body.definition.aggregates] Gets list of aggregates
+   * of the measure.
+   *
+   * @param {boolean} [options.body.definition.isProfile] Gets a value indicating
+   * whether the current measure is a profile measure
+   *
+   * @param {string} [options.body.definition.measureQuerySql] Gets the user
+   * specified custom SQL query.
+   *
    * @param {string} [options.body.definition.type] Possible values include:
    * 'structured', 'manual'
+   *
+   * @param {boolean} [options.body.definition.isManualQueryScalar] Gets the
+   * indicating whether the Business Measure is Scalar or not.
+   *
+   * @param {array} [options.body.definition.dependencies] Gets the list of
+   * measures that this measure depends on.
    *
    * @param {object} [options.body.latestEvaluation]
    *
@@ -2604,16 +3158,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.latestEvaluation.state] Possible values
    * include: 'none', 'running', 'failed', 'completed'
    *
-   * @param {date} [options.body.latestEvaluation.endTime] Gets or sets the
-   * evaluation completion time.
+   * @param {date} [options.body.latestEvaluation.endTime] Evaluation completion
+   * time.
    *
-   * @param {string} [options.body.latestEvaluation.error] Gets or sets the error
-   * (if any) that occured during the measure evaluation.
+   * @param {string} [options.body.latestEvaluation.error] Error Information (if
+   * any) that occured during the measure evaluation.
    *
    * @param {object} [options.body.output]
    *
-   * @param {object} [options.body.output.values] Gets the output folder path for
-   * the evaluation.
+   * @param {object} [options.body.output.values] Output folder path for the
+   * evaluation.
    *
    * @param {string} [options.body.output.measureName]
    *
@@ -2622,11 +3176,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.evaluationStats]
    *
-   * @param {date} [options.body.evaluationStats.lastSuccessful] Gets the last
-   * successful evaluation
+   * @param {date} [options.body.evaluationStats.lastSuccessful] Last successful
+   * evaluation
    *
-   * @param {number} [options.body.evaluationStats.consecutiveFailureCount] Gets
-   * the number of consecutive failures
+   * @param {number} [options.body.evaluationStats.consecutiveFailureCount]
+   * Represents Number of consecutive failures
    *
    * @param {object} [options.body.errorDescription]
    *
@@ -2749,17 +3303,33 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
-   * @param {array} [options.body.evaluationHistory] Gets the evaluation history
-   * for the measure. (not persisted in store)
-   *
-   * @param {array} [options.body.outputHistory] Gets the output history for the
+   * @param {array} [options.body.evaluationHistory] Evaluation history for the
    * measure. (not persisted in store)
+   *
+   * @param {array} [options.body.outputHistory] Output history for the measure.
+   * (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -2785,9 +3355,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateAMeasure(instanceId: string, measureName: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateAMeasure(instanceId: string, measureName: string, options?: { body? : models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateAMeasure(instanceId: string, measureName: string, callback: ServiceCallback<any>): void;
-  updateAMeasure(instanceId: string, measureName: string, options: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateAMeasure(instanceId: string, measureName: string, options: { body? : models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -3123,6 +3693,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.roles] Gets the roles the principal belongs to.
    *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -3132,7 +3705,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateARoleAssignmentWithHttpOperationResponse(instanceId: string, principalId: string, options?: { body? : models.RoleAssignment, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleAssignment[]>>;
+  updateARoleAssignmentWithHttpOperationResponse(instanceId: string, principalId: string, options?: { body? : models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleAssignment[]>>;
 
   /**
    * @summary UpdateRoleAssignment
@@ -3153,6 +3726,9 @@ export default class CustomerInsights extends ServiceClient {
    * 'user', 'group', 'app'
    *
    * @param {array} [options.body.roles] Gets the roles the principal belongs to.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -3178,9 +3754,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateARoleAssignment(instanceId: string, principalId: string, options?: { body? : models.RoleAssignment, customHeaders? : { [headerName: string]: string; } }): Promise<models.RoleAssignment[]>;
+  updateARoleAssignment(instanceId: string, principalId: string, options?: { body? : models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<models.RoleAssignment[]>;
   updateARoleAssignment(instanceId: string, principalId: string, callback: ServiceCallback<models.RoleAssignment[]>): void;
-  updateARoleAssignment(instanceId: string, principalId: string, options: { body? : models.RoleAssignment, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.RoleAssignment[]>): void;
+  updateARoleAssignment(instanceId: string, principalId: string, options: { body? : models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.RoleAssignment[]>): void;
 
 
   /**
@@ -3399,6 +3975,22 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cardinality] Possible values include:
    * 'oneToMany', 'oneToOne'
    *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -3408,7 +4000,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createARelationshipWithHttpOperationResponse(instanceId: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createARelationshipWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateRelationship
@@ -3448,6 +4040,22 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cardinality] Possible values include:
    * 'oneToMany', 'oneToOne'
    *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -3472,9 +4080,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createARelationship(instanceId: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createARelationship(instanceId: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createARelationship(instanceId: string, callback: ServiceCallback<any>): void;
-  createARelationship(instanceId: string, options: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createARelationship(instanceId: string, options: { body? : models.InstancesInstanceIdManageRelationshipsPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -3646,6 +4254,22 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cardinality] Possible values include:
    * 'oneToMany', 'oneToOne'
    *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -3655,7 +4279,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateARelationshipWithHttpOperationResponse(instanceId: string, relationshipName: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateARelationshipWithHttpOperationResponse(instanceId: string, relationshipName: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateRelationshhip
@@ -3698,6 +4322,22 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cardinality] Possible values include:
    * 'oneToMany', 'oneToOne'
    *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -3722,9 +4362,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateARelationship(instanceId: string, relationshipName: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateARelationship(instanceId: string, relationshipName: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateARelationship(instanceId: string, relationshipName: string, callback: ServiceCallback<any>): void;
-  updateARelationship(instanceId: string, relationshipName: string, options: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateARelationship(instanceId: string, relationshipName: string, options: { body? : models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -3802,6 +4442,22 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.body.isSystemGenerated] Gets a value indicating
    * whether the configuration was system generated
    *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -3811,7 +4467,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateSearchConfigurationWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstanceSearchConfiguration, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateSearchConfigurationWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSearchPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateSearchConfiguration
@@ -3830,6 +4486,22 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.body.isSystemGenerated] Gets a value indicating
    * whether the configuration was system generated
    *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -3854,9 +4526,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateSearchConfiguration(instanceId: string, options?: { body? : models.InstanceSearchConfiguration, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateSearchConfiguration(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSearchPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateSearchConfiguration(instanceId: string, callback: ServiceCallback<any>): void;
-  updateSearchConfiguration(instanceId: string, options: { body? : models.InstanceSearchConfiguration, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateSearchConfiguration(instanceId: string, options: { body? : models.InstancesInstanceIdManageSearchPutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -3873,6 +4545,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {number} [options.historicStatsDays] Format - int32. Optional
    * parameter to get number of days evaluation history.
+   *
+   * @param {number} [options.numberOfSegments] Format - int32. Optional
+   * parameter to limit the number of segments returned.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -3883,7 +4558,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getAllSegmentsWithHttpOperationResponse(instanceId: string, options?: { includeHistoricStats? : boolean, historicStatsDays? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  getAllSegmentsWithHttpOperationResponse(instanceId: string, options?: { includeHistoricStats? : boolean, historicStatsDays? : number, numberOfSegments? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary ListAllSegments
@@ -3899,6 +4574,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {number} [options.historicStatsDays] Format - int32. Optional
    * parameter to get number of days evaluation history.
+   *
+   * @param {number} [options.numberOfSegments] Format - int32. Optional
+   * parameter to limit the number of segments returned.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -3924,9 +4602,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getAllSegments(instanceId: string, options?: { includeHistoricStats? : boolean, historicStatsDays? : number, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAllSegments(instanceId: string, options?: { includeHistoricStats? : boolean, historicStatsDays? : number, numberOfSegments? : number, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   getAllSegments(instanceId: string, callback: ServiceCallback<any>): void;
-  getAllSegments(instanceId: string, options: { includeHistoricStats? : boolean, historicStatsDays? : number, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  getAllSegments(instanceId: string, options: { includeHistoricStats? : boolean, historicStatsDays? : number, numberOfSegments? : number, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -4103,14 +4781,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -4121,7 +4815,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createASegmentWithHttpOperationResponse(instanceId: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createASegmentWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSegmentsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateSegment
@@ -4297,14 +4991,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -4330,9 +5040,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createASegment(instanceId: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createASegment(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSegmentsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createASegment(instanceId: string, callback: ServiceCallback<any>): void;
-  createASegment(instanceId: string, options: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createASegment(instanceId: string, options: { body? : models.InstancesInstanceIdManageSegmentsPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -4636,14 +5346,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -4654,7 +5380,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateASegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateASegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { body? : models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateSegments
@@ -4833,14 +5559,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.sqlValidationStats]
    *
-   * @param {date} [options.body.sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @param {date} [options.body.sqlValidationStats.validationDate] Date of
+   * Validation evaluation
    *
    * @param {string} [options.body.sqlValidationStats.error] Gets the number of
    * consecutive failures
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -4866,9 +5608,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateASegment(instanceId: string, segmentName: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateASegment(instanceId: string, segmentName: string, options?: { body? : models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateASegment(instanceId: string, segmentName: string, callback: ServiceCallback<any>): void;
-  updateASegment(instanceId: string, segmentName: string, options: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateASegment(instanceId: string, segmentName: string, options: { body? : models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -5143,13 +5885,11 @@ export default class CustomerInsights extends ServiceClient {
 
   /**
    * @summary SubmitWorkflowJob
-   * forceRunRequested indicating whether to force run.
    *
-   * Submits a workflow of
-   * Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
-   * instance specified in instanceId.
+   * Submits a workflow of OperationTypeoperationType for the instance specified
+   * in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
-   * Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+   * OperationType.All and a flag
    * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
@@ -5180,7 +5920,12 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.body.forceRunRequested]
    *
    * @param {string} [options.body.inputRefreshMode] Possible values include:
-   * 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified', 'Failed'
+   * 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified',
+   * 'Failed', 'None'
+   *
+   * @param {object} [options.body.options]
+   *
+   * @param {boolean} [options.body.options.runDownstreamAfterMerge]
    *
    * @param {string} [options.operationType] The workflow operation type.
    *
@@ -5197,17 +5942,15 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  submitAWorkflowJobWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.OnDemandJobRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  submitAWorkflowJobWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary SubmitWorkflowJob
-   * forceRunRequested indicating whether to force run.
    *
-   * Submits a workflow of
-   * Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
-   * instance specified in instanceId.
+   * Submits a workflow of OperationTypeoperationType for the instance specified
+   * in instanceId.
    * Optionally takes a list of identifiers, only if operationType is not
-   * Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+   * OperationType.All and a flag
    * forceRunRequested indicating whether to force run.
    *
    * @param {string} instanceId Format - uuid. The Customer Insights instance id.
@@ -5238,7 +5981,12 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.body.forceRunRequested]
    *
    * @param {string} [options.body.inputRefreshMode] Possible values include:
-   * 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified', 'Failed'
+   * 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified',
+   * 'Failed', 'None'
+   *
+   * @param {object} [options.body.options]
+   *
+   * @param {boolean} [options.body.options.runDownstreamAfterMerge]
    *
    * @param {string} [options.operationType] The workflow operation type.
    *
@@ -5270,9 +6018,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  submitAWorkflowJob(instanceId: string, workflowName: string, options?: { body? : models.OnDemandJobRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  submitAWorkflowJob(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   submitAWorkflowJob(instanceId: string, workflowName: string, callback: ServiceCallback<any>): void;
-  submitAWorkflowJob(instanceId: string, workflowName: string, options: { body? : models.OnDemandJobRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  submitAWorkflowJob(instanceId: string, workflowName: string, options: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -5549,14 +6297,27 @@ export default class CustomerInsights extends ServiceClient {
    * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
    * 'roleAssignment', 'analysis', 'all'
    *
-   * @param {string} [options.body.subType] Possible values include:
-   * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'
+   * @param {string} [options.body.subType] Possible values include: 'noSubType',
+   * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+   * 'singleActivityMapping', 'powerPlatform'
    *
    * @param {array} [options.body.identifiers] Gets the identifiers of the
    * schedule
    *
    * @param {string} [options.body.jobType] Possible values include: 'full',
    * 'incremental'
+   *
+   * @param {boolean} [options.body.isActive] Gets a value indicating whether the
+   * schedule is active.
+   *
+   * @param {string} [options.body.timezoneId] Gets the ID of the timezone
+   *
+   * @param {array} [options.body.cronSchedules] Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.scheduleId] Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -5567,7 +6328,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createWorkflowRefreshScheduleWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createWorkflowRefreshScheduleWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateWorkflowRefreshSchedule
@@ -5589,14 +6350,27 @@ export default class CustomerInsights extends ServiceClient {
    * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
    * 'roleAssignment', 'analysis', 'all'
    *
-   * @param {string} [options.body.subType] Possible values include:
-   * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'
+   * @param {string} [options.body.subType] Possible values include: 'noSubType',
+   * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+   * 'singleActivityMapping', 'powerPlatform'
    *
    * @param {array} [options.body.identifiers] Gets the identifiers of the
    * schedule
    *
    * @param {string} [options.body.jobType] Possible values include: 'full',
    * 'incremental'
+   *
+   * @param {boolean} [options.body.isActive] Gets a value indicating whether the
+   * schedule is active.
+   *
+   * @param {string} [options.body.timezoneId] Gets the ID of the timezone
+   *
+   * @param {array} [options.body.cronSchedules] Gets the schedule in CRON format
+   *
+   * @param {uuid} [options.body.scheduleId] Gets the ID of the schedule
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -5622,9 +6396,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createWorkflowRefreshSchedule(instanceId: string, workflowName: string, callback: ServiceCallback<any>): void;
-  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options: { body? : models.WorkflowRefreshSchedule, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**

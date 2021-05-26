@@ -21,10 +21,10 @@ class Evaluation(Model):
     :param state: Possible values include: 'none', 'running', 'failed',
      'completed'
     :type state: str or ~dynamics.customerinsights.api.models.enum
-    :param end_time: Gets or sets the evaluation completion time.
+    :param end_time: Evaluation completion time.
     :type end_time: datetime
-    :param error: Gets or sets the error (if any) that occured during the
-     measure evaluation.
+    :param error: Error Information (if any) that occured during the measure
+     evaluation.
     :type error: str
     """
 

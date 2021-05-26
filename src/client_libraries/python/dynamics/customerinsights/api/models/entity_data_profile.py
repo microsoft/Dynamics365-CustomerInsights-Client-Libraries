@@ -9,19 +9,19 @@ from msrest.serialization import Model
 
 
 class EntityDataProfile(Model):
-    """EntityDataProfile.
+    """Represents Entity Data Profile information.
 
-    :param qualified_entity_name:
+    :param qualified_entity_name: Qualified Entity Name.
     :type qualified_entity_name: str
-    :param row_count:
+    :param row_count: Row count.
     :type row_count: long
-    :param quarantine_row_count:
+    :param quarantine_row_count: Quarentine row count
     :type quarantine_row_count: long
-    :param profiling_date:
+    :param profiling_date: Date for Profiling.
     :type profiling_date: datetime
-    :param profiled_attributes:
+    :param profiled_attributes: Profiling attributes.
     :type profiled_attributes: str
-    :param corrupt_attributes:
+    :param corrupt_attributes: Respresents currupt attributes.
     :type corrupt_attributes: str
     """
 

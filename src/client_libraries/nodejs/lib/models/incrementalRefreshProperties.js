@@ -13,22 +13,18 @@
 class IncrementalRefreshProperties {
   /**
    * Create a IncrementalRefreshProperties.
-   * @property {string} [entityName] Gets the name of the entity.
-   * @property {string} [detectChangesAttributeName] Gets the column to detect
-   * changes.
-   * @property {string} [filterByAttributeName] Gets the column to get
-   * incremental data.
-   * @property {string} [incrementalGranularity] Gets the granularity of the
-   * incremental refresh.
-   * @property {number} [incrementalPeriods] Gets the incremental period.
-   * @property {boolean} [refreshCompletePeriods] Gets a value indicating
-   * whether to refresh completed periods or not.
-   * @property {number} [incrementalPeriodsOffset] Gets the off set period.
-   * @property {string} [primaryKeyAttributeName] Gets the primary key of the
-   * entity.
-   * @property {string} [rollingWindowGranularity] Gets the rolling window
-   * granularity.
-   * @property {number} [rollingWindowPeriods] Gets the Rolling window period.
+   * @property {string} [entityName] Name of the entity.
+   * @property {string} [detectChangesAttributeName] Column to detect changes.
+   * @property {string} [filterByAttributeName] Column to get incremental data.
+   * @property {string} [incrementalGranularity] Granularity of the incremental
+   * refresh.
+   * @property {number} [incrementalPeriods] Incremental period.
+   * @property {boolean} [refreshCompletePeriods] Indicating whether to refresh
+   * completed periods or not.
+   * @property {number} [incrementalPeriodsOffset] Off set period.
+   * @property {string} [primaryKeyAttributeName] Primary key of the entity.
+   * @property {string} [rollingWindowGranularity] Rolling window granularity.
+   * @property {number} [rollingWindowPeriods] Rolling window period.
    */
   constructor() {
   }

@@ -33,8 +33,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="cronSchedules">Gets the schedule in CRON
         /// format</param>
         /// <param name="scheduleId">Gets the ID of the schedule</param>
-        /// <param name="instanceId">Gets the Customer Insights instance id
-        /// associated with this object.</param>
+        /// <param name="instanceId">Customer Insights instance id associated
+        /// with this object.</param>
         public DataRefreshSchedule(bool? isActive = default(bool?), string timezoneId = default(string), IList<string> cronSchedules = default(IList<string>), System.Guid? scheduleId = default(System.Guid?), System.Guid? instanceId = default(System.Guid?))
         {
             IsActive = isActive;
@@ -54,31 +54,32 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets a value indicating whether the schedule is active.
         /// </summary>
         [JsonProperty(PropertyName = "isActive")]
-        public bool? IsActive { get; private set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
         /// Gets the ID of the timezone
         /// </summary>
         [JsonProperty(PropertyName = "timezoneId")]
-        public string TimezoneId { get; private set; }
+        public string TimezoneId { get; set; }
 
         /// <summary>
         /// Gets the schedule in CRON format
         /// </summary>
         [JsonProperty(PropertyName = "cronSchedules")]
-        public IList<string> CronSchedules { get; private set; }
+        public IList<string> CronSchedules { get; set; }
 
         /// <summary>
         /// Gets the ID of the schedule
         /// </summary>
         [JsonProperty(PropertyName = "scheduleId")]
-        public System.Guid? ScheduleId { get; private set; }
+        public System.Guid? ScheduleId { get; set; }
 
         /// <summary>
-        /// Gets the Customer Insights instance id associated with this object.
+        /// Gets or sets customer Insights instance id associated with this
+        /// object.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
     }
 }

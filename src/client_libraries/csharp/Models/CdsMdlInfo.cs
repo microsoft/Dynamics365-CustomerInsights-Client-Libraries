@@ -10,7 +10,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Linq;
 
     /// <summary>
-    /// The information on CDS MDL workspaces
+    /// The information on CDS MDL datalake folders
     /// </summary>
     public partial class CdsMdlInfo
     {
@@ -25,7 +25,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the CdsMdlInfo class.
         /// </summary>
-        public CdsMdlInfo(WorkSpaceDetail privateWorkSpace = default(WorkSpaceDetail), WorkSpaceDetail publicWorkSpace = default(WorkSpaceDetail))
+        public CdsMdlInfo(DatalakeFolderDetail privateWorkSpace = default(DatalakeFolderDetail), DatalakeFolderDetail publicWorkSpace = default(DatalakeFolderDetail))
         {
             PrivateWorkSpace = privateWorkSpace;
             PublicWorkSpace = publicWorkSpace;
@@ -40,12 +40,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "privateWorkSpace")]
-        public WorkSpaceDetail PrivateWorkSpace { get; set; }
+        public DatalakeFolderDetail PrivateWorkSpace { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "publicWorkSpace")]
-        public WorkSpaceDetail PublicWorkSpace { get; set; }
+        public DatalakeFolderDetail PublicWorkSpace { get; set; }
 
     }
 }

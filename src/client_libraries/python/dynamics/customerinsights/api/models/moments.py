@@ -11,15 +11,15 @@ from msrest.serialization import Model
 class Moments(Model):
     """Statistical moments.
 
-    :param mean: Gets or sets the mean.
+    :param mean: Represents the mean.
     :type mean: float
-    :param standard_deviation: Gets or sets the standard deviation.
+    :param standard_deviation: Represents standard deviation.
     :type standard_deviation: float
-    :param variance: Gets or sets the variance.
+    :param variance: Represents variance.
     :type variance: float
-    :param skewness: Gets or sets the skewness.
+    :param skewness: Represents skewness in data.
     :type skewness: float
-    :param kurtosis: Gets or sets the kurtosis.
+    :param kurtosis: Represents kurtosis.
     :type kurtosis: float
     """
 

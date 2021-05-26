@@ -25,9 +25,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the EvaluationStats class.
         /// </summary>
-        /// <param name="lastSuccessful">Gets the last successful
-        /// evaluation</param>
-        /// <param name="consecutiveFailureCount">Gets the number of
+        /// <param name="lastSuccessful">Last successful evaluation</param>
+        /// <param name="consecutiveFailureCount">Represents Number of
         /// consecutive failures</param>
         public EvaluationStats(System.DateTime? lastSuccessful = default(System.DateTime?), int? consecutiveFailureCount = default(int?))
         {
@@ -42,13 +41,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets the last successful evaluation
+        /// Gets or sets last successful evaluation
         /// </summary>
         [JsonProperty(PropertyName = "lastSuccessful")]
         public System.DateTime? LastSuccessful { get; set; }
 
         /// <summary>
-        /// Gets the number of consecutive failures
+        /// Gets or sets represents Number of consecutive failures
         /// </summary>
         [JsonProperty(PropertyName = "consecutiveFailureCount")]
         public int? ConsecutiveFailureCount { get; set; }

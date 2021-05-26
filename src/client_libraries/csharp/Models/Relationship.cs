@@ -50,7 +50,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "annotations")]
-        public IList<Annotation> Annotations { get; private set; }
+        public IList<Annotation> Annotations { get; set; }
 
     }
 }

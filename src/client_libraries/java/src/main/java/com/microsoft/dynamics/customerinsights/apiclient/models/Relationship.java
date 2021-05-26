@@ -28,7 +28,7 @@ public class Relationship {
     /**
      * The annotations property.
      */
-    @JsonProperty(value = "annotations", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "annotations")
     private List<Annotation> annotations;
 
     /**
@@ -78,6 +78,17 @@ public class Relationship {
      */
     public List<Annotation> annotations() {
         return this.annotations;
+    }
+
+    /**
+     * Set the annotations value.
+     *
+     * @param annotations the annotations value to set
+     * @return the Relationship object itself.
+     */
+    public Relationship withAnnotations(List<Annotation> annotations) {
+        this.annotations = annotations;
+        return this;
     }
 
 }

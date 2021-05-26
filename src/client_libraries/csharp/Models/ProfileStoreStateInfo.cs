@@ -27,8 +27,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="ingestionTime">Gets the latest date of
         /// ingestion.</param>
-        /// <param name="instanceId">Gets the Customer Insights instance id
-        /// associated with this object.</param>
+        /// <param name="instanceId">Customer Insights instance id associated
+        /// with this object.</param>
         public ProfileStoreStateInfo(System.DateTime? ingestionTime = default(System.DateTime?), ProfileStoreCollectionInfo primaryInfo = default(ProfileStoreCollectionInfo), ProfileStoreCollectionInfo secondaryInfo = default(ProfileStoreCollectionInfo), System.Guid? instanceId = default(System.Guid?))
         {
             IngestionTime = ingestionTime;
@@ -60,10 +60,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public ProfileStoreCollectionInfo SecondaryInfo { get; set; }
 
         /// <summary>
-        /// Gets the Customer Insights instance id associated with this object.
+        /// Gets or sets customer Insights instance id associated with this
+        /// object.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
     }
 }

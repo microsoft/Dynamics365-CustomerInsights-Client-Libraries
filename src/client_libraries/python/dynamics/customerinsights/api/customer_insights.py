@@ -126,8 +126,7 @@ class CustomerInsights(SDKClient):
             self, instance_id, custom_headers=None, raw=False, **operation_config):
         """GetAllDataSources.
 
-        Fetches a collection of
-        Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the
+        Returns a collections of DataSourceInfo configured for the given
         Customer Insights instance.
 
         :param instance_id: Format - uuid. The instance id for which to fetch
@@ -197,8 +196,8 @@ class CustomerInsights(SDKClient):
             self, instance_id, data_source_id, custom_headers=None, raw=False, **operation_config):
         """GetDataSource.
 
-        Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching
-        the dataSourceId configured for the Customer Insights instance.
+        Fetches a DataSourceInfo matching the dataSourceId configured for the
+        Customer Insights instance.
 
         :param instance_id: Format - uuid. The instance id to fetch data
          source info for.
@@ -337,7 +336,7 @@ class CustomerInsights(SDKClient):
             self, instance_id, entity_name, body=None, valid_until=None, caller=None, custom_headers=None, raw=False, **operation_config):
         """CreateEntity (Preview).
 
-        Writes an entity instance into the store, e.g. an activity entity.
+        Writes an entity instance into the store, g. an activity entity.
 
         :param instance_id: Format - uuid. Customer Insights instance Id.
         :type instance_id: str
@@ -441,7 +440,7 @@ class CustomerInsights(SDKClient):
             self, instance_id, entity_name, entity_id, body=None, valid_until=None, caller=None, custom_headers=None, raw=False, **operation_config):
         """UpdateEntity (Preview).
 
-        Updates an entity instance in the store, e.g. Customer entity.
+        Updates an entity instance in the store, g. Customer entity.
 
         :param instance_id: Format - uuid. Customer Insights instance Id.
         :type instance_id: str
@@ -620,7 +619,7 @@ class CustomerInsights(SDKClient):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code not in [200, 400, 401, 404, 500, 503]:
+        if response.status_code not in [200, 400, 401, 404, 406, 500, 503]:
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
@@ -637,6 +636,11 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
+            deserialized = self._deserialize('ODataError', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 406:
             deserialized = self._deserialize('ODataError', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
@@ -903,7 +907,7 @@ class CustomerInsights(SDKClient):
 
     def reset_an_instance(
             self, instance_id, instance_management_operation_scope=None, custom_headers=None, raw=False, **operation_config):
-        """ResetInstance (Preview).
+        """ResetInstance.
 
         Reset scopes in the given instance. Provide optional management
         operation scope to reset only that scope.
@@ -1275,7 +1279,7 @@ class CustomerInsights(SDKClient):
 
         :param body: The instance creation request.
         :type body:
-         ~dynamics.customerinsights.api.models.InstanceCreationRequest
+         ~dynamics.customerinsights.api.models.InstancesV2PostRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1301,7 +1305,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstanceCreationRequest')
+            body_content = self._serialize.body(body, 'InstancesV2PostRequest')
         else:
             body_content = None
 
@@ -1360,7 +1364,7 @@ class CustomerInsights(SDKClient):
         :type instance_id: str
         :param body:
         :type body:
-         ~dynamics.customerinsights.api.models.InstanceCreationRequest
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdV2PatchRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1390,7 +1394,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstanceCreationRequest')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdV2PatchRequest')
         else:
             body_content = None
 
@@ -1440,7 +1444,8 @@ class CustomerInsights(SDKClient):
         Create a new instance and copy metadata from an existing instance.
 
         :param body: The metadata to use to create the new instance.
-        :type body: ~dynamics.customerinsights.api.models.InstanceCopyRequest
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesCopyPostRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1466,7 +1471,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstanceCopyRequest')
+            body_content = self._serialize.body(body, 'InstancesCopyPostRequest')
         else:
             body_content = None
 
@@ -1586,7 +1591,8 @@ class CustomerInsights(SDKClient):
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
         :param body: New Measure metadata to be created
-        :type body: ~dynamics.customerinsights.api.models.MeasureMetadata
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageMeasuresPostRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1616,7 +1622,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'MeasureMetadata')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdManageMeasuresPostRequest')
         else:
             body_content = None
 
@@ -1742,7 +1748,8 @@ class CustomerInsights(SDKClient):
         :param measure_name: Name of the measure
         :type measure_name: str
         :param body: Update measure metadata
-        :type body: ~dynamics.customerinsights.api.models.MeasureMetadata
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1773,7 +1780,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'MeasureMetadata')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdManageMeasuresMeasureNamePutRequest')
         else:
             body_content = None
 
@@ -2160,7 +2167,8 @@ class CustomerInsights(SDKClient):
         :param principal_id: The principal id.
         :type principal_id: str
         :param body: The role assignment.
-        :type body: ~dynamics.customerinsights.api.models.RoleAssignment
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2192,7 +2200,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'RoleAssignment')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest')
         else:
             body_content = None
 
@@ -2408,7 +2416,8 @@ class CustomerInsights(SDKClient):
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
         :param body: The updated relationship metadata
-        :type body: ~dynamics.customerinsights.api.models.RelationshipMetadata
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageRelationshipsPostRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2438,7 +2447,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'RelationshipMetadata')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdManageRelationshipsPostRequest')
         else:
             body_content = None
 
@@ -2602,7 +2611,7 @@ class CustomerInsights(SDKClient):
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('DeletionResponse', response)
+            deserialized = self._deserialize('OkResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2637,7 +2646,8 @@ class CustomerInsights(SDKClient):
         :param relationship_name: Relationship name
         :type relationship_name: str
         :param body: The updated relationship metadata
-        :type body: ~dynamics.customerinsights.api.models.RelationshipMetadata
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2668,7 +2678,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'RelationshipMetadata')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest')
         else:
             body_content = None
 
@@ -2789,7 +2799,7 @@ class CustomerInsights(SDKClient):
         :type instance_id: str
         :param body: The search configuration for the instance.
         :type body:
-         ~dynamics.customerinsights.api.models.InstanceSearchConfiguration
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageSearchPutRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2819,7 +2829,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstanceSearchConfiguration')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdManageSearchPutRequest')
         else:
             body_content = None
 
@@ -2863,7 +2873,7 @@ class CustomerInsights(SDKClient):
     update_search_configuration.metadata = {'url': '/instances/{instanceId}/manage/search'}
 
     def get_all_segments(
-            self, instance_id, include_historic_stats=False, historic_stats_days=10, custom_headers=None, raw=False, **operation_config):
+            self, instance_id, include_historic_stats=False, historic_stats_days=10, number_of_segments=None, custom_headers=None, raw=False, **operation_config):
         """ListAllSegments.
 
         Retrieves a list of segment metadata for the provided instanceId.
@@ -2876,6 +2886,9 @@ class CustomerInsights(SDKClient):
         :param historic_stats_days: Format - int32. Optional parameter to get
          number of days evaluation history.
         :type historic_stats_days: int
+        :param number_of_segments: Format - int32. Optional parameter to limit
+         the number of segments returned.
+        :type number_of_segments: int
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2899,6 +2912,8 @@ class CustomerInsights(SDKClient):
             query_parameters['includeHistoricStats'] = self._serialize.query("include_historic_stats", include_historic_stats, 'bool')
         if historic_stats_days is not None:
             query_parameters['historicStatsDays'] = self._serialize.query("historic_stats_days", historic_stats_days, 'int')
+        if number_of_segments is not None:
+            query_parameters['numberOfSegments'] = self._serialize.query("number_of_segments", number_of_segments, 'int')
 
         # Construct headers
         header_parameters = {}
@@ -2944,7 +2959,8 @@ class CustomerInsights(SDKClient):
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
         :param body: New Segment metadata to be created
-        :type body: ~dynamics.customerinsights.api.models.SegmentMetadata
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageSegmentsPostRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2974,7 +2990,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'SegmentMetadata')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdManageSegmentsPostRequest')
         else:
             body_content = None
 
@@ -3151,7 +3167,8 @@ class CustomerInsights(SDKClient):
         :param segment_name: Unique name of a segment
         :type segment_name: str
         :param body: New Segment metadata to be updated
-        :type body: ~dynamics.customerinsights.api.models.SegmentMetadata
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -3182,7 +3199,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'SegmentMetadata')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdManageSegmentsSegmentNamePutRequest')
         else:
             body_content = None
 
@@ -3515,14 +3532,12 @@ class CustomerInsights(SDKClient):
 
     def submit_a_workflow_job(
             self, instance_id, workflow_name, body=None, operation_type=None, identifiers=None, force_run_requested=False, custom_headers=None, raw=False, **operation_config):
-        """SubmitWorkflowJob
-        forceRunRequested indicating whether to force run.
+        """SubmitWorkflowJob.
 
-        Submits a workflow of
-        Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
-        instance specified in instanceId.
+        Submits a workflow of OperationTypeoperationType for the instance
+        specified in instanceId.
         Optionally takes a list of identifiers, only if operationType is not
-        Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+        OperationType.All and a flag
         forceRunRequested indicating whether to force run.
 
         :param instance_id: Format - uuid. The Customer Insights instance id.
@@ -3530,7 +3545,8 @@ class CustomerInsights(SDKClient):
         :param workflow_name: The workflow name.
         :type workflow_name: str
         :param body: Job Creation Request.
-        :type body: ~dynamics.customerinsights.api.models.OnDemandJobRequest
+        :type body:
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest
         :param operation_type: The workflow operation type.
         :type operation_type: str
         :param identifiers: A list of workflow identifiers.
@@ -3573,7 +3589,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'OnDemandJobRequest')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest')
         else:
             body_content = None
 
@@ -3902,7 +3918,7 @@ class CustomerInsights(SDKClient):
         :type workflow_name: str
         :param body: A schedule object to create.
         :type body:
-         ~dynamics.customerinsights.api.models.WorkflowRefreshSchedule
+         ~dynamics.customerinsights.api.models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -3933,7 +3949,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'WorkflowRefreshSchedule')
+            body_content = self._serialize.body(body, 'InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest')
         else:
             body_content = None
 

@@ -7,7 +7,8 @@
 'use strict';
 
 /**
- * Class representing a DataSourceInfo.
+ * Data source Information
+ *
  */
 class DataSourceInfo {
   /**
@@ -16,40 +17,42 @@ class DataSourceInfo {
    * @property {string} [dataSourceMetadata.kind] Possible values include:
    * 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
    * 'powerPlatform', 'datahub'
-   * @property {boolean} [dataSourceMetadata.isActive]
-   * @property {array} [dataSourceMetadata.entityNames]
-   * @property {uuid} [dataSourceMetadata.dataSourceId] Gets the unique
-   * identity for this object.
-   * @property {string} [dataSourceMetadata.name] Gets the unique name of the
+   * @property {boolean} [dataSourceMetadata.isActive] Represents if still in
+   * active state
+   * @property {array} [dataSourceMetadata.entityNames] List of all Entity
+   * Names
+   * @property {uuid} [dataSourceMetadata.dataSourceId] Unique identity for
+   * this object.
+   * @property {string} [dataSourceMetadata.name] Unique name of the
    * dataSource.
-   * @property {string} [dataSourceMetadata.friendlyName] Gets the friendlyName
-   * of the dataSource.
-   * @property {array} [dataSourceMetadata.entityInformation] Gets the entity
+   * @property {string} [dataSourceMetadata.friendlyName] FriendlyName of the
+   * dataSource.
+   * @property {array} [dataSourceMetadata.entityInformation] Entity
    * information, by entity name.
    * @property {string} [dataSourceMetadata.provisioningState] Possible values
    * include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
    * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
-   * @property {date} [dataSourceMetadata.lastRefresh] Gets the time datasource
-   * was last refreshed.
+   * @property {date} [dataSourceMetadata.lastRefresh] Represents the time
+   * datasource was last refreshed.
    * @property {string} [dataSourceMetadata.refreshState] Possible values
    * include: 'notUpdated', 'updated', 'updating', 'updateFailed',
    * 'updateCancelled'
-   * @property {array} [dataSourceMetadata.incrementalRefreshProperties] Gets
-   * the Incremental refresh properties for entities.
-   * @property {string} [dataSourceMetadata.modelJsonPath] Gets the model path
-   * for CDM data source.
-   * @property {number} [dataSourceMetadata.version] Gets the version number of
-   * this object.
-   * @property {string} [dataSourceMetadata.updatedBy] Gets the UPN of the user
-   * who last updated this record.
-   * @property {date} [dataSourceMetadata.updatedUtc] Gets the time the object
-   * was last updated.
-   * @property {string} [dataSourceMetadata.createdBy] Gets the email address
-   * of the user who created this record.
-   * @property {date} [dataSourceMetadata.createdUtc] Gets the time the object
-   * was initially created.
-   * @property {uuid} [dataSourceMetadata.instanceId] Gets the Customer
-   * Insights instance id associated with this object.
+   * @property {array} [dataSourceMetadata.incrementalRefreshProperties]
+   * Incremental refresh properties for entities.
+   * @property {string} [dataSourceMetadata.modelJsonPath] Model path for CDM
+   * data source.
+   * @property {number} [dataSourceMetadata.version] Version number of this
+   * object.
+   * @property {string} [dataSourceMetadata.updatedBy] UPN of the user who last
+   * updated this record.
+   * @property {date} [dataSourceMetadata.updatedUtc] Time this object was last
+   * updated.
+   * @property {string} [dataSourceMetadata.createdBy] Email address of the
+   * user who created this record.
+   * @property {date} [dataSourceMetadata.createdUtc] Time this object was
+   * initially created.
+   * @property {uuid} [dataSourceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    * @property {object} [model]
    * @property {string} [model.name]
    * @property {string} [model.description]

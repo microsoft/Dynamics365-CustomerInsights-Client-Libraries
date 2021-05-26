@@ -29,8 +29,8 @@ class InstanceCreationRequest {
    * the schedule in CRON format
    * @property {uuid} [instanceMetadata.refreshSchedule.scheduleId] Gets the ID
    * of the schedule
-   * @property {uuid} [instanceMetadata.refreshSchedule.instanceId] Gets the
-   * Customer Insights instance id associated with this object.
+   * @property {uuid} [instanceMetadata.refreshSchedule.instanceId] Customer
+   * Insights instance id associated with this object.
    * @property {date} [instanceMetadata.expiryTimeUtc] Gets the time the
    * instance is set to expire.
    * @property {string} [instanceMetadata.region] Gets the Azure region where
@@ -45,32 +45,32 @@ class InstanceCreationRequest {
    * @property {object} [instanceMetadata.cdsMdlInfo]
    * @property {object} [instanceMetadata.cdsMdlInfo.privateWorkSpace]
    * @property {string} [instanceMetadata.cdsMdlInfo.privateWorkSpace.name]
-   * Gets the Workspace Friendly Name
+   * Gets the datalake folder Friendly Name
    * @property {string}
    * [instanceMetadata.cdsMdlInfo.privateWorkSpace.uniqueName] Gets the Cds
-   * workspace unique Name
+   * datalake folder unique Name
    * @property {object} [instanceMetadata.cdsMdlInfo.publicWorkSpace]
    * @property {string} [instanceMetadata.cdsMdlInfo.publicWorkSpace.name] Gets
-   * the Workspace Friendly Name
+   * the datalake folder Friendly Name
    * @property {string}
    * [instanceMetadata.cdsMdlInfo.publicWorkSpace.uniqueName] Gets the Cds
-   * workspace unique Name
+   * datalake folder unique Name
    * @property {number} [instanceMetadata.maxTrialExtensionsAllowed] Gets the
    * total number of extensions allowed if this is trial instance
    * @property {string} [instanceMetadata.trialExtensionHistory] Stores the
    * details of trial extensions done if this is a trial instance
-   * @property {number} [instanceMetadata.version] Gets the version number of
-   * this object.
-   * @property {string} [instanceMetadata.updatedBy] Gets the UPN of the user
-   * who last updated this record.
-   * @property {date} [instanceMetadata.updatedUtc] Gets the time the object
-   * was last updated.
-   * @property {string} [instanceMetadata.createdBy] Gets the email address of
-   * the user who created this record.
-   * @property {date} [instanceMetadata.createdUtc] Gets the time the object
-   * was initially created.
-   * @property {uuid} [instanceMetadata.instanceId] Gets the Customer Insights
-   * instance id associated with this object.
+   * @property {number} [instanceMetadata.version] Version number of this
+   * object.
+   * @property {string} [instanceMetadata.updatedBy] UPN of the user who last
+   * updated this record.
+   * @property {date} [instanceMetadata.updatedUtc] Time this object was last
+   * updated.
+   * @property {string} [instanceMetadata.createdBy] Email address of the user
+   * who created this record.
+   * @property {date} [instanceMetadata.createdUtc] Time this object was
+   * initially created.
+   * @property {uuid} [instanceMetadata.instanceId] Customer Insights instance
+   * id associated with this object.
    * @property {object} [byosaResourceMetadata]
    * @property {string} [byosaResourceMetadata.kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
@@ -90,18 +90,18 @@ class InstanceCreationRequest {
    * resource.
    * @property {string} [byosaResourceMetadata.description] Gets the
    * Description of the resource.
-   * @property {number} [byosaResourceMetadata.version] Gets the version number
-   * of this object.
-   * @property {string} [byosaResourceMetadata.updatedBy] Gets the UPN of the
-   * user who last updated this record.
-   * @property {date} [byosaResourceMetadata.updatedUtc] Gets the time the
-   * object was last updated.
-   * @property {string} [byosaResourceMetadata.createdBy] Gets the email
-   * address of the user who created this record.
-   * @property {date} [byosaResourceMetadata.createdUtc] Gets the time the
-   * object was initially created.
-   * @property {uuid} [byosaResourceMetadata.instanceId] Gets the Customer
-   * Insights instance id associated with this object.
+   * @property {number} [byosaResourceMetadata.version] Version number of this
+   * object.
+   * @property {string} [byosaResourceMetadata.updatedBy] UPN of the user who
+   * last updated this record.
+   * @property {date} [byosaResourceMetadata.updatedUtc] Time this object was
+   * last updated.
+   * @property {string} [byosaResourceMetadata.createdBy] Email address of the
+   * user who created this record.
+   * @property {date} [byosaResourceMetadata.createdUtc] Time this object was
+   * initially created.
+   * @property {uuid} [byosaResourceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    * @property {object} [cdsResourceMetadata]
    * @property {string} [cdsResourceMetadata.kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
@@ -121,18 +121,18 @@ class InstanceCreationRequest {
    * resource.
    * @property {string} [cdsResourceMetadata.description] Gets the Description
    * of the resource.
-   * @property {number} [cdsResourceMetadata.version] Gets the version number
-   * of this object.
-   * @property {string} [cdsResourceMetadata.updatedBy] Gets the UPN of the
-   * user who last updated this record.
-   * @property {date} [cdsResourceMetadata.updatedUtc] Gets the time the object
-   * was last updated.
-   * @property {string} [cdsResourceMetadata.createdBy] Gets the email address
-   * of the user who created this record.
-   * @property {date} [cdsResourceMetadata.createdUtc] Gets the time the object
-   * was initially created.
-   * @property {uuid} [cdsResourceMetadata.instanceId] Gets the Customer
-   * Insights instance id associated with this object.
+   * @property {number} [cdsResourceMetadata.version] Version number of this
+   * object.
+   * @property {string} [cdsResourceMetadata.updatedBy] UPN of the user who
+   * last updated this record.
+   * @property {date} [cdsResourceMetadata.updatedUtc] Time this object was
+   * last updated.
+   * @property {string} [cdsResourceMetadata.createdBy] Email address of the
+   * user who created this record.
+   * @property {date} [cdsResourceMetadata.createdUtc] Time this object was
+   * initially created.
+   * @property {uuid} [cdsResourceMetadata.instanceId] Customer Insights
+   * instance id associated with this object.
    * @property {string} [bapProvisioningType] Possible values include: 'skip',
    * 'create', 'attach'
    */

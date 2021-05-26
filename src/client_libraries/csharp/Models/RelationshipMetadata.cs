@@ -43,18 +43,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// relationship points to.</param>
         /// <param name="cardinality">Possible values include: 'oneToMany',
         /// 'oneToOne'</param>
-        /// <param name="version">Gets the version number of this
-        /// object.</param>
-        /// <param name="updatedBy">Gets the UPN of the user who last updated
-        /// this record.</param>
-        /// <param name="updatedUtc">Gets the time the object was last
-        /// updated.</param>
-        /// <param name="createdBy">Gets the email address of the user who
-        /// created this record.</param>
-        /// <param name="createdUtc">Gets the time the object was initially
+        /// <param name="version">Version number of this object.</param>
+        /// <param name="updatedBy">UPN of the user who last updated this
+        /// record.</param>
+        /// <param name="updatedUtc">Time this object was last updated.</param>
+        /// <param name="createdBy">Email address of the user who created this
+        /// record.</param>
+        /// <param name="createdUtc">Time this object was initially
         /// created.</param>
-        /// <param name="instanceId">Gets the Customer Insights instance id
-        /// associated with this object.</param>
+        /// <param name="instanceId">Customer Insights instance id associated
+        /// with this object.</param>
         public RelationshipMetadata(string friendlyName = default(string), string name = default(string), string description = default(string), string relationshipType = default(string), string fromAttributeName = default(string), string fromEntityName = default(string), string toAttributeName = default(string), string toEntityName = default(string), string cardinality = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             FriendlyName = friendlyName;
@@ -139,40 +137,41 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string Cardinality { get; set; }
 
         /// <summary>
-        /// Gets the version number of this object.
+        /// Gets or sets version number of this object.
         /// </summary>
         [JsonProperty(PropertyName = "version")]
-        public long? Version { get; private set; }
+        public long? Version { get; set; }
 
         /// <summary>
-        /// Gets the UPN of the user who last updated this record.
+        /// Gets or sets UPN of the user who last updated this record.
         /// </summary>
         [JsonProperty(PropertyName = "updatedBy")]
-        public string UpdatedBy { get; private set; }
+        public string UpdatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was last updated.
+        /// Gets or sets time this object was last updated.
         /// </summary>
         [JsonProperty(PropertyName = "updatedUtc")]
-        public System.DateTime? UpdatedUtc { get; private set; }
+        public System.DateTime? UpdatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the email address of the user who created this record.
+        /// Gets or sets email address of the user who created this record.
         /// </summary>
         [JsonProperty(PropertyName = "createdBy")]
-        public string CreatedBy { get; private set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was initially created.
+        /// Gets or sets time this object was initially created.
         /// </summary>
         [JsonProperty(PropertyName = "createdUtc")]
-        public System.DateTime? CreatedUtc { get; private set; }
+        public System.DateTime? CreatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the Customer Insights instance id associated with this object.
+        /// Gets or sets customer Insights instance id associated with this
+        /// object.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
     }
 }

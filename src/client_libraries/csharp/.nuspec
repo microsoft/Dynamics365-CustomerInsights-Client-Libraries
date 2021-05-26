@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Microsoft.Dynamics.CustomerInsights.Api</id>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
         <authors>Microsoft</authors>
         <projectUrl>https://developer.ci.ai.dynamics.com</projectUrl>
         <license type="expression">MS-PL</license>
@@ -44,4 +44,3 @@
         <file src=".\bin\Release\net452\Microsoft.Dynamics.CustomerInsights.Api.pdb" target="lib\net452" />
     </files>
 </package>
-

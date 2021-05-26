@@ -34,7 +34,6 @@ class RoleDefinition {
         modelProperties: {
           description: {
             required: false,
-            readOnly: true,
             serializedName: 'description',
             type: {
               name: 'String'
@@ -42,7 +41,6 @@ class RoleDefinition {
           },
           roleName: {
             required: false,
-            readOnly: true,
             serializedName: 'roleName',
             type: {
               name: 'String'

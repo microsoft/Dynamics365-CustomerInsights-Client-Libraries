@@ -13,61 +13,61 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Quantiles {
     /**
-     * Gets or sets the 1% quantile.
+     * Represents 1% quantile.
      */
     @JsonProperty(value = "p0D1")
     private Double p0D1;
 
     /**
-     * Gets or sets the 1% quantile.
+     * Represents 1% quantile.
      */
     @JsonProperty(value = "p1")
     private Double p1;
 
     /**
-     * Gets or sets the 5% quantile.
+     * Represents 5% quantile.
      */
     @JsonProperty(value = "p5")
     private Double p5;
 
     /**
-     * Gets or sets the 25% quantile.
+     * Represents 25% quantile.
      */
     @JsonProperty(value = "p25")
     private Double p25;
 
     /**
-     * Gets or sets the 50% quantile.
+     * Represents 50% quantile.
      */
     @JsonProperty(value = "p50")
     private Double p50;
 
     /**
-     * Gets or sets the 75% quantile.
+     * Represents 75% quantile.
      */
     @JsonProperty(value = "p75")
     private Double p75;
 
     /**
-     * Gets or sets the 95% quantile.
+     * Represents 95% quantile.
      */
     @JsonProperty(value = "p95")
     private Double p95;
 
     /**
-     * Gets or sets the 99% quantile.
+     * Represents 99% quantile.
      */
     @JsonProperty(value = "p99")
     private Double p99;
 
     /**
-     * Gets or sets the 9% quantile.
+     * Represents 9% quantile.
      */
     @JsonProperty(value = "p99D9")
     private Double p99D9;
 
     /**
-     * Get gets or sets the 1% quantile.
+     * Get represents 1% quantile.
      *
      * @return the p0D1 value
      */
@@ -76,7 +76,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 1% quantile.
+     * Set represents 1% quantile.
      *
      * @param p0D1 the p0D1 value to set
      * @return the Quantiles object itself.
@@ -87,7 +87,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 1% quantile.
+     * Get represents 1% quantile.
      *
      * @return the p1 value
      */
@@ -96,7 +96,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 1% quantile.
+     * Set represents 1% quantile.
      *
      * @param p1 the p1 value to set
      * @return the Quantiles object itself.
@@ -107,7 +107,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 5% quantile.
+     * Get represents 5% quantile.
      *
      * @return the p5 value
      */
@@ -116,7 +116,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 5% quantile.
+     * Set represents 5% quantile.
      *
      * @param p5 the p5 value to set
      * @return the Quantiles object itself.
@@ -127,7 +127,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 25% quantile.
+     * Get represents 25% quantile.
      *
      * @return the p25 value
      */
@@ -136,7 +136,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 25% quantile.
+     * Set represents 25% quantile.
      *
      * @param p25 the p25 value to set
      * @return the Quantiles object itself.
@@ -147,7 +147,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 50% quantile.
+     * Get represents 50% quantile.
      *
      * @return the p50 value
      */
@@ -156,7 +156,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 50% quantile.
+     * Set represents 50% quantile.
      *
      * @param p50 the p50 value to set
      * @return the Quantiles object itself.
@@ -167,7 +167,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 75% quantile.
+     * Get represents 75% quantile.
      *
      * @return the p75 value
      */
@@ -176,7 +176,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 75% quantile.
+     * Set represents 75% quantile.
      *
      * @param p75 the p75 value to set
      * @return the Quantiles object itself.
@@ -187,7 +187,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 95% quantile.
+     * Get represents 95% quantile.
      *
      * @return the p95 value
      */
@@ -196,7 +196,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 95% quantile.
+     * Set represents 95% quantile.
      *
      * @param p95 the p95 value to set
      * @return the Quantiles object itself.
@@ -207,7 +207,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 99% quantile.
+     * Get represents 99% quantile.
      *
      * @return the p99 value
      */
@@ -216,7 +216,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 99% quantile.
+     * Set represents 99% quantile.
      *
      * @param p99 the p99 value to set
      * @return the Quantiles object itself.
@@ -227,7 +227,7 @@ public class Quantiles {
     }
 
     /**
-     * Get gets or sets the 9% quantile.
+     * Get represents 9% quantile.
      *
      * @return the p99D9 value
      */
@@ -236,7 +236,7 @@ public class Quantiles {
     }
 
     /**
-     * Set gets or sets the 9% quantile.
+     * Set represents 9% quantile.
      *
      * @param p99D9 the p99D9 value to set
      * @return the Quantiles object itself.

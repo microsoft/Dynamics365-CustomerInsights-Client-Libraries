@@ -13,37 +13,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Moments {
     /**
-     * Gets or sets the mean.
+     * Represents the mean.
      */
     @JsonProperty(value = "mean")
     private Double mean;
 
     /**
-     * Gets or sets the standard deviation.
+     * Represents standard deviation.
      */
     @JsonProperty(value = "standardDeviation")
     private Double standardDeviation;
 
     /**
-     * Gets or sets the variance.
+     * Represents variance.
      */
     @JsonProperty(value = "variance")
     private Double variance;
 
     /**
-     * Gets or sets the skewness.
+     * Represents skewness in data.
      */
     @JsonProperty(value = "skewness")
     private Double skewness;
 
     /**
-     * Gets or sets the kurtosis.
+     * Represents kurtosis.
      */
     @JsonProperty(value = "kurtosis")
     private Double kurtosis;
 
     /**
-     * Get gets or sets the mean.
+     * Get represents the mean.
      *
      * @return the mean value
      */
@@ -52,7 +52,7 @@ public class Moments {
     }
 
     /**
-     * Set gets or sets the mean.
+     * Set represents the mean.
      *
      * @param mean the mean value to set
      * @return the Moments object itself.
@@ -63,7 +63,7 @@ public class Moments {
     }
 
     /**
-     * Get gets or sets the standard deviation.
+     * Get represents standard deviation.
      *
      * @return the standardDeviation value
      */
@@ -72,7 +72,7 @@ public class Moments {
     }
 
     /**
-     * Set gets or sets the standard deviation.
+     * Set represents standard deviation.
      *
      * @param standardDeviation the standardDeviation value to set
      * @return the Moments object itself.
@@ -83,7 +83,7 @@ public class Moments {
     }
 
     /**
-     * Get gets or sets the variance.
+     * Get represents variance.
      *
      * @return the variance value
      */
@@ -92,7 +92,7 @@ public class Moments {
     }
 
     /**
-     * Set gets or sets the variance.
+     * Set represents variance.
      *
      * @param variance the variance value to set
      * @return the Moments object itself.
@@ -103,7 +103,7 @@ public class Moments {
     }
 
     /**
-     * Get gets or sets the skewness.
+     * Get represents skewness in data.
      *
      * @return the skewness value
      */
@@ -112,7 +112,7 @@ public class Moments {
     }
 
     /**
-     * Set gets or sets the skewness.
+     * Set represents skewness in data.
      *
      * @param skewness the skewness value to set
      * @return the Moments object itself.
@@ -123,7 +123,7 @@ public class Moments {
     }
 
     /**
-     * Get gets or sets the kurtosis.
+     * Get represents kurtosis.
      *
      * @return the kurtosis value
      */
@@ -132,7 +132,7 @@ public class Moments {
     }
 
     /**
-     * Set gets or sets the kurtosis.
+     * Set represents kurtosis.
      *
      * @param kurtosis the kurtosis value to set
      * @return the Moments object itself.

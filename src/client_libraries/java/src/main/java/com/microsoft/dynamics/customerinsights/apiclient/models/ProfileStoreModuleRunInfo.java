@@ -14,13 +14,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ProfileStoreModuleRunInfo {
     /**
-     * Gets the LastSuccessfulRunId for every fullyQualifiedEntity.
+     * LastSuccessfulRunId Info for every fullyQualifiedEntity.
      */
     @JsonProperty(value = "runInfo")
     private Map<String, String> runInfo;
 
     /**
-     * Get gets the LastSuccessfulRunId for every fullyQualifiedEntity.
+     * Get lastSuccessfulRunId Info for every fullyQualifiedEntity.
      *
      * @return the runInfo value
      */
@@ -29,7 +29,7 @@ public class ProfileStoreModuleRunInfo {
     }
 
     /**
-     * Set gets the LastSuccessfulRunId for every fullyQualifiedEntity.
+     * Set lastSuccessfulRunId Info for every fullyQualifiedEntity.
      *
      * @param runInfo the runInfo value to set
      * @return the ProfileStoreModuleRunInfo object itself.

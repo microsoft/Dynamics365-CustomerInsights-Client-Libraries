@@ -11,6 +11,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Represents Entity Metadata.
+    /// </summary>
     public partial class IEntityMetadata
     {
         /// <summary>
@@ -43,6 +46,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
         /// 'datahub', 'insights', 'derivedEntity',
         /// 'powerPlatformSource'</param>
+        /// <param name="shouldUseSparkSasAuth">Gets a value indicating whether
+        /// Sas Auth is used for the entity.</param>
         /// <param name="datasourceId">Gets the original datasourceid of this
         /// entity, if no data source, return null or emptyString</param>
         /// <param name="entityType">Possible values include: 'unspecified',
@@ -83,12 +88,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="incrementalDeletePartitionsParquet">Gets entity
         /// incremental delete data parquet partitions.</param>
         /// <param name="annotations">Gets base entity name</param>
-        public IEntityMetadata(string name = default(string), string qualifiedEntityName = default(string), string dataSourceName = default(string), string dataflowType = default(string), System.Guid? datasourceId = default(System.Guid?), string entityType = default(string), IList<IAttributeMetadata> attributes = default(IList<IAttributeMetadata>), IList<IList<IAttributeMetadata>> keys = default(IList<IList<IAttributeMetadata>>), IList<IRelationshipMetadata> relationships = default(IList<IRelationshipMetadata>), IAttributeMetadata timestampAttribute = default(IAttributeMetadata), IAttributeMetadata incrementalAttribute = default(IAttributeMetadata), string semanticType = default(string), System.DateTime? refreshTime = default(System.DateTime?), IList<PartitionMetadata> partitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalUpsertPartitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalDeletePartitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> fullPartitionsParquet = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalUpsertPartitionsParquet = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalDeletePartitionsParquet = default(IList<PartitionMetadata>), IList<Annotation> annotations = default(IList<Annotation>))
+        public IEntityMetadata(string name = default(string), string qualifiedEntityName = default(string), string dataSourceName = default(string), string dataflowType = default(string), bool? shouldUseSparkSasAuth = default(bool?), System.Guid? datasourceId = default(System.Guid?), string entityType = default(string), IList<IAttributeMetadata> attributes = default(IList<IAttributeMetadata>), IList<IList<IAttributeMetadata>> keys = default(IList<IList<IAttributeMetadata>>), IList<IRelationshipMetadata> relationships = default(IList<IRelationshipMetadata>), IAttributeMetadata timestampAttribute = default(IAttributeMetadata), IAttributeMetadata incrementalAttribute = default(IAttributeMetadata), string semanticType = default(string), System.DateTime? refreshTime = default(System.DateTime?), IList<PartitionMetadata> partitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalUpsertPartitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalDeletePartitions = default(IList<PartitionMetadata>), IList<PartitionMetadata> fullPartitionsParquet = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalUpsertPartitionsParquet = default(IList<PartitionMetadata>), IList<PartitionMetadata> incrementalDeletePartitionsParquet = default(IList<PartitionMetadata>), IList<Annotation> annotations = default(IList<Annotation>))
         {
             Name = name;
             QualifiedEntityName = qualifiedEntityName;
             DataSourceName = dataSourceName;
             DataflowType = dataflowType;
+            ShouldUseSparkSasAuth = shouldUseSparkSasAuth;
             DatasourceId = datasourceId;
             EntityType = entityType;
             Attributes = attributes;
@@ -117,7 +123,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets the name of the entity. eg: Contact.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the unqiue logical name for the entity
@@ -128,14 +134,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// eg: Contact.
         /// </summary>
         [JsonProperty(PropertyName = "qualifiedEntityName")]
-        public string QualifiedEntityName { get; private set; }
+        public string QualifiedEntityName { get; set; }
 
         /// <summary>
         /// Gets the datasource name of this entity, if no data source, return
         /// null or emptyString
         /// </summary>
         [JsonProperty(PropertyName = "dataSourceName")]
-        public string DataSourceName { get; private set; }
+        public string DataSourceName { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'dynamics365', 'salesforce',
@@ -150,11 +156,17 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string DataflowType { get; set; }
 
         /// <summary>
+        /// Gets a value indicating whether Sas Auth is used for the entity.
+        /// </summary>
+        [JsonProperty(PropertyName = "shouldUseSparkSasAuth")]
+        public bool? ShouldUseSparkSasAuth { get; set; }
+
+        /// <summary>
         /// Gets the original datasourceid of this entity, if no data source,
         /// return null or emptyString
         /// </summary>
         [JsonProperty(PropertyName = "datasourceId")]
-        public System.Guid? DatasourceId { get; private set; }
+        public System.Guid? DatasourceId { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'unspecified', 'profile',
@@ -169,19 +181,19 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets entity attributes.
         /// </summary>
         [JsonProperty(PropertyName = "attributes")]
-        public IList<IAttributeMetadata> Attributes { get; private set; }
+        public IList<IAttributeMetadata> Attributes { get; set; }
 
         /// <summary>
         /// Gets the keys of the entity.
         /// </summary>
         [JsonProperty(PropertyName = "keys")]
-        public IList<IList<IAttributeMetadata>> Keys { get; private set; }
+        public IList<IList<IAttributeMetadata>> Keys { get; set; }
 
         /// <summary>
         /// Gets entity relationships.
         /// </summary>
         [JsonProperty(PropertyName = "relationships")]
-        public IList<IRelationshipMetadata> Relationships { get; private set; }
+        public IList<IRelationshipMetadata> Relationships { get; set; }
 
         /// <summary>
         /// </summary>
@@ -217,49 +229,49 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets last refresh time for entity.
         /// </summary>
         [JsonProperty(PropertyName = "refreshTime")]
-        public System.DateTime? RefreshTime { get; private set; }
+        public System.DateTime? RefreshTime { get; set; }
 
         /// <summary>
         /// Gets entity data partitions.
         /// </summary>
         [JsonProperty(PropertyName = "partitions")]
-        public IList<PartitionMetadata> Partitions { get; private set; }
+        public IList<PartitionMetadata> Partitions { get; set; }
 
         /// <summary>
         /// Gets entity incremental upsert data partitions.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalUpsertPartitions")]
-        public IList<PartitionMetadata> IncrementalUpsertPartitions { get; private set; }
+        public IList<PartitionMetadata> IncrementalUpsertPartitions { get; set; }
 
         /// <summary>
         /// Gets entity incremental delete data partitions.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalDeletePartitions")]
-        public IList<PartitionMetadata> IncrementalDeletePartitions { get; private set; }
+        public IList<PartitionMetadata> IncrementalDeletePartitions { get; set; }
 
         /// <summary>
         /// Gets entity data parquet partitions.
         /// </summary>
         [JsonProperty(PropertyName = "fullPartitionsParquet")]
-        public IList<PartitionMetadata> FullPartitionsParquet { get; private set; }
+        public IList<PartitionMetadata> FullPartitionsParquet { get; set; }
 
         /// <summary>
         /// Gets entity incremental upsert data parquet partitions.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalUpsertPartitionsParquet")]
-        public IList<PartitionMetadata> IncrementalUpsertPartitionsParquet { get; private set; }
+        public IList<PartitionMetadata> IncrementalUpsertPartitionsParquet { get; set; }
 
         /// <summary>
         /// Gets entity incremental delete data parquet partitions.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalDeletePartitionsParquet")]
-        public IList<PartitionMetadata> IncrementalDeletePartitionsParquet { get; private set; }
+        public IList<PartitionMetadata> IncrementalDeletePartitionsParquet { get; set; }
 
         /// <summary>
         /// Gets base entity name
         /// </summary>
         [JsonProperty(PropertyName = "annotations")]
-        public IList<Annotation> Annotations { get; private set; }
+        public IList<Annotation> Annotations { get; set; }
 
     }
 }

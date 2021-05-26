@@ -11,6 +11,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Represents Relationship Metadata
+    /// </summary>
     public partial class IRelationshipMetadata
     {
         /// <summary>
@@ -24,9 +27,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the IRelationshipMetadata class.
         /// </summary>
+        /// <param name="name">Unique Name for relationship</param>
+        /// <param name="friendlyName">User Friendly Name for
+        /// relationship</param>
         /// <param name="relationshipType">Possible values include:
         /// 'singleKeyRelationshipOrigin', 'singleKeyRelationshipDestination',
         /// 'dataSourceLineageOrigin', 'dataSourceLineageDestination'</param>
+        /// <param name="dataSourceMappingAttributes">List of data source
+        /// mapping attributes</param>
         public IRelationshipMetadata(string name = default(string), string friendlyName = default(string), IAttributeMetadata fromAttribute = default(IAttributeMetadata), IAttributeMetadata toAttribute = default(IAttributeMetadata), string relationshipType = default(string), IEntityMetadata dataSourceEntity = default(IEntityMetadata), IList<IAttributeMetadata> dataSourceMappingAttributes = default(IList<IAttributeMetadata>))
         {
             Name = name;
@@ -45,14 +53,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
+        /// Gets or sets unique Name for relationship
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets user Friendly Name for relationship
         /// </summary>
         [JsonProperty(PropertyName = "friendlyName")]
-        public string FriendlyName { get; private set; }
+        public string FriendlyName { get; set; }
 
         /// <summary>
         /// </summary>
@@ -78,9 +88,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public IEntityMetadata DataSourceEntity { get; set; }
 
         /// <summary>
+        /// Gets or sets list of data source mapping attributes
         /// </summary>
         [JsonProperty(PropertyName = "dataSourceMappingAttributes")]
-        public IList<IAttributeMetadata> DataSourceMappingAttributes { get; private set; }
+        public IList<IAttributeMetadata> DataSourceMappingAttributes { get; set; }
 
     }
 }

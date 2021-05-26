@@ -11,9 +11,6 @@ from msrest.serialization import Model
 class ProfileStoreStateInfo(Model):
     """Represents runtime profile store state.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param ingestion_time: Gets the latest date of ingestion.
     :type ingestion_time: datetime
     :param primary_info:
@@ -22,14 +19,10 @@ class ProfileStoreStateInfo(Model):
     :param secondary_info:
     :type secondary_info:
      ~dynamics.customerinsights.api.models.ProfileStoreCollectionInfo
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'ingestion_time': {'key': 'ingestionTime', 'type': 'iso-8601'},
@@ -38,9 +31,9 @@ class ProfileStoreStateInfo(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, ingestion_time=None, primary_info=None, secondary_info=None, **kwargs) -> None:
+    def __init__(self, *, ingestion_time=None, primary_info=None, secondary_info=None, instance_id: str=None, **kwargs) -> None:
         super(ProfileStoreStateInfo, self).__init__(**kwargs)
         self.ingestion_time = ingestion_time
         self.primary_info = primary_info
         self.secondary_info = secondary_info
-        self.instance_id = None
+        self.instance_id = instance_id

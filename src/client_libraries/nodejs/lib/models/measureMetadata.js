@@ -14,8 +14,8 @@ class MeasureMetadata {
   /**
    * Create a MeasureMetadata.
    * @property {string} [displayName]
-   * @property {string} [name] Gets the unique name of the measure
-   * @property {string} [description] Gets the description of the measure.
+   * @property {string} [name] Unique name of the measure
+   * @property {string} [description] Description of the measure.
    * @property {object} [definition]
    * @property {string} [definition.kind] Possible values include: 'entity',
    * 'attribute'
@@ -42,7 +42,7 @@ class MeasureMetadata {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any',
    * 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all',
    * 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
-   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
    * @property {array} [definition.filteringCriteria.childCriterias] Gets the
    * list of Child criteria of segment.
    * @property {string} [definition.filteringCriteria.value] Gets the Value in
@@ -51,6 +51,8 @@ class MeasureMetadata {
    * indicating whether case is ignored for this criteria.
    * @property {array} [definition.filteringCriteria.listOfValues] Gets the
    * list of values in criteria.
+   * @property {boolean} [definition.filteringCriteria.isTime] flag set to true
+   * if entries are of time format
    * @property {array} [definition.dimensions] Gets list of dimensions with the
    * measure.
    * @property {array} [definition.aggregates] Gets list of aggregates of the
@@ -69,20 +71,18 @@ class MeasureMetadata {
    * @property {uuid} [latestEvaluation.lastSuccessfulRunId]
    * @property {string} [latestEvaluation.state] Possible values include:
    * 'none', 'running', 'failed', 'completed'
-   * @property {date} [latestEvaluation.endTime] Gets or sets the evaluation
-   * completion time.
-   * @property {string} [latestEvaluation.error] Gets or sets the error (if
-   * any) that occured during the measure evaluation.
+   * @property {date} [latestEvaluation.endTime] Evaluation completion time.
+   * @property {string} [latestEvaluation.error] Error Information (if any)
+   * that occured during the measure evaluation.
    * @property {object} [output]
-   * @property {object} [output.values] Gets the output folder path for the
-   * evaluation.
+   * @property {object} [output.values] Output folder path for the evaluation.
    * @property {string} [output.measureName]
    * @property {date} [output.evaluationTime] Gets the evaluation start time.
    * @property {object} [evaluationStats]
-   * @property {date} [evaluationStats.lastSuccessful] Gets the last successful
+   * @property {date} [evaluationStats.lastSuccessful] Last successful
    * evaluation
-   * @property {number} [evaluationStats.consecutiveFailureCount] Gets the
-   * number of consecutive failures
+   * @property {number} [evaluationStats.consecutiveFailureCount] Represents
+   * Number of consecutive failures
    * @property {object} [errorDescription]
    * @property {string} [errorDescription.value]
    * @property {string} [errorDescription.key] Possible values include:
@@ -202,24 +202,23 @@ class MeasureMetadata {
    * 'invalidInsightInputMissingName'
    * @property {array} [errorDescription.args]
    * @property {object} [sqlValidationStats]
-   * @property {date} [sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @property {date} [sqlValidationStats.validationDate] Date of Validation
+   * evaluation
    * @property {string} [sqlValidationStats.error] Gets the number of
    * consecutive failures
-   * @property {array} [evaluationHistory] Gets the evaluation history for the
-   * measure. (not persisted in store)
-   * @property {array} [outputHistory] Gets the output history for the measure.
+   * @property {array} [evaluationHistory] Evaluation history for the measure.
    * (not persisted in store)
-   * @property {number} [version] Gets the version number of this object.
-   * @property {string} [updatedBy] Gets the UPN of the user who last updated
-   * this record.
-   * @property {date} [updatedUtc] Gets the time the object was last updated.
-   * @property {string} [createdBy] Gets the email address of the user who
-   * created this record.
-   * @property {date} [createdUtc] Gets the time the object was initially
-   * created.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {array} [outputHistory] Output history for the measure. (not
+   * persisted in store)
+   * @property {number} [version] Version number of this object.
+   * @property {string} [updatedBy] UPN of the user who last updated this
+   * record.
+   * @property {date} [updatedUtc] Time this object was last updated.
+   * @property {string} [createdBy] Email address of the user who created this
+   * record.
+   * @property {date} [createdUtc] Time this object was initially created.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -240,7 +239,6 @@ class MeasureMetadata {
         modelProperties: {
           displayName: {
             required: false,
-            readOnly: true,
             serializedName: 'displayName',
             type: {
               name: 'String'
@@ -340,7 +338,6 @@ class MeasureMetadata {
           },
           version: {
             required: false,
-            readOnly: true,
             serializedName: 'version',
             type: {
               name: 'Number'
@@ -348,7 +345,6 @@ class MeasureMetadata {
           },
           updatedBy: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedBy',
             type: {
               name: 'String'
@@ -356,7 +352,6 @@ class MeasureMetadata {
           },
           updatedUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedUtc',
             type: {
               name: 'DateTime'
@@ -364,7 +359,6 @@ class MeasureMetadata {
           },
           createdBy: {
             required: false,
-            readOnly: true,
             serializedName: 'createdBy',
             type: {
               name: 'String'
@@ -372,7 +366,6 @@ class MeasureMetadata {
           },
           createdUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'createdUtc',
             type: {
               name: 'DateTime'
@@ -380,7 +373,6 @@ class MeasureMetadata {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

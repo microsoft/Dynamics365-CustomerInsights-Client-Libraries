@@ -27,8 +27,8 @@ class InstanceMetadata {
    * @property {array} [refreshSchedule.cronSchedules] Gets the schedule in
    * CRON format
    * @property {uuid} [refreshSchedule.scheduleId] Gets the ID of the schedule
-   * @property {uuid} [refreshSchedule.instanceId] Gets the Customer Insights
-   * instance id associated with this object.
+   * @property {uuid} [refreshSchedule.instanceId] Customer Insights instance
+   * id associated with this object.
    * @property {date} [expiryTimeUtc] Gets the time the instance is set to
    * expire.
    * @property {string} [region] Gets the Azure region where the instance
@@ -40,29 +40,28 @@ class InstanceMetadata {
    * @property {string} [cdsOrgInfo.state] Gets the Cds Organization State
    * @property {object} [cdsMdlInfo]
    * @property {object} [cdsMdlInfo.privateWorkSpace]
-   * @property {string} [cdsMdlInfo.privateWorkSpace.name] Gets the Workspace
-   * Friendly Name
+   * @property {string} [cdsMdlInfo.privateWorkSpace.name] Gets the datalake
+   * folder Friendly Name
    * @property {string} [cdsMdlInfo.privateWorkSpace.uniqueName] Gets the Cds
-   * workspace unique Name
+   * datalake folder unique Name
    * @property {object} [cdsMdlInfo.publicWorkSpace]
-   * @property {string} [cdsMdlInfo.publicWorkSpace.name] Gets the Workspace
-   * Friendly Name
+   * @property {string} [cdsMdlInfo.publicWorkSpace.name] Gets the datalake
+   * folder Friendly Name
    * @property {string} [cdsMdlInfo.publicWorkSpace.uniqueName] Gets the Cds
-   * workspace unique Name
+   * datalake folder unique Name
    * @property {number} [maxTrialExtensionsAllowed] Gets the total number of
    * extensions allowed if this is trial instance
    * @property {string} [trialExtensionHistory] Stores the details of trial
    * extensions done if this is a trial instance
-   * @property {number} [version] Gets the version number of this object.
-   * @property {string} [updatedBy] Gets the UPN of the user who last updated
-   * this record.
-   * @property {date} [updatedUtc] Gets the time the object was last updated.
-   * @property {string} [createdBy] Gets the email address of the user who
-   * created this record.
-   * @property {date} [createdUtc] Gets the time the object was initially
-   * created.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {number} [version] Version number of this object.
+   * @property {string} [updatedBy] UPN of the user who last updated this
+   * record.
+   * @property {date} [updatedUtc] Time this object was last updated.
+   * @property {string} [createdBy] Email address of the user who created this
+   * record.
+   * @property {date} [createdUtc] Time this object was initially created.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -156,7 +155,6 @@ class InstanceMetadata {
           },
           version: {
             required: false,
-            readOnly: true,
             serializedName: 'version',
             type: {
               name: 'Number'
@@ -164,7 +162,6 @@ class InstanceMetadata {
           },
           updatedBy: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedBy',
             type: {
               name: 'String'
@@ -172,7 +169,6 @@ class InstanceMetadata {
           },
           updatedUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedUtc',
             type: {
               name: 'DateTime'
@@ -180,7 +176,6 @@ class InstanceMetadata {
           },
           createdBy: {
             required: false,
-            readOnly: true,
             serializedName: 'createdBy',
             type: {
               name: 'String'
@@ -188,7 +183,6 @@ class InstanceMetadata {
           },
           createdUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'createdUtc',
             type: {
               name: 'DateTime'
@@ -196,7 +190,6 @@ class InstanceMetadata {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

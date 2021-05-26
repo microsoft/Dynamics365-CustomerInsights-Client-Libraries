@@ -70,18 +70,28 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.GraphNodeInfo;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GraphTaskInfo;
 import com.microsoft.dynamics.customerinsights.apiclient.models.IC360EntityModel;
 import com.microsoft.dynamics.customerinsights.apiclient.models.IEntityMetadata;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceCopyRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceCreationRequest;
 import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceInfo;
 import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceMetadata;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesCopyPostRequest;
 import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceSearchConfiguration;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageMeasuresPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageRelationshipsPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSearchPutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSegmentsPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdV2PatchRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesV2PostRequest;
 import com.microsoft.dynamics.customerinsights.apiclient.models.KeyRingResponse;
 import com.microsoft.dynamics.customerinsights.apiclient.models.MeasureMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.NoContentResult;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ODataEntityPayload;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ODataError;
 import com.microsoft.dynamics.customerinsights.apiclient.models.OkResult;
-import com.microsoft.dynamics.customerinsights.apiclient.models.OnDemandJobRequest;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ParsingError;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ProfileStoreStateInfo;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RelationshipMetadata;
@@ -256,15 +266,15 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createAnInstance" })
         @POST("instances/V2")
-        Observable<Response<ResponseBody>> createAnInstance(@Body InstanceCreationRequest body);
+        Observable<Response<ResponseBody>> createAnInstance(@Body InstancesV2PostRequest body);
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateAnInstance" })
         @PATCH("instances/{instanceId}/V2")
-        Observable<Response<ResponseBody>> updateAnInstance(@Path("instanceId") String instanceId, @Body InstanceCreationRequest body);
+        Observable<Response<ResponseBody>> updateAnInstance(@Path("instanceId") String instanceId, @Body InstancesInstanceIdV2PatchRequest body);
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights copyAnInstance" })
         @POST("instances/copy")
-        Observable<Response<ResponseBody>> copyAnInstance(@Body InstanceCopyRequest body);
+        Observable<Response<ResponseBody>> copyAnInstance(@Body InstancesCopyPostRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAListOfMeasuresMetadata" })
         @GET("instances/{instanceId}/manage/measures")
@@ -272,7 +282,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createAMeasure" })
         @POST("instances/{instanceId}/manage/measures")
-        Observable<Response<ResponseBody>> createAMeasure(@Path("instanceId") String instanceId, @Body MeasureMetadata body);
+        Observable<Response<ResponseBody>> createAMeasure(@Path("instanceId") String instanceId, @Body InstancesInstanceIdManageMeasuresPostRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getMetadataForAMeasure" })
         @GET("instances/{instanceId}/manage/measures/{measureName}")
@@ -280,7 +290,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateAMeasure" })
         @PUT("instances/{instanceId}/manage/measures/{measureName}")
-        Observable<Response<ResponseBody>> updateAMeasure(@Path("instanceId") String instanceId, @Path("measureName") String measureName, @Body MeasureMetadata body);
+        Observable<Response<ResponseBody>> updateAMeasure(@Path("instanceId") String instanceId, @Path("measureName") String measureName, @Body InstancesInstanceIdManageMeasuresMeasureNamePutRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights deleteAMeasure" })
         @HTTP(path = "instances/{instanceId}/manage/measures/{measureName}", method = "DELETE", hasBody = true)
@@ -304,7 +314,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateARoleAssignment" })
         @PUT("instances/{instanceId}/rbac/principals/{principalId}/assignment")
-        Observable<Response<ResponseBody>> updateARoleAssignment(@Path("instanceId") String instanceId, @Path("principalId") String principalId, @Body RoleAssignment body);
+        Observable<Response<ResponseBody>> updateARoleAssignment(@Path("instanceId") String instanceId, @Path("principalId") String principalId, @Body InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights deletesARoleAssignment" })
         @HTTP(path = "instances/{instanceId}/rbac/principals/{principalId}/assignment", method = "DELETE", hasBody = true)
@@ -320,7 +330,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createARelationship" })
         @POST("instances/{instanceId}/manage/relationships")
-        Observable<Response<ResponseBody>> createARelationship(@Path("instanceId") String instanceId, @Body RelationshipMetadata body);
+        Observable<Response<ResponseBody>> createARelationship(@Path("instanceId") String instanceId, @Body InstancesInstanceIdManageRelationshipsPostRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getARelationship" })
         @GET("instances/{instanceId}/manage/relationships/{relationshipName}")
@@ -332,7 +342,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateARelationship" })
         @PUT("instances/{instanceId}/manage/relationships/{relationshipName}")
-        Observable<Response<ResponseBody>> updateARelationship(@Path("instanceId") String instanceId, @Path("relationshipName") String relationshipName, @Body RelationshipMetadata body);
+        Observable<Response<ResponseBody>> updateARelationship(@Path("instanceId") String instanceId, @Path("relationshipName") String relationshipName, @Body InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getSearchConfiguration" })
         @GET("instances/{instanceId}/manage/search")
@@ -340,15 +350,15 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateSearchConfiguration" })
         @PUT("instances/{instanceId}/manage/search")
-        Observable<Response<ResponseBody>> updateSearchConfiguration(@Path("instanceId") String instanceId, @Body InstanceSearchConfiguration body);
+        Observable<Response<ResponseBody>> updateSearchConfiguration(@Path("instanceId") String instanceId, @Body InstancesInstanceIdManageSearchPutRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllSegments" })
         @GET("instances/{instanceId}/manage/segments")
-        Observable<Response<ResponseBody>> getAllSegments(@Path("instanceId") String instanceId, @Query("includeHistoricStats") Boolean includeHistoricStats, @Query("historicStatsDays") Integer historicStatsDays);
+        Observable<Response<ResponseBody>> getAllSegments(@Path("instanceId") String instanceId, @Query("includeHistoricStats") Boolean includeHistoricStats, @Query("historicStatsDays") Integer historicStatsDays, @Query("numberOfSegments") Integer numberOfSegments);
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createASegment" })
         @POST("instances/{instanceId}/manage/segments")
-        Observable<Response<ResponseBody>> createASegment(@Path("instanceId") String instanceId, @Body SegmentMetadata body);
+        Observable<Response<ResponseBody>> createASegment(@Path("instanceId") String instanceId, @Body InstancesInstanceIdManageSegmentsPostRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights activateSegment" })
         @PUT("instances/{instanceId}/manage/segments/{segmentName}/activate")
@@ -360,7 +370,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights updateASegment" })
         @PUT("instances/{instanceId}/manage/segments/{segmentName}")
-        Observable<Response<ResponseBody>> updateASegment(@Path("instanceId") String instanceId, @Path("segmentName") String segmentName, @Body SegmentMetadata body);
+        Observable<Response<ResponseBody>> updateASegment(@Path("instanceId") String instanceId, @Path("segmentName") String segmentName, @Body InstancesInstanceIdManageSegmentsSegmentNamePutRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights deleteSegment" })
         @HTTP(path = "instances/{instanceId}/manage/segments/{segmentName}", method = "DELETE", hasBody = true)
@@ -380,7 +390,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights submitAWorkflowJob" })
         @POST("instances/{instanceId}/workflows/{workflowName}/jobs")
-        Observable<Response<ResponseBody>> submitAWorkflowJob(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Body OnDemandJobRequest body, @Query("operationType") String operationType, @Query("identifiers") String identifiers, @Query("forceRunRequested") Boolean forceRunRequested);
+        Observable<Response<ResponseBody>> submitAWorkflowJob(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Body InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, @Query("operationType") String operationType, @Query("identifiers") String identifiers, @Query("forceRunRequested") Boolean forceRunRequested);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getListOfWorkflowTaskInformationHistory" })
         @GET("instances/{instanceId}/workflows/{workflowName}/history")
@@ -400,7 +410,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createWorkflowRefreshSchedule" })
         @POST("instances/{instanceId}/workflows/{workflowName}/schedules")
-        Observable<Response<ResponseBody>> createWorkflowRefreshSchedule(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Body WorkflowRefreshSchedule body);
+        Observable<Response<ResponseBody>> createWorkflowRefreshSchedule(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Body InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAnEntityProfile" })
         @GET("instances/{instanceId}/dataprofile/{qualifiedEntityName}")
@@ -504,7 +514,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -518,7 +528,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -531,7 +541,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -548,7 +558,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetAllDataSources.
-     * Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo configured for the Customer Insights instance.
+     * Returns a collections of DataSourceInfo configured for the given Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id for which to fetch data source info.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -584,7 +594,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -599,7 +609,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -613,7 +623,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -631,7 +641,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * GetDataSource.
-     * Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
      *
      * @param instanceId Format - uuid. The instance id to fetch data source info for.
      * @param dataSourceId Format - uuid. The data source id to fetch info for.
@@ -757,7 +767,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -772,7 +782,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -786,7 +796,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -804,7 +814,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -837,7 +847,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -855,7 +865,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -872,7 +882,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -893,7 +903,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * CreateEntity (Preview).
-     * Writes an entity instance into the store, e.g. an activity entity.
+     * Writes an entity instance into the store, g. an activity entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, consisting of 'DataSource_EntityName' e.g. 'PoS_posPurchases', or 'UnifiedActivity'.
@@ -939,7 +949,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -955,7 +965,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -970,7 +980,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -989,7 +999,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1026,7 +1036,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1045,7 +1055,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1063,7 +1073,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1085,7 +1095,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateEntity (Preview).
-     * Updates an entity instance in the store, e.g. Customer entity.
+     * Updates an entity instance in the store, g. Customer entity.
      *
      * @param instanceId Format - uuid. Customer Insights instance Id.
      * @param entityName Fully qualified entity name, e.g. 'Customer'.
@@ -1342,6 +1352,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
                 .register(400, new TypeToken<ODataError>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
                 .register(404, new TypeToken<ODataError>() { }.getType())
+                .register(406, new TypeToken<ODataError>() { }.getType())
                 .register(500, new TypeToken<ODataError>() { }.getType())
                 .register(503, new TypeToken<ODataError>() { }.getType())
                 .buildWithHeaders(response, GetEntitiesWithODataPathHeaders.class);
@@ -1766,7 +1777,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1780,7 +1791,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1793,7 +1804,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1810,7 +1821,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1837,7 +1848,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1852,7 +1863,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1866,7 +1877,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -1884,7 +1895,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ResetInstance (Preview).
+     * ResetInstance.
      * Reset scopes in the given instance. Provide optional management operation scope to reset only that scope.
      *
      * @param instanceId Format - uuid. The instance Id.
@@ -2348,7 +2359,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @return the observable to the Object object
      */
     public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync() {
-        final InstanceCreationRequest body = null;
+        final InstancesV2PostRequest body = null;
         return service.createAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>>>() {
                 @Override
@@ -2373,7 +2384,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object createAnInstance(InstanceCreationRequest body) {
+    public Object createAnInstance(InstancesV2PostRequest body) {
         return createAnInstanceWithServiceResponseAsync(body).toBlocking().single().body();
     }
 
@@ -2386,7 +2397,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> createAnInstanceAsync(InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> createAnInstanceAsync(InstancesV2PostRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(createAnInstanceWithServiceResponseAsync(body), serviceCallback);
     }
 
@@ -2398,7 +2409,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> createAnInstanceAsync(InstanceCreationRequest body) {
+    public Observable<Object> createAnInstanceAsync(InstancesV2PostRequest body) {
         return createAnInstanceWithServiceResponseAsync(body).map(new Func1<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders> response) {
@@ -2415,7 +2426,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstanceCreationRequest body) {
+    public Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstancesV2PostRequest body) {
         Validator.validate(body);
         return service.createAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>>>() {
@@ -2499,7 +2510,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        final InstanceCreationRequest body = null;
+        final InstancesInstanceIdV2PatchRequest body = null;
         return service.updateAnInstance(instanceId, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>>>() {
                 @Override
@@ -2519,13 +2530,13 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object updateAnInstance(String instanceId, InstanceCreationRequest body) {
+    public Object updateAnInstance(String instanceId, InstancesInstanceIdV2PatchRequest body) {
         return updateAnInstanceWithServiceResponseAsync(instanceId, body).toBlocking().single().body();
     }
 
@@ -2534,12 +2545,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> updateAnInstanceAsync(String instanceId, InstancesInstanceIdV2PatchRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(updateAnInstanceWithServiceResponseAsync(instanceId, body), serviceCallback);
     }
 
@@ -2548,11 +2559,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body) {
+    public Observable<Object> updateAnInstanceAsync(String instanceId, InstancesInstanceIdV2PatchRequest body) {
         return updateAnInstanceWithServiceResponseAsync(instanceId, body).map(new Func1<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders> response) {
@@ -2566,11 +2577,11 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstanceCreationRequest value
+     * @param body the InstancesInstanceIdV2PatchRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId, InstanceCreationRequest body) {
+    public Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId, InstancesInstanceIdV2PatchRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -2649,7 +2660,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @return the observable to the Object object
      */
     public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync() {
-        final InstanceCopyRequest body = null;
+        final InstancesCopyPostRequest body = null;
         return service.copyAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>>>() {
                 @Override
@@ -2674,7 +2685,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object copyAnInstance(InstanceCopyRequest body) {
+    public Object copyAnInstance(InstancesCopyPostRequest body) {
         return copyAnInstanceWithServiceResponseAsync(body).toBlocking().single().body();
     }
 
@@ -2687,7 +2698,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> copyAnInstanceAsync(InstanceCopyRequest body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> copyAnInstanceAsync(InstancesCopyPostRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(copyAnInstanceWithServiceResponseAsync(body), serviceCallback);
     }
 
@@ -2699,7 +2710,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> copyAnInstanceAsync(InstanceCopyRequest body) {
+    public Observable<Object> copyAnInstanceAsync(InstancesCopyPostRequest body) {
         return copyAnInstanceWithServiceResponseAsync(body).map(new Func1<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders> response) {
@@ -2716,7 +2727,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstanceCopyRequest body) {
+    public Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstancesCopyPostRequest body) {
         Validator.validate(body);
         return service.copyAnInstance(body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>>>() {
@@ -2880,7 +2891,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        final MeasureMetadata body = null;
+        final InstancesInstanceIdManageMeasuresPostRequest body = null;
         return service.createAMeasure(instanceId, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>>>() {
                 @Override
@@ -2906,7 +2917,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object createAMeasure(String instanceId, MeasureMetadata body) {
+    public Object createAMeasure(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body) {
         return createAMeasureWithServiceResponseAsync(instanceId, body).toBlocking().single().body();
     }
 
@@ -2920,7 +2931,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> createAMeasureAsync(String instanceId, MeasureMetadata body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> createAMeasureAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(createAMeasureWithServiceResponseAsync(instanceId, body), serviceCallback);
     }
 
@@ -2933,7 +2944,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> createAMeasureAsync(String instanceId, MeasureMetadata body) {
+    public Observable<Object> createAMeasureAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body) {
         return createAMeasureWithServiceResponseAsync(instanceId, body).map(new Func1<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CreateAMeasureHeaders> response) {
@@ -2951,7 +2962,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId, MeasureMetadata body) {
+    public Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -3222,7 +3233,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (measureName == null) {
             throw new IllegalArgumentException("Parameter measureName is required and cannot be null.");
         }
-        final MeasureMetadata body = null;
+        final InstancesInstanceIdManageMeasuresMeasureNamePutRequest body = null;
         return service.updateAMeasure(instanceId, measureName, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>>>() {
                 @Override
@@ -3250,7 +3261,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object updateAMeasure(String instanceId, String measureName, MeasureMetadata body) {
+    public Object updateAMeasure(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body) {
         return updateAMeasureWithServiceResponseAsync(instanceId, measureName, body).toBlocking().single().body();
     }
 
@@ -3266,7 +3277,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(updateAMeasureWithServiceResponseAsync(instanceId, measureName, body), serviceCallback);
     }
 
@@ -3281,7 +3292,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body) {
+    public Observable<Object> updateAMeasureAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body) {
         return updateAMeasureWithServiceResponseAsync(instanceId, measureName, body).map(new Func1<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders> response) {
@@ -3301,7 +3312,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName, MeasureMetadata body) {
+    public Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -3825,7 +3836,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (principalId == null) {
             throw new IllegalArgumentException("Parameter principalId is required and cannot be null.");
         }
-        final RoleAssignment body = null;
+        final InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body = null;
         return service.updateARoleAssignment(instanceId, principalId, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>>>() {
                 @Override
@@ -3852,7 +3863,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the List&lt;RoleAssignment&gt; object if successful.
      */
-    public List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId, RoleAssignment body) {
+    public List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body) {
         return updateARoleAssignmentWithServiceResponseAsync(instanceId, principalId, body).toBlocking().single().body();
     }
 
@@ -3867,7 +3878,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body, final ServiceCallback<List<RoleAssignment>> serviceCallback) {
+    public ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body, final ServiceCallback<List<RoleAssignment>> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(updateARoleAssignmentWithServiceResponseAsync(instanceId, principalId, body), serviceCallback);
     }
 
@@ -3881,7 +3892,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;RoleAssignment&gt; object
      */
-    public Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body) {
+    public Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body) {
         return updateARoleAssignmentWithServiceResponseAsync(instanceId, principalId, body).map(new Func1<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>, List<RoleAssignment>>() {
             @Override
             public List<RoleAssignment> call(ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders> response) {
@@ -3900,7 +3911,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;RoleAssignment&gt; object
      */
-    public Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId, RoleAssignment body) {
+    public Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -4231,7 +4242,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        final RelationshipMetadata body = null;
+        final InstancesInstanceIdManageRelationshipsPostRequest body = null;
         return service.createARelationship(instanceId, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>>>() {
                 @Override
@@ -4257,7 +4268,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object createARelationship(String instanceId, RelationshipMetadata body) {
+    public Object createARelationship(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body) {
         return createARelationshipWithServiceResponseAsync(instanceId, body).toBlocking().single().body();
     }
 
@@ -4271,7 +4282,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> createARelationshipAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(createARelationshipWithServiceResponseAsync(instanceId, body), serviceCallback);
     }
 
@@ -4284,7 +4295,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body) {
+    public Observable<Object> createARelationshipAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body) {
         return createARelationshipWithServiceResponseAsync(instanceId, body).map(new Func1<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CreateARelationshipHeaders> response) {
@@ -4302,7 +4313,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId, RelationshipMetadata body) {
+    public Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -4498,7 +4509,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     private ServiceResponseWithHeaders<Object, DeleteARelationshipHeaders> deleteARelationshipDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<DeletionResponse>() { }.getType())
+                .register(200, new TypeToken<OkResult>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
                 .register(404, new TypeToken<ApiError>() { }.getType())
                 .register(500, new TypeToken<Void>() { }.getType())
@@ -4569,7 +4580,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (relationshipName == null) {
             throw new IllegalArgumentException("Parameter relationshipName is required and cannot be null.");
         }
-        final RelationshipMetadata body = null;
+        final InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body = null;
         return service.updateARelationship(instanceId, relationshipName, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>>>() {
                 @Override
@@ -4596,7 +4607,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object updateARelationship(String instanceId, String relationshipName, RelationshipMetadata body) {
+    public Object updateARelationship(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body) {
         return updateARelationshipWithServiceResponseAsync(instanceId, relationshipName, body).toBlocking().single().body();
     }
 
@@ -4611,7 +4622,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(updateARelationshipWithServiceResponseAsync(instanceId, relationshipName, body), serviceCallback);
     }
 
@@ -4625,7 +4636,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body) {
+    public Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body) {
         return updateARelationshipWithServiceResponseAsync(instanceId, relationshipName, body).map(new Func1<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders> response) {
@@ -4644,7 +4655,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName, RelationshipMetadata body) {
+    public Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -4813,7 +4824,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        final InstanceSearchConfiguration body = null;
+        final InstancesInstanceIdManageSearchPutRequest body = null;
         return service.updateSearchConfiguration(instanceId, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>>>() {
                 @Override
@@ -4839,7 +4850,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object updateSearchConfiguration(String instanceId, InstanceSearchConfiguration body) {
+    public Object updateSearchConfiguration(String instanceId, InstancesInstanceIdManageSearchPutRequest body) {
         return updateSearchConfigurationWithServiceResponseAsync(instanceId, body).toBlocking().single().body();
     }
 
@@ -4853,7 +4864,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(updateSearchConfigurationWithServiceResponseAsync(instanceId, body), serviceCallback);
     }
 
@@ -4866,7 +4877,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body) {
+    public Observable<Object> updateSearchConfigurationAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body) {
         return updateSearchConfigurationWithServiceResponseAsync(instanceId, body).map(new Func1<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders> response) {
@@ -4884,7 +4895,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId, InstanceSearchConfiguration body) {
+    public Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -4972,7 +4983,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         }
         final Boolean includeHistoricStats = null;
         final Integer historicStatsDays = null;
-        return service.getAllSegments(instanceId, includeHistoricStats, historicStatsDays)
+        final Integer numberOfSegments = null;
+        return service.getAllSegments(instanceId, includeHistoricStats, historicStatsDays, numberOfSegments)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> call(Response<ResponseBody> response) {
@@ -4993,13 +5005,14 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object getAllSegments(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays) {
-        return getAllSegmentsWithServiceResponseAsync(instanceId, includeHistoricStats, historicStatsDays).toBlocking().single().body();
+    public Object getAllSegments(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments) {
+        return getAllSegmentsWithServiceResponseAsync(instanceId, includeHistoricStats, historicStatsDays, numberOfSegments).toBlocking().single().body();
     }
 
     /**
@@ -5009,12 +5022,13 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(getAllSegmentsWithServiceResponseAsync(instanceId, includeHistoricStats, historicStatsDays), serviceCallback);
+    public ServiceFuture<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getAllSegmentsWithServiceResponseAsync(instanceId, includeHistoricStats, historicStatsDays, numberOfSegments), serviceCallback);
     }
 
     /**
@@ -5024,11 +5038,12 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays) {
-        return getAllSegmentsWithServiceResponseAsync(instanceId, includeHistoricStats, historicStatsDays).map(new Func1<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>, Object>() {
+    public Observable<Object> getAllSegmentsAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments) {
+        return getAllSegmentsWithServiceResponseAsync(instanceId, includeHistoricStats, historicStatsDays, numberOfSegments).map(new Func1<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders> response) {
                 return response.body();
@@ -5043,14 +5058,15 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @param instanceId Format - uuid. Customer Insights instance id
      * @param includeHistoricStats Optional parameter to retrieve evaluation history of all the sgements in instanceId.
      * @param historicStatsDays Format - int32. Optional parameter to get number of days evaluation history.
+     * @param numberOfSegments Format - int32. Optional parameter to limit the number of segments returned.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> getAllSegmentsWithServiceResponseAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays) {
+    public Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> getAllSegmentsWithServiceResponseAsync(String instanceId, Boolean includeHistoricStats, Integer historicStatsDays, Integer numberOfSegments) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        return service.getAllSegments(instanceId, includeHistoricStats, historicStatsDays)
+        return service.getAllSegments(instanceId, includeHistoricStats, historicStatsDays, numberOfSegments)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, GetAllSegmentsHeaders>> call(Response<ResponseBody> response) {
@@ -5130,7 +5146,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        final SegmentMetadata body = null;
+        final InstancesInstanceIdManageSegmentsPostRequest body = null;
         return service.createASegment(instanceId, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>>>() {
                 @Override
@@ -5156,7 +5172,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object createASegment(String instanceId, SegmentMetadata body) {
+    public Object createASegment(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body) {
         return createASegmentWithServiceResponseAsync(instanceId, body).toBlocking().single().body();
     }
 
@@ -5170,7 +5186,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> createASegmentAsync(String instanceId, SegmentMetadata body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> createASegmentAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(createASegmentWithServiceResponseAsync(instanceId, body), serviceCallback);
     }
 
@@ -5183,7 +5199,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> createASegmentAsync(String instanceId, SegmentMetadata body) {
+    public Observable<Object> createASegmentAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body) {
         return createASegmentWithServiceResponseAsync(instanceId, body).map(new Func1<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CreateASegmentHeaders> response) {
@@ -5201,7 +5217,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId, SegmentMetadata body) {
+    public Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -5467,7 +5483,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (segmentName == null) {
             throw new IllegalArgumentException("Parameter segmentName is required and cannot be null.");
         }
-        final SegmentMetadata body = null;
+        final InstancesInstanceIdManageSegmentsSegmentNamePutRequest body = null;
         return service.updateASegment(instanceId, segmentName, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>>>() {
                 @Override
@@ -5494,7 +5510,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object updateASegment(String instanceId, String segmentName, SegmentMetadata body) {
+    public Object updateASegment(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body) {
         return updateASegmentWithServiceResponseAsync(instanceId, segmentName, body).toBlocking().single().body();
     }
 
@@ -5509,7 +5525,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(updateASegmentWithServiceResponseAsync(instanceId, segmentName, body), serviceCallback);
     }
 
@@ -5523,7 +5539,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body) {
+    public Observable<Object> updateASegmentAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body) {
         return updateASegmentWithServiceResponseAsync(instanceId, segmentName, body).map(new Func1<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, UpdateASegmentHeaders> response) {
@@ -5542,7 +5558,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName, SegmentMetadata body) {
+    public Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -6113,10 +6129,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6131,10 +6146,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6148,10 +6162,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6169,10 +6182,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6187,7 +6199,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (workflowName == null) {
             throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
         }
-        final OnDemandJobRequest body = null;
+        final InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body = null;
         final String operationType = null;
         final List<String> identifiers = null;
         final Boolean forceRunRequested = null;
@@ -6207,10 +6219,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6224,15 +6235,14 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object submitAWorkflowJob(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested) {
+    public Object submitAWorkflowJob(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested) {
         return submitAWorkflowJobWithServiceResponseAsync(instanceId, workflowName, body, operationType, identifiers, forceRunRequested).toBlocking().single().body();
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6245,15 +6255,14 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(submitAWorkflowJobWithServiceResponseAsync(instanceId, workflowName, body, operationType, identifiers, forceRunRequested), serviceCallback);
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6265,7 +6274,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested) {
+    public Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested) {
         return submitAWorkflowJobWithServiceResponseAsync(instanceId, workflowName, body, operationType, identifiers, forceRunRequested).map(new Func1<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders> response) {
@@ -6275,10 +6284,9 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * SubmitWorkflowJob
-     forceRunRequested indicating whether to force run.
-     * Submits a workflow of Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the instance specified in instanceId.
-     Optionally takes a list of identifiers, only if operationType is not Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+     * SubmitWorkflowJob.
+     * Submits a workflow of OperationTypeoperationType for the instance specified in instanceId.
+     Optionally takes a list of identifiers, only if operationType is not OperationType.All and a flag
      forceRunRequested indicating whether to force run.
      *
      * @param instanceId Format - uuid. The Customer Insights instance id.
@@ -6290,7 +6298,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested) {
+    public Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
@@ -6815,7 +6823,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (workflowName == null) {
             throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
         }
-        final WorkflowRefreshSchedule body = null;
+        final InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body = null;
         return service.createWorkflowRefreshSchedule(instanceId, workflowName, body)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>>>() {
                 @Override
@@ -6842,7 +6850,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object createWorkflowRefreshSchedule(String instanceId, String workflowName, WorkflowRefreshSchedule body) {
+    public Object createWorkflowRefreshSchedule(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body) {
         return createWorkflowRefreshScheduleWithServiceResponseAsync(instanceId, workflowName, body).toBlocking().single().body();
     }
 
@@ -6857,7 +6865,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body, final ServiceCallback<Object> serviceCallback) {
+    public ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body, final ServiceCallback<Object> serviceCallback) {
         return ServiceFuture.fromHeaderResponse(createWorkflowRefreshScheduleWithServiceResponseAsync(instanceId, workflowName, body), serviceCallback);
     }
 
@@ -6871,7 +6879,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body) {
+    public Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body) {
         return createWorkflowRefreshScheduleWithServiceResponseAsync(instanceId, workflowName, body).map(new Func1<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders> response) {
@@ -6890,7 +6898,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body) {
+    public Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }

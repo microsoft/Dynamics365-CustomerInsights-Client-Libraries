@@ -11,19 +11,19 @@ from msrest.serialization import Model
 class DatasourceEntityInformation(Model):
     """Represents the entity info used in API requests (entity level).
 
-    :param entity_name: Gets the name of the entity.
+    :param entity_name: Name of the entity.
     :type entity_name: str
-    :param primary_key: Gets the primary key name of the entity. We require
-     the entity to have a single column primary key column
+    :param primary_key: Primary key name of the entity. We require the entity
+     to have a single column primary key column
     :type primary_key: str
     :param entity_type: Possible values include: 'unspecified', 'profile',
      'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
      'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
      'enrichment', 'insights', 'derivedEntity', 'quarantine'
     :type entity_type: str or ~dynamics.customerinsights.api.models.enum
-    :param timestamp_field_name: Gets the time stamp field name.
+    :param timestamp_field_name: Time stamp field name.
     :type timestamp_field_name: str
-    :param semantic_labels: Gets the semantic labels, by attribute name.
+    :param semantic_labels: Semantic labels by attribute name.
     :type semantic_labels:
      list[~dynamics.customerinsights.api.models.AttributeSemanticInformation]
     """

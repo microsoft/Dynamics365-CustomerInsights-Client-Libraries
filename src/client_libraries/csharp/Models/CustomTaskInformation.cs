@@ -26,7 +26,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the CustomTaskInformation class.
         /// </summary>
         /// <param name="kind">Possible values include: 'test', 'segmentation',
-        /// 'measures', 'export'</param>
+        /// 'measures', 'export', 'incrementalIngestion',
+        /// 'incrementalMatch'</param>
         public CustomTaskInformation(string kind = default(string))
         {
             Kind = kind;
@@ -40,7 +41,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'test', 'segmentation',
-        /// 'measures', 'export'
+        /// 'measures', 'export', 'incrementalIngestion', 'incrementalMatch'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }

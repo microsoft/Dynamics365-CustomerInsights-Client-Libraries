@@ -7,17 +7,20 @@
 'use strict';
 
 /**
- * Class representing a IRelationshipMetadata.
+ * Represents Relationship Metadata
+ *
  */
 class IRelationshipMetadata {
   /**
    * Create a IRelationshipMetadata.
-   * @property {string} [name]
-   * @property {string} [friendlyName]
+   * @property {string} [name] Unique Name for relationship
+   * @property {string} [friendlyName] User Friendly Name for relationship
    * @property {object} [fromAttribute]
-   * @property {string} [fromAttribute.name]
-   * @property {string} [fromAttribute.friendlyName]
-   * @property {string} [fromAttribute.baseName]
+   * @property {string} [fromAttribute.name] Unique Name for Attribute Metadata
+   * @property {string} [fromAttribute.friendlyName] User friendly Name for
+   * Attribute Metadata
+   * @property {string} [fromAttribute.baseName] Base Name for Attribute
+   * Metadata
    * @property {string} [fromAttribute.dataType] Gets data type for property.
    * @property {string} [fromAttribute.semanticType] Gets semantic type for
    * property. Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
@@ -59,9 +62,10 @@ class IRelationshipMetadata {
    * other type: "listPrice,values:10|25|100|500|1000|2500"
    * value facet: city,count:5
    * @property {object} [toAttribute]
-   * @property {string} [toAttribute.name]
-   * @property {string} [toAttribute.friendlyName]
-   * @property {string} [toAttribute.baseName]
+   * @property {string} [toAttribute.name] Unique Name for Attribute Metadata
+   * @property {string} [toAttribute.friendlyName] User friendly Name for
+   * Attribute Metadata
+   * @property {string} [toAttribute.baseName] Base Name for Attribute Metadata
    * @property {string} [toAttribute.dataType] Gets data type for property.
    * @property {string} [toAttribute.semanticType] Gets semantic type for
    * property. Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
@@ -123,6 +127,8 @@ class IRelationshipMetadata {
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown',
    * 'powerPlatform', 'datahub', 'insights', 'derivedEntity',
    * 'powerPlatformSource'
+   * @property {boolean} [dataSourceEntity.shouldUseSparkSasAuth] Gets a value
+   * indicating whether Sas Auth is used for the entity.
    * @property {uuid} [dataSourceEntity.datasourceId] Gets the original
    * datasourceid of this entity, if no data source, return null or emptyString
    * @property {string} [dataSourceEntity.entityType] Possible values include:
@@ -135,9 +141,12 @@ class IRelationshipMetadata {
    * @property {array} [dataSourceEntity.relationships] Gets entity
    * relationships.
    * @property {object} [dataSourceEntity.timestampAttribute]
-   * @property {string} [dataSourceEntity.timestampAttribute.name]
-   * @property {string} [dataSourceEntity.timestampAttribute.friendlyName]
-   * @property {string} [dataSourceEntity.timestampAttribute.baseName]
+   * @property {string} [dataSourceEntity.timestampAttribute.name] Unique Name
+   * for Attribute Metadata
+   * @property {string} [dataSourceEntity.timestampAttribute.friendlyName] User
+   * friendly Name for Attribute Metadata
+   * @property {string} [dataSourceEntity.timestampAttribute.baseName] Base
+   * Name for Attribute Metadata
    * @property {string} [dataSourceEntity.timestampAttribute.dataType] Gets
    * data type for property.
    * @property {string} [dataSourceEntity.timestampAttribute.semanticType] Gets
@@ -186,9 +195,12 @@ class IRelationshipMetadata {
    * other type: "listPrice,values:10|25|100|500|1000|2500"
    * value facet: city,count:5
    * @property {object} [dataSourceEntity.incrementalAttribute]
-   * @property {string} [dataSourceEntity.incrementalAttribute.name]
+   * @property {string} [dataSourceEntity.incrementalAttribute.name] Unique
+   * Name for Attribute Metadata
    * @property {string} [dataSourceEntity.incrementalAttribute.friendlyName]
-   * @property {string} [dataSourceEntity.incrementalAttribute.baseName]
+   * User friendly Name for Attribute Metadata
+   * @property {string} [dataSourceEntity.incrementalAttribute.baseName] Base
+   * Name for Attribute Metadata
    * @property {string} [dataSourceEntity.incrementalAttribute.dataType] Gets
    * data type for property.
    * @property {string} [dataSourceEntity.incrementalAttribute.semanticType]
@@ -267,7 +279,8 @@ class IRelationshipMetadata {
    * @property {array} [dataSourceEntity.incrementalDeletePartitionsParquet]
    * Gets entity incremental delete data parquet partitions.
    * @property {array} [dataSourceEntity.annotations] Gets base entity name
-   * @property {array} [dataSourceMappingAttributes]
+   * @property {array} [dataSourceMappingAttributes] List of data source
+   * mapping attributes
    */
   constructor() {
   }
@@ -288,7 +301,6 @@ class IRelationshipMetadata {
         modelProperties: {
           name: {
             required: false,
-            readOnly: true,
             serializedName: 'name',
             type: {
               name: 'String'
@@ -296,7 +308,6 @@ class IRelationshipMetadata {
           },
           friendlyName: {
             required: false,
-            readOnly: true,
             serializedName: 'friendlyName',
             type: {
               name: 'String'
@@ -335,7 +346,6 @@ class IRelationshipMetadata {
           },
           dataSourceMappingAttributes: {
             required: false,
-            readOnly: true,
             serializedName: 'dataSourceMappingAttributes',
             type: {
               name: 'Sequence',

@@ -27,25 +27,22 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the MeasureMetadata class.
         /// </summary>
-        /// <param name="name">Gets the unique name of the measure</param>
-        /// <param name="description">Gets the description of the
-        /// measure.</param>
-        /// <param name="evaluationHistory">Gets the evaluation history for the
-        /// measure. (not persisted in store)</param>
-        /// <param name="outputHistory">Gets the output history for the
-        /// measure. (not persisted in store)</param>
-        /// <param name="version">Gets the version number of this
-        /// object.</param>
-        /// <param name="updatedBy">Gets the UPN of the user who last updated
-        /// this record.</param>
-        /// <param name="updatedUtc">Gets the time the object was last
-        /// updated.</param>
-        /// <param name="createdBy">Gets the email address of the user who
-        /// created this record.</param>
-        /// <param name="createdUtc">Gets the time the object was initially
+        /// <param name="name">Unique name of the measure</param>
+        /// <param name="description">Description of the measure.</param>
+        /// <param name="evaluationHistory">Evaluation history for the measure.
+        /// (not persisted in store)</param>
+        /// <param name="outputHistory">Output history for the measure. (not
+        /// persisted in store)</param>
+        /// <param name="version">Version number of this object.</param>
+        /// <param name="updatedBy">UPN of the user who last updated this
+        /// record.</param>
+        /// <param name="updatedUtc">Time this object was last updated.</param>
+        /// <param name="createdBy">Email address of the user who created this
+        /// record.</param>
+        /// <param name="createdUtc">Time this object was initially
         /// created.</param>
-        /// <param name="instanceId">Gets the Customer Insights instance id
-        /// associated with this object.</param>
+        /// <param name="instanceId">Customer Insights instance id associated
+        /// with this object.</param>
         public MeasureMetadata(string displayName = default(string), string name = default(string), string description = default(string), MeasureDefinition definition = default(MeasureDefinition), Evaluation latestEvaluation = default(Evaluation), ScalarOutput output = default(ScalarOutput), EvaluationStats evaluationStats = default(EvaluationStats), StringInfo errorDescription = default(StringInfo), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<Evaluation> evaluationHistory = default(IList<Evaluation>), IList<ScalarOutput> outputHistory = default(IList<ScalarOutput>), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             DisplayName = displayName;
@@ -76,16 +73,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "displayName")]
-        public string DisplayName { get; private set; }
+        public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets the unique name of the measure
+        /// Gets or sets unique name of the measure
         /// </summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets the description of the measure.
+        /// Gets or sets description of the measure.
         /// </summary>
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
@@ -121,53 +118,55 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public SqlValidationStats SqlValidationStats { get; set; }
 
         /// <summary>
-        /// Gets the evaluation history for the measure. (not persisted in
+        /// Gets or sets evaluation history for the measure. (not persisted in
         /// store)
         /// </summary>
         [JsonProperty(PropertyName = "evaluationHistory")]
         public IList<Evaluation> EvaluationHistory { get; set; }
 
         /// <summary>
-        /// Gets the output history for the measure. (not persisted in store)
+        /// Gets or sets output history for the measure. (not persisted in
+        /// store)
         /// </summary>
         [JsonProperty(PropertyName = "outputHistory")]
         public IList<ScalarOutput> OutputHistory { get; set; }
 
         /// <summary>
-        /// Gets the version number of this object.
+        /// Gets or sets version number of this object.
         /// </summary>
         [JsonProperty(PropertyName = "version")]
-        public long? Version { get; private set; }
+        public long? Version { get; set; }
 
         /// <summary>
-        /// Gets the UPN of the user who last updated this record.
+        /// Gets or sets UPN of the user who last updated this record.
         /// </summary>
         [JsonProperty(PropertyName = "updatedBy")]
-        public string UpdatedBy { get; private set; }
+        public string UpdatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was last updated.
+        /// Gets or sets time this object was last updated.
         /// </summary>
         [JsonProperty(PropertyName = "updatedUtc")]
-        public System.DateTime? UpdatedUtc { get; private set; }
+        public System.DateTime? UpdatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the email address of the user who created this record.
+        /// Gets or sets email address of the user who created this record.
         /// </summary>
         [JsonProperty(PropertyName = "createdBy")]
-        public string CreatedBy { get; private set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was initially created.
+        /// Gets or sets time this object was initially created.
         /// </summary>
         [JsonProperty(PropertyName = "createdUtc")]
-        public System.DateTime? CreatedUtc { get; private set; }
+        public System.DateTime? CreatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the Customer Insights instance id associated with this object.
+        /// Gets or sets customer Insights instance id associated with this
+        /// object.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
     }
 }

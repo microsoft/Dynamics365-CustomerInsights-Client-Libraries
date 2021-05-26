@@ -14,14 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class DatasourceEntityInformation {
     /**
-     * Gets the name of the entity.
+     * Name of the entity.
      */
     @JsonProperty(value = "entityName")
     private String entityName;
 
     /**
-     * Gets the primary key name of the entity. We require the entity to have a
-     * single column primary key column.
+     * Primary key name of the entity. We require the entity to have a single
+     * column primary key column.
      */
     @JsonProperty(value = "primaryKey")
     private String primaryKey;
@@ -36,19 +36,19 @@ public class DatasourceEntityInformation {
     private String entityType;
 
     /**
-     * Gets the time stamp field name.
+     * Time stamp field name.
      */
     @JsonProperty(value = "timestampFieldName")
     private String timestampFieldName;
 
     /**
-     * Gets the semantic labels, by attribute name.
+     * Semantic labels by attribute name.
      */
     @JsonProperty(value = "semanticLabels")
     private List<AttributeSemanticInformation> semanticLabels;
 
     /**
-     * Get gets the name of the entity.
+     * Get name of the entity.
      *
      * @return the entityName value
      */
@@ -57,7 +57,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Set gets the name of the entity.
+     * Set name of the entity.
      *
      * @param entityName the entityName value to set
      * @return the DatasourceEntityInformation object itself.
@@ -68,7 +68,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Get gets the primary key name of the entity. We require the entity to have a single column primary key column.
+     * Get primary key name of the entity. We require the entity to have a single column primary key column.
      *
      * @return the primaryKey value
      */
@@ -77,7 +77,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Set gets the primary key name of the entity. We require the entity to have a single column primary key column.
+     * Set primary key name of the entity. We require the entity to have a single column primary key column.
      *
      * @param primaryKey the primaryKey value to set
      * @return the DatasourceEntityInformation object itself.
@@ -108,7 +108,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Get gets the time stamp field name.
+     * Get time stamp field name.
      *
      * @return the timestampFieldName value
      */
@@ -117,7 +117,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Set gets the time stamp field name.
+     * Set time stamp field name.
      *
      * @param timestampFieldName the timestampFieldName value to set
      * @return the DatasourceEntityInformation object itself.
@@ -128,7 +128,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Get gets the semantic labels, by attribute name.
+     * Get semantic labels by attribute name.
      *
      * @return the semanticLabels value
      */
@@ -137,7 +137,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Set gets the semantic labels, by attribute name.
+     * Set semantic labels by attribute name.
      *
      * @param semanticLabels the semanticLabels value to set
      * @return the DatasourceEntityInformation object itself.

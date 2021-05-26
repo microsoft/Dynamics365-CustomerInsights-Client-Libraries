@@ -13,9 +13,10 @@
 class HistogramBin {
   /**
    * Create a HistogramBin.
-   * @property {number} [lowerBound] Gets or sets the lower bound.
-   * @property {number} [upperBound] Gets or sets the upper bound.
-   * @property {number} [count] Gets or sets the count.
+   * @property {number} [lowerBound] Lower bound of Histogram bin.
+   * @property {number} [upperBound] Upper bound Histogram bin.
+   * @property {number} [count] Represents an approximation count of the bin
+   * count.
    */
   constructor() {
   }

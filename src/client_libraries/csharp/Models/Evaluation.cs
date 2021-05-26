@@ -32,10 +32,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="state">Possible values include: 'none', 'running',
         /// 'failed', 'completed'</param>
-        /// <param name="endTime">Gets or sets the evaluation completion
-        /// time.</param>
-        /// <param name="error">Gets or sets the error (if any) that occured
-        /// during the measure evaluation.</param>
+        /// <param name="endTime">Evaluation completion time.</param>
+        /// <param name="error">Error Information (if any) that occured during
+        /// the measure evaluation.</param>
         public Evaluation(System.Guid? lastSuccessfulRunId = default(System.Guid?), string state = default(string), System.DateTime? endTime = default(System.DateTime?), string error = default(string))
         {
             LastSuccessfulRunId = lastSuccessfulRunId;
@@ -63,14 +62,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string State { get; set; }
 
         /// <summary>
-        /// Gets or sets the evaluation completion time.
+        /// Gets or sets evaluation completion time.
         /// </summary>
         [JsonProperty(PropertyName = "endTime")]
         public System.DateTime? EndTime { get; set; }
 
         /// <summary>
-        /// Gets or sets the error (if any) that occured during the measure
-        /// evaluation.
+        /// Gets or sets error Information (if any) that occured during the
+        /// measure evaluation.
         /// </summary>
         [JsonProperty(PropertyName = "error")]
         public string Error { get; set; }

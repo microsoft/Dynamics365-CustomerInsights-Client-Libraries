@@ -23,19 +23,19 @@ public class MeasureDefinition {
      * Gets a value indicating whether the current measure is a scalar measure
      * e doesn't have any dimensions.
      */
-    @JsonProperty(value = "isScalar", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isScalar")
     private Boolean isScalar;
 
     /**
      * Gets list of linked entities associated with the measure.
      */
-    @JsonProperty(value = "linkedEntities", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "linkedEntities")
     private List<MeasureLinkedEntity> linkedEntities;
 
     /**
      * Gets list of variables (computed columns) for the measure.
      */
-    @JsonProperty(value = "variables", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "variables")
     private List<MeasureVariable> variables;
 
     /**
@@ -53,26 +53,26 @@ public class MeasureDefinition {
     /**
      * Gets list of dimensions with the measure.
      */
-    @JsonProperty(value = "dimensions", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dimensions")
     private List<MeasureDimension> dimensions;
 
     /**
      * Gets list of aggregates of the measure.
      */
-    @JsonProperty(value = "aggregates", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "aggregates")
     private List<MeasureAggregate> aggregates;
 
     /**
      * Gets a value indicating whether the current measure is a profile
      * measure.
      */
-    @JsonProperty(value = "isProfile", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isProfile")
     private Boolean isProfile;
 
     /**
      * Gets the user specified custom SQL query.
      */
-    @JsonProperty(value = "measureQuerySql", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "measureQuerySql")
     private String measureQuerySql;
 
     /**
@@ -84,13 +84,13 @@ public class MeasureDefinition {
     /**
      * Gets the indicating whether the Business Measure is Scalar or not.
      */
-    @JsonProperty(value = "isManualQueryScalar", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isManualQueryScalar")
     private Boolean isManualQueryScalar;
 
     /**
      * Gets the list of measures that this measure depends on.
      */
-    @JsonProperty(value = "dependencies", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dependencies")
     private List<EntityDependency> dependencies;
 
     /**
@@ -123,6 +123,17 @@ public class MeasureDefinition {
     }
 
     /**
+     * Set gets a value indicating whether the current measure is a scalar measure e doesn't have any dimensions.
+     *
+     * @param isScalar the isScalar value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withIsScalar(Boolean isScalar) {
+        this.isScalar = isScalar;
+        return this;
+    }
+
+    /**
      * Get gets list of linked entities associated with the measure.
      *
      * @return the linkedEntities value
@@ -132,12 +143,34 @@ public class MeasureDefinition {
     }
 
     /**
+     * Set gets list of linked entities associated with the measure.
+     *
+     * @param linkedEntities the linkedEntities value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withLinkedEntities(List<MeasureLinkedEntity> linkedEntities) {
+        this.linkedEntities = linkedEntities;
+        return this;
+    }
+
+    /**
      * Get gets list of variables (computed columns) for the measure.
      *
      * @return the variables value
      */
     public List<MeasureVariable> variables() {
         return this.variables;
+    }
+
+    /**
+     * Set gets list of variables (computed columns) for the measure.
+     *
+     * @param variables the variables value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withVariables(List<MeasureVariable> variables) {
+        this.variables = variables;
+        return this;
     }
 
     /**
@@ -190,12 +223,34 @@ public class MeasureDefinition {
     }
 
     /**
+     * Set gets list of dimensions with the measure.
+     *
+     * @param dimensions the dimensions value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withDimensions(List<MeasureDimension> dimensions) {
+        this.dimensions = dimensions;
+        return this;
+    }
+
+    /**
      * Get gets list of aggregates of the measure.
      *
      * @return the aggregates value
      */
     public List<MeasureAggregate> aggregates() {
         return this.aggregates;
+    }
+
+    /**
+     * Set gets list of aggregates of the measure.
+     *
+     * @param aggregates the aggregates value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withAggregates(List<MeasureAggregate> aggregates) {
+        this.aggregates = aggregates;
+        return this;
     }
 
     /**
@@ -208,12 +263,34 @@ public class MeasureDefinition {
     }
 
     /**
+     * Set gets a value indicating whether the current measure is a profile measure.
+     *
+     * @param isProfile the isProfile value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withIsProfile(Boolean isProfile) {
+        this.isProfile = isProfile;
+        return this;
+    }
+
+    /**
      * Get gets the user specified custom SQL query.
      *
      * @return the measureQuerySql value
      */
     public String measureQuerySql() {
         return this.measureQuerySql;
+    }
+
+    /**
+     * Set gets the user specified custom SQL query.
+     *
+     * @param measureQuerySql the measureQuerySql value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withMeasureQuerySql(String measureQuerySql) {
+        this.measureQuerySql = measureQuerySql;
+        return this;
     }
 
     /**
@@ -246,12 +323,34 @@ public class MeasureDefinition {
     }
 
     /**
+     * Set gets the indicating whether the Business Measure is Scalar or not.
+     *
+     * @param isManualQueryScalar the isManualQueryScalar value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withIsManualQueryScalar(Boolean isManualQueryScalar) {
+        this.isManualQueryScalar = isManualQueryScalar;
+        return this;
+    }
+
+    /**
      * Get gets the list of measures that this measure depends on.
      *
      * @return the dependencies value
      */
     public List<EntityDependency> dependencies() {
         return this.dependencies;
+    }
+
+    /**
+     * Set gets the list of measures that this measure depends on.
+     *
+     * @param dependencies the dependencies value to set
+     * @return the MeasureDefinition object itself.
+     */
+    public MeasureDefinition withDependencies(List<EntityDependency> dependencies) {
+        this.dependencies = dependencies;
+        return this;
     }
 
 }

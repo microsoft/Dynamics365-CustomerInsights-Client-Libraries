@@ -13,7 +13,7 @@
 class SqlValidationStats {
   /**
    * Create a SqlValidationStats.
-   * @property {date} [validationDate] Gets the last validation evaluation date
+   * @property {date} [validationDate] Date of Validation evaluation
    * @property {string} [error] Gets the number of consecutive failures
    */
   constructor() {

@@ -83,19 +83,19 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// measure e doesn't have any dimensions
         /// </summary>
         [JsonProperty(PropertyName = "isScalar")]
-        public bool? IsScalar { get; private set; }
+        public bool? IsScalar { get; set; }
 
         /// <summary>
         /// Gets list of linked entities associated with the measure.
         /// </summary>
         [JsonProperty(PropertyName = "linkedEntities")]
-        public IList<MeasureLinkedEntity> LinkedEntities { get; private set; }
+        public IList<MeasureLinkedEntity> LinkedEntities { get; set; }
 
         /// <summary>
         /// Gets list of variables (computed columns) for the measure.
         /// </summary>
         [JsonProperty(PropertyName = "variables")]
-        public IList<MeasureVariable> Variables { get; private set; }
+        public IList<MeasureVariable> Variables { get; set; }
 
         /// <summary>
         /// </summary>
@@ -111,26 +111,26 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets list of dimensions with the measure.
         /// </summary>
         [JsonProperty(PropertyName = "dimensions")]
-        public IList<MeasureDimension> Dimensions { get; private set; }
+        public IList<MeasureDimension> Dimensions { get; set; }
 
         /// <summary>
         /// Gets list of aggregates of the measure.
         /// </summary>
         [JsonProperty(PropertyName = "aggregates")]
-        public IList<MeasureAggregate> Aggregates { get; private set; }
+        public IList<MeasureAggregate> Aggregates { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the current measure is a profile
         /// measure
         /// </summary>
         [JsonProperty(PropertyName = "isProfile")]
-        public bool? IsProfile { get; private set; }
+        public bool? IsProfile { get; set; }
 
         /// <summary>
         /// Gets the user specified custom SQL query.
         /// </summary>
         [JsonProperty(PropertyName = "measureQuerySql")]
-        public string MeasureQuerySql { get; private set; }
+        public string MeasureQuerySql { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'structured', 'manual'
@@ -142,13 +142,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets the indicating whether the Business Measure is Scalar or not.
         /// </summary>
         [JsonProperty(PropertyName = "isManualQueryScalar")]
-        public bool? IsManualQueryScalar { get; private set; }
+        public bool? IsManualQueryScalar { get; set; }
 
         /// <summary>
         /// Gets the list of measures that this measure depends on.
         /// </summary>
         [JsonProperty(PropertyName = "dependencies")]
-        public IList<EntityDependency> Dependencies { get; private set; }
+        public IList<EntityDependency> Dependencies { get; set; }
 
     }
 }

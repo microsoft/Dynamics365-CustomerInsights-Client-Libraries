@@ -7,14 +7,16 @@
 'use strict';
 
 /**
- * Class representing a IAttributeMetadata.
+ * Represents attribute Metadata
+ *
  */
 class IAttributeMetadata {
   /**
    * Create a IAttributeMetadata.
-   * @property {string} [name]
-   * @property {string} [friendlyName]
-   * @property {string} [baseName]
+   * @property {string} [name] Unique Name for Attribute Metadata
+   * @property {string} [friendlyName] User friendly Name for Attribute
+   * Metadata
+   * @property {string} [baseName] Base Name for Attribute Metadata
    * @property {string} [dataType] Gets data type for property.
    * @property {string} [semanticType] Gets semantic type for property.
    * Possible values include: 'CalendarDate', 'CalendarDayOfMonth',
@@ -73,7 +75,6 @@ class IAttributeMetadata {
         modelProperties: {
           name: {
             required: false,
-            readOnly: true,
             serializedName: 'name',
             type: {
               name: 'String'
@@ -81,7 +82,6 @@ class IAttributeMetadata {
           },
           friendlyName: {
             required: false,
-            readOnly: true,
             serializedName: 'friendlyName',
             type: {
               name: 'String'
@@ -89,7 +89,6 @@ class IAttributeMetadata {
           },
           baseName: {
             required: false,
-            readOnly: true,
             serializedName: 'baseName',
             type: {
               name: 'String'

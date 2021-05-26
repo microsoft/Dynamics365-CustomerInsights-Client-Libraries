@@ -9,25 +9,25 @@ package com.microsoft.dynamics.customerinsights.apiclient.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The IAttributeMetadata model.
+ * Represents attribute Metadata.
  */
 public class IAttributeMetadata {
     /**
-     * The name property.
+     * Unique Name for Attribute Metadata.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "name")
     private String name;
 
     /**
-     * The friendlyName property.
+     * User friendly Name for Attribute Metadata.
      */
-    @JsonProperty(value = "friendlyName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "friendlyName")
     private String friendlyName;
 
     /**
-     * The baseName property.
+     * Base Name for Attribute Metadata.
      */
-    @JsonProperty(value = "baseName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "baseName")
     private String baseName;
 
     /**
@@ -71,7 +71,7 @@ public class IAttributeMetadata {
     private IAttributeSearchProperties searchProperties;
 
     /**
-     * Get the name value.
+     * Get unique Name for Attribute Metadata.
      *
      * @return the name value
      */
@@ -80,7 +80,18 @@ public class IAttributeMetadata {
     }
 
     /**
-     * Get the friendlyName value.
+     * Set unique Name for Attribute Metadata.
+     *
+     * @param name the name value to set
+     * @return the IAttributeMetadata object itself.
+     */
+    public IAttributeMetadata withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get user friendly Name for Attribute Metadata.
      *
      * @return the friendlyName value
      */
@@ -89,12 +100,34 @@ public class IAttributeMetadata {
     }
 
     /**
-     * Get the baseName value.
+     * Set user friendly Name for Attribute Metadata.
+     *
+     * @param friendlyName the friendlyName value to set
+     * @return the IAttributeMetadata object itself.
+     */
+    public IAttributeMetadata withFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
+        return this;
+    }
+
+    /**
+     * Get base Name for Attribute Metadata.
      *
      * @return the baseName value
      */
     public String baseName() {
         return this.baseName;
+    }
+
+    /**
+     * Set base Name for Attribute Metadata.
+     *
+     * @param baseName the baseName value to set
+     * @return the IAttributeMetadata object itself.
+     */
+    public IAttributeMetadata withBaseName(String baseName) {
+        this.baseName = baseName;
+        return this;
     }
 
     /**

@@ -17,7 +17,9 @@ class PartitionMetadata {
    * @property {string} [location] Gets the uri location of the data
    * @property {date} [refreshTime] Gets the refresh time of the data partition
    * @property {object} [fileFormatSettings]
-   * @property {boolean} [hasHeader]
+   * @property {boolean} [forceSasAuth] Gets a value indicating whether a
+   * partition need to be forced for SAS authentication.
+   * @property {boolean} [hasHeader] Flad to represent header presence (if any)
    */
   constructor() {
   }
@@ -64,9 +66,15 @@ class PartitionMetadata {
               name: 'Object'
             }
           },
+          forceSasAuth: {
+            required: false,
+            serializedName: 'forceSasAuth',
+            type: {
+              name: 'Boolean'
+            }
+          },
           hasHeader: {
             required: false,
-            readOnly: true,
             serializedName: 'hasHeader',
             type: {
               name: 'Boolean'

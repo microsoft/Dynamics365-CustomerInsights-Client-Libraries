@@ -16,34 +16,31 @@ class DataSourceMetadata {
    * @property {string} [kind] Possible values include: 'salesforce',
    * 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform',
    * 'datahub'
-   * @property {boolean} [isActive]
-   * @property {array} [entityNames]
-   * @property {uuid} [dataSourceId] Gets the unique identity for this object.
-   * @property {string} [name] Gets the unique name of the dataSource.
-   * @property {string} [friendlyName] Gets the friendlyName of the dataSource.
-   * @property {array} [entityInformation] Gets the entity information, by
-   * entity name.
+   * @property {boolean} [isActive] Represents if still in active state
+   * @property {array} [entityNames] List of all Entity Names
+   * @property {uuid} [dataSourceId] Unique identity for this object.
+   * @property {string} [name] Unique name of the dataSource.
+   * @property {string} [friendlyName] FriendlyName of the dataSource.
+   * @property {array} [entityInformation] Entity information, by entity name.
    * @property {string} [provisioningState] Possible values include: 'new',
    * 'creating', 'active', 'createFailed', 'updateFailed', 'deleting',
    * 'refreshCredentials', 'resetInstanceInProgress'
-   * @property {date} [lastRefresh] Gets the time datasource was last
+   * @property {date} [lastRefresh] Represents the time datasource was last
    * refreshed.
    * @property {string} [refreshState] Possible values include: 'notUpdated',
    * 'updated', 'updating', 'updateFailed', 'updateCancelled'
-   * @property {array} [incrementalRefreshProperties] Gets the Incremental
-   * refresh properties for entities.
-   * @property {string} [modelJsonPath] Gets the model path for CDM data
-   * source.
-   * @property {number} [version] Gets the version number of this object.
-   * @property {string} [updatedBy] Gets the UPN of the user who last updated
-   * this record.
-   * @property {date} [updatedUtc] Gets the time the object was last updated.
-   * @property {string} [createdBy] Gets the email address of the user who
-   * created this record.
-   * @property {date} [createdUtc] Gets the time the object was initially
-   * created.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {array} [incrementalRefreshProperties] Incremental refresh
+   * properties for entities.
+   * @property {string} [modelJsonPath] Model path for CDM data source.
+   * @property {number} [version] Version number of this object.
+   * @property {string} [updatedBy] UPN of the user who last updated this
+   * record.
+   * @property {date} [updatedUtc] Time this object was last updated.
+   * @property {string} [createdBy] Email address of the user who created this
+   * record.
+   * @property {date} [createdUtc] Time this object was initially created.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -71,7 +68,6 @@ class DataSourceMetadata {
           },
           isActive: {
             required: false,
-            readOnly: true,
             serializedName: 'isActive',
             type: {
               name: 'Boolean'
@@ -79,7 +75,6 @@ class DataSourceMetadata {
           },
           entityNames: {
             required: false,
-            readOnly: true,
             serializedName: 'entityNames',
             type: {
               name: 'Sequence',
@@ -94,7 +89,6 @@ class DataSourceMetadata {
           },
           dataSourceId: {
             required: false,
-            readOnly: true,
             serializedName: 'dataSourceId',
             type: {
               name: 'String'
@@ -102,7 +96,6 @@ class DataSourceMetadata {
           },
           name: {
             required: false,
-            readOnly: true,
             serializedName: 'name',
             type: {
               name: 'String'
@@ -110,7 +103,6 @@ class DataSourceMetadata {
           },
           friendlyName: {
             required: false,
-            readOnly: true,
             serializedName: 'friendlyName',
             type: {
               name: 'String'
@@ -118,7 +110,6 @@ class DataSourceMetadata {
           },
           entityInformation: {
             required: false,
-            readOnly: true,
             serializedName: 'entityInformation',
             type: {
               name: 'Sequence',
@@ -141,7 +132,6 @@ class DataSourceMetadata {
           },
           lastRefresh: {
             required: false,
-            readOnly: true,
             serializedName: 'lastRefresh',
             type: {
               name: 'DateTime'
@@ -156,7 +146,6 @@ class DataSourceMetadata {
           },
           incrementalRefreshProperties: {
             required: false,
-            readOnly: true,
             serializedName: 'incrementalRefreshProperties',
             type: {
               name: 'Sequence',
@@ -172,7 +161,6 @@ class DataSourceMetadata {
           },
           modelJsonPath: {
             required: false,
-            readOnly: true,
             serializedName: 'modelJsonPath',
             type: {
               name: 'String'
@@ -180,7 +168,6 @@ class DataSourceMetadata {
           },
           version: {
             required: false,
-            readOnly: true,
             serializedName: 'version',
             type: {
               name: 'Number'
@@ -188,7 +175,6 @@ class DataSourceMetadata {
           },
           updatedBy: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedBy',
             type: {
               name: 'String'
@@ -196,7 +182,6 @@ class DataSourceMetadata {
           },
           updatedUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedUtc',
             type: {
               name: 'DateTime'
@@ -204,7 +189,6 @@ class DataSourceMetadata {
           },
           createdBy: {
             required: false,
-            readOnly: true,
             serializedName: 'createdBy',
             type: {
               name: 'String'
@@ -212,7 +196,6 @@ class DataSourceMetadata {
           },
           createdUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'createdUtc',
             type: {
               name: 'DateTime'
@@ -220,7 +203,6 @@ class DataSourceMetadata {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

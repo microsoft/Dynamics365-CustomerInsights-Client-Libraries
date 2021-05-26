@@ -23,39 +23,39 @@ public class DataSourceMetadata {
     private String kind;
 
     /**
-     * The isActive property.
+     * Represents if still in active state.
      */
-    @JsonProperty(value = "isActive", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "isActive")
     private Boolean isActive;
 
     /**
-     * The entityNames property.
+     * List of all Entity Names.
      */
-    @JsonProperty(value = "entityNames", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "entityNames")
     private List<String> entityNames;
 
     /**
-     * Gets the unique identity for this object.
+     * Unique identity for this object.
      */
-    @JsonProperty(value = "dataSourceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dataSourceId")
     private UUID dataSourceId;
 
     /**
-     * Gets the unique name of the dataSource.
+     * Unique name of the dataSource.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "name")
     private String name;
 
     /**
-     * Gets the friendlyName of the dataSource.
+     * FriendlyName of the dataSource.
      */
-    @JsonProperty(value = "friendlyName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "friendlyName")
     private String friendlyName;
 
     /**
-     * Gets the entity information, by entity name.
+     * Entity information, by entity name.
      */
-    @JsonProperty(value = "entityInformation", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "entityInformation")
     private List<DatasourceEntityInformation> entityInformation;
 
     /**
@@ -67,9 +67,9 @@ public class DataSourceMetadata {
     private String provisioningState;
 
     /**
-     * Gets the time datasource was last refreshed.
+     * Represents the time datasource was last refreshed.
      */
-    @JsonProperty(value = "lastRefresh", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "lastRefresh")
     private DateTime lastRefresh;
 
     /**
@@ -80,51 +80,51 @@ public class DataSourceMetadata {
     private String refreshState;
 
     /**
-     * Gets the Incremental refresh properties for entities.
+     * Incremental refresh properties for entities.
      */
-    @JsonProperty(value = "incrementalRefreshProperties", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "incrementalRefreshProperties")
     private List<IncrementalRefreshProperties> incrementalRefreshProperties;
 
     /**
-     * Gets the model path for CDM data source.
+     * Model path for CDM data source.
      */
-    @JsonProperty(value = "modelJsonPath", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "modelJsonPath")
     private String modelJsonPath;
 
     /**
-     * Gets the version number of this object.
+     * Version number of this object.
      */
-    @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "version")
     private Long version;
 
     /**
-     * Gets the UPN of the user who last updated this record.
+     * UPN of the user who last updated this record.
      */
-    @JsonProperty(value = "updatedBy", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "updatedBy")
     private String updatedBy;
 
     /**
-     * Gets the time the object was last updated.
+     * Time this object was last updated.
      */
-    @JsonProperty(value = "updatedUtc", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "updatedUtc")
     private DateTime updatedUtc;
 
     /**
-     * Gets the email address of the user who created this record.
+     * Email address of the user who created this record.
      */
-    @JsonProperty(value = "createdBy", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "createdBy")
     private String createdBy;
 
     /**
-     * Gets the time the object was initially created.
+     * Time this object was initially created.
      */
-    @JsonProperty(value = "createdUtc", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "createdUtc")
     private DateTime createdUtc;
 
     /**
-     * Gets the Customer Insights instance id associated with this object.
+     * Customer Insights instance id associated with this object.
      */
-    @JsonProperty(value = "instanceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "instanceId")
     private UUID instanceId;
 
     /**
@@ -148,7 +148,7 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get the isActive value.
+     * Get represents if still in active state.
      *
      * @return the isActive value
      */
@@ -157,7 +157,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get the entityNames value.
+     * Set represents if still in active state.
+     *
+     * @param isActive the isActive value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withIsActive(Boolean isActive) {
+        this.isActive = isActive;
+        return this;
+    }
+
+    /**
+     * Get list of all Entity Names.
      *
      * @return the entityNames value
      */
@@ -166,7 +177,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the unique identity for this object.
+     * Set list of all Entity Names.
+     *
+     * @param entityNames the entityNames value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withEntityNames(List<String> entityNames) {
+        this.entityNames = entityNames;
+        return this;
+    }
+
+    /**
+     * Get unique identity for this object.
      *
      * @return the dataSourceId value
      */
@@ -175,7 +197,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the unique name of the dataSource.
+     * Set unique identity for this object.
+     *
+     * @param dataSourceId the dataSourceId value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withDataSourceId(UUID dataSourceId) {
+        this.dataSourceId = dataSourceId;
+        return this;
+    }
+
+    /**
+     * Get unique name of the dataSource.
      *
      * @return the name value
      */
@@ -184,7 +217,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the friendlyName of the dataSource.
+     * Set unique name of the dataSource.
+     *
+     * @param name the name value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get friendlyName of the dataSource.
      *
      * @return the friendlyName value
      */
@@ -193,12 +237,34 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the entity information, by entity name.
+     * Set friendlyName of the dataSource.
+     *
+     * @param friendlyName the friendlyName value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
+        return this;
+    }
+
+    /**
+     * Get entity information, by entity name.
      *
      * @return the entityInformation value
      */
     public List<DatasourceEntityInformation> entityInformation() {
         return this.entityInformation;
+    }
+
+    /**
+     * Set entity information, by entity name.
+     *
+     * @param entityInformation the entityInformation value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withEntityInformation(List<DatasourceEntityInformation> entityInformation) {
+        this.entityInformation = entityInformation;
+        return this;
     }
 
     /**
@@ -222,12 +288,23 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the time datasource was last refreshed.
+     * Get represents the time datasource was last refreshed.
      *
      * @return the lastRefresh value
      */
     public DateTime lastRefresh() {
         return this.lastRefresh;
+    }
+
+    /**
+     * Set represents the time datasource was last refreshed.
+     *
+     * @param lastRefresh the lastRefresh value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withLastRefresh(DateTime lastRefresh) {
+        this.lastRefresh = lastRefresh;
+        return this;
     }
 
     /**
@@ -251,7 +328,7 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the Incremental refresh properties for entities.
+     * Get incremental refresh properties for entities.
      *
      * @return the incrementalRefreshProperties value
      */
@@ -260,7 +337,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the model path for CDM data source.
+     * Set incremental refresh properties for entities.
+     *
+     * @param incrementalRefreshProperties the incrementalRefreshProperties value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withIncrementalRefreshProperties(List<IncrementalRefreshProperties> incrementalRefreshProperties) {
+        this.incrementalRefreshProperties = incrementalRefreshProperties;
+        return this;
+    }
+
+    /**
+     * Get model path for CDM data source.
      *
      * @return the modelJsonPath value
      */
@@ -269,7 +357,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the version number of this object.
+     * Set model path for CDM data source.
+     *
+     * @param modelJsonPath the modelJsonPath value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withModelJsonPath(String modelJsonPath) {
+        this.modelJsonPath = modelJsonPath;
+        return this;
+    }
+
+    /**
+     * Get version number of this object.
      *
      * @return the version value
      */
@@ -278,7 +377,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the UPN of the user who last updated this record.
+     * Set version number of this object.
+     *
+     * @param version the version value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withVersion(Long version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get uPN of the user who last updated this record.
      *
      * @return the updatedBy value
      */
@@ -287,7 +397,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the time the object was last updated.
+     * Set uPN of the user who last updated this record.
+     *
+     * @param updatedBy the updatedBy value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+        return this;
+    }
+
+    /**
+     * Get time this object was last updated.
      *
      * @return the updatedUtc value
      */
@@ -296,7 +417,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the email address of the user who created this record.
+     * Set time this object was last updated.
+     *
+     * @param updatedUtc the updatedUtc value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withUpdatedUtc(DateTime updatedUtc) {
+        this.updatedUtc = updatedUtc;
+        return this;
+    }
+
+    /**
+     * Get email address of the user who created this record.
      *
      * @return the createdBy value
      */
@@ -305,7 +437,18 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the time the object was initially created.
+     * Set email address of the user who created this record.
+     *
+     * @param createdBy the createdBy value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * Get time this object was initially created.
      *
      * @return the createdUtc value
      */
@@ -314,12 +457,34 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get gets the Customer Insights instance id associated with this object.
+     * Set time this object was initially created.
+     *
+     * @param createdUtc the createdUtc value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withCreatedUtc(DateTime createdUtc) {
+        this.createdUtc = createdUtc;
+        return this;
+    }
+
+    /**
+     * Get customer Insights instance id associated with this object.
      *
      * @return the instanceId value
      */
     public UUID instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Set customer Insights instance id associated with this object.
+     *
+     * @param instanceId the instanceId value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withInstanceId(UUID instanceId) {
+        this.instanceId = instanceId;
+        return this;
     }
 
 }

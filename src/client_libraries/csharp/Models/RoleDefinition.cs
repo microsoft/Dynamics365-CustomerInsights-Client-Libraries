@@ -37,12 +37,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "description")]
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "roleName")]
-        public string RoleName { get; private set; }
+        public string RoleName { get; set; }
 
     }
 }

@@ -19,8 +19,9 @@ class WorkflowRefreshSchedule {
    * 'entityMeasures', 'measures', 'segmentation', 'enrichment',
    * 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
    * 'relationship', 'roleAssignment', 'analysis', 'all'
-   * @property {string} [subType] Possible values include: 'templatedMeasures',
-   * 'createAnalysisModel', 'linkAnalysisModel'
+   * @property {string} [subType] Possible values include: 'noSubType',
+   * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
+   * 'singleActivityMapping', 'powerPlatform'
    * @property {array} [identifiers] Gets the identifiers of the schedule
    * @property {string} [jobType] Possible values include: 'full',
    * 'incremental'
@@ -29,8 +30,8 @@ class WorkflowRefreshSchedule {
    * @property {string} [timezoneId] Gets the ID of the timezone
    * @property {array} [cronSchedules] Gets the schedule in CRON format
    * @property {uuid} [scheduleId] Gets the ID of the schedule
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -86,7 +87,6 @@ class WorkflowRefreshSchedule {
           },
           isActive: {
             required: false,
-            readOnly: true,
             serializedName: 'isActive',
             type: {
               name: 'Boolean'
@@ -94,7 +94,6 @@ class WorkflowRefreshSchedule {
           },
           timezoneId: {
             required: false,
-            readOnly: true,
             serializedName: 'timezoneId',
             type: {
               name: 'String'
@@ -102,7 +101,6 @@ class WorkflowRefreshSchedule {
           },
           cronSchedules: {
             required: false,
-            readOnly: true,
             serializedName: 'cronSchedules',
             type: {
               name: 'Sequence',
@@ -117,7 +115,6 @@ class WorkflowRefreshSchedule {
           },
           scheduleId: {
             required: false,
-            readOnly: true,
             serializedName: 'scheduleId',
             type: {
               name: 'String'
@@ -125,7 +122,6 @@ class WorkflowRefreshSchedule {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

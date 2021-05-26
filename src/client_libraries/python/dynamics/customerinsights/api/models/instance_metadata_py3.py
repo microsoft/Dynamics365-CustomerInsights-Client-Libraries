@@ -11,9 +11,6 @@ from msrest.serialization import Model
 class InstanceMetadata(Model):
     """The instance metadata.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param name: Gets the user defined instance name.
     :type name: str
     :param provisioning_state: Possible values include: 'new', 'creating',
@@ -41,30 +38,20 @@ class InstanceMetadata(Model):
     :param trial_extension_history: Stores the details of trial extensions
      done if this is a trial instance
     :type trial_extension_history: str
-    :ivar version: Gets the version number of this object.
-    :vartype version: long
-    :ivar updated_by: Gets the UPN of the user who last updated this record.
-    :vartype updated_by: str
-    :ivar updated_utc: Gets the time the object was last updated.
-    :vartype updated_utc: datetime
-    :ivar created_by: Gets the email address of the user who created this
-     record.
-    :vartype created_by: str
-    :ivar created_utc: Gets the time the object was initially created.
-    :vartype created_utc: datetime
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param version: Version number of this object.
+    :type version: long
+    :param updated_by: UPN of the user who last updated this record.
+    :type updated_by: str
+    :param updated_utc: Time this object was last updated.
+    :type updated_utc: datetime
+    :param created_by: Email address of the user who created this record.
+    :type created_by: str
+    :param created_utc: Time this object was initially created.
+    :type created_utc: datetime
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'version': {'readonly': True},
-        'updated_by': {'readonly': True},
-        'updated_utc': {'readonly': True},
-        'created_by': {'readonly': True},
-        'created_utc': {'readonly': True},
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
@@ -85,7 +72,7 @@ class InstanceMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str=None, provisioning_state=None, instance_type=None, refresh_schedule=None, expiry_time_utc=None, region: str=None, cds_org_info=None, cds_mdl_info=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, **kwargs) -> None:
+    def __init__(self, *, name: str=None, provisioning_state=None, instance_type=None, refresh_schedule=None, expiry_time_utc=None, region: str=None, cds_org_info=None, cds_mdl_info=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(InstanceMetadata, self).__init__(**kwargs)
         self.name = name
         self.provisioning_state = provisioning_state
@@ -97,9 +84,9 @@ class InstanceMetadata(Model):
         self.cds_mdl_info = cds_mdl_info
         self.max_trial_extensions_allowed = max_trial_extensions_allowed
         self.trial_extension_history = trial_extension_history
-        self.version = None
-        self.updated_by = None
-        self.updated_utc = None
-        self.created_by = None
-        self.created_utc = None
-        self.instance_id = None
+        self.version = version
+        self.updated_by = updated_by
+        self.updated_utc = updated_utc
+        self.created_by = created_by
+        self.created_utc = created_utc
+        self.instance_id = instance_id

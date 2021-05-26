@@ -89,22 +89,22 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "annotations")]
-        public IList<Annotation> Annotations { get; private set; }
+        public IList<Annotation> Annotations { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "entities")]
-        public IList<Entity> Entities { get; private set; }
+        public IList<Entity> Entities { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "relationships")]
-        public IList<Relationship> Relationships { get; private set; }
+        public IList<Relationship> Relationships { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "referenceModels")]
-        public IList<ReferenceModel> ReferenceModels { get; private set; }
+        public IList<ReferenceModel> ReferenceModels { get; set; }
 
     }
 }

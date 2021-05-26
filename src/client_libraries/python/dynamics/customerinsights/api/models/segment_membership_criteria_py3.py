@@ -20,7 +20,8 @@ class SegmentMembershipCriteria(Model):
      'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
      'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
      'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-     'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
+     'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek',
+     'timeAt'
     :type comparison_operator: str or
      ~dynamics.customerinsights.api.models.enum
     :param child_criterias: Gets the list of Child criteria of segment.
@@ -33,6 +34,8 @@ class SegmentMembershipCriteria(Model):
     :type ignore_case: bool
     :param list_of_values: Gets the list of values in criteria.
     :type list_of_values: list[str]
+    :param is_time: flag set to true if entries are of time format
+    :type is_time: bool
     """
 
     _attribute_map = {
@@ -43,9 +46,10 @@ class SegmentMembershipCriteria(Model):
         'value': {'key': 'value', 'type': 'str'},
         'ignore_case': {'key': 'ignoreCase', 'type': 'bool'},
         'list_of_values': {'key': 'listOfValues', 'type': '[str]'},
+        'is_time': {'key': 'isTime', 'type': 'bool'},
     }
 
-    def __init__(self, *, logical_operator=None, attribute: str=None, comparison_operator=None, child_criterias=None, value: str=None, ignore_case: bool=None, list_of_values=None, **kwargs) -> None:
+    def __init__(self, *, logical_operator=None, attribute: str=None, comparison_operator=None, child_criterias=None, value: str=None, ignore_case: bool=None, list_of_values=None, is_time: bool=None, **kwargs) -> None:
         super(SegmentMembershipCriteria, self).__init__(**kwargs)
         self.logical_operator = logical_operator
         self.attribute = attribute
@@ -54,3 +58,4 @@ class SegmentMembershipCriteria(Model):
         self.value = value
         self.ignore_case = ignore_case
         self.list_of_values = list_of_values
+        self.is_time = is_time

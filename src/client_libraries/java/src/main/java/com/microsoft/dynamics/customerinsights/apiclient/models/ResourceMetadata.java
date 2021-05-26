@@ -27,13 +27,13 @@ public class ResourceMetadata {
     /**
      * Gets the Id of the resource.
      */
-    @JsonProperty(value = "resourceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "resourceId")
     private UUID resourceId;
 
     /**
      * Gets the Id of the operation being performed on the resource.
      */
-    @JsonProperty(value = "operationId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "operationId")
     private UUID operationId;
 
     /**
@@ -48,49 +48,49 @@ public class ResourceMetadata {
     /**
      * Gets the Name of the resource.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "name")
     private String name;
 
     /**
      * Gets the Description of the resource.
      */
-    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "description")
     private String description;
 
     /**
-     * Gets the version number of this object.
+     * Version number of this object.
      */
-    @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "version")
     private Long version;
 
     /**
-     * Gets the UPN of the user who last updated this record.
+     * UPN of the user who last updated this record.
      */
-    @JsonProperty(value = "updatedBy", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "updatedBy")
     private String updatedBy;
 
     /**
-     * Gets the time the object was last updated.
+     * Time this object was last updated.
      */
-    @JsonProperty(value = "updatedUtc", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "updatedUtc")
     private DateTime updatedUtc;
 
     /**
-     * Gets the email address of the user who created this record.
+     * Email address of the user who created this record.
      */
-    @JsonProperty(value = "createdBy", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "createdBy")
     private String createdBy;
 
     /**
-     * Gets the time the object was initially created.
+     * Time this object was initially created.
      */
-    @JsonProperty(value = "createdUtc", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "createdUtc")
     private DateTime createdUtc;
 
     /**
-     * Gets the Customer Insights instance id associated with this object.
+     * Customer Insights instance id associated with this object.
      */
-    @JsonProperty(value = "instanceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "instanceId")
     private UUID instanceId;
 
     /**
@@ -123,12 +123,34 @@ public class ResourceMetadata {
     }
 
     /**
+     * Set gets the Id of the resource.
+     *
+     * @param resourceId the resourceId value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withResourceId(UUID resourceId) {
+        this.resourceId = resourceId;
+        return this;
+    }
+
+    /**
      * Get gets the Id of the operation being performed on the resource.
      *
      * @return the operationId value
      */
     public UUID operationId() {
         return this.operationId;
+    }
+
+    /**
+     * Set gets the Id of the operation being performed on the resource.
+     *
+     * @param operationId the operationId value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withOperationId(UUID operationId) {
+        this.operationId = operationId;
+        return this;
     }
 
     /**
@@ -161,6 +183,17 @@ public class ResourceMetadata {
     }
 
     /**
+     * Set gets the Name of the resource.
+     *
+     * @param name the name value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
      * Get gets the Description of the resource.
      *
      * @return the description value
@@ -170,7 +203,18 @@ public class ResourceMetadata {
     }
 
     /**
-     * Get gets the version number of this object.
+     * Set gets the Description of the resource.
+     *
+     * @param description the description value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get version number of this object.
      *
      * @return the version value
      */
@@ -179,7 +223,18 @@ public class ResourceMetadata {
     }
 
     /**
-     * Get gets the UPN of the user who last updated this record.
+     * Set version number of this object.
+     *
+     * @param version the version value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withVersion(Long version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get uPN of the user who last updated this record.
      *
      * @return the updatedBy value
      */
@@ -188,7 +243,18 @@ public class ResourceMetadata {
     }
 
     /**
-     * Get gets the time the object was last updated.
+     * Set uPN of the user who last updated this record.
+     *
+     * @param updatedBy the updatedBy value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+        return this;
+    }
+
+    /**
+     * Get time this object was last updated.
      *
      * @return the updatedUtc value
      */
@@ -197,7 +263,18 @@ public class ResourceMetadata {
     }
 
     /**
-     * Get gets the email address of the user who created this record.
+     * Set time this object was last updated.
+     *
+     * @param updatedUtc the updatedUtc value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withUpdatedUtc(DateTime updatedUtc) {
+        this.updatedUtc = updatedUtc;
+        return this;
+    }
+
+    /**
+     * Get email address of the user who created this record.
      *
      * @return the createdBy value
      */
@@ -206,7 +283,18 @@ public class ResourceMetadata {
     }
 
     /**
-     * Get gets the time the object was initially created.
+     * Set email address of the user who created this record.
+     *
+     * @param createdBy the createdBy value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * Get time this object was initially created.
      *
      * @return the createdUtc value
      */
@@ -215,12 +303,34 @@ public class ResourceMetadata {
     }
 
     /**
-     * Get gets the Customer Insights instance id associated with this object.
+     * Set time this object was initially created.
+     *
+     * @param createdUtc the createdUtc value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withCreatedUtc(DateTime createdUtc) {
+        this.createdUtc = createdUtc;
+        return this;
+    }
+
+    /**
+     * Get customer Insights instance id associated with this object.
      *
      * @return the instanceId value
      */
     public UUID instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Set customer Insights instance id associated with this object.
+     *
+     * @param instanceId the instanceId value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withInstanceId(UUID instanceId) {
+        this.instanceId = instanceId;
+        return this;
     }
 
 }

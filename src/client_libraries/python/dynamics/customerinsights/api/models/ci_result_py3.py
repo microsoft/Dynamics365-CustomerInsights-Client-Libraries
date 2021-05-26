@@ -9,7 +9,7 @@ from msrest.serialization import Model
 
 
 class CIResult(Model):
-    """CIResult.
+    """Represents response result type.
 
     :param exception_culprit: Possible values include: 'system', 'user',
      'external'
@@ -18,11 +18,12 @@ class CIResult(Model):
     :type error_code: str
     :param result_severity: Possible values include: 'error', 'warning'
     :type result_severity: str or ~dynamics.customerinsights.api.models.enum
-    :param message:
+    :param message: Message providing more information about the event.
     :type message: str
     :param params:
     :type params: dict[str, object]
-    :param ci_results:
+    :param ci_results: List of CiResult contining CI result error code and
+     information (if any).
     :type ci_results: list[~dynamics.customerinsights.api.models.CIResult]
     """
 

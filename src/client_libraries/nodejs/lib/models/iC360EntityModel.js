@@ -7,7 +7,8 @@
 'use strict';
 
 /**
- * Class representing a IC360EntityModel.
+ * Represents Entity Model.
+ *
  */
 class IC360EntityModel {
   /**
@@ -46,7 +47,6 @@ class IC360EntityModel {
         modelProperties: {
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'
@@ -54,7 +54,6 @@ class IC360EntityModel {
           },
           dataflowId: {
             required: false,
-            readOnly: true,
             serializedName: 'dataflowId',
             type: {
               name: 'String'
@@ -62,7 +61,6 @@ class IC360EntityModel {
           },
           datasourceId: {
             required: false,
-            readOnly: true,
             serializedName: 'datasourceId',
             type: {
               name: 'String'
@@ -77,7 +75,6 @@ class IC360EntityModel {
           },
           entities: {
             required: false,
-            readOnly: true,
             serializedName: 'entities',
             type: {
               name: 'Sequence',

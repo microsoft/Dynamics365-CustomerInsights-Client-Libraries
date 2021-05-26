@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ScalarOutput {
     /**
-     * Gets the output folder path for the evaluation.
+     * Output folder path for the evaluation.
      */
     @JsonProperty(value = "values")
     private Map<String, String> values;
@@ -33,7 +33,7 @@ public class ScalarOutput {
     private DateTime evaluationTime;
 
     /**
-     * Get gets the output folder path for the evaluation.
+     * Get output folder path for the evaluation.
      *
      * @return the values value
      */
@@ -42,7 +42,7 @@ public class ScalarOutput {
     }
 
     /**
-     * Set gets the output folder path for the evaluation.
+     * Set output folder path for the evaluation.
      *
      * @param values the values value to set
      * @return the ScalarOutput object itself.

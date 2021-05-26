@@ -11,9 +11,9 @@ from msrest.serialization import Model
 class ValueCount(Model):
     """A value and the count of that value.
 
-    :param value: Gets or sets the value.
+    :param value: Represents the value.
     :type value: object
-    :param count: Gets or sets the count of the value.
+    :param count: Represents Count of the value.
     :type count: long
     """
 

@@ -27,25 +27,22 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the IncrementalRefreshProperties
         /// class.
         /// </summary>
-        /// <param name="entityName">Gets the name of the entity.</param>
-        /// <param name="detectChangesAttributeName">Gets the column to detect
+        /// <param name="entityName">Name of the entity.</param>
+        /// <param name="detectChangesAttributeName">Column to detect
         /// changes.</param>
-        /// <param name="filterByAttributeName">Gets the column to get
-        /// incremental data.</param>
-        /// <param name="incrementalGranularity">Gets the granularity of the
-        /// incremental refresh.</param>
-        /// <param name="incrementalPeriods">Gets the incremental
-        /// period.</param>
-        /// <param name="refreshCompletePeriods">Gets a value indicating
-        /// whether to refresh completed periods or not.</param>
-        /// <param name="incrementalPeriodsOffset">Gets the off set
-        /// period.</param>
-        /// <param name="primaryKeyAttributeName">Gets the primary key of the
+        /// <param name="filterByAttributeName">Column to get incremental
+        /// data.</param>
+        /// <param name="incrementalGranularity">Granularity of the incremental
+        /// refresh.</param>
+        /// <param name="incrementalPeriods">Incremental period.</param>
+        /// <param name="refreshCompletePeriods">Indicating whether to refresh
+        /// completed periods or not.</param>
+        /// <param name="incrementalPeriodsOffset">Off set period.</param>
+        /// <param name="primaryKeyAttributeName">Primary key of the
         /// entity.</param>
-        /// <param name="rollingWindowGranularity">Gets the rolling window
+        /// <param name="rollingWindowGranularity">Rolling window
         /// granularity.</param>
-        /// <param name="rollingWindowPeriods">Gets the Rolling window
-        /// period.</param>
+        /// <param name="rollingWindowPeriods">Rolling window period.</param>
         public IncrementalRefreshProperties(string entityName = default(string), string detectChangesAttributeName = default(string), string filterByAttributeName = default(string), string incrementalGranularity = default(string), int? incrementalPeriods = default(int?), bool? refreshCompletePeriods = default(bool?), int? incrementalPeriodsOffset = default(int?), string primaryKeyAttributeName = default(string), string rollingWindowGranularity = default(string), int? rollingWindowPeriods = default(int?))
         {
             EntityName = entityName;
@@ -67,62 +64,62 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets the name of the entity.
+        /// Gets or sets name of the entity.
         /// </summary>
         [JsonProperty(PropertyName = "entityName")]
         public string EntityName { get; set; }
 
         /// <summary>
-        /// Gets the column to detect changes.
+        /// Gets or sets column to detect changes.
         /// </summary>
         [JsonProperty(PropertyName = "detectChangesAttributeName")]
         public string DetectChangesAttributeName { get; set; }
 
         /// <summary>
-        /// Gets the column to get incremental data.
+        /// Gets or sets column to get incremental data.
         /// </summary>
         [JsonProperty(PropertyName = "filterByAttributeName")]
         public string FilterByAttributeName { get; set; }
 
         /// <summary>
-        /// Gets the granularity of the incremental refresh.
+        /// Gets or sets granularity of the incremental refresh.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalGranularity")]
         public string IncrementalGranularity { get; set; }
 
         /// <summary>
-        /// Gets the incremental period.
+        /// Gets or sets incremental period.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalPeriods")]
         public int? IncrementalPeriods { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether to refresh completed periods or
+        /// Gets or sets indicating whether to refresh completed periods or
         /// not.
         /// </summary>
         [JsonProperty(PropertyName = "refreshCompletePeriods")]
         public bool? RefreshCompletePeriods { get; set; }
 
         /// <summary>
-        /// Gets the off set period.
+        /// Gets or sets off set period.
         /// </summary>
         [JsonProperty(PropertyName = "incrementalPeriodsOffset")]
         public int? IncrementalPeriodsOffset { get; set; }
 
         /// <summary>
-        /// Gets the primary key of the entity.
+        /// Gets or sets primary key of the entity.
         /// </summary>
         [JsonProperty(PropertyName = "primaryKeyAttributeName")]
         public string PrimaryKeyAttributeName { get; set; }
 
         /// <summary>
-        /// Gets the rolling window granularity.
+        /// Gets or sets rolling window granularity.
         /// </summary>
         [JsonProperty(PropertyName = "rollingWindowGranularity")]
         public string RollingWindowGranularity { get; set; }
 
         /// <summary>
-        /// Gets the Rolling window period.
+        /// Gets or sets rolling window period.
         /// </summary>
         [JsonProperty(PropertyName = "rollingWindowPeriods")]
         public int? RollingWindowPeriods { get; set; }

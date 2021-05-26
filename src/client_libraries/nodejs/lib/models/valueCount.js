@@ -13,8 +13,8 @@
 class ValueCount {
   /**
    * Create a ValueCount.
-   * @property {object} [value] Gets or sets the value.
-   * @property {number} [count] Gets or sets the count of the value.
+   * @property {object} [value] Represents the value.
+   * @property {number} [count] Represents Count of the value.
    */
   constructor() {
   }

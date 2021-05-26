@@ -9,55 +9,43 @@ from msrest.serialization import Model
 
 
 class AttributeDataProfile(Model):
-    """AttributeDataProfile.
+    """Attribute data profile.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :param value_counts: Gets or sets the distribution of the top 100 values
+    :param value_counts: Represents Distribution of the top 100 values.
     :type value_counts: list[~dynamics.customerinsights.api.models.ValueCount]
-    :param histogram: Gets or sets the histogram information. Ordered from
-     smallest to largest bin.
+    :param histogram: Represents histogram information Ordered from smallest
+     to largest bin.
     :type histogram: list[~dynamics.customerinsights.api.models.HistogramBin]
-    :param string_length_counts: Gets or sets the string lengths and the count
-     of string values with those lengths.
-    :type string_length_counts:
-     list[~dynamics.customerinsights.api.models.StringLengthCount]
-    :param qualified_entity_name: Gets or sets the qualified entity name
+    :param qualified_entity_name: Qualified entity name.
     :type qualified_entity_name: str
-    :param attribute_name: Gets or sets the attribute name.
+    :param attribute_name: Attribute name.
     :type attribute_name: str
-    :param min: Gets or sets the minimum value.
+    :param min: Minimum value.
     :type min: object
-    :param max: Gets or sets the maximum value.
+    :param max: Maximum value.
     :type max: object
-    :param count: Gets or sets the total row count.
+    :param count: Total row count.
     :type count: long
-    :param missing_count: Gets or sets the row count of missing values.
+    :param missing_count: Row count of missing values.
     :type missing_count: long
-    :param error_count: Gets or sets the number of error values.
+    :param error_count: Number of error values.
     :type error_count: long
     :param quantiles:
     :type quantiles: ~dynamics.customerinsights.api.models.Quantiles
     :param moments:
     :type moments: ~dynamics.customerinsights.api.models.Moments
-    :param unique_value_count: Gets or sets the number of unique values.
+    :param unique_value_count: Number of unique values.
     :type unique_value_count: long
-    :param profiling_date: Gets or sets the profiling date
+    :param profiling_date: Profiling date
     :type profiling_date: datetime
-    :ivar is_suggested_primary_key: Gets a value indicating whether this
-     attribute can be used as a primary key of the entity
-    :vartype is_suggested_primary_key: bool
+    :param is_suggested_primary_key: Represents a value indicating whether
+     this attribute can be used as a primary key of the entity
+    :type is_suggested_primary_key: bool
     """
-
-    _validation = {
-        'is_suggested_primary_key': {'readonly': True},
-    }
 
     _attribute_map = {
         'value_counts': {'key': 'valueCounts', 'type': '[ValueCount]'},
         'histogram': {'key': 'histogram', 'type': '[HistogramBin]'},
-        'string_length_counts': {'key': 'stringLengthCounts', 'type': '[StringLengthCount]'},
         'qualified_entity_name': {'key': 'qualifiedEntityName', 'type': 'str'},
         'attribute_name': {'key': 'attributeName', 'type': 'str'},
         'min': {'key': 'min', 'type': 'object'},
@@ -76,7 +64,6 @@ class AttributeDataProfile(Model):
         super(AttributeDataProfile, self).__init__(**kwargs)
         self.value_counts = kwargs.get('value_counts', None)
         self.histogram = kwargs.get('histogram', None)
-        self.string_length_counts = kwargs.get('string_length_counts', None)
         self.qualified_entity_name = kwargs.get('qualified_entity_name', None)
         self.attribute_name = kwargs.get('attribute_name', None)
         self.min = kwargs.get('min', None)
@@ -88,4 +75,4 @@ class AttributeDataProfile(Model):
         self.moments = kwargs.get('moments', None)
         self.unique_value_count = kwargs.get('unique_value_count', None)
         self.profiling_date = kwargs.get('profiling_date', None)
-        self.is_suggested_primary_key = None
+        self.is_suggested_primary_key = kwargs.get('is_suggested_primary_key', None)

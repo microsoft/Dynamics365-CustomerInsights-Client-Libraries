@@ -11,39 +11,26 @@ from msrest.serialization import Model
 class InstanceSearchConfiguration(Model):
     """Represents search configuration of an instance.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param entity_config: Gets search configurations for entities
     :type entity_config:
      list[~dynamics.customerinsights.api.models.EntitySearchConfiguration]
     :param is_system_generated: Gets a value indicating whether the
      configuration was system generated
     :type is_system_generated: bool
-    :ivar version: Gets the version number of this object.
-    :vartype version: long
-    :ivar updated_by: Gets the UPN of the user who last updated this record.
-    :vartype updated_by: str
-    :ivar updated_utc: Gets the time the object was last updated.
-    :vartype updated_utc: datetime
-    :ivar created_by: Gets the email address of the user who created this
-     record.
-    :vartype created_by: str
-    :ivar created_utc: Gets the time the object was initially created.
-    :vartype created_utc: datetime
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param version: Version number of this object.
+    :type version: long
+    :param updated_by: UPN of the user who last updated this record.
+    :type updated_by: str
+    :param updated_utc: Time this object was last updated.
+    :type updated_utc: datetime
+    :param created_by: Email address of the user who created this record.
+    :type created_by: str
+    :param created_utc: Time this object was initially created.
+    :type created_utc: datetime
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'version': {'readonly': True},
-        'updated_by': {'readonly': True},
-        'updated_utc': {'readonly': True},
-        'created_by': {'readonly': True},
-        'created_utc': {'readonly': True},
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'entity_config': {'key': 'entityConfig', 'type': '[EntitySearchConfiguration]'},
@@ -60,9 +47,9 @@ class InstanceSearchConfiguration(Model):
         super(InstanceSearchConfiguration, self).__init__(**kwargs)
         self.entity_config = kwargs.get('entity_config', None)
         self.is_system_generated = kwargs.get('is_system_generated', None)
-        self.version = None
-        self.updated_by = None
-        self.updated_utc = None
-        self.created_by = None
-        self.created_utc = None
-        self.instance_id = None
+        self.version = kwargs.get('version', None)
+        self.updated_by = kwargs.get('updated_by', None)
+        self.updated_utc = kwargs.get('updated_utc', None)
+        self.created_by = kwargs.get('created_by', None)
+        self.created_utc = kwargs.get('created_utc', None)
+        self.instance_id = kwargs.get('instance_id', None)

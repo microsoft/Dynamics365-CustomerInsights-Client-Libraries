@@ -11,6 +11,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Represents Entity Model.
+    /// </summary>
     public partial class IC360EntityModel
     {
         /// <summary>
@@ -58,19 +61,19 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets the instance ID associated with the model.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
         /// <summary>
         /// Gets the dataflow ID associated with the model.
         /// </summary>
         [JsonProperty(PropertyName = "dataflowId")]
-        public System.Guid? DataflowId { get; private set; }
+        public System.Guid? DataflowId { get; set; }
 
         /// <summary>
         /// Gets the datasource ID associated with the model.
         /// </summary>
         [JsonProperty(PropertyName = "datasourceId")]
-        public System.Guid? DatasourceId { get; private set; }
+        public System.Guid? DatasourceId { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'dynamics365', 'salesforce',
@@ -88,7 +91,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets entities in the model.
         /// </summary>
         [JsonProperty(PropertyName = "entities")]
-        public IList<IEntityMetadata> Entities { get; private set; }
+        public IList<IEntityMetadata> Entities { get; set; }
 
     }
 }

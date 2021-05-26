@@ -156,22 +156,21 @@ class SegmentMetadata {
    * @property {array} [evaluationStatus.error.args]
    * @property {uuid} [evaluationStatus.lastSuccessfulRunId]
    * @property {object} [sqlValidationStats]
-   * @property {date} [sqlValidationStats.validationDate] Gets the last
-   * validation evaluation date
+   * @property {date} [sqlValidationStats.validationDate] Date of Validation
+   * evaluation
    * @property {string} [sqlValidationStats.error] Gets the number of
    * consecutive failures
    * @property {array} [evaluationStatusHistory] Gets the segment evaluation
    * status history. (not persisted in store)
-   * @property {number} [version] Gets the version number of this object.
-   * @property {string} [updatedBy] Gets the UPN of the user who last updated
-   * this record.
-   * @property {date} [updatedUtc] Gets the time the object was last updated.
-   * @property {string} [createdBy] Gets the email address of the user who
-   * created this record.
-   * @property {date} [createdUtc] Gets the time the object was initially
-   * created.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {number} [version] Version number of this object.
+   * @property {string} [updatedBy] UPN of the user who last updated this
+   * record.
+   * @property {date} [updatedUtc] Time this object was last updated.
+   * @property {string} [createdBy] Email address of the user who created this
+   * record.
+   * @property {date} [createdUtc] Time this object was initially created.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -273,7 +272,6 @@ class SegmentMetadata {
           },
           version: {
             required: false,
-            readOnly: true,
             serializedName: 'version',
             type: {
               name: 'Number'
@@ -281,7 +279,6 @@ class SegmentMetadata {
           },
           updatedBy: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedBy',
             type: {
               name: 'String'
@@ -289,7 +286,6 @@ class SegmentMetadata {
           },
           updatedUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'updatedUtc',
             type: {
               name: 'DateTime'
@@ -297,7 +293,6 @@ class SegmentMetadata {
           },
           createdBy: {
             required: false,
-            readOnly: true,
             serializedName: 'createdBy',
             type: {
               name: 'String'
@@ -305,7 +300,6 @@ class SegmentMetadata {
           },
           createdUtc: {
             required: false,
-            readOnly: true,
             serializedName: 'createdUtc',
             type: {
               name: 'DateTime'
@@ -313,7 +307,6 @@ class SegmentMetadata {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

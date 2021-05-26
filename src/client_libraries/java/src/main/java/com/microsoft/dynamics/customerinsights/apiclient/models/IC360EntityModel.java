@@ -11,25 +11,25 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The IC360EntityModel model.
+ * Represents Entity Model.
  */
 public class IC360EntityModel {
     /**
      * Gets the instance ID associated with the model.
      */
-    @JsonProperty(value = "instanceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "instanceId")
     private UUID instanceId;
 
     /**
      * Gets the dataflow ID associated with the model.
      */
-    @JsonProperty(value = "dataflowId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dataflowId")
     private UUID dataflowId;
 
     /**
      * Gets the datasource ID associated with the model.
      */
-    @JsonProperty(value = "datasourceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "datasourceId")
     private UUID datasourceId;
 
     /**
@@ -47,7 +47,7 @@ public class IC360EntityModel {
     /**
      * Gets entities in the model.
      */
-    @JsonProperty(value = "entities", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "entities")
     private List<IEntityMetadata> entities;
 
     /**
@@ -60,6 +60,17 @@ public class IC360EntityModel {
     }
 
     /**
+     * Set gets the instance ID associated with the model.
+     *
+     * @param instanceId the instanceId value to set
+     * @return the IC360EntityModel object itself.
+     */
+    public IC360EntityModel withInstanceId(UUID instanceId) {
+        this.instanceId = instanceId;
+        return this;
+    }
+
+    /**
      * Get gets the dataflow ID associated with the model.
      *
      * @return the dataflowId value
@@ -69,12 +80,34 @@ public class IC360EntityModel {
     }
 
     /**
+     * Set gets the dataflow ID associated with the model.
+     *
+     * @param dataflowId the dataflowId value to set
+     * @return the IC360EntityModel object itself.
+     */
+    public IC360EntityModel withDataflowId(UUID dataflowId) {
+        this.dataflowId = dataflowId;
+        return this;
+    }
+
+    /**
      * Get gets the datasource ID associated with the model.
      *
      * @return the datasourceId value
      */
     public UUID datasourceId() {
         return this.datasourceId;
+    }
+
+    /**
+     * Set gets the datasource ID associated with the model.
+     *
+     * @param datasourceId the datasourceId value to set
+     * @return the IC360EntityModel object itself.
+     */
+    public IC360EntityModel withDatasourceId(UUID datasourceId) {
+        this.datasourceId = datasourceId;
+        return this;
     }
 
     /**
@@ -104,6 +137,17 @@ public class IC360EntityModel {
      */
     public List<IEntityMetadata> entities() {
         return this.entities;
+    }
+
+    /**
+     * Set gets entities in the model.
+     *
+     * @param entities the entities value to set
+     * @return the IC360EntityModel object itself.
+     */
+    public IC360EntityModel withEntities(List<IEntityMetadata> entities) {
+        this.entities = entities;
+        return this;
     }
 
 }

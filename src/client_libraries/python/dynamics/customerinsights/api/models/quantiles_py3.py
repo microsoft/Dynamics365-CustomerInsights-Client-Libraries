@@ -11,23 +11,23 @@ from msrest.serialization import Model
 class Quantiles(Model):
     """Numerical quantiles.
 
-    :param p0_d1: Gets or sets the 1% quantile.
+    :param p0_d1: Represents 1% quantile.
     :type p0_d1: float
-    :param p1: Gets or sets the 1% quantile.
+    :param p1: Represents 1% quantile.
     :type p1: float
-    :param p5: Gets or sets the 5% quantile.
+    :param p5: Represents 5% quantile.
     :type p5: float
-    :param p25: Gets or sets the 25% quantile.
+    :param p25: Represents 25% quantile.
     :type p25: float
-    :param p50: Gets or sets the 50% quantile.
+    :param p50: Represents 50% quantile.
     :type p50: float
-    :param p75: Gets or sets the 75% quantile.
+    :param p75: Represents 75% quantile.
     :type p75: float
-    :param p95: Gets or sets the 95% quantile.
+    :param p95: Represents 95% quantile.
     :type p95: float
-    :param p99: Gets or sets the 99% quantile.
+    :param p99: Represents 99% quantile.
     :type p99: float
-    :param p99_d9: Gets or sets the 9% quantile.
+    :param p99_d9: Represents 9% quantile.
     :type p99_d9: float
     """
 

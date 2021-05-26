@@ -24,7 +24,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the ProfileStoreModuleRunInfo class.
         /// </summary>
-        /// <param name="runInfo">Gets the LastSuccessfulRunId for every
+        /// <param name="runInfo">LastSuccessfulRunId Info for every
         /// fullyQualifiedEntity.</param>
         public ProfileStoreModuleRunInfo(IDictionary<string, string> runInfo = default(IDictionary<string, string>))
         {
@@ -38,7 +38,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets the LastSuccessfulRunId for every fullyQualifiedEntity.
+        /// Gets or sets lastSuccessfulRunId Info for every
+        /// fullyQualifiedEntity.
         /// </summary>
         [JsonProperty(PropertyName = "runInfo")]
         public IDictionary<string, string> RunInfo { get; set; }

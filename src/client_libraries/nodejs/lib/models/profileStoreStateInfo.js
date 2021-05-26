@@ -36,8 +36,8 @@ class ProfileStoreStateInfo {
    * flag that tells if the Activity Store Job has run successfully.
    * @property {object} [secondaryInfo.profileStoreHydrationStateInfo] Gets the
    * state of profile store hydration per job type.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -81,7 +81,6 @@ class ProfileStoreStateInfo {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

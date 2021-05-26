@@ -29,12 +29,17 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="location">Gets the uri location of the data</param>
         /// <param name="refreshTime">Gets the refresh time of the data
         /// partition</param>
-        public PartitionMetadata(string name = default(string), string location = default(string), System.DateTime? refreshTime = default(System.DateTime?), object fileFormatSettings = default(object), bool? hasHeader = default(bool?))
+        /// <param name="forceSasAuth">Gets a value indicating whether a
+        /// partition need to be forced for SAS authentication.</param>
+        /// <param name="hasHeader">Flad to represent header presence (if
+        /// any)</param>
+        public PartitionMetadata(string name = default(string), string location = default(string), System.DateTime? refreshTime = default(System.DateTime?), object fileFormatSettings = default(object), bool? forceSasAuth = default(bool?), bool? hasHeader = default(bool?))
         {
             Name = name;
             Location = location;
             RefreshTime = refreshTime;
             FileFormatSettings = fileFormatSettings;
+            ForceSasAuth = forceSasAuth;
             HasHeader = hasHeader;
             CustomInit();
         }
@@ -68,9 +73,17 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public object FileFormatSettings { get; set; }
 
         /// <summary>
+        /// Gets a value indicating whether a partition need to be forced for
+        /// SAS authentication.
+        /// </summary>
+        [JsonProperty(PropertyName = "forceSasAuth")]
+        public bool? ForceSasAuth { get; set; }
+
+        /// <summary>
+        /// Gets or sets flad to represent header presence (if any)
         /// </summary>
         [JsonProperty(PropertyName = "hasHeader")]
-        public bool? HasHeader { get; private set; }
+        public bool? HasHeader { get; set; }
 
     }
 }

@@ -30,9 +30,11 @@ class OnDemandJobRequest(Model):
     :type force_run_requested: bool
     :param input_refresh_mode: Possible values include:
      'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified',
-     'Failed'
+     'Failed', 'None'
     :type input_refresh_mode: str or
      ~dynamics.customerinsights.api.models.enum
+    :param options:
+    :type options: ~dynamics.customerinsights.api.models.GraphJobOptions
     """
 
     _attribute_map = {
@@ -43,9 +45,10 @@ class OnDemandJobRequest(Model):
         'identifiers': {'key': 'identifiers', 'type': '[str]'},
         'force_run_requested': {'key': 'forceRunRequested', 'type': 'bool'},
         'input_refresh_mode': {'key': 'inputRefreshMode', 'type': 'str'},
+        'options': {'key': 'options', 'type': 'GraphJobOptions'},
     }
 
-    def __init__(self, *, graph_name: str=None, operation_type=None, submission_kind=None, job_type=None, identifiers=None, force_run_requested: bool=None, input_refresh_mode=None, **kwargs) -> None:
+    def __init__(self, *, graph_name: str=None, operation_type=None, submission_kind=None, job_type=None, identifiers=None, force_run_requested: bool=None, input_refresh_mode=None, options=None, **kwargs) -> None:
         super(OnDemandJobRequest, self).__init__(**kwargs)
         self.graph_name = graph_name
         self.operation_type = operation_type
@@ -54,3 +57,4 @@ class OnDemandJobRequest(Model):
         self.identifiers = identifiers
         self.force_run_requested = force_run_requested
         self.input_refresh_mode = input_refresh_mode
+        self.options = options

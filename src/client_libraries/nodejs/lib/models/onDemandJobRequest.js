@@ -27,7 +27,9 @@ class OnDemandJobRequest {
    * @property {boolean} [forceRunRequested]
    * @property {string} [inputRefreshMode] Possible values include:
    * 'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified',
-   * 'Failed'
+   * 'Failed', 'None'
+   * @property {object} [options]
+   * @property {boolean} [options.runDownstreamAfterMerge]
    */
   constructor() {
   }
@@ -100,6 +102,26 @@ class OnDemandJobRequest {
             serializedName: 'inputRefreshMode',
             type: {
               name: 'String'
+            }
+          },
+          options: {
+            required: false,
+            serializedName: 'options',
+            type: {
+              name: 'Composite',
+              additionalProperties: {
+                type: {
+                  name: 'Dictionary',
+                  value: {
+                      required: false,
+                      serializedName: 'ObjectElementType',
+                      type: {
+                        name: 'Object'
+                      }
+                  }
+                }
+              },
+              className: 'GraphJobOptions'
             }
           }
         }

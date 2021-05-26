@@ -27,8 +27,9 @@ public class GraphNodeInfo {
     private String operationType;
 
     /**
-     * Possible values include: 'templatedMeasures', 'createAnalysisModel',
-     * 'linkAnalysisModel'.
+     * Possible values include: 'noSubType', 'templatedMeasures',
+     * 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping',
+     * 'powerPlatform'.
      */
     @JsonProperty(value = "subType")
     private String subType;
@@ -121,7 +122,7 @@ public class GraphNodeInfo {
     }
 
     /**
-     * Get possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'.
+     * Get possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'.
      *
      * @return the subType value
      */
@@ -130,7 +131,7 @@ public class GraphNodeInfo {
     }
 
     /**
-     * Set possible values include: 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel'.
+     * Set possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'.
      *
      * @param subType the subType value to set
      * @return the GraphNodeInfo object itself.

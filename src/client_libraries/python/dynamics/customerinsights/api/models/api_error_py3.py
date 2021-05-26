@@ -9,13 +9,13 @@ from msrest.serialization import Model
 
 
 class ApiError(Model):
-    """ApiError.
+    """Represents API error code and message.
 
     :param error_code: Possible values include: 'notFound',
      'ambiguousReference', 'malformedInput', 'serviceUnavailable',
      'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
     :type error_code: str or ~dynamics.customerinsights.api.models.enum
-    :param message:
+    :param message: Message associated with the error
     :type message: str
     """
 

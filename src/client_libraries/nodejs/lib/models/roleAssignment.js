@@ -17,8 +17,8 @@ class RoleAssignment {
    * @property {string} [principalType] Possible values include: 'user',
    * 'group', 'app'
    * @property {array} [roles] Gets the roles the principal belongs to.
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -67,7 +67,6 @@ class RoleAssignment {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

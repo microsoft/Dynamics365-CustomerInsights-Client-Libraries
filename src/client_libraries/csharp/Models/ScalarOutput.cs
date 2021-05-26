@@ -24,8 +24,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the ScalarOutput class.
         /// </summary>
-        /// <param name="values">Gets the output folder path for the
-        /// evaluation.</param>
+        /// <param name="values">Output folder path for the evaluation.</param>
         /// <param name="evaluationTime">Gets the evaluation start
         /// time.</param>
         public ScalarOutput(IDictionary<string, string> values = default(IDictionary<string, string>), string measureName = default(string), System.DateTime? evaluationTime = default(System.DateTime?))
@@ -42,7 +41,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets the output folder path for the evaluation.
+        /// Gets or sets output folder path for the evaluation.
         /// </summary>
         [JsonProperty(PropertyName = "values")]
         public IDictionary<string, string> Values { get; set; }

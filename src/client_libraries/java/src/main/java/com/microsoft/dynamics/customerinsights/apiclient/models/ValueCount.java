@@ -13,19 +13,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ValueCount {
     /**
-     * Gets or sets the value.
+     * Represents the value.
      */
     @JsonProperty(value = "value")
     private Object value;
 
     /**
-     * Gets or sets the count of the value.
+     * Represents Count of the value.
      */
     @JsonProperty(value = "count")
     private Long count;
 
     /**
-     * Get gets or sets the value.
+     * Get represents the value.
      *
      * @return the value value
      */
@@ -34,7 +34,7 @@ public class ValueCount {
     }
 
     /**
-     * Set gets or sets the value.
+     * Set represents the value.
      *
      * @param value the value value to set
      * @return the ValueCount object itself.
@@ -45,7 +45,7 @@ public class ValueCount {
     }
 
     /**
-     * Get gets or sets the count of the value.
+     * Get represents Count of the value.
      *
      * @return the count value
      */
@@ -54,7 +54,7 @@ public class ValueCount {
     }
 
     /**
-     * Set gets or sets the count of the value.
+     * Set represents Count of the value.
      *
      * @param count the count value to set
      * @return the ValueCount object itself.

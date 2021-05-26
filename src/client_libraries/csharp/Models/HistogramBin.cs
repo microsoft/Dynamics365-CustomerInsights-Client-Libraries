@@ -25,9 +25,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the HistogramBin class.
         /// </summary>
-        /// <param name="lowerBound">Gets or sets the lower bound.</param>
-        /// <param name="upperBound">Gets or sets the upper bound.</param>
-        /// <param name="count">Gets or sets the count.</param>
+        /// <param name="lowerBound">Lower bound of Histogram bin.</param>
+        /// <param name="upperBound">Upper bound Histogram bin.</param>
+        /// <param name="count">Represents an approximation count of the bin
+        /// count.</param>
         public HistogramBin(double? lowerBound = default(double?), double? upperBound = default(double?), double? count = default(double?))
         {
             LowerBound = lowerBound;
@@ -42,19 +43,19 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the lower bound.
+        /// Gets or sets lower bound of Histogram bin.
         /// </summary>
         [JsonProperty(PropertyName = "lowerBound")]
         public double? LowerBound { get; set; }
 
         /// <summary>
-        /// Gets or sets the upper bound.
+        /// Gets or sets upper bound Histogram bin.
         /// </summary>
         [JsonProperty(PropertyName = "upperBound")]
         public double? UpperBound { get; set; }
 
         /// <summary>
-        /// Gets or sets the count.
+        /// Gets or sets represents an approximation count of the bin count.
         /// </summary>
         [JsonProperty(PropertyName = "count")]
         public double? Count { get; set; }

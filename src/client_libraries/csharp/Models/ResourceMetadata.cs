@@ -41,18 +41,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="name">Gets the Name of the resource.</param>
         /// <param name="description">Gets the Description of the
         /// resource.</param>
-        /// <param name="version">Gets the version number of this
-        /// object.</param>
-        /// <param name="updatedBy">Gets the UPN of the user who last updated
-        /// this record.</param>
-        /// <param name="updatedUtc">Gets the time the object was last
-        /// updated.</param>
-        /// <param name="createdBy">Gets the email address of the user who
-        /// created this record.</param>
-        /// <param name="createdUtc">Gets the time the object was initially
+        /// <param name="version">Version number of this object.</param>
+        /// <param name="updatedBy">UPN of the user who last updated this
+        /// record.</param>
+        /// <param name="updatedUtc">Time this object was last updated.</param>
+        /// <param name="createdBy">Email address of the user who created this
+        /// record.</param>
+        /// <param name="createdUtc">Time this object was initially
         /// created.</param>
-        /// <param name="instanceId">Gets the Customer Insights instance id
-        /// associated with this object.</param>
+        /// <param name="instanceId">Customer Insights instance id associated
+        /// with this object.</param>
         public ResourceMetadata(string kind = default(string), System.Guid? resourceId = default(System.Guid?), System.Guid? operationId = default(System.Guid?), string resourceType = default(string), string name = default(string), string description = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             Kind = kind;
@@ -89,13 +87,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets the Id of the resource.
         /// </summary>
         [JsonProperty(PropertyName = "resourceId")]
-        public System.Guid? ResourceId { get; private set; }
+        public System.Guid? ResourceId { get; set; }
 
         /// <summary>
         /// Gets the Id of the operation being performed on the resource.
         /// </summary>
         [JsonProperty(PropertyName = "operationId")]
-        public System.Guid? OperationId { get; private set; }
+        public System.Guid? OperationId { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'adlsGen2', 'd365Sales',
@@ -111,49 +109,50 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets the Name of the resource.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the Description of the resource.
         /// </summary>
         [JsonProperty(PropertyName = "description")]
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets the version number of this object.
+        /// Gets or sets version number of this object.
         /// </summary>
         [JsonProperty(PropertyName = "version")]
-        public long? Version { get; private set; }
+        public long? Version { get; set; }
 
         /// <summary>
-        /// Gets the UPN of the user who last updated this record.
+        /// Gets or sets UPN of the user who last updated this record.
         /// </summary>
         [JsonProperty(PropertyName = "updatedBy")]
-        public string UpdatedBy { get; private set; }
+        public string UpdatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was last updated.
+        /// Gets or sets time this object was last updated.
         /// </summary>
         [JsonProperty(PropertyName = "updatedUtc")]
-        public System.DateTime? UpdatedUtc { get; private set; }
+        public System.DateTime? UpdatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the email address of the user who created this record.
+        /// Gets or sets email address of the user who created this record.
         /// </summary>
         [JsonProperty(PropertyName = "createdBy")]
-        public string CreatedBy { get; private set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets the time the object was initially created.
+        /// Gets or sets time this object was initially created.
         /// </summary>
         [JsonProperty(PropertyName = "createdUtc")]
-        public System.DateTime? CreatedUtc { get; private set; }
+        public System.DateTime? CreatedUtc { get; set; }
 
         /// <summary>
-        /// Gets the Customer Insights instance id associated with this object.
+        /// Gets or sets customer Insights instance id associated with this
+        /// object.
         /// </summary>
         [JsonProperty(PropertyName = "instanceId")]
-        public System.Guid? InstanceId { get; private set; }
+        public System.Guid? InstanceId { get; set; }
 
     }
 }

@@ -51,13 +51,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets the name of the entity.
         /// </summary>
         [JsonProperty(PropertyName = "entity")]
-        public string Entity { get; private set; }
+        public string Entity { get; set; }
 
         /// <summary>
         /// Gets the alias of the entity.
         /// </summary>
         [JsonProperty(PropertyName = "alias")]
-        public string Alias { get; private set; }
+        public string Alias { get; set; }
 
     }
 }

@@ -11,27 +11,26 @@ from msrest.serialization import Model
 class IncrementalRefreshProperties(Model):
     """Represents a Incremental Refresh Property.
 
-    :param entity_name: Gets the name of the entity.
+    :param entity_name: Name of the entity.
     :type entity_name: str
-    :param detect_changes_attribute_name: Gets the column to detect changes.
+    :param detect_changes_attribute_name: Column to detect changes.
     :type detect_changes_attribute_name: str
-    :param filter_by_attribute_name: Gets the column to get incremental data.
+    :param filter_by_attribute_name: Column to get incremental data.
     :type filter_by_attribute_name: str
-    :param incremental_granularity: Gets the granularity of the incremental
-     refresh.
+    :param incremental_granularity: Granularity of the incremental refresh.
     :type incremental_granularity: str
-    :param incremental_periods: Gets the incremental period.
+    :param incremental_periods: Incremental period.
     :type incremental_periods: int
-    :param refresh_complete_periods: Gets a value indicating whether to
-     refresh completed periods or not.
+    :param refresh_complete_periods: Indicating whether to refresh completed
+     periods or not.
     :type refresh_complete_periods: bool
-    :param incremental_periods_offset: Gets the off set period.
+    :param incremental_periods_offset: Off set period.
     :type incremental_periods_offset: int
-    :param primary_key_attribute_name: Gets the primary key of the entity.
+    :param primary_key_attribute_name: Primary key of the entity.
     :type primary_key_attribute_name: str
-    :param rolling_window_granularity: Gets the rolling window granularity.
+    :param rolling_window_granularity: Rolling window granularity.
     :type rolling_window_granularity: str
-    :param rolling_window_periods: Gets the Rolling window period.
+    :param rolling_window_periods: Rolling window period.
     :type rolling_window_periods: int
     """
 

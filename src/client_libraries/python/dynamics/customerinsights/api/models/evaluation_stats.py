@@ -11,9 +11,10 @@ from msrest.serialization import Model
 class EvaluationStats(Model):
     """Represents measure evaluation stats.
 
-    :param last_successful: Gets the last successful evaluation
+    :param last_successful: Last successful evaluation
     :type last_successful: datetime
-    :param consecutive_failure_count: Gets the number of consecutive failures
+    :param consecutive_failure_count: Represents Number of consecutive
+     failures
     :type consecutive_failure_count: int
     """
 

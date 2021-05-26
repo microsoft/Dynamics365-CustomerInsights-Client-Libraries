@@ -9,27 +9,27 @@ package com.microsoft.dynamics.customerinsights.apiclient.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The information on CDS MDL workspaces.
+ * The information on CDS MDL datalake folders.
  */
 public class CdsMdlInfo {
     /**
      * The privateWorkSpace property.
      */
     @JsonProperty(value = "privateWorkSpace")
-    private WorkSpaceDetail privateWorkSpace;
+    private DatalakeFolderDetail privateWorkSpace;
 
     /**
      * The publicWorkSpace property.
      */
     @JsonProperty(value = "publicWorkSpace")
-    private WorkSpaceDetail publicWorkSpace;
+    private DatalakeFolderDetail publicWorkSpace;
 
     /**
      * Get the privateWorkSpace value.
      *
      * @return the privateWorkSpace value
      */
-    public WorkSpaceDetail privateWorkSpace() {
+    public DatalakeFolderDetail privateWorkSpace() {
         return this.privateWorkSpace;
     }
 
@@ -39,7 +39,7 @@ public class CdsMdlInfo {
      * @param privateWorkSpace the privateWorkSpace value to set
      * @return the CdsMdlInfo object itself.
      */
-    public CdsMdlInfo withPrivateWorkSpace(WorkSpaceDetail privateWorkSpace) {
+    public CdsMdlInfo withPrivateWorkSpace(DatalakeFolderDetail privateWorkSpace) {
         this.privateWorkSpace = privateWorkSpace;
         return this;
     }
@@ -49,7 +49,7 @@ public class CdsMdlInfo {
      *
      * @return the publicWorkSpace value
      */
-    public WorkSpaceDetail publicWorkSpace() {
+    public DatalakeFolderDetail publicWorkSpace() {
         return this.publicWorkSpace;
     }
 
@@ -59,7 +59,7 @@ public class CdsMdlInfo {
      * @param publicWorkSpace the publicWorkSpace value to set
      * @return the CdsMdlInfo object itself.
      */
-    public CdsMdlInfo withPublicWorkSpace(WorkSpaceDetail publicWorkSpace) {
+    public CdsMdlInfo withPublicWorkSpace(DatalakeFolderDetail publicWorkSpace) {
         this.publicWorkSpace = publicWorkSpace;
         return this;
     }

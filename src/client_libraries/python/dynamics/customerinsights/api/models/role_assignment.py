@@ -11,23 +11,16 @@ from msrest.serialization import Model
 class RoleAssignment(Model):
     """Represents a role assignment Metadata.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
     :param principal_id: Gets the Id of the principal.
     :type principal_id: str
     :param principal_type: Possible values include: 'user', 'group', 'app'
     :type principal_type: str or ~dynamics.customerinsights.api.models.enum
     :param roles: Gets the roles the principal belongs to.
     :type roles: list[str]
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'principal_id': {'key': 'principalId', 'type': 'str'},
@@ -41,4 +34,4 @@ class RoleAssignment(Model):
         self.principal_id = kwargs.get('principal_id', None)
         self.principal_type = kwargs.get('principal_type', None)
         self.roles = kwargs.get('roles', None)
-        self.instance_id = None
+        self.instance_id = kwargs.get('instance_id', None)

@@ -13,12 +13,11 @@
 class Moments {
   /**
    * Create a Moments.
-   * @property {number} [mean] Gets or sets the mean.
-   * @property {number} [standardDeviation] Gets or sets the standard
-   * deviation.
-   * @property {number} [variance] Gets or sets the variance.
-   * @property {number} [skewness] Gets or sets the skewness.
-   * @property {number} [kurtosis] Gets or sets the kurtosis.
+   * @property {number} [mean] Represents the mean.
+   * @property {number} [standardDeviation] Represents standard deviation.
+   * @property {number} [variance] Represents variance.
+   * @property {number} [skewness] Represents skewness in data.
+   * @property {number} [kurtosis] Represents kurtosis.
    */
   constructor() {
   }

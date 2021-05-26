@@ -25,8 +25,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the SqlValidationStats class.
         /// </summary>
-        /// <param name="validationDate">Gets the last validation evaluation
-        /// date</param>
+        /// <param name="validationDate">Date of Validation evaluation</param>
         /// <param name="error">Gets the number of consecutive failures</param>
         public SqlValidationStats(System.DateTime? validationDate = default(System.DateTime?), string error = default(string))
         {
@@ -41,7 +40,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets the last validation evaluation date
+        /// Gets or sets date of Validation evaluation
         /// </summary>
         [JsonProperty(PropertyName = "validationDate")]
         public System.DateTime? ValidationDate { get; set; }

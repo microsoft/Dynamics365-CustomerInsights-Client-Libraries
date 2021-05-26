@@ -17,7 +17,7 @@ public class ApiErrorResult {
     /**
      * The exception property.
      */
-    @JsonProperty(value = "exception", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "exception")
     private Object exception;
 
     /**
@@ -45,7 +45,7 @@ public class ApiErrorResult {
     private String resultSeverity;
 
     /**
-     * The message property.
+     * Message providing more information about the event.
      */
     @JsonProperty(value = "message")
     private String message;
@@ -57,7 +57,8 @@ public class ApiErrorResult {
     private Map<String, Object> params;
 
     /**
-     * The ciResults property.
+     * List of CiResult contining CI result error code and information (if
+     * any).
      */
     @JsonProperty(value = "ciResults")
     private List<CIResult> ciResults;
@@ -69,6 +70,17 @@ public class ApiErrorResult {
      */
     public Object exception() {
         return this.exception;
+    }
+
+    /**
+     * Set the exception value.
+     *
+     * @param exception the exception value to set
+     * @return the ApiErrorResult object itself.
+     */
+    public ApiErrorResult withException(Object exception) {
+        this.exception = exception;
+        return this;
     }
 
     /**
@@ -152,7 +164,7 @@ public class ApiErrorResult {
     }
 
     /**
-     * Get the message value.
+     * Get message providing more information about the event.
      *
      * @return the message value
      */
@@ -161,7 +173,7 @@ public class ApiErrorResult {
     }
 
     /**
-     * Set the message value.
+     * Set message providing more information about the event.
      *
      * @param message the message value to set
      * @return the ApiErrorResult object itself.
@@ -192,7 +204,7 @@ public class ApiErrorResult {
     }
 
     /**
-     * Get the ciResults value.
+     * Get list of CiResult contining CI result error code and information (if any).
      *
      * @return the ciResults value
      */
@@ -201,7 +213,7 @@ public class ApiErrorResult {
     }
 
     /**
-     * Set the ciResults value.
+     * Set list of CiResult contining CI result error code and information (if any).
      *
      * @param ciResults the ciResults value to set
      * @return the ApiErrorResult object itself.

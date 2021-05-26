@@ -36,7 +36,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
         /// 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
         /// 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
-        /// 'dayOfWeek'</param>
+        /// 'dayOfWeek', 'timeAt'</param>
         /// <param name="childCriterias">Gets the list of Child criteria of
         /// segment.</param>
         /// <param name="value">Gets the Value in criteria.</param>
@@ -44,7 +44,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// ignored for this criteria.</param>
         /// <param name="listOfValues">Gets the list of values in
         /// criteria.</param>
-        public SegmentMembershipCriteria(string logicalOperator = default(string), string attribute = default(string), string comparisonOperator = default(string), IList<SegmentMembershipCriteria> childCriterias = default(IList<SegmentMembershipCriteria>), string value = default(string), bool? ignoreCase = default(bool?), IList<string> listOfValues = default(IList<string>))
+        /// <param name="isTime">flag set to true if entries are of time
+        /// format</param>
+        public SegmentMembershipCriteria(string logicalOperator = default(string), string attribute = default(string), string comparisonOperator = default(string), IList<SegmentMembershipCriteria> childCriterias = default(IList<SegmentMembershipCriteria>), string value = default(string), bool? ignoreCase = default(bool?), IList<string> listOfValues = default(IList<string>), bool? isTime = default(bool?))
         {
             LogicalOperator = logicalOperator;
             Attribute = attribute;
@@ -53,6 +55,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             Value = value;
             IgnoreCase = ignoreCase;
             ListOfValues = listOfValues;
+            IsTime = isTime;
             CustomInit();
         }
 
@@ -79,7 +82,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
         /// 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
         /// 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
-        /// 'dayOfWeek'
+        /// 'dayOfWeek', 'timeAt'
         /// </summary>
         [JsonProperty(PropertyName = "comparisonOperator")]
         public string ComparisonOperator { get; set; }
@@ -107,6 +110,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "listOfValues")]
         public IList<string> ListOfValues { get; set; }
+
+        /// <summary>
+        /// Gets or sets flag set to true if entries are of time format
+        /// </summary>
+        [JsonProperty(PropertyName = "isTime")]
+        public bool? IsTime { get; set; }
 
     }
 }

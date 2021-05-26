@@ -73,8 +73,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// GetAllDataSources
             /// </summary>
             /// <remarks>
-            /// Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
-            /// configured for the Customer Insights instance.
+            /// Returns a collections of DataSourceInfo configured for the given Customer
+            /// Insights instance
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -91,8 +91,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// GetAllDataSources
             /// </summary>
             /// <remarks>
-            /// Fetches a collection of Microsoft.Customer360.Core.Metadata.DataSourceInfo
-            /// configured for the Customer Insights instance.
+            /// Returns a collections of DataSourceInfo configured for the given Customer
+            /// Insights instance
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -115,8 +115,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// GetDataSource
             /// </summary>
             /// <remarks>
-            /// Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
-            /// dataSourceId configured for the Customer Insights instance.
+            /// Fetches a DataSourceInfo matching the dataSourceId configured for the
+            /// Customer Insights instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -136,8 +136,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// GetDataSource
             /// </summary>
             /// <remarks>
-            /// Fetches a Microsoft.Customer360.Core.Metadata.DataSourceInfo matching the
-            /// dataSourceId configured for the Customer Insights instance.
+            /// Fetches a DataSourceInfo matching the dataSourceId configured for the
+            /// Customer Insights instance.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -209,7 +209,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// CreateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Writes an entity instance into the store, e.g. an activity entity.
+            /// Writes an entity instance into the store, g. an activity entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -243,7 +243,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// CreateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Writes an entity instance into the store, e.g. an activity entity.
+            /// Writes an entity instance into the store, g. an activity entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -283,7 +283,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// UpdateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Updates an entity instance in the store, e.g. Customer entity.
+            /// Updates an entity instance in the store, g. Customer entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -320,7 +320,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// UpdateEntity (Preview)
             /// </summary>
             /// <remarks>
-            /// Updates an entity instance in the store, e.g. Customer entity.
+            /// Updates an entity instance in the store, g. Customer entity.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -624,7 +624,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// ResetInstance (Preview)
+            /// ResetInstance
             /// </summary>
             /// <remarks>
             /// Reset scopes in the given instance. Provide optional management operation
@@ -645,7 +645,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// ResetInstance (Preview)
+            /// ResetInstance
             /// </summary>
             /// <remarks>
             /// Reset scopes in the given instance. Provide optional management operation
@@ -841,7 +841,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The instance creation request.
             /// </param>
-            public static object CreateAnInstance(this ICustomerInsights operations, InstanceCreationRequest body = default(InstanceCreationRequest))
+            public static object CreateAnInstance(this ICustomerInsights operations, InstancesV2PostRequest body = default(InstancesV2PostRequest))
             {
                 return operations.CreateAnInstanceAsync(body).GetAwaiter().GetResult();
             }
@@ -861,7 +861,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateAnInstanceAsync(this ICustomerInsights operations, InstanceCreationRequest body = default(InstanceCreationRequest), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateAnInstanceAsync(this ICustomerInsights operations, InstancesV2PostRequest body = default(InstancesV2PostRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateAnInstanceWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -884,7 +884,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// </param>
             /// <param name='body'>
             /// </param>
-            public static object UpdateAnInstance(this ICustomerInsights operations, string instanceId, InstanceCreationRequest body = default(InstanceCreationRequest))
+            public static object UpdateAnInstance(this ICustomerInsights operations, string instanceId, InstancesInstanceIdV2PatchRequest body = default(InstancesInstanceIdV2PatchRequest))
             {
                 return operations.UpdateAnInstanceAsync(instanceId, body).GetAwaiter().GetResult();
             }
@@ -907,7 +907,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateAnInstanceAsync(this ICustomerInsights operations, string instanceId, InstanceCreationRequest body = default(InstanceCreationRequest), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateAnInstanceAsync(this ICustomerInsights operations, string instanceId, InstancesInstanceIdV2PatchRequest body = default(InstancesInstanceIdV2PatchRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateAnInstanceWithHttpMessagesAsync(instanceId, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -927,7 +927,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The metadata to use to create the new instance.
             /// </param>
-            public static object CopyAnInstance(this ICustomerInsights operations, InstanceCopyRequest body = default(InstanceCopyRequest))
+            public static object CopyAnInstance(this ICustomerInsights operations, InstancesCopyPostRequest body = default(InstancesCopyPostRequest))
             {
                 return operations.CopyAnInstanceAsync(body).GetAwaiter().GetResult();
             }
@@ -947,7 +947,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CopyAnInstanceAsync(this ICustomerInsights operations, InstanceCopyRequest body = default(InstanceCopyRequest), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CopyAnInstanceAsync(this ICustomerInsights operations, InstancesCopyPostRequest body = default(InstancesCopyPostRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CopyAnInstanceWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1010,7 +1010,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// New Measure metadata to be created
             /// </param>
-            public static object CreateAMeasure(this ICustomerInsights operations, string instanceId, MeasureMetadata body = default(MeasureMetadata))
+            public static object CreateAMeasure(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageMeasuresPostRequest body = default(InstancesInstanceIdManageMeasuresPostRequest))
             {
                 return operations.CreateAMeasureAsync(instanceId, body).GetAwaiter().GetResult();
             }
@@ -1033,7 +1033,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateAMeasureAsync(this ICustomerInsights operations, string instanceId, MeasureMetadata body = default(MeasureMetadata), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateAMeasureAsync(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageMeasuresPostRequest body = default(InstancesInstanceIdManageMeasuresPostRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateAMeasureWithHttpMessagesAsync(instanceId, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1118,7 +1118,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// Update measure metadata
             /// </param>
-            public static object UpdateAMeasure(this ICustomerInsights operations, string instanceId, string measureName, MeasureMetadata body = default(MeasureMetadata))
+            public static object UpdateAMeasure(this ICustomerInsights operations, string instanceId, string measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body = default(InstancesInstanceIdManageMeasuresMeasureNamePutRequest))
             {
                 return operations.UpdateAMeasureAsync(instanceId, measureName, body).GetAwaiter().GetResult();
             }
@@ -1145,7 +1145,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateAMeasureAsync(this ICustomerInsights operations, string instanceId, string measureName, MeasureMetadata body = default(MeasureMetadata), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateAMeasureAsync(this ICustomerInsights operations, string instanceId, string measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body = default(InstancesInstanceIdManageMeasuresMeasureNamePutRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateAMeasureWithHttpMessagesAsync(instanceId, measureName, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1395,7 +1395,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The role assignment.
             /// </param>
-            public static IList<RoleAssignment> UpdateARoleAssignment(this ICustomerInsights operations, string instanceId, string principalId, RoleAssignment body = default(RoleAssignment))
+            public static IList<RoleAssignment> UpdateARoleAssignment(this ICustomerInsights operations, string instanceId, string principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body = default(InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest))
             {
                 return operations.UpdateARoleAssignmentAsync(instanceId, principalId, body).GetAwaiter().GetResult();
             }
@@ -1421,7 +1421,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<RoleAssignment>> UpdateARoleAssignmentAsync(this ICustomerInsights operations, string instanceId, string principalId, RoleAssignment body = default(RoleAssignment), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<RoleAssignment>> UpdateARoleAssignmentAsync(this ICustomerInsights operations, string instanceId, string principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body = default(InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateARoleAssignmentWithHttpMessagesAsync(instanceId, principalId, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1570,7 +1570,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The updated relationship metadata
             /// </param>
-            public static object CreateARelationship(this ICustomerInsights operations, string instanceId, RelationshipMetadata body = default(RelationshipMetadata))
+            public static object CreateARelationship(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageRelationshipsPostRequest body = default(InstancesInstanceIdManageRelationshipsPostRequest))
             {
                 return operations.CreateARelationshipAsync(instanceId, body).GetAwaiter().GetResult();
             }
@@ -1593,7 +1593,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateARelationshipAsync(this ICustomerInsights operations, string instanceId, RelationshipMetadata body = default(RelationshipMetadata), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateARelationshipAsync(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageRelationshipsPostRequest body = default(InstancesInstanceIdManageRelationshipsPostRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateARelationshipWithHttpMessagesAsync(instanceId, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1716,7 +1716,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The updated relationship metadata
             /// </param>
-            public static object UpdateARelationship(this ICustomerInsights operations, string instanceId, string relationshipName, RelationshipMetadata body = default(RelationshipMetadata))
+            public static object UpdateARelationship(this ICustomerInsights operations, string instanceId, string relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body = default(InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest))
             {
                 return operations.UpdateARelationshipAsync(instanceId, relationshipName, body).GetAwaiter().GetResult();
             }
@@ -1743,7 +1743,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateARelationshipAsync(this ICustomerInsights operations, string instanceId, string relationshipName, RelationshipMetadata body = default(RelationshipMetadata), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateARelationshipAsync(this ICustomerInsights operations, string instanceId, string relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body = default(InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateARelationshipWithHttpMessagesAsync(instanceId, relationshipName, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1806,7 +1806,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// The search configuration for the instance.
             /// </param>
-            public static object UpdateSearchConfiguration(this ICustomerInsights operations, string instanceId, InstanceSearchConfiguration body = default(InstanceSearchConfiguration))
+            public static object UpdateSearchConfiguration(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageSearchPutRequest body = default(InstancesInstanceIdManageSearchPutRequest))
             {
                 return operations.UpdateSearchConfigurationAsync(instanceId, body).GetAwaiter().GetResult();
             }
@@ -1829,7 +1829,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateSearchConfigurationAsync(this ICustomerInsights operations, string instanceId, InstanceSearchConfiguration body = default(InstanceSearchConfiguration), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateSearchConfigurationAsync(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageSearchPutRequest body = default(InstancesInstanceIdManageSearchPutRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateSearchConfigurationWithHttpMessagesAsync(instanceId, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -1857,9 +1857,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// Format - int32. Optional parameter to get number of days evaluation
             /// history.
             /// </param>
-            public static object GetAllSegments(this ICustomerInsights operations, string instanceId, bool? includeHistoricStats = false, int? historicStatsDays = 10)
+            /// <param name='numberOfSegments'>
+            /// Format - int32. Optional parameter to limit the number of segments
+            /// returned.
+            /// </param>
+            public static object GetAllSegments(this ICustomerInsights operations, string instanceId, bool? includeHistoricStats = false, int? historicStatsDays = 10, int? numberOfSegments = default(int?))
             {
-                return operations.GetAllSegmentsAsync(instanceId, includeHistoricStats, historicStatsDays).GetAwaiter().GetResult();
+                return operations.GetAllSegmentsAsync(instanceId, includeHistoricStats, historicStatsDays, numberOfSegments).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -1882,12 +1886,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// Format - int32. Optional parameter to get number of days evaluation
             /// history.
             /// </param>
+            /// <param name='numberOfSegments'>
+            /// Format - int32. Optional parameter to limit the number of segments
+            /// returned.
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetAllSegmentsAsync(this ICustomerInsights operations, string instanceId, bool? includeHistoricStats = false, int? historicStatsDays = 10, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetAllSegmentsAsync(this ICustomerInsights operations, string instanceId, bool? includeHistoricStats = false, int? historicStatsDays = 10, int? numberOfSegments = default(int?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetAllSegmentsWithHttpMessagesAsync(instanceId, includeHistoricStats, historicStatsDays, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetAllSegmentsWithHttpMessagesAsync(instanceId, includeHistoricStats, historicStatsDays, numberOfSegments, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -1908,7 +1916,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// New Segment metadata to be created
             /// </param>
-            public static object CreateASegment(this ICustomerInsights operations, string instanceId, SegmentMetadata body = default(SegmentMetadata))
+            public static object CreateASegment(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageSegmentsPostRequest body = default(InstancesInstanceIdManageSegmentsPostRequest))
             {
                 return operations.CreateASegmentAsync(instanceId, body).GetAwaiter().GetResult();
             }
@@ -1931,7 +1939,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateASegmentAsync(this ICustomerInsights operations, string instanceId, SegmentMetadata body = default(SegmentMetadata), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateASegmentAsync(this ICustomerInsights operations, string instanceId, InstancesInstanceIdManageSegmentsPostRequest body = default(InstancesInstanceIdManageSegmentsPostRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateASegmentWithHttpMessagesAsync(instanceId, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -2050,7 +2058,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// New Segment metadata to be updated
             /// </param>
-            public static object UpdateASegment(this ICustomerInsights operations, string instanceId, string segmentName, SegmentMetadata body = default(SegmentMetadata))
+            public static object UpdateASegment(this ICustomerInsights operations, string instanceId, string segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body = default(InstancesInstanceIdManageSegmentsSegmentNamePutRequest))
             {
                 return operations.UpdateASegmentAsync(instanceId, segmentName, body).GetAwaiter().GetResult();
             }
@@ -2077,7 +2085,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateASegmentAsync(this ICustomerInsights operations, string instanceId, string segmentName, SegmentMetadata body = default(SegmentMetadata), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateASegmentAsync(this ICustomerInsights operations, string instanceId, string segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body = default(InstancesInstanceIdManageSegmentsSegmentNamePutRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateASegmentWithHttpMessagesAsync(instanceId, segmentName, body, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -2301,14 +2309,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
 
             /// <summary>
             /// SubmitWorkflowJob
-            /// forceRunRequested indicating whether to force run.
             /// </summary>
             /// <remarks>
-            /// Submits a workflow of
-            /// Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
-            /// instance specified in instanceId.
+            /// Submits a workflow of OperationTypeoperationType for the instance specified
+            /// in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
-            /// Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+            /// OperationType.All and a flag
             /// forceRunRequested indicating whether to force run.
             /// </remarks>
             /// <param name='operations'>
@@ -2332,21 +2338,19 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='forceRunRequested'>
             /// Whether to request a force run.
             /// </param>
-            public static object SubmitAWorkflowJob(this ICustomerInsights operations, string instanceId, string workflowName, OnDemandJobRequest body = default(OnDemandJobRequest), string operationType = default(string), IList<string> identifiers = default(IList<string>), bool? forceRunRequested = false)
+            public static object SubmitAWorkflowJob(this ICustomerInsights operations, string instanceId, string workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body = default(InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest), string operationType = default(string), IList<string> identifiers = default(IList<string>), bool? forceRunRequested = false)
             {
                 return operations.SubmitAWorkflowJobAsync(instanceId, workflowName, body, operationType, identifiers, forceRunRequested).GetAwaiter().GetResult();
             }
 
             /// <summary>
             /// SubmitWorkflowJob
-            /// forceRunRequested indicating whether to force run.
             /// </summary>
             /// <remarks>
-            /// Submits a workflow of
-            /// Microsoft.Customer360.Core.Metadata.OperationTypeoperationType for the
-            /// instance specified in instanceId.
+            /// Submits a workflow of OperationTypeoperationType for the instance specified
+            /// in instanceId.
             /// Optionally takes a list of identifiers, only if operationType is not
-            /// Microsoft.Customer360.Core.Metadata.OperationType.All and a flag
+            /// OperationType.All and a flag
             /// forceRunRequested indicating whether to force run.
             /// </remarks>
             /// <param name='operations'>
@@ -2373,7 +2377,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> SubmitAWorkflowJobAsync(this ICustomerInsights operations, string instanceId, string workflowName, OnDemandJobRequest body = default(OnDemandJobRequest), string operationType = default(string), IList<string> identifiers = default(IList<string>), bool? forceRunRequested = false, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> SubmitAWorkflowJobAsync(this ICustomerInsights operations, string instanceId, string workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body = default(InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest), string operationType = default(string), IList<string> identifiers = default(IList<string>), bool? forceRunRequested = false, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.SubmitAWorkflowJobWithHttpMessagesAsync(instanceId, workflowName, body, operationType, identifiers, forceRunRequested, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -2587,7 +2591,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='body'>
             /// A schedule object to create.
             /// </param>
-            public static object CreateWorkflowRefreshSchedule(this ICustomerInsights operations, string instanceId, string workflowName, WorkflowRefreshSchedule body = default(WorkflowRefreshSchedule))
+            public static object CreateWorkflowRefreshSchedule(this ICustomerInsights operations, string instanceId, string workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body = default(InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest))
             {
                 return operations.CreateWorkflowRefreshScheduleAsync(instanceId, workflowName, body).GetAwaiter().GetResult();
             }
@@ -2613,7 +2617,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateWorkflowRefreshScheduleAsync(this ICustomerInsights operations, string instanceId, string workflowName, WorkflowRefreshSchedule body = default(WorkflowRefreshSchedule), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateWorkflowRefreshScheduleAsync(this ICustomerInsights operations, string instanceId, string workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body = default(InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateWorkflowRefreshScheduleWithHttpMessagesAsync(instanceId, workflowName, body, null, cancellationToken).ConfigureAwait(false))
                 {

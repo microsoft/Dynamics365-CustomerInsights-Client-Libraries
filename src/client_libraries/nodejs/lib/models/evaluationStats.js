@@ -13,8 +13,8 @@
 class EvaluationStats {
   /**
    * Create a EvaluationStats.
-   * @property {date} [lastSuccessful] Gets the last successful evaluation
-   * @property {number} [consecutiveFailureCount] Gets the number of
+   * @property {date} [lastSuccessful] Last successful evaluation
+   * @property {number} [consecutiveFailureCount] Represents Number of
    * consecutive failures
    */
   constructor() {

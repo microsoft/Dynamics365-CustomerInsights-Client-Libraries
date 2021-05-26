@@ -11,6 +11,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Attribute data profile
+    /// </summary>
     public partial class AttributeDataProfile
     {
         /// <summary>
@@ -24,33 +27,26 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the AttributeDataProfile class.
         /// </summary>
-        /// <param name="valueCounts">Gets or sets the distribution of the top
-        /// 100 values</param>
-        /// <param name="histogram">Gets or sets the histogram information.
-        /// Ordered from smallest to largest bin.</param>
-        /// <param name="stringLengthCounts">Gets or sets the string lengths
-        /// and the count of string values with those lengths.</param>
-        /// <param name="qualifiedEntityName">Gets or sets the qualified entity
-        /// name</param>
-        /// <param name="attributeName">Gets or sets the attribute
-        /// name.</param>
-        /// <param name="min">Gets or sets the minimum value.</param>
-        /// <param name="max">Gets or sets the maximum value.</param>
-        /// <param name="count">Gets or sets the total row count.</param>
-        /// <param name="missingCount">Gets or sets the row count of missing
+        /// <param name="valueCounts">Represents Distribution of the top 100
         /// values.</param>
-        /// <param name="errorCount">Gets or sets the number of error
-        /// values.</param>
-        /// <param name="uniqueValueCount">Gets or sets the number of unique
-        /// values.</param>
-        /// <param name="profilingDate">Gets or sets the profiling date</param>
-        /// <param name="isSuggestedPrimaryKey">Gets a value indicating whether
-        /// this attribute can be used as a primary key of the entity</param>
-        public AttributeDataProfile(IList<ValueCount> valueCounts = default(IList<ValueCount>), IList<HistogramBin> histogram = default(IList<HistogramBin>), IList<StringLengthCount> stringLengthCounts = default(IList<StringLengthCount>), string qualifiedEntityName = default(string), string attributeName = default(string), object min = default(object), object max = default(object), long? count = default(long?), long? missingCount = default(long?), long? errorCount = default(long?), Quantiles quantiles = default(Quantiles), Moments moments = default(Moments), long? uniqueValueCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), bool? isSuggestedPrimaryKey = default(bool?))
+        /// <param name="histogram">Represents histogram information Ordered
+        /// from smallest to largest bin.</param>
+        /// <param name="qualifiedEntityName">Qualified entity name.</param>
+        /// <param name="attributeName">Attribute name.</param>
+        /// <param name="min">Minimum value.</param>
+        /// <param name="max">Maximum value.</param>
+        /// <param name="count">Total row count.</param>
+        /// <param name="missingCount">Row count of missing values.</param>
+        /// <param name="errorCount">Number of error values.</param>
+        /// <param name="uniqueValueCount">Number of unique values.</param>
+        /// <param name="profilingDate">Profiling date</param>
+        /// <param name="isSuggestedPrimaryKey">Represents a value indicating
+        /// whether this attribute can be used as a primary key of the
+        /// entity</param>
+        public AttributeDataProfile(IList<ValueCount> valueCounts = default(IList<ValueCount>), IList<HistogramBin> histogram = default(IList<HistogramBin>), string qualifiedEntityName = default(string), string attributeName = default(string), object min = default(object), object max = default(object), long? count = default(long?), long? missingCount = default(long?), long? errorCount = default(long?), Quantiles quantiles = default(Quantiles), Moments moments = default(Moments), long? uniqueValueCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), bool? isSuggestedPrimaryKey = default(bool?))
         {
             ValueCounts = valueCounts;
             Histogram = histogram;
-            StringLengthCounts = stringLengthCounts;
             QualifiedEntityName = qualifiedEntityName;
             AttributeName = attributeName;
             Min = min;
@@ -72,63 +68,56 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the distribution of the top 100 values
+        /// Gets or sets represents Distribution of the top 100 values.
         /// </summary>
         [JsonProperty(PropertyName = "valueCounts")]
         public IList<ValueCount> ValueCounts { get; set; }
 
         /// <summary>
-        /// Gets or sets the histogram information. Ordered from smallest to
-        /// largest bin.
+        /// Gets or sets represents histogram information Ordered from smallest
+        /// to largest bin.
         /// </summary>
         [JsonProperty(PropertyName = "histogram")]
         public IList<HistogramBin> Histogram { get; set; }
 
         /// <summary>
-        /// Gets or sets the string lengths and the count of string values with
-        /// those lengths.
-        /// </summary>
-        [JsonProperty(PropertyName = "stringLengthCounts")]
-        public IList<StringLengthCount> StringLengthCounts { get; set; }
-
-        /// <summary>
-        /// Gets or sets the qualified entity name
+        /// Gets or sets qualified entity name.
         /// </summary>
         [JsonProperty(PropertyName = "qualifiedEntityName")]
         public string QualifiedEntityName { get; set; }
 
         /// <summary>
-        /// Gets or sets the attribute name.
+        /// Gets or sets attribute name.
         /// </summary>
         [JsonProperty(PropertyName = "attributeName")]
         public string AttributeName { get; set; }
 
         /// <summary>
-        /// Gets or sets the minimum value.
+        /// Gets or sets minimum value.
         /// </summary>
         [JsonProperty(PropertyName = "min")]
         public object Min { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum value.
+        /// Gets or sets maximum value.
         /// </summary>
         [JsonProperty(PropertyName = "max")]
         public object Max { get; set; }
 
         /// <summary>
-        /// Gets or sets the total row count.
+        /// Gets or sets total row count.
         /// </summary>
         [JsonProperty(PropertyName = "count")]
         public long? Count { get; set; }
 
         /// <summary>
-        /// Gets or sets the row count of missing values.
+        /// Gets or sets row count of missing values.
         /// </summary>
         [JsonProperty(PropertyName = "missingCount")]
         public long? MissingCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of error values.
+        /// Gets or sets number of error values.
         /// </summary>
         [JsonProperty(PropertyName = "errorCount")]
         public long? ErrorCount { get; set; }
@@ -144,23 +133,23 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public Moments Moments { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of unique values.
+        /// Gets or sets number of unique values.
         /// </summary>
         [JsonProperty(PropertyName = "uniqueValueCount")]
         public long? UniqueValueCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the profiling date
+        /// Gets or sets profiling date
         /// </summary>
         [JsonProperty(PropertyName = "profilingDate")]
         public System.DateTime? ProfilingDate { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether this attribute can be used as a
-        /// primary key of the entity
+        /// Gets or sets represents a value indicating whether this attribute
+        /// can be used as a primary key of the entity
         /// </summary>
         [JsonProperty(PropertyName = "isSuggestedPrimaryKey")]
-        public bool? IsSuggestedPrimaryKey { get; private set; }
+        public bool? IsSuggestedPrimaryKey { get; set; }
 
     }
 }

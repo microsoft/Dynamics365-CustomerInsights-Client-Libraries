@@ -18,8 +18,8 @@ class DataRefreshSchedule {
    * @property {string} [timezoneId] Gets the ID of the timezone
    * @property {array} [cronSchedules] Gets the schedule in CRON format
    * @property {uuid} [scheduleId] Gets the ID of the schedule
-   * @property {uuid} [instanceId] Gets the Customer Insights instance id
-   * associated with this object.
+   * @property {uuid} [instanceId] Customer Insights instance id associated
+   * with this object.
    */
   constructor() {
   }
@@ -40,7 +40,6 @@ class DataRefreshSchedule {
         modelProperties: {
           isActive: {
             required: false,
-            readOnly: true,
             serializedName: 'isActive',
             type: {
               name: 'Boolean'
@@ -48,7 +47,6 @@ class DataRefreshSchedule {
           },
           timezoneId: {
             required: false,
-            readOnly: true,
             serializedName: 'timezoneId',
             type: {
               name: 'String'
@@ -56,7 +54,6 @@ class DataRefreshSchedule {
           },
           cronSchedules: {
             required: false,
-            readOnly: true,
             serializedName: 'cronSchedules',
             type: {
               name: 'Sequence',
@@ -71,7 +68,6 @@ class DataRefreshSchedule {
           },
           scheduleId: {
             required: false,
-            readOnly: true,
             serializedName: 'scheduleId',
             type: {
               name: 'String'
@@ -79,7 +75,6 @@ class DataRefreshSchedule {
           },
           instanceId: {
             required: false,
-            readOnly: true,
             serializedName: 'instanceId',
             type: {
               name: 'String'

@@ -9,6 +9,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using Newtonsoft.Json;
     using System.Linq;
 
+    /// <summary>
+    /// Represents seachable attribute properties
+    /// </summary>
     public partial class IAttributeSearchProperties
     {
         /// <summary>
@@ -56,27 +59,27 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// search.
         /// </summary>
         [JsonProperty(PropertyName = "isSearchable")]
-        public bool? IsSearchable { get; private set; }
+        public bool? IsSearchable { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the attribute supports filtering.
         /// </summary>
         [JsonProperty(PropertyName = "isFilterable")]
-        public bool? IsFilterable { get; private set; }
+        public bool? IsFilterable { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the attribute can be included as
         /// facet results.
         /// </summary>
         [JsonProperty(PropertyName = "isFacetable")]
-        public bool? IsFacetable { get; private set; }
+        public bool? IsFacetable { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the attribute can be included in
         /// orderby directives.
         /// </summary>
         [JsonProperty(PropertyName = "isSortable")]
-        public bool? IsSortable { get; private set; }
+        public bool? IsSortable { get; set; }
 
         /// <summary>
         /// Gets an optional specification for search faceting used at query
@@ -87,7 +90,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// value facet: city,count:5
         /// </summary>
         [JsonProperty(PropertyName = "facetSpecification")]
-        public string FacetSpecification { get; private set; }
+        public string FacetSpecification { get; set; }
 
     }
 }

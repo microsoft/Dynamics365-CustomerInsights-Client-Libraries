@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class SqlValidationStats {
     /**
-     * Gets the last validation evaluation date.
+     * Date of Validation evaluation.
      */
     @JsonProperty(value = "validationDate")
     private DateTime validationDate;
@@ -26,7 +26,7 @@ public class SqlValidationStats {
     private String error;
 
     /**
-     * Get gets the last validation evaluation date.
+     * Get date of Validation evaluation.
      *
      * @return the validationDate value
      */
@@ -35,7 +35,7 @@ public class SqlValidationStats {
     }
 
     /**
-     * Set gets the last validation evaluation date.
+     * Set date of Validation evaluation.
      *
      * @param validationDate the validationDate value to set
      * @return the SqlValidationStats object itself.

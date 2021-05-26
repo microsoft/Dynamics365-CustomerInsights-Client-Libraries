@@ -18,17 +18,17 @@ public class MeasureMetadata {
     /**
      * The displayName property.
      */
-    @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "displayName")
     private String displayName;
 
     /**
-     * Gets the unique name of the measure.
+     * Unique name of the measure.
      */
     @JsonProperty(value = "name")
     private String name;
 
     /**
-     * Gets the description of the measure.
+     * Description of the measure.
      */
     @JsonProperty(value = "description")
     private String description;
@@ -70,51 +70,51 @@ public class MeasureMetadata {
     private SqlValidationStats sqlValidationStats;
 
     /**
-     * Gets the evaluation history for the measure. (not persisted in store).
+     * Evaluation history for the measure. (not persisted in store).
      */
     @JsonProperty(value = "evaluationHistory")
     private List<Evaluation> evaluationHistory;
 
     /**
-     * Gets the output history for the measure. (not persisted in store).
+     * Output history for the measure. (not persisted in store).
      */
     @JsonProperty(value = "outputHistory")
     private List<ScalarOutput> outputHistory;
 
     /**
-     * Gets the version number of this object.
+     * Version number of this object.
      */
-    @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "version")
     private Long version;
 
     /**
-     * Gets the UPN of the user who last updated this record.
+     * UPN of the user who last updated this record.
      */
-    @JsonProperty(value = "updatedBy", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "updatedBy")
     private String updatedBy;
 
     /**
-     * Gets the time the object was last updated.
+     * Time this object was last updated.
      */
-    @JsonProperty(value = "updatedUtc", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "updatedUtc")
     private DateTime updatedUtc;
 
     /**
-     * Gets the email address of the user who created this record.
+     * Email address of the user who created this record.
      */
-    @JsonProperty(value = "createdBy", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "createdBy")
     private String createdBy;
 
     /**
-     * Gets the time the object was initially created.
+     * Time this object was initially created.
      */
-    @JsonProperty(value = "createdUtc", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "createdUtc")
     private DateTime createdUtc;
 
     /**
-     * Gets the Customer Insights instance id associated with this object.
+     * Customer Insights instance id associated with this object.
      */
-    @JsonProperty(value = "instanceId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "instanceId")
     private UUID instanceId;
 
     /**
@@ -127,7 +127,18 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the unique name of the measure.
+     * Set the displayName value.
+     *
+     * @param displayName the displayName value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
+     * Get unique name of the measure.
      *
      * @return the name value
      */
@@ -136,7 +147,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Set gets the unique name of the measure.
+     * Set unique name of the measure.
      *
      * @param name the name value to set
      * @return the MeasureMetadata object itself.
@@ -147,7 +158,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the description of the measure.
+     * Get description of the measure.
      *
      * @return the description value
      */
@@ -156,7 +167,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Set gets the description of the measure.
+     * Set description of the measure.
      *
      * @param description the description value to set
      * @return the MeasureMetadata object itself.
@@ -287,7 +298,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the evaluation history for the measure. (not persisted in store).
+     * Get evaluation history for the measure. (not persisted in store).
      *
      * @return the evaluationHistory value
      */
@@ -296,7 +307,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Set gets the evaluation history for the measure. (not persisted in store).
+     * Set evaluation history for the measure. (not persisted in store).
      *
      * @param evaluationHistory the evaluationHistory value to set
      * @return the MeasureMetadata object itself.
@@ -307,7 +318,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the output history for the measure. (not persisted in store).
+     * Get output history for the measure. (not persisted in store).
      *
      * @return the outputHistory value
      */
@@ -316,7 +327,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Set gets the output history for the measure. (not persisted in store).
+     * Set output history for the measure. (not persisted in store).
      *
      * @param outputHistory the outputHistory value to set
      * @return the MeasureMetadata object itself.
@@ -327,7 +338,7 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the version number of this object.
+     * Get version number of this object.
      *
      * @return the version value
      */
@@ -336,7 +347,18 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the UPN of the user who last updated this record.
+     * Set version number of this object.
+     *
+     * @param version the version value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withVersion(Long version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get uPN of the user who last updated this record.
      *
      * @return the updatedBy value
      */
@@ -345,7 +367,18 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the time the object was last updated.
+     * Set uPN of the user who last updated this record.
+     *
+     * @param updatedBy the updatedBy value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+        return this;
+    }
+
+    /**
+     * Get time this object was last updated.
      *
      * @return the updatedUtc value
      */
@@ -354,7 +387,18 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the email address of the user who created this record.
+     * Set time this object was last updated.
+     *
+     * @param updatedUtc the updatedUtc value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withUpdatedUtc(DateTime updatedUtc) {
+        this.updatedUtc = updatedUtc;
+        return this;
+    }
+
+    /**
+     * Get email address of the user who created this record.
      *
      * @return the createdBy value
      */
@@ -363,7 +407,18 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the time the object was initially created.
+     * Set email address of the user who created this record.
+     *
+     * @param createdBy the createdBy value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * Get time this object was initially created.
      *
      * @return the createdUtc value
      */
@@ -372,12 +427,34 @@ public class MeasureMetadata {
     }
 
     /**
-     * Get gets the Customer Insights instance id associated with this object.
+     * Set time this object was initially created.
+     *
+     * @param createdUtc the createdUtc value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withCreatedUtc(DateTime createdUtc) {
+        this.createdUtc = createdUtc;
+        return this;
+    }
+
+    /**
+     * Get customer Insights instance id associated with this object.
      *
      * @return the instanceId value
      */
     public UUID instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Set customer Insights instance id associated with this object.
+     *
+     * @param instanceId the instanceId value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withInstanceId(UUID instanceId) {
+        this.instanceId = instanceId;
+        return this;
     }
 
 }

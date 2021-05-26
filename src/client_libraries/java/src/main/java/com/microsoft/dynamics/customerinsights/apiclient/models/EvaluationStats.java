@@ -14,19 +14,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class EvaluationStats {
     /**
-     * Gets the last successful evaluation.
+     * Last successful evaluation.
      */
     @JsonProperty(value = "lastSuccessful")
     private DateTime lastSuccessful;
 
     /**
-     * Gets the number of consecutive failures.
+     * Represents Number of consecutive failures.
      */
     @JsonProperty(value = "consecutiveFailureCount")
     private Integer consecutiveFailureCount;
 
     /**
-     * Get gets the last successful evaluation.
+     * Get last successful evaluation.
      *
      * @return the lastSuccessful value
      */
@@ -35,7 +35,7 @@ public class EvaluationStats {
     }
 
     /**
-     * Set gets the last successful evaluation.
+     * Set last successful evaluation.
      *
      * @param lastSuccessful the lastSuccessful value to set
      * @return the EvaluationStats object itself.
@@ -46,7 +46,7 @@ public class EvaluationStats {
     }
 
     /**
-     * Get gets the number of consecutive failures.
+     * Get represents Number of consecutive failures.
      *
      * @return the consecutiveFailureCount value
      */
@@ -55,7 +55,7 @@ public class EvaluationStats {
     }
 
     /**
-     * Set gets the number of consecutive failures.
+     * Set represents Number of consecutive failures.
      *
      * @param consecutiveFailureCount the consecutiveFailureCount value to set
      * @return the EvaluationStats object itself.

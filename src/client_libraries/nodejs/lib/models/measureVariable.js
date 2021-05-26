@@ -46,7 +46,6 @@ class MeasureVariable {
           },
           name: {
             required: false,
-            readOnly: true,
             serializedName: 'name',
             type: {
               name: 'String'
@@ -54,7 +53,6 @@ class MeasureVariable {
           },
           dataType: {
             required: false,
-            readOnly: true,
             serializedName: 'dataType',
             type: {
               name: 'String'
@@ -62,7 +60,6 @@ class MeasureVariable {
           },
           expressionText: {
             required: false,
-            readOnly: true,
             serializedName: 'expressionText',
             type: {
               name: 'String'
@@ -70,7 +67,6 @@ class MeasureVariable {
           },
           variableConditionGroups: {
             required: false,
-            readOnly: true,
             serializedName: 'variableConditionGroups',
             type: {
               name: 'Sequence',

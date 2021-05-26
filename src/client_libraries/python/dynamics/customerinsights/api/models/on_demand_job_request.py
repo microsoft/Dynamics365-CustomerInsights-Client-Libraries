@@ -30,9 +30,11 @@ class OnDemandJobRequest(Model):
     :type force_run_requested: bool
     :param input_refresh_mode: Possible values include:
      'FailedOrModifiedRecursive', 'FailedRecursive', 'FailedOrModified',
-     'Failed'
+     'Failed', 'None'
     :type input_refresh_mode: str or
      ~dynamics.customerinsights.api.models.enum
+    :param options:
+    :type options: ~dynamics.customerinsights.api.models.GraphJobOptions
     """
 
     _attribute_map = {
@@ -43,6 +45,7 @@ class OnDemandJobRequest(Model):
         'identifiers': {'key': 'identifiers', 'type': '[str]'},
         'force_run_requested': {'key': 'forceRunRequested', 'type': 'bool'},
         'input_refresh_mode': {'key': 'inputRefreshMode', 'type': 'str'},
+        'options': {'key': 'options', 'type': 'GraphJobOptions'},
     }
 
     def __init__(self, **kwargs):
@@ -54,3 +57,4 @@ class OnDemandJobRequest(Model):
         self.identifiers = kwargs.get('identifiers', None)
         self.force_run_requested = kwargs.get('force_run_requested', None)
         self.input_refresh_mode = kwargs.get('input_refresh_mode', None)
+        self.options = kwargs.get('options', None)

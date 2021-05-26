@@ -11,11 +11,11 @@ from msrest.serialization import Model
 class HistogramBin(Model):
     """Histogram bin.
 
-    :param lower_bound: Gets or sets the lower bound.
+    :param lower_bound: Lower bound of Histogram bin.
     :type lower_bound: float
-    :param upper_bound: Gets or sets the upper bound.
+    :param upper_bound: Upper bound Histogram bin.
     :type upper_bound: float
-    :param count: Gets or sets the count.
+    :param count: Represents an approximation count of the bin count.
     :type count: float
     """
 

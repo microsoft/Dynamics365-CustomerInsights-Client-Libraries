@@ -11,14 +11,11 @@ from msrest.serialization import Model
 class MeasureMetadata(Model):
     """Represents metadata for a measure (or KPI).
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar display_name:
-    :vartype display_name: str
-    :param name: Gets the unique name of the measure
+    :param display_name:
+    :type display_name: str
+    :param name: Unique name of the measure
     :type name: str
-    :param description: Gets the description of the measure.
+    :param description: Description of the measure.
     :type description: str
     :param definition:
     :type definition: ~dynamics.customerinsights.api.models.MeasureDefinition
@@ -34,39 +31,28 @@ class MeasureMetadata(Model):
     :param sql_validation_stats:
     :type sql_validation_stats:
      ~dynamics.customerinsights.api.models.SqlValidationStats
-    :param evaluation_history: Gets the evaluation history for the measure.
-     (not persisted in store)
+    :param evaluation_history: Evaluation history for the measure. (not
+     persisted in store)
     :type evaluation_history:
      list[~dynamics.customerinsights.api.models.Evaluation]
-    :param output_history: Gets the output history for the measure. (not
-     persisted in store)
+    :param output_history: Output history for the measure. (not persisted in
+     store)
     :type output_history:
      list[~dynamics.customerinsights.api.models.ScalarOutput]
-    :ivar version: Gets the version number of this object.
-    :vartype version: long
-    :ivar updated_by: Gets the UPN of the user who last updated this record.
-    :vartype updated_by: str
-    :ivar updated_utc: Gets the time the object was last updated.
-    :vartype updated_utc: datetime
-    :ivar created_by: Gets the email address of the user who created this
-     record.
-    :vartype created_by: str
-    :ivar created_utc: Gets the time the object was initially created.
-    :vartype created_utc: datetime
-    :ivar instance_id: Gets the Customer Insights instance id associated with
-     this object.
-    :vartype instance_id: str
+    :param version: Version number of this object.
+    :type version: long
+    :param updated_by: UPN of the user who last updated this record.
+    :type updated_by: str
+    :param updated_utc: Time this object was last updated.
+    :type updated_utc: datetime
+    :param created_by: Email address of the user who created this record.
+    :type created_by: str
+    :param created_utc: Time this object was initially created.
+    :type created_utc: datetime
+    :param instance_id: Customer Insights instance id associated with this
+     object.
+    :type instance_id: str
     """
-
-    _validation = {
-        'display_name': {'readonly': True},
-        'version': {'readonly': True},
-        'updated_by': {'readonly': True},
-        'updated_utc': {'readonly': True},
-        'created_by': {'readonly': True},
-        'created_utc': {'readonly': True},
-        'instance_id': {'readonly': True},
-    }
 
     _attribute_map = {
         'display_name': {'key': 'displayName', 'type': 'str'},
@@ -90,7 +76,7 @@ class MeasureMetadata(Model):
 
     def __init__(self, **kwargs):
         super(MeasureMetadata, self).__init__(**kwargs)
-        self.display_name = None
+        self.display_name = kwargs.get('display_name', None)
         self.name = kwargs.get('name', None)
         self.description = kwargs.get('description', None)
         self.definition = kwargs.get('definition', None)
@@ -101,9 +87,9 @@ class MeasureMetadata(Model):
         self.sql_validation_stats = kwargs.get('sql_validation_stats', None)
         self.evaluation_history = kwargs.get('evaluation_history', None)
         self.output_history = kwargs.get('output_history', None)
-        self.version = None
-        self.updated_by = None
-        self.updated_utc = None
-        self.created_by = None
-        self.created_utc = None
-        self.instance_id = None
+        self.version = kwargs.get('version', None)
+        self.updated_by = kwargs.get('updated_by', None)
+        self.updated_utc = kwargs.get('updated_utc', None)
+        self.created_by = kwargs.get('created_by', None)
+        self.created_utc = kwargs.get('created_utc', None)
+        self.instance_id = kwargs.get('instance_id', None)

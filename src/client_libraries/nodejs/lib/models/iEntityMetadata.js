@@ -7,7 +7,8 @@
 'use strict';
 
 /**
- * Class representing a IEntityMetadata.
+ * Represents Entity Metadata.
+ *
  */
 class IEntityMetadata {
   /**
@@ -28,6 +29,8 @@ class IEntityMetadata {
    * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
    * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
    * 'derivedEntity', 'powerPlatformSource'
+   * @property {boolean} [shouldUseSparkSasAuth] Gets a value indicating
+   * whether Sas Auth is used for the entity.
    * @property {uuid} [datasourceId] Gets the original datasourceid of this
    * entity, if no data source, return null or emptyString
    * @property {string} [entityType] Possible values include: 'unspecified',
@@ -38,9 +41,12 @@ class IEntityMetadata {
    * @property {array} [keys] Gets the keys of the entity.
    * @property {array} [relationships] Gets entity relationships.
    * @property {object} [timestampAttribute]
-   * @property {string} [timestampAttribute.name]
-   * @property {string} [timestampAttribute.friendlyName]
-   * @property {string} [timestampAttribute.baseName]
+   * @property {string} [timestampAttribute.name] Unique Name for Attribute
+   * Metadata
+   * @property {string} [timestampAttribute.friendlyName] User friendly Name
+   * for Attribute Metadata
+   * @property {string} [timestampAttribute.baseName] Base Name for Attribute
+   * Metadata
    * @property {string} [timestampAttribute.dataType] Gets data type for
    * property.
    * @property {string} [timestampAttribute.semanticType] Gets semantic type
@@ -84,9 +90,12 @@ class IEntityMetadata {
    * other type: "listPrice,values:10|25|100|500|1000|2500"
    * value facet: city,count:5
    * @property {object} [incrementalAttribute]
-   * @property {string} [incrementalAttribute.name]
-   * @property {string} [incrementalAttribute.friendlyName]
-   * @property {string} [incrementalAttribute.baseName]
+   * @property {string} [incrementalAttribute.name] Unique Name for Attribute
+   * Metadata
+   * @property {string} [incrementalAttribute.friendlyName] User friendly Name
+   * for Attribute Metadata
+   * @property {string} [incrementalAttribute.baseName] Base Name for Attribute
+   * Metadata
    * @property {string} [incrementalAttribute.dataType] Gets data type for
    * property.
    * @property {string} [incrementalAttribute.semanticType] Gets semantic type
@@ -177,7 +186,6 @@ class IEntityMetadata {
         modelProperties: {
           name: {
             required: false,
-            readOnly: true,
             serializedName: 'name',
             type: {
               name: 'String'
@@ -185,7 +193,6 @@ class IEntityMetadata {
           },
           qualifiedEntityName: {
             required: false,
-            readOnly: true,
             serializedName: 'qualifiedEntityName',
             type: {
               name: 'String'
@@ -193,7 +200,6 @@ class IEntityMetadata {
           },
           dataSourceName: {
             required: false,
-            readOnly: true,
             serializedName: 'dataSourceName',
             type: {
               name: 'String'
@@ -206,9 +212,15 @@ class IEntityMetadata {
               name: 'String'
             }
           },
+          shouldUseSparkSasAuth: {
+            required: false,
+            serializedName: 'shouldUseSparkSasAuth',
+            type: {
+              name: 'Boolean'
+            }
+          },
           datasourceId: {
             required: false,
-            readOnly: true,
             serializedName: 'datasourceId',
             type: {
               name: 'String'
@@ -223,7 +235,6 @@ class IEntityMetadata {
           },
           attributes: {
             required: false,
-            readOnly: true,
             serializedName: 'attributes',
             type: {
               name: 'Sequence',
@@ -239,7 +250,6 @@ class IEntityMetadata {
           },
           keys: {
             required: false,
-            readOnly: true,
             serializedName: 'keys',
             type: {
               name: 'Sequence',
@@ -262,7 +272,6 @@ class IEntityMetadata {
           },
           relationships: {
             required: false,
-            readOnly: true,
             serializedName: 'relationships',
             type: {
               name: 'Sequence',
@@ -301,7 +310,6 @@ class IEntityMetadata {
           },
           refreshTime: {
             required: false,
-            readOnly: true,
             serializedName: 'refreshTime',
             type: {
               name: 'DateTime'
@@ -309,7 +317,6 @@ class IEntityMetadata {
           },
           partitions: {
             required: false,
-            readOnly: true,
             serializedName: 'partitions',
             type: {
               name: 'Sequence',
@@ -325,7 +332,6 @@ class IEntityMetadata {
           },
           incrementalUpsertPartitions: {
             required: false,
-            readOnly: true,
             serializedName: 'incrementalUpsertPartitions',
             type: {
               name: 'Sequence',
@@ -341,7 +347,6 @@ class IEntityMetadata {
           },
           incrementalDeletePartitions: {
             required: false,
-            readOnly: true,
             serializedName: 'incrementalDeletePartitions',
             type: {
               name: 'Sequence',
@@ -357,7 +362,6 @@ class IEntityMetadata {
           },
           fullPartitionsParquet: {
             required: false,
-            readOnly: true,
             serializedName: 'fullPartitionsParquet',
             type: {
               name: 'Sequence',
@@ -373,7 +377,6 @@ class IEntityMetadata {
           },
           incrementalUpsertPartitionsParquet: {
             required: false,
-            readOnly: true,
             serializedName: 'incrementalUpsertPartitionsParquet',
             type: {
               name: 'Sequence',
@@ -389,7 +392,6 @@ class IEntityMetadata {
           },
           incrementalDeletePartitionsParquet: {
             required: false,
-            readOnly: true,
             serializedName: 'incrementalDeletePartitionsParquet',
             type: {
               name: 'Sequence',
@@ -405,7 +407,6 @@ class IEntityMetadata {
           },
           annotations: {
             required: false,
-            readOnly: true,
             serializedName: 'annotations',
             type: {
               name: 'Sequence',

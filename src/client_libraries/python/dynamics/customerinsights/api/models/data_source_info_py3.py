@@ -9,7 +9,7 @@ from msrest.serialization import Model
 
 
 class DataSourceInfo(Model):
-    """DataSourceInfo.
+    """Data source Information.
 
     :param data_source_metadata:
     :type data_source_metadata:

@@ -9,6 +9,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using Newtonsoft.Json;
     using System.Linq;
 
+    /// <summary>
+    /// Data source Information
+    /// </summary>
     public partial class DataSourceInfo
     {
         /// <summary>

@@ -49,7 +49,6 @@ class Relationship {
           },
           annotations: {
             required: false,
-            readOnly: true,
             serializedName: 'annotations',
             type: {
               name: 'Sequence',

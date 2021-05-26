@@ -20,13 +20,16 @@ class SegmentMembershipCriteria {
    * 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan',
    * 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
    * 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
-   * 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek'
+   * 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek',
+   * 'timeAt'
    * @property {array} [childCriterias] Gets the list of Child criteria of
    * segment.
    * @property {string} [value] Gets the Value in criteria.
    * @property {boolean} [ignoreCase] Gets a value indicating whether case is
    * ignored for this criteria.
    * @property {array} [listOfValues] Gets the list of values in criteria.
+   * @property {boolean} [isTime] flag set to true if entries are of time
+   * format
    */
   constructor() {
   }
@@ -108,6 +111,14 @@ class SegmentMembershipCriteria {
                     name: 'String'
                   }
               }
+            }
+          },
+          isTime: {
+            required: false,
+            nullable: true,
+            serializedName: 'isTime',
+            type: {
+              name: 'Boolean'
             }
           }
         }
