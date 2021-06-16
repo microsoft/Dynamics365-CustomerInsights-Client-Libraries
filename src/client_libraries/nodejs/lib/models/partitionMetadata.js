@@ -17,9 +17,11 @@ class PartitionMetadata {
    * @property {string} [location] Gets the uri location of the data
    * @property {date} [refreshTime] Gets the refresh time of the data partition
    * @property {object} [fileFormatSettings]
+   * @property {boolean} [isCIGenerated] Gets a value indicating whether a
+   * partition is CI Generated or not.
    * @property {boolean} [forceSasAuth] Gets a value indicating whether a
    * partition need to be forced for SAS authentication.
-   * @property {boolean} [hasHeader] Flad to represent header presence (if any)
+   * @property {boolean} [hasHeader] Flag to represent header presence (if any)
    */
   constructor() {
   }
@@ -64,6 +66,13 @@ class PartitionMetadata {
             serializedName: 'fileFormatSettings',
             type: {
               name: 'Object'
+            }
+          },
+          isCIGenerated: {
+            required: false,
+            serializedName: 'isCIGenerated',
+            type: {
+              name: 'Boolean'
             }
           },
           forceSasAuth: {

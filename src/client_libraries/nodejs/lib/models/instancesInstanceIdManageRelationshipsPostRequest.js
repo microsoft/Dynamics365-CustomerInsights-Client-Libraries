@@ -98,6 +98,13 @@ class InstancesInstanceIdManageRelationshipsPostRequest extends models['Relation
               name: 'String'
             }
           },
+          source: {
+            required: false,
+            serializedName: 'source',
+            type: {
+              name: 'String'
+            }
+          },
           version: {
             required: false,
             serializedName: 'version',

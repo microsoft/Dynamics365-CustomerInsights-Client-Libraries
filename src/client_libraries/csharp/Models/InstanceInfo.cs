@@ -30,15 +30,29 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="name">Gets the instance name. (not persisted in
         /// store)</param>
         /// <param name="instanceType">Possible values include: 'trial',
-        /// 'sandbox', 'production'</param>
+        /// 'sandbox', 'production', 'pitchDemo', 'pov'</param>
         /// <param name="expiryTimeUtc">Gets the time the instance is set to
         /// expire. (not persisted in store)</param>
-        public InstanceInfo(System.Guid? instanceId = default(System.Guid?), string name = default(string), string instanceType = default(string), System.DateTime? expiryTimeUtc = default(System.DateTime?))
+        /// <param name="maxTrialExtensionsAllowed">Gets the total number of
+        /// extensions allowed if this is trial instance (not persisted in
+        /// store)</param>
+        /// <param name="trialExtensionHistory">Stores the details of trial
+        /// extensions done if this is a trial instance (not persisted in
+        /// store)</param>
+        /// <param name="scaleUnitId">Gets the unique identifier for the scale
+        /// unit (not persisted in store)</param>
+        /// <param name="azureRegion">Gets the Azure Region where the scale
+        /// unit resides (not persisted in store)</param>
+        public InstanceInfo(System.Guid? instanceId = default(System.Guid?), string name = default(string), string instanceType = default(string), System.DateTime? expiryTimeUtc = default(System.DateTime?), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), string scaleUnitId = default(string), string azureRegion = default(string))
         {
             InstanceId = instanceId;
             Name = name;
             InstanceType = instanceType;
             ExpiryTimeUtc = expiryTimeUtc;
+            MaxTrialExtensionsAllowed = maxTrialExtensionsAllowed;
+            TrialExtensionHistory = trialExtensionHistory;
+            ScaleUnitId = scaleUnitId;
+            AzureRegion = azureRegion;
             CustomInit();
         }
 
@@ -61,7 +75,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'trial', 'sandbox',
-        /// 'production'
+        /// 'production', 'pitchDemo', 'pov'
         /// </summary>
         [JsonProperty(PropertyName = "instanceType")]
         public string InstanceType { get; set; }
@@ -72,6 +86,34 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "expiryTimeUtc")]
         public System.DateTime? ExpiryTimeUtc { get; set; }
+
+        /// <summary>
+        /// Gets the total number of extensions allowed if this is trial
+        /// instance (not persisted in store)
+        /// </summary>
+        [JsonProperty(PropertyName = "maxTrialExtensionsAllowed")]
+        public int? MaxTrialExtensionsAllowed { get; set; }
+
+        /// <summary>
+        /// Gets or sets stores the details of trial extensions done if this is
+        /// a trial instance (not persisted in store)
+        /// </summary>
+        [JsonProperty(PropertyName = "trialExtensionHistory")]
+        public string TrialExtensionHistory { get; set; }
+
+        /// <summary>
+        /// Gets the unique identifier for the scale unit (not persisted in
+        /// store)
+        /// </summary>
+        [JsonProperty(PropertyName = "scaleUnitId")]
+        public string ScaleUnitId { get; set; }
+
+        /// <summary>
+        /// Gets the Azure Region where the scale unit resides (not persisted
+        /// in store)
+        /// </summary>
+        [JsonProperty(PropertyName = "azureRegion")]
+        public string AzureRegion { get; set; }
 
     }
 }

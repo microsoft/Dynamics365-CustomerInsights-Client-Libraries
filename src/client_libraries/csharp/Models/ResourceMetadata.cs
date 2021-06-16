@@ -28,16 +28,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="kind">Possible values include:
         /// 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
         /// 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-        /// 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-        /// 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'</param>
+        /// 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+        /// 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+        /// 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+        /// 'constantContact', 'campaignMonitor', 'http', 'dotDigital',
+        /// 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds',
+        /// 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI',
+        /// 'azureSql', 'synapse'</param>
         /// <param name="resourceId">Gets the Id of the resource.</param>
         /// <param name="operationId">Gets the Id of the operation being
         /// performed on the resource.</param>
-        /// <param name="resourceType">Possible values include: 'adlsGen2',
-        /// 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection',
-        /// 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-        /// 'basicAuthenticationConnection', 'facebookAds', 'http',
-        /// 'mailchimp', 'googleAds', 'marketo'</param>
         /// <param name="name">Gets the Name of the resource.</param>
         /// <param name="description">Gets the Description of the
         /// resource.</param>
@@ -51,12 +51,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public ResourceMetadata(string kind = default(string), System.Guid? resourceId = default(System.Guid?), System.Guid? operationId = default(System.Guid?), string resourceType = default(string), string name = default(string), string description = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public ResourceMetadata(string kind = default(string), System.Guid? resourceId = default(System.Guid?), System.Guid? operationId = default(System.Guid?), string name = default(string), string description = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             Kind = kind;
             ResourceId = resourceId;
             OperationId = operationId;
-            ResourceType = resourceType;
             Name = name;
             Description = description;
             Version = version;
@@ -77,8 +76,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets or sets possible values include:
         /// 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
         /// 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-        /// 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-        /// 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+        /// 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+        /// 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+        /// 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+        /// 'constantContact', 'campaignMonitor', 'http', 'dotDigital',
+        /// 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds',
+        /// 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI',
+        /// 'azureSql', 'synapse'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }
@@ -94,16 +98,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "operationId")]
         public System.Guid? OperationId { get; set; }
-
-        /// <summary>
-        /// Gets or sets possible values include: 'adlsGen2', 'd365Sales',
-        /// 'cds', 'ftp', 'bearerAuthenticationConnection',
-        /// 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-        /// 'basicAuthenticationConnection', 'facebookAds', 'http',
-        /// 'mailchimp', 'googleAds', 'marketo'
-        /// </summary>
-        [JsonProperty(PropertyName = "resourceType")]
-        public string ResourceType { get; set; }
 
         /// <summary>
         /// Gets the Name of the resource.

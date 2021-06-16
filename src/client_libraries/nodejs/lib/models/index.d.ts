@@ -15,13 +15,17 @@ export interface CIResult {
   exceptionCulprit?: string;
   errorCode?: string;
   /**
-   * Possible values include: 'error', 'warning'
+   * Possible values include: 'error', 'warning', 'recommendation'
   */
   resultSeverity?: string;
   /**
    * Message providing more information about the event.
   */
   message?: string;
+  /**
+   * Message providing more information about the event.
+  */
+  name?: string;
   params?: { [propertyName: string]: any };
   /**
    * List of CiResult contining CI result error code and information (if any).
@@ -41,13 +45,17 @@ export interface ApiErrorResult {
   exceptionCulprit?: string;
   errorCode?: string;
   /**
-   * Possible values include: 'error', 'warning'
+   * Possible values include: 'error', 'warning', 'recommendation'
   */
   resultSeverity?: string;
   /**
    * Message providing more information about the event.
   */
   message?: string;
+  /**
+   * Message providing more information about the event.
+  */
+  name?: string;
   params?: { [propertyName: string]: any };
   /**
    * List of CiResult contining CI result error code and information (if any).
@@ -210,6 +218,10 @@ export interface AttributeDataProfile {
    * entity
   */
   isSuggestedPrimaryKey?: boolean;
+  /**
+   * Represents a value indicating whether we calculate exact or approx stats
+  */
+  checkIfExactStats?: any;
 }
 
 /**
@@ -257,7 +269,9 @@ export interface DatasourceEntityInformation {
   /**
    * Possible values include: 'unspecified', 'profile', 'conflationMap', 'activity',
    * 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
-   * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+   * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+   * 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity',
+   * 'segmentMembership'
   */
   entityType?: string;
   /**
@@ -322,7 +336,7 @@ export interface IncrementalRefreshProperties {
 export interface DataSourceMetadata {
   /**
    * Possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
-   * 'powerPlatform', 'datahub'
+   * 'powerPlatform', 'datahub', 'cjoData', 'eiData'
   */
   kind?: string;
   /**
@@ -333,6 +347,7 @@ export interface DataSourceMetadata {
    * List of all Entity Names
   */
   entityNames?: string[];
+  entitiesCount?: number;
   /**
    * Unique identity for this object.
   */
@@ -351,7 +366,8 @@ export interface DataSourceMetadata {
   entityInformation?: DatasourceEntityInformation[];
   /**
    * Possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating', 'quickUpdate',
+   * 'deactivated'
   */
   provisioningState?: string;
   /**
@@ -641,11 +657,15 @@ export interface PartitionMetadata {
   refreshTime?: Date;
   fileFormatSettings?: any;
   /**
+   * Gets a value indicating whether a partition is CI Generated or not.
+  */
+  isCIGenerated?: boolean;
+  /**
    * Gets a value indicating whether a partition need to be forced for SAS authentication.
   */
   forceSasAuth?: boolean;
   /**
-   * Flad to represent header presence (if any)
+   * Flag to represent header presence (if any)
   */
   hasHeader?: boolean;
 }
@@ -674,7 +694,9 @@ export interface IEntityMetadata {
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-   * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'
+   * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
+   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData',
+   * 'hierarchy'
   */
   dataflowType?: string;
   /**
@@ -688,7 +710,9 @@ export interface IEntityMetadata {
   /**
    * Possible values include: 'unspecified', 'profile', 'conflationMap', 'activity',
    * 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
-   * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+   * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+   * 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity',
+   * 'segmentMembership'
   */
   entityType?: string;
   /**
@@ -799,7 +823,9 @@ export interface IC360EntityModel {
    * 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched',
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-   * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'
+   * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
+   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData',
+   * 'hierarchy'
   */
   dataflowType?: string;
   /**
@@ -839,13 +865,30 @@ export interface InstanceInfo {
   */
   name?: string;
   /**
-   * Possible values include: 'trial', 'sandbox', 'production'
+   * Possible values include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
   */
   instanceType?: string;
   /**
    * Gets the time the instance is set to expire. (not persisted in store)
   */
   expiryTimeUtc?: Date;
+  /**
+   * Gets the total number of extensions allowed if this is trial instance (not persisted in store)
+  */
+  maxTrialExtensionsAllowed?: number;
+  /**
+   * Stores the details of trial extensions done if this is a trial instance (not persisted in
+   * store)
+  */
+  trialExtensionHistory?: string;
+  /**
+   * Gets the unique identifier for the scale unit (not persisted in store)
+  */
+  scaleUnitId?: string;
+  /**
+   * Gets the Azure Region where the scale unit resides (not persisted in store)
+  */
+  azureRegion?: string;
 }
 
 /**
@@ -989,6 +1032,22 @@ export interface CdsOrgInfo {
    * Gets the Cds Organization State
   */
   state?: string;
+  /**
+   * Gets region location of Cds Organization
+  */
+  location?: string;
+  /**
+   * Gets SKU of Cds Organization
+  */
+  environmentSku?: string;
+  /**
+   * Gets the expiration time of CDS Organization if the SKU is Trial
+  */
+  expirationTime?: Date;
+  /**
+   * Gets the max allowed expiration time of CDS Organization if the SKU is Trial
+  */
+  maxAllowedExpirationTime?: Date;
 }
 
 /**
@@ -1014,6 +1073,24 @@ export interface CdsMdlInfo {
 }
 
 /**
+ * Extension Details of trial instance
+*/
+export interface TrialExtensionDetails {
+  /**
+   * Gets the extended on date
+  */
+  extendedOn?: Date;
+  /**
+   * Gets the number of days Extended
+  */
+  extendedForDays?: string;
+  /**
+   * Gets the Name of Extended By
+  */
+  extendedBy?: string;
+}
+
+/**
  * The instance metadata.
 */
 export interface InstanceMetadata {
@@ -1023,11 +1100,12 @@ export interface InstanceMetadata {
   name?: string;
   /**
    * Possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating', 'quickUpdate',
+   * 'deactivated'
   */
   provisioningState?: string;
   /**
-   * Possible values include: 'trial', 'sandbox', 'production'
+   * Possible values include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
   */
   instanceType?: string;
   refreshSchedule?: DataRefreshSchedule;
@@ -1049,6 +1127,14 @@ export interface InstanceMetadata {
    * Stores the details of trial extensions done if this is a trial instance
   */
   trialExtensionHistory?: string;
+  /**
+   * Gets a value indicating if credential  is required to refresh any of the datasources
+  */
+  isRefreshCredentialRequired?: boolean;
+  /**
+   * Stores the details of trial extensions done if this is a trial instance
+  */
+  trialExtensionDetails?: TrialExtensionDetails[];
   /**
    * Version number of this object.
   */
@@ -1081,9 +1167,12 @@ export interface InstanceMetadata {
 export interface ResourceMetadata {
   /**
    * Possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales',
-   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds',
-   * 'marketo'
+   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection',
+   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'activeCampaign',
+   * 'autopilot', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
+   * 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql',
+   * 'synapse'
   */
   kind?: string;
   /**
@@ -1094,13 +1183,6 @@ export interface ResourceMetadata {
    * Gets the Id of the operation being performed on the resource.
   */
   operationId?: string;
-  /**
-   * Possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http',
-   * 'mailchimp', 'googleAds', 'marketo'
-  */
-  resourceType?: string;
   /**
    * Gets the Name of the resource.
   */
@@ -1135,14 +1217,48 @@ export interface ResourceMetadata {
   instanceId?: string;
 }
 
+/**
+ * The information for bring your own Power BI
+*/
+export interface ByoPbiProvisioningInfo {
+  /**
+   * Storage account subscriptionId.
+  */
+  storageSubscriptionId?: string;
+  /**
+   * Storage account Resource Group.
+  */
+  storageResourceGroup?: string;
+  /**
+   * Storage account Region.
+  */
+  storageResourceRegion?: string;
+  /**
+   * Storage account tenant.
+  */
+  storageResourceTenantId?: string;
+  /**
+   * Pbi Capacity Id.
+  */
+  capacityId?: string;
+  /**
+   * PBI delegation token captured from the user.
+  */
+  delegationToken?: string;
+}
+
 export interface InstanceCreationRequest {
   instanceMetadata?: InstanceMetadata;
   byosaResourceMetadata?: ResourceMetadata;
   cdsResourceMetadata?: ResourceMetadata;
+  byoPbiProvisioningInfo?: ByoPbiProvisioningInfo;
+  isCdsMdlStorageEnabled?: boolean;
+  isCiToByosaMigrationEnabled?: boolean;
   /**
    * Possible values include: 'skip', 'create', 'attach'
   */
   bapProvisioningType?: string;
+  isPbiProvisioningRequired?: boolean;
 }
 
 export interface InstanceCopyRequest {
@@ -1150,10 +1266,14 @@ export interface InstanceCopyRequest {
   instanceMetadata?: InstanceMetadata;
   byosaResourceMetadata?: ResourceMetadata;
   cdsResourceMetadata?: ResourceMetadata;
+  byoPbiProvisioningInfo?: ByoPbiProvisioningInfo;
+  isCdsMdlStorageEnabled?: boolean;
+  isCiToByosaMigrationEnabled?: boolean;
   /**
    * Possible values include: 'skip', 'create', 'attach'
   */
   bapProvisioningType?: string;
+  isPbiProvisioningRequired?: boolean;
 }
 
 /**
@@ -1238,9 +1358,13 @@ export interface MeasureExpression {
 }
 
 /**
- * Represent a Segment Query.
+ * Represents a base Segment Query.
 */
 export interface SegmentMembershipCriteria {
+  /**
+   * Possible values include: 'default', 'engagement'
+  */
+  kind?: string;
   /**
    * Possible values include: 'and', 'or'
   */
@@ -1313,7 +1437,8 @@ export interface MeasureDimension {
 */
 export interface MeasureAggregate {
   /**
-   * Possible values include: 'sum', 'avg', 'min', 'max', 'count', 'countDistinct', 'first', 'last'
+   * Possible values include: 'sum', 'avg', 'min', 'max', 'count', 'countDistinct', 'first',
+   * 'last', 'argMax', 'argMin'
   */
   operation?: string;
   /**
@@ -1332,6 +1457,42 @@ export interface MeasureAggregate {
    * Gets the order for the aggregate
   */
   order?: number;
+  /**
+   * Gets list of aggregates of the measure.
+  */
+  aggregates?: MeasureAggregate[];
+  /**
+   * Gets a value indicating whether to display the field in results
+  */
+  isIncluded?: boolean;
+}
+
+/**
+ * Collection of the entity name and other info of the source activity entity ingested by user.
+*/
+export interface ActivitySourceEntityInfo {
+  /**
+   * Gets the qualified entity name of the activity source entity.
+  */
+  entityName?: string;
+}
+
+/**
+ * Collection of the Activity type and entity name corresponding to that activity type.
+*/
+export interface InsightActivityDetails {
+  /**
+   * Gets the name of the activity Type.
+  */
+  activityType?: string;
+  /**
+   * Gets the name of the entity that corresponds to the activity type.
+  */
+  entityName?: string;
+  /**
+   * Collection of the entity name and other info of the source activity entity ingested by user.
+  */
+  activitySourceEntitiesInfo?: ActivitySourceEntityInfo[];
 }
 
 /**
@@ -1345,7 +1506,9 @@ export interface EntityDependency {
   /**
    * Possible values include: 'unspecified', 'profile', 'conflationMap', 'activity',
    * 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
-   * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+   * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+   * 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity',
+   * 'segmentMembership'
   */
   type?: string;
   /**
@@ -1356,6 +1519,10 @@ export interface EntityDependency {
    * Gets the list of relationships included in the dependency
   */
   relationshipNames?: string[];
+  /**
+   * Contains the Activity type and entity name corresponding to that activity type.
+  */
+  activityDetails?: InsightActivityDetails[];
 }
 
 /**
@@ -1597,6 +1764,14 @@ export interface MeasureMetadata {
   */
   outputHistory?: ScalarOutput[];
   /**
+   * Check if measure metadata is a template
+  */
+  isTemplate?: boolean;
+  /**
+   * Gets the template ID for templates
+  */
+  templateId?: string;
+  /**
    * Version number of this object.
   */
   version?: number;
@@ -1636,29 +1811,10 @@ export interface ParsingError {
   messages?: LogMessage[];
   /**
    * Possible values include: 'unknown', 'parsingFailed', 'entityNotFound', 'attributeNotFound',
-   * 'unsupportedSyntax', 'invalidOperation'
+   * 'unsupportedSyntax', 'invalidOperation', 'incorrectArgumentCount', 'incorrectIntervalType',
+   * 'invalidArgument'
   */
   code?: string;
-}
-
-export interface DependencyValidationIssue {
-  /**
-   * Possible values include: 'mapInvalid', 'matchRuleInvalid', 'mergePolicyInvalid',
-   * 'relationshipInvalid', 'measureDefinitionInvalid', 'segmentDefinitionInvalid',
-   * 'unifiedActivitiyMappingInvalid', 'generic'
-  */
-  type?: string;
-  /**
-   * Possible values include: 'error', 'warning'
-  */
-  severity?: string;
-  id?: string;
-  description?: string;
-}
-
-export interface DeletionResponse {
-  isDeleted?: boolean;
-  issues?: DependencyValidationIssue[];
 }
 
 export interface KeyRingResponse {
@@ -1687,10 +1843,6 @@ export interface ProfileStoreCollectionInfo {
    * Gets the size of customer file yielded from merge .
   */
   size?: number;
-  /**
-   * Gets the flag that tells if the Activity Store Job has run successfully.
-  */
-  activityStoreRunSuccessful?: boolean;
   /**
    * Gets the state of profile store hydration per job type.
   */
@@ -1778,9 +1930,13 @@ export interface RelationshipMetadata {
   */
   toEntityName?: string;
   /**
-   * Possible values include: 'oneToMany', 'oneToOne'
+   * Possible values include: 'oneToMany', 'oneToOne', 'manyToOne'
   */
   cardinality?: string;
+  /**
+   * Possible values include: 'user', 'system', 'inferred'
+  */
+  source?: string;
   /**
    * Version number of this object.
   */
@@ -1891,6 +2047,20 @@ export interface InstanceSearchConfiguration {
 }
 
 /**
+ * Represent a Segment Projection.
+*/
+export interface SegmentationProjection {
+  /**
+   * Gets the Entity Name of the projection.
+  */
+  entityName?: string;
+  /**
+   * Gets the Attribute Names being projected.
+  */
+  attributeNames?: string[];
+}
+
+/**
  * Represent a Row set.
 */
 export interface SegmentationRowset {
@@ -1914,9 +2084,13 @@ export interface SegmentationQuery {
   */
   type?: string;
   /**
-   * Gets list of attributes to be projected in segment.
+   * Gets list of attributes to be projected in segment. (DEPRECATED)
   */
   projections?: string[];
+  /**
+   * Gets list of attributes to be projected in segment.
+  */
+  projectedAttributes?: SegmentationProjection[];
   /**
    * Gets list of rowsets of segment.
   */
@@ -1959,9 +2133,13 @@ export interface HistoricalSegmentStats {
 }
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
 */
 export interface SegmentMetadata {
+  /**
+   * Possible values include: 'default', 'engagement'
+  */
+  kind?: string;
   /**
    * Gets the unique name of the segment
   */
@@ -2026,7 +2204,7 @@ export interface SegmentMetadata {
 export interface CustomTaskInformation {
   /**
    * Possible values include: 'test', 'segmentation', 'measures', 'export', 'incrementalIngestion',
-   * 'incrementalMatch'
+   * 'incrementalMatch', 'incrementalMatchWithPreview', 'merge', 'mark', 'affinities'
   */
   kind?: string;
 }
@@ -2049,10 +2227,11 @@ export interface GraphTaskInfo {
   */
   taskStatus?: string;
   /**
-   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map',
-   * 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures',
-   * 'measures', 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export',
-   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'
+   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
+   * 'relationship', 'roleAssignment', 'analysis', 'all'
   */
   operationType?: string;
   /**
@@ -2094,10 +2273,11 @@ export interface GraphJobInfo {
   */
   jobStatus?: string;
   /**
-   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map',
-   * 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures',
-   * 'measures', 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export',
-   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'
+   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
+   * 'relationship', 'roleAssignment', 'analysis', 'all'
   */
   operationType?: string;
   /**
@@ -2116,10 +2296,11 @@ export interface GraphJobInfo {
 export interface OnDemandJobRequest {
   graphName?: string;
   /**
-   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map',
-   * 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures',
-   * 'measures', 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export',
-   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'
+   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
+   * 'relationship', 'roleAssignment', 'analysis', 'all'
   */
   operationType?: string;
   /**
@@ -2157,10 +2338,11 @@ export interface DataInfo {
 
 export interface GraphNodeInfo {
   /**
-   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map',
-   * 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures',
-   * 'measures', 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export',
-   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'
+   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
+   * 'relationship', 'roleAssignment', 'analysis', 'all'
   */
   operationType?: string;
   /**
@@ -2195,10 +2377,11 @@ export interface TimezoneDetail {
 */
 export interface WorkflowRefreshSchedule {
   /**
-   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map',
-   * 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures',
-   * 'measures', 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export',
-   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'
+   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
+   * 'relationship', 'roleAssignment', 'analysis', 'all'
   */
   operationType?: string;
   /**
@@ -2230,6 +2413,136 @@ export interface WorkflowRefreshSchedule {
    * Gets the ID of the schedule
   */
   scheduleId?: string;
+  /**
+   * Customer Insights instance id associated with this object.
+  */
+  instanceId?: string;
+}
+
+/**
+ * Represents a dismissed notification.
+*/
+export interface DismissedNotification {
+  /**
+   * Gets the unique id of the notification
+  */
+  notificationId?: string;
+  /**
+   * Gets the expiration UTC date time of this notification.
+  */
+  notificationExpiryTimeUtc?: Date;
+}
+
+/**
+ * Represents a user notifications settings
+*/
+export interface UserNotificationsSettings {
+  /**
+   * Gets the list of dismissed banner notifications for this user.
+  */
+  dismissedBannerNotifications?: DismissedNotification[];
+}
+
+/**
+ * Represents a mapping  that can store all user ids associated with the email
+*/
+export interface PortalSettings {
+  /**
+   * Gets a value indicating whether the user has seen the all apps (welcome) page.
+  */
+  isExistingUser?: boolean;
+  /**
+   * Gets a value indicating whether the user has seen the all apps (welcome) page.
+  */
+  showDefaultHomePage?: boolean;
+  /**
+   * Gets a value indicating whether the user has seen the all apps (welcome) page.
+  */
+  proTagger?: boolean;
+}
+
+/**
+ * Represents a Terms of Use for user
+*/
+export interface TermsOfUse {
+  /**
+   * Possible values include: 'none', 'accepted', 'declined'
+  */
+  state?: string;
+  /**
+   * Gets the current version of this document.
+  */
+  version?: string;
+  /**
+   * Gets the created time of terms acceptance.
+  */
+  createdUtc?: Date;
+}
+
+/**
+ * Represents a User
+*/
+export interface UserInfo {
+  /**
+   * Gets the unique ID for this user.
+  */
+  userId?: string;
+  /**
+   * Gets user identifier.
+  */
+  upn?: string;
+  /**
+   * Gets list of Instances Id.
+  */
+  instancesIds?: InstanceInfo[];
+  /**
+   * Gets user preferred language.
+  */
+  preferredLanguage?: string;
+  /**
+   * Gets user preferred regional format.
+  */
+  preferredRegionalFormat?: string;
+  /**
+   * Gets user default instance id.
+  */
+  defaultInstance?: string;
+  /**
+   * Gets a value indicating whether the user is a global admin. (not persisted in store)
+  */
+  isGlobalAdmin?: boolean;
+  /**
+   * Gets list of Instance types which are eligible to provision by user. (not persisted in store)
+  */
+  eligibleInstanceTypesToProvision?: string[];
+  userNotificationsSettings?: UserNotificationsSettings;
+  /**
+   * Gets the industry demo selected by user during trial
+  */
+  industryDemo?: string;
+  /**
+   * Gets the tenant id of the user.
+  */
+  tenantId?: string;
+  /**
+   * Gets a value indicating whether the user has seen the all apps (welcome) page.
+  */
+  hasSeenWelcome?: boolean;
+  /**
+   * Gets the created time of User settings created for EI Migration.
+  */
+  createdUtc?: Date;
+  /**
+   * Gets a value indicating whether the user Opt-In to be contacted through emails. This is for
+   * CPM integration from EI.
+  */
+  allowEmailContacts?: boolean;
+  portalSettings?: PortalSettings;
+  termsOfUse?: TermsOfUse;
+  /**
+   * Gets the region that the user belongs to.
+  */
+  region?: string;
   /**
    * Customer Insights instance id associated with this object.
   */
@@ -2373,25 +2686,25 @@ export interface InstancesInstanceIdManageSearchPutRequest1 extends InstanceSear
 }
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
 */
 export interface InstancesInstanceIdManageSegmentsPostRequest extends SegmentMetadata {
 }
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
 */
 export interface InstancesInstanceIdManageSegmentsPostRequest1 extends SegmentMetadata {
 }
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
 */
 export interface InstancesInstanceIdManageSegmentsSegmentNamePutRequest extends SegmentMetadata {
 }
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
 */
 export interface InstancesInstanceIdManageSegmentsSegmentNamePutRequest1 extends SegmentMetadata {
 }

@@ -30,16 +30,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// from merge output.</param>
         /// <param name="size">Gets the size of customer file yielded from
         /// merge .</param>
-        /// <param name="activityStoreRunSuccessful">Gets the flag that tells
-        /// if the Activity Store Job has run successfully.</param>
         /// <param name="profileStoreHydrationStateInfo">Gets the state of
         /// profile store hydration per job type.</param>
-        public ProfileStoreCollectionInfo(string currentState = default(string), long? rowCount = default(long?), long? size = default(long?), bool? activityStoreRunSuccessful = default(bool?), IDictionary<string, string> profileStoreHydrationStateInfo = default(IDictionary<string, string>))
+        public ProfileStoreCollectionInfo(string currentState = default(string), long? rowCount = default(long?), long? size = default(long?), IDictionary<string, string> profileStoreHydrationStateInfo = default(IDictionary<string, string>))
         {
             CurrentState = currentState;
             RowCount = rowCount;
             Size = size;
-            ActivityStoreRunSuccessful = activityStoreRunSuccessful;
             ProfileStoreHydrationStateInfo = profileStoreHydrationStateInfo;
             CustomInit();
         }
@@ -67,13 +64,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "size")]
         public long? Size { get; set; }
-
-        /// <summary>
-        /// Gets the flag that tells if the Activity Store Job has run
-        /// successfully.
-        /// </summary>
-        [JsonProperty(PropertyName = "activityStoreRunSuccessful")]
-        public bool? ActivityStoreRunSuccessful { get; set; }
 
         /// <summary>
         /// Gets the state of profile store hydration per job type.

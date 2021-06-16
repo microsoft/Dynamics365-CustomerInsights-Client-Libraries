@@ -13,11 +13,12 @@ class GraphNodeInfo {
   /**
    * Create a GraphNodeInfo.
    * @property {string} [operationType] Possible values include: 'none',
-   * 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match', 'merge',
-   * 'profileStore', 'search', 'activity', 'attributeMeasures',
-   * 'entityMeasures', 'measures', 'segmentation', 'enrichment',
-   * 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-   * 'relationship', 'roleAssignment', 'analysis', 'all'
+   * 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+   * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
+   * 'activity', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
+   * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
+   * 'roleAssignment', 'analysis', 'all'
    * @property {string} [subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
    * 'singleActivityMapping', 'powerPlatform'
@@ -35,9 +36,11 @@ class GraphNodeInfo {
    * 'system', 'user', 'external'
    * @property {string} [ciError.errorCode]
    * @property {string} [ciError.resultSeverity] Possible values include:
-   * 'error', 'warning'
+   * 'error', 'warning', 'recommendation'
    * @property {string} [ciError.message] Message providing more information
    * about the event.
+   * @property {string} [ciError.name] Message providing more information about
+   * the event.
    * @property {object} [ciError.params]
    * @property {array} [ciError.ciResults] List of CiResult contining CI result
    * error code and information (if any).
@@ -45,7 +48,8 @@ class GraphNodeInfo {
    * @property {object} [additionalInfo]
    * @property {string} [additionalInfo.kind] Possible values include: 'test',
    * 'segmentation', 'measures', 'export', 'incrementalIngestion',
-   * 'incrementalMatch'
+   * 'incrementalMatch', 'incrementalMatchWithPreview', 'merge', 'mark',
+   * 'affinities'
    * @property {object} [selectionReason]
    * @property {string} [selectionReason.code] Possible values include:
    * 'unknown', 'requested', 'firstRun', 'unsuccessful', 'lastRunSkipped',

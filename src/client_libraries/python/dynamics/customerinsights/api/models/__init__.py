@@ -55,8 +55,10 @@ try:
     from .cds_org_info_py3 import CdsOrgInfo
     from .datalake_folder_detail_py3 import DatalakeFolderDetail
     from .cds_mdl_info_py3 import CdsMdlInfo
+    from .trial_extension_details_py3 import TrialExtensionDetails
     from .instance_metadata_py3 import InstanceMetadata
     from .resource_metadata_py3 import ResourceMetadata
+    from .byo_pbi_provisioning_info_py3 import ByoPbiProvisioningInfo
     from .instance_creation_request_py3 import InstanceCreationRequest
     from .instance_copy_request_py3 import InstanceCopyRequest
     from .measure_linked_entity_py3 import MeasureLinkedEntity
@@ -67,6 +69,8 @@ try:
     from .segment_membership_criteria_py3 import SegmentMembershipCriteria
     from .measure_dimension_py3 import MeasureDimension
     from .measure_aggregate_py3 import MeasureAggregate
+    from .activity_source_entity_info_py3 import ActivitySourceEntityInfo
+    from .insight_activity_details_py3 import InsightActivityDetails
     from .entity_dependency_py3 import EntityDependency
     from .measure_definition_py3 import MeasureDefinition
     from .evaluation_py3 import Evaluation
@@ -78,8 +82,6 @@ try:
     from .source_location_py3 import SourceLocation
     from .log_message_py3 import LogMessage
     from .parsing_error_py3 import ParsingError
-    from .dependency_validation_issue_py3 import DependencyValidationIssue
-    from .deletion_response_py3 import DeletionResponse
     from .key_ring_response_py3 import KeyRingResponse
     from .profile_store_module_run_info_py3 import ProfileStoreModuleRunInfo
     from .profile_store_collection_info_py3 import ProfileStoreCollectionInfo
@@ -91,6 +93,7 @@ try:
     from .attribute_search_configuration_py3 import AttributeSearchConfiguration
     from .entity_search_configuration_py3 import EntitySearchConfiguration
     from .instance_search_configuration_py3 import InstanceSearchConfiguration
+    from .segmentation_projection_py3 import SegmentationProjection
     from .segmentation_rowset_py3 import SegmentationRowset
     from .segmentation_query_py3 import SegmentationQuery
     from .segmentation_publish_stats_py3 import SegmentationPublishStats
@@ -106,6 +109,11 @@ try:
     from .graph_node_info_py3 import GraphNodeInfo
     from .timezone_detail_py3 import TimezoneDetail
     from .workflow_refresh_schedule_py3 import WorkflowRefreshSchedule
+    from .dismissed_notification_py3 import DismissedNotification
+    from .user_notifications_settings_py3 import UserNotificationsSettings
+    from .portal_settings_py3 import PortalSettings
+    from .terms_of_use_py3 import TermsOfUse
+    from .user_info_py3 import UserInfo
     from .entity_data_profile_py3 import EntityDataProfile
     from .instances_v2_post_request_py3 import InstancesV2PostRequest
     from .instances_v2_post_request1_py3 import InstancesV2PostRequest1
@@ -183,8 +191,10 @@ except (SyntaxError, ImportError):
     from .cds_org_info import CdsOrgInfo
     from .datalake_folder_detail import DatalakeFolderDetail
     from .cds_mdl_info import CdsMdlInfo
+    from .trial_extension_details import TrialExtensionDetails
     from .instance_metadata import InstanceMetadata
     from .resource_metadata import ResourceMetadata
+    from .byo_pbi_provisioning_info import ByoPbiProvisioningInfo
     from .instance_creation_request import InstanceCreationRequest
     from .instance_copy_request import InstanceCopyRequest
     from .measure_linked_entity import MeasureLinkedEntity
@@ -195,6 +205,8 @@ except (SyntaxError, ImportError):
     from .segment_membership_criteria import SegmentMembershipCriteria
     from .measure_dimension import MeasureDimension
     from .measure_aggregate import MeasureAggregate
+    from .activity_source_entity_info import ActivitySourceEntityInfo
+    from .insight_activity_details import InsightActivityDetails
     from .entity_dependency import EntityDependency
     from .measure_definition import MeasureDefinition
     from .evaluation import Evaluation
@@ -206,8 +218,6 @@ except (SyntaxError, ImportError):
     from .source_location import SourceLocation
     from .log_message import LogMessage
     from .parsing_error import ParsingError
-    from .dependency_validation_issue import DependencyValidationIssue
-    from .deletion_response import DeletionResponse
     from .key_ring_response import KeyRingResponse
     from .profile_store_module_run_info import ProfileStoreModuleRunInfo
     from .profile_store_collection_info import ProfileStoreCollectionInfo
@@ -219,6 +229,7 @@ except (SyntaxError, ImportError):
     from .attribute_search_configuration import AttributeSearchConfiguration
     from .entity_search_configuration import EntitySearchConfiguration
     from .instance_search_configuration import InstanceSearchConfiguration
+    from .segmentation_projection import SegmentationProjection
     from .segmentation_rowset import SegmentationRowset
     from .segmentation_query import SegmentationQuery
     from .segmentation_publish_stats import SegmentationPublishStats
@@ -234,6 +245,11 @@ except (SyntaxError, ImportError):
     from .graph_node_info import GraphNodeInfo
     from .timezone_detail import TimezoneDetail
     from .workflow_refresh_schedule import WorkflowRefreshSchedule
+    from .dismissed_notification import DismissedNotification
+    from .user_notifications_settings import UserNotificationsSettings
+    from .portal_settings import PortalSettings
+    from .terms_of_use import TermsOfUse
+    from .user_info import UserInfo
     from .entity_data_profile import EntityDataProfile
     from .instances_v2_post_request import InstancesV2PostRequest
     from .instances_v2_post_request1 import InstancesV2PostRequest1
@@ -312,8 +328,10 @@ __all__ = [
     'CdsOrgInfo',
     'DatalakeFolderDetail',
     'CdsMdlInfo',
+    'TrialExtensionDetails',
     'InstanceMetadata',
     'ResourceMetadata',
+    'ByoPbiProvisioningInfo',
     'InstanceCreationRequest',
     'InstanceCopyRequest',
     'MeasureLinkedEntity',
@@ -324,6 +342,8 @@ __all__ = [
     'SegmentMembershipCriteria',
     'MeasureDimension',
     'MeasureAggregate',
+    'ActivitySourceEntityInfo',
+    'InsightActivityDetails',
     'EntityDependency',
     'MeasureDefinition',
     'Evaluation',
@@ -335,8 +355,6 @@ __all__ = [
     'SourceLocation',
     'LogMessage',
     'ParsingError',
-    'DependencyValidationIssue',
-    'DeletionResponse',
     'KeyRingResponse',
     'ProfileStoreModuleRunInfo',
     'ProfileStoreCollectionInfo',
@@ -348,6 +366,7 @@ __all__ = [
     'AttributeSearchConfiguration',
     'EntitySearchConfiguration',
     'InstanceSearchConfiguration',
+    'SegmentationProjection',
     'SegmentationRowset',
     'SegmentationQuery',
     'SegmentationPublishStats',
@@ -363,6 +382,11 @@ __all__ = [
     'GraphNodeInfo',
     'TimezoneDetail',
     'WorkflowRefreshSchedule',
+    'DismissedNotification',
+    'UserNotificationsSettings',
+    'PortalSettings',
+    'TermsOfUse',
+    'UserInfo',
     'EntityDataProfile',
     'InstancesV2PostRequest',
     'InstancesV2PostRequest1',

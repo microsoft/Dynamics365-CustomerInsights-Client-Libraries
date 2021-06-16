@@ -28,9 +28,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'needsUpdate', 'running', 'failed', 'timedOut', 'aborted',
         /// 'deleted', 'successful', 'skipped'</param>
         /// <param name="operationType">Possible values include: 'none',
-        /// 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match',
-        /// 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
-        /// 'entityMeasures', 'measures', 'segmentation', 'enrichment',
+        /// 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+        /// 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore',
+        /// 'search', 'activity', 'attributeMeasures', 'entityMeasures',
+        /// 'measures', 'segmentation', 'segmentMembership', 'enrichment',
         /// 'intelligence', 'aiBuilder', 'insights', 'export',
         /// 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
         /// 'all'</param>
@@ -74,12 +75,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'none', 'ingestion',
-        /// 'derivedEntity', 'dataPreparation', 'map', 'match', 'merge',
-        /// 'profileStore', 'search', 'activity', 'attributeMeasures',
-        /// 'entityMeasures', 'measures', 'segmentation', 'enrichment',
-        /// 'intelligence', 'aiBuilder', 'insights', 'export',
-        /// 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-        /// 'all'
+        /// 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+        /// 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
+        /// 'activity', 'attributeMeasures', 'entityMeasures', 'measures',
+        /// 'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
+        /// 'aiBuilder', 'insights', 'export', 'modelManagement',
+        /// 'relationship', 'roleAssignment', 'analysis', 'all'
         /// </summary>
         [JsonProperty(PropertyName = "operationType")]
         public string OperationType { get; set; }

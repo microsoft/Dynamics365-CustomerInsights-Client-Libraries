@@ -21,7 +21,8 @@ public class ParsingError {
 
     /**
      * Possible values include: 'unknown', 'parsingFailed', 'entityNotFound',
-     * 'attributeNotFound', 'unsupportedSyntax', 'invalidOperation'.
+     * 'attributeNotFound', 'unsupportedSyntax', 'invalidOperation',
+     * 'incorrectArgumentCount', 'incorrectIntervalType', 'invalidArgument'.
      */
     @JsonProperty(value = "code")
     private String code;
@@ -47,7 +48,7 @@ public class ParsingError {
     }
 
     /**
-     * Get possible values include: 'unknown', 'parsingFailed', 'entityNotFound', 'attributeNotFound', 'unsupportedSyntax', 'invalidOperation'.
+     * Get possible values include: 'unknown', 'parsingFailed', 'entityNotFound', 'attributeNotFound', 'unsupportedSyntax', 'invalidOperation', 'incorrectArgumentCount', 'incorrectIntervalType', 'invalidArgument'.
      *
      * @return the code value
      */
@@ -56,7 +57,7 @@ public class ParsingError {
     }
 
     /**
-     * Set possible values include: 'unknown', 'parsingFailed', 'entityNotFound', 'attributeNotFound', 'unsupportedSyntax', 'invalidOperation'.
+     * Set possible values include: 'unknown', 'parsingFailed', 'entityNotFound', 'attributeNotFound', 'unsupportedSyntax', 'invalidOperation', 'incorrectArgumentCount', 'incorrectIntervalType', 'invalidArgument'.
      *
      * @param code the code value to set
      * @return the ParsingError object itself.

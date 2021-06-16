@@ -32,12 +32,6 @@ public class ProfileStoreCollectionInfo {
     private Long size;
 
     /**
-     * Gets the flag that tells if the Activity Store Job has run successfully.
-     */
-    @JsonProperty(value = "activityStoreRunSuccessful")
-    private Boolean activityStoreRunSuccessful;
-
-    /**
      * Gets the state of profile store hydration per job type.
      */
     @JsonProperty(value = "profileStoreHydrationStateInfo")
@@ -100,26 +94,6 @@ public class ProfileStoreCollectionInfo {
      */
     public ProfileStoreCollectionInfo withSize(Long size) {
         this.size = size;
-        return this;
-    }
-
-    /**
-     * Get gets the flag that tells if the Activity Store Job has run successfully.
-     *
-     * @return the activityStoreRunSuccessful value
-     */
-    public Boolean activityStoreRunSuccessful() {
-        return this.activityStoreRunSuccessful;
-    }
-
-    /**
-     * Set gets the flag that tells if the Activity Store Job has run successfully.
-     *
-     * @param activityStoreRunSuccessful the activityStoreRunSuccessful value to set
-     * @return the ProfileStoreCollectionInfo object itself.
-     */
-    public ProfileStoreCollectionInfo withActivityStoreRunSuccessful(Boolean activityStoreRunSuccessful) {
-        this.activityStoreRunSuccessful = activityStoreRunSuccessful;
         return this;
     }
 

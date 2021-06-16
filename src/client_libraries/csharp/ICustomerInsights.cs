@@ -254,8 +254,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// should be included.
         /// </param>
         /// <param name='includeQuarantined'>
-        /// Indicates if quarantined entities should be included in the output
+        /// Indicates if corrupt entities should be included in the output
         /// entity model.
+        /// </param>
+        /// <param name='includeSelfConflatedEntity'>
+        /// Indicates if self-conflated entities should be included in the
+        /// output entity model.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -263,7 +267,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,GetAllEntityMetadataHeaders>> GetAllEntityMetadataWithHttpMessagesAsync(string instanceId, bool? attributesAnnotations = false, bool? includeQuarantined = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,GetAllEntityMetadataHeaders>> GetAllEntityMetadataWithHttpMessagesAsync(string instanceId, bool? attributesAnnotations = false, bool? includeQuarantined = false, bool? includeSelfConflatedEntity = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetEntityMetadata
@@ -347,24 +351,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,GetAllInstancesHeaders>> GetAllInstancesWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// ListInstancesByInstanceIds
-        /// </summary>
-        /// <remarks>
-        /// Retrieves instances based on instance ids, it can only accept batch
-        /// of instances.
-        /// </remarks>
-        /// <param name='body'>
-        /// Instance ids of instances to get.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        Task<HttpOperationResponse<object,GetAllInstancesInBatchesByInstanceidsHeaders>> GetAllInstancesInBatchesByInstanceidsWithHttpMessagesAsync(IList<System.Guid?> body = default(IList<System.Guid?>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
         /// GetInstance
         /// </summary>
         /// <remarks>
@@ -417,11 +403,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         Task<HttpOperationResponse<object,CreateAnInstanceHeaders>> CreateAnInstanceWithHttpMessagesAsync(InstancesV2PostRequest body = default(InstancesV2PostRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// UpdateInstance
+        /// UpdateInstance.
         /// </summary>
         /// <remarks>
         /// Patches the Market Verticals, Display name, Domain Name, CDS
-        /// environment and BYOSA secret to the instance.
+        /// environment and BYOSA secret to the instance. It would trigger a
+        /// full refresh during CI to CDS MDL migration.
         /// </remarks>
         /// <param name='instanceId'>
         /// Format - uuid.
@@ -462,13 +449,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// <param name='instanceId'>
         /// Format - uuid. Customer Insights instance id
         /// </param>
+        /// <param name='templateSummaryIncluded'>
+        /// whether templated measures are to be included in measure results
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object,GetAListOfMeasuresMetadataHeaders>> GetAListOfMeasuresMetadataWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object,GetAListOfMeasuresMetadataHeaders>> GetAListOfMeasuresMetadataWithHttpMessagesAsync(string instanceId, bool? templateSummaryIncluded = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// CreateMeasure
@@ -1209,6 +1199,69 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
         /// The cancellation token.
         /// </param>
         Task<HttpOperationResponse<object,GetAnEntityProfileHeaders>> GetAnEntityProfileWithHttpMessagesAsync(string instanceId, string qualifiedEntityName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Gets the metadata information (including total Activity record
+        /// count and Activity Types) for a given customer id.
+        /// </summary>
+        /// <remarks>
+        /// Gets the metadata information (including total Activity record
+        /// count and Activity Types) for a given customer id.
+        /// </remarks>
+        /// <param name='instanceId'>
+        /// Format - uuid. the identifier for the instance.
+        /// </param>
+        /// <param name='customerId'>
+        /// The identifier for the customer.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object,GetActivityTypesAndCountsHeaders>> GetActivityTypesAndCountsWithHttpMessagesAsync(string instanceId, string customerId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// GetAllSystemRelationships
+        /// </summary>
+        /// <remarks>
+        /// Gets all system created relationship metadata for the provided
+        /// instanceId.
+        /// </remarks>
+        /// <param name='instanceId'>
+        /// Format - uuid. Customer Insights instance id
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object,GetAllSystemCreatedRelationshipsHeaders>> GetAllSystemCreatedRelationshipsWithHttpMessagesAsync(string instanceId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// CreateWorkflowRefreshSchedulesBatch
+        /// </summary>
+        /// <remarks>
+        /// Create a batch of workflow refresh schedules.
+        /// </remarks>
+        /// <param name='instanceId'>
+        /// Format - uuid. The instance id.
+        /// </param>
+        /// <param name='workflowName'>
+        /// Any workflow name.
+        /// </param>
+        /// <param name='body'>
+        /// A list of schedule objects to create.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object,CreateABatchOfWorkflowRefreshSchedulesHeaders>> CreateABatchOfWorkflowRefreshSchedulesWithHttpMessagesAsync(string instanceId, string workflowName, IList<WorkflowRefreshSchedule> body = default(IList<WorkflowRefreshSchedule>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

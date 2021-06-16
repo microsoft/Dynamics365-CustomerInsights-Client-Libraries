@@ -134,6 +134,20 @@ class InstancesInstanceIdManageMeasuresMeasureNamePutRequest1 extends models['Me
               }
             }
           },
+          isTemplate: {
+            required: false,
+            serializedName: 'isTemplate',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          templateId: {
+            required: false,
+            serializedName: 'templateId',
+            type: {
+              name: 'String'
+            }
+          },
           version: {
             required: false,
             serializedName: 'version',

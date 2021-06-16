@@ -16,10 +16,13 @@ class CIResult(Model):
     :type exception_culprit: str or ~dynamics.customerinsights.api.models.enum
     :param error_code:
     :type error_code: str
-    :param result_severity: Possible values include: 'error', 'warning'
+    :param result_severity: Possible values include: 'error', 'warning',
+     'recommendation'
     :type result_severity: str or ~dynamics.customerinsights.api.models.enum
     :param message: Message providing more information about the event.
     :type message: str
+    :param name: Message providing more information about the event.
+    :type name: str
     :param params:
     :type params: dict[str, object]
     :param ci_results: List of CiResult contining CI result error code and
@@ -32,6 +35,7 @@ class CIResult(Model):
         'error_code': {'key': 'errorCode', 'type': 'str'},
         'result_severity': {'key': 'resultSeverity', 'type': 'str'},
         'message': {'key': 'message', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
         'params': {'key': 'params', 'type': '{object}'},
         'ci_results': {'key': 'ciResults', 'type': '[CIResult]'},
     }
@@ -42,5 +46,6 @@ class CIResult(Model):
         self.error_code = kwargs.get('error_code', None)
         self.result_severity = kwargs.get('result_severity', None)
         self.message = kwargs.get('message', None)
+        self.name = kwargs.get('name', None)
         self.params = kwargs.get('params', None)
         self.ci_results = kwargs.get('ci_results', None)

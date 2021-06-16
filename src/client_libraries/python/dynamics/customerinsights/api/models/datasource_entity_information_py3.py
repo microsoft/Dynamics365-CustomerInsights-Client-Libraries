@@ -19,7 +19,9 @@ class DatasourceEntityInformation(Model):
     :param entity_type: Possible values include: 'unspecified', 'profile',
      'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
      'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-     'enrichment', 'insights', 'derivedEntity', 'quarantine'
+     'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+     'conflationManualReview', 'selfConflationManualReview',
+     'semanticActivity', 'segmentMembership'
     :type entity_type: str or ~dynamics.customerinsights.api.models.enum
     :param timestamp_field_name: Time stamp field name.
     :type timestamp_field_name: str

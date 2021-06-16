@@ -16,11 +16,23 @@ class InstanceInfo(Model):
     :param name: Gets the instance name. (not persisted in store)
     :type name: str
     :param instance_type: Possible values include: 'trial', 'sandbox',
-     'production'
+     'production', 'pitchDemo', 'pov'
     :type instance_type: str or ~dynamics.customerinsights.api.models.enum
     :param expiry_time_utc: Gets the time the instance is set to expire. (not
      persisted in store)
     :type expiry_time_utc: datetime
+    :param max_trial_extensions_allowed: Gets the total number of extensions
+     allowed if this is trial instance (not persisted in store)
+    :type max_trial_extensions_allowed: int
+    :param trial_extension_history: Stores the details of trial extensions
+     done if this is a trial instance (not persisted in store)
+    :type trial_extension_history: str
+    :param scale_unit_id: Gets the unique identifier for the scale unit (not
+     persisted in store)
+    :type scale_unit_id: str
+    :param azure_region: Gets the Azure Region where the scale unit resides
+     (not persisted in store)
+    :type azure_region: str
     """
 
     _attribute_map = {
@@ -28,11 +40,19 @@ class InstanceInfo(Model):
         'name': {'key': 'name', 'type': 'str'},
         'instance_type': {'key': 'instanceType', 'type': 'str'},
         'expiry_time_utc': {'key': 'expiryTimeUtc', 'type': 'iso-8601'},
+        'max_trial_extensions_allowed': {'key': 'maxTrialExtensionsAllowed', 'type': 'int'},
+        'trial_extension_history': {'key': 'trialExtensionHistory', 'type': 'str'},
+        'scale_unit_id': {'key': 'scaleUnitId', 'type': 'str'},
+        'azure_region': {'key': 'azureRegion', 'type': 'str'},
     }
 
-    def __init__(self, *, instance_id: str=None, name: str=None, instance_type=None, expiry_time_utc=None, **kwargs) -> None:
+    def __init__(self, *, instance_id: str=None, name: str=None, instance_type=None, expiry_time_utc=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, scale_unit_id: str=None, azure_region: str=None, **kwargs) -> None:
         super(InstanceInfo, self).__init__(**kwargs)
         self.instance_id = instance_id
         self.name = name
         self.instance_type = instance_type
         self.expiry_time_utc = expiry_time_utc
+        self.max_trial_extensions_allowed = max_trial_extensions_allowed
+        self.trial_extension_history = trial_extension_history
+        self.scale_unit_id = scale_unit_id
+        self.azure_region = azure_region

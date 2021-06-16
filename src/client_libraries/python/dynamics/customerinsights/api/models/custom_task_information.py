@@ -12,7 +12,8 @@ class CustomTaskInformation(Model):
     """Represents custom information about a task.
 
     :param kind: Possible values include: 'test', 'segmentation', 'measures',
-     'export', 'incrementalIngestion', 'incrementalMatch'
+     'export', 'incrementalIngestion', 'incrementalMatch',
+     'incrementalMatchWithPreview', 'merge', 'mark', 'affinities'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     """
 

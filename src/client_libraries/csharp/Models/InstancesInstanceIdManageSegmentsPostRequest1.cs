@@ -11,7 +11,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Linq;
 
     /// <summary>
-    /// Represents a Segment Metadata.
+    /// Represents a base Segment Metadata.
     /// </summary>
     public partial class InstancesInstanceIdManageSegmentsPostRequest1 : SegmentMetadata
     {
@@ -28,6 +28,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the
         /// InstancesInstanceIdManageSegmentsPostRequest1 class.
         /// </summary>
+        /// <param name="kind">Possible values include: 'default',
+        /// 'engagement'</param>
         /// <param name="name">Gets the unique name of the segment</param>
         /// <param name="friendlyName">Gets the friendlyName of the
         /// segment.</param>
@@ -50,8 +52,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public InstancesInstanceIdManageSegmentsPostRequest1(string name = default(string), string friendlyName = default(string), string description = default(string), SegmentationQuery segmentQueryExpression = default(SegmentationQuery), string state = default(string), string errorDescription = default(string), System.DateTime? endDate = default(System.DateTime?), SegmentationPublishStats evaluationStatus = default(SegmentationPublishStats), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<HistoricalSegmentStats> evaluationStatusHistory = default(IList<HistoricalSegmentStats>), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
-            : base(name, friendlyName, description, segmentQueryExpression, state, errorDescription, endDate, evaluationStatus, sqlValidationStats, evaluationStatusHistory, version, updatedBy, updatedUtc, createdBy, createdUtc, instanceId)
+        public InstancesInstanceIdManageSegmentsPostRequest1(string kind = default(string), string name = default(string), string friendlyName = default(string), string description = default(string), SegmentationQuery segmentQueryExpression = default(SegmentationQuery), string state = default(string), string errorDescription = default(string), System.DateTime? endDate = default(System.DateTime?), SegmentationPublishStats evaluationStatus = default(SegmentationPublishStats), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<HistoricalSegmentStats> evaluationStatusHistory = default(IList<HistoricalSegmentStats>), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+            : base(kind, name, friendlyName, description, segmentQueryExpression, state, errorDescription, endDate, evaluationStatus, sqlValidationStats, evaluationStatusHistory, version, updatedBy, updatedUtc, createdBy, createdUtc, instanceId)
         {
             CustomInit();
         }

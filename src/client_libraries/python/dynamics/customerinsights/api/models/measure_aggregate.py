@@ -12,7 +12,7 @@ class MeasureAggregate(Model):
     """Represents an aggregate.
 
     :param operation: Possible values include: 'sum', 'avg', 'min', 'max',
-     'count', 'countDistinct', 'first', 'last'
+     'count', 'countDistinct', 'first', 'last', 'argMax', 'argMin'
     :type operation: str or ~dynamics.customerinsights.api.models.enum
     :param field: Gets the field on which the aggregate operation is applied
     :type field: str
@@ -22,6 +22,12 @@ class MeasureAggregate(Model):
     :type display_name: str
     :param order: Gets the order for the aggregate
     :type order: int
+    :param aggregates: Gets list of aggregates of the measure.
+    :type aggregates:
+     list[~dynamics.customerinsights.api.models.MeasureAggregate]
+    :param is_included: Gets a value indicating whether to display the field
+     in results. Default value: False .
+    :type is_included: bool
     """
 
     _attribute_map = {
@@ -30,6 +36,8 @@ class MeasureAggregate(Model):
         'alias': {'key': 'alias', 'type': 'str'},
         'display_name': {'key': 'displayName', 'type': 'str'},
         'order': {'key': 'order', 'type': 'int'},
+        'aggregates': {'key': 'aggregates', 'type': '[MeasureAggregate]'},
+        'is_included': {'key': 'isIncluded', 'type': 'bool'},
     }
 
     def __init__(self, **kwargs):
@@ -39,3 +47,5 @@ class MeasureAggregate(Model):
         self.alias = kwargs.get('alias', None)
         self.display_name = kwargs.get('display_name', None)
         self.order = kwargs.get('order', None)
+        self.aggregates = kwargs.get('aggregates', None)
+        self.is_included = kwargs.get('is_included', False)

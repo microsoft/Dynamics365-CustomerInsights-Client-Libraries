@@ -16,6 +16,8 @@ class SegmentationRowset {
    * @property {string} [rowsetOperation] Possible values include: 'union',
    * 'intersect', 'except', 'none'
    * @property {object} [criteria]
+   * @property {string} [criteria.kind] Possible values include: 'default',
+   * 'engagement'
    * @property {string} [criteria.logicalOperator] Possible values include:
    * 'and', 'or'
    * @property {string} [criteria.attribute] Gets the Attribute of the entity

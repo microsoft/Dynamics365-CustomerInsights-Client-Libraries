@@ -41,6 +41,9 @@ class AttributeDataProfile(Model):
     :param is_suggested_primary_key: Represents a value indicating whether
      this attribute can be used as a primary key of the entity
     :type is_suggested_primary_key: bool
+    :param check_if_exact_stats: Represents a value indicating whether we
+     calculate exact or approx stats
+    :type check_if_exact_stats: object
     """
 
     _attribute_map = {
@@ -58,9 +61,10 @@ class AttributeDataProfile(Model):
         'unique_value_count': {'key': 'uniqueValueCount', 'type': 'long'},
         'profiling_date': {'key': 'profilingDate', 'type': 'iso-8601'},
         'is_suggested_primary_key': {'key': 'isSuggestedPrimaryKey', 'type': 'bool'},
+        'check_if_exact_stats': {'key': 'checkIfExactStats', 'type': 'object'},
     }
 
-    def __init__(self, *, value_counts=None, histogram=None, qualified_entity_name: str=None, attribute_name: str=None, min=None, max=None, count: int=None, missing_count: int=None, error_count: int=None, quantiles=None, moments=None, unique_value_count: int=None, profiling_date=None, is_suggested_primary_key: bool=None, **kwargs) -> None:
+    def __init__(self, *, value_counts=None, histogram=None, qualified_entity_name: str=None, attribute_name: str=None, min=None, max=None, count: int=None, missing_count: int=None, error_count: int=None, quantiles=None, moments=None, unique_value_count: int=None, profiling_date=None, is_suggested_primary_key: bool=None, check_if_exact_stats=None, **kwargs) -> None:
         super(AttributeDataProfile, self).__init__(**kwargs)
         self.value_counts = value_counts
         self.histogram = histogram
@@ -76,3 +80,4 @@ class AttributeDataProfile(Model):
         self.unique_value_count = unique_value_count
         self.profiling_date = profiling_date
         self.is_suggested_primary_key = is_suggested_primary_key
+        self.check_if_exact_stats = check_if_exact_stats

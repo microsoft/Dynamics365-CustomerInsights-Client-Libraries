@@ -26,7 +26,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="code">Possible values include: 'unknown',
         /// 'parsingFailed', 'entityNotFound', 'attributeNotFound',
-        /// 'unsupportedSyntax', 'invalidOperation'</param>
+        /// 'unsupportedSyntax', 'invalidOperation', 'incorrectArgumentCount',
+        /// 'incorrectIntervalType', 'invalidArgument'</param>
         public ParsingError(IList<LogMessage> messages = default(IList<LogMessage>), string code = default(string))
         {
             Messages = messages;
@@ -47,7 +48,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Gets or sets possible values include: 'unknown', 'parsingFailed',
         /// 'entityNotFound', 'attributeNotFound', 'unsupportedSyntax',
-        /// 'invalidOperation'
+        /// 'invalidOperation', 'incorrectArgumentCount',
+        /// 'incorrectIntervalType', 'invalidArgument'
         /// </summary>
         [JsonProperty(PropertyName = "code")]
         public string Code { get; set; }

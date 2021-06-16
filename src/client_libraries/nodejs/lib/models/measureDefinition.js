@@ -28,6 +28,8 @@ class MeasureDefinition {
    * 'isNotNull', 'negate', 'add', 'subtract', 'multiply', 'divide', 'modulo',
    * 'exponent', 'today', 'now'
    * @property {object} [filteringCriteria]
+   * @property {string} [filteringCriteria.kind] Possible values include:
+   * 'default', 'engagement'
    * @property {string} [filteringCriteria.logicalOperator] Possible values
    * include: 'and', 'or'
    * @property {string} [filteringCriteria.attribute] Gets the Attribute of the

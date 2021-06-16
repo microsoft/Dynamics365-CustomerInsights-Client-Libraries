@@ -15,16 +15,18 @@ class DataSourceMetadata {
    * Create a DataSourceMetadata.
    * @property {string} [kind] Possible values include: 'salesforce',
    * 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform',
-   * 'datahub'
+   * 'datahub', 'cjoData', 'eiData'
    * @property {boolean} [isActive] Represents if still in active state
    * @property {array} [entityNames] List of all Entity Names
+   * @property {number} [entitiesCount]
    * @property {uuid} [dataSourceId] Unique identity for this object.
    * @property {string} [name] Unique name of the dataSource.
    * @property {string} [friendlyName] FriendlyName of the dataSource.
    * @property {array} [entityInformation] Entity information, by entity name.
    * @property {string} [provisioningState] Possible values include: 'new',
    * 'creating', 'active', 'createFailed', 'updateFailed', 'deleting',
-   * 'refreshCredentials', 'resetInstanceInProgress'
+   * 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    * @property {date} [lastRefresh] Represents the time datasource was last
    * refreshed.
    * @property {string} [refreshState] Possible values include: 'notUpdated',
@@ -85,6 +87,13 @@ class DataSourceMetadata {
                     name: 'String'
                   }
               }
+            }
+          },
+          entitiesCount: {
+            required: false,
+            serializedName: 'entitiesCount',
+            type: {
+              name: 'Number'
             }
           },
           dataSourceId: {

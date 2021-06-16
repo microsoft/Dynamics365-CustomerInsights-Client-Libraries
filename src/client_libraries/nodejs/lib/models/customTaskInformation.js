@@ -14,7 +14,8 @@ class CustomTaskInformation {
   /**
    * Create a CustomTaskInformation.
    * @property {string} [kind] Possible values include: 'test', 'segmentation',
-   * 'measures', 'export', 'incrementalIngestion', 'incrementalMatch'
+   * 'measures', 'export', 'incrementalIngestion', 'incrementalMatch',
+   * 'incrementalMatchWithPreview', 'merge', 'mark', 'affinities'
    */
   constructor() {
   }

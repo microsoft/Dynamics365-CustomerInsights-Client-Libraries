@@ -12,12 +12,15 @@ class DataSourceMetadata(Model):
     """Represents metadata for a Customer Insights data source.
 
     :param kind: Possible values include: 'salesforce', 'dynamics365',
-     'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub'
+     'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub',
+     'cjoData', 'eiData'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param is_active: Represents if still in active state
     :type is_active: bool
     :param entity_names: List of all Entity Names
     :type entity_names: list[str]
+    :param entities_count:
+    :type entities_count: int
     :param data_source_id: Unique identity for this object.
     :type data_source_id: str
     :param name: Unique name of the dataSource.
@@ -29,7 +32,8 @@ class DataSourceMetadata(Model):
      list[~dynamics.customerinsights.api.models.DatasourceEntityInformation]
     :param provisioning_state: Possible values include: 'new', 'creating',
      'active', 'createFailed', 'updateFailed', 'deleting',
-     'refreshCredentials', 'resetInstanceInProgress'
+     'refreshCredentials', 'resetInstanceInProgress', 'updating',
+     'quickUpdate', 'deactivated'
     :type provisioning_state: str or
      ~dynamics.customerinsights.api.models.enum
     :param last_refresh: Represents the time datasource was last refreshed.
@@ -62,6 +66,7 @@ class DataSourceMetadata(Model):
         'kind': {'key': 'kind', 'type': 'str'},
         'is_active': {'key': 'isActive', 'type': 'bool'},
         'entity_names': {'key': 'entityNames', 'type': '[str]'},
+        'entities_count': {'key': 'entitiesCount', 'type': 'int'},
         'data_source_id': {'key': 'dataSourceId', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
@@ -79,11 +84,12 @@ class DataSourceMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, kind=None, is_active: bool=None, entity_names=None, data_source_id: str=None, name: str=None, friendly_name: str=None, entity_information=None, provisioning_state=None, last_refresh=None, refresh_state=None, incremental_refresh_properties=None, model_json_path: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, is_active: bool=None, entity_names=None, entities_count: int=None, data_source_id: str=None, name: str=None, friendly_name: str=None, entity_information=None, provisioning_state=None, last_refresh=None, refresh_state=None, incremental_refresh_properties=None, model_json_path: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(DataSourceMetadata, self).__init__(**kwargs)
         self.kind = kind
         self.is_active = is_active
         self.entity_names = entity_names
+        self.entities_count = entities_count
         self.data_source_id = data_source_id
         self.name = name
         self.friendly_name = friendly_name

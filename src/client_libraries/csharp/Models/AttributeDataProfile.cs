@@ -43,7 +43,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="isSuggestedPrimaryKey">Represents a value indicating
         /// whether this attribute can be used as a primary key of the
         /// entity</param>
-        public AttributeDataProfile(IList<ValueCount> valueCounts = default(IList<ValueCount>), IList<HistogramBin> histogram = default(IList<HistogramBin>), string qualifiedEntityName = default(string), string attributeName = default(string), object min = default(object), object max = default(object), long? count = default(long?), long? missingCount = default(long?), long? errorCount = default(long?), Quantiles quantiles = default(Quantiles), Moments moments = default(Moments), long? uniqueValueCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), bool? isSuggestedPrimaryKey = default(bool?))
+        /// <param name="checkIfExactStats">Represents a value indicating
+        /// whether we calculate exact or approx stats</param>
+        public AttributeDataProfile(IList<ValueCount> valueCounts = default(IList<ValueCount>), IList<HistogramBin> histogram = default(IList<HistogramBin>), string qualifiedEntityName = default(string), string attributeName = default(string), object min = default(object), object max = default(object), long? count = default(long?), long? missingCount = default(long?), long? errorCount = default(long?), Quantiles quantiles = default(Quantiles), Moments moments = default(Moments), long? uniqueValueCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), bool? isSuggestedPrimaryKey = default(bool?), object checkIfExactStats = default(object))
         {
             ValueCounts = valueCounts;
             Histogram = histogram;
@@ -59,6 +61,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             UniqueValueCount = uniqueValueCount;
             ProfilingDate = profilingDate;
             IsSuggestedPrimaryKey = isSuggestedPrimaryKey;
+            CheckIfExactStats = checkIfExactStats;
             CustomInit();
         }
 
@@ -150,6 +153,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "isSuggestedPrimaryKey")]
         public bool? IsSuggestedPrimaryKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets represents a value indicating whether we calculate
+        /// exact or approx stats
+        /// </summary>
+        [JsonProperty(PropertyName = "checkIfExactStats")]
+        public object CheckIfExactStats { get; set; }
 
     }
 }

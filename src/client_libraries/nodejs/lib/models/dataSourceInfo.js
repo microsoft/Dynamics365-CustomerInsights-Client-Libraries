@@ -16,11 +16,12 @@ class DataSourceInfo {
    * @property {object} [dataSourceMetadata]
    * @property {string} [dataSourceMetadata.kind] Possible values include:
    * 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
-   * 'powerPlatform', 'datahub'
+   * 'powerPlatform', 'datahub', 'cjoData', 'eiData'
    * @property {boolean} [dataSourceMetadata.isActive] Represents if still in
    * active state
    * @property {array} [dataSourceMetadata.entityNames] List of all Entity
    * Names
+   * @property {number} [dataSourceMetadata.entitiesCount]
    * @property {uuid} [dataSourceMetadata.dataSourceId] Unique identity for
    * this object.
    * @property {string} [dataSourceMetadata.name] Unique name of the
@@ -31,7 +32,8 @@ class DataSourceInfo {
    * information, by entity name.
    * @property {string} [dataSourceMetadata.provisioningState] Possible values
    * include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    * @property {date} [dataSourceMetadata.lastRefresh] Represents the time
    * datasource was last refreshed.
    * @property {string} [dataSourceMetadata.refreshState] Possible values

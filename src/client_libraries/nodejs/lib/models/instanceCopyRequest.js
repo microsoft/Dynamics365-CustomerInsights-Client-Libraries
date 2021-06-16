@@ -18,9 +18,10 @@ class InstanceCopyRequest {
    * name.
    * @property {string} [instanceMetadata.provisioningState] Possible values
    * include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    * @property {string} [instanceMetadata.instanceType] Possible values
-   * include: 'trial', 'sandbox', 'production'
+   * include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
    * @property {object} [instanceMetadata.refreshSchedule]
    * @property {boolean} [instanceMetadata.refreshSchedule.isActive] Gets a
    * value indicating whether the schedule is active.
@@ -43,6 +44,15 @@ class InstanceCopyRequest {
    * Organization Url
    * @property {string} [instanceMetadata.cdsOrgInfo.state] Gets the Cds
    * Organization State
+   * @property {string} [instanceMetadata.cdsOrgInfo.location] Gets region
+   * location of Cds Organization
+   * @property {string} [instanceMetadata.cdsOrgInfo.environmentSku] Gets SKU
+   * of Cds Organization
+   * @property {date} [instanceMetadata.cdsOrgInfo.expirationTime] Gets the
+   * expiration time of CDS Organization if the SKU is Trial
+   * @property {date} [instanceMetadata.cdsOrgInfo.maxAllowedExpirationTime]
+   * Gets the max allowed expiration time of CDS Organization if the SKU is
+   * Trial
    * @property {object} [instanceMetadata.cdsMdlInfo]
    * @property {object} [instanceMetadata.cdsMdlInfo.privateWorkSpace]
    * @property {string} [instanceMetadata.cdsMdlInfo.privateWorkSpace.name]
@@ -60,6 +70,11 @@ class InstanceCopyRequest {
    * total number of extensions allowed if this is trial instance
    * @property {string} [instanceMetadata.trialExtensionHistory] Stores the
    * details of trial extensions done if this is a trial instance
+   * @property {boolean} [instanceMetadata.isRefreshCredentialRequired] Gets a
+   * value indicating if credential  is required to refresh any of the
+   * datasources
+   * @property {array} [instanceMetadata.trialExtensionDetails] Stores the
+   * details of trial extensions done if this is a trial instance
    * @property {number} [instanceMetadata.version] Version number of this
    * object.
    * @property {string} [instanceMetadata.updatedBy] UPN of the user who last
@@ -76,17 +91,16 @@ class InstanceCopyRequest {
    * @property {string} [byosaResourceMetadata.kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend',
+   * 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    * @property {uuid} [byosaResourceMetadata.resourceId] Gets the Id of the
    * resource.
    * @property {uuid} [byosaResourceMetadata.operationId] Gets the Id of the
    * operation being performed on the resource.
-   * @property {string} [byosaResourceMetadata.resourceType] Possible values
-   * include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    * @property {string} [byosaResourceMetadata.name] Gets the Name of the
    * resource.
    * @property {string} [byosaResourceMetadata.description] Gets the
@@ -107,17 +121,16 @@ class InstanceCopyRequest {
    * @property {string} [cdsResourceMetadata.kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend',
+   * 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    * @property {uuid} [cdsResourceMetadata.resourceId] Gets the Id of the
    * resource.
    * @property {uuid} [cdsResourceMetadata.operationId] Gets the Id of the
    * operation being performed on the resource.
-   * @property {string} [cdsResourceMetadata.resourceType] Possible values
-   * include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    * @property {string} [cdsResourceMetadata.name] Gets the Name of the
    * resource.
    * @property {string} [cdsResourceMetadata.description] Gets the Description
@@ -134,8 +147,23 @@ class InstanceCopyRequest {
    * initially created.
    * @property {uuid} [cdsResourceMetadata.instanceId] Customer Insights
    * instance id associated with this object.
+   * @property {object} [byoPbiProvisioningInfo]
+   * @property {string} [byoPbiProvisioningInfo.storageSubscriptionId] Storage
+   * account subscriptionId.
+   * @property {string} [byoPbiProvisioningInfo.storageResourceGroup] Storage
+   * account Resource Group.
+   * @property {string} [byoPbiProvisioningInfo.storageResourceRegion] Storage
+   * account Region.
+   * @property {string} [byoPbiProvisioningInfo.storageResourceTenantId]
+   * Storage account tenant.
+   * @property {string} [byoPbiProvisioningInfo.capacityId] Pbi Capacity Id.
+   * @property {string} [byoPbiProvisioningInfo.delegationToken] PBI delegation
+   * token captured from the user.
+   * @property {boolean} [isCdsMdlStorageEnabled]
+   * @property {boolean} [isCiToByosaMigrationEnabled]
    * @property {string} [bapProvisioningType] Possible values include: 'skip',
    * 'create', 'attach'
+   * @property {boolean} [isPbiProvisioningRequired]
    */
   constructor() {
   }
@@ -185,11 +213,40 @@ class InstanceCopyRequest {
               className: 'ResourceMetadata'
             }
           },
+          byoPbiProvisioningInfo: {
+            required: false,
+            serializedName: 'byoPbiProvisioningInfo',
+            type: {
+              name: 'Composite',
+              className: 'ByoPbiProvisioningInfo'
+            }
+          },
+          isCdsMdlStorageEnabled: {
+            required: false,
+            serializedName: 'isCdsMdlStorageEnabled',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          isCiToByosaMigrationEnabled: {
+            required: false,
+            serializedName: 'isCiToByosaMigrationEnabled',
+            type: {
+              name: 'Boolean'
+            }
+          },
           bapProvisioningType: {
             required: false,
             serializedName: 'bapProvisioningType',
             type: {
               name: 'String'
+            }
+          },
+          isPbiProvisioningRequired: {
+            required: false,
+            serializedName: 'isPbiProvisioningRequired',
+            type: {
+              name: 'Boolean'
             }
           }
         }

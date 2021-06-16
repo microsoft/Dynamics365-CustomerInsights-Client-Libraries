@@ -7,6 +7,8 @@
 namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 {
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -28,9 +30,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="name">Gets the user defined instance name.</param>
         /// <param name="provisioningState">Possible values include: 'new',
         /// 'creating', 'active', 'createFailed', 'updateFailed', 'deleting',
-        /// 'refreshCredentials', 'resetInstanceInProgress'</param>
+        /// 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+        /// 'quickUpdate', 'deactivated'</param>
         /// <param name="instanceType">Possible values include: 'trial',
-        /// 'sandbox', 'production'</param>
+        /// 'sandbox', 'production', 'pitchDemo', 'pov'</param>
         /// <param name="expiryTimeUtc">Gets the time the instance is set to
         /// expire.</param>
         /// <param name="region">Gets the Azure region where the instance
@@ -38,6 +41,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="maxTrialExtensionsAllowed">Gets the total number of
         /// extensions allowed if this is trial instance</param>
         /// <param name="trialExtensionHistory">Stores the details of trial
+        /// extensions done if this is a trial instance</param>
+        /// <param name="isRefreshCredentialRequired">Gets a value indicating
+        /// if credential  is required to refresh any of the
+        /// datasources</param>
+        /// <param name="trialExtensionDetails">Stores the details of trial
         /// extensions done if this is a trial instance</param>
         /// <param name="version">Version number of this object.</param>
         /// <param name="updatedBy">UPN of the user who last updated this
@@ -49,7 +57,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public InstanceMetadata(string name = default(string), string provisioningState = default(string), string instanceType = default(string), DataRefreshSchedule refreshSchedule = default(DataRefreshSchedule), System.DateTime? expiryTimeUtc = default(System.DateTime?), string region = default(string), CdsOrgInfo cdsOrgInfo = default(CdsOrgInfo), CdsMdlInfo cdsMdlInfo = default(CdsMdlInfo), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public InstanceMetadata(string name = default(string), string provisioningState = default(string), string instanceType = default(string), DataRefreshSchedule refreshSchedule = default(DataRefreshSchedule), System.DateTime? expiryTimeUtc = default(System.DateTime?), string region = default(string), CdsOrgInfo cdsOrgInfo = default(CdsOrgInfo), CdsMdlInfo cdsMdlInfo = default(CdsMdlInfo), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), bool? isRefreshCredentialRequired = default(bool?), IList<TrialExtensionDetails> trialExtensionDetails = default(IList<TrialExtensionDetails>), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             Name = name;
             ProvisioningState = provisioningState;
@@ -61,6 +69,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             CdsMdlInfo = cdsMdlInfo;
             MaxTrialExtensionsAllowed = maxTrialExtensionsAllowed;
             TrialExtensionHistory = trialExtensionHistory;
+            IsRefreshCredentialRequired = isRefreshCredentialRequired;
+            TrialExtensionDetails = trialExtensionDetails;
             Version = version;
             UpdatedBy = updatedBy;
             UpdatedUtc = updatedUtc;
@@ -84,14 +94,14 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Gets or sets possible values include: 'new', 'creating', 'active',
         /// 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials',
-        /// 'resetInstanceInProgress'
+        /// 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'
         /// </summary>
         [JsonProperty(PropertyName = "provisioningState")]
         public string ProvisioningState { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'trial', 'sandbox',
-        /// 'production'
+        /// 'production', 'pitchDemo', 'pov'
         /// </summary>
         [JsonProperty(PropertyName = "instanceType")]
         public string InstanceType { get; set; }
@@ -136,6 +146,20 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "trialExtensionHistory")]
         public string TrialExtensionHistory { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating if credential  is required to refresh any
+        /// of the datasources
+        /// </summary>
+        [JsonProperty(PropertyName = "isRefreshCredentialRequired")]
+        public bool? IsRefreshCredentialRequired { get; set; }
+
+        /// <summary>
+        /// Gets or sets stores the details of trial extensions done if this is
+        /// a trial instance
+        /// </summary>
+        [JsonProperty(PropertyName = "trialExtensionDetails")]
+        public IList<TrialExtensionDetails> TrialExtensionDetails { get; set; }
 
         /// <summary>
         /// Gets or sets version number of this object.

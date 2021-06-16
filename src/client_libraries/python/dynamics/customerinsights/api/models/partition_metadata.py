@@ -19,10 +19,13 @@ class PartitionMetadata(Model):
     :type refresh_time: datetime
     :param file_format_settings:
     :type file_format_settings: object
+    :param is_ci_generated: Gets a value indicating whether a partition is CI
+     Generated or not.
+    :type is_ci_generated: bool
     :param force_sas_auth: Gets a value indicating whether a partition need to
      be forced for SAS authentication.
     :type force_sas_auth: bool
-    :param has_header: Flad to represent header presence (if any)
+    :param has_header: Flag to represent header presence (if any)
     :type has_header: bool
     """
 
@@ -31,6 +34,7 @@ class PartitionMetadata(Model):
         'location': {'key': 'location', 'type': 'str'},
         'refresh_time': {'key': 'refreshTime', 'type': 'iso-8601'},
         'file_format_settings': {'key': 'fileFormatSettings', 'type': 'object'},
+        'is_ci_generated': {'key': 'isCIGenerated', 'type': 'bool'},
         'force_sas_auth': {'key': 'forceSasAuth', 'type': 'bool'},
         'has_header': {'key': 'hasHeader', 'type': 'bool'},
     }
@@ -41,5 +45,6 @@ class PartitionMetadata(Model):
         self.location = kwargs.get('location', None)
         self.refresh_time = kwargs.get('refresh_time', None)
         self.file_format_settings = kwargs.get('file_format_settings', None)
+        self.is_ci_generated = kwargs.get('is_ci_generated', None)
         self.force_sas_auth = kwargs.get('force_sas_auth', None)
         self.has_header = kwargs.get('has_header', None)

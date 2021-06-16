@@ -29,9 +29,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest class.
         /// </summary>
         /// <param name="operationType">Possible values include: 'none',
-        /// 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match',
-        /// 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
-        /// 'entityMeasures', 'measures', 'segmentation', 'enrichment',
+        /// 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+        /// 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore',
+        /// 'search', 'activity', 'attributeMeasures', 'entityMeasures',
+        /// 'measures', 'segmentation', 'segmentMembership', 'enrichment',
         /// 'intelligence', 'aiBuilder', 'insights', 'export',
         /// 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
         /// 'all'</param>

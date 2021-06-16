@@ -17,8 +17,10 @@ class CIResult {
    * 'user', 'external'
    * @property {string} [errorCode]
    * @property {string} [resultSeverity] Possible values include: 'error',
-   * 'warning'
+   * 'warning', 'recommendation'
    * @property {string} [message] Message providing more information about the
+   * event.
+   * @property {string} [name] Message providing more information about the
    * event.
    * @property {object} [params]
    * @property {array} [ciResults] List of CiResult contining CI result error
@@ -65,6 +67,13 @@ class CIResult {
           message: {
             required: false,
             serializedName: 'message',
+            type: {
+              name: 'String'
+            }
+          },
+          name: {
+            required: false,
+            serializedName: 'name',
             type: {
               name: 'String'
             }

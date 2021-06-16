@@ -8,7 +8,7 @@ package com.microsoft.dynamics.customerinsights.apiclient.models;
 
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
  */
 public class InstancesInstanceIdManageSegmentsSegmentNamePutRequest extends SegmentMetadata {
 }

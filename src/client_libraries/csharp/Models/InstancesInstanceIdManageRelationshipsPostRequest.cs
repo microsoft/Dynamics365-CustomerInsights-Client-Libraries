@@ -43,7 +43,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="toEntityName">Gets the name of the entity this
         /// relationship points to.</param>
         /// <param name="cardinality">Possible values include: 'oneToMany',
-        /// 'oneToOne'</param>
+        /// 'oneToOne', 'manyToOne'</param>
+        /// <param name="source">Possible values include: 'user', 'system',
+        /// 'inferred'</param>
         /// <param name="version">Version number of this object.</param>
         /// <param name="updatedBy">UPN of the user who last updated this
         /// record.</param>
@@ -54,8 +56,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public InstancesInstanceIdManageRelationshipsPostRequest(string friendlyName = default(string), string name = default(string), string description = default(string), string relationshipType = default(string), string fromAttributeName = default(string), string fromEntityName = default(string), string toAttributeName = default(string), string toEntityName = default(string), string cardinality = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
-            : base(friendlyName, name, description, relationshipType, fromAttributeName, fromEntityName, toAttributeName, toEntityName, cardinality, version, updatedBy, updatedUtc, createdBy, createdUtc, instanceId)
+        public InstancesInstanceIdManageRelationshipsPostRequest(string friendlyName = default(string), string name = default(string), string description = default(string), string relationshipType = default(string), string fromAttributeName = default(string), string fromEntityName = default(string), string toAttributeName = default(string), string toEntityName = default(string), string cardinality = default(string), string source = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+            : base(friendlyName, name, description, relationshipType, fromAttributeName, fromEntityName, toAttributeName, toEntityName, cardinality, source, version, updatedBy, updatedUtc, createdBy, createdUtc, instanceId)
         {
             CustomInit();
         }

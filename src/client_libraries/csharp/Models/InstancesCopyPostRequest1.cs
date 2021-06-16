@@ -26,8 +26,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="bapProvisioningType">Possible values include: 'skip',
         /// 'create', 'attach'</param>
-        public InstancesCopyPostRequest1(System.Guid? instanceIdToCopy = default(System.Guid?), InstanceMetadata instanceMetadata = default(InstanceMetadata), ResourceMetadata byosaResourceMetadata = default(ResourceMetadata), ResourceMetadata cdsResourceMetadata = default(ResourceMetadata), string bapProvisioningType = default(string))
-            : base(instanceIdToCopy, instanceMetadata, byosaResourceMetadata, cdsResourceMetadata, bapProvisioningType)
+        public InstancesCopyPostRequest1(System.Guid? instanceIdToCopy = default(System.Guid?), InstanceMetadata instanceMetadata = default(InstanceMetadata), ResourceMetadata byosaResourceMetadata = default(ResourceMetadata), ResourceMetadata cdsResourceMetadata = default(ResourceMetadata), ByoPbiProvisioningInfo byoPbiProvisioningInfo = default(ByoPbiProvisioningInfo), bool? isCdsMdlStorageEnabled = default(bool?), bool? isCiToByosaMigrationEnabled = default(bool?), string bapProvisioningType = default(string), bool? isPbiProvisioningRequired = default(bool?))
+            : base(instanceIdToCopy, instanceMetadata, byosaResourceMetadata, cdsResourceMetadata, byoPbiProvisioningInfo, isCdsMdlStorageEnabled, isCiToByosaMigrationEnabled, bapProvisioningType, isPbiProvisioningRequired)
         {
             CustomInit();
         }

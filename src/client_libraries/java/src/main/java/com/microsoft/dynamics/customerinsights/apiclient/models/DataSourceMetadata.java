@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DataSourceMetadata {
     /**
      * Possible values include: 'salesforce', 'dynamics365', 'powerQuery',
-     * 'attachCdm', 'attachCds', 'powerPlatform', 'datahub'.
+     * 'attachCdm', 'attachCds', 'powerPlatform', 'datahub', 'cjoData',
+     * 'eiData'.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -33,6 +34,12 @@ public class DataSourceMetadata {
      */
     @JsonProperty(value = "entityNames")
     private List<String> entityNames;
+
+    /**
+     * The entitiesCount property.
+     */
+    @JsonProperty(value = "entitiesCount")
+    private Integer entitiesCount;
 
     /**
      * Unique identity for this object.
@@ -61,7 +68,7 @@ public class DataSourceMetadata {
     /**
      * Possible values include: 'new', 'creating', 'active', 'createFailed',
      * 'updateFailed', 'deleting', 'refreshCredentials',
-     * 'resetInstanceInProgress'.
+     * 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'.
      */
     @JsonProperty(value = "provisioningState")
     private String provisioningState;
@@ -128,7 +135,7 @@ public class DataSourceMetadata {
     private UUID instanceId;
 
     /**
-     * Get possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub'.
+     * Get possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub', 'cjoData', 'eiData'.
      *
      * @return the kind value
      */
@@ -137,7 +144,7 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Set possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub'.
+     * Set possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub', 'cjoData', 'eiData'.
      *
      * @param kind the kind value to set
      * @return the DataSourceMetadata object itself.
@@ -184,6 +191,26 @@ public class DataSourceMetadata {
      */
     public DataSourceMetadata withEntityNames(List<String> entityNames) {
         this.entityNames = entityNames;
+        return this;
+    }
+
+    /**
+     * Get the entitiesCount value.
+     *
+     * @return the entitiesCount value
+     */
+    public Integer entitiesCount() {
+        return this.entitiesCount;
+    }
+
+    /**
+     * Set the entitiesCount value.
+     *
+     * @param entitiesCount the entitiesCount value to set
+     * @return the DataSourceMetadata object itself.
+     */
+    public DataSourceMetadata withEntitiesCount(Integer entitiesCount) {
+        this.entitiesCount = entitiesCount;
         return this;
     }
 
@@ -268,7 +295,7 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Get possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress'.
+     * Get possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'.
      *
      * @return the provisioningState value
      */
@@ -277,7 +304,7 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Set possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress'.
+     * Set possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'.
      *
      * @param provisioningState the provisioningState value to set
      * @return the DataSourceMetadata object itself.

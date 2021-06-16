@@ -44,8 +44,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'datahub', 'insights', 'derivedEntity',
-        /// 'powerPlatformSource'</param>
+        /// 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource',
+        /// 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity',
+        /// 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'</param>
         /// <param name="shouldUseSparkSasAuth">Gets a value indicating whether
         /// Sas Auth is used for the entity.</param>
         /// <param name="datasourceId">Gets the original datasourceid of this
@@ -54,7 +55,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'profile', 'conflationMap', 'activity', 'aggregateKpi',
         /// 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
         /// 'genericPrediction', 'enrichment', 'insights', 'derivedEntity',
-        /// 'quarantine'</param>
+        /// 'corrupt', 'selfConflation', 'conflationManualReview',
+        /// 'selfConflationManualReview', 'semanticActivity',
+        /// 'segmentMembership'</param>
         /// <param name="attributes">Gets entity attributes.</param>
         /// <param name="keys">Gets the keys of the entity.</param>
         /// <param name="relationships">Gets entity relationships.</param>
@@ -150,7 +153,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'kpi', 'powerQuery', 'dataPreparation', 'intelligence',
         /// 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm',
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
-        /// 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'
+        /// 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource',
+        /// 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity',
+        /// 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'
         /// </summary>
         [JsonProperty(PropertyName = "dataflowType")]
         public string DataflowType { get; set; }
@@ -172,7 +177,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets or sets possible values include: 'unspecified', 'profile',
         /// 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
         /// 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-        /// 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+        /// 'enrichment', 'insights', 'derivedEntity', 'corrupt',
+        /// 'selfConflation', 'conflationManualReview',
+        /// 'selfConflationManualReview', 'semanticActivity',
+        /// 'segmentMembership'
         /// </summary>
         [JsonProperty(PropertyName = "entityType")]
         public string EntityType { get; set; }

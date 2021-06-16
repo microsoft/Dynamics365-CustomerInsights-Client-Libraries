@@ -12,7 +12,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Linq;
 
     /// <summary>
-    /// Represent a Segment Query.
+    /// Represents a base Segment Query.
     /// </summary>
     public partial class SegmentMembershipCriteria
     {
@@ -27,6 +27,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the SegmentMembershipCriteria class.
         /// </summary>
+        /// <param name="kind">Possible values include: 'default',
+        /// 'engagement'</param>
         /// <param name="logicalOperator">Possible values include: 'and',
         /// 'or'</param>
         /// <param name="attribute">Gets the Attribute of the entity used in
@@ -46,8 +48,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// criteria.</param>
         /// <param name="isTime">flag set to true if entries are of time
         /// format</param>
-        public SegmentMembershipCriteria(string logicalOperator = default(string), string attribute = default(string), string comparisonOperator = default(string), IList<SegmentMembershipCriteria> childCriterias = default(IList<SegmentMembershipCriteria>), string value = default(string), bool? ignoreCase = default(bool?), IList<string> listOfValues = default(IList<string>), bool? isTime = default(bool?))
+        public SegmentMembershipCriteria(string kind = default(string), string logicalOperator = default(string), string attribute = default(string), string comparisonOperator = default(string), IList<SegmentMembershipCriteria> childCriterias = default(IList<SegmentMembershipCriteria>), string value = default(string), bool? ignoreCase = default(bool?), IList<string> listOfValues = default(IList<string>), bool? isTime = default(bool?))
         {
+            Kind = kind;
             LogicalOperator = logicalOperator;
             Attribute = attribute;
             ComparisonOperator = comparisonOperator;
@@ -63,6 +66,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// An initialization method that performs custom operations like setting defaults
         /// </summary>
         partial void CustomInit();
+
+        /// <summary>
+        /// Gets or sets possible values include: 'default', 'engagement'
+        /// </summary>
+        [JsonProperty(PropertyName = "kind")]
+        public string Kind { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'and', 'or'

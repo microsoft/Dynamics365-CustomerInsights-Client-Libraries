@@ -100,6 +100,13 @@ public class AttributeDataProfile {
     private Boolean isSuggestedPrimaryKey;
 
     /**
+     * Represents a value indicating whether we calculate exact or approx
+     * stats.
+     */
+    @JsonProperty(value = "checkIfExactStats")
+    private Object checkIfExactStats;
+
+    /**
      * Get represents Distribution of the top 100 values.
      *
      * @return the valueCounts value
@@ -376,6 +383,26 @@ public class AttributeDataProfile {
      */
     public AttributeDataProfile withIsSuggestedPrimaryKey(Boolean isSuggestedPrimaryKey) {
         this.isSuggestedPrimaryKey = isSuggestedPrimaryKey;
+        return this;
+    }
+
+    /**
+     * Get represents a value indicating whether we calculate exact or approx stats.
+     *
+     * @return the checkIfExactStats value
+     */
+    public Object checkIfExactStats() {
+        return this.checkIfExactStats;
+    }
+
+    /**
+     * Set represents a value indicating whether we calculate exact or approx stats.
+     *
+     * @param checkIfExactStats the checkIfExactStats value to set
+     * @return the AttributeDataProfile object itself.
+     */
+    public AttributeDataProfile withCheckIfExactStats(Object checkIfExactStats) {
+        this.checkIfExactStats = checkIfExactStats;
         return this;
     }
 

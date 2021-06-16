@@ -12,12 +12,15 @@ class DataSourceMetadata(Model):
     """Represents metadata for a Customer Insights data source.
 
     :param kind: Possible values include: 'salesforce', 'dynamics365',
-     'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub'
+     'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub',
+     'cjoData', 'eiData'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param is_active: Represents if still in active state
     :type is_active: bool
     :param entity_names: List of all Entity Names
     :type entity_names: list[str]
+    :param entities_count:
+    :type entities_count: int
     :param data_source_id: Unique identity for this object.
     :type data_source_id: str
     :param name: Unique name of the dataSource.
@@ -29,7 +32,8 @@ class DataSourceMetadata(Model):
      list[~dynamics.customerinsights.api.models.DatasourceEntityInformation]
     :param provisioning_state: Possible values include: 'new', 'creating',
      'active', 'createFailed', 'updateFailed', 'deleting',
-     'refreshCredentials', 'resetInstanceInProgress'
+     'refreshCredentials', 'resetInstanceInProgress', 'updating',
+     'quickUpdate', 'deactivated'
     :type provisioning_state: str or
      ~dynamics.customerinsights.api.models.enum
     :param last_refresh: Represents the time datasource was last refreshed.
@@ -62,6 +66,7 @@ class DataSourceMetadata(Model):
         'kind': {'key': 'kind', 'type': 'str'},
         'is_active': {'key': 'isActive', 'type': 'bool'},
         'entity_names': {'key': 'entityNames', 'type': '[str]'},
+        'entities_count': {'key': 'entitiesCount', 'type': 'int'},
         'data_source_id': {'key': 'dataSourceId', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
@@ -84,6 +89,7 @@ class DataSourceMetadata(Model):
         self.kind = kwargs.get('kind', None)
         self.is_active = kwargs.get('is_active', None)
         self.entity_names = kwargs.get('entity_names', None)
+        self.entities_count = kwargs.get('entities_count', None)
         self.data_source_id = kwargs.get('data_source_id', None)
         self.name = kwargs.get('name', None)
         self.friendly_name = kwargs.get('friendly_name', None)

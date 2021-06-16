@@ -14,13 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CustomTaskInformation {
     /**
      * Possible values include: 'test', 'segmentation', 'measures', 'export',
-     * 'incrementalIngestion', 'incrementalMatch'.
+     * 'incrementalIngestion', 'incrementalMatch',
+     * 'incrementalMatchWithPreview', 'merge', 'mark', 'affinities'.
      */
     @JsonProperty(value = "kind")
     private String kind;
 
     /**
-     * Get possible values include: 'test', 'segmentation', 'measures', 'export', 'incrementalIngestion', 'incrementalMatch'.
+     * Get possible values include: 'test', 'segmentation', 'measures', 'export', 'incrementalIngestion', 'incrementalMatch', 'incrementalMatchWithPreview', 'merge', 'mark', 'affinities'.
      *
      * @return the kind value
      */
@@ -29,7 +30,7 @@ public class CustomTaskInformation {
     }
 
     /**
-     * Set possible values include: 'test', 'segmentation', 'measures', 'export', 'incrementalIngestion', 'incrementalMatch'.
+     * Set possible values include: 'test', 'segmentation', 'measures', 'export', 'incrementalIngestion', 'incrementalMatch', 'incrementalMatchWithPreview', 'merge', 'mark', 'affinities'.
      *
      * @param kind the kind value to set
      * @return the CustomTaskInformation object itself.

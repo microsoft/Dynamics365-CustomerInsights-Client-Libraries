@@ -30,14 +30,17 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="type">Possible values include: 'structured',
         /// 'manual'</param>
         /// <param name="projections">Gets list of attributes to be projected
-        /// in segment.</param>
+        /// in segment. (DEPRECATED)</param>
+        /// <param name="projectedAttributes">Gets list of attributes to be
+        /// projected in segment.</param>
         /// <param name="rowsets">Gets list of rowsets of segment.</param>
         /// <param name="segmentationQuerySql">Gets the user specified custom
         /// SQL query.</param>
-        public SegmentationQuery(string type = default(string), IList<string> projections = default(IList<string>), IList<SegmentationRowset> rowsets = default(IList<SegmentationRowset>), string segmentationQuerySql = default(string))
+        public SegmentationQuery(string type = default(string), IList<string> projections = default(IList<string>), IList<SegmentationProjection> projectedAttributes = default(IList<SegmentationProjection>), IList<SegmentationRowset> rowsets = default(IList<SegmentationRowset>), string segmentationQuerySql = default(string))
         {
             Type = type;
             Projections = projections;
+            ProjectedAttributes = projectedAttributes;
             Rowsets = rowsets;
             SegmentationQuerySql = segmentationQuerySql;
             CustomInit();
@@ -55,10 +58,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets list of attributes to be projected in segment.
+        /// Gets list of attributes to be projected in segment. (DEPRECATED)
         /// </summary>
         [JsonProperty(PropertyName = "projections")]
         public IList<string> Projections { get; set; }
+
+        /// <summary>
+        /// Gets list of attributes to be projected in segment.
+        /// </summary>
+        [JsonProperty(PropertyName = "projectedAttributes")]
+        public IList<SegmentationProjection> ProjectedAttributes { get; set; }
 
         /// <summary>
         /// Gets list of rowsets of segment.

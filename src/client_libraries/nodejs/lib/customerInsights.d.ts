@@ -582,8 +582,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.attributesAnnotations] Indicates if extra
    * annotations like 'ReadOnly' or 'Mandatory' should be included.
    *
-   * @param {boolean} [options.includeQuarantined] Indicates if quarantined
-   * entities should be included in the output entity model.
+   * @param {boolean} [options.includeQuarantined] Indicates if corrupt entities
+   * should be included in the output entity model.
+   *
+   * @param {boolean} [options.includeSelfConflatedEntity] Indicates if
+   * self-conflated entities should be included in the output entity model.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -594,7 +597,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getAllEntityMetadataWithHttpOperationResponse(instanceId: string, options?: { attributesAnnotations? : boolean, includeQuarantined? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  getAllEntityMetadataWithHttpOperationResponse(instanceId: string, options?: { attributesAnnotations? : boolean, includeQuarantined? : boolean, includeSelfConflatedEntity? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary GetAllEntitiesMetadata
@@ -608,8 +611,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {boolean} [options.attributesAnnotations] Indicates if extra
    * annotations like 'ReadOnly' or 'Mandatory' should be included.
    *
-   * @param {boolean} [options.includeQuarantined] Indicates if quarantined
-   * entities should be included in the output entity model.
+   * @param {boolean} [options.includeQuarantined] Indicates if corrupt entities
+   * should be included in the output entity model.
+   *
+   * @param {boolean} [options.includeSelfConflatedEntity] Indicates if
+   * self-conflated entities should be included in the output entity model.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -635,9 +641,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getAllEntityMetadata(instanceId: string, options?: { attributesAnnotations? : boolean, includeQuarantined? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAllEntityMetadata(instanceId: string, options?: { attributesAnnotations? : boolean, includeQuarantined? : boolean, includeSelfConflatedEntity? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   getAllEntityMetadata(instanceId: string, callback: ServiceCallback<any>): void;
-  getAllEntityMetadata(instanceId: string, options: { attributesAnnotations? : boolean, includeQuarantined? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  getAllEntityMetadata(instanceId: string, options: { attributesAnnotations? : boolean, includeQuarantined? : boolean, includeSelfConflatedEntity? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -891,66 +897,6 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary ListInstancesByInstanceIds
-   *
-   * Retrieves instances based on instance ids, it can only accept batch of
-   * instances.
-   *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {array} [options.body] Instance ids of instances to get.
-   *
-   * @param {object} [options.customHeaders] Headers that will be added to the
-   * request
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
-   *
-   * @reject {Error|ServiceError} - The error object.
-   */
-  getAllInstancesInBatchesByInstanceidsWithHttpOperationResponse(options?: { body? : string[], customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
-
-  /**
-   * @summary ListInstancesByInstanceIds
-   *
-   * Retrieves instances based on instance ids, it can only accept batch of
-   * instances.
-   *
-   * @param {object} [options] Optional Parameters.
-   *
-   * @param {array} [options.body] Instance ids of instances to get.
-   *
-   * @param {object} [options.customHeaders] Headers that will be added to the
-   * request
-   *
-   * @param {ServiceCallback} [optionalCallback] - The optional callback.
-   *
-   * @returns {ServiceCallback|Promise} If a callback was passed as the last
-   * parameter then it returns the callback else returns a Promise.
-   *
-   * {Promise} A promise is returned.
-   *
-   *                      @resolve {Object} - The deserialized result object.
-   *
-   *                      @reject {Error|ServiceError} - The error object.
-   *
-   * {ServiceCallback} optionalCallback(err, result, request, response)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {Object} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getAllInstancesInBatchesByInstanceids(options?: { body? : string[], customHeaders? : { [headerName: string]: string; } }): Promise<any>;
-  getAllInstancesInBatchesByInstanceids(callback: ServiceCallback<any>): void;
-  getAllInstancesInBatchesByInstanceids(options: { body? : string[], customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
-
-
-  /**
    * @summary GetInstance
    *
    * Retrieves metadata for a Customer Insights instance based on its instanceId.
@@ -1084,10 +1030,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.provisioningState] Possible
    * values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    *
    * @param {string} [options.body.instanceMetadata.instanceType] Possible values
-   * include: 'trial', 'sandbox', 'production'
+   * include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
@@ -1123,6 +1070,19 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.state] Gets the
    * Cds Organization State
    *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.location] Gets
+   * region location of Cds Organization
+   *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.environmentSku]
+   * Gets SKU of Cds Organization
+   *
+   * @param {date} [options.body.instanceMetadata.cdsOrgInfo.expirationTime] Gets
+   * the expiration time of CDS Organization if the SKU is Trial
+   *
+   * @param {date}
+   * [options.body.instanceMetadata.cdsOrgInfo.maxAllowedExpirationTime] Gets the
+   * max allowed expiration time of CDS Organization if the SKU is Trial
+   *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo]
    *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo.privateWorkSpace]
@@ -1141,6 +1101,13 @@ export default class CustomerInsights extends ServiceClient {
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
+   * the details of trial extensions done if this is a trial instance
+   *
+   * @param {boolean} [options.body.instanceMetadata.isRefreshCredentialRequired]
+   * Gets a value indicating if credential  is required to refresh any of the
+   * datasources
+   *
+   * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
    * @param {number} [options.body.instanceMetadata.version] Version number of
@@ -1168,20 +1135,18 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
    *
    * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
    * the operation being performed on the resource.
-   *
-   * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
-   * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
    * resource.
@@ -1207,8 +1172,35 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
+   * @param {object} [options.body.byoPbiProvisioningInfo]
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
+   * Storage account subscriptionId.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
+   * Storage account Resource Group.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
+   * Storage account Region.
+   *
+   * @param {string}
+   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
+   * account tenant.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
+   * Capacity Id.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
+   * delegation token captured from the user.
+   *
+   * @param {boolean} [options.body.isCdsMdlStorageEnabled]
+   *
+   * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
+   *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
+   *
+   * @param {boolean} [options.body.isPbiProvisioningRequired]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1237,10 +1229,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.provisioningState] Possible
    * values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    *
    * @param {string} [options.body.instanceMetadata.instanceType] Possible values
-   * include: 'trial', 'sandbox', 'production'
+   * include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
@@ -1276,6 +1269,19 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.state] Gets the
    * Cds Organization State
    *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.location] Gets
+   * region location of Cds Organization
+   *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.environmentSku]
+   * Gets SKU of Cds Organization
+   *
+   * @param {date} [options.body.instanceMetadata.cdsOrgInfo.expirationTime] Gets
+   * the expiration time of CDS Organization if the SKU is Trial
+   *
+   * @param {date}
+   * [options.body.instanceMetadata.cdsOrgInfo.maxAllowedExpirationTime] Gets the
+   * max allowed expiration time of CDS Organization if the SKU is Trial
+   *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo]
    *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo.privateWorkSpace]
@@ -1294,6 +1300,13 @@ export default class CustomerInsights extends ServiceClient {
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
+   * the details of trial extensions done if this is a trial instance
+   *
+   * @param {boolean} [options.body.instanceMetadata.isRefreshCredentialRequired]
+   * Gets a value indicating if credential  is required to refresh any of the
+   * datasources
+   *
+   * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
    * @param {number} [options.body.instanceMetadata.version] Version number of
@@ -1321,20 +1334,18 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
    *
    * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
    * the operation being performed on the resource.
-   *
-   * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
-   * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
    * resource.
@@ -1360,8 +1371,35 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
+   * @param {object} [options.body.byoPbiProvisioningInfo]
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
+   * Storage account subscriptionId.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
+   * Storage account Resource Group.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
+   * Storage account Region.
+   *
+   * @param {string}
+   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
+   * account tenant.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
+   * Capacity Id.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
+   * delegation token captured from the user.
+   *
+   * @param {boolean} [options.body.isCdsMdlStorageEnabled]
+   *
+   * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
+   *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
+   *
+   * @param {boolean} [options.body.isPbiProvisioningRequired]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1393,10 +1431,11 @@ export default class CustomerInsights extends ServiceClient {
 
 
   /**
-   * @summary UpdateInstance
+   * @summary UpdateInstance.
    *
    * Patches the Market Verticals, Display name, Domain Name, CDS environment and
-   * BYOSA secret to the instance.
+   * BYOSA secret to the instance. It would trigger a full refresh during CI to
+   * CDS MDL migration.
    *
    * @param {string} instanceId Format - uuid.
    *
@@ -1411,10 +1450,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.provisioningState] Possible
    * values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    *
    * @param {string} [options.body.instanceMetadata.instanceType] Possible values
-   * include: 'trial', 'sandbox', 'production'
+   * include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
@@ -1450,6 +1490,19 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.state] Gets the
    * Cds Organization State
    *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.location] Gets
+   * region location of Cds Organization
+   *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.environmentSku]
+   * Gets SKU of Cds Organization
+   *
+   * @param {date} [options.body.instanceMetadata.cdsOrgInfo.expirationTime] Gets
+   * the expiration time of CDS Organization if the SKU is Trial
+   *
+   * @param {date}
+   * [options.body.instanceMetadata.cdsOrgInfo.maxAllowedExpirationTime] Gets the
+   * max allowed expiration time of CDS Organization if the SKU is Trial
+   *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo]
    *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo.privateWorkSpace]
@@ -1468,6 +1521,13 @@ export default class CustomerInsights extends ServiceClient {
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
+   * the details of trial extensions done if this is a trial instance
+   *
+   * @param {boolean} [options.body.instanceMetadata.isRefreshCredentialRequired]
+   * Gets a value indicating if credential  is required to refresh any of the
+   * datasources
+   *
+   * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
    * @param {number} [options.body.instanceMetadata.version] Version number of
@@ -1495,20 +1555,18 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
    *
    * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
    * the operation being performed on the resource.
-   *
-   * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
-   * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
    * resource.
@@ -1534,8 +1592,35 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
+   * @param {object} [options.body.byoPbiProvisioningInfo]
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
+   * Storage account subscriptionId.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
+   * Storage account Resource Group.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
+   * Storage account Region.
+   *
+   * @param {string}
+   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
+   * account tenant.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
+   * Capacity Id.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
+   * delegation token captured from the user.
+   *
+   * @param {boolean} [options.body.isCdsMdlStorageEnabled]
+   *
+   * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
+   *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
+   *
+   * @param {boolean} [options.body.isPbiProvisioningRequired]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1549,10 +1634,11 @@ export default class CustomerInsights extends ServiceClient {
   updateAnInstanceWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdV2PatchRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
-   * @summary UpdateInstance
+   * @summary UpdateInstance.
    *
    * Patches the Market Verticals, Display name, Domain Name, CDS environment and
-   * BYOSA secret to the instance.
+   * BYOSA secret to the instance. It would trigger a full refresh during CI to
+   * CDS MDL migration.
    *
    * @param {string} instanceId Format - uuid.
    *
@@ -1567,10 +1653,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.provisioningState] Possible
    * values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    *
    * @param {string} [options.body.instanceMetadata.instanceType] Possible values
-   * include: 'trial', 'sandbox', 'production'
+   * include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
@@ -1606,6 +1693,19 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.state] Gets the
    * Cds Organization State
    *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.location] Gets
+   * region location of Cds Organization
+   *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.environmentSku]
+   * Gets SKU of Cds Organization
+   *
+   * @param {date} [options.body.instanceMetadata.cdsOrgInfo.expirationTime] Gets
+   * the expiration time of CDS Organization if the SKU is Trial
+   *
+   * @param {date}
+   * [options.body.instanceMetadata.cdsOrgInfo.maxAllowedExpirationTime] Gets the
+   * max allowed expiration time of CDS Organization if the SKU is Trial
+   *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo]
    *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo.privateWorkSpace]
@@ -1624,6 +1724,13 @@ export default class CustomerInsights extends ServiceClient {
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
+   * the details of trial extensions done if this is a trial instance
+   *
+   * @param {boolean} [options.body.instanceMetadata.isRefreshCredentialRequired]
+   * Gets a value indicating if credential  is required to refresh any of the
+   * datasources
+   *
+   * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
    * @param {number} [options.body.instanceMetadata.version] Version number of
@@ -1651,20 +1758,18 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
    *
    * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
    * the operation being performed on the resource.
-   *
-   * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
-   * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
    * resource.
@@ -1690,8 +1795,35 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
+   * @param {object} [options.body.byoPbiProvisioningInfo]
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
+   * Storage account subscriptionId.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
+   * Storage account Resource Group.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
+   * Storage account Region.
+   *
+   * @param {string}
+   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
+   * account tenant.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
+   * Capacity Id.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
+   * delegation token captured from the user.
+   *
+   * @param {boolean} [options.body.isCdsMdlStorageEnabled]
+   *
+   * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
+   *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
+   *
+   * @param {boolean} [options.body.isPbiProvisioningRequired]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1741,10 +1873,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.provisioningState] Possible
    * values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    *
    * @param {string} [options.body.instanceMetadata.instanceType] Possible values
-   * include: 'trial', 'sandbox', 'production'
+   * include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
@@ -1780,6 +1913,19 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.state] Gets the
    * Cds Organization State
    *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.location] Gets
+   * region location of Cds Organization
+   *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.environmentSku]
+   * Gets SKU of Cds Organization
+   *
+   * @param {date} [options.body.instanceMetadata.cdsOrgInfo.expirationTime] Gets
+   * the expiration time of CDS Organization if the SKU is Trial
+   *
+   * @param {date}
+   * [options.body.instanceMetadata.cdsOrgInfo.maxAllowedExpirationTime] Gets the
+   * max allowed expiration time of CDS Organization if the SKU is Trial
+   *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo]
    *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo.privateWorkSpace]
@@ -1798,6 +1944,13 @@ export default class CustomerInsights extends ServiceClient {
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
+   * the details of trial extensions done if this is a trial instance
+   *
+   * @param {boolean} [options.body.instanceMetadata.isRefreshCredentialRequired]
+   * Gets a value indicating if credential  is required to refresh any of the
+   * datasources
+   *
+   * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
    * @param {number} [options.body.instanceMetadata.version] Version number of
@@ -1825,20 +1978,18 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
    *
    * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
    * the operation being performed on the resource.
-   *
-   * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
-   * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
    * resource.
@@ -1864,8 +2015,35 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
+   * @param {object} [options.body.byoPbiProvisioningInfo]
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
+   * Storage account subscriptionId.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
+   * Storage account Resource Group.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
+   * Storage account Region.
+   *
+   * @param {string}
+   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
+   * account tenant.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
+   * Capacity Id.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
+   * delegation token captured from the user.
+   *
+   * @param {boolean} [options.body.isCdsMdlStorageEnabled]
+   *
+   * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
+   *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
+   *
+   * @param {boolean} [options.body.isPbiProvisioningRequired]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1897,10 +2075,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.instanceMetadata.provisioningState] Possible
    * values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed',
-   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress'
+   * 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    *
    * @param {string} [options.body.instanceMetadata.instanceType] Possible values
-   * include: 'trial', 'sandbox', 'production'
+   * include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'
    *
    * @param {object} [options.body.instanceMetadata.refreshSchedule]
    *
@@ -1936,6 +2115,19 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.instanceMetadata.cdsOrgInfo.state] Gets the
    * Cds Organization State
    *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.location] Gets
+   * region location of Cds Organization
+   *
+   * @param {string} [options.body.instanceMetadata.cdsOrgInfo.environmentSku]
+   * Gets SKU of Cds Organization
+   *
+   * @param {date} [options.body.instanceMetadata.cdsOrgInfo.expirationTime] Gets
+   * the expiration time of CDS Organization if the SKU is Trial
+   *
+   * @param {date}
+   * [options.body.instanceMetadata.cdsOrgInfo.maxAllowedExpirationTime] Gets the
+   * max allowed expiration time of CDS Organization if the SKU is Trial
+   *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo]
    *
    * @param {object} [options.body.instanceMetadata.cdsMdlInfo.privateWorkSpace]
@@ -1954,6 +2146,13 @@ export default class CustomerInsights extends ServiceClient {
    * Gets the total number of extensions allowed if this is trial instance
    *
    * @param {string} [options.body.instanceMetadata.trialExtensionHistory] Stores
+   * the details of trial extensions done if this is a trial instance
+   *
+   * @param {boolean} [options.body.instanceMetadata.isRefreshCredentialRequired]
+   * Gets a value indicating if credential  is required to refresh any of the
+   * datasources
+   *
+   * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
    * @param {number} [options.body.instanceMetadata.version] Version number of
@@ -1981,20 +2180,18 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-   * 'http', 'mailchimp', 'googleAds', 'marketo'
+   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
+   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
+   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
+   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
    *
    * @param {uuid} [options.body.cdsResourceMetadata.operationId] Gets the Id of
    * the operation being performed on the resource.
-   *
-   * @param {string} [options.body.cdsResourceMetadata.resourceType] Possible
-   * values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-   * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-   * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'
    *
    * @param {string} [options.body.cdsResourceMetadata.name] Gets the Name of the
    * resource.
@@ -2020,8 +2217,35 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
+   * @param {object} [options.body.byoPbiProvisioningInfo]
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
+   * Storage account subscriptionId.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
+   * Storage account Resource Group.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
+   * Storage account Region.
+   *
+   * @param {string}
+   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
+   * account tenant.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
+   * Capacity Id.
+   *
+   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
+   * delegation token captured from the user.
+   *
+   * @param {boolean} [options.body.isCdsMdlStorageEnabled]
+   *
+   * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
+   *
    * @param {string} [options.body.bapProvisioningType] Possible values include:
    * 'skip', 'create', 'attach'
+   *
+   * @param {boolean} [options.body.isPbiProvisioningRequired]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -2061,6 +2285,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
+   * @param {boolean} [options.templateSummaryIncluded] whether templated
+   * measures are to be included in measure results
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -2070,7 +2297,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getAListOfMeasuresMetadataWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  getAListOfMeasuresMetadataWithHttpOperationResponse(instanceId: string, options?: { templateSummaryIncluded? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary ListAllMeasuresMetadata
@@ -2080,6 +2307,9 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} instanceId Format - uuid. Customer Insights instance id
    *
    * @param {object} [options] Optional Parameters.
+   *
+   * @param {boolean} [options.templateSummaryIncluded] whether templated
+   * measures are to be included in measure results
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -2105,9 +2335,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getAListOfMeasuresMetadata(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAListOfMeasuresMetadata(instanceId: string, options?: { templateSummaryIncluded? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   getAListOfMeasuresMetadata(instanceId: string, callback: ServiceCallback<any>): void;
-  getAListOfMeasuresMetadata(instanceId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  getAListOfMeasuresMetadata(instanceId: string, options: { templateSummaryIncluded? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -2152,6 +2382,9 @@ export default class CustomerInsights extends ServiceClient {
    * 'modulo', 'exponent', 'today', 'now'
    *
    * @param {object} [options.body.definition.filteringCriteria]
+   *
+   * @param {string} [options.body.definition.filteringCriteria.kind] Possible
+   * values include: 'default', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -2366,6 +2599,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.outputHistory] Output history for the measure.
    * (not persisted in store)
+   *
+   * @param {boolean} [options.body.isTemplate] Check if measure metadata is a
+   * template
+   *
+   * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -2437,6 +2675,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.definition.filteringCriteria]
    *
+   * @param {string} [options.body.definition.filteringCriteria.kind] Possible
+   * values include: 'default', 'engagement'
+   *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
    *
@@ -2650,6 +2891,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.outputHistory] Output history for the measure.
    * (not persisted in store)
+   *
+   * @param {boolean} [options.body.isTemplate] Check if measure metadata is a
+   * template
+   *
+   * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -2814,6 +3060,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.definition.filteringCriteria]
    *
+   * @param {string} [options.body.definition.filteringCriteria.kind] Possible
+   * values include: 'default', 'engagement'
+   *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
    *
@@ -3027,6 +3276,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.outputHistory] Output history for the measure.
    * (not persisted in store)
+   *
+   * @param {boolean} [options.body.isTemplate] Check if measure metadata is a
+   * template
+   *
+   * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -3101,6 +3355,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.definition.filteringCriteria]
    *
+   * @param {string} [options.body.definition.filteringCriteria.kind] Possible
+   * values include: 'default', 'engagement'
+   *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
    *
@@ -3314,6 +3571,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.outputHistory] Output history for the measure.
    * (not persisted in store)
+   *
+   * @param {boolean} [options.body.isTemplate] Check if measure metadata is a
+   * template
+   *
+   * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -3973,7 +4235,10 @@ export default class CustomerInsights extends ServiceClient {
    * relationship points to.
    *
    * @param {string} [options.body.cardinality] Possible values include:
-   * 'oneToMany', 'oneToOne'
+   * 'oneToMany', 'oneToOne', 'manyToOne'
+   *
+   * @param {string} [options.body.source] Possible values include: 'user',
+   * 'system', 'inferred'
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -4038,7 +4303,10 @@ export default class CustomerInsights extends ServiceClient {
    * relationship points to.
    *
    * @param {string} [options.body.cardinality] Possible values include:
-   * 'oneToMany', 'oneToOne'
+   * 'oneToMany', 'oneToOne', 'manyToOne'
+   *
+   * @param {string} [options.body.source] Possible values include: 'user',
+   * 'system', 'inferred'
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -4252,7 +4520,10 @@ export default class CustomerInsights extends ServiceClient {
    * relationship points to.
    *
    * @param {string} [options.body.cardinality] Possible values include:
-   * 'oneToMany', 'oneToOne'
+   * 'oneToMany', 'oneToOne', 'manyToOne'
+   *
+   * @param {string} [options.body.source] Possible values include: 'user',
+   * 'system', 'inferred'
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -4320,7 +4591,10 @@ export default class CustomerInsights extends ServiceClient {
    * relationship points to.
    *
    * @param {string} [options.body.cardinality] Possible values include:
-   * 'oneToMany', 'oneToOne'
+   * 'oneToMany', 'oneToOne', 'manyToOne'
+   *
+   * @param {string} [options.body.source] Possible values include: 'user',
+   * 'system', 'inferred'
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -4618,6 +4892,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] New Segment metadata to be created
    *
+   * @param {string} [options.body.kind] Possible values include: 'default',
+   * 'engagement'
+   *
    * @param {string} [options.body.name] Gets the unique name of the segment
    *
    * @param {string} [options.body.friendlyName] Gets the friendlyName of the
@@ -4632,7 +4909,10 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'structured', 'manual'
    *
    * @param {array} [options.body.segmentQueryExpression.projections] Gets list
-   * of attributes to be projected in segment.
+   * of attributes to be projected in segment. (DEPRECATED)
+   *
+   * @param {array} [options.body.segmentQueryExpression.projectedAttributes]
+   * Gets list of attributes to be projected in segment.
    *
    * @param {array} [options.body.segmentQueryExpression.rowsets] Gets list of
    * rowsets of segment.
@@ -4828,6 +5108,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] New Segment metadata to be created
    *
+   * @param {string} [options.body.kind] Possible values include: 'default',
+   * 'engagement'
+   *
    * @param {string} [options.body.name] Gets the unique name of the segment
    *
    * @param {string} [options.body.friendlyName] Gets the friendlyName of the
@@ -4842,7 +5125,10 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'structured', 'manual'
    *
    * @param {array} [options.body.segmentQueryExpression.projections] Gets list
-   * of attributes to be projected in segment.
+   * of attributes to be projected in segment. (DEPRECATED)
+   *
+   * @param {array} [options.body.segmentQueryExpression.projectedAttributes]
+   * Gets list of attributes to be projected in segment.
    *
    * @param {array} [options.body.segmentQueryExpression.rowsets] Gets list of
    * rowsets of segment.
@@ -5183,6 +5469,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] New Segment metadata to be updated
    *
+   * @param {string} [options.body.kind] Possible values include: 'default',
+   * 'engagement'
+   *
    * @param {string} [options.body.name] Gets the unique name of the segment
    *
    * @param {string} [options.body.friendlyName] Gets the friendlyName of the
@@ -5197,7 +5486,10 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'structured', 'manual'
    *
    * @param {array} [options.body.segmentQueryExpression.projections] Gets list
-   * of attributes to be projected in segment.
+   * of attributes to be projected in segment. (DEPRECATED)
+   *
+   * @param {array} [options.body.segmentQueryExpression.projectedAttributes]
+   * Gets list of attributes to be projected in segment.
    *
    * @param {array} [options.body.segmentQueryExpression.rowsets] Gets list of
    * rowsets of segment.
@@ -5396,6 +5688,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body] New Segment metadata to be updated
    *
+   * @param {string} [options.body.kind] Possible values include: 'default',
+   * 'engagement'
+   *
    * @param {string} [options.body.name] Gets the unique name of the segment
    *
    * @param {string} [options.body.friendlyName] Gets the friendlyName of the
@@ -5410,7 +5705,10 @@ export default class CustomerInsights extends ServiceClient {
    * include: 'structured', 'manual'
    *
    * @param {array} [options.body.segmentQueryExpression.projections] Gets list
-   * of attributes to be projected in segment.
+   * of attributes to be projected in segment. (DEPRECATED)
+   *
+   * @param {array} [options.body.segmentQueryExpression.projectedAttributes]
+   * Gets list of attributes to be projected in segment.
    *
    * @param {array} [options.body.segmentQueryExpression.rowsets] Gets list of
    * rowsets of segment.
@@ -5903,11 +6201,12 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.graphName]
    *
    * @param {string} [options.body.operationType] Possible values include:
-   * 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match',
-   * 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
-   * 'entityMeasures', 'measures', 'segmentation', 'enrichment', 'intelligence',
-   * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
-   * 'roleAssignment', 'analysis', 'all'
+   * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+   * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
+   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
+   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'all'
    *
    * @param {string} [options.body.submissionKind] Possible values include:
    * 'onDemand', 'scheduled'
@@ -5964,11 +6263,12 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.graphName]
    *
    * @param {string} [options.body.operationType] Possible values include:
-   * 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match',
-   * 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
-   * 'entityMeasures', 'measures', 'segmentation', 'enrichment', 'intelligence',
-   * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
-   * 'roleAssignment', 'analysis', 'all'
+   * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+   * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
+   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
+   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'all'
    *
    * @param {string} [options.body.submissionKind] Possible values include:
    * 'onDemand', 'scheduled'
@@ -6291,11 +6591,12 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body] A schedule object to create.
    *
    * @param {string} [options.body.operationType] Possible values include:
-   * 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match',
-   * 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
-   * 'entityMeasures', 'measures', 'segmentation', 'enrichment', 'intelligence',
-   * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
-   * 'roleAssignment', 'analysis', 'all'
+   * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+   * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
+   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
+   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'all'
    *
    * @param {string} [options.body.subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -6344,11 +6645,12 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body] A schedule object to create.
    *
    * @param {string} [options.body.operationType] Possible values include:
-   * 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match',
-   * 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
-   * 'entityMeasures', 'measures', 'segmentation', 'enrichment', 'intelligence',
-   * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
-   * 'roleAssignment', 'analysis', 'all'
+   * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+   * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
+   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
+   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'all'
    *
    * @param {string} [options.body.subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -6461,6 +6763,196 @@ export default class CustomerInsights extends ServiceClient {
   getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   getAnEntityProfile(instanceId: string, qualifiedEntityName: string, callback: ServiceCallback<any>): void;
   getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary Gets the metadata information (including total Activity record
+   * count and Activity Types) for a given customer id.
+   *
+   * Gets the metadata information (including total Activity record count and
+   * Activity Types) for a given customer id.
+   *
+   * @param {string} instanceId Format - uuid. the identifier for the instance.
+   *
+   * @param {string} customerId The identifier for the customer.
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  getActivityTypesAndCountsWithHttpOperationResponse(instanceId: string, customerId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary Gets the metadata information (including total Activity record
+   * count and Activity Types) for a given customer id.
+   *
+   * Gets the metadata information (including total Activity record count and
+   * Activity Types) for a given customer id.
+   *
+   * @param {string} instanceId Format - uuid. the identifier for the instance.
+   *
+   * @param {string} customerId The identifier for the customer.
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getActivityTypesAndCounts(instanceId: string, customerId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getActivityTypesAndCounts(instanceId: string, customerId: string, callback: ServiceCallback<any>): void;
+  getActivityTypesAndCounts(instanceId: string, customerId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary GetAllSystemRelationships
+   *
+   * Gets all system created relationship metadata for the provided instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  getAllSystemCreatedRelationshipsWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary GetAllSystemRelationships
+   *
+   * Gets all system created relationship metadata for the provided instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getAllSystemCreatedRelationships(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAllSystemCreatedRelationships(instanceId: string, callback: ServiceCallback<any>): void;
+  getAllSystemCreatedRelationships(instanceId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary CreateWorkflowRefreshSchedulesBatch
+   *
+   * Create a batch of workflow refresh schedules.
+   *
+   * @param {string} instanceId Format - uuid. The instance id.
+   *
+   * @param {string} workflowName Any workflow name.
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {array} [options.body] A list of schedule objects to create.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  createABatchOfWorkflowRefreshSchedulesWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule[], customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary CreateWorkflowRefreshSchedulesBatch
+   *
+   * Create a batch of workflow refresh schedules.
+   *
+   * @param {string} instanceId Format - uuid. The instance id.
+   *
+   * @param {string} workflowName Any workflow name.
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {array} [options.body] A list of schedule objects to create.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  createABatchOfWorkflowRefreshSchedules(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule[], customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createABatchOfWorkflowRefreshSchedules(instanceId: string, workflowName: string, callback: ServiceCallback<any>): void;
+  createABatchOfWorkflowRefreshSchedules(instanceId: string, workflowName: string, options: { body? : models.WorkflowRefreshSchedule[], customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 }
 
 export { CustomerInsights, models as CustomerInsightsModels };

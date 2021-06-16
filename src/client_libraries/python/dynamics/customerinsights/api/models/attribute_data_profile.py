@@ -41,6 +41,9 @@ class AttributeDataProfile(Model):
     :param is_suggested_primary_key: Represents a value indicating whether
      this attribute can be used as a primary key of the entity
     :type is_suggested_primary_key: bool
+    :param check_if_exact_stats: Represents a value indicating whether we
+     calculate exact or approx stats
+    :type check_if_exact_stats: object
     """
 
     _attribute_map = {
@@ -58,6 +61,7 @@ class AttributeDataProfile(Model):
         'unique_value_count': {'key': 'uniqueValueCount', 'type': 'long'},
         'profiling_date': {'key': 'profilingDate', 'type': 'iso-8601'},
         'is_suggested_primary_key': {'key': 'isSuggestedPrimaryKey', 'type': 'bool'},
+        'check_if_exact_stats': {'key': 'checkIfExactStats', 'type': 'object'},
     }
 
     def __init__(self, **kwargs):
@@ -76,3 +80,4 @@ class AttributeDataProfile(Model):
         self.unique_value_count = kwargs.get('unique_value_count', None)
         self.profiling_date = kwargs.get('profiling_date', None)
         self.is_suggested_primary_key = kwargs.get('is_suggested_primary_key', None)
+        self.check_if_exact_stats = kwargs.get('check_if_exact_stats', None)

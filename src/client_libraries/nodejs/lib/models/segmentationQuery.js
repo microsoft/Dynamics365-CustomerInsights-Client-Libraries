@@ -15,7 +15,9 @@ class SegmentationQuery {
    * Create a SegmentationQuery.
    * @property {string} [type] Possible values include: 'structured', 'manual'
    * @property {array} [projections] Gets list of attributes to be projected in
-   * segment.
+   * segment. (DEPRECATED)
+   * @property {array} [projectedAttributes] Gets list of attributes to be
+   * projected in segment.
    * @property {array} [rowsets] Gets list of rowsets of segment.
    * @property {string} [segmentationQuerySql] Gets the user specified custom
    * SQL query.
@@ -54,6 +56,21 @@ class SegmentationQuery {
                   serializedName: 'StringElementType',
                   type: {
                     name: 'String'
+                  }
+              }
+            }
+          },
+          projectedAttributes: {
+            required: false,
+            serializedName: 'projectedAttributes',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'SegmentationProjectionElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'SegmentationProjection'
                   }
               }
             }

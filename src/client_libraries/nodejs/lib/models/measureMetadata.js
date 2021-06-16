@@ -33,6 +33,8 @@ class MeasureMetadata {
    * 'isNotNull', 'negate', 'add', 'subtract', 'multiply', 'divide', 'modulo',
    * 'exponent', 'today', 'now'
    * @property {object} [definition.filteringCriteria]
+   * @property {string} [definition.filteringCriteria.kind] Possible values
+   * include: 'default', 'engagement'
    * @property {string} [definition.filteringCriteria.logicalOperator] Possible
    * values include: 'and', 'or'
    * @property {string} [definition.filteringCriteria.attribute] Gets the
@@ -210,6 +212,8 @@ class MeasureMetadata {
    * (not persisted in store)
    * @property {array} [outputHistory] Output history for the measure. (not
    * persisted in store)
+   * @property {boolean} [isTemplate] Check if measure metadata is a template
+   * @property {uuid} [templateId] Gets the template ID for templates
    * @property {number} [version] Version number of this object.
    * @property {string} [updatedBy] UPN of the user who last updated this
    * record.
@@ -334,6 +338,20 @@ class MeasureMetadata {
                     className: 'ScalarOutput'
                   }
               }
+            }
+          },
+          isTemplate: {
+            required: false,
+            serializedName: 'isTemplate',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          templateId: {
+            required: false,
+            serializedName: 'templateId',
+            type: {
+              name: 'String'
             }
           },
           version: {

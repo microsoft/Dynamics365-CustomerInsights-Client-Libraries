@@ -7,12 +7,13 @@
 'use strict';
 
 /**
- * Represent a Segment Query.
+ * Represents a base Segment Query.
  *
  */
 class SegmentMembershipCriteria {
   /**
    * Create a SegmentMembershipCriteria.
+   * @property {string} [kind] Possible values include: 'default', 'engagement'
    * @property {string} [logicalOperator] Possible values include: 'and', 'or'
    * @property {string} [attribute] Gets the Attribute of the entity used in
    * segment criteria.
@@ -48,6 +49,13 @@ class SegmentMembershipCriteria {
         name: 'Composite',
         className: 'SegmentMembershipCriteria',
         modelProperties: {
+          kind: {
+            required: false,
+            serializedName: 'kind',
+            type: {
+              name: 'String'
+            }
+          },
           logicalOperator: {
             required: false,
             serializedName: 'logicalOperator',

@@ -23,7 +23,8 @@ public class EntityDependency {
      * Possible values include: 'unspecified', 'profile', 'conflationMap',
      * 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment',
      * 'intelligence', 'genericPrediction', 'enrichment', 'insights',
-     * 'derivedEntity', 'quarantine'.
+     * 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview',
+     * 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
      */
     @JsonProperty(value = "type")
     private String type;
@@ -39,6 +40,13 @@ public class EntityDependency {
      */
     @JsonProperty(value = "relationshipNames")
     private List<String> relationshipNames;
+
+    /**
+     * Contains the Activity type and entity name corresponding to that
+     * activity type.
+     */
+    @JsonProperty(value = "activityDetails")
+    private List<InsightActivityDetails> activityDetails;
 
     /**
      * Get gets the qualified entity name.
@@ -61,7 +69,7 @@ public class EntityDependency {
     }
 
     /**
-     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'quarantine'.
+     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
      *
      * @return the type value
      */
@@ -70,7 +78,7 @@ public class EntityDependency {
     }
 
     /**
-     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'quarantine'.
+     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
      *
      * @param type the type value to set
      * @return the EntityDependency object itself.
@@ -117,6 +125,26 @@ public class EntityDependency {
      */
     public EntityDependency withRelationshipNames(List<String> relationshipNames) {
         this.relationshipNames = relationshipNames;
+        return this;
+    }
+
+    /**
+     * Get contains the Activity type and entity name corresponding to that activity type.
+     *
+     * @return the activityDetails value
+     */
+    public List<InsightActivityDetails> activityDetails() {
+        return this.activityDetails;
+    }
+
+    /**
+     * Set contains the Activity type and entity name corresponding to that activity type.
+     *
+     * @param activityDetails the activityDetails value to set
+     * @return the EntityDependency object itself.
+     */
+    public EntityDependency withActivityDetails(List<InsightActivityDetails> activityDetails) {
+        this.activityDetails = activityDetails;
         return this;
     }
 

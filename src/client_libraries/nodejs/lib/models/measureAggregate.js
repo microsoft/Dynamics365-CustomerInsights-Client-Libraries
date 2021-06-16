@@ -14,12 +14,16 @@ class MeasureAggregate {
   /**
    * Create a MeasureAggregate.
    * @property {string} [operation] Possible values include: 'sum', 'avg',
-   * 'min', 'max', 'count', 'countDistinct', 'first', 'last'
+   * 'min', 'max', 'count', 'countDistinct', 'first', 'last', 'argMax',
+   * 'argMin'
    * @property {string} [field] Gets the field on which the aggregate operation
    * is applied
    * @property {string} [alias] Gets the alias for the field
    * @property {string} [displayName] Gets the display name for the aggregate
    * @property {number} [order] Gets the order for the aggregate
+   * @property {array} [aggregates] Gets list of aggregates of the measure.
+   * @property {boolean} [isIncluded] Gets a value indicating whether to
+   * display the field in results. Default value: false .
    */
   constructor() {
   }
@@ -71,6 +75,29 @@ class MeasureAggregate {
             serializedName: 'order',
             type: {
               name: 'Number'
+            }
+          },
+          aggregates: {
+            required: false,
+            serializedName: 'aggregates',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'MeasureAggregateElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'MeasureAggregate'
+                  }
+              }
+            }
+          },
+          isIncluded: {
+            required: false,
+            serializedName: 'isIncluded',
+            defaultValue: false,
+            type: {
+              name: 'Boolean'
             }
           }
         }

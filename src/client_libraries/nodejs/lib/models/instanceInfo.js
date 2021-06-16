@@ -16,9 +16,17 @@ class InstanceInfo {
    * @property {uuid} [instanceId] Gets the unique ID for this instance.
    * @property {string} [name] Gets the instance name. (not persisted in store)
    * @property {string} [instanceType] Possible values include: 'trial',
-   * 'sandbox', 'production'
+   * 'sandbox', 'production', 'pitchDemo', 'pov'
    * @property {date} [expiryTimeUtc] Gets the time the instance is set to
    * expire. (not persisted in store)
+   * @property {number} [maxTrialExtensionsAllowed] Gets the total number of
+   * extensions allowed if this is trial instance (not persisted in store)
+   * @property {string} [trialExtensionHistory] Stores the details of trial
+   * extensions done if this is a trial instance (not persisted in store)
+   * @property {string} [scaleUnitId] Gets the unique identifier for the scale
+   * unit (not persisted in store)
+   * @property {string} [azureRegion] Gets the Azure Region where the scale
+   * unit resides (not persisted in store)
    */
   constructor() {
   }
@@ -63,6 +71,35 @@ class InstanceInfo {
             serializedName: 'expiryTimeUtc',
             type: {
               name: 'DateTime'
+            }
+          },
+          maxTrialExtensionsAllowed: {
+            required: false,
+            nullable: true,
+            serializedName: 'maxTrialExtensionsAllowed',
+            type: {
+              name: 'Number'
+            }
+          },
+          trialExtensionHistory: {
+            required: false,
+            serializedName: 'trialExtensionHistory',
+            type: {
+              name: 'String'
+            }
+          },
+          scaleUnitId: {
+            required: false,
+            serializedName: 'scaleUnitId',
+            type: {
+              name: 'String'
+            }
+          },
+          azureRegion: {
+            required: false,
+            serializedName: 'azureRegion',
+            type: {
+              name: 'String'
             }
           }
         }

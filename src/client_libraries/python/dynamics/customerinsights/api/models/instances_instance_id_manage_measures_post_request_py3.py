@@ -39,6 +39,10 @@ class InstancesInstanceIdManageMeasuresPostRequest(MeasureMetadata):
      store)
     :type output_history:
      list[~dynamics.customerinsights.api.models.ScalarOutput]
+    :param is_template: Check if measure metadata is a template
+    :type is_template: bool
+    :param template_id: Gets the template ID for templates
+    :type template_id: str
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -66,6 +70,8 @@ class InstancesInstanceIdManageMeasuresPostRequest(MeasureMetadata):
         'sql_validation_stats': {'key': 'sqlValidationStats', 'type': 'SqlValidationStats'},
         'evaluation_history': {'key': 'evaluationHistory', 'type': '[Evaluation]'},
         'output_history': {'key': 'outputHistory', 'type': '[ScalarOutput]'},
+        'is_template': {'key': 'isTemplate', 'type': 'bool'},
+        'template_id': {'key': 'templateId', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -74,5 +80,5 @@ class InstancesInstanceIdManageMeasuresPostRequest(MeasureMetadata):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, display_name: str=None, name: str=None, description: str=None, definition=None, latest_evaluation=None, output=None, evaluation_stats=None, error_description=None, sql_validation_stats=None, evaluation_history=None, output_history=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
-        super(InstancesInstanceIdManageMeasuresPostRequest, self).__init__(display_name=display_name, name=name, description=description, definition=definition, latest_evaluation=latest_evaluation, output=output, evaluation_stats=evaluation_stats, error_description=error_description, sql_validation_stats=sql_validation_stats, evaluation_history=evaluation_history, output_history=output_history, version=version, updated_by=updated_by, updated_utc=updated_utc, created_by=created_by, created_utc=created_utc, instance_id=instance_id, **kwargs)
+    def __init__(self, *, display_name: str=None, name: str=None, description: str=None, definition=None, latest_evaluation=None, output=None, evaluation_stats=None, error_description=None, sql_validation_stats=None, evaluation_history=None, output_history=None, is_template: bool=None, template_id: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+        super(InstancesInstanceIdManageMeasuresPostRequest, self).__init__(display_name=display_name, name=name, description=description, definition=definition, latest_evaluation=latest_evaluation, output=output, evaluation_stats=evaluation_stats, error_description=error_description, sql_validation_stats=sql_validation_stats, evaluation_history=evaluation_history, output_history=output_history, is_template=is_template, template_id=template_id, version=version, updated_by=updated_by, updated_utc=updated_utc, created_by=created_by, created_utc=created_utc, instance_id=instance_id, **kwargs)

@@ -16,6 +16,12 @@ class CdsOrgInfo {
    * @property {string} [friendlyName] Gets the Cds Organization Friendly Name
    * @property {string} [url] Gets the Cds Organization Url
    * @property {string} [state] Gets the Cds Organization State
+   * @property {string} [location] Gets region location of Cds Organization
+   * @property {string} [environmentSku] Gets SKU of Cds Organization
+   * @property {date} [expirationTime] Gets the expiration time of CDS
+   * Organization if the SKU is Trial
+   * @property {date} [maxAllowedExpirationTime] Gets the max allowed
+   * expiration time of CDS Organization if the SKU is Trial
    */
   constructor() {
   }
@@ -53,6 +59,34 @@ class CdsOrgInfo {
             serializedName: 'state',
             type: {
               name: 'String'
+            }
+          },
+          location: {
+            required: false,
+            serializedName: 'location',
+            type: {
+              name: 'String'
+            }
+          },
+          environmentSku: {
+            required: false,
+            serializedName: 'environmentSku',
+            type: {
+              name: 'String'
+            }
+          },
+          expirationTime: {
+            required: false,
+            serializedName: 'expirationTime',
+            type: {
+              name: 'DateTime'
+            }
+          },
+          maxAllowedExpirationTime: {
+            required: false,
+            serializedName: 'maxAllowedExpirationTime',
+            type: {
+              name: 'DateTime'
             }
           }
         }

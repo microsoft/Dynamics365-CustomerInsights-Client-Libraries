@@ -12,9 +12,15 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
  */
 public class SegmentMetadata {
+    /**
+     * Possible values include: 'default', 'engagement'.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
+
     /**
      * Gets the unique name of the segment.
      */
@@ -112,6 +118,26 @@ public class SegmentMetadata {
      */
     @JsonProperty(value = "instanceId")
     private UUID instanceId;
+
+    /**
+     * Get possible values include: 'default', 'engagement'.
+     *
+     * @return the kind value
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set possible values include: 'default', 'engagement'.
+     *
+     * @param kind the kind value to set
+     * @return the SegmentMetadata object itself.
+     */
+    public SegmentMetadata withKind(String kind) {
+        this.kind = kind;
+        return this;
+    }
 
     /**
      * Get gets the unique name of the segment.

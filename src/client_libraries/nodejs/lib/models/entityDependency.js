@@ -17,11 +17,15 @@ class EntityDependency {
    * @property {string} [type] Possible values include: 'unspecified',
    * 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
    * 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-   * 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+   * 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+   * 'conflationManualReview', 'selfConflationManualReview',
+   * 'semanticActivity', 'segmentMembership'
    * @property {array} [attributeNames] Gets the list of attributes included in
    * the dependency.
    * @property {array} [relationshipNames] Gets the list of relationships
    * included in the dependency
+   * @property {array} [activityDetails] Contains the Activity type and entity
+   * name corresponding to that activity type.
    */
   constructor() {
   }
@@ -78,6 +82,21 @@ class EntityDependency {
                   serializedName: 'StringElementType',
                   type: {
                     name: 'String'
+                  }
+              }
+            }
+          },
+          activityDetails: {
+            required: false,
+            serializedName: 'activityDetails',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'InsightActivityDetailsElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'InsightActivityDetails'
                   }
               }
             }

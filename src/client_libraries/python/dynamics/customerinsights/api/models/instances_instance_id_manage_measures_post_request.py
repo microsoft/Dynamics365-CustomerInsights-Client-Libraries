@@ -39,6 +39,10 @@ class InstancesInstanceIdManageMeasuresPostRequest(MeasureMetadata):
      store)
     :type output_history:
      list[~dynamics.customerinsights.api.models.ScalarOutput]
+    :param is_template: Check if measure metadata is a template
+    :type is_template: bool
+    :param template_id: Gets the template ID for templates
+    :type template_id: str
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -66,6 +70,8 @@ class InstancesInstanceIdManageMeasuresPostRequest(MeasureMetadata):
         'sql_validation_stats': {'key': 'sqlValidationStats', 'type': 'SqlValidationStats'},
         'evaluation_history': {'key': 'evaluationHistory', 'type': '[Evaluation]'},
         'output_history': {'key': 'outputHistory', 'type': '[ScalarOutput]'},
+        'is_template': {'key': 'isTemplate', 'type': 'bool'},
+        'template_id': {'key': 'templateId', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},

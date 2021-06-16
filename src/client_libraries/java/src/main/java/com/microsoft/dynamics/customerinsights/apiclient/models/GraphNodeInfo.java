@@ -17,11 +17,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GraphNodeInfo {
     /**
      * Possible values include: 'none', 'ingestion', 'derivedEntity',
-     * 'dataPreparation', 'map', 'match', 'merge', 'profileStore', 'search',
-     * 'activity', 'attributeMeasures', 'entityMeasures', 'measures',
-     * 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-     * 'export', 'modelManagement', 'relationship', 'roleAssignment',
-     * 'analysis', 'all'.
+     * 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match',
+     * 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
+     * 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+     * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export',
+     * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
      */
     @JsonProperty(value = "operationType")
     private String operationType;
@@ -102,7 +102,7 @@ public class GraphNodeInfo {
     private SelectionReason selectionReason;
 
     /**
-     * Get possible values include: 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
+     * Get possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
      *
      * @return the operationType value
      */
@@ -111,7 +111,7 @@ public class GraphNodeInfo {
     }
 
     /**
-     * Set possible values include: 'none', 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
+     * Set possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
      *
      * @param operationType the operationType value to set
      * @return the GraphNodeInfo object itself.

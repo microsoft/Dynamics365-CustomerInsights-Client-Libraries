@@ -9,8 +9,10 @@ from .segment_metadata_py3 import SegmentMetadata
 
 
 class InstancesInstanceIdManageSegmentsSegmentNamePutRequest(SegmentMetadata):
-    """Represents a Segment Metadata.
+    """Represents a base Segment Metadata.
 
+    :param kind: Possible values include: 'default', 'engagement'
+    :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param name: Gets the unique name of the segment
     :type name: str
     :param friendly_name: Gets the friendlyName of the segment.
@@ -54,6 +56,7 @@ class InstancesInstanceIdManageSegmentsSegmentNamePutRequest(SegmentMetadata):
     """
 
     _attribute_map = {
+        'kind': {'key': 'kind', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
@@ -72,5 +75,5 @@ class InstancesInstanceIdManageSegmentsSegmentNamePutRequest(SegmentMetadata):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str=None, friendly_name: str=None, description: str=None, segment_query_expression=None, state=None, error_description: str=None, end_date=None, evaluation_status=None, sql_validation_stats=None, evaluation_status_history=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
-        super(InstancesInstanceIdManageSegmentsSegmentNamePutRequest, self).__init__(name=name, friendly_name=friendly_name, description=description, segment_query_expression=segment_query_expression, state=state, error_description=error_description, end_date=end_date, evaluation_status=evaluation_status, sql_validation_stats=sql_validation_stats, evaluation_status_history=evaluation_status_history, version=version, updated_by=updated_by, updated_utc=updated_utc, created_by=created_by, created_utc=created_utc, instance_id=instance_id, **kwargs)
+    def __init__(self, *, kind=None, name: str=None, friendly_name: str=None, description: str=None, segment_query_expression=None, state=None, error_description: str=None, end_date=None, evaluation_status=None, sql_validation_stats=None, evaluation_status_history=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+        super(InstancesInstanceIdManageSegmentsSegmentNamePutRequest, self).__init__(kind=kind, name=name, friendly_name=friendly_name, description=description, segment_query_expression=segment_query_expression, state=state, error_description=error_description, end_date=end_date, evaluation_status=evaluation_status, sql_validation_stats=sql_validation_stats, evaluation_status_history=evaluation_status_history, version=version, updated_by=updated_by, updated_utc=updated_utc, created_by=created_by, created_utc=created_utc, instance_id=instance_id, **kwargs)

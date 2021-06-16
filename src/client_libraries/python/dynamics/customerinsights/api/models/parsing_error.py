@@ -15,7 +15,8 @@ class ParsingError(Model):
     :type messages: list[~dynamics.customerinsights.api.models.LogMessage]
     :param code: Possible values include: 'unknown', 'parsingFailed',
      'entityNotFound', 'attributeNotFound', 'unsupportedSyntax',
-     'invalidOperation'
+     'invalidOperation', 'incorrectArgumentCount', 'incorrectIntervalType',
+     'invalidArgument'
     :type code: str or ~dynamics.customerinsights.api.models.enum
     """
 

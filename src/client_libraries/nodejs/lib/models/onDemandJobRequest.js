@@ -14,11 +14,12 @@ class OnDemandJobRequest {
    * Create a OnDemandJobRequest.
    * @property {string} [graphName]
    * @property {string} [operationType] Possible values include: 'none',
-   * 'ingestion', 'derivedEntity', 'dataPreparation', 'map', 'match', 'merge',
-   * 'profileStore', 'search', 'activity', 'attributeMeasures',
-   * 'entityMeasures', 'measures', 'segmentation', 'enrichment',
-   * 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-   * 'relationship', 'roleAssignment', 'analysis', 'all'
+   * 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+   * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
+   * 'activity', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
+   * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
+   * 'roleAssignment', 'analysis', 'all'
    * @property {string} [submissionKind] Possible values include: 'onDemand',
    * 'scheduled'
    * @property {string} [jobType] Possible values include: 'full',

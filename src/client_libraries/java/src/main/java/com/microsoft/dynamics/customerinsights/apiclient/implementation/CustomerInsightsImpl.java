@@ -19,6 +19,7 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.ApiErrorResult;
 import com.microsoft.dynamics.customerinsights.apiclient.models.AttributeDataProfile;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CancelAWorkflowJobHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CopyAnInstanceHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.CreateABatchOfWorkflowRefreshSchedulesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAMeasureHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAnEntityHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAnInstanceHeaders;
@@ -34,18 +35,18 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteAnInstance
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteARelationshipHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeletesARoleAssignmentHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteSegmentHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.DeletionResponse;
 import com.microsoft.dynamics.customerinsights.apiclient.models.EntityDataProfile;
 import com.microsoft.dynamics.customerinsights.apiclient.models.EntitySize;
+import com.microsoft.dynamics.customerinsights.apiclient.models.GetActivityTypesAndCountsHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAListOfMeasuresMetadataHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllDataSourcesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllEntityMetadataHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllInstancesHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllInstancesInBatchesByInstanceidsHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllRelationshipsHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllRoleAssignmentsHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllRoleDefinitionsHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllSegmentsHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllSystemCreatedRelationshipsHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAnAttributeProfileHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAnEntityProfileHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetARelationshipHeaders;
@@ -117,7 +118,6 @@ import com.microsoft.rest.ServiceResponseWithHeaders;
 import com.microsoft.rest.Validator;
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -234,7 +234,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllEntityMetadata" })
         @GET("instances/{instanceId}/manage/entities")
-        Observable<Response<ResponseBody>> getAllEntityMetadata(@Path("instanceId") String instanceId, @Query("attributesAnnotations") Boolean attributesAnnotations, @Query("includeQuarantined") Boolean includeQuarantined);
+        Observable<Response<ResponseBody>> getAllEntityMetadata(@Path("instanceId") String instanceId, @Query("attributesAnnotations") Boolean attributesAnnotations, @Query("includeQuarantined") Boolean includeQuarantined, @Query("includeSelfConflatedEntity") Boolean includeSelfConflatedEntity);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getEntityMetadata" })
         @GET("instances/{instanceId}/manage/entities/{entityName}")
@@ -251,10 +251,6 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllInstances" })
         @GET("instances")
         Observable<Response<ResponseBody>> getAllInstances();
-
-        @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllInstancesInBatchesByInstanceids" })
-        @POST("instances/batch")
-        Observable<Response<ResponseBody>> getAllInstancesInBatchesByInstanceids(@Body List<UUID> body);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getInstanceMetadata" })
         @GET("instances/{instanceId}")
@@ -278,7 +274,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAListOfMeasuresMetadata" })
         @GET("instances/{instanceId}/manage/measures")
-        Observable<Response<ResponseBody>> getAListOfMeasuresMetadata(@Path("instanceId") String instanceId);
+        Observable<Response<ResponseBody>> getAListOfMeasuresMetadata(@Path("instanceId") String instanceId, @Query("templateSummaryIncluded") Boolean templateSummaryIncluded);
 
         @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createAMeasure" })
         @POST("instances/{instanceId}/manage/measures")
@@ -415,6 +411,18 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAnEntityProfile" })
         @GET("instances/{instanceId}/dataprofile/{qualifiedEntityName}")
         Observable<Response<ResponseBody>> getAnEntityProfile(@Path("instanceId") String instanceId, @Path("qualifiedEntityName") String qualifiedEntityName);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getActivityTypesAndCounts" })
+        @GET("instances/{instanceId}/profile/activityresponsemetadata")
+        Observable<Response<ResponseBody>> getActivityTypesAndCounts(@Path("instanceId") String instanceId, @Query("customerId") String customerId);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights getAllSystemCreatedRelationships" })
+        @GET("instances/{instanceId}/manage/systemrelationships")
+        Observable<Response<ResponseBody>> getAllSystemCreatedRelationships(@Path("instanceId") String instanceId);
+
+        @Headers({ "Content-Type: application/json-patch+json; charset=utf-8", "x-ms-logging-context: com.microsoft.dynamics.customerinsights.apiclient.CustomerInsights createABatchOfWorkflowRefreshSchedules" })
+        @POST("instances/{instanceId}/workflows/{workflowName}/schedules/batch")
+        Observable<Response<ResponseBody>> createABatchOfWorkflowRefreshSchedules(@Path("instanceId") String instanceId, @Path("workflowName") String workflowName, @Body List<WorkflowRefreshSchedule> body);
 
     }
 
@@ -1416,7 +1424,8 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         }
         final Boolean attributesAnnotations = null;
         final Boolean includeQuarantined = null;
-        return service.getAllEntityMetadata(instanceId, attributesAnnotations, includeQuarantined)
+        final Boolean includeSelfConflatedEntity = null;
+        return service.getAllEntityMetadata(instanceId, attributesAnnotations, includeQuarantined, includeSelfConflatedEntity)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>> call(Response<ResponseBody> response) {
@@ -1436,14 +1445,15 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
      * @param attributesAnnotations Indicates if extra annotations like 'ReadOnly' or 'Mandatory' should be included.
-     * @param includeQuarantined Indicates if quarantined entities should be included in the output entity model.
+     * @param includeQuarantined Indicates if corrupt entities should be included in the output entity model.
+     * @param includeSelfConflatedEntity Indicates if self-conflated entities should be included in the output entity model.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    public Object getAllEntityMetadata(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined) {
-        return getAllEntityMetadataWithServiceResponseAsync(instanceId, attributesAnnotations, includeQuarantined).toBlocking().single().body();
+    public Object getAllEntityMetadata(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined, Boolean includeSelfConflatedEntity) {
+        return getAllEntityMetadataWithServiceResponseAsync(instanceId, attributesAnnotations, includeQuarantined, includeSelfConflatedEntity).toBlocking().single().body();
     }
 
     /**
@@ -1452,13 +1462,14 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
      * @param attributesAnnotations Indicates if extra annotations like 'ReadOnly' or 'Mandatory' should be included.
-     * @param includeQuarantined Indicates if quarantined entities should be included in the output entity model.
+     * @param includeQuarantined Indicates if corrupt entities should be included in the output entity model.
+     * @param includeSelfConflatedEntity Indicates if self-conflated entities should be included in the output entity model.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Object> getAllEntityMetadataAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(getAllEntityMetadataWithServiceResponseAsync(instanceId, attributesAnnotations, includeQuarantined), serviceCallback);
+    public ServiceFuture<Object> getAllEntityMetadataAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined, Boolean includeSelfConflatedEntity, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getAllEntityMetadataWithServiceResponseAsync(instanceId, attributesAnnotations, includeQuarantined, includeSelfConflatedEntity), serviceCallback);
     }
 
     /**
@@ -1467,12 +1478,13 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
      * @param attributesAnnotations Indicates if extra annotations like 'ReadOnly' or 'Mandatory' should be included.
-     * @param includeQuarantined Indicates if quarantined entities should be included in the output entity model.
+     * @param includeQuarantined Indicates if corrupt entities should be included in the output entity model.
+     * @param includeSelfConflatedEntity Indicates if self-conflated entities should be included in the output entity model.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<Object> getAllEntityMetadataAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined) {
-        return getAllEntityMetadataWithServiceResponseAsync(instanceId, attributesAnnotations, includeQuarantined).map(new Func1<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>, Object>() {
+    public Observable<Object> getAllEntityMetadataAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined, Boolean includeSelfConflatedEntity) {
+        return getAllEntityMetadataWithServiceResponseAsync(instanceId, attributesAnnotations, includeQuarantined, includeSelfConflatedEntity).map(new Func1<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>, Object>() {
             @Override
             public Object call(ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders> response) {
                 return response.body();
@@ -1486,15 +1498,16 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
      *
      * @param instanceId Format - uuid. Customer Insights instance id.
      * @param attributesAnnotations Indicates if extra annotations like 'ReadOnly' or 'Mandatory' should be included.
-     * @param includeQuarantined Indicates if quarantined entities should be included in the output entity model.
+     * @param includeQuarantined Indicates if corrupt entities should be included in the output entity model.
+     * @param includeSelfConflatedEntity Indicates if self-conflated entities should be included in the output entity model.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    public Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>> getAllEntityMetadataWithServiceResponseAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined) {
+    public Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>> getAllEntityMetadataWithServiceResponseAsync(String instanceId, Boolean attributesAnnotations, Boolean includeQuarantined, Boolean includeSelfConflatedEntity) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        return service.getAllEntityMetadata(instanceId, attributesAnnotations, includeQuarantined)
+        return service.getAllEntityMetadata(instanceId, attributesAnnotations, includeQuarantined, includeSelfConflatedEntity)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, GetAllEntityMetadataHeaders>> call(Response<ResponseBody> response) {
@@ -2007,148 +2020,6 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
     }
 
     /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws RestException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the Object object if successful.
-     */
-    public Object getAllInstancesInBatchesByInstanceids() {
-        return getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync().toBlocking().single().body();
-    }
-
-    /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<Object> getAllInstancesInBatchesByInstanceidsAsync(final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync(), serviceCallback);
-    }
-
-    /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    public Observable<Object> getAllInstancesInBatchesByInstanceidsAsync() {
-        return getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync().map(new Func1<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>, Object>() {
-            @Override
-            public Object call(ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    public Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>> getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync() {
-        final List<UUID> body = null;
-        return service.getAllInstancesInBatchesByInstanceids(body)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders> clientResponse = getAllInstancesInBatchesByInstanceidsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @param body Instance ids of instances to get.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @throws RestException thrown if the request is rejected by server
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the Object object if successful.
-     */
-    public Object getAllInstancesInBatchesByInstanceids(List<UUID> body) {
-        return getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync(body).toBlocking().single().body();
-    }
-
-    /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @param body Instance ids of instances to get.
-     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceFuture} object
-     */
-    public ServiceFuture<Object> getAllInstancesInBatchesByInstanceidsAsync(List<UUID> body, final ServiceCallback<Object> serviceCallback) {
-        return ServiceFuture.fromHeaderResponse(getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync(body), serviceCallback);
-    }
-
-    /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @param body Instance ids of instances to get.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    public Observable<Object> getAllInstancesInBatchesByInstanceidsAsync(List<UUID> body) {
-        return getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync(body).map(new Func1<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>, Object>() {
-            @Override
-            public Object call(ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders> response) {
-                return response.body();
-            }
-        });
-    }
-
-    /**
-     * ListInstancesByInstanceIds.
-     * Retrieves instances based on instance ids, it can only accept batch of instances.
-     *
-     * @param body Instance ids of instances to get.
-     * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the Object object
-     */
-    public Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>> getAllInstancesInBatchesByInstanceidsWithServiceResponseAsync(List<UUID> body) {
-        Validator.validate(body);
-        return service.getAllInstancesInBatchesByInstanceids(body)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders> clientResponse = getAllInstancesInBatchesByInstanceidsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    private ServiceResponseWithHeaders<Object, GetAllInstancesInBatchesByInstanceidsHeaders> getAllInstancesInBatchesByInstanceidsDelegate(Response<ResponseBody> response) throws RestException, IOException {
-        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<List<InstanceInfo>>() { }.getType())
-                .register(401, new TypeToken<Void>() { }.getType())
-                .register(404, new TypeToken<ApiErrorResult>() { }.getType())
-                .register(500, new TypeToken<ApiErrorResult>() { }.getType())
-                .register(503, new TypeToken<Void>() { }.getType())
-                .buildWithHeaders(response, GetAllInstancesInBatchesByInstanceidsHeaders.class);
-    }
-
-    /**
      * GetInstance.
      * Retrieves metadata for a Customer Insights instance based on its instanceId.
      *
@@ -2456,7 +2327,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2470,7 +2341,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
@@ -2483,7 +2354,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2500,7 +2371,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @throws IllegalArgumentException thrown if parameters fail the validation
@@ -2527,7 +2398,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @param body the InstancesInstanceIdV2PatchRequest value
@@ -2542,7 +2413,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @param body the InstancesInstanceIdV2PatchRequest value
@@ -2556,7 +2427,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @param body the InstancesInstanceIdV2PatchRequest value
@@ -2574,7 +2445,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     /**
      * UpdateInstance.
-     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance.
+     * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
      * @param body the InstancesInstanceIdV2PatchRequest value
@@ -2811,7 +2682,82 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
         if (instanceId == null) {
             throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
         }
-        return service.getAListOfMeasuresMetadata(instanceId)
+        final Boolean templateSummaryIncluded = null;
+        return service.getAListOfMeasuresMetadata(instanceId, templateSummaryIncluded)
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders> clientResponse = getAListOfMeasuresMetadataDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param templateSummaryIncluded whether templated measures are to be included in measure results
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    public Object getAListOfMeasuresMetadata(String instanceId, Boolean templateSummaryIncluded) {
+        return getAListOfMeasuresMetadataWithServiceResponseAsync(instanceId, templateSummaryIncluded).toBlocking().single().body();
+    }
+
+    /**
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param templateSummaryIncluded whether templated measures are to be included in measure results
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Object> getAListOfMeasuresMetadataAsync(String instanceId, Boolean templateSummaryIncluded, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getAListOfMeasuresMetadataWithServiceResponseAsync(instanceId, templateSummaryIncluded), serviceCallback);
+    }
+
+    /**
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param templateSummaryIncluded whether templated measures are to be included in measure results
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<Object> getAListOfMeasuresMetadataAsync(String instanceId, Boolean templateSummaryIncluded) {
+        return getAListOfMeasuresMetadataWithServiceResponseAsync(instanceId, templateSummaryIncluded).map(new Func1<ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders>, Object>() {
+            @Override
+            public Object call(ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * ListAllMeasuresMetadata.
+     * ListAllMeasuresMetadata.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param templateSummaryIncluded whether templated measures are to be included in measure results
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders>> getAListOfMeasuresMetadataWithServiceResponseAsync(String instanceId, Boolean templateSummaryIncluded) {
+        if (instanceId == null) {
+            throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
+        }
+        return service.getAListOfMeasuresMetadata(instanceId, templateSummaryIncluded)
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders>>>() {
                 @Override
                 public Observable<ServiceResponseWithHeaders<Object, GetAListOfMeasuresMetadataHeaders>> call(Response<ResponseBody> response) {
@@ -3424,8 +3370,7 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
 
     private ServiceResponseWithHeaders<Object, DeleteAMeasureHeaders> deleteAMeasureDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<DeletionResponse>() { }.getType())
-                .register(400, new TypeToken<DeletionResponse>() { }.getType())
+                .register(200, new TypeToken<OkResult>() { }.getType())
                 .register(401, new TypeToken<Void>() { }.getType())
                 .register(404, new TypeToken<ApiError>() { }.getType())
                 .register(500, new TypeToken<Void>() { }.getType())
@@ -7014,6 +6959,344 @@ public class CustomerInsightsImpl extends ServiceClient implements CustomerInsig
                 .register(500, new TypeToken<Void>() { }.getType())
                 .register(503, new TypeToken<Void>() { }.getType())
                 .buildWithHeaders(response, GetAnEntityProfileHeaders.class);
+    }
+
+    /**
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     *
+     * @param instanceId Format - uuid. the identifier for the instance.
+     * @param customerId The identifier for the customer.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    public Object getActivityTypesAndCounts(String instanceId, String customerId) {
+        return getActivityTypesAndCountsWithServiceResponseAsync(instanceId, customerId).toBlocking().single().body();
+    }
+
+    /**
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     *
+     * @param instanceId Format - uuid. the identifier for the instance.
+     * @param customerId The identifier for the customer.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Object> getActivityTypesAndCountsAsync(String instanceId, String customerId, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getActivityTypesAndCountsWithServiceResponseAsync(instanceId, customerId), serviceCallback);
+    }
+
+    /**
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     *
+     * @param instanceId Format - uuid. the identifier for the instance.
+     * @param customerId The identifier for the customer.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<Object> getActivityTypesAndCountsAsync(String instanceId, String customerId) {
+        return getActivityTypesAndCountsWithServiceResponseAsync(instanceId, customerId).map(new Func1<ServiceResponseWithHeaders<Object, GetActivityTypesAndCountsHeaders>, Object>() {
+            @Override
+            public Object call(ServiceResponseWithHeaders<Object, GetActivityTypesAndCountsHeaders> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
+     *
+     * @param instanceId Format - uuid. the identifier for the instance.
+     * @param customerId The identifier for the customer.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<ServiceResponseWithHeaders<Object, GetActivityTypesAndCountsHeaders>> getActivityTypesAndCountsWithServiceResponseAsync(String instanceId, String customerId) {
+        if (instanceId == null) {
+            throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
+        }
+        if (customerId == null) {
+            throw new IllegalArgumentException("Parameter customerId is required and cannot be null.");
+        }
+        return service.getActivityTypesAndCounts(instanceId, customerId)
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetActivityTypesAndCountsHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<Object, GetActivityTypesAndCountsHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponseWithHeaders<Object, GetActivityTypesAndCountsHeaders> clientResponse = getActivityTypesAndCountsDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponseWithHeaders<Object, GetActivityTypesAndCountsHeaders> getActivityTypesAndCountsDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<KeyRingResponse>() { }.getType())
+                .register(400, new TypeToken<ApiErrorResult>() { }.getType())
+                .register(401, new TypeToken<Void>() { }.getType())
+                .register(404, new TypeToken<ApiErrorResult>() { }.getType())
+                .register(500, new TypeToken<Void>() { }.getType())
+                .register(503, new TypeToken<Void>() { }.getType())
+                .buildWithHeaders(response, GetActivityTypesAndCountsHeaders.class);
+    }
+
+    /**
+     * GetAllSystemRelationships.
+     * Gets all system created relationship metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    public Object getAllSystemCreatedRelationships(String instanceId) {
+        return getAllSystemCreatedRelationshipsWithServiceResponseAsync(instanceId).toBlocking().single().body();
+    }
+
+    /**
+     * GetAllSystemRelationships.
+     * Gets all system created relationship metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Object> getAllSystemCreatedRelationshipsAsync(String instanceId, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(getAllSystemCreatedRelationshipsWithServiceResponseAsync(instanceId), serviceCallback);
+    }
+
+    /**
+     * GetAllSystemRelationships.
+     * Gets all system created relationship metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<Object> getAllSystemCreatedRelationshipsAsync(String instanceId) {
+        return getAllSystemCreatedRelationshipsWithServiceResponseAsync(instanceId).map(new Func1<ServiceResponseWithHeaders<Object, GetAllSystemCreatedRelationshipsHeaders>, Object>() {
+            @Override
+            public Object call(ServiceResponseWithHeaders<Object, GetAllSystemCreatedRelationshipsHeaders> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * GetAllSystemRelationships.
+     * Gets all system created relationship metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<ServiceResponseWithHeaders<Object, GetAllSystemCreatedRelationshipsHeaders>> getAllSystemCreatedRelationshipsWithServiceResponseAsync(String instanceId) {
+        if (instanceId == null) {
+            throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
+        }
+        return service.getAllSystemCreatedRelationships(instanceId)
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, GetAllSystemCreatedRelationshipsHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<Object, GetAllSystemCreatedRelationshipsHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponseWithHeaders<Object, GetAllSystemCreatedRelationshipsHeaders> clientResponse = getAllSystemCreatedRelationshipsDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponseWithHeaders<Object, GetAllSystemCreatedRelationshipsHeaders> getAllSystemCreatedRelationshipsDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<List<RelationshipMetadata>>() { }.getType())
+                .register(401, new TypeToken<Void>() { }.getType())
+                .register(404, new TypeToken<ApiError>() { }.getType())
+                .register(500, new TypeToken<Void>() { }.getType())
+                .register(503, new TypeToken<ApiError>() { }.getType())
+                .buildWithHeaders(response, GetAllSystemCreatedRelationshipsHeaders.class);
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    public Object createABatchOfWorkflowRefreshSchedules(String instanceId, String workflowName) {
+        return createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(instanceId, workflowName).toBlocking().single().body();
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Object> createABatchOfWorkflowRefreshSchedulesAsync(String instanceId, String workflowName, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(instanceId, workflowName), serviceCallback);
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<Object> createABatchOfWorkflowRefreshSchedulesAsync(String instanceId, String workflowName) {
+        return createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(instanceId, workflowName).map(new Func1<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>, Object>() {
+            @Override
+            public Object call(ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>> createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(String instanceId, String workflowName) {
+        if (instanceId == null) {
+            throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        final List<WorkflowRefreshSchedule> body = null;
+        return service.createABatchOfWorkflowRefreshSchedules(instanceId, workflowName, body)
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders> clientResponse = createABatchOfWorkflowRefreshSchedulesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @param body A list of schedule objects to create.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    public Object createABatchOfWorkflowRefreshSchedules(String instanceId, String workflowName, List<WorkflowRefreshSchedule> body) {
+        return createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(instanceId, workflowName, body).toBlocking().single().body();
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @param body A list of schedule objects to create.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<Object> createABatchOfWorkflowRefreshSchedulesAsync(String instanceId, String workflowName, List<WorkflowRefreshSchedule> body, final ServiceCallback<Object> serviceCallback) {
+        return ServiceFuture.fromHeaderResponse(createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(instanceId, workflowName, body), serviceCallback);
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @param body A list of schedule objects to create.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<Object> createABatchOfWorkflowRefreshSchedulesAsync(String instanceId, String workflowName, List<WorkflowRefreshSchedule> body) {
+        return createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(instanceId, workflowName, body).map(new Func1<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>, Object>() {
+            @Override
+            public Object call(ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders> response) {
+                return response.body();
+            }
+        });
+    }
+
+    /**
+     * CreateWorkflowRefreshSchedulesBatch.
+     * Create a batch of workflow refresh schedules.
+     *
+     * @param instanceId Format - uuid. The instance id.
+     * @param workflowName Any workflow name.
+     * @param body A list of schedule objects to create.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    public Observable<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>> createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(String instanceId, String workflowName, List<WorkflowRefreshSchedule> body) {
+        if (instanceId == null) {
+            throw new IllegalArgumentException("Parameter instanceId is required and cannot be null.");
+        }
+        if (workflowName == null) {
+            throw new IllegalArgumentException("Parameter workflowName is required and cannot be null.");
+        }
+        Validator.validate(body);
+        return service.createABatchOfWorkflowRefreshSchedules(instanceId, workflowName, body)
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>>>() {
+                @Override
+                public Observable<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>> call(Response<ResponseBody> response) {
+                    try {
+                        ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders> clientResponse = createABatchOfWorkflowRefreshSchedulesDelegate(response);
+                        return Observable.just(clientResponse);
+                    } catch (Throwable t) {
+                        return Observable.error(t);
+                    }
+                }
+            });
+    }
+
+    private ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders> createABatchOfWorkflowRefreshSchedulesDelegate(Response<ResponseBody> response) throws RestException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<Object, RestException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<List<WorkflowRefreshSchedule>>() { }.getType())
+                .register(401, new TypeToken<Void>() { }.getType())
+                .register(404, new TypeToken<ApiErrorResult>() { }.getType())
+                .register(500, new TypeToken<ApiErrorResult>() { }.getType())
+                .register(503, new TypeToken<Void>() { }.getType())
+                .buildWithHeaders(response, CreateABatchOfWorkflowRefreshSchedulesHeaders.class);
     }
 
 }

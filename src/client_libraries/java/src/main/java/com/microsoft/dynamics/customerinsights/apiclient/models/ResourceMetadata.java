@@ -17,9 +17,13 @@ public class ResourceMetadata {
     /**
      * Possible values include: 'bearerAuthenticationConnection',
      * 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     * 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales',
-     * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp',
-     * 'googleAds', 'marketo'.
+     * 'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2',
+     * 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+     * 'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice',
+     * 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http',
+     * 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
+     * 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat',
+     * 'powerBI', 'azureSql', 'synapse'.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -35,15 +39,6 @@ public class ResourceMetadata {
      */
     @JsonProperty(value = "operationId")
     private UUID operationId;
-
-    /**
-     * Possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp',
-     * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
-     * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-     * 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'.
-     */
-    @JsonProperty(value = "resourceType")
-    private String resourceType;
 
     /**
      * Gets the Name of the resource.
@@ -94,7 +89,7 @@ public class ResourceMetadata {
     private UUID instanceId;
 
     /**
-     * Get possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'.
+     * Get possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'.
      *
      * @return the kind value
      */
@@ -103,7 +98,7 @@ public class ResourceMetadata {
     }
 
     /**
-     * Set possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'.
+     * Set possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'.
      *
      * @param kind the kind value to set
      * @return the ResourceMetadata object itself.
@@ -150,26 +145,6 @@ public class ResourceMetadata {
      */
     public ResourceMetadata withOperationId(UUID operationId) {
         this.operationId = operationId;
-        return this;
-    }
-
-    /**
-     * Get possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'.
-     *
-     * @return the resourceType value
-     */
-    public String resourceType() {
-        return this.resourceType;
-    }
-
-    /**
-     * Set possible values include: 'adlsGen2', 'd365Sales', 'cds', 'ftp', 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp', 'googleAds', 'marketo'.
-     *
-     * @param resourceType the resourceType value to set
-     * @return the ResourceMetadata object itself.
-     */
-    public ResourceMetadata withResourceType(String resourceType) {
-        this.resourceType = resourceType;
         return this;
     }
 

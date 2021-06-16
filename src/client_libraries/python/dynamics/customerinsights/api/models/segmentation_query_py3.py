@@ -14,7 +14,12 @@ class SegmentationQuery(Model):
     :param type: Possible values include: 'structured', 'manual'
     :type type: str or ~dynamics.customerinsights.api.models.enum
     :param projections: Gets list of attributes to be projected in segment.
+     (DEPRECATED)
     :type projections: list[str]
+    :param projected_attributes: Gets list of attributes to be projected in
+     segment.
+    :type projected_attributes:
+     list[~dynamics.customerinsights.api.models.SegmentationProjection]
     :param rowsets: Gets list of rowsets of segment.
     :type rowsets:
      list[~dynamics.customerinsights.api.models.SegmentationRowset]
@@ -25,13 +30,15 @@ class SegmentationQuery(Model):
     _attribute_map = {
         'type': {'key': 'type', 'type': 'str'},
         'projections': {'key': 'projections', 'type': '[str]'},
+        'projected_attributes': {'key': 'projectedAttributes', 'type': '[SegmentationProjection]'},
         'rowsets': {'key': 'rowsets', 'type': '[SegmentationRowset]'},
         'segmentation_query_sql': {'key': 'segmentationQuerySql', 'type': 'str'},
     }
 
-    def __init__(self, *, type=None, projections=None, rowsets=None, segmentation_query_sql: str=None, **kwargs) -> None:
+    def __init__(self, *, type=None, projections=None, projected_attributes=None, rowsets=None, segmentation_query_sql: str=None, **kwargs) -> None:
         super(SegmentationQuery, self).__init__(**kwargs)
         self.type = type
         self.projections = projections
+        self.projected_attributes = projected_attributes
         self.rowsets = rowsets
         self.segmentation_query_sql = segmentation_query_sql

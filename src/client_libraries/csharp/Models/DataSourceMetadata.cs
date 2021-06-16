@@ -29,7 +29,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="kind">Possible values include: 'salesforce',
         /// 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
-        /// 'powerPlatform', 'datahub'</param>
+        /// 'powerPlatform', 'datahub', 'cjoData', 'eiData'</param>
         /// <param name="isActive">Represents if still in active state</param>
         /// <param name="entityNames">List of all Entity Names</param>
         /// <param name="dataSourceId">Unique identity for this object.</param>
@@ -39,7 +39,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// name.</param>
         /// <param name="provisioningState">Possible values include: 'new',
         /// 'creating', 'active', 'createFailed', 'updateFailed', 'deleting',
-        /// 'refreshCredentials', 'resetInstanceInProgress'</param>
+        /// 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+        /// 'quickUpdate', 'deactivated'</param>
         /// <param name="lastRefresh">Represents the time datasource was last
         /// refreshed.</param>
         /// <param name="refreshState">Possible values include: 'notUpdated',
@@ -57,11 +58,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public DataSourceMetadata(string kind = default(string), bool? isActive = default(bool?), IList<string> entityNames = default(IList<string>), System.Guid? dataSourceId = default(System.Guid?), string name = default(string), string friendlyName = default(string), IList<DatasourceEntityInformation> entityInformation = default(IList<DatasourceEntityInformation>), string provisioningState = default(string), System.DateTime? lastRefresh = default(System.DateTime?), string refreshState = default(string), IList<IncrementalRefreshProperties> incrementalRefreshProperties = default(IList<IncrementalRefreshProperties>), string modelJsonPath = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public DataSourceMetadata(string kind = default(string), bool? isActive = default(bool?), IList<string> entityNames = default(IList<string>), int? entitiesCount = default(int?), System.Guid? dataSourceId = default(System.Guid?), string name = default(string), string friendlyName = default(string), IList<DatasourceEntityInformation> entityInformation = default(IList<DatasourceEntityInformation>), string provisioningState = default(string), System.DateTime? lastRefresh = default(System.DateTime?), string refreshState = default(string), IList<IncrementalRefreshProperties> incrementalRefreshProperties = default(IList<IncrementalRefreshProperties>), string modelJsonPath = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             Kind = kind;
             IsActive = isActive;
             EntityNames = entityNames;
+            EntitiesCount = entitiesCount;
             DataSourceId = dataSourceId;
             Name = name;
             FriendlyName = friendlyName;
@@ -87,7 +89,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'salesforce', 'dynamics365',
-        /// 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub'
+        /// 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub',
+        /// 'cjoData', 'eiData'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }
@@ -103,6 +106,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "entityNames")]
         public IList<string> EntityNames { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "entitiesCount")]
+        public int? EntitiesCount { get; set; }
 
         /// <summary>
         /// Gets or sets unique identity for this object.
@@ -131,7 +139,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Gets or sets possible values include: 'new', 'creating', 'active',
         /// 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials',
-        /// 'resetInstanceInProgress'
+        /// 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'
         /// </summary>
         [JsonProperty(PropertyName = "provisioningState")]
         public string ProvisioningState { get; set; }

@@ -9,8 +9,10 @@ from msrest.serialization import Model
 
 
 class SegmentMembershipCriteria(Model):
-    """Represent a Segment Query.
+    """Represents a base Segment Query.
 
+    :param kind: Possible values include: 'default', 'engagement'
+    :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param logical_operator: Possible values include: 'and', 'or'
     :type logical_operator: str or ~dynamics.customerinsights.api.models.enum
     :param attribute: Gets the Attribute of the entity used in segment
@@ -39,6 +41,7 @@ class SegmentMembershipCriteria(Model):
     """
 
     _attribute_map = {
+        'kind': {'key': 'kind', 'type': 'str'},
         'logical_operator': {'key': 'logicalOperator', 'type': 'str'},
         'attribute': {'key': 'attribute', 'type': 'str'},
         'comparison_operator': {'key': 'comparisonOperator', 'type': 'str'},
@@ -51,6 +54,7 @@ class SegmentMembershipCriteria(Model):
 
     def __init__(self, **kwargs):
         super(SegmentMembershipCriteria, self).__init__(**kwargs)
+        self.kind = kwargs.get('kind', None)
         self.logical_operator = kwargs.get('logical_operator', None)
         self.attribute = kwargs.get('attribute', None)
         self.comparison_operator = kwargs.get('comparison_operator', None)

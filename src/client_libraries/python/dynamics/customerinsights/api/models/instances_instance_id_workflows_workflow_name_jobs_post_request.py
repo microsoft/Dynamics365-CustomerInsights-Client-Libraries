@@ -14,11 +14,12 @@ class InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest(OnDemandJobRequest
     :param graph_name:
     :type graph_name: str
     :param operation_type: Possible values include: 'none', 'ingestion',
-     'derivedEntity', 'dataPreparation', 'map', 'match', 'merge',
-     'profileStore', 'search', 'activity', 'attributeMeasures',
-     'entityMeasures', 'measures', 'segmentation', 'enrichment',
-     'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-     'relationship', 'roleAssignment', 'analysis', 'all'
+     'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+     'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
+     'activity', 'attributeMeasures', 'entityMeasures', 'measures',
+     'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
+     'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
+     'roleAssignment', 'analysis', 'all'
     :type operation_type: str or ~dynamics.customerinsights.api.models.enum
     :param submission_kind: Possible values include: 'onDemand', 'scheduled'
     :type submission_kind: str or ~dynamics.customerinsights.api.models.enum

@@ -33,17 +33,22 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'profile', 'conflationMap', 'activity', 'aggregateKpi',
         /// 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
         /// 'genericPrediction', 'enrichment', 'insights', 'derivedEntity',
-        /// 'quarantine'</param>
+        /// 'corrupt', 'selfConflation', 'conflationManualReview',
+        /// 'selfConflationManualReview', 'semanticActivity',
+        /// 'segmentMembership'</param>
         /// <param name="attributeNames">Gets the list of attributes included
         /// in the dependency.</param>
         /// <param name="relationshipNames">Gets the list of relationships
         /// included in the dependency</param>
-        public EntityDependency(string qualifiedEntityName = default(string), string type = default(string), IList<string> attributeNames = default(IList<string>), IList<string> relationshipNames = default(IList<string>))
+        /// <param name="activityDetails">Contains the Activity type and entity
+        /// name corresponding to that activity type.</param>
+        public EntityDependency(string qualifiedEntityName = default(string), string type = default(string), IList<string> attributeNames = default(IList<string>), IList<string> relationshipNames = default(IList<string>), IList<InsightActivityDetails> activityDetails = default(IList<InsightActivityDetails>))
         {
             QualifiedEntityName = qualifiedEntityName;
             Type = type;
             AttributeNames = attributeNames;
             RelationshipNames = relationshipNames;
+            ActivityDetails = activityDetails;
             CustomInit();
         }
 
@@ -62,7 +67,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets or sets possible values include: 'unspecified', 'profile',
         /// 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
         /// 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-        /// 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+        /// 'enrichment', 'insights', 'derivedEntity', 'corrupt',
+        /// 'selfConflation', 'conflationManualReview',
+        /// 'selfConflationManualReview', 'semanticActivity',
+        /// 'segmentMembership'
         /// </summary>
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }
@@ -78,6 +86,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "relationshipNames")]
         public IList<string> RelationshipNames { get; set; }
+
+        /// <summary>
+        /// Gets or sets contains the Activity type and entity name
+        /// corresponding to that activity type.
+        /// </summary>
+        [JsonProperty(PropertyName = "activityDetails")]
+        public IList<InsightActivityDetails> ActivityDetails { get; set; }
 
     }
 }

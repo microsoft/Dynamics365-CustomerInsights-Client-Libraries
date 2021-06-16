@@ -484,12 +484,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// included.
             /// </param>
             /// <param name='includeQuarantined'>
-            /// Indicates if quarantined entities should be included in the output entity
+            /// Indicates if corrupt entities should be included in the output entity
             /// model.
             /// </param>
-            public static object GetAllEntityMetadata(this ICustomerInsights operations, string instanceId, bool? attributesAnnotations = false, bool? includeQuarantined = false)
+            /// <param name='includeSelfConflatedEntity'>
+            /// Indicates if self-conflated entities should be included in the output
+            /// entity model.
+            /// </param>
+            public static object GetAllEntityMetadata(this ICustomerInsights operations, string instanceId, bool? attributesAnnotations = false, bool? includeQuarantined = false, bool? includeSelfConflatedEntity = false)
             {
-                return operations.GetAllEntityMetadataAsync(instanceId, attributesAnnotations, includeQuarantined).GetAwaiter().GetResult();
+                return operations.GetAllEntityMetadataAsync(instanceId, attributesAnnotations, includeQuarantined, includeSelfConflatedEntity).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -509,15 +513,19 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// included.
             /// </param>
             /// <param name='includeQuarantined'>
-            /// Indicates if quarantined entities should be included in the output entity
+            /// Indicates if corrupt entities should be included in the output entity
             /// model.
+            /// </param>
+            /// <param name='includeSelfConflatedEntity'>
+            /// Indicates if self-conflated entities should be included in the output
+            /// entity model.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetAllEntityMetadataAsync(this ICustomerInsights operations, string instanceId, bool? attributesAnnotations = false, bool? includeQuarantined = false, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetAllEntityMetadataAsync(this ICustomerInsights operations, string instanceId, bool? attributesAnnotations = false, bool? includeQuarantined = false, bool? includeSelfConflatedEntity = false, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetAllEntityMetadataWithHttpMessagesAsync(instanceId, attributesAnnotations, includeQuarantined, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetAllEntityMetadataWithHttpMessagesAsync(instanceId, attributesAnnotations, includeQuarantined, includeSelfConflatedEntity, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -706,48 +714,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// ListInstancesByInstanceIds
-            /// </summary>
-            /// <remarks>
-            /// Retrieves instances based on instance ids, it can only accept batch of
-            /// instances.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='body'>
-            /// Instance ids of instances to get.
-            /// </param>
-            public static object GetAllInstancesInBatchesByInstanceids(this ICustomerInsights operations, IList<System.Guid?> body = default(IList<System.Guid?>))
-            {
-                return operations.GetAllInstancesInBatchesByInstanceidsAsync(body).GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// ListInstancesByInstanceIds
-            /// </summary>
-            /// <remarks>
-            /// Retrieves instances based on instance ids, it can only accept batch of
-            /// instances.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='body'>
-            /// Instance ids of instances to get.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<object> GetAllInstancesInBatchesByInstanceidsAsync(this ICustomerInsights operations, IList<System.Guid?> body = default(IList<System.Guid?>), CancellationToken cancellationToken = default(CancellationToken))
-            {
-                using (var _result = await operations.GetAllInstancesInBatchesByInstanceidsWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
-            }
-
-            /// <summary>
             /// GetInstance
             /// </summary>
             /// <remarks>
@@ -870,11 +836,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// UpdateInstance
+            /// UpdateInstance.
             /// </summary>
             /// <remarks>
             /// Patches the Market Verticals, Display name, Domain Name, CDS environment
-            /// and BYOSA secret to the instance.
+            /// and BYOSA secret to the instance. It would trigger a full refresh during CI
+            /// to CDS MDL migration.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -890,11 +857,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             }
 
             /// <summary>
-            /// UpdateInstance
+            /// UpdateInstance.
             /// </summary>
             /// <remarks>
             /// Patches the Market Verticals, Display name, Domain Name, CDS environment
-            /// and BYOSA secret to the instance.
+            /// and BYOSA secret to the instance. It would trigger a full refresh during CI
+            /// to CDS MDL migration.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -967,9 +935,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='instanceId'>
             /// Format - uuid. Customer Insights instance id
             /// </param>
-            public static object GetAListOfMeasuresMetadata(this ICustomerInsights operations, string instanceId)
+            /// <param name='templateSummaryIncluded'>
+            /// whether templated measures are to be included in measure results
+            /// </param>
+            public static object GetAListOfMeasuresMetadata(this ICustomerInsights operations, string instanceId, bool? templateSummaryIncluded = default(bool?))
             {
-                return operations.GetAListOfMeasuresMetadataAsync(instanceId).GetAwaiter().GetResult();
+                return operations.GetAListOfMeasuresMetadataAsync(instanceId, templateSummaryIncluded).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -984,12 +955,15 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             /// <param name='instanceId'>
             /// Format - uuid. Customer Insights instance id
             /// </param>
+            /// <param name='templateSummaryIncluded'>
+            /// whether templated measures are to be included in measure results
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetAListOfMeasuresMetadataAsync(this ICustomerInsights operations, string instanceId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetAListOfMeasuresMetadataAsync(this ICustomerInsights operations, string instanceId, bool? templateSummaryIncluded = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetAListOfMeasuresMetadataWithHttpMessagesAsync(instanceId, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetAListOfMeasuresMetadataWithHttpMessagesAsync(instanceId, templateSummaryIncluded, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -2666,6 +2640,148 @@ namespace Microsoft.Dynamics.CustomerInsights.Api
             public static async Task<object> GetAnEntityProfileAsync(this ICustomerInsights operations, string instanceId, string qualifiedEntityName, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetAnEntityProfileWithHttpMessagesAsync(instanceId, qualifiedEntityName, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the metadata information (including total Activity record count and
+            /// Activity Types) for a given customer id.
+            /// </summary>
+            /// <remarks>
+            /// Gets the metadata information (including total Activity record count and
+            /// Activity Types) for a given customer id.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='instanceId'>
+            /// Format - uuid. the identifier for the instance.
+            /// </param>
+            /// <param name='customerId'>
+            /// The identifier for the customer.
+            /// </param>
+            public static object GetActivityTypesAndCounts(this ICustomerInsights operations, string instanceId, string customerId)
+            {
+                return operations.GetActivityTypesAndCountsAsync(instanceId, customerId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the metadata information (including total Activity record count and
+            /// Activity Types) for a given customer id.
+            /// </summary>
+            /// <remarks>
+            /// Gets the metadata information (including total Activity record count and
+            /// Activity Types) for a given customer id.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='instanceId'>
+            /// Format - uuid. the identifier for the instance.
+            /// </param>
+            /// <param name='customerId'>
+            /// The identifier for the customer.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> GetActivityTypesAndCountsAsync(this ICustomerInsights operations, string instanceId, string customerId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetActivityTypesAndCountsWithHttpMessagesAsync(instanceId, customerId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// GetAllSystemRelationships
+            /// </summary>
+            /// <remarks>
+            /// Gets all system created relationship metadata for the provided instanceId.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='instanceId'>
+            /// Format - uuid. Customer Insights instance id
+            /// </param>
+            public static object GetAllSystemCreatedRelationships(this ICustomerInsights operations, string instanceId)
+            {
+                return operations.GetAllSystemCreatedRelationshipsAsync(instanceId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// GetAllSystemRelationships
+            /// </summary>
+            /// <remarks>
+            /// Gets all system created relationship metadata for the provided instanceId.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='instanceId'>
+            /// Format - uuid. Customer Insights instance id
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> GetAllSystemCreatedRelationshipsAsync(this ICustomerInsights operations, string instanceId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetAllSystemCreatedRelationshipsWithHttpMessagesAsync(instanceId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// CreateWorkflowRefreshSchedulesBatch
+            /// </summary>
+            /// <remarks>
+            /// Create a batch of workflow refresh schedules.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='instanceId'>
+            /// Format - uuid. The instance id.
+            /// </param>
+            /// <param name='workflowName'>
+            /// Any workflow name.
+            /// </param>
+            /// <param name='body'>
+            /// A list of schedule objects to create.
+            /// </param>
+            public static object CreateABatchOfWorkflowRefreshSchedules(this ICustomerInsights operations, string instanceId, string workflowName, IList<WorkflowRefreshSchedule> body = default(IList<WorkflowRefreshSchedule>))
+            {
+                return operations.CreateABatchOfWorkflowRefreshSchedulesAsync(instanceId, workflowName, body).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// CreateWorkflowRefreshSchedulesBatch
+            /// </summary>
+            /// <remarks>
+            /// Create a batch of workflow refresh schedules.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='instanceId'>
+            /// Format - uuid. The instance id.
+            /// </param>
+            /// <param name='workflowName'>
+            /// Any workflow name.
+            /// </param>
+            /// <param name='body'>
+            /// A list of schedule objects to create.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> CreateABatchOfWorkflowRefreshSchedulesAsync(this ICustomerInsights operations, string instanceId, string workflowName, IList<WorkflowRefreshSchedule> body = default(IList<WorkflowRefreshSchedule>), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreateABatchOfWorkflowRefreshSchedulesWithHttpMessagesAsync(instanceId, workflowName, body, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

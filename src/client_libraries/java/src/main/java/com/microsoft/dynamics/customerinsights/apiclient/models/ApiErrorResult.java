@@ -39,7 +39,7 @@ public class ApiErrorResult {
     private String errorCode;
 
     /**
-     * Possible values include: 'error', 'warning'.
+     * Possible values include: 'error', 'warning', 'recommendation'.
      */
     @JsonProperty(value = "resultSeverity")
     private String resultSeverity;
@@ -49,6 +49,12 @@ public class ApiErrorResult {
      */
     @JsonProperty(value = "message")
     private String message;
+
+    /**
+     * Message providing more information about the event.
+     */
+    @JsonProperty(value = "name")
+    private String name;
 
     /**
      * The params property.
@@ -144,7 +150,7 @@ public class ApiErrorResult {
     }
 
     /**
-     * Get possible values include: 'error', 'warning'.
+     * Get possible values include: 'error', 'warning', 'recommendation'.
      *
      * @return the resultSeverity value
      */
@@ -153,7 +159,7 @@ public class ApiErrorResult {
     }
 
     /**
-     * Set possible values include: 'error', 'warning'.
+     * Set possible values include: 'error', 'warning', 'recommendation'.
      *
      * @param resultSeverity the resultSeverity value to set
      * @return the ApiErrorResult object itself.
@@ -180,6 +186,26 @@ public class ApiErrorResult {
      */
     public ApiErrorResult withMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    /**
+     * Get message providing more information about the event.
+     *
+     * @return the name value
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Set message providing more information about the event.
+     *
+     * @param name the name value to set
+     * @return the ApiErrorResult object itself.
+     */
+    public ApiErrorResult withName(String name) {
+        this.name = name;
         return this;
     }
 

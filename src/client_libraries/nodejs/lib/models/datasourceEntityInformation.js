@@ -19,7 +19,9 @@ class DatasourceEntityInformation {
    * @property {string} [entityType] Possible values include: 'unspecified',
    * 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
    * 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-   * 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+   * 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+   * 'conflationManualReview', 'selfConflationManualReview',
+   * 'semanticActivity', 'segmentMembership'
    * @property {string} [timestampFieldName] Time stamp field name.
    * @property {array} [semanticLabels] Semantic labels by attribute name.
    */

@@ -9,8 +9,10 @@ from msrest.serialization import Model
 
 
 class SegmentMembershipCriteria(Model):
-    """Represent a Segment Query.
+    """Represents a base Segment Query.
 
+    :param kind: Possible values include: 'default', 'engagement'
+    :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param logical_operator: Possible values include: 'and', 'or'
     :type logical_operator: str or ~dynamics.customerinsights.api.models.enum
     :param attribute: Gets the Attribute of the entity used in segment
@@ -39,6 +41,7 @@ class SegmentMembershipCriteria(Model):
     """
 
     _attribute_map = {
+        'kind': {'key': 'kind', 'type': 'str'},
         'logical_operator': {'key': 'logicalOperator', 'type': 'str'},
         'attribute': {'key': 'attribute', 'type': 'str'},
         'comparison_operator': {'key': 'comparisonOperator', 'type': 'str'},
@@ -49,8 +52,9 @@ class SegmentMembershipCriteria(Model):
         'is_time': {'key': 'isTime', 'type': 'bool'},
     }
 
-    def __init__(self, *, logical_operator=None, attribute: str=None, comparison_operator=None, child_criterias=None, value: str=None, ignore_case: bool=None, list_of_values=None, is_time: bool=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, logical_operator=None, attribute: str=None, comparison_operator=None, child_criterias=None, value: str=None, ignore_case: bool=None, list_of_values=None, is_time: bool=None, **kwargs) -> None:
         super(SegmentMembershipCriteria, self).__init__(**kwargs)
+        self.kind = kind
         self.logical_operator = logical_operator
         self.attribute = attribute
         self.comparison_operator = comparison_operator

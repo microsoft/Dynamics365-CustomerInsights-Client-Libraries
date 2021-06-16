@@ -39,6 +39,10 @@ class MeasureMetadata(Model):
      store)
     :type output_history:
      list[~dynamics.customerinsights.api.models.ScalarOutput]
+    :param is_template: Check if measure metadata is a template
+    :type is_template: bool
+    :param template_id: Gets the template ID for templates
+    :type template_id: str
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -66,6 +70,8 @@ class MeasureMetadata(Model):
         'sql_validation_stats': {'key': 'sqlValidationStats', 'type': 'SqlValidationStats'},
         'evaluation_history': {'key': 'evaluationHistory', 'type': '[Evaluation]'},
         'output_history': {'key': 'outputHistory', 'type': '[ScalarOutput]'},
+        'is_template': {'key': 'isTemplate', 'type': 'bool'},
+        'template_id': {'key': 'templateId', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -87,6 +93,8 @@ class MeasureMetadata(Model):
         self.sql_validation_stats = kwargs.get('sql_validation_stats', None)
         self.evaluation_history = kwargs.get('evaluation_history', None)
         self.output_history = kwargs.get('output_history', None)
+        self.is_template = kwargs.get('is_template', None)
+        self.template_id = kwargs.get('template_id', None)
         self.version = kwargs.get('version', None)
         self.updated_by = kwargs.get('updated_by', None)
         self.updated_utc = kwargs.get('updated_utc', None)

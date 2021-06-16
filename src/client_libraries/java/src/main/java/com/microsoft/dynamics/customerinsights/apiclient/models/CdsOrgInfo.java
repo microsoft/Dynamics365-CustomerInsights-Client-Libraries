@@ -6,6 +6,7 @@
 
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
+import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -29,6 +30,31 @@ public class CdsOrgInfo {
      */
     @JsonProperty(value = "state")
     private String state;
+
+    /**
+     * Gets region location of Cds Organization.
+     */
+    @JsonProperty(value = "location")
+    private String location;
+
+    /**
+     * Gets SKU of Cds Organization.
+     */
+    @JsonProperty(value = "environmentSku")
+    private String environmentSku;
+
+    /**
+     * Gets the expiration time of CDS Organization if the SKU is Trial.
+     */
+    @JsonProperty(value = "expirationTime")
+    private DateTime expirationTime;
+
+    /**
+     * Gets the max allowed expiration time of CDS Organization if the SKU is
+     * Trial.
+     */
+    @JsonProperty(value = "maxAllowedExpirationTime")
+    private DateTime maxAllowedExpirationTime;
 
     /**
      * Get gets the Cds Organization Friendly Name.
@@ -87,6 +113,86 @@ public class CdsOrgInfo {
      */
     public CdsOrgInfo withState(String state) {
         this.state = state;
+        return this;
+    }
+
+    /**
+     * Get gets region location of Cds Organization.
+     *
+     * @return the location value
+     */
+    public String location() {
+        return this.location;
+    }
+
+    /**
+     * Set gets region location of Cds Organization.
+     *
+     * @param location the location value to set
+     * @return the CdsOrgInfo object itself.
+     */
+    public CdsOrgInfo withLocation(String location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
+     * Get gets SKU of Cds Organization.
+     *
+     * @return the environmentSku value
+     */
+    public String environmentSku() {
+        return this.environmentSku;
+    }
+
+    /**
+     * Set gets SKU of Cds Organization.
+     *
+     * @param environmentSku the environmentSku value to set
+     * @return the CdsOrgInfo object itself.
+     */
+    public CdsOrgInfo withEnvironmentSku(String environmentSku) {
+        this.environmentSku = environmentSku;
+        return this;
+    }
+
+    /**
+     * Get gets the expiration time of CDS Organization if the SKU is Trial.
+     *
+     * @return the expirationTime value
+     */
+    public DateTime expirationTime() {
+        return this.expirationTime;
+    }
+
+    /**
+     * Set gets the expiration time of CDS Organization if the SKU is Trial.
+     *
+     * @param expirationTime the expirationTime value to set
+     * @return the CdsOrgInfo object itself.
+     */
+    public CdsOrgInfo withExpirationTime(DateTime expirationTime) {
+        this.expirationTime = expirationTime;
+        return this;
+    }
+
+    /**
+     * Get gets the max allowed expiration time of CDS Organization if the SKU is Trial.
+     *
+     * @return the maxAllowedExpirationTime value
+     */
+    public DateTime maxAllowedExpirationTime() {
+        return this.maxAllowedExpirationTime;
+    }
+
+    /**
+     * Set gets the max allowed expiration time of CDS Organization if the SKU is Trial.
+     *
+     * @param maxAllowedExpirationTime the maxAllowedExpirationTime value to set
+     * @return the CdsOrgInfo object itself.
+     */
+    public CdsOrgInfo withMaxAllowedExpirationTime(DateTime maxAllowedExpirationTime) {
+        this.maxAllowedExpirationTime = maxAllowedExpirationTime;
         return this;
     }
 

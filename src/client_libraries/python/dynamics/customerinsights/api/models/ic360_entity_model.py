@@ -23,7 +23,9 @@ class IC360EntityModel(Model):
      'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
      'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
      'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-     'derivedEntity', 'powerPlatformSource'
+     'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
+     'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
+     'cjoData', 'eiData', 'hierarchy'
     :type dataflow_type: str or ~dynamics.customerinsights.api.models.enum
     :param entities: Gets entities in the model.
     :type entities:

@@ -28,7 +28,9 @@ class IEntityMetadata {
    * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
    * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
    * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-   * 'derivedEntity', 'powerPlatformSource'
+   * 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
+   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
+   * 'cjoData', 'eiData', 'hierarchy'
    * @property {boolean} [shouldUseSparkSasAuth] Gets a value indicating
    * whether Sas Auth is used for the entity.
    * @property {uuid} [datasourceId] Gets the original datasourceid of this
@@ -36,7 +38,9 @@ class IEntityMetadata {
    * @property {string} [entityType] Possible values include: 'unspecified',
    * 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
    * 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-   * 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+   * 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+   * 'conflationManualReview', 'selfConflationManualReview',
+   * 'semanticActivity', 'segmentMembership'
    * @property {array} [attributes] Gets entity attributes.
    * @property {array} [keys] Gets the keys of the entity.
    * @property {array} [relationships] Gets entity relationships.

@@ -38,6 +38,12 @@ public class PartitionMetadata {
     private Object fileFormatSettings;
 
     /**
+     * Gets a value indicating whether a partition is CI Generated or not.
+     */
+    @JsonProperty(value = "isCIGenerated")
+    private Boolean isCIGenerated;
+
+    /**
      * Gets a value indicating whether a partition need to be forced for SAS
      * authentication.
      */
@@ -45,7 +51,7 @@ public class PartitionMetadata {
     private Boolean forceSasAuth;
 
     /**
-     * Flad to represent header presence (if any).
+     * Flag to represent header presence (if any).
      */
     @JsonProperty(value = "hasHeader")
     private Boolean hasHeader;
@@ -131,6 +137,26 @@ public class PartitionMetadata {
     }
 
     /**
+     * Get gets a value indicating whether a partition is CI Generated or not.
+     *
+     * @return the isCIGenerated value
+     */
+    public Boolean isCIGenerated() {
+        return this.isCIGenerated;
+    }
+
+    /**
+     * Set gets a value indicating whether a partition is CI Generated or not.
+     *
+     * @param isCIGenerated the isCIGenerated value to set
+     * @return the PartitionMetadata object itself.
+     */
+    public PartitionMetadata withIsCIGenerated(Boolean isCIGenerated) {
+        this.isCIGenerated = isCIGenerated;
+        return this;
+    }
+
+    /**
      * Get gets a value indicating whether a partition need to be forced for SAS authentication.
      *
      * @return the forceSasAuth value
@@ -151,7 +177,7 @@ public class PartitionMetadata {
     }
 
     /**
-     * Get flad to represent header presence (if any).
+     * Get flag to represent header presence (if any).
      *
      * @return the hasHeader value
      */
@@ -160,7 +186,7 @@ public class PartitionMetadata {
     }
 
     /**
-     * Set flad to represent header presence (if any).
+     * Set flag to represent header presence (if any).
      *
      * @param hasHeader the hasHeader value to set
      * @return the PartitionMetadata object itself.

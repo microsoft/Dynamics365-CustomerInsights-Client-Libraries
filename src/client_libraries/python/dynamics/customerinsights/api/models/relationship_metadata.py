@@ -33,8 +33,11 @@ class RelationshipMetadata(Model):
     :param to_entity_name: Gets the name of the entity this relationship
      points to.
     :type to_entity_name: str
-    :param cardinality: Possible values include: 'oneToMany', 'oneToOne'
+    :param cardinality: Possible values include: 'oneToMany', 'oneToOne',
+     'manyToOne'
     :type cardinality: str or ~dynamics.customerinsights.api.models.enum
+    :param source: Possible values include: 'user', 'system', 'inferred'
+    :type source: str or ~dynamics.customerinsights.api.models.enum
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -60,6 +63,7 @@ class RelationshipMetadata(Model):
         'to_attribute_name': {'key': 'toAttributeName', 'type': 'str'},
         'to_entity_name': {'key': 'toEntityName', 'type': 'str'},
         'cardinality': {'key': 'cardinality', 'type': 'str'},
+        'source': {'key': 'source', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -79,6 +83,7 @@ class RelationshipMetadata(Model):
         self.to_attribute_name = kwargs.get('to_attribute_name', None)
         self.to_entity_name = kwargs.get('to_entity_name', None)
         self.cardinality = kwargs.get('cardinality', None)
+        self.source = kwargs.get('source', None)
         self.version = kwargs.get('version', None)
         self.updated_by = kwargs.get('updated_by', None)
         self.updated_utc = kwargs.get('updated_utc', None)

@@ -7,12 +7,13 @@
 'use strict';
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
  *
  */
 class SegmentMetadata {
   /**
    * Create a SegmentMetadata.
+   * @property {string} [kind] Possible values include: 'default', 'engagement'
    * @property {string} [name] Gets the unique name of the segment
    * @property {string} [friendlyName] Gets the friendlyName of the segment.
    * @property {string} [description] Gets the description of the segment.
@@ -20,7 +21,9 @@ class SegmentMetadata {
    * @property {string} [segmentQueryExpression.type] Possible values include:
    * 'structured', 'manual'
    * @property {array} [segmentQueryExpression.projections] Gets list of
-   * attributes to be projected in segment.
+   * attributes to be projected in segment. (DEPRECATED)
+   * @property {array} [segmentQueryExpression.projectedAttributes] Gets list
+   * of attributes to be projected in segment.
    * @property {array} [segmentQueryExpression.rowsets] Gets list of rowsets of
    * segment.
    * @property {string} [segmentQueryExpression.segmentationQuerySql] Gets the
@@ -189,6 +192,13 @@ class SegmentMetadata {
         name: 'Composite',
         className: 'SegmentMetadata',
         modelProperties: {
+          kind: {
+            required: false,
+            serializedName: 'kind',
+            type: {
+              name: 'String'
+            }
+          },
           name: {
             required: false,
             serializedName: 'name',

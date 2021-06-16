@@ -18,8 +18,6 @@ class ProfileStoreCollectionInfo {
    * from merge output.
    * @property {number} [size] Gets the size of customer file yielded from
    * merge .
-   * @property {boolean} [activityStoreRunSuccessful] Gets the flag that tells
-   * if the Activity Store Job has run successfully.
    * @property {object} [profileStoreHydrationStateInfo] Gets the state of
    * profile store hydration per job type.
    */
@@ -61,13 +59,6 @@ class ProfileStoreCollectionInfo {
             serializedName: 'size',
             type: {
               name: 'Number'
-            }
-          },
-          activityStoreRunSuccessful: {
-            required: false,
-            serializedName: 'activityStoreRunSuccessful',
-            type: {
-              name: 'Boolean'
             }
           },
           profileStoreHydrationStateInfo: {

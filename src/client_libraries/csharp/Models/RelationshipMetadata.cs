@@ -42,7 +42,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="toEntityName">Gets the name of the entity this
         /// relationship points to.</param>
         /// <param name="cardinality">Possible values include: 'oneToMany',
-        /// 'oneToOne'</param>
+        /// 'oneToOne', 'manyToOne'</param>
+        /// <param name="source">Possible values include: 'user', 'system',
+        /// 'inferred'</param>
         /// <param name="version">Version number of this object.</param>
         /// <param name="updatedBy">UPN of the user who last updated this
         /// record.</param>
@@ -53,7 +55,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public RelationshipMetadata(string friendlyName = default(string), string name = default(string), string description = default(string), string relationshipType = default(string), string fromAttributeName = default(string), string fromEntityName = default(string), string toAttributeName = default(string), string toEntityName = default(string), string cardinality = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public RelationshipMetadata(string friendlyName = default(string), string name = default(string), string description = default(string), string relationshipType = default(string), string fromAttributeName = default(string), string fromEntityName = default(string), string toAttributeName = default(string), string toEntityName = default(string), string cardinality = default(string), string source = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             FriendlyName = friendlyName;
             Name = name;
@@ -64,6 +66,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             ToAttributeName = toAttributeName;
             ToEntityName = toEntityName;
             Cardinality = cardinality;
+            Source = source;
             Version = version;
             UpdatedBy = updatedBy;
             UpdatedUtc = updatedUtc;
@@ -131,10 +134,17 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string ToEntityName { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'oneToMany', 'oneToOne'
+        /// Gets or sets possible values include: 'oneToMany', 'oneToOne',
+        /// 'manyToOne'
         /// </summary>
         [JsonProperty(PropertyName = "cardinality")]
         public string Cardinality { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'user', 'system', 'inferred'
+        /// </summary>
+        [JsonProperty(PropertyName = "source")]
+        public string Source { get; set; }
 
         /// <summary>
         /// Gets or sets version number of this object.

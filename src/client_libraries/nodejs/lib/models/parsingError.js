@@ -15,7 +15,8 @@ class ParsingError {
    * @property {array} [messages]
    * @property {string} [code] Possible values include: 'unknown',
    * 'parsingFailed', 'entityNotFound', 'attributeNotFound',
-   * 'unsupportedSyntax', 'invalidOperation'
+   * 'unsupportedSyntax', 'invalidOperation', 'incorrectArgumentCount',
+   * 'incorrectIntervalType', 'invalidArgument'
    */
   constructor() {
   }

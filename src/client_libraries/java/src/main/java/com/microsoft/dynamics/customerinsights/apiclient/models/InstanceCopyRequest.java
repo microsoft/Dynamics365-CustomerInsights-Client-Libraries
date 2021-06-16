@@ -38,10 +38,34 @@ public class InstanceCopyRequest {
     private ResourceMetadata cdsResourceMetadata;
 
     /**
+     * The byoPbiProvisioningInfo property.
+     */
+    @JsonProperty(value = "byoPbiProvisioningInfo")
+    private ByoPbiProvisioningInfo byoPbiProvisioningInfo;
+
+    /**
+     * The isCdsMdlStorageEnabled property.
+     */
+    @JsonProperty(value = "isCdsMdlStorageEnabled")
+    private Boolean isCdsMdlStorageEnabled;
+
+    /**
+     * The isCiToByosaMigrationEnabled property.
+     */
+    @JsonProperty(value = "isCiToByosaMigrationEnabled")
+    private Boolean isCiToByosaMigrationEnabled;
+
+    /**
      * Possible values include: 'skip', 'create', 'attach'.
      */
     @JsonProperty(value = "bapProvisioningType")
     private String bapProvisioningType;
+
+    /**
+     * The isPbiProvisioningRequired property.
+     */
+    @JsonProperty(value = "isPbiProvisioningRequired")
+    private Boolean isPbiProvisioningRequired;
 
     /**
      * Get the instanceIdToCopy value.
@@ -124,6 +148,66 @@ public class InstanceCopyRequest {
     }
 
     /**
+     * Get the byoPbiProvisioningInfo value.
+     *
+     * @return the byoPbiProvisioningInfo value
+     */
+    public ByoPbiProvisioningInfo byoPbiProvisioningInfo() {
+        return this.byoPbiProvisioningInfo;
+    }
+
+    /**
+     * Set the byoPbiProvisioningInfo value.
+     *
+     * @param byoPbiProvisioningInfo the byoPbiProvisioningInfo value to set
+     * @return the InstanceCopyRequest object itself.
+     */
+    public InstanceCopyRequest withByoPbiProvisioningInfo(ByoPbiProvisioningInfo byoPbiProvisioningInfo) {
+        this.byoPbiProvisioningInfo = byoPbiProvisioningInfo;
+        return this;
+    }
+
+    /**
+     * Get the isCdsMdlStorageEnabled value.
+     *
+     * @return the isCdsMdlStorageEnabled value
+     */
+    public Boolean isCdsMdlStorageEnabled() {
+        return this.isCdsMdlStorageEnabled;
+    }
+
+    /**
+     * Set the isCdsMdlStorageEnabled value.
+     *
+     * @param isCdsMdlStorageEnabled the isCdsMdlStorageEnabled value to set
+     * @return the InstanceCopyRequest object itself.
+     */
+    public InstanceCopyRequest withIsCdsMdlStorageEnabled(Boolean isCdsMdlStorageEnabled) {
+        this.isCdsMdlStorageEnabled = isCdsMdlStorageEnabled;
+        return this;
+    }
+
+    /**
+     * Get the isCiToByosaMigrationEnabled value.
+     *
+     * @return the isCiToByosaMigrationEnabled value
+     */
+    public Boolean isCiToByosaMigrationEnabled() {
+        return this.isCiToByosaMigrationEnabled;
+    }
+
+    /**
+     * Set the isCiToByosaMigrationEnabled value.
+     *
+     * @param isCiToByosaMigrationEnabled the isCiToByosaMigrationEnabled value to set
+     * @return the InstanceCopyRequest object itself.
+     */
+    public InstanceCopyRequest withIsCiToByosaMigrationEnabled(Boolean isCiToByosaMigrationEnabled) {
+        this.isCiToByosaMigrationEnabled = isCiToByosaMigrationEnabled;
+        return this;
+    }
+
+    /**
      * Get possible values include: 'skip', 'create', 'attach'.
      *
      * @return the bapProvisioningType value
@@ -140,6 +224,26 @@ public class InstanceCopyRequest {
      */
     public InstanceCopyRequest withBapProvisioningType(String bapProvisioningType) {
         this.bapProvisioningType = bapProvisioningType;
+        return this;
+    }
+
+    /**
+     * Get the isPbiProvisioningRequired value.
+     *
+     * @return the isPbiProvisioningRequired value
+     */
+    public Boolean isPbiProvisioningRequired() {
+        return this.isPbiProvisioningRequired;
+    }
+
+    /**
+     * Set the isPbiProvisioningRequired value.
+     *
+     * @param isPbiProvisioningRequired the isPbiProvisioningRequired value to set
+     * @return the InstanceCopyRequest object itself.
+     */
+    public InstanceCopyRequest withIsPbiProvisioningRequired(Boolean isPbiProvisioningRequired) {
+        this.isPbiProvisioningRequired = isPbiProvisioningRequired;
         return this;
     }
 

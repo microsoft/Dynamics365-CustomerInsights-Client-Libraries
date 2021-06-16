@@ -13,21 +13,19 @@ class ResourceMetadata(Model):
 
     :param kind: Possible values include: 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-     'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds',
-     'marketo'
+     'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2',
+     'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+     'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice',
+     'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http',
+     'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
+     'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat',
+     'powerBI', 'azureSql', 'synapse'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param resource_id: Gets the Id of the resource.
     :type resource_id: str
     :param operation_id: Gets the Id of the operation being performed on the
      resource.
     :type operation_id: str
-    :param resource_type: Possible values include: 'adlsGen2', 'd365Sales',
-     'cds', 'ftp', 'bearerAuthenticationConnection',
-     'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-     'googleAds', 'marketo'
-    :type resource_type: str or ~dynamics.customerinsights.api.models.enum
     :param name: Gets the Name of the resource.
     :type name: str
     :param description: Gets the Description of the resource.
@@ -51,7 +49,6 @@ class ResourceMetadata(Model):
         'kind': {'key': 'kind', 'type': 'str'},
         'resource_id': {'key': 'resourceId', 'type': 'str'},
         'operation_id': {'key': 'operationId', 'type': 'str'},
-        'resource_type': {'key': 'resourceType', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
@@ -62,12 +59,11 @@ class ResourceMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, kind=None, resource_id: str=None, operation_id: str=None, resource_type=None, name: str=None, description: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, resource_id: str=None, operation_id: str=None, name: str=None, description: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(ResourceMetadata, self).__init__(**kwargs)
         self.kind = kind
         self.resource_id = resource_id
         self.operation_id = operation_id
-        self.resource_type = resource_type
         self.name = name
         self.description = description
         self.version = version

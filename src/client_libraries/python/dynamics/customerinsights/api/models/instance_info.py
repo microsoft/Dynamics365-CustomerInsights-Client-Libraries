@@ -16,11 +16,23 @@ class InstanceInfo(Model):
     :param name: Gets the instance name. (not persisted in store)
     :type name: str
     :param instance_type: Possible values include: 'trial', 'sandbox',
-     'production'
+     'production', 'pitchDemo', 'pov'
     :type instance_type: str or ~dynamics.customerinsights.api.models.enum
     :param expiry_time_utc: Gets the time the instance is set to expire. (not
      persisted in store)
     :type expiry_time_utc: datetime
+    :param max_trial_extensions_allowed: Gets the total number of extensions
+     allowed if this is trial instance (not persisted in store)
+    :type max_trial_extensions_allowed: int
+    :param trial_extension_history: Stores the details of trial extensions
+     done if this is a trial instance (not persisted in store)
+    :type trial_extension_history: str
+    :param scale_unit_id: Gets the unique identifier for the scale unit (not
+     persisted in store)
+    :type scale_unit_id: str
+    :param azure_region: Gets the Azure Region where the scale unit resides
+     (not persisted in store)
+    :type azure_region: str
     """
 
     _attribute_map = {
@@ -28,6 +40,10 @@ class InstanceInfo(Model):
         'name': {'key': 'name', 'type': 'str'},
         'instance_type': {'key': 'instanceType', 'type': 'str'},
         'expiry_time_utc': {'key': 'expiryTimeUtc', 'type': 'iso-8601'},
+        'max_trial_extensions_allowed': {'key': 'maxTrialExtensionsAllowed', 'type': 'int'},
+        'trial_extension_history': {'key': 'trialExtensionHistory', 'type': 'str'},
+        'scale_unit_id': {'key': 'scaleUnitId', 'type': 'str'},
+        'azure_region': {'key': 'azureRegion', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
@@ -36,3 +52,7 @@ class InstanceInfo(Model):
         self.name = kwargs.get('name', None)
         self.instance_type = kwargs.get('instance_type', None)
         self.expiry_time_utc = kwargs.get('expiry_time_utc', None)
+        self.max_trial_extensions_allowed = kwargs.get('max_trial_extensions_allowed', None)
+        self.trial_extension_history = kwargs.get('trial_extension_history', None)
+        self.scale_unit_id = kwargs.get('scale_unit_id', None)
+        self.azure_region = kwargs.get('azure_region', None)

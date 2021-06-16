@@ -665,7 +665,7 @@ class CustomerInsights(SDKClient):
     get_entities_with_odata_path.metadata = {'url': '/instances/{instanceId}/data/{relativePath}'}
 
     def get_all_entity_metadata(
-            self, instance_id, attributes_annotations=False, include_quarantined=False, custom_headers=None, raw=False, **operation_config):
+            self, instance_id, attributes_annotations=False, include_quarantined=False, include_self_conflated_entity=False, custom_headers=None, raw=False, **operation_config):
         """GetAllEntitiesMetadata.
 
         Retrieves the flattened entity model for the provided instanceId.
@@ -675,9 +675,12 @@ class CustomerInsights(SDKClient):
         :param attributes_annotations: Indicates if extra annotations like
          'ReadOnly' or 'Mandatory' should be included.
         :type attributes_annotations: bool
-        :param include_quarantined: Indicates if quarantined entities should
-         be included in the output entity model.
+        :param include_quarantined: Indicates if corrupt entities should be
+         included in the output entity model.
         :type include_quarantined: bool
+        :param include_self_conflated_entity: Indicates if self-conflated
+         entities should be included in the output entity model.
+        :type include_self_conflated_entity: bool
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -701,6 +704,8 @@ class CustomerInsights(SDKClient):
             query_parameters['attributesAnnotations'] = self._serialize.query("attributes_annotations", attributes_annotations, 'bool')
         if include_quarantined is not None:
             query_parameters['includeQuarantined'] = self._serialize.query("include_quarantined", include_quarantined, 'bool')
+        if include_self_conflated_entity is not None:
+            query_parameters['includeSelfConflatedEntity'] = self._serialize.query("include_self_conflated_entity", include_self_conflated_entity, 'bool')
 
         # Construct headers
         header_parameters = {}
@@ -1051,78 +1056,6 @@ class CustomerInsights(SDKClient):
         return deserialized
     get_all_instances.metadata = {'url': '/instances'}
 
-    def get_all_instances_in_batches_by_instanceids(
-            self, body=None, custom_headers=None, raw=False, **operation_config):
-        """ListInstancesByInstanceIds.
-
-        Retrieves instances based on instance ids, it can only accept batch of
-        instances.
-
-        :param body: Instance ids of instances to get.
-        :type body: list[str]
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: object or ClientRawResponse if raw=true
-        :rtype: object or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
-        """
-        # Construct URL
-        url = self.get_all_instances_in_batches_by_instanceids.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json-patch+json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct body
-        if body is not None:
-            body_content = self._serialize.body(body, '[str]')
-        else:
-            body_content = None
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
-
-        if response.status_code not in [200, 401, 404, 500, 503]:
-            raise HttpOperationError(self._deserialize, response)
-
-        deserialized = None
-        header_dict = {}
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('[InstanceInfo]', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-        if response.status_code == 404:
-            deserialized = self._deserialize('ApiErrorResult', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-        if response.status_code == 500:
-            deserialized = self._deserialize('ApiErrorResult', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
-
-        return deserialized
-    get_all_instances_in_batches_by_instanceids.metadata = {'url': '/instances/batch'}
-
     def get_instance_metadata(
             self, instance_id, custom_headers=None, raw=False, **operation_config):
         """GetInstance.
@@ -1358,7 +1291,8 @@ class CustomerInsights(SDKClient):
         """UpdateInstance.
 
         Patches the Market Verticals, Display name, Domain Name, CDS
-        environment and BYOSA secret to the instance.
+        environment and BYOSA secret to the instance. It would trigger a full
+        refresh during CI to CDS MDL migration.
 
         :param instance_id: Format - uuid.
         :type instance_id: str
@@ -1520,13 +1454,16 @@ class CustomerInsights(SDKClient):
     copy_an_instance.metadata = {'url': '/instances/copy'}
 
     def get_a_list_of_measures_metadata(
-            self, instance_id, custom_headers=None, raw=False, **operation_config):
+            self, instance_id, template_summary_included=None, custom_headers=None, raw=False, **operation_config):
         """ListAllMeasuresMetadata.
 
         ListAllMeasuresMetadata.
 
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
+        :param template_summary_included: whether templated measures are to be
+         included in measure results
+        :type template_summary_included: bool
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1546,6 +1483,8 @@ class CustomerInsights(SDKClient):
 
         # Construct parameters
         query_parameters = {}
+        if template_summary_included is not None:
+            query_parameters['templateSummaryIncluded'] = self._serialize.query("template_summary_included", template_summary_included, 'bool')
 
         # Construct headers
         header_parameters = {}
@@ -1860,19 +1799,14 @@ class CustomerInsights(SDKClient):
         request = self._client.delete(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code not in [200, 400, 401, 404, 500, 503]:
+        if response.status_code not in [200, 401, 404, 500, 503]:
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('DeletionResponse', response)
-            header_dict = {
-                'WWW-Authenticate': 'str',
-            }
-        if response.status_code == 400:
-            deserialized = self._deserialize('DeletionResponse', response)
+            deserialized = self._deserialize('OkResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -4047,3 +3981,226 @@ class CustomerInsights(SDKClient):
 
         return deserialized
     get_an_entity_profile.metadata = {'url': '/instances/{instanceId}/dataprofile/{qualifiedEntityName}'}
+
+    def get_activity_types_and_counts(
+            self, instance_id, customer_id, custom_headers=None, raw=False, **operation_config):
+        """Gets the metadata information (including total Activity record count
+        and Activity Types) for a given customer id.
+
+        Gets the metadata information (including total Activity record count
+        and Activity Types) for a given customer id.
+
+        :param instance_id: Format - uuid. the identifier for the instance.
+        :type instance_id: str
+        :param customer_id: The identifier for the customer.
+        :type customer_id: str
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.get_activity_types_and_counts.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+        query_parameters['customerId'] = self._serialize.query("customer_id", customer_id, 'str')
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 400, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('KeyRingResponse', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 400:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    get_activity_types_and_counts.metadata = {'url': '/instances/{instanceId}/profile/activityresponsemetadata'}
+
+    def get_all_system_created_relationships(
+            self, instance_id, custom_headers=None, raw=False, **operation_config):
+        """GetAllSystemRelationships.
+
+        Gets all system created relationship metadata for the provided
+        instanceId.
+
+        :param instance_id: Format - uuid. Customer Insights instance id
+        :type instance_id: str
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.get_all_system_created_relationships.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('[RelationshipMetadata]', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiError', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 503:
+            deserialized = self._deserialize('ApiError', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    get_all_system_created_relationships.metadata = {'url': '/instances/{instanceId}/manage/systemrelationships'}
+
+    def create_a_batch_of_workflow_refresh_schedules(
+            self, instance_id, workflow_name, body=None, custom_headers=None, raw=False, **operation_config):
+        """CreateWorkflowRefreshSchedulesBatch.
+
+        Create a batch of workflow refresh schedules.
+
+        :param instance_id: Format - uuid. The instance id.
+        :type instance_id: str
+        :param workflow_name: Any workflow name.
+        :type workflow_name: str
+        :param body: A list of schedule objects to create.
+        :type body:
+         list[~dynamics.customerinsights.api.models.WorkflowRefreshSchedule]
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.create_a_batch_of_workflow_refresh_schedules.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str'),
+            'workflowName': self._serialize.url("workflow_name", workflow_name, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        header_parameters['Content-Type'] = 'application/json-patch+json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        if body is not None:
+            body_content = self._serialize.body(body, '[WorkflowRefreshSchedule]')
+        else:
+            body_content = None
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('[WorkflowRefreshSchedule]', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 500:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    create_a_batch_of_workflow_refresh_schedules.metadata = {'url': '/instances/{instanceId}/workflows/{workflowName}/schedules/batch'}

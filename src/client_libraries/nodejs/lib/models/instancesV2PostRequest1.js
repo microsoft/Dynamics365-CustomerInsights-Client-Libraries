@@ -59,11 +59,40 @@ class InstancesV2PostRequest1 extends models['InstanceCreationRequest'] {
               className: 'ResourceMetadata'
             }
           },
+          byoPbiProvisioningInfo: {
+            required: false,
+            serializedName: 'byoPbiProvisioningInfo',
+            type: {
+              name: 'Composite',
+              className: 'ByoPbiProvisioningInfo'
+            }
+          },
+          isCdsMdlStorageEnabled: {
+            required: false,
+            serializedName: 'isCdsMdlStorageEnabled',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          isCiToByosaMigrationEnabled: {
+            required: false,
+            serializedName: 'isCiToByosaMigrationEnabled',
+            type: {
+              name: 'Boolean'
+            }
+          },
           bapProvisioningType: {
             required: false,
             serializedName: 'bapProvisioningType',
             type: {
               name: 'String'
+            }
+          },
+          isPbiProvisioningRequired: {
+            required: false,
+            serializedName: 'isPbiProvisioningRequired',
+            type: {
+              name: 'Boolean'
             }
           }
         }

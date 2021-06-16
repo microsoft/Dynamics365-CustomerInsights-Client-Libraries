@@ -19,9 +19,6 @@ class ProfileStoreCollectionInfo(Model):
     :type row_count: long
     :param size: Gets the size of customer file yielded from merge .
     :type size: long
-    :param activity_store_run_successful: Gets the flag that tells if the
-     Activity Store Job has run successfully.
-    :type activity_store_run_successful: bool
     :param profile_store_hydration_state_info: Gets the state of profile store
      hydration per job type.
     :type profile_store_hydration_state_info: dict[str, str]
@@ -31,14 +28,12 @@ class ProfileStoreCollectionInfo(Model):
         'current_state': {'key': 'currentState', 'type': 'str'},
         'row_count': {'key': 'rowCount', 'type': 'long'},
         'size': {'key': 'size', 'type': 'long'},
-        'activity_store_run_successful': {'key': 'activityStoreRunSuccessful', 'type': 'bool'},
         'profile_store_hydration_state_info': {'key': 'profileStoreHydrationStateInfo', 'type': '{str}'},
     }
 
-    def __init__(self, *, current_state=None, row_count: int=None, size: int=None, activity_store_run_successful: bool=None, profile_store_hydration_state_info=None, **kwargs) -> None:
+    def __init__(self, *, current_state=None, row_count: int=None, size: int=None, profile_store_hydration_state_info=None, **kwargs) -> None:
         super(ProfileStoreCollectionInfo, self).__init__(**kwargs)
         self.current_state = current_state
         self.row_count = row_count
         self.size = size
-        self.activity_store_run_successful = activity_store_run_successful
         self.profile_store_hydration_state_info = profile_store_hydration_state_info

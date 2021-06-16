@@ -29,11 +29,22 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Name</param>
         /// <param name="url">Gets the Cds Organization Url</param>
         /// <param name="state">Gets the Cds Organization State</param>
-        public CdsOrgInfo(string friendlyName = default(string), string url = default(string), string state = default(string))
+        /// <param name="location">Gets region location of Cds
+        /// Organization</param>
+        /// <param name="environmentSku">Gets SKU of Cds Organization</param>
+        /// <param name="expirationTime">Gets the expiration time of CDS
+        /// Organization if the SKU is Trial</param>
+        /// <param name="maxAllowedExpirationTime">Gets the max allowed
+        /// expiration time of CDS Organization if the SKU is Trial</param>
+        public CdsOrgInfo(string friendlyName = default(string), string url = default(string), string state = default(string), string location = default(string), string environmentSku = default(string), System.DateTime? expirationTime = default(System.DateTime?), System.DateTime? maxAllowedExpirationTime = default(System.DateTime?))
         {
             FriendlyName = friendlyName;
             Url = url;
             State = state;
+            Location = location;
+            EnvironmentSku = environmentSku;
+            ExpirationTime = expirationTime;
+            MaxAllowedExpirationTime = maxAllowedExpirationTime;
             CustomInit();
         }
 
@@ -59,6 +70,31 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "state")]
         public string State { get; set; }
+
+        /// <summary>
+        /// Gets region location of Cds Organization
+        /// </summary>
+        [JsonProperty(PropertyName = "location")]
+        public string Location { get; set; }
+
+        /// <summary>
+        /// Gets SKU of Cds Organization
+        /// </summary>
+        [JsonProperty(PropertyName = "environmentSku")]
+        public string EnvironmentSku { get; set; }
+
+        /// <summary>
+        /// Gets the expiration time of CDS Organization if the SKU is Trial
+        /// </summary>
+        [JsonProperty(PropertyName = "expirationTime")]
+        public System.DateTime? ExpirationTime { get; set; }
+
+        /// <summary>
+        /// Gets the max allowed expiration time of CDS Organization if the SKU
+        /// is Trial
+        /// </summary>
+        [JsonProperty(PropertyName = "maxAllowedExpirationTime")]
+        public System.DateTime? MaxAllowedExpirationTime { get; set; }
 
     }
 }

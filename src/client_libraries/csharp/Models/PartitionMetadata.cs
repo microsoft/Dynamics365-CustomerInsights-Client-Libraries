@@ -29,16 +29,19 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="location">Gets the uri location of the data</param>
         /// <param name="refreshTime">Gets the refresh time of the data
         /// partition</param>
+        /// <param name="isCIGenerated">Gets a value indicating whether a
+        /// partition is CI Generated or not.</param>
         /// <param name="forceSasAuth">Gets a value indicating whether a
         /// partition need to be forced for SAS authentication.</param>
-        /// <param name="hasHeader">Flad to represent header presence (if
+        /// <param name="hasHeader">Flag to represent header presence (if
         /// any)</param>
-        public PartitionMetadata(string name = default(string), string location = default(string), System.DateTime? refreshTime = default(System.DateTime?), object fileFormatSettings = default(object), bool? forceSasAuth = default(bool?), bool? hasHeader = default(bool?))
+        public PartitionMetadata(string name = default(string), string location = default(string), System.DateTime? refreshTime = default(System.DateTime?), object fileFormatSettings = default(object), bool? isCIGenerated = default(bool?), bool? forceSasAuth = default(bool?), bool? hasHeader = default(bool?))
         {
             Name = name;
             Location = location;
             RefreshTime = refreshTime;
             FileFormatSettings = fileFormatSettings;
+            IsCIGenerated = isCIGenerated;
             ForceSasAuth = forceSasAuth;
             HasHeader = hasHeader;
             CustomInit();
@@ -73,6 +76,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public object FileFormatSettings { get; set; }
 
         /// <summary>
+        /// Gets a value indicating whether a partition is CI Generated or not.
+        /// </summary>
+        [JsonProperty(PropertyName = "isCIGenerated")]
+        public bool? IsCIGenerated { get; set; }
+
+        /// <summary>
         /// Gets a value indicating whether a partition need to be forced for
         /// SAS authentication.
         /// </summary>
@@ -80,7 +89,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public bool? ForceSasAuth { get; set; }
 
         /// <summary>
-        /// Gets or sets flad to represent header presence (if any)
+        /// Gets or sets flag to represent header presence (if any)
         /// </summary>
         [JsonProperty(PropertyName = "hasHeader")]
         public bool? HasHeader { get; set; }

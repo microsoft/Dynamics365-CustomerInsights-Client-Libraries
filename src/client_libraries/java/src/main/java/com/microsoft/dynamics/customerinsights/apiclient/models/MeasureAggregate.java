@@ -6,6 +6,7 @@
 
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MeasureAggregate {
     /**
      * Possible values include: 'sum', 'avg', 'min', 'max', 'count',
-     * 'countDistinct', 'first', 'last'.
+     * 'countDistinct', 'first', 'last', 'argMax', 'argMin'.
      */
     @JsonProperty(value = "operation")
     private String operation;
@@ -44,7 +45,19 @@ public class MeasureAggregate {
     private Integer order;
 
     /**
-     * Get possible values include: 'sum', 'avg', 'min', 'max', 'count', 'countDistinct', 'first', 'last'.
+     * Gets list of aggregates of the measure.
+     */
+    @JsonProperty(value = "aggregates")
+    private List<MeasureAggregate> aggregates;
+
+    /**
+     * Gets a value indicating whether to display the field in results.
+     */
+    @JsonProperty(value = "isIncluded")
+    private Boolean isIncluded;
+
+    /**
+     * Get possible values include: 'sum', 'avg', 'min', 'max', 'count', 'countDistinct', 'first', 'last', 'argMax', 'argMin'.
      *
      * @return the operation value
      */
@@ -53,7 +66,7 @@ public class MeasureAggregate {
     }
 
     /**
-     * Set possible values include: 'sum', 'avg', 'min', 'max', 'count', 'countDistinct', 'first', 'last'.
+     * Set possible values include: 'sum', 'avg', 'min', 'max', 'count', 'countDistinct', 'first', 'last', 'argMax', 'argMin'.
      *
      * @param operation the operation value to set
      * @return the MeasureAggregate object itself.
@@ -140,6 +153,46 @@ public class MeasureAggregate {
      */
     public MeasureAggregate withOrder(Integer order) {
         this.order = order;
+        return this;
+    }
+
+    /**
+     * Get gets list of aggregates of the measure.
+     *
+     * @return the aggregates value
+     */
+    public List<MeasureAggregate> aggregates() {
+        return this.aggregates;
+    }
+
+    /**
+     * Set gets list of aggregates of the measure.
+     *
+     * @param aggregates the aggregates value to set
+     * @return the MeasureAggregate object itself.
+     */
+    public MeasureAggregate withAggregates(List<MeasureAggregate> aggregates) {
+        this.aggregates = aggregates;
+        return this;
+    }
+
+    /**
+     * Get gets a value indicating whether to display the field in results.
+     *
+     * @return the isIncluded value
+     */
+    public Boolean isIncluded() {
+        return this.isIncluded;
+    }
+
+    /**
+     * Set gets a value indicating whether to display the field in results.
+     *
+     * @param isIncluded the isIncluded value to set
+     * @return the MeasureAggregate object itself.
+     */
+    public MeasureAggregate withIsIncluded(Boolean isIncluded) {
+        this.isIncluded = isIncluded;
         return this;
     }
 

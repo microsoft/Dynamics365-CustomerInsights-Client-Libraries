@@ -13,21 +13,19 @@ class ResourceMetadata(Model):
 
     :param kind: Possible values include: 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     'basicAuthenticationConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-     'attachCds', 'ftp', 'facebookAds', 'http', 'mailchimp', 'googleAds',
-     'marketo'
+     'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2',
+     'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
+     'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice',
+     'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http',
+     'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
+     'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat',
+     'powerBI', 'azureSql', 'synapse'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param resource_id: Gets the Id of the resource.
     :type resource_id: str
     :param operation_id: Gets the Id of the operation being performed on the
      resource.
     :type operation_id: str
-    :param resource_type: Possible values include: 'adlsGen2', 'd365Sales',
-     'cds', 'ftp', 'bearerAuthenticationConnection',
-     'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     'basicAuthenticationConnection', 'facebookAds', 'http', 'mailchimp',
-     'googleAds', 'marketo'
-    :type resource_type: str or ~dynamics.customerinsights.api.models.enum
     :param name: Gets the Name of the resource.
     :type name: str
     :param description: Gets the Description of the resource.
@@ -51,7 +49,6 @@ class ResourceMetadata(Model):
         'kind': {'key': 'kind', 'type': 'str'},
         'resource_id': {'key': 'resourceId', 'type': 'str'},
         'operation_id': {'key': 'operationId', 'type': 'str'},
-        'resource_type': {'key': 'resourceType', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
@@ -67,7 +64,6 @@ class ResourceMetadata(Model):
         self.kind = kwargs.get('kind', None)
         self.resource_id = kwargs.get('resource_id', None)
         self.operation_id = kwargs.get('operation_id', None)
-        self.resource_type = kwargs.get('resource_type', None)
         self.name = kwargs.get('name', None)
         self.description = kwargs.get('description', None)
         self.version = kwargs.get('version', None)

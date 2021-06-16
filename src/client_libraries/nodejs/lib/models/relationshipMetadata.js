@@ -29,7 +29,9 @@ class RelationshipMetadata {
    * @property {string} [toEntityName] Gets the name of the entity this
    * relationship points to.
    * @property {string} [cardinality] Possible values include: 'oneToMany',
-   * 'oneToOne'
+   * 'oneToOne', 'manyToOne'
+   * @property {string} [source] Possible values include: 'user', 'system',
+   * 'inferred'
    * @property {number} [version] Version number of this object.
    * @property {string} [updatedBy] UPN of the user who last updated this
    * record.
@@ -116,6 +118,13 @@ class RelationshipMetadata {
           cardinality: {
             required: false,
             serializedName: 'cardinality',
+            type: {
+              name: 'String'
+            }
+          },
+          source: {
+            required: false,
+            serializedName: 'source',
             type: {
               name: 'String'
             }

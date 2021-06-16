@@ -12,11 +12,12 @@ class GraphNodeInfo(Model):
     """GraphNodeInfo.
 
     :param operation_type: Possible values include: 'none', 'ingestion',
-     'derivedEntity', 'dataPreparation', 'map', 'match', 'merge',
-     'profileStore', 'search', 'activity', 'attributeMeasures',
-     'entityMeasures', 'measures', 'segmentation', 'enrichment',
-     'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-     'relationship', 'roleAssignment', 'analysis', 'all'
+     'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
+     'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
+     'activity', 'attributeMeasures', 'entityMeasures', 'measures',
+     'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
+     'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
+     'roleAssignment', 'analysis', 'all'
     :type operation_type: str or ~dynamics.customerinsights.api.models.enum
     :param sub_type: Possible values include: 'noSubType',
      'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',

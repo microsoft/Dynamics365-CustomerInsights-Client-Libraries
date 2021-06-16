@@ -20,10 +20,16 @@ public class SegmentationQuery {
     private String type;
 
     /**
-     * Gets list of attributes to be projected in segment.
+     * Gets list of attributes to be projected in segment. (DEPRECATED).
      */
     @JsonProperty(value = "projections")
     private List<String> projections;
+
+    /**
+     * Gets list of attributes to be projected in segment.
+     */
+    @JsonProperty(value = "projectedAttributes")
+    private List<SegmentationProjection> projectedAttributes;
 
     /**
      * Gets list of rowsets of segment.
@@ -58,7 +64,7 @@ public class SegmentationQuery {
     }
 
     /**
-     * Get gets list of attributes to be projected in segment.
+     * Get gets list of attributes to be projected in segment. (DEPRECATED).
      *
      * @return the projections value
      */
@@ -67,13 +73,33 @@ public class SegmentationQuery {
     }
 
     /**
-     * Set gets list of attributes to be projected in segment.
+     * Set gets list of attributes to be projected in segment. (DEPRECATED).
      *
      * @param projections the projections value to set
      * @return the SegmentationQuery object itself.
      */
     public SegmentationQuery withProjections(List<String> projections) {
         this.projections = projections;
+        return this;
+    }
+
+    /**
+     * Get gets list of attributes to be projected in segment.
+     *
+     * @return the projectedAttributes value
+     */
+    public List<SegmentationProjection> projectedAttributes() {
+        return this.projectedAttributes;
+    }
+
+    /**
+     * Set gets list of attributes to be projected in segment.
+     *
+     * @param projectedAttributes the projectedAttributes value to set
+     * @return the SegmentationQuery object itself.
+     */
+    public SegmentationQuery withProjectedAttributes(List<SegmentationProjection> projectedAttributes) {
+        this.projectedAttributes = projectedAttributes;
         return this;
     }
 

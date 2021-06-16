@@ -7,6 +7,8 @@
 namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 {
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -26,20 +28,27 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the MeasureAggregate class.
         /// </summary>
         /// <param name="operation">Possible values include: 'sum', 'avg',
-        /// 'min', 'max', 'count', 'countDistinct', 'first', 'last'</param>
+        /// 'min', 'max', 'count', 'countDistinct', 'first', 'last', 'argMax',
+        /// 'argMin'</param>
         /// <param name="field">Gets the field on which the aggregate operation
         /// is applied</param>
         /// <param name="alias">Gets the alias for the field</param>
         /// <param name="displayName">Gets the display name for the
         /// aggregate</param>
         /// <param name="order">Gets the order for the aggregate</param>
-        public MeasureAggregate(string operation = default(string), string field = default(string), string alias = default(string), string displayName = default(string), int? order = default(int?))
+        /// <param name="aggregates">Gets list of aggregates of the
+        /// measure.</param>
+        /// <param name="isIncluded">Gets a value indicating whether to display
+        /// the field in results</param>
+        public MeasureAggregate(string operation = default(string), string field = default(string), string alias = default(string), string displayName = default(string), int? order = default(int?), IList<MeasureAggregate> aggregates = default(IList<MeasureAggregate>), bool? isIncluded = default(bool?))
         {
             Operation = operation;
             Field = field;
             Alias = alias;
             DisplayName = displayName;
             Order = order;
+            Aggregates = aggregates;
+            IsIncluded = isIncluded;
             CustomInit();
         }
 
@@ -50,7 +59,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'sum', 'avg', 'min', 'max',
-        /// 'count', 'countDistinct', 'first', 'last'
+        /// 'count', 'countDistinct', 'first', 'last', 'argMax', 'argMin'
         /// </summary>
         [JsonProperty(PropertyName = "operation")]
         public string Operation { get; set; }
@@ -78,6 +87,18 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "order")]
         public int? Order { get; set; }
+
+        /// <summary>
+        /// Gets list of aggregates of the measure.
+        /// </summary>
+        [JsonProperty(PropertyName = "aggregates")]
+        public IList<MeasureAggregate> Aggregates { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether to display the field in results
+        /// </summary>
+        [JsonProperty(PropertyName = "isIncluded")]
+        public bool? IsIncluded { get; set; }
 
     }
 }

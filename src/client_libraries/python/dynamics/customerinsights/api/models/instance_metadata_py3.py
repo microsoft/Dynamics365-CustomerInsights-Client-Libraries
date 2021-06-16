@@ -15,11 +15,12 @@ class InstanceMetadata(Model):
     :type name: str
     :param provisioning_state: Possible values include: 'new', 'creating',
      'active', 'createFailed', 'updateFailed', 'deleting',
-     'refreshCredentials', 'resetInstanceInProgress'
+     'refreshCredentials', 'resetInstanceInProgress', 'updating',
+     'quickUpdate', 'deactivated'
     :type provisioning_state: str or
      ~dynamics.customerinsights.api.models.enum
     :param instance_type: Possible values include: 'trial', 'sandbox',
-     'production'
+     'production', 'pitchDemo', 'pov'
     :type instance_type: str or ~dynamics.customerinsights.api.models.enum
     :param refresh_schedule:
     :type refresh_schedule:
@@ -38,6 +39,13 @@ class InstanceMetadata(Model):
     :param trial_extension_history: Stores the details of trial extensions
      done if this is a trial instance
     :type trial_extension_history: str
+    :param is_refresh_credential_required: Gets a value indicating if
+     credential  is required to refresh any of the datasources
+    :type is_refresh_credential_required: bool
+    :param trial_extension_details: Stores the details of trial extensions
+     done if this is a trial instance
+    :type trial_extension_details:
+     list[~dynamics.customerinsights.api.models.TrialExtensionDetails]
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -64,6 +72,8 @@ class InstanceMetadata(Model):
         'cds_mdl_info': {'key': 'cdsMdlInfo', 'type': 'CdsMdlInfo'},
         'max_trial_extensions_allowed': {'key': 'maxTrialExtensionsAllowed', 'type': 'int'},
         'trial_extension_history': {'key': 'trialExtensionHistory', 'type': 'str'},
+        'is_refresh_credential_required': {'key': 'isRefreshCredentialRequired', 'type': 'bool'},
+        'trial_extension_details': {'key': 'trialExtensionDetails', 'type': '[TrialExtensionDetails]'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -72,7 +82,7 @@ class InstanceMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str=None, provisioning_state=None, instance_type=None, refresh_schedule=None, expiry_time_utc=None, region: str=None, cds_org_info=None, cds_mdl_info=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, name: str=None, provisioning_state=None, instance_type=None, refresh_schedule=None, expiry_time_utc=None, region: str=None, cds_org_info=None, cds_mdl_info=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, is_refresh_credential_required: bool=None, trial_extension_details=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(InstanceMetadata, self).__init__(**kwargs)
         self.name = name
         self.provisioning_state = provisioning_state
@@ -84,6 +94,8 @@ class InstanceMetadata(Model):
         self.cds_mdl_info = cds_mdl_info
         self.max_trial_extensions_allowed = max_trial_extensions_allowed
         self.trial_extension_history = trial_extension_history
+        self.is_refresh_credential_required = is_refresh_credential_required
+        self.trial_extension_details = trial_extension_details
         self.version = version
         self.updated_by = updated_by
         self.updated_utc = updated_utc

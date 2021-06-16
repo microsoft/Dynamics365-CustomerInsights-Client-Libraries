@@ -9,8 +9,10 @@ from .segment_metadata import SegmentMetadata
 
 
 class InstancesInstanceIdManageSegmentsPostRequest(SegmentMetadata):
-    """Represents a Segment Metadata.
+    """Represents a base Segment Metadata.
 
+    :param kind: Possible values include: 'default', 'engagement'
+    :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param name: Gets the unique name of the segment
     :type name: str
     :param friendly_name: Gets the friendlyName of the segment.
@@ -54,6 +56,7 @@ class InstancesInstanceIdManageSegmentsPostRequest(SegmentMetadata):
     """
 
     _attribute_map = {
+        'kind': {'key': 'kind', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},

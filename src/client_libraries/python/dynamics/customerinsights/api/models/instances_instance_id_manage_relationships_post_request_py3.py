@@ -33,8 +33,11 @@ class InstancesInstanceIdManageRelationshipsPostRequest(RelationshipMetadata):
     :param to_entity_name: Gets the name of the entity this relationship
      points to.
     :type to_entity_name: str
-    :param cardinality: Possible values include: 'oneToMany', 'oneToOne'
+    :param cardinality: Possible values include: 'oneToMany', 'oneToOne',
+     'manyToOne'
     :type cardinality: str or ~dynamics.customerinsights.api.models.enum
+    :param source: Possible values include: 'user', 'system', 'inferred'
+    :type source: str or ~dynamics.customerinsights.api.models.enum
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -60,6 +63,7 @@ class InstancesInstanceIdManageRelationshipsPostRequest(RelationshipMetadata):
         'to_attribute_name': {'key': 'toAttributeName', 'type': 'str'},
         'to_entity_name': {'key': 'toEntityName', 'type': 'str'},
         'cardinality': {'key': 'cardinality', 'type': 'str'},
+        'source': {'key': 'source', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -68,5 +72,5 @@ class InstancesInstanceIdManageRelationshipsPostRequest(RelationshipMetadata):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, friendly_name: str=None, name: str=None, description: str=None, relationship_type=None, from_attribute_name: str=None, from_entity_name: str=None, to_attribute_name: str=None, to_entity_name: str=None, cardinality=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
-        super(InstancesInstanceIdManageRelationshipsPostRequest, self).__init__(friendly_name=friendly_name, name=name, description=description, relationship_type=relationship_type, from_attribute_name=from_attribute_name, from_entity_name=from_entity_name, to_attribute_name=to_attribute_name, to_entity_name=to_entity_name, cardinality=cardinality, version=version, updated_by=updated_by, updated_utc=updated_utc, created_by=created_by, created_utc=created_utc, instance_id=instance_id, **kwargs)
+    def __init__(self, *, friendly_name: str=None, name: str=None, description: str=None, relationship_type=None, from_attribute_name: str=None, from_entity_name: str=None, to_attribute_name: str=None, to_entity_name: str=None, cardinality=None, source=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+        super(InstancesInstanceIdManageRelationshipsPostRequest, self).__init__(friendly_name=friendly_name, name=name, description=description, relationship_type=relationship_type, from_attribute_name=from_attribute_name, from_entity_name=from_entity_name, to_attribute_name=to_attribute_name, to_entity_name=to_entity_name, cardinality=cardinality, source=source, version=version, updated_by=updated_by, updated_utc=updated_utc, created_by=created_by, created_utc=created_utc, instance_id=instance_id, **kwargs)

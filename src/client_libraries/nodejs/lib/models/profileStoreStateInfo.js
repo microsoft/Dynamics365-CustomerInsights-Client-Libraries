@@ -21,8 +21,6 @@ class ProfileStoreStateInfo {
    * file yielded from merge output.
    * @property {number} [primaryInfo.size] Gets the size of customer file
    * yielded from merge .
-   * @property {boolean} [primaryInfo.activityStoreRunSuccessful] Gets the flag
-   * that tells if the Activity Store Job has run successfully.
    * @property {object} [primaryInfo.profileStoreHydrationStateInfo] Gets the
    * state of profile store hydration per job type.
    * @property {object} [secondaryInfo]
@@ -32,8 +30,6 @@ class ProfileStoreStateInfo {
    * file yielded from merge output.
    * @property {number} [secondaryInfo.size] Gets the size of customer file
    * yielded from merge .
-   * @property {boolean} [secondaryInfo.activityStoreRunSuccessful] Gets the
-   * flag that tells if the Activity Store Job has run successfully.
    * @property {object} [secondaryInfo.profileStoreHydrationStateInfo] Gets the
    * state of profile store hydration per job type.
    * @property {uuid} [instanceId] Customer Insights instance id associated

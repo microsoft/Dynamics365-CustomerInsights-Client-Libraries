@@ -39,7 +39,9 @@ public class IC360EntityModel {
      * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
      * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
      * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-     * 'derivedEntity', 'powerPlatformSource'.
+     * 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
+     * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
+     * 'cjoData', 'eiData', 'hierarchy'.
      */
     @JsonProperty(value = "dataflowType")
     private String dataflowType;
@@ -111,7 +113,7 @@ public class IC360EntityModel {
     }
 
     /**
-     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'.
+     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'.
      *
      * @return the dataflowType value
      */
@@ -120,7 +122,7 @@ public class IC360EntityModel {
     }
 
     /**
-     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource'.
+     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'.
      *
      * @param dataflowType the dataflowType value to set
      * @return the IC360EntityModel object itself.

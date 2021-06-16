@@ -25,7 +25,9 @@ class IC360EntityModel {
    * 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
    * 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
    * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-   * 'derivedEntity', 'powerPlatformSource'
+   * 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
+   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
+   * 'cjoData', 'eiData', 'hierarchy'
    * @property {array} [entities] Gets entities in the model.
    */
   constructor() {

@@ -17,16 +17,34 @@ class CdsOrgInfo(Model):
     :type url: str
     :param state: Gets the Cds Organization State
     :type state: str
+    :param location: Gets region location of Cds Organization
+    :type location: str
+    :param environment_sku: Gets SKU of Cds Organization
+    :type environment_sku: str
+    :param expiration_time: Gets the expiration time of CDS Organization if
+     the SKU is Trial
+    :type expiration_time: datetime
+    :param max_allowed_expiration_time: Gets the max allowed expiration time
+     of CDS Organization if the SKU is Trial
+    :type max_allowed_expiration_time: datetime
     """
 
     _attribute_map = {
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
         'url': {'key': 'url', 'type': 'str'},
         'state': {'key': 'state', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'environment_sku': {'key': 'environmentSku', 'type': 'str'},
+        'expiration_time': {'key': 'expirationTime', 'type': 'iso-8601'},
+        'max_allowed_expiration_time': {'key': 'maxAllowedExpirationTime', 'type': 'iso-8601'},
     }
 
-    def __init__(self, *, friendly_name: str=None, url: str=None, state: str=None, **kwargs) -> None:
+    def __init__(self, *, friendly_name: str=None, url: str=None, state: str=None, location: str=None, environment_sku: str=None, expiration_time=None, max_allowed_expiration_time=None, **kwargs) -> None:
         super(CdsOrgInfo, self).__init__(**kwargs)
         self.friendly_name = friendly_name
         self.url = url
         self.state = state
+        self.location = location
+        self.environment_sku = environment_sku
+        self.expiration_time = expiration_time
+        self.max_allowed_expiration_time = max_allowed_expiration_time

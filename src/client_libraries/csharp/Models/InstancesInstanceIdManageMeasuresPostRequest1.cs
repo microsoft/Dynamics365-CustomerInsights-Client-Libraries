@@ -34,6 +34,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// (not persisted in store)</param>
         /// <param name="outputHistory">Output history for the measure. (not
         /// persisted in store)</param>
+        /// <param name="isTemplate">Check if measure metadata is a
+        /// template</param>
+        /// <param name="templateId">Gets the template ID for templates</param>
         /// <param name="version">Version number of this object.</param>
         /// <param name="updatedBy">UPN of the user who last updated this
         /// record.</param>
@@ -44,8 +47,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public InstancesInstanceIdManageMeasuresPostRequest1(string displayName = default(string), string name = default(string), string description = default(string), MeasureDefinition definition = default(MeasureDefinition), Evaluation latestEvaluation = default(Evaluation), ScalarOutput output = default(ScalarOutput), EvaluationStats evaluationStats = default(EvaluationStats), StringInfo errorDescription = default(StringInfo), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<Evaluation> evaluationHistory = default(IList<Evaluation>), IList<ScalarOutput> outputHistory = default(IList<ScalarOutput>), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
-            : base(displayName, name, description, definition, latestEvaluation, output, evaluationStats, errorDescription, sqlValidationStats, evaluationHistory, outputHistory, version, updatedBy, updatedUtc, createdBy, createdUtc, instanceId)
+        public InstancesInstanceIdManageMeasuresPostRequest1(string displayName = default(string), string name = default(string), string description = default(string), MeasureDefinition definition = default(MeasureDefinition), Evaluation latestEvaluation = default(Evaluation), ScalarOutput output = default(ScalarOutput), EvaluationStats evaluationStats = default(EvaluationStats), StringInfo errorDescription = default(StringInfo), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<Evaluation> evaluationHistory = default(IList<Evaluation>), IList<ScalarOutput> outputHistory = default(IList<ScalarOutput>), bool? isTemplate = default(bool?), System.Guid? templateId = default(System.Guid?), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+            : base(displayName, name, description, definition, latestEvaluation, output, evaluationStats, errorDescription, sqlValidationStats, evaluationHistory, outputHistory, isTemplate, templateId, version, updatedBy, updatedUtc, createdBy, createdUtc, instanceId)
         {
             CustomInit();
         }

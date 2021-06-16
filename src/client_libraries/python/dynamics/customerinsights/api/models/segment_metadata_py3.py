@@ -9,8 +9,10 @@ from msrest.serialization import Model
 
 
 class SegmentMetadata(Model):
-    """Represents a Segment Metadata.
+    """Represents a base Segment Metadata.
 
+    :param kind: Possible values include: 'default', 'engagement'
+    :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param name: Gets the unique name of the segment
     :type name: str
     :param friendly_name: Gets the friendlyName of the segment.
@@ -54,6 +56,7 @@ class SegmentMetadata(Model):
     """
 
     _attribute_map = {
+        'kind': {'key': 'kind', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'friendly_name': {'key': 'friendlyName', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
@@ -72,8 +75,9 @@ class SegmentMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str=None, friendly_name: str=None, description: str=None, segment_query_expression=None, state=None, error_description: str=None, end_date=None, evaluation_status=None, sql_validation_stats=None, evaluation_status_history=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, name: str=None, friendly_name: str=None, description: str=None, segment_query_expression=None, state=None, error_description: str=None, end_date=None, evaluation_status=None, sql_validation_stats=None, evaluation_status_history=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(SegmentMetadata, self).__init__(**kwargs)
+        self.kind = kind
         self.name = name
         self.friendly_name = friendly_name
         self.description = description

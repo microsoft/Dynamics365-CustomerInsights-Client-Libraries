@@ -7,6 +7,7 @@
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
 import org.joda.time.DateTime;
+import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,13 +24,14 @@ public class InstanceMetadata {
     /**
      * Possible values include: 'new', 'creating', 'active', 'createFailed',
      * 'updateFailed', 'deleting', 'refreshCredentials',
-     * 'resetInstanceInProgress'.
+     * 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'.
      */
     @JsonProperty(value = "provisioningState")
     private String provisioningState;
 
     /**
-     * Possible values include: 'trial', 'sandbox', 'production'.
+     * Possible values include: 'trial', 'sandbox', 'production', 'pitchDemo',
+     * 'pov'.
      */
     @JsonProperty(value = "instanceType")
     private String instanceType;
@@ -75,6 +77,19 @@ public class InstanceMetadata {
      */
     @JsonProperty(value = "trialExtensionHistory")
     private String trialExtensionHistory;
+
+    /**
+     * Gets a value indicating if credential  is required to refresh any of the
+     * datasources.
+     */
+    @JsonProperty(value = "isRefreshCredentialRequired")
+    private Boolean isRefreshCredentialRequired;
+
+    /**
+     * Stores the details of trial extensions done if this is a trial instance.
+     */
+    @JsonProperty(value = "trialExtensionDetails")
+    private List<TrialExtensionDetails> trialExtensionDetails;
 
     /**
      * Version number of this object.
@@ -133,7 +148,7 @@ public class InstanceMetadata {
     }
 
     /**
-     * Get possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress'.
+     * Get possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'.
      *
      * @return the provisioningState value
      */
@@ -142,7 +157,7 @@ public class InstanceMetadata {
     }
 
     /**
-     * Set possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress'.
+     * Set possible values include: 'new', 'creating', 'active', 'createFailed', 'updateFailed', 'deleting', 'refreshCredentials', 'resetInstanceInProgress', 'updating', 'quickUpdate', 'deactivated'.
      *
      * @param provisioningState the provisioningState value to set
      * @return the InstanceMetadata object itself.
@@ -153,7 +168,7 @@ public class InstanceMetadata {
     }
 
     /**
-     * Get possible values include: 'trial', 'sandbox', 'production'.
+     * Get possible values include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'.
      *
      * @return the instanceType value
      */
@@ -162,7 +177,7 @@ public class InstanceMetadata {
     }
 
     /**
-     * Set possible values include: 'trial', 'sandbox', 'production'.
+     * Set possible values include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'.
      *
      * @param instanceType the instanceType value to set
      * @return the InstanceMetadata object itself.
@@ -309,6 +324,46 @@ public class InstanceMetadata {
      */
     public InstanceMetadata withTrialExtensionHistory(String trialExtensionHistory) {
         this.trialExtensionHistory = trialExtensionHistory;
+        return this;
+    }
+
+    /**
+     * Get gets a value indicating if credential  is required to refresh any of the datasources.
+     *
+     * @return the isRefreshCredentialRequired value
+     */
+    public Boolean isRefreshCredentialRequired() {
+        return this.isRefreshCredentialRequired;
+    }
+
+    /**
+     * Set gets a value indicating if credential  is required to refresh any of the datasources.
+     *
+     * @param isRefreshCredentialRequired the isRefreshCredentialRequired value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withIsRefreshCredentialRequired(Boolean isRefreshCredentialRequired) {
+        this.isRefreshCredentialRequired = isRefreshCredentialRequired;
+        return this;
+    }
+
+    /**
+     * Get stores the details of trial extensions done if this is a trial instance.
+     *
+     * @return the trialExtensionDetails value
+     */
+    public List<TrialExtensionDetails> trialExtensionDetails() {
+        return this.trialExtensionDetails;
+    }
+
+    /**
+     * Set stores the details of trial extensions done if this is a trial instance.
+     *
+     * @param trialExtensionDetails the trialExtensionDetails value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withTrialExtensionDetails(List<TrialExtensionDetails> trialExtensionDetails) {
+        this.trialExtensionDetails = trialExtensionDetails;
         return this;
     }
 

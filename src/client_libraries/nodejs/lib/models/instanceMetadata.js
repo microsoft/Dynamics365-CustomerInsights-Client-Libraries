@@ -16,9 +16,10 @@ class InstanceMetadata {
    * @property {string} [name] Gets the user defined instance name.
    * @property {string} [provisioningState] Possible values include: 'new',
    * 'creating', 'active', 'createFailed', 'updateFailed', 'deleting',
-   * 'refreshCredentials', 'resetInstanceInProgress'
+   * 'refreshCredentials', 'resetInstanceInProgress', 'updating',
+   * 'quickUpdate', 'deactivated'
    * @property {string} [instanceType] Possible values include: 'trial',
-   * 'sandbox', 'production'
+   * 'sandbox', 'production', 'pitchDemo', 'pov'
    * @property {object} [refreshSchedule]
    * @property {boolean} [refreshSchedule.isActive] Gets a value indicating
    * whether the schedule is active.
@@ -38,6 +39,14 @@ class InstanceMetadata {
    * Friendly Name
    * @property {string} [cdsOrgInfo.url] Gets the Cds Organization Url
    * @property {string} [cdsOrgInfo.state] Gets the Cds Organization State
+   * @property {string} [cdsOrgInfo.location] Gets region location of Cds
+   * Organization
+   * @property {string} [cdsOrgInfo.environmentSku] Gets SKU of Cds
+   * Organization
+   * @property {date} [cdsOrgInfo.expirationTime] Gets the expiration time of
+   * CDS Organization if the SKU is Trial
+   * @property {date} [cdsOrgInfo.maxAllowedExpirationTime] Gets the max
+   * allowed expiration time of CDS Organization if the SKU is Trial
    * @property {object} [cdsMdlInfo]
    * @property {object} [cdsMdlInfo.privateWorkSpace]
    * @property {string} [cdsMdlInfo.privateWorkSpace.name] Gets the datalake
@@ -52,6 +61,10 @@ class InstanceMetadata {
    * @property {number} [maxTrialExtensionsAllowed] Gets the total number of
    * extensions allowed if this is trial instance
    * @property {string} [trialExtensionHistory] Stores the details of trial
+   * extensions done if this is a trial instance
+   * @property {boolean} [isRefreshCredentialRequired] Gets a value indicating
+   * if credential  is required to refresh any of the datasources
+   * @property {array} [trialExtensionDetails] Stores the details of trial
    * extensions done if this is a trial instance
    * @property {number} [version] Version number of this object.
    * @property {string} [updatedBy] UPN of the user who last updated this
@@ -151,6 +164,28 @@ class InstanceMetadata {
             serializedName: 'trialExtensionHistory',
             type: {
               name: 'String'
+            }
+          },
+          isRefreshCredentialRequired: {
+            required: false,
+            serializedName: 'isRefreshCredentialRequired',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          trialExtensionDetails: {
+            required: false,
+            serializedName: 'trialExtensionDetails',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'TrialExtensionDetailsElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'TrialExtensionDetails'
+                  }
+              }
             }
           },
           version: {

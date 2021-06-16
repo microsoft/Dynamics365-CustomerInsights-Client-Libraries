@@ -16,7 +16,9 @@ class EntityDependency(Model):
     :param type: Possible values include: 'unspecified', 'profile',
      'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
      'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-     'enrichment', 'insights', 'derivedEntity', 'quarantine'
+     'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+     'conflationManualReview', 'selfConflationManualReview',
+     'semanticActivity', 'segmentMembership'
     :type type: str or ~dynamics.customerinsights.api.models.enum
     :param attribute_names: Gets the list of attributes included in the
      dependency.
@@ -24,6 +26,10 @@ class EntityDependency(Model):
     :param relationship_names: Gets the list of relationships included in the
      dependency
     :type relationship_names: list[str]
+    :param activity_details: Contains the Activity type and entity name
+     corresponding to that activity type.
+    :type activity_details:
+     list[~dynamics.customerinsights.api.models.InsightActivityDetails]
     """
 
     _attribute_map = {
@@ -31,11 +37,13 @@ class EntityDependency(Model):
         'type': {'key': 'type', 'type': 'str'},
         'attribute_names': {'key': 'attributeNames', 'type': '[str]'},
         'relationship_names': {'key': 'relationshipNames', 'type': '[str]'},
+        'activity_details': {'key': 'activityDetails', 'type': '[InsightActivityDetails]'},
     }
 
-    def __init__(self, *, qualified_entity_name: str=None, type=None, attribute_names=None, relationship_names=None, **kwargs) -> None:
+    def __init__(self, *, qualified_entity_name: str=None, type=None, attribute_names=None, relationship_names=None, activity_details=None, **kwargs) -> None:
         super(EntityDependency, self).__init__(**kwargs)
         self.qualified_entity_name = qualified_entity_name
         self.type = type
         self.attribute_names = attribute_names
         self.relationship_names = relationship_names
+        self.activity_details = activity_details

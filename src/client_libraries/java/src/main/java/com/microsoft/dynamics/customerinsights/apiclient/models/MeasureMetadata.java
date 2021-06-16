@@ -7,8 +7,8 @@
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
 import java.util.List;
-import org.joda.time.DateTime;
 import java.util.UUID;
+import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -80,6 +80,18 @@ public class MeasureMetadata {
      */
     @JsonProperty(value = "outputHistory")
     private List<ScalarOutput> outputHistory;
+
+    /**
+     * Check if measure metadata is a template.
+     */
+    @JsonProperty(value = "isTemplate")
+    private Boolean isTemplate;
+
+    /**
+     * Gets the template ID for templates.
+     */
+    @JsonProperty(value = "templateId")
+    private UUID templateId;
 
     /**
      * Version number of this object.
@@ -334,6 +346,46 @@ public class MeasureMetadata {
      */
     public MeasureMetadata withOutputHistory(List<ScalarOutput> outputHistory) {
         this.outputHistory = outputHistory;
+        return this;
+    }
+
+    /**
+     * Get check if measure metadata is a template.
+     *
+     * @return the isTemplate value
+     */
+    public Boolean isTemplate() {
+        return this.isTemplate;
+    }
+
+    /**
+     * Set check if measure metadata is a template.
+     *
+     * @param isTemplate the isTemplate value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withIsTemplate(Boolean isTemplate) {
+        this.isTemplate = isTemplate;
+        return this;
+    }
+
+    /**
+     * Get gets the template ID for templates.
+     *
+     * @return the templateId value
+     */
+    public UUID templateId() {
+        return this.templateId;
+    }
+
+    /**
+     * Set gets the template ID for templates.
+     *
+     * @param templateId the templateId value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withTemplateId(UUID templateId) {
+        this.templateId = templateId;
         return this;
     }
 

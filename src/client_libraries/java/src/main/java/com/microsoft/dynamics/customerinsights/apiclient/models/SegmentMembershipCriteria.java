@@ -10,9 +10,15 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Represent a Segment Query.
+ * Represents a base Segment Query.
  */
 public class SegmentMembershipCriteria {
+    /**
+     * Possible values include: 'default', 'engagement'.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
+
     /**
      * Possible values include: 'and', 'or'.
      */
@@ -64,6 +70,26 @@ public class SegmentMembershipCriteria {
      */
     @JsonProperty(value = "isTime")
     private Boolean isTime;
+
+    /**
+     * Get possible values include: 'default', 'engagement'.
+     *
+     * @return the kind value
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set possible values include: 'default', 'engagement'.
+     *
+     * @param kind the kind value to set
+     * @return the SegmentMembershipCriteria object itself.
+     */
+    public SegmentMembershipCriteria withKind(String kind) {
+        this.kind = kind;
+        return this;
+    }
 
     /**
      * Get possible values include: 'and', 'or'.

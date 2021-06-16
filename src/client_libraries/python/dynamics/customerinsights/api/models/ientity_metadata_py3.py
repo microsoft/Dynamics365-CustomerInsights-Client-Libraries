@@ -28,7 +28,9 @@ class IEntityMetadata(Model):
      'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity',
      'segmentation', 'ingestion', 'attachCdm', 'genericPrediction',
      'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
-     'derivedEntity', 'powerPlatformSource'
+     'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
+     'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
+     'cjoData', 'eiData', 'hierarchy'
     :type dataflow_type: str or ~dynamics.customerinsights.api.models.enum
     :param should_use_spark_sas_auth: Gets a value indicating whether Sas Auth
      is used for the entity.
@@ -39,7 +41,9 @@ class IEntityMetadata(Model):
     :param entity_type: Possible values include: 'unspecified', 'profile',
      'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
      'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-     'enrichment', 'insights', 'derivedEntity', 'quarantine'
+     'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
+     'conflationManualReview', 'selfConflationManualReview',
+     'semanticActivity', 'segmentMembership'
     :type entity_type: str or ~dynamics.customerinsights.api.models.enum
     :param attributes: Gets entity attributes.
     :type attributes:

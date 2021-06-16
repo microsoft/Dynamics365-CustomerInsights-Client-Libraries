@@ -45,6 +45,8 @@ class AttributeDataProfile {
    * @property {date} [profilingDate] Profiling date
    * @property {boolean} [isSuggestedPrimaryKey] Represents a value indicating
    * whether this attribute can be used as a primary key of the entity
+   * @property {object} [checkIfExactStats] Represents a value indicating
+   * whether we calculate exact or approx stats
    */
   constructor() {
   }
@@ -177,6 +179,13 @@ class AttributeDataProfile {
             serializedName: 'isSuggestedPrimaryKey',
             type: {
               name: 'Boolean'
+            }
+          },
+          checkIfExactStats: {
+            required: false,
+            serializedName: 'checkIfExactStats',
+            type: {
+              name: 'Object'
             }
           }
         }

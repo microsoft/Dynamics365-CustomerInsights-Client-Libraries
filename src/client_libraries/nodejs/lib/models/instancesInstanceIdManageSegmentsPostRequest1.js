@@ -9,7 +9,7 @@
 const models = require('./index');
 
 /**
- * Represents a Segment Metadata.
+ * Represents a base Segment Metadata.
  *
  * @extends models['SegmentMetadata']
  */
@@ -35,6 +35,13 @@ class InstancesInstanceIdManageSegmentsPostRequest1 extends models['SegmentMetad
         name: 'Composite',
         className: 'InstancesInstanceIdManageSegmentsPostRequest1',
         modelProperties: {
+          kind: {
+            required: false,
+            serializedName: 'kind',
+            type: {
+              name: 'String'
+            }
+          },
           name: {
             required: false,
             serializedName: 'name',

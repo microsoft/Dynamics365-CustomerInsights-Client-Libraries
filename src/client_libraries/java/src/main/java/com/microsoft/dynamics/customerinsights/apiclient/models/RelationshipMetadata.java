@@ -67,10 +67,16 @@ public class RelationshipMetadata {
     private String toEntityName;
 
     /**
-     * Possible values include: 'oneToMany', 'oneToOne'.
+     * Possible values include: 'oneToMany', 'oneToOne', 'manyToOne'.
      */
     @JsonProperty(value = "cardinality")
     private String cardinality;
+
+    /**
+     * Possible values include: 'user', 'system', 'inferred'.
+     */
+    @JsonProperty(value = "source")
+    private String source;
 
     /**
      * Version number of this object.
@@ -269,7 +275,7 @@ public class RelationshipMetadata {
     }
 
     /**
-     * Get possible values include: 'oneToMany', 'oneToOne'.
+     * Get possible values include: 'oneToMany', 'oneToOne', 'manyToOne'.
      *
      * @return the cardinality value
      */
@@ -278,13 +284,33 @@ public class RelationshipMetadata {
     }
 
     /**
-     * Set possible values include: 'oneToMany', 'oneToOne'.
+     * Set possible values include: 'oneToMany', 'oneToOne', 'manyToOne'.
      *
      * @param cardinality the cardinality value to set
      * @return the RelationshipMetadata object itself.
      */
     public RelationshipMetadata withCardinality(String cardinality) {
         this.cardinality = cardinality;
+        return this;
+    }
+
+    /**
+     * Get possible values include: 'user', 'system', 'inferred'.
+     *
+     * @return the source value
+     */
+    public String source() {
+        return this.source;
+    }
+
+    /**
+     * Set possible values include: 'user', 'system', 'inferred'.
+     *
+     * @param source the source value to set
+     * @return the RelationshipMetadata object itself.
+     */
+    public RelationshipMetadata withSource(String source) {
+        this.source = source;
         return this;
     }
 

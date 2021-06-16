@@ -36,7 +36,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'profile', 'conflationMap', 'activity', 'aggregateKpi',
         /// 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
         /// 'genericPrediction', 'enrichment', 'insights', 'derivedEntity',
-        /// 'quarantine'</param>
+        /// 'corrupt', 'selfConflation', 'conflationManualReview',
+        /// 'selfConflationManualReview', 'semanticActivity',
+        /// 'segmentMembership'</param>
         /// <param name="timestampFieldName">Time stamp field name.</param>
         /// <param name="semanticLabels">Semantic labels by attribute
         /// name.</param>
@@ -72,7 +74,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets or sets possible values include: 'unspecified', 'profile',
         /// 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi',
         /// 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
-        /// 'enrichment', 'insights', 'derivedEntity', 'quarantine'
+        /// 'enrichment', 'insights', 'derivedEntity', 'corrupt',
+        /// 'selfConflation', 'conflationManualReview',
+        /// 'selfConflationManualReview', 'semanticActivity',
+        /// 'segmentMembership'
         /// </summary>
         [JsonProperty(PropertyName = "entityType")]
         public string EntityType { get; set; }

@@ -30,17 +30,20 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="exceptionCulprit">Possible values include: 'system',
         /// 'user', 'external'</param>
         /// <param name="resultSeverity">Possible values include: 'error',
-        /// 'warning'</param>
+        /// 'warning', 'recommendation'</param>
         /// <param name="message">Message providing more information about the
+        /// event.</param>
+        /// <param name="name">Message providing more information about the
         /// event.</param>
         /// <param name="ciResults">List of CiResult contining CI result error
         /// code and information (if any).</param>
-        public CIResult(string exceptionCulprit = default(string), string errorCode = default(string), string resultSeverity = default(string), string message = default(string), IDictionary<string, object> paramsProperty = default(IDictionary<string, object>), IList<CIResult> ciResults = default(IList<CIResult>))
+        public CIResult(string exceptionCulprit = default(string), string errorCode = default(string), string resultSeverity = default(string), string message = default(string), string name = default(string), IDictionary<string, object> paramsProperty = default(IDictionary<string, object>), IList<CIResult> ciResults = default(IList<CIResult>))
         {
             ExceptionCulprit = exceptionCulprit;
             ErrorCode = errorCode;
             ResultSeverity = resultSeverity;
             Message = message;
+            Name = name;
             ParamsProperty = paramsProperty;
             CiResults = ciResults;
             CustomInit();
@@ -63,7 +66,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string ErrorCode { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'error', 'warning'
+        /// Gets or sets possible values include: 'error', 'warning',
+        /// 'recommendation'
         /// </summary>
         [JsonProperty(PropertyName = "resultSeverity")]
         public string ResultSeverity { get; set; }
@@ -73,6 +77,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "message")]
         public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets message providing more information about the event.
+        /// </summary>
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// </summary>

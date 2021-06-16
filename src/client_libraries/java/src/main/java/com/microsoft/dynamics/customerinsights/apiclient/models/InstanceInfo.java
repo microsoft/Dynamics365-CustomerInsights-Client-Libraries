@@ -27,7 +27,8 @@ public class InstanceInfo {
     private String name;
 
     /**
-     * Possible values include: 'trial', 'sandbox', 'production'.
+     * Possible values include: 'trial', 'sandbox', 'production', 'pitchDemo',
+     * 'pov'.
      */
     @JsonProperty(value = "instanceType")
     private String instanceType;
@@ -37,6 +38,33 @@ public class InstanceInfo {
      */
     @JsonProperty(value = "expiryTimeUtc")
     private DateTime expiryTimeUtc;
+
+    /**
+     * Gets the total number of extensions allowed if this is trial instance
+     * (not persisted in store).
+     */
+    @JsonProperty(value = "maxTrialExtensionsAllowed")
+    private Integer maxTrialExtensionsAllowed;
+
+    /**
+     * Stores the details of trial extensions done if this is a trial instance
+     * (not persisted in store).
+     */
+    @JsonProperty(value = "trialExtensionHistory")
+    private String trialExtensionHistory;
+
+    /**
+     * Gets the unique identifier for the scale unit (not persisted in store).
+     */
+    @JsonProperty(value = "scaleUnitId")
+    private String scaleUnitId;
+
+    /**
+     * Gets the Azure Region where the scale unit resides (not persisted in
+     * store).
+     */
+    @JsonProperty(value = "azureRegion")
+    private String azureRegion;
 
     /**
      * Get gets the unique ID for this instance.
@@ -79,7 +107,7 @@ public class InstanceInfo {
     }
 
     /**
-     * Get possible values include: 'trial', 'sandbox', 'production'.
+     * Get possible values include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'.
      *
      * @return the instanceType value
      */
@@ -88,7 +116,7 @@ public class InstanceInfo {
     }
 
     /**
-     * Set possible values include: 'trial', 'sandbox', 'production'.
+     * Set possible values include: 'trial', 'sandbox', 'production', 'pitchDemo', 'pov'.
      *
      * @param instanceType the instanceType value to set
      * @return the InstanceInfo object itself.
@@ -115,6 +143,86 @@ public class InstanceInfo {
      */
     public InstanceInfo withExpiryTimeUtc(DateTime expiryTimeUtc) {
         this.expiryTimeUtc = expiryTimeUtc;
+        return this;
+    }
+
+    /**
+     * Get gets the total number of extensions allowed if this is trial instance (not persisted in store).
+     *
+     * @return the maxTrialExtensionsAllowed value
+     */
+    public Integer maxTrialExtensionsAllowed() {
+        return this.maxTrialExtensionsAllowed;
+    }
+
+    /**
+     * Set gets the total number of extensions allowed if this is trial instance (not persisted in store).
+     *
+     * @param maxTrialExtensionsAllowed the maxTrialExtensionsAllowed value to set
+     * @return the InstanceInfo object itself.
+     */
+    public InstanceInfo withMaxTrialExtensionsAllowed(Integer maxTrialExtensionsAllowed) {
+        this.maxTrialExtensionsAllowed = maxTrialExtensionsAllowed;
+        return this;
+    }
+
+    /**
+     * Get stores the details of trial extensions done if this is a trial instance (not persisted in store).
+     *
+     * @return the trialExtensionHistory value
+     */
+    public String trialExtensionHistory() {
+        return this.trialExtensionHistory;
+    }
+
+    /**
+     * Set stores the details of trial extensions done if this is a trial instance (not persisted in store).
+     *
+     * @param trialExtensionHistory the trialExtensionHistory value to set
+     * @return the InstanceInfo object itself.
+     */
+    public InstanceInfo withTrialExtensionHistory(String trialExtensionHistory) {
+        this.trialExtensionHistory = trialExtensionHistory;
+        return this;
+    }
+
+    /**
+     * Get gets the unique identifier for the scale unit (not persisted in store).
+     *
+     * @return the scaleUnitId value
+     */
+    public String scaleUnitId() {
+        return this.scaleUnitId;
+    }
+
+    /**
+     * Set gets the unique identifier for the scale unit (not persisted in store).
+     *
+     * @param scaleUnitId the scaleUnitId value to set
+     * @return the InstanceInfo object itself.
+     */
+    public InstanceInfo withScaleUnitId(String scaleUnitId) {
+        this.scaleUnitId = scaleUnitId;
+        return this;
+    }
+
+    /**
+     * Get gets the Azure Region where the scale unit resides (not persisted in store).
+     *
+     * @return the azureRegion value
+     */
+    public String azureRegion() {
+        return this.azureRegion;
+    }
+
+    /**
+     * Set gets the Azure Region where the scale unit resides (not persisted in store).
+     *
+     * @param azureRegion the azureRegion value to set
+     * @return the InstanceInfo object itself.
+     */
+    public InstanceInfo withAzureRegion(String azureRegion) {
+        this.azureRegion = azureRegion;
         return this;
     }
 
