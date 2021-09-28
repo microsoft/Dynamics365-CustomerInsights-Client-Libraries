@@ -13,6 +13,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class PortalSettings {
     /**
+     * The coachmarks property.
+     */
+    @JsonProperty(value = "coachmarks")
+    private Coachmarks coachmarks;
+
+    /**
+     * The banners property.
+     */
+    @JsonProperty(value = "banners")
+    private Banners banners;
+
+    /**
+     * The notifications property.
+     */
+    @JsonProperty(value = "notifications")
+    private Notifications notifications;
+
+    /**
      * Gets a value indicating whether the user has seen the all apps (welcome)
      * page.
      */
@@ -32,6 +50,66 @@ public class PortalSettings {
      */
     @JsonProperty(value = "proTagger")
     private Boolean proTagger;
+
+    /**
+     * Get the coachmarks value.
+     *
+     * @return the coachmarks value
+     */
+    public Coachmarks coachmarks() {
+        return this.coachmarks;
+    }
+
+    /**
+     * Set the coachmarks value.
+     *
+     * @param coachmarks the coachmarks value to set
+     * @return the PortalSettings object itself.
+     */
+    public PortalSettings withCoachmarks(Coachmarks coachmarks) {
+        this.coachmarks = coachmarks;
+        return this;
+    }
+
+    /**
+     * Get the banners value.
+     *
+     * @return the banners value
+     */
+    public Banners banners() {
+        return this.banners;
+    }
+
+    /**
+     * Set the banners value.
+     *
+     * @param banners the banners value to set
+     * @return the PortalSettings object itself.
+     */
+    public PortalSettings withBanners(Banners banners) {
+        this.banners = banners;
+        return this;
+    }
+
+    /**
+     * Get the notifications value.
+     *
+     * @return the notifications value
+     */
+    public Notifications notifications() {
+        return this.notifications;
+    }
+
+    /**
+     * Set the notifications value.
+     *
+     * @param notifications the notifications value to set
+     * @return the PortalSettings object itself.
+     */
+    public PortalSettings withNotifications(Notifications notifications) {
+        this.notifications = notifications;
+        return this;
+    }
 
     /**
      * Get gets a value indicating whether the user has seen the all apps (welcome) page.

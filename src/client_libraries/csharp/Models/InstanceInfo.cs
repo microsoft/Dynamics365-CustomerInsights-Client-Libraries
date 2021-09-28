@@ -10,7 +10,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
     using System.Linq;
 
     /// <summary>
-    /// Represents an instance
+    /// The instance info.
     /// </summary>
     public partial class InstanceInfo
     {
@@ -43,7 +43,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// unit (not persisted in store)</param>
         /// <param name="azureRegion">Gets the Azure Region where the scale
         /// unit resides (not persisted in store)</param>
-        public InstanceInfo(System.Guid? instanceId = default(System.Guid?), string name = default(string), string instanceType = default(string), System.DateTime? expiryTimeUtc = default(System.DateTime?), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), string scaleUnitId = default(string), string azureRegion = default(string))
+        /// <param name="platformType">Gets the Insights App Type for g.
+        /// Verity, Engagement Insight etc. (not persisted in store)</param>
+        public InstanceInfo(System.Guid? instanceId = default(System.Guid?), string name = default(string), string instanceType = default(string), System.DateTime? expiryTimeUtc = default(System.DateTime?), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), string scaleUnitId = default(string), string azureRegion = default(string), string platformType = default(string))
         {
             InstanceId = instanceId;
             Name = name;
@@ -53,6 +55,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             TrialExtensionHistory = trialExtensionHistory;
             ScaleUnitId = scaleUnitId;
             AzureRegion = azureRegion;
+            PlatformType = platformType;
             CustomInit();
         }
 
@@ -114,6 +117,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "azureRegion")]
         public string AzureRegion { get; set; }
+
+        /// <summary>
+        /// Gets the Insights App Type for g. Verity, Engagement Insight etc.
+        /// (not persisted in store)
+        /// </summary>
+        [JsonProperty(PropertyName = "platformType")]
+        public string PlatformType { get; set; }
 
     }
 }

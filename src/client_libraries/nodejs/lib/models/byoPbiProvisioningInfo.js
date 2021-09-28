@@ -18,8 +18,8 @@ class ByoPbiProvisioningInfo {
    * @property {string} [storageResourceRegion] Storage account Region.
    * @property {string} [storageResourceTenantId] Storage account tenant.
    * @property {string} [capacityId] Pbi Capacity Id.
-   * @property {string} [delegationToken] PBI delegation token captured from
-   * the user.
+   * @property {string} [synapseServerlessSqlHostName] Synapse serverless sql
+   * host name
    */
   constructor() {
   }
@@ -73,9 +73,9 @@ class ByoPbiProvisioningInfo {
               name: 'String'
             }
           },
-          delegationToken: {
+          synapseServerlessSqlHostName: {
             required: false,
-            serializedName: 'delegationToken',
+            serializedName: 'synapseServerlessSqlHostName',
             type: {
               name: 'String'
             }

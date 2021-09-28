@@ -9,7 +9,7 @@ from msrest.serialization import Model
 
 
 class InstanceInfo(Model):
-    """Represents an instance.
+    """The instance info.
 
     :param instance_id: Gets the unique ID for this instance.
     :type instance_id: str
@@ -33,6 +33,9 @@ class InstanceInfo(Model):
     :param azure_region: Gets the Azure Region where the scale unit resides
      (not persisted in store)
     :type azure_region: str
+    :param platform_type: Gets the Insights App Type for g. Verity, Engagement
+     Insight etc. (not persisted in store)
+    :type platform_type: str
     """
 
     _attribute_map = {
@@ -44,9 +47,10 @@ class InstanceInfo(Model):
         'trial_extension_history': {'key': 'trialExtensionHistory', 'type': 'str'},
         'scale_unit_id': {'key': 'scaleUnitId', 'type': 'str'},
         'azure_region': {'key': 'azureRegion', 'type': 'str'},
+        'platform_type': {'key': 'platformType', 'type': 'str'},
     }
 
-    def __init__(self, *, instance_id: str=None, name: str=None, instance_type=None, expiry_time_utc=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, scale_unit_id: str=None, azure_region: str=None, **kwargs) -> None:
+    def __init__(self, *, instance_id: str=None, name: str=None, instance_type=None, expiry_time_utc=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, scale_unit_id: str=None, azure_region: str=None, platform_type: str=None, **kwargs) -> None:
         super(InstanceInfo, self).__init__(**kwargs)
         self.instance_id = instance_id
         self.name = name
@@ -56,3 +60,4 @@ class InstanceInfo(Model):
         self.trial_extension_history = trial_extension_history
         self.scale_unit_id = scale_unit_id
         self.azure_region = azure_region
+        self.platform_type = platform_type

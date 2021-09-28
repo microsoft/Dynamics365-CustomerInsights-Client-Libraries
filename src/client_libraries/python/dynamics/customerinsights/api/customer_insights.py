@@ -193,7 +193,7 @@ class CustomerInsights(SDKClient):
     get_all_data_sources.metadata = {'url': '/instances/{instanceId}/manage/datasources'}
 
     def get_data_source(
-            self, instance_id, data_source_id, custom_headers=None, raw=False, **operation_config):
+            self, instance_id, data_source_id, include_model=True, custom_headers=None, raw=False, **operation_config):
         """GetDataSource.
 
         Fetches a DataSourceInfo matching the dataSourceId configured for the
@@ -205,6 +205,9 @@ class CustomerInsights(SDKClient):
         :param data_source_id: Format - uuid. The data source id to fetch info
          for.
         :type data_source_id: str
+        :param include_model: The value indicating whether the model should be
+         inluded in the response.
+        :type include_model: bool
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -225,6 +228,8 @@ class CustomerInsights(SDKClient):
 
         # Construct parameters
         query_parameters = {}
+        if include_model is not None:
+            query_parameters['includeModel'] = self._serialize.query("include_model", include_model, 'bool')
 
         # Construct headers
         header_parameters = {}
@@ -729,17 +734,17 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 400:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -811,17 +816,17 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 400:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -887,17 +892,17 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 500:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -1212,7 +1217,7 @@ class CustomerInsights(SDKClient):
 
         :param body: The instance creation request.
         :type body:
-         ~dynamics.customerinsights.api.models.InstancesV2PostRequest
+         ~dynamics.customerinsights.api.models.InstanceCreationRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1238,7 +1243,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesV2PostRequest')
+            body_content = self._serialize.body(body, 'InstanceCreationRequest')
         else:
             body_content = None
 
@@ -1298,7 +1303,7 @@ class CustomerInsights(SDKClient):
         :type instance_id: str
         :param body:
         :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdV2PatchRequest
+         ~dynamics.customerinsights.api.models.InstanceCreationRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1328,7 +1333,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdV2PatchRequest')
+            body_content = self._serialize.body(body, 'InstanceCreationRequest')
         else:
             body_content = None
 
@@ -1378,8 +1383,7 @@ class CustomerInsights(SDKClient):
         Create a new instance and copy metadata from an existing instance.
 
         :param body: The metadata to use to create the new instance.
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesCopyPostRequest
+        :type body: ~dynamics.customerinsights.api.models.InstanceCopyRequest
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1405,7 +1409,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesCopyPostRequest')
+            body_content = self._serialize.body(body, 'InstanceCopyRequest')
         else:
             body_content = None
 
@@ -1508,7 +1512,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -1530,8 +1534,7 @@ class CustomerInsights(SDKClient):
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
         :param body: New Measure metadata to be created
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageMeasuresPostRequest
+        :type body: ~dynamics.customerinsights.api.models.MeasureMetadata
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1561,7 +1564,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdManageMeasuresPostRequest')
+            body_content = self._serialize.body(body, 'MeasureMetadata')
         else:
             body_content = None
 
@@ -1586,7 +1589,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -1661,7 +1664,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -1687,8 +1690,7 @@ class CustomerInsights(SDKClient):
         :param measure_name: Name of the measure
         :type measure_name: str
         :param body: Update measure metadata
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest
+        :type body: ~dynamics.customerinsights.api.models.MeasureMetadata
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -1719,7 +1721,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdManageMeasuresMeasureNamePutRequest')
+            body_content = self._serialize.body(body, 'MeasureMetadata')
         else:
             body_content = None
 
@@ -1744,7 +1746,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -1811,7 +1813,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -1954,12 +1956,12 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
-        if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+        if response.status_code == 500:
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2101,8 +2103,7 @@ class CustomerInsights(SDKClient):
         :param principal_id: The principal id.
         :type principal_id: str
         :param body: The role assignment.
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest
+        :type body: ~dynamics.customerinsights.api.models.RoleAssignment
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2134,7 +2135,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest')
+            body_content = self._serialize.body(body, 'RoleAssignment')
         else:
             body_content = None
 
@@ -2322,12 +2323,12 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2350,8 +2351,7 @@ class CustomerInsights(SDKClient):
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
         :param body: The updated relationship metadata
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageRelationshipsPostRequest
+        :type body: ~dynamics.customerinsights.api.models.RelationshipMetadata
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2381,7 +2381,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdManageRelationshipsPostRequest')
+            body_content = self._serialize.body(body, 'RelationshipMetadata')
         else:
             body_content = None
 
@@ -2401,17 +2401,17 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 400:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2478,12 +2478,12 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2550,12 +2550,12 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2580,8 +2580,7 @@ class CustomerInsights(SDKClient):
         :param relationship_name: Relationship name
         :type relationship_name: str
         :param body: The updated relationship metadata
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest
+        :type body: ~dynamics.customerinsights.api.models.RelationshipMetadata
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2612,7 +2611,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest')
+            body_content = self._serialize.body(body, 'RelationshipMetadata')
         else:
             body_content = None
 
@@ -2632,17 +2631,17 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 400:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2705,12 +2704,12 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2733,7 +2732,7 @@ class CustomerInsights(SDKClient):
         :type instance_id: str
         :param body: The search configuration for the instance.
         :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageSearchPutRequest
+         ~dynamics.customerinsights.api.models.InstanceSearchConfiguration
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2763,7 +2762,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdManageSearchPutRequest')
+            body_content = self._serialize.body(body, 'InstanceSearchConfiguration')
         else:
             body_content = None
 
@@ -2783,17 +2782,17 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 400:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2871,7 +2870,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -2893,8 +2892,7 @@ class CustomerInsights(SDKClient):
         :param instance_id: Format - uuid. Customer Insights instance id
         :type instance_id: str
         :param body: New Segment metadata to be created
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageSegmentsPostRequest
+        :type body: ~dynamics.customerinsights.api.models.SegmentMetadata
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -2924,7 +2922,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdManageSegmentsPostRequest')
+            body_content = self._serialize.body(body, 'SegmentMetadata')
         else:
             body_content = None
 
@@ -2944,7 +2942,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -3010,7 +3008,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -3076,7 +3074,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -3101,8 +3099,7 @@ class CustomerInsights(SDKClient):
         :param segment_name: Unique name of a segment
         :type segment_name: str
         :param body: New Segment metadata to be updated
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest
+        :type body: ~dynamics.customerinsights.api.models.SegmentMetadata
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -3133,7 +3130,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdManageSegmentsSegmentNamePutRequest')
+            body_content = self._serialize.body(body, 'SegmentMetadata')
         else:
             body_content = None
 
@@ -3153,7 +3150,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -3219,7 +3216,7 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 400:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -3479,8 +3476,7 @@ class CustomerInsights(SDKClient):
         :param workflow_name: The workflow name.
         :type workflow_name: str
         :param body: Job Creation Request.
-        :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest
+        :type body: ~dynamics.customerinsights.api.models.OnDemandJobRequest
         :param operation_type: The workflow operation type.
         :type operation_type: str
         :param identifiers: A list of workflow identifiers.
@@ -3523,7 +3519,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest')
+            body_content = self._serialize.body(body, 'OnDemandJobRequest')
         else:
             body_content = None
 
@@ -3852,7 +3848,7 @@ class CustomerInsights(SDKClient):
         :type workflow_name: str
         :param body: A schedule object to create.
         :type body:
-         ~dynamics.customerinsights.api.models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest
+         ~dynamics.customerinsights.api.models.WorkflowRefreshSchedule
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -3883,7 +3879,7 @@ class CustomerInsights(SDKClient):
 
         # Construct body
         if body is not None:
-            body_content = self._serialize.body(body, 'InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest')
+            body_content = self._serialize.body(body, 'WorkflowRefreshSchedule')
         else:
             body_content = None
 
@@ -3917,7 +3913,7 @@ class CustomerInsights(SDKClient):
     create_workflow_refresh_schedule.metadata = {'url': '/instances/{instanceId}/workflows/{workflowName}/schedules'}
 
     def get_an_entity_profile(
-            self, instance_id, qualified_entity_name, custom_headers=None, raw=False, **operation_config):
+            self, instance_id, qualified_entity_name, include_attribute_data=False, custom_headers=None, raw=False, **operation_config):
         """GetEntityProfile.
 
         Gets the entityProfile for the entity.
@@ -3926,6 +3922,8 @@ class CustomerInsights(SDKClient):
         :type instance_id: str
         :param qualified_entity_name: Qualified Entity Name.
         :type qualified_entity_name: str
+        :param include_attribute_data: Include attribute data.
+        :type include_attribute_data: bool
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -3946,6 +3944,8 @@ class CustomerInsights(SDKClient):
 
         # Construct parameters
         query_parameters = {}
+        if include_attribute_data is not None:
+            query_parameters['includeAttributeData'] = self._serialize.query("include_attribute_data", include_attribute_data, 'bool')
 
         # Construct headers
         header_parameters = {}
@@ -4106,12 +4106,12 @@ class CustomerInsights(SDKClient):
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 404:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
         if response.status_code == 503:
-            deserialized = self._deserialize('ApiError', response)
+            deserialized = self._deserialize('ApiErrorResult', response)
             header_dict = {
                 'WWW-Authenticate': 'str',
             }
@@ -4204,3 +4204,351 @@ class CustomerInsights(SDKClient):
 
         return deserialized
     create_a_batch_of_workflow_refresh_schedules.metadata = {'url': '/instances/{instanceId}/workflows/{workflowName}/schedules/batch'}
+
+    def create_a_hierarchy(
+            self, instance_id, body=None, custom_headers=None, raw=False, **operation_config):
+        """Create new hierarchy metadata with hierarchyMetadata on instanceId.
+
+        Create new hierarchy metadata with hierarchyMetadata on instanceId.
+
+        :param instance_id: Format - uuid. Customer Insights instance id
+        :type instance_id: str
+        :param body: New hierarchy metadata to be created
+        :type body: ~dynamics.customerinsights.api.models.HierarchyMetadata
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.create_a_hierarchy.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        header_parameters['Content-Type'] = 'application/json-patch+json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        if body is not None:
+            body_content = self._serialize.body(body, 'HierarchyMetadata')
+        else:
+            body_content = None
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('HierarchyMetadata', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    create_a_hierarchy.metadata = {'url': '/instances/{instanceId}/hierarchies'}
+
+    def get_all_hierarchies(
+            self, instance_id, custom_headers=None, raw=False, **operation_config):
+        """Retrieves a list of hierarchies entity metadata for the provided
+        instanceId.
+
+        Retrieves a list of hierarchies entity metadata for the provided
+        instanceId.
+
+        :param instance_id: Format - uuid. Customer Insights instance id
+        :type instance_id: str
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.get_all_hierarchies.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('[HierarchyMetadata]', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    get_all_hierarchies.metadata = {'url': '/instances/{instanceId}/hierarchies'}
+
+    def get_a_hierarchy(
+            self, instance_id, hierarchy_id, custom_headers=None, raw=False, **operation_config):
+        """Retrieves the hierarchy metadata for the provided instanceId and
+        hierarchyId.
+
+        Retrieves the hierarchy metadata for the provided instanceId and
+        hierarchyId.
+
+        :param instance_id: Format - uuid. Customer Insights instance id
+        :type instance_id: str
+        :param hierarchy_id: Format - uuid. Id of the hierarchy
+        :type hierarchy_id: str
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.get_a_hierarchy.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str'),
+            'hierarchyId': self._serialize.url("hierarchy_id", hierarchy_id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('HierarchyMetadata', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    get_a_hierarchy.metadata = {'url': '/instances/{instanceId}/hierarchies/{hierarchyId}'}
+
+    def update_a_hierarchy(
+            self, instance_id, hierarchy_id, body=None, custom_headers=None, raw=False, **operation_config):
+        """Updates hierarchy metadata for the provided instanceId and hierarchyId.
+
+        Updates hierarchy metadata for the provided instanceId and hierarchyId.
+
+        :param instance_id: Format - uuid. Customer Insights instance id
+        :type instance_id: str
+        :param hierarchy_id: Format - uuid. Id of the hierarchy
+        :type hierarchy_id: str
+        :param body: Update hierarchy metadata
+        :type body: ~dynamics.customerinsights.api.models.HierarchyMetadata
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.update_a_hierarchy.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str'),
+            'hierarchyId': self._serialize.url("hierarchy_id", hierarchy_id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        header_parameters['Content-Type'] = 'application/json-patch+json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        if body is not None:
+            body_content = self._serialize.body(body, 'HierarchyMetadata')
+        else:
+            body_content = None
+
+        # Construct and send request
+        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('HierarchyMetadata', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    update_a_hierarchy.metadata = {'url': '/instances/{instanceId}/hierarchies/{hierarchyId}'}
+
+    def delete_a_hierarchy(
+            self, instance_id, hierarchy_id, custom_headers=None, raw=False, **operation_config):
+        """Deletes the hierarchy metadata for the provided instanceId using
+        hierarchyId.
+
+        Deletes the hierarchy metadata for the provided instanceId using
+        hierarchyId.
+
+        :param instance_id: Format - uuid. Customer Insights instance id
+        :type instance_id: str
+        :param hierarchy_id: Format - uuid. Id of the hierarchy
+        :type hierarchy_id: str
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: object or ClientRawResponse if raw=true
+        :rtype: object or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.delete_a_hierarchy.metadata['url']
+        path_format_arguments = {
+            'instanceId': self._serialize.url("instance_id", instance_id, 'str'),
+            'hierarchyId': self._serialize.url("hierarchy_id", hierarchy_id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200, 401, 404, 500, 503]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('OkObjectResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+        if response.status_code == 404:
+            deserialized = self._deserialize('ApiErrorResult', response)
+            header_dict = {
+                'WWW-Authenticate': 'str',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+        return deserialized
+    delete_a_hierarchy.metadata = {'url': '/instances/{instanceId}/hierarchies/{hierarchyId}'}

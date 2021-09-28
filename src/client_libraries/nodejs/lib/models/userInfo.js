@@ -20,10 +20,6 @@ class UserInfo {
    * @property {string} [preferredRegionalFormat] Gets user preferred regional
    * format.
    * @property {uuid} [defaultInstance] Gets user default instance id.
-   * @property {boolean} [isGlobalAdmin] Gets a value indicating whether the
-   * user is a global admin. (not persisted in store)
-   * @property {array} [eligibleInstanceTypesToProvision] Gets list of Instance
-   * types which are eligible to provision by user. (not persisted in store)
    * @property {object} [userNotificationsSettings]
    * @property {array} [userNotificationsSettings.dismissedBannerNotifications]
    * Gets the list of dismissed banner notifications for this user.
@@ -38,6 +34,22 @@ class UserInfo {
    * the user Opt-In to be contacted through emails. This is for CPM
    * integration from EI.
    * @property {object} [portalSettings]
+   * @property {object} [portalSettings.coachmarks]
+   * @property {object} [portalSettings.coachmarks.history]
+   * @property {string} [portalSettings.coachmarks.history.id] Gets history id.
+   * @property {boolean} [portalSettings.coachmarks.history.viewed] Checks for
+   * already visited.
+   * @property {object} [portalSettings.banners]
+   * @property {object} [portalSettings.banners.history]
+   * @property {string} [portalSettings.banners.history.id] Gets history id.
+   * @property {boolean} [portalSettings.banners.history.viewed] Checks for
+   * already visited.
+   * @property {object} [portalSettings.notifications]
+   * @property {object} [portalSettings.notifications.history]
+   * @property {string} [portalSettings.notifications.history.id] Gets history
+   * id.
+   * @property {boolean} [portalSettings.notifications.history.viewed] Checks
+   * for already visited.
    * @property {boolean} [portalSettings.isExistingUser] Gets a value
    * indicating whether the user has seen the all apps (welcome) page.
    * @property {boolean} [portalSettings.showDefaultHomePage] Gets a value
@@ -52,6 +64,8 @@ class UserInfo {
    * @property {date} [termsOfUse.createdUtc] Gets the created time of terms
    * acceptance.
    * @property {string} [region] Gets the region that the user belongs to.
+   * @property {string} [lastUsedExperience] Possible values include:
+   * 'audienceInsights', 'engagementInsights', 'audienceInsightsB2B'
    * @property {uuid} [instanceId] Customer Insights instance id associated
    * with this object.
    */
@@ -122,27 +136,6 @@ class UserInfo {
               name: 'String'
             }
           },
-          isGlobalAdmin: {
-            required: false,
-            serializedName: 'isGlobalAdmin',
-            type: {
-              name: 'Boolean'
-            }
-          },
-          eligibleInstanceTypesToProvision: {
-            required: false,
-            serializedName: 'eligibleInstanceTypesToProvision',
-            type: {
-              name: 'Sequence',
-              element: {
-                  required: false,
-                  serializedName: 'StringElementType',
-                  type: {
-                    name: 'String'
-                  }
-              }
-            }
-          },
           userNotificationsSettings: {
             required: false,
             serializedName: 'userNotificationsSettings',
@@ -207,6 +200,13 @@ class UserInfo {
           region: {
             required: false,
             serializedName: 'region',
+            type: {
+              name: 'String'
+            }
+          },
+          lastUsedExperience: {
+            required: false,
+            serializedName: 'lastUsedExperience',
             type: {
               name: 'String'
             }

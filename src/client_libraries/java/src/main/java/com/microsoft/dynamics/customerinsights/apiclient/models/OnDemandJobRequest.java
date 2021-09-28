@@ -22,10 +22,11 @@ public class OnDemandJobRequest {
     /**
      * Possible values include: 'none', 'ingestion', 'derivedEntity',
      * 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match',
-     * 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures',
-     * 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
-     * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export',
-     * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
+     * 'merge', 'profileStore', 'search', 'activity', 'contact',
+     * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
+     * 'segmentMembership', 'enrichment', 'preEnrichment', 'transform',
+     * 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
+     * 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'.
      */
     @JsonProperty(value = "operationType")
     private String operationType;
@@ -88,7 +89,7 @@ public class OnDemandJobRequest {
     }
 
     /**
-     * Get possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
+     * Get possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'contact', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment', 'transform', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'.
      *
      * @return the operationType value
      */
@@ -97,7 +98,7 @@ public class OnDemandJobRequest {
     }
 
     /**
-     * Set possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'all'.
+     * Set possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'contact', 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment', 'transform', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'.
      *
      * @param operationType the operationType value to set
      * @return the OnDemandJobRequest object itself.

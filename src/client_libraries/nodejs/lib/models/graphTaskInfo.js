@@ -19,10 +19,11 @@ class GraphTaskInfo {
    * @property {string} [operationType] Possible values include: 'none',
    * 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
-   * 'activity', 'attributeMeasures', 'entityMeasures', 'measures',
-   * 'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
-   * 'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
-   * 'roleAssignment', 'analysis', 'all'
+   * 'activity', 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    * @property {string} [subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
    * 'singleActivityMapping', 'powerPlatform'

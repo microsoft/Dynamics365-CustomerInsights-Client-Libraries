@@ -43,6 +43,9 @@ class MeasureMetadata(Model):
     :type is_template: bool
     :param template_id: Gets the template ID for templates
     :type template_id: str
+    :param is_created_from_template: Check if measure metadata is created from
+     a template. Default value: False .
+    :type is_created_from_template: bool
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -72,6 +75,7 @@ class MeasureMetadata(Model):
         'output_history': {'key': 'outputHistory', 'type': '[ScalarOutput]'},
         'is_template': {'key': 'isTemplate', 'type': 'bool'},
         'template_id': {'key': 'templateId', 'type': 'str'},
+        'is_created_from_template': {'key': 'isCreatedFromTemplate', 'type': 'bool'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -80,7 +84,7 @@ class MeasureMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, display_name: str=None, name: str=None, description: str=None, definition=None, latest_evaluation=None, output=None, evaluation_stats=None, error_description=None, sql_validation_stats=None, evaluation_history=None, output_history=None, is_template: bool=None, template_id: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, display_name: str=None, name: str=None, description: str=None, definition=None, latest_evaluation=None, output=None, evaluation_stats=None, error_description=None, sql_validation_stats=None, evaluation_history=None, output_history=None, is_template: bool=None, template_id: str=None, is_created_from_template: bool=False, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(MeasureMetadata, self).__init__(**kwargs)
         self.display_name = display_name
         self.name = name
@@ -95,6 +99,7 @@ class MeasureMetadata(Model):
         self.output_history = output_history
         self.is_template = is_template
         self.template_id = template_id
+        self.is_created_from_template = is_created_from_template
         self.version = version
         self.updated_by = updated_by
         self.updated_utc = updated_utc

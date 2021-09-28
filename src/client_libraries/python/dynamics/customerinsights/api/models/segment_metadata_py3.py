@@ -40,6 +40,9 @@ class SegmentMetadata(Model):
      history. (not persisted in store)
     :type evaluation_status_history:
      list[~dynamics.customerinsights.api.models.HistoricalSegmentStats]
+    :param segment_query_stats:
+    :type segment_query_stats:
+     ~dynamics.customerinsights.api.models.SegmentQueryStat
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -67,6 +70,7 @@ class SegmentMetadata(Model):
         'evaluation_status': {'key': 'evaluationStatus', 'type': 'SegmentationPublishStats'},
         'sql_validation_stats': {'key': 'sqlValidationStats', 'type': 'SqlValidationStats'},
         'evaluation_status_history': {'key': 'evaluationStatusHistory', 'type': '[HistoricalSegmentStats]'},
+        'segment_query_stats': {'key': 'segmentQueryStats', 'type': 'SegmentQueryStat'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -75,7 +79,7 @@ class SegmentMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, kind=None, name: str=None, friendly_name: str=None, description: str=None, segment_query_expression=None, state=None, error_description: str=None, end_date=None, evaluation_status=None, sql_validation_stats=None, evaluation_status_history=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, name: str=None, friendly_name: str=None, description: str=None, segment_query_expression=None, state=None, error_description: str=None, end_date=None, evaluation_status=None, sql_validation_stats=None, evaluation_status_history=None, segment_query_stats=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(SegmentMetadata, self).__init__(**kwargs)
         self.kind = kind
         self.name = name
@@ -88,6 +92,7 @@ class SegmentMetadata(Model):
         self.evaluation_status = evaluation_status
         self.sql_validation_stats = sql_validation_stats
         self.evaluation_status_history = evaluation_status_history
+        self.segment_query_stats = segment_query_stats
         self.version = version
         self.updated_by = updated_by
         self.updated_utc = updated_utc

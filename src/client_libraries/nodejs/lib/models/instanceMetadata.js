@@ -13,6 +13,11 @@
 class InstanceMetadata {
   /**
    * Create a InstanceMetadata.
+   * @property {boolean} [isB2B]
+   * @property {boolean} [isB2C]
+   * @property {boolean} [isByoPbi]
+   * @property {boolean} [isByoSynapse]
+   * @property {boolean} [isCdsMdlOrCdsByodl]
    * @property {string} [name] Gets the user defined instance name.
    * @property {string} [provisioningState] Possible values include: 'new',
    * 'creating', 'active', 'createFailed', 'updateFailed', 'deleting',
@@ -66,6 +71,12 @@ class InstanceMetadata {
    * if credential  is required to refresh any of the datasources
    * @property {array} [trialExtensionDetails] Stores the details of trial
    * extensions done if this is a trial instance
+   * @property {array} [configuredWorkspaces] Gets the Workspace type, whether
+   * B2B or B2C (Main)
+   * @property {string} [platformType] Field to store the Insights Partner who
+   * are onboarded to Insights Platform.
+   * @property {string} [azureRegion] Gets the Azure Region where the scale
+   * unit resides (not persisted in store)
    * @property {number} [version] Version number of this object.
    * @property {string} [updatedBy] UPN of the user who last updated this
    * record.
@@ -93,6 +104,41 @@ class InstanceMetadata {
         name: 'Composite',
         className: 'InstanceMetadata',
         modelProperties: {
+          isB2B: {
+            required: false,
+            serializedName: 'isB2B',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          isB2C: {
+            required: false,
+            serializedName: 'isB2C',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          isByoPbi: {
+            required: false,
+            serializedName: 'isByoPbi',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          isByoSynapse: {
+            required: false,
+            serializedName: 'isByoSynapse',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          isCdsMdlOrCdsByodl: {
+            required: false,
+            serializedName: 'isCdsMdlOrCdsByodl',
+            type: {
+              name: 'Boolean'
+            }
+          },
           name: {
             required: false,
             serializedName: 'name',
@@ -186,6 +232,34 @@ class InstanceMetadata {
                     className: 'TrialExtensionDetails'
                   }
               }
+            }
+          },
+          configuredWorkspaces: {
+            required: false,
+            serializedName: 'configuredWorkspaces',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'StringElementType',
+                  type: {
+                    name: 'String'
+                  }
+              }
+            }
+          },
+          platformType: {
+            required: false,
+            serializedName: 'platformType',
+            type: {
+              name: 'String'
+            }
+          },
+          azureRegion: {
+            required: false,
+            serializedName: 'azureRegion',
+            type: {
+              name: 'String'
             }
           },
           version: {

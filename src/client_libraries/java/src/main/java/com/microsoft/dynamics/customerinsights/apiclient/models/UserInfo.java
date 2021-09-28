@@ -52,20 +52,6 @@ public class UserInfo {
     private UUID defaultInstance;
 
     /**
-     * Gets a value indicating whether the user is a global admin. (not
-     * persisted in store).
-     */
-    @JsonProperty(value = "isGlobalAdmin")
-    private Boolean isGlobalAdmin;
-
-    /**
-     * Gets list of Instance types which are eligible to provision by user.
-     * (not persisted in store).
-     */
-    @JsonProperty(value = "eligibleInstanceTypesToProvision")
-    private List<String> eligibleInstanceTypesToProvision;
-
-    /**
      * The userNotificationsSettings property.
      */
     @JsonProperty(value = "userNotificationsSettings")
@@ -120,6 +106,13 @@ public class UserInfo {
      */
     @JsonProperty(value = "region")
     private String region;
+
+    /**
+     * Possible values include: 'audienceInsights', 'engagementInsights',
+     * 'audienceInsightsB2B'.
+     */
+    @JsonProperty(value = "lastUsedExperience")
+    private String lastUsedExperience;
 
     /**
      * Customer Insights instance id associated with this object.
@@ -244,46 +237,6 @@ public class UserInfo {
      */
     public UserInfo withDefaultInstance(UUID defaultInstance) {
         this.defaultInstance = defaultInstance;
-        return this;
-    }
-
-    /**
-     * Get gets a value indicating whether the user is a global admin. (not persisted in store).
-     *
-     * @return the isGlobalAdmin value
-     */
-    public Boolean isGlobalAdmin() {
-        return this.isGlobalAdmin;
-    }
-
-    /**
-     * Set gets a value indicating whether the user is a global admin. (not persisted in store).
-     *
-     * @param isGlobalAdmin the isGlobalAdmin value to set
-     * @return the UserInfo object itself.
-     */
-    public UserInfo withIsGlobalAdmin(Boolean isGlobalAdmin) {
-        this.isGlobalAdmin = isGlobalAdmin;
-        return this;
-    }
-
-    /**
-     * Get gets list of Instance types which are eligible to provision by user. (not persisted in store).
-     *
-     * @return the eligibleInstanceTypesToProvision value
-     */
-    public List<String> eligibleInstanceTypesToProvision() {
-        return this.eligibleInstanceTypesToProvision;
-    }
-
-    /**
-     * Set gets list of Instance types which are eligible to provision by user. (not persisted in store).
-     *
-     * @param eligibleInstanceTypesToProvision the eligibleInstanceTypesToProvision value to set
-     * @return the UserInfo object itself.
-     */
-    public UserInfo withEligibleInstanceTypesToProvision(List<String> eligibleInstanceTypesToProvision) {
-        this.eligibleInstanceTypesToProvision = eligibleInstanceTypesToProvision;
         return this;
     }
 
@@ -464,6 +417,26 @@ public class UserInfo {
      */
     public UserInfo withRegion(String region) {
         this.region = region;
+        return this;
+    }
+
+    /**
+     * Get possible values include: 'audienceInsights', 'engagementInsights', 'audienceInsightsB2B'.
+     *
+     * @return the lastUsedExperience value
+     */
+    public String lastUsedExperience() {
+        return this.lastUsedExperience;
+    }
+
+    /**
+     * Set possible values include: 'audienceInsights', 'engagementInsights', 'audienceInsightsB2B'.
+     *
+     * @param lastUsedExperience the lastUsedExperience value to set
+     * @return the UserInfo object itself.
+     */
+    public UserInfo withLastUsedExperience(String lastUsedExperience) {
+        this.lastUsedExperience = lastUsedExperience;
         return this;
     }
 

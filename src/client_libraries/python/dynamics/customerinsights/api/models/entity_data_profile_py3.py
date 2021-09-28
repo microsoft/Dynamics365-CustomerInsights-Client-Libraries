@@ -23,6 +23,9 @@ class EntityDataProfile(Model):
     :type profiled_attributes: str
     :param corrupt_attributes: Respresents currupt attributes.
     :type corrupt_attributes: str
+    :param attribute_data_profiles: Contains all the attributes data profiles.
+    :type attribute_data_profiles:
+     list[~dynamics.customerinsights.api.models.AttributeDataProfile]
     """
 
     _attribute_map = {
@@ -32,9 +35,10 @@ class EntityDataProfile(Model):
         'profiling_date': {'key': 'profilingDate', 'type': 'iso-8601'},
         'profiled_attributes': {'key': 'profiledAttributes', 'type': 'str'},
         'corrupt_attributes': {'key': 'corruptAttributes', 'type': 'str'},
+        'attribute_data_profiles': {'key': 'attributeDataProfiles', 'type': '[AttributeDataProfile]'},
     }
 
-    def __init__(self, *, qualified_entity_name: str=None, row_count: int=None, quarantine_row_count: int=None, profiling_date=None, profiled_attributes: str=None, corrupt_attributes: str=None, **kwargs) -> None:
+    def __init__(self, *, qualified_entity_name: str=None, row_count: int=None, quarantine_row_count: int=None, profiling_date=None, profiled_attributes: str=None, corrupt_attributes: str=None, attribute_data_profiles=None, **kwargs) -> None:
         super(EntityDataProfile, self).__init__(**kwargs)
         self.qualified_entity_name = qualified_entity_name
         self.row_count = row_count
@@ -42,3 +46,4 @@ class EntityDataProfile(Model):
         self.profiling_date = profiling_date
         self.profiled_attributes = profiled_attributes
         self.corrupt_attributes = corrupt_attributes
+        self.attribute_data_profiles = attribute_data_profiles

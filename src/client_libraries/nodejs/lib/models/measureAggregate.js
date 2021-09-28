@@ -21,6 +21,7 @@ class MeasureAggregate {
    * @property {string} [alias] Gets the alias for the field
    * @property {string} [displayName] Gets the display name for the aggregate
    * @property {number} [order] Gets the order for the aggregate
+   * @property {string} [operationScope] Possible values include: 'rollup'
    * @property {array} [aggregates] Gets list of aggregates of the measure.
    * @property {boolean} [isIncluded] Gets a value indicating whether to
    * display the field in results. Default value: false .
@@ -75,6 +76,13 @@ class MeasureAggregate {
             serializedName: 'order',
             type: {
               name: 'Number'
+            }
+          },
+          operationScope: {
+            required: false,
+            serializedName: 'operationScope',
+            type: {
+              name: 'String'
             }
           },
           aggregates: {

@@ -36,13 +36,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="rowsets">Gets list of rowsets of segment.</param>
         /// <param name="segmentationQuerySql">Gets the user specified custom
         /// SQL query.</param>
-        public SegmentationQuery(string type = default(string), IList<string> projections = default(IList<string>), IList<SegmentationProjection> projectedAttributes = default(IList<SegmentationProjection>), IList<SegmentationRowset> rowsets = default(IList<SegmentationRowset>), string segmentationQuerySql = default(string))
+        /// <param name="hierarchies">Gets a list of Hierarchies for segment
+        /// query.</param>
+        public SegmentationQuery(string type = default(string), IList<string> projections = default(IList<string>), IList<SegmentationProjection> projectedAttributes = default(IList<SegmentationProjection>), IList<SegmentationRowset> rowsets = default(IList<SegmentationRowset>), string segmentationQuerySql = default(string), IList<HierarchyDefinition> hierarchies = default(IList<HierarchyDefinition>))
         {
             Type = type;
             Projections = projections;
             ProjectedAttributes = projectedAttributes;
             Rowsets = rowsets;
             SegmentationQuerySql = segmentationQuerySql;
+            Hierarchies = hierarchies;
             CustomInit();
         }
 
@@ -80,6 +83,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "segmentationQuerySql")]
         public string SegmentationQuerySql { get; set; }
+
+        /// <summary>
+        /// Gets a list of Hierarchies for segment query.
+        /// </summary>
+        [JsonProperty(PropertyName = "hierarchies")]
+        public IList<HierarchyDefinition> Hierarchies { get; set; }
 
     }
 }

@@ -34,7 +34,7 @@ class MeasureMetadata {
    * 'exponent', 'today', 'now'
    * @property {object} [definition.filteringCriteria]
    * @property {string} [definition.filteringCriteria.kind] Possible values
-   * include: 'default', 'engagement'
+   * include: 'post', 'default', 'consent', 'engagement'
    * @property {string} [definition.filteringCriteria.logicalOperator] Possible
    * values include: 'and', 'or'
    * @property {string} [definition.filteringCriteria.attribute] Gets the
@@ -44,7 +44,7 @@ class MeasureMetadata {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any',
    * 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all',
    * 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
-   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    * @property {array} [definition.filteringCriteria.childCriterias] Gets the
    * list of Child criteria of segment.
    * @property {string} [definition.filteringCriteria.value] Gets the Value in
@@ -214,6 +214,8 @@ class MeasureMetadata {
    * persisted in store)
    * @property {boolean} [isTemplate] Check if measure metadata is a template
    * @property {uuid} [templateId] Gets the template ID for templates
+   * @property {boolean} [isCreatedFromTemplate] Check if measure metadata is
+   * created from a template. Default value: false .
    * @property {number} [version] Version number of this object.
    * @property {string} [updatedBy] UPN of the user who last updated this
    * record.
@@ -352,6 +354,14 @@ class MeasureMetadata {
             serializedName: 'templateId',
             type: {
               name: 'String'
+            }
+          },
+          isCreatedFromTemplate: {
+            required: false,
+            serializedName: 'isCreatedFromTemplate',
+            defaultValue: false,
+            type: {
+              name: 'Boolean'
             }
           },
           version: {

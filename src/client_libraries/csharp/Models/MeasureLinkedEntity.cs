@@ -25,7 +25,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the MeasureLinkedEntity class.
         /// </summary>
-        /// <param name="kind">Possible values include: 'base', 'join'</param>
+        /// <param name="kind">Possible values include: 'base', 'join',
+        /// 'scalar'</param>
         /// <param name="entity">Gets the name of the entity.</param>
         /// <param name="alias">Gets the alias of the entity.</param>
         public MeasureLinkedEntity(string kind = default(string), string entity = default(string), string alias = default(string))
@@ -42,7 +43,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets possible values include: 'base', 'join'
+        /// Gets or sets possible values include: 'base', 'join', 'scalar'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }

@@ -7,7 +7,7 @@
 'use strict';
 
 /**
- * Represents an instance
+ * The instance info.
  *
  */
 class InstanceInfo {
@@ -27,6 +27,8 @@ class InstanceInfo {
    * unit (not persisted in store)
    * @property {string} [azureRegion] Gets the Azure Region where the scale
    * unit resides (not persisted in store)
+   * @property {string} [platformType] Gets the Insights App Type for g.
+   * Verity, Engagement Insight etc. (not persisted in store)
    */
   constructor() {
   }
@@ -98,6 +100,13 @@ class InstanceInfo {
           azureRegion: {
             required: false,
             serializedName: 'azureRegion',
+            type: {
+              name: 'String'
+            }
+          },
+          platformType: {
+            required: false,
+            serializedName: 'platformType',
             type: {
               name: 'String'
             }

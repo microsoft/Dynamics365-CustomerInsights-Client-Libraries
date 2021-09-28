@@ -24,12 +24,6 @@ class UserInfo(Model):
     :type preferred_regional_format: str
     :param default_instance: Gets user default instance id.
     :type default_instance: str
-    :param is_global_admin: Gets a value indicating whether the user is a
-     global admin. (not persisted in store)
-    :type is_global_admin: bool
-    :param eligible_instance_types_to_provision: Gets list of Instance types
-     which are eligible to provision by user. (not persisted in store)
-    :type eligible_instance_types_to_provision: list[str]
     :param user_notifications_settings:
     :type user_notifications_settings:
      ~dynamics.customerinsights.api.models.UserNotificationsSettings
@@ -54,6 +48,10 @@ class UserInfo(Model):
     :type terms_of_use: ~dynamics.customerinsights.api.models.TermsOfUse
     :param region: Gets the region that the user belongs to.
     :type region: str
+    :param last_used_experience: Possible values include: 'audienceInsights',
+     'engagementInsights', 'audienceInsightsB2B'
+    :type last_used_experience: str or
+     ~dynamics.customerinsights.api.models.enum
     :param instance_id: Customer Insights instance id associated with this
      object.
     :type instance_id: str
@@ -66,8 +64,6 @@ class UserInfo(Model):
         'preferred_language': {'key': 'preferredLanguage', 'type': 'str'},
         'preferred_regional_format': {'key': 'preferredRegionalFormat', 'type': 'str'},
         'default_instance': {'key': 'defaultInstance', 'type': 'str'},
-        'is_global_admin': {'key': 'isGlobalAdmin', 'type': 'bool'},
-        'eligible_instance_types_to_provision': {'key': 'eligibleInstanceTypesToProvision', 'type': '[str]'},
         'user_notifications_settings': {'key': 'userNotificationsSettings', 'type': 'UserNotificationsSettings'},
         'industry_demo': {'key': 'industryDemo', 'type': 'str'},
         'tenant_id': {'key': 'tenantId', 'type': 'str'},
@@ -77,10 +73,11 @@ class UserInfo(Model):
         'portal_settings': {'key': 'portalSettings', 'type': 'PortalSettings'},
         'terms_of_use': {'key': 'termsOfUse', 'type': 'TermsOfUse'},
         'region': {'key': 'region', 'type': 'str'},
+        'last_used_experience': {'key': 'lastUsedExperience', 'type': 'str'},
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, user_id: str=None, upn: str=None, instances_ids=None, preferred_language: str=None, preferred_regional_format: str=None, default_instance: str=None, is_global_admin: bool=None, eligible_instance_types_to_provision=None, user_notifications_settings=None, industry_demo: str=None, tenant_id: str=None, has_seen_welcome: bool=None, created_utc=None, allow_email_contacts: bool=None, portal_settings=None, terms_of_use=None, region: str=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, user_id: str=None, upn: str=None, instances_ids=None, preferred_language: str=None, preferred_regional_format: str=None, default_instance: str=None, user_notifications_settings=None, industry_demo: str=None, tenant_id: str=None, has_seen_welcome: bool=None, created_utc=None, allow_email_contacts: bool=None, portal_settings=None, terms_of_use=None, region: str=None, last_used_experience=None, instance_id: str=None, **kwargs) -> None:
         super(UserInfo, self).__init__(**kwargs)
         self.user_id = user_id
         self.upn = upn
@@ -88,8 +85,6 @@ class UserInfo(Model):
         self.preferred_language = preferred_language
         self.preferred_regional_format = preferred_regional_format
         self.default_instance = default_instance
-        self.is_global_admin = is_global_admin
-        self.eligible_instance_types_to_provision = eligible_instance_types_to_provision
         self.user_notifications_settings = user_notifications_settings
         self.industry_demo = industry_demo
         self.tenant_id = tenant_id
@@ -99,4 +94,5 @@ class UserInfo(Model):
         self.portal_settings = portal_settings
         self.terms_of_use = terms_of_use
         self.region = region
+        self.last_used_experience = last_used_experience
         self.instance_id = instance_id

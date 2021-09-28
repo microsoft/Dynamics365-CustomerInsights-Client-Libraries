@@ -7,6 +7,7 @@
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
 import java.util.List;
+import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -14,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class SegmentationRowset {
     /**
-     * Possible values include: 'union', 'intersect', 'except', 'none'.
+     * Possible values include: 'union', 'intersect', 'except', 'none',
+     * 'include', 'exclude'.
      */
     @JsonProperty(value = "rowsetOperation")
     private String rowsetOperation;
@@ -32,7 +34,13 @@ public class SegmentationRowset {
     private List<List<String>> paths;
 
     /**
-     * Get possible values include: 'union', 'intersect', 'except', 'none'.
+     * Gets the rowset Id in the rowsets.
+     */
+    @JsonProperty(value = "rowsetId")
+    private UUID rowsetId;
+
+    /**
+     * Get possible values include: 'union', 'intersect', 'except', 'none', 'include', 'exclude'.
      *
      * @return the rowsetOperation value
      */
@@ -41,7 +49,7 @@ public class SegmentationRowset {
     }
 
     /**
-     * Set possible values include: 'union', 'intersect', 'except', 'none'.
+     * Set possible values include: 'union', 'intersect', 'except', 'none', 'include', 'exclude'.
      *
      * @param rowsetOperation the rowsetOperation value to set
      * @return the SegmentationRowset object itself.
@@ -88,6 +96,26 @@ public class SegmentationRowset {
      */
     public SegmentationRowset withPaths(List<List<String>> paths) {
         this.paths = paths;
+        return this;
+    }
+
+    /**
+     * Get gets the rowset Id in the rowsets.
+     *
+     * @return the rowsetId value
+     */
+    public UUID rowsetId() {
+        return this.rowsetId;
+    }
+
+    /**
+     * Set gets the rowset Id in the rowsets.
+     *
+     * @param rowsetId the rowsetId value to set
+     * @return the SegmentationRowset object itself.
+     */
+    public SegmentationRowset withRowsetId(UUID rowsetId) {
+        this.rowsetId = rowsetId;
         return this;
     }
 

@@ -36,11 +36,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// format.</param>
         /// <param name="defaultInstance">Gets user default instance
         /// id.</param>
-        /// <param name="isGlobalAdmin">Gets a value indicating whether the
-        /// user is a global admin. (not persisted in store)</param>
-        /// <param name="eligibleInstanceTypesToProvision">Gets list of
-        /// Instance types which are eligible to provision by user. (not
-        /// persisted in store)</param>
         /// <param name="industryDemo">Gets the industry demo selected by user
         /// during trial</param>
         /// <param name="tenantId">Gets the tenant id of the user.</param>
@@ -53,9 +48,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// integration from EI.</param>
         /// <param name="region">Gets the region that the user belongs
         /// to.</param>
+        /// <param name="lastUsedExperience">Possible values include:
+        /// 'audienceInsights', 'engagementInsights',
+        /// 'audienceInsightsB2B'</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public UserInfo(System.Guid? userId = default(System.Guid?), string upn = default(string), IList<InstanceInfo> instancesIds = default(IList<InstanceInfo>), string preferredLanguage = default(string), string preferredRegionalFormat = default(string), System.Guid? defaultInstance = default(System.Guid?), bool? isGlobalAdmin = default(bool?), IList<string> eligibleInstanceTypesToProvision = default(IList<string>), UserNotificationsSettings userNotificationsSettings = default(UserNotificationsSettings), System.Guid? industryDemo = default(System.Guid?), System.Guid? tenantId = default(System.Guid?), bool? hasSeenWelcome = default(bool?), System.DateTime? createdUtc = default(System.DateTime?), bool? allowEmailContacts = default(bool?), PortalSettings portalSettings = default(PortalSettings), TermsOfUse termsOfUse = default(TermsOfUse), string region = default(string), System.Guid? instanceId = default(System.Guid?))
+        public UserInfo(System.Guid? userId = default(System.Guid?), string upn = default(string), IList<InstanceInfo> instancesIds = default(IList<InstanceInfo>), string preferredLanguage = default(string), string preferredRegionalFormat = default(string), System.Guid? defaultInstance = default(System.Guid?), UserNotificationsSettings userNotificationsSettings = default(UserNotificationsSettings), System.Guid? industryDemo = default(System.Guid?), System.Guid? tenantId = default(System.Guid?), bool? hasSeenWelcome = default(bool?), System.DateTime? createdUtc = default(System.DateTime?), bool? allowEmailContacts = default(bool?), PortalSettings portalSettings = default(PortalSettings), TermsOfUse termsOfUse = default(TermsOfUse), string region = default(string), string lastUsedExperience = default(string), System.Guid? instanceId = default(System.Guid?))
         {
             UserId = userId;
             Upn = upn;
@@ -63,8 +61,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             PreferredLanguage = preferredLanguage;
             PreferredRegionalFormat = preferredRegionalFormat;
             DefaultInstance = defaultInstance;
-            IsGlobalAdmin = isGlobalAdmin;
-            EligibleInstanceTypesToProvision = eligibleInstanceTypesToProvision;
             UserNotificationsSettings = userNotificationsSettings;
             IndustryDemo = industryDemo;
             TenantId = tenantId;
@@ -74,6 +70,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             PortalSettings = portalSettings;
             TermsOfUse = termsOfUse;
             Region = region;
+            LastUsedExperience = lastUsedExperience;
             InstanceId = instanceId;
             CustomInit();
         }
@@ -118,20 +115,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "defaultInstance")]
         public System.Guid? DefaultInstance { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether the user is a global admin. (not
-        /// persisted in store)
-        /// </summary>
-        [JsonProperty(PropertyName = "isGlobalAdmin")]
-        public bool? IsGlobalAdmin { get; set; }
-
-        /// <summary>
-        /// Gets list of Instance types which are eligible to provision by
-        /// user. (not persisted in store)
-        /// </summary>
-        [JsonProperty(PropertyName = "eligibleInstanceTypesToProvision")]
-        public IList<string> EligibleInstanceTypesToProvision { get; set; }
 
         /// <summary>
         /// </summary>
@@ -185,6 +168,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "region")]
         public string Region { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'audienceInsights',
+        /// 'engagementInsights', 'audienceInsightsB2B'
+        /// </summary>
+        [JsonProperty(PropertyName = "lastUsedExperience")]
+        public string LastUsedExperience { get; set; }
 
         /// <summary>
         /// Gets or sets customer Insights instance id associated with this

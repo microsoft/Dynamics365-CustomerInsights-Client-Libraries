@@ -24,17 +24,17 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         /// <param name="bapProvisioningType">Possible values include: 'skip',
         /// 'create', 'attach'</param>
-        public InstanceCopyRequest(System.Guid? instanceIdToCopy = default(System.Guid?), InstanceMetadata instanceMetadata = default(InstanceMetadata), ResourceMetadata byosaResourceMetadata = default(ResourceMetadata), ResourceMetadata cdsResourceMetadata = default(ResourceMetadata), ByoPbiProvisioningInfo byoPbiProvisioningInfo = default(ByoPbiProvisioningInfo), bool? isCdsMdlStorageEnabled = default(bool?), bool? isCiToByosaMigrationEnabled = default(bool?), string bapProvisioningType = default(string), bool? isPbiProvisioningRequired = default(bool?))
+        public InstanceCopyRequest(System.Guid? instanceIdToCopy = default(System.Guid?), InstanceMetadata instanceMetadata = default(InstanceMetadata), ResourceMetadata byosaResourceMetadata = default(ResourceMetadata), ResourceMetadata cdsResourceMetadata = default(ResourceMetadata), bool? isCdsMdlStorageEnabled = default(bool?), bool? isCiToByosaMigrationEnabled = default(bool?), string bapProvisioningType = default(string), bool? isPbiProvisioningRequired = default(bool?), bool? isDataverseUpdateRequested = default(bool?))
         {
             InstanceIdToCopy = instanceIdToCopy;
             InstanceMetadata = instanceMetadata;
             ByosaResourceMetadata = byosaResourceMetadata;
             CdsResourceMetadata = cdsResourceMetadata;
-            ByoPbiProvisioningInfo = byoPbiProvisioningInfo;
             IsCdsMdlStorageEnabled = isCdsMdlStorageEnabled;
             IsCiToByosaMigrationEnabled = isCiToByosaMigrationEnabled;
             BapProvisioningType = bapProvisioningType;
             IsPbiProvisioningRequired = isPbiProvisioningRequired;
+            IsDataverseUpdateRequested = isDataverseUpdateRequested;
             CustomInit();
         }
 
@@ -65,11 +65,6 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "byoPbiProvisioningInfo")]
-        public ByoPbiProvisioningInfo ByoPbiProvisioningInfo { get; set; }
-
-        /// <summary>
-        /// </summary>
         [JsonProperty(PropertyName = "isCdsMdlStorageEnabled")]
         public bool? IsCdsMdlStorageEnabled { get; set; }
 
@@ -88,6 +83,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "isPbiProvisioningRequired")]
         public bool? IsPbiProvisioningRequired { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "isDataverseUpdateRequested")]
+        public bool? IsDataverseUpdateRequested { get; set; }
 
     }
 }

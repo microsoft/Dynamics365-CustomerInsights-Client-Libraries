@@ -30,10 +30,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="operationType">Possible values include: 'none',
         /// 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
         /// 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore',
-        /// 'search', 'activity', 'attributeMeasures', 'entityMeasures',
-        /// 'measures', 'segmentation', 'segmentMembership', 'enrichment',
-        /// 'intelligence', 'aiBuilder', 'insights', 'export',
-        /// 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+        /// 'search', 'activity', 'contact', 'attributeMeasures',
+        /// 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+        /// 'enrichment', 'preEnrichment', 'transform', 'intelligence',
+        /// 'aiBuilder', 'insights', 'export', 'modelManagement',
+        /// 'relationship', 'roleAssignment', 'analysis', 'semanticEntity',
         /// 'all'</param>
         /// <param name="subType">Possible values include: 'noSubType',
         /// 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -77,10 +78,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Gets or sets possible values include: 'none', 'ingestion',
         /// 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
         /// 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
-        /// 'activity', 'attributeMeasures', 'entityMeasures', 'measures',
-        /// 'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
-        /// 'aiBuilder', 'insights', 'export', 'modelManagement',
-        /// 'relationship', 'roleAssignment', 'analysis', 'all'
+        /// 'activity', 'contact', 'attributeMeasures', 'entityMeasures',
+        /// 'measures', 'segmentation', 'segmentMembership', 'enrichment',
+        /// 'preEnrichment', 'transform', 'intelligence', 'aiBuilder',
+        /// 'insights', 'export', 'modelManagement', 'relationship',
+        /// 'roleAssignment', 'analysis', 'semanticEntity', 'all'
         /// </summary>
         [JsonProperty(PropertyName = "operationType")]
         public string OperationType { get; set; }

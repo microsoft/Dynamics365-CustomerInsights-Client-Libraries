@@ -44,6 +44,12 @@ public class SegmentationQuery {
     private String segmentationQuerySql;
 
     /**
+     * Gets a list of Hierarchies for segment query.
+     */
+    @JsonProperty(value = "hierarchies")
+    private List<HierarchyDefinition> hierarchies;
+
+    /**
      * Get possible values include: 'structured', 'manual'.
      *
      * @return the type value
@@ -140,6 +146,26 @@ public class SegmentationQuery {
      */
     public SegmentationQuery withSegmentationQuerySql(String segmentationQuerySql) {
         this.segmentationQuerySql = segmentationQuerySql;
+        return this;
+    }
+
+    /**
+     * Get gets a list of Hierarchies for segment query.
+     *
+     * @return the hierarchies value
+     */
+    public List<HierarchyDefinition> hierarchies() {
+        return this.hierarchies;
+    }
+
+    /**
+     * Set gets a list of Hierarchies for segment query.
+     *
+     * @param hierarchies the hierarchies value to set
+     * @return the SegmentationQuery object itself.
+     */
+    public SegmentationQuery withHierarchies(List<HierarchyDefinition> hierarchies) {
+        this.hierarchies = hierarchies;
         return this;
     }
 

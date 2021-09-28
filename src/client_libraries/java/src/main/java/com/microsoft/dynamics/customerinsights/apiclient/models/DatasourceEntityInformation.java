@@ -31,7 +31,8 @@ public class DatasourceEntityInformation {
      * 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment',
      * 'intelligence', 'genericPrediction', 'enrichment', 'insights',
      * 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview',
-     * 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * 'selfConflationManualReview', 'semanticActivity', 'segmentMembership',
+     * 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      */
     @JsonProperty(value = "entityType")
     private String entityType;
@@ -47,6 +48,24 @@ public class DatasourceEntityInformation {
      */
     @JsonProperty(value = "semanticLabels")
     private List<AttributeSemanticInformation> semanticLabels;
+
+    /**
+     * The entityEnrichmentInfo property.
+     */
+    @JsonProperty(value = "entityEnrichmentInfo")
+    private EntityEnrichmentInformation entityEnrichmentInfo;
+
+    /**
+     * Gets theDeltaTable version of this entity.
+     */
+    @JsonProperty(value = "deltaTableVersion")
+    private Long deltaTableVersion;
+
+    /**
+     * Specifies if CDM definition for this entity should be auto generated.
+     */
+    @JsonProperty(value = "autoGenerateCDMDefinition")
+    private Boolean autoGenerateCDMDefinition;
 
     /**
      * Get name of the entity.
@@ -89,7 +108,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      *
      * @return the entityType value
      */
@@ -98,7 +117,7 @@ public class DatasourceEntityInformation {
     }
 
     /**
-     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      *
      * @param entityType the entityType value to set
      * @return the DatasourceEntityInformation object itself.
@@ -145,6 +164,66 @@ public class DatasourceEntityInformation {
      */
     public DatasourceEntityInformation withSemanticLabels(List<AttributeSemanticInformation> semanticLabels) {
         this.semanticLabels = semanticLabels;
+        return this;
+    }
+
+    /**
+     * Get the entityEnrichmentInfo value.
+     *
+     * @return the entityEnrichmentInfo value
+     */
+    public EntityEnrichmentInformation entityEnrichmentInfo() {
+        return this.entityEnrichmentInfo;
+    }
+
+    /**
+     * Set the entityEnrichmentInfo value.
+     *
+     * @param entityEnrichmentInfo the entityEnrichmentInfo value to set
+     * @return the DatasourceEntityInformation object itself.
+     */
+    public DatasourceEntityInformation withEntityEnrichmentInfo(EntityEnrichmentInformation entityEnrichmentInfo) {
+        this.entityEnrichmentInfo = entityEnrichmentInfo;
+        return this;
+    }
+
+    /**
+     * Get gets theDeltaTable version of this entity.
+     *
+     * @return the deltaTableVersion value
+     */
+    public Long deltaTableVersion() {
+        return this.deltaTableVersion;
+    }
+
+    /**
+     * Set gets theDeltaTable version of this entity.
+     *
+     * @param deltaTableVersion the deltaTableVersion value to set
+     * @return the DatasourceEntityInformation object itself.
+     */
+    public DatasourceEntityInformation withDeltaTableVersion(Long deltaTableVersion) {
+        this.deltaTableVersion = deltaTableVersion;
+        return this;
+    }
+
+    /**
+     * Get specifies if CDM definition for this entity should be auto generated.
+     *
+     * @return the autoGenerateCDMDefinition value
+     */
+    public Boolean autoGenerateCDMDefinition() {
+        return this.autoGenerateCDMDefinition;
+    }
+
+    /**
+     * Set specifies if CDM definition for this entity should be auto generated.
+     *
+     * @param autoGenerateCDMDefinition the autoGenerateCDMDefinition value to set
+     * @return the DatasourceEntityInformation object itself.
+     */
+    public DatasourceEntityInformation withAutoGenerateCDMDefinition(Boolean autoGenerateCDMDefinition) {
+        this.autoGenerateCDMDefinition = autoGenerateCDMDefinition;
         return this;
     }
 

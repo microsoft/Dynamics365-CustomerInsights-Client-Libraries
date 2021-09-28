@@ -33,16 +33,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="storageResourceTenantId">Storage account
         /// tenant.</param>
         /// <param name="capacityId">Pbi Capacity Id.</param>
-        /// <param name="delegationToken">PBI delegation token captured from
-        /// the user.</param>
-        public ByoPbiProvisioningInfo(string storageSubscriptionId = default(string), string storageResourceGroup = default(string), string storageResourceRegion = default(string), string storageResourceTenantId = default(string), string capacityId = default(string), string delegationToken = default(string))
+        /// <param name="synapseServerlessSqlHostName">Synapse serverless sql
+        /// host name</param>
+        public ByoPbiProvisioningInfo(string storageSubscriptionId = default(string), string storageResourceGroup = default(string), string storageResourceRegion = default(string), string storageResourceTenantId = default(string), string capacityId = default(string), string synapseServerlessSqlHostName = default(string))
         {
             StorageSubscriptionId = storageSubscriptionId;
             StorageResourceGroup = storageResourceGroup;
             StorageResourceRegion = storageResourceRegion;
             StorageResourceTenantId = storageResourceTenantId;
             CapacityId = capacityId;
-            DelegationToken = delegationToken;
+            SynapseServerlessSqlHostName = synapseServerlessSqlHostName;
             CustomInit();
         }
 
@@ -82,10 +82,10 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         public string CapacityId { get; set; }
 
         /// <summary>
-        /// Gets or sets PBI delegation token captured from the user.
+        /// Gets or sets synapse serverless sql host name
         /// </summary>
-        [JsonProperty(PropertyName = "delegationToken")]
-        public string DelegationToken { get; set; }
+        [JsonProperty(PropertyName = "synapseServerlessSqlHostName")]
+        public string SynapseServerlessSqlHostName { get; set; }
 
     }
 }

@@ -36,17 +36,20 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="displayName">Gets the display name for the
         /// aggregate</param>
         /// <param name="order">Gets the order for the aggregate</param>
+        /// <param name="operationScope">Possible values include:
+        /// 'rollup'</param>
         /// <param name="aggregates">Gets list of aggregates of the
         /// measure.</param>
         /// <param name="isIncluded">Gets a value indicating whether to display
         /// the field in results</param>
-        public MeasureAggregate(string operation = default(string), string field = default(string), string alias = default(string), string displayName = default(string), int? order = default(int?), IList<MeasureAggregate> aggregates = default(IList<MeasureAggregate>), bool? isIncluded = default(bool?))
+        public MeasureAggregate(string operation = default(string), string field = default(string), string alias = default(string), string displayName = default(string), int? order = default(int?), string operationScope = default(string), IList<MeasureAggregate> aggregates = default(IList<MeasureAggregate>), bool? isIncluded = default(bool?))
         {
             Operation = operation;
             Field = field;
             Alias = alias;
             DisplayName = displayName;
             Order = order;
+            OperationScope = operationScope;
             Aggregates = aggregates;
             IsIncluded = isIncluded;
             CustomInit();
@@ -87,6 +90,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "order")]
         public int? Order { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'rollup'
+        /// </summary>
+        [JsonProperty(PropertyName = "operationScope")]
+        public string OperationScope { get; set; }
 
         /// <summary>
         /// Gets list of aggregates of the measure.

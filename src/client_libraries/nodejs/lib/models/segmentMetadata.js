@@ -28,6 +28,8 @@ class SegmentMetadata {
    * segment.
    * @property {string} [segmentQueryExpression.segmentationQuerySql] Gets the
    * user specified custom SQL query.
+   * @property {array} [segmentQueryExpression.hierarchies] Gets a list of
+   * Hierarchies for segment query.
    * @property {string} [state] Possible values include: 'inactive', 'active',
    * 'validating', 'validated', 'invalid', 'validationError'
    * @property {string} [errorDescription] Gets the error description when the
@@ -165,6 +167,9 @@ class SegmentMetadata {
    * consecutive failures
    * @property {array} [evaluationStatusHistory] Gets the segment evaluation
    * status history. (not persisted in store)
+   * @property {object} [segmentQueryStats]
+   * @property {array} [segmentQueryStats.rowsetStat] Gets a list of Rowset
+   * Stat.
    * @property {number} [version] Version number of this object.
    * @property {string} [updatedBy] UPN of the user who last updated this
    * record.
@@ -278,6 +283,14 @@ class SegmentMetadata {
                     className: 'HistoricalSegmentStats'
                   }
               }
+            }
+          },
+          segmentQueryStats: {
+            required: false,
+            serializedName: 'segmentQueryStats',
+            type: {
+              name: 'Composite',
+              className: 'SegmentQueryStat'
             }
           },
           version: {

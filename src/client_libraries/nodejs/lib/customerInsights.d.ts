@@ -170,6 +170,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
+   * @param {boolean} [options.includeModel] The value indicating whether the
+   * model should be inluded in the response.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -179,7 +182,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getDataSourceWithHttpOperationResponse(instanceId: string, dataSourceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  getDataSourceWithHttpOperationResponse(instanceId: string, dataSourceId: string, options?: { includeModel? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary GetDataSource
@@ -194,6 +197,9 @@ export default class CustomerInsights extends ServiceClient {
    * for.
    *
    * @param {object} [options] Optional Parameters.
+   *
+   * @param {boolean} [options.includeModel] The value indicating whether the
+   * model should be inluded in the response.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -219,9 +225,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getDataSource(instanceId: string, dataSourceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getDataSource(instanceId: string, dataSourceId: string, options?: { includeModel? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   getDataSource(instanceId: string, dataSourceId: string, callback: ServiceCallback<any>): void;
-  getDataSource(instanceId: string, dataSourceId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  getDataSource(instanceId: string, dataSourceId: string, options: { includeModel? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1025,6 +1031,16 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -1110,6 +1126,15 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -1135,12 +1160,13 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -1153,6 +1179,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -1172,27 +1222,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -1201,6 +1230,8 @@ export default class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1211,7 +1242,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createAnInstanceWithHttpOperationResponse(options?: { body? : models.InstancesV2PostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateInstance
@@ -1224,6 +1255,16 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -1309,6 +1350,15 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -1334,12 +1384,13 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -1352,6 +1403,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -1371,27 +1446,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -1400,6 +1454,8 @@ export default class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1425,9 +1481,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createAnInstance(options?: { body? : models.InstancesV2PostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createAnInstance(options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createAnInstance(callback: ServiceCallback<any>): void;
-  createAnInstance(options: { body? : models.InstancesV2PostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createAnInstance(options: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1444,6 +1500,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body]
    *
    * @param {object} [options.body.instanceMetadata]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
    *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
@@ -1530,6 +1596,15 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -1555,12 +1630,13 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -1573,6 +1649,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -1592,27 +1692,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -1621,6 +1700,8 @@ export default class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1631,7 +1712,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateAnInstanceWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdV2PatchRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateAnInstanceWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateInstance.
@@ -1647,6 +1728,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body]
    *
    * @param {object} [options.body.instanceMetadata]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
    *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
@@ -1733,6 +1824,15 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -1758,12 +1858,13 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -1776,6 +1877,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -1795,27 +1920,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -1824,6 +1928,8 @@ export default class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1849,9 +1955,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateAnInstance(instanceId: string, options?: { body? : models.InstancesInstanceIdV2PatchRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateAnInstance(instanceId: string, options?: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateAnInstance(instanceId: string, callback: ServiceCallback<any>): void;
-  updateAnInstance(instanceId: string, options: { body? : models.InstancesInstanceIdV2PatchRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateAnInstance(instanceId: string, options: { body? : models.InstanceCreationRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -1867,6 +1973,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.instanceIdToCopy]
    *
    * @param {object} [options.body.instanceMetadata]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
    *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
@@ -1953,6 +2069,15 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -1978,12 +2103,13 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -1996,6 +2122,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -2015,27 +2165,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -2044,6 +2173,8 @@ export default class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -2054,7 +2185,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  copyAnInstanceWithHttpOperationResponse(options?: { body? : models.InstancesCopyPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  copyAnInstanceWithHttpOperationResponse(options?: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CopyInstance
@@ -2069,6 +2200,16 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.instanceIdToCopy]
    *
    * @param {object} [options.body.instanceMetadata]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
    *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
@@ -2155,6 +2296,15 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -2180,12 +2330,13 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -2198,6 +2349,30 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -2217,27 +2392,6 @@ export default class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -2246,6 +2400,8 @@ export default class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -2271,9 +2427,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  copyAnInstance(options?: { body? : models.InstancesCopyPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  copyAnInstance(options?: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   copyAnInstance(callback: ServiceCallback<any>): void;
-  copyAnInstance(options: { body? : models.InstancesCopyPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  copyAnInstance(options: { body? : models.InstanceCopyRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -2384,7 +2540,7 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -2398,7 +2554,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2605,6 +2761,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
+   *
    * @param {number} [options.body.version] Version number of this object.
    *
    * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -2630,7 +2789,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createAMeasureWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageMeasuresPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createAMeasureWithHttpOperationResponse(instanceId: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateMeasure
@@ -2676,7 +2835,7 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -2690,7 +2849,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -2897,6 +3056,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
+   *
    * @param {number} [options.body.version] Version number of this object.
    *
    * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -2937,9 +3099,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createAMeasure(instanceId: string, options?: { body? : models.InstancesInstanceIdManageMeasuresPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createAMeasure(instanceId: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createAMeasure(instanceId: string, callback: ServiceCallback<any>): void;
-  createAMeasure(instanceId: string, options: { body? : models.InstancesInstanceIdManageMeasuresPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createAMeasure(instanceId: string, options: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -3061,7 +3223,7 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -3075,7 +3237,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -3282,6 +3444,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
+   *
    * @param {number} [options.body.version] Version number of this object.
    *
    * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -3307,7 +3472,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateAMeasureWithHttpOperationResponse(instanceId: string, measureName: string, options?: { body? : models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateAMeasureWithHttpOperationResponse(instanceId: string, measureName: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateMeasure
@@ -3356,7 +3521,7 @@ export default class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -3370,7 +3535,7 @@ export default class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -3577,6 +3742,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
    *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
+   *
    * @param {number} [options.body.version] Version number of this object.
    *
    * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -3617,9 +3785,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateAMeasure(instanceId: string, measureName: string, options?: { body? : models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateAMeasure(instanceId: string, measureName: string, options?: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateAMeasure(instanceId: string, measureName: string, callback: ServiceCallback<any>): void;
-  updateAMeasure(instanceId: string, measureName: string, options: { body? : models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateAMeasure(instanceId: string, measureName: string, options: { body? : models.MeasureMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -3967,7 +4135,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateARoleAssignmentWithHttpOperationResponse(instanceId: string, principalId: string, options?: { body? : models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleAssignment[]>>;
+  updateARoleAssignmentWithHttpOperationResponse(instanceId: string, principalId: string, options?: { body? : models.RoleAssignment, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.RoleAssignment[]>>;
 
   /**
    * @summary UpdateRoleAssignment
@@ -4016,9 +4184,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateARoleAssignment(instanceId: string, principalId: string, options?: { body? : models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<models.RoleAssignment[]>;
+  updateARoleAssignment(instanceId: string, principalId: string, options?: { body? : models.RoleAssignment, customHeaders? : { [headerName: string]: string; } }): Promise<models.RoleAssignment[]>;
   updateARoleAssignment(instanceId: string, principalId: string, callback: ServiceCallback<models.RoleAssignment[]>): void;
-  updateARoleAssignment(instanceId: string, principalId: string, options: { body? : models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.RoleAssignment[]>): void;
+  updateARoleAssignment(instanceId: string, principalId: string, options: { body? : models.RoleAssignment, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.RoleAssignment[]>): void;
 
 
   /**
@@ -4265,7 +4433,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createARelationshipWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createARelationshipWithHttpOperationResponse(instanceId: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateRelationship
@@ -4348,9 +4516,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createARelationship(instanceId: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createARelationship(instanceId: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createARelationship(instanceId: string, callback: ServiceCallback<any>): void;
-  createARelationship(instanceId: string, options: { body? : models.InstancesInstanceIdManageRelationshipsPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createARelationship(instanceId: string, options: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -4550,7 +4718,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateARelationshipWithHttpOperationResponse(instanceId: string, relationshipName: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateARelationshipWithHttpOperationResponse(instanceId: string, relationshipName: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateRelationshhip
@@ -4636,9 +4804,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateARelationship(instanceId: string, relationshipName: string, options?: { body? : models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateARelationship(instanceId: string, relationshipName: string, options?: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateARelationship(instanceId: string, relationshipName: string, callback: ServiceCallback<any>): void;
-  updateARelationship(instanceId: string, relationshipName: string, options: { body? : models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateARelationship(instanceId: string, relationshipName: string, options: { body? : models.RelationshipMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -4741,7 +4909,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateSearchConfigurationWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSearchPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateSearchConfigurationWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstanceSearchConfiguration, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateSearchConfiguration
@@ -4800,9 +4968,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateSearchConfiguration(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSearchPutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateSearchConfiguration(instanceId: string, options?: { body? : models.InstanceSearchConfiguration, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateSearchConfiguration(instanceId: string, callback: ServiceCallback<any>): void;
-  updateSearchConfiguration(instanceId: string, options: { body? : models.InstancesInstanceIdManageSearchPutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateSearchConfiguration(instanceId: string, options: { body? : models.InstanceSearchConfiguration, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -4920,6 +5088,9 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -5070,6 +5241,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
    *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
+   *
    * @param {number} [options.body.version] Version number of this object.
    *
    * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -5095,7 +5271,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createASegmentWithHttpOperationResponse(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSegmentsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createASegmentWithHttpOperationResponse(instanceId: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateSegment
@@ -5136,6 +5312,9 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -5285,6 +5464,11 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -5326,9 +5510,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createASegment(instanceId: string, options?: { body? : models.InstancesInstanceIdManageSegmentsPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createASegment(instanceId: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createASegment(instanceId: string, callback: ServiceCallback<any>): void;
-  createASegment(instanceId: string, options: { body? : models.InstancesInstanceIdManageSegmentsPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createASegment(instanceId: string, options: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -5497,6 +5681,9 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -5647,6 +5834,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
    *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
+   *
    * @param {number} [options.body.version] Version number of this object.
    *
    * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -5672,7 +5864,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  updateASegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { body? : models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  updateASegmentWithHttpOperationResponse(instanceId: string, segmentName: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary UpdateSegments
@@ -5716,6 +5908,9 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -5866,6 +6061,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
    *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
+   *
    * @param {number} [options.body.version] Version number of this object.
    *
    * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -5906,9 +6106,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  updateASegment(instanceId: string, segmentName: string, options?: { body? : models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateASegment(instanceId: string, segmentName: string, options?: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   updateASegment(instanceId: string, segmentName: string, callback: ServiceCallback<any>): void;
-  updateASegment(instanceId: string, segmentName: string, options: { body? : models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  updateASegment(instanceId: string, segmentName: string, options: { body? : models.SegmentMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -6203,10 +6403,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.submissionKind] Possible values include:
    * 'onDemand', 'scheduled'
@@ -6241,7 +6442,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  submitAWorkflowJobWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  submitAWorkflowJobWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.OnDemandJobRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary SubmitWorkflowJob
@@ -6265,10 +6466,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.submissionKind] Possible values include:
    * 'onDemand', 'scheduled'
@@ -6318,9 +6520,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  submitAWorkflowJob(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  submitAWorkflowJob(instanceId: string, workflowName: string, options?: { body? : models.OnDemandJobRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   submitAWorkflowJob(instanceId: string, workflowName: string, callback: ServiceCallback<any>): void;
-  submitAWorkflowJob(instanceId: string, workflowName: string, options: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  submitAWorkflowJob(instanceId: string, workflowName: string, options: { body? : models.OnDemandJobRequest, operationType? : string, identifiers? : string[], forceRunRequested? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -6593,10 +6795,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -6629,7 +6832,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  createWorkflowRefreshScheduleWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  createWorkflowRefreshScheduleWithHttpOperationResponse(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary CreateWorkflowRefreshSchedule
@@ -6647,10 +6850,11 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -6698,9 +6902,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options?: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createWorkflowRefreshSchedule(instanceId: string, workflowName: string, callback: ServiceCallback<any>): void;
-  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options: { body? : models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  createWorkflowRefreshSchedule(instanceId: string, workflowName: string, options: { body? : models.WorkflowRefreshSchedule, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -6713,6 +6917,8 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} qualifiedEntityName Qualified Entity Name.
    *
    * @param {object} [options] Optional Parameters.
+   *
+   * @param {boolean} [options.includeAttributeData] Include attribute data.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -6723,7 +6929,7 @@ export default class CustomerInsights extends ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  getAnEntityProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+  getAnEntityProfileWithHttpOperationResponse(instanceId: string, qualifiedEntityName: string, options?: { includeAttributeData? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
 
   /**
    * @summary GetEntityProfile
@@ -6735,6 +6941,8 @@ export default class CustomerInsights extends ServiceClient {
    * @param {string} qualifiedEntityName Qualified Entity Name.
    *
    * @param {object} [options] Optional Parameters.
+   *
+   * @param {boolean} [options.includeAttributeData] Include attribute data.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -6760,9 +6968,9 @@ export default class CustomerInsights extends ServiceClient {
    *
    *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
    */
-  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options?: { includeAttributeData? : boolean, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   getAnEntityProfile(instanceId: string, qualifiedEntityName: string, callback: ServiceCallback<any>): void;
-  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+  getAnEntityProfile(instanceId: string, qualifiedEntityName: string, options: { includeAttributeData? : boolean, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 
 
   /**
@@ -6953,6 +7161,456 @@ export default class CustomerInsights extends ServiceClient {
   createABatchOfWorkflowRefreshSchedules(instanceId: string, workflowName: string, options?: { body? : models.WorkflowRefreshSchedule[], customHeaders? : { [headerName: string]: string; } }): Promise<any>;
   createABatchOfWorkflowRefreshSchedules(instanceId: string, workflowName: string, callback: ServiceCallback<any>): void;
   createABatchOfWorkflowRefreshSchedules(instanceId: string, workflowName: string, options: { body? : models.WorkflowRefreshSchedule[], customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] New hierarchy metadata to be created
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  createAHierarchyWithHttpOperationResponse(instanceId: string, options?: { body? : models.HierarchyMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] New hierarchy metadata to be created
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  createAHierarchy(instanceId: string, options?: { body? : models.HierarchyMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  createAHierarchy(instanceId: string, callback: ServiceCallback<any>): void;
+  createAHierarchy(instanceId: string, options: { body? : models.HierarchyMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary Retrieves a list of hierarchies entity metadata for the provided
+   * instanceId.
+   *
+   * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  getAllHierarchiesWithHttpOperationResponse(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary Retrieves a list of hierarchies entity metadata for the provided
+   * instanceId.
+   *
+   * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getAllHierarchies(instanceId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAllHierarchies(instanceId: string, callback: ServiceCallback<any>): void;
+  getAllHierarchies(instanceId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  getAHierarchyWithHttpOperationResponse(instanceId: string, hierarchyId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getAHierarchy(instanceId: string, hierarchyId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  getAHierarchy(instanceId: string, hierarchyId: string, callback: ServiceCallback<any>): void;
+  getAHierarchy(instanceId: string, hierarchyId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary Updates hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] Update hierarchy metadata
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  updateAHierarchyWithHttpOperationResponse(instanceId: string, hierarchyId: string, options?: { body? : models.HierarchyMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary Updates hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] Update hierarchy metadata
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  updateAHierarchy(instanceId: string, hierarchyId: string, options?: { body? : models.HierarchyMetadata, customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  updateAHierarchy(instanceId: string, hierarchyId: string, callback: ServiceCallback<any>): void;
+  updateAHierarchy(instanceId: string, hierarchyId: string, options: { body? : models.HierarchyMetadata, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
+
+
+  /**
+   * @summary Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  deleteAHierarchyWithHttpOperationResponse(instanceId: string, hierarchyId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<any>>;
+
+  /**
+   * @summary Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {ServiceCallback} [optionalCallback] - The optional callback.
+   *
+   * @returns {ServiceCallback|Promise} If a callback was passed as the last
+   * parameter then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned.
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error|ServiceError} - The error object.
+   *
+   * {ServiceCallback} optionalCallback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+   */
+  deleteAHierarchy(instanceId: string, hierarchyId: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<any>;
+  deleteAHierarchy(instanceId: string, hierarchyId: string, callback: ServiceCallback<any>): void;
+  deleteAHierarchy(instanceId: string, hierarchyId: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<any>): void;
 }
 
 export { CustomerInsights, models as CustomerInsightsModels };

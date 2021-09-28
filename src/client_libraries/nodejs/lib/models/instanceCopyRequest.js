@@ -14,6 +14,11 @@ class InstanceCopyRequest {
    * Create a InstanceCopyRequest.
    * @property {uuid} [instanceIdToCopy]
    * @property {object} [instanceMetadata]
+   * @property {boolean} [instanceMetadata.isB2B]
+   * @property {boolean} [instanceMetadata.isB2C]
+   * @property {boolean} [instanceMetadata.isByoPbi]
+   * @property {boolean} [instanceMetadata.isByoSynapse]
+   * @property {boolean} [instanceMetadata.isCdsMdlOrCdsByodl]
    * @property {string} [instanceMetadata.name] Gets the user defined instance
    * name.
    * @property {string} [instanceMetadata.provisioningState] Possible values
@@ -75,6 +80,12 @@ class InstanceCopyRequest {
    * datasources
    * @property {array} [instanceMetadata.trialExtensionDetails] Stores the
    * details of trial extensions done if this is a trial instance
+   * @property {array} [instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   * @property {string} [instanceMetadata.platformType] Field to store the
+   * Insights Partner who are onboarded to Insights Platform.
+   * @property {string} [instanceMetadata.azureRegion] Gets the Azure Region
+   * where the scale unit resides (not persisted in store)
    * @property {number} [instanceMetadata.version] Version number of this
    * object.
    * @property {string} [instanceMetadata.updatedBy] UPN of the user who last
@@ -91,12 +102,13 @@ class InstanceCopyRequest {
    * @property {string} [byosaResourceMetadata.kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend',
-   * 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    * @property {uuid} [byosaResourceMetadata.resourceId] Gets the Id of the
    * resource.
    * @property {uuid} [byosaResourceMetadata.operationId] Gets the Id of the
@@ -105,6 +117,21 @@ class InstanceCopyRequest {
    * resource.
    * @property {string} [byosaResourceMetadata.description] Gets the
    * Description of the resource.
+   * @property {uuid} [byosaResourceMetadata.keyVaultMetadataId] MetadataId for
+   * Linked KeyVaultMetadata
+   * @property {object} [byosaResourceMetadata.mappedSecrets]
+   * @property {string} [byosaResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   * @property {uuid}
+   * [byosaResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId] Gets
+   * uniqueId of the KeyVault
+   * @property {uuid} [byosaResourceMetadata.mappedSecrets.mappingEntityId]
+   * Gets uniqueId of entity Mapping Secrets
+   * @property {object}
+   * [byosaResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping] Gets Secret
+   * Names for Fields Mapped in KeyVault
+   * @property {uuid} [byosaResourceMetadata.mappedSecrets.instanceId] Customer
+   * Insights instance id associated with this object.
    * @property {number} [byosaResourceMetadata.version] Version number of this
    * object.
    * @property {string} [byosaResourceMetadata.updatedBy] UPN of the user who
@@ -121,12 +148,13 @@ class InstanceCopyRequest {
    * @property {string} [cdsResourceMetadata.kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend',
-   * 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    * @property {uuid} [cdsResourceMetadata.resourceId] Gets the Id of the
    * resource.
    * @property {uuid} [cdsResourceMetadata.operationId] Gets the Id of the
@@ -135,6 +163,21 @@ class InstanceCopyRequest {
    * resource.
    * @property {string} [cdsResourceMetadata.description] Gets the Description
    * of the resource.
+   * @property {uuid} [cdsResourceMetadata.keyVaultMetadataId] MetadataId for
+   * Linked KeyVaultMetadata
+   * @property {object} [cdsResourceMetadata.mappedSecrets]
+   * @property {string} [cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   * @property {uuid}
+   * [cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId] Gets uniqueId
+   * of the KeyVault
+   * @property {uuid} [cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   * @property {object}
+   * [cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping] Gets Secret
+   * Names for Fields Mapped in KeyVault
+   * @property {uuid} [cdsResourceMetadata.mappedSecrets.instanceId] Customer
+   * Insights instance id associated with this object.
    * @property {number} [cdsResourceMetadata.version] Version number of this
    * object.
    * @property {string} [cdsResourceMetadata.updatedBy] UPN of the user who
@@ -147,23 +190,12 @@ class InstanceCopyRequest {
    * initially created.
    * @property {uuid} [cdsResourceMetadata.instanceId] Customer Insights
    * instance id associated with this object.
-   * @property {object} [byoPbiProvisioningInfo]
-   * @property {string} [byoPbiProvisioningInfo.storageSubscriptionId] Storage
-   * account subscriptionId.
-   * @property {string} [byoPbiProvisioningInfo.storageResourceGroup] Storage
-   * account Resource Group.
-   * @property {string} [byoPbiProvisioningInfo.storageResourceRegion] Storage
-   * account Region.
-   * @property {string} [byoPbiProvisioningInfo.storageResourceTenantId]
-   * Storage account tenant.
-   * @property {string} [byoPbiProvisioningInfo.capacityId] Pbi Capacity Id.
-   * @property {string} [byoPbiProvisioningInfo.delegationToken] PBI delegation
-   * token captured from the user.
    * @property {boolean} [isCdsMdlStorageEnabled]
    * @property {boolean} [isCiToByosaMigrationEnabled]
    * @property {string} [bapProvisioningType] Possible values include: 'skip',
    * 'create', 'attach'
    * @property {boolean} [isPbiProvisioningRequired]
+   * @property {boolean} [isDataverseUpdateRequested]
    */
   constructor() {
   }
@@ -213,14 +245,6 @@ class InstanceCopyRequest {
               className: 'ResourceMetadata'
             }
           },
-          byoPbiProvisioningInfo: {
-            required: false,
-            serializedName: 'byoPbiProvisioningInfo',
-            type: {
-              name: 'Composite',
-              className: 'ByoPbiProvisioningInfo'
-            }
-          },
           isCdsMdlStorageEnabled: {
             required: false,
             serializedName: 'isCdsMdlStorageEnabled',
@@ -245,6 +269,13 @@ class InstanceCopyRequest {
           isPbiProvisioningRequired: {
             required: false,
             serializedName: 'isPbiProvisioningRequired',
+            type: {
+              name: 'Boolean'
+            }
+          },
+          isDataverseUpdateRequested: {
+            required: false,
+            serializedName: 'isDataverseUpdateRequested',
             type: {
               name: 'Boolean'
             }

@@ -13,7 +13,8 @@
 class MeasureLinkedEntity {
   /**
    * Create a MeasureLinkedEntity.
-   * @property {string} [kind] Possible values include: 'base', 'join'
+   * @property {string} [kind] Possible values include: 'base', 'join',
+   * 'scalar'
    * @property {string} [entity] Gets the name of the entity.
    * @property {string} [alias] Gets the alias of the entity.
    */

@@ -24,12 +24,6 @@ class UserInfo(Model):
     :type preferred_regional_format: str
     :param default_instance: Gets user default instance id.
     :type default_instance: str
-    :param is_global_admin: Gets a value indicating whether the user is a
-     global admin. (not persisted in store)
-    :type is_global_admin: bool
-    :param eligible_instance_types_to_provision: Gets list of Instance types
-     which are eligible to provision by user. (not persisted in store)
-    :type eligible_instance_types_to_provision: list[str]
     :param user_notifications_settings:
     :type user_notifications_settings:
      ~dynamics.customerinsights.api.models.UserNotificationsSettings
@@ -54,6 +48,10 @@ class UserInfo(Model):
     :type terms_of_use: ~dynamics.customerinsights.api.models.TermsOfUse
     :param region: Gets the region that the user belongs to.
     :type region: str
+    :param last_used_experience: Possible values include: 'audienceInsights',
+     'engagementInsights', 'audienceInsightsB2B'
+    :type last_used_experience: str or
+     ~dynamics.customerinsights.api.models.enum
     :param instance_id: Customer Insights instance id associated with this
      object.
     :type instance_id: str
@@ -66,8 +64,6 @@ class UserInfo(Model):
         'preferred_language': {'key': 'preferredLanguage', 'type': 'str'},
         'preferred_regional_format': {'key': 'preferredRegionalFormat', 'type': 'str'},
         'default_instance': {'key': 'defaultInstance', 'type': 'str'},
-        'is_global_admin': {'key': 'isGlobalAdmin', 'type': 'bool'},
-        'eligible_instance_types_to_provision': {'key': 'eligibleInstanceTypesToProvision', 'type': '[str]'},
         'user_notifications_settings': {'key': 'userNotificationsSettings', 'type': 'UserNotificationsSettings'},
         'industry_demo': {'key': 'industryDemo', 'type': 'str'},
         'tenant_id': {'key': 'tenantId', 'type': 'str'},
@@ -77,6 +73,7 @@ class UserInfo(Model):
         'portal_settings': {'key': 'portalSettings', 'type': 'PortalSettings'},
         'terms_of_use': {'key': 'termsOfUse', 'type': 'TermsOfUse'},
         'region': {'key': 'region', 'type': 'str'},
+        'last_used_experience': {'key': 'lastUsedExperience', 'type': 'str'},
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
@@ -88,8 +85,6 @@ class UserInfo(Model):
         self.preferred_language = kwargs.get('preferred_language', None)
         self.preferred_regional_format = kwargs.get('preferred_regional_format', None)
         self.default_instance = kwargs.get('default_instance', None)
-        self.is_global_admin = kwargs.get('is_global_admin', None)
-        self.eligible_instance_types_to_provision = kwargs.get('eligible_instance_types_to_provision', None)
         self.user_notifications_settings = kwargs.get('user_notifications_settings', None)
         self.industry_demo = kwargs.get('industry_demo', None)
         self.tenant_id = kwargs.get('tenant_id', None)
@@ -99,4 +94,5 @@ class UserInfo(Model):
         self.portal_settings = kwargs.get('portal_settings', None)
         self.terms_of_use = kwargs.get('terms_of_use', None)
         self.region = kwargs.get('region', None)
+        self.last_used_experience = kwargs.get('last_used_experience', None)
         self.instance_id = kwargs.get('instance_id', None)

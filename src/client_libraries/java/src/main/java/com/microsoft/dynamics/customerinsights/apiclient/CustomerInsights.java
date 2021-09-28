@@ -10,6 +10,7 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.ActivateSegmentH
 import com.microsoft.dynamics.customerinsights.apiclient.models.CancelAWorkflowJobHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CopyAnInstanceHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateABatchOfWorkflowRefreshSchedulesHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAHierarchyHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAMeasureHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAnEntityHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateAnInstanceHeaders;
@@ -18,15 +19,18 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.CreateASegmentHe
 import com.microsoft.dynamics.customerinsights.apiclient.models.CreateWorkflowRefreshScheduleHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeactivateSegmentHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteADataSourceHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteAHierarchyHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteAMeasureHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteAnInstanceHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteARelationshipHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeletesARoleAssignmentHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.DeleteSegmentHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetActivityTypesAndCountsHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.GetAHierarchyHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAListOfMeasuresMetadataHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllDataSourcesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllEntityMetadataHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllHierarchiesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllInstancesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllRelationshipsHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetAllRoleAssignmentsHeaders;
@@ -52,23 +56,19 @@ import com.microsoft.dynamics.customerinsights.apiclient.models.GetSearchConfigu
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetSupportedTimezonesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetWorkflowSchedulesHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.GetWorkflowStatusHeaders;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesCopyPostRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageMeasuresMeasureNamePutRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageMeasuresPostRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageRelationshipsPostRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSearchPutRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSegmentsPostRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdManageSegmentsSegmentNamePutRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdV2PatchRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest;
-import com.microsoft.dynamics.customerinsights.apiclient.models.InstancesV2PostRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.HierarchyMetadata;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceCopyRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceCreationRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.InstanceSearchConfiguration;
+import com.microsoft.dynamics.customerinsights.apiclient.models.MeasureMetadata;
+import com.microsoft.dynamics.customerinsights.apiclient.models.OnDemandJobRequest;
+import com.microsoft.dynamics.customerinsights.apiclient.models.RelationshipMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.ResetAnInstanceHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleAssignment;
 import com.microsoft.dynamics.customerinsights.apiclient.models.RoleDefinition;
+import com.microsoft.dynamics.customerinsights.apiclient.models.SegmentMetadata;
 import com.microsoft.dynamics.customerinsights.apiclient.models.SubmitAWorkflowJobHeaders;
+import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateAHierarchyHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateAMeasureHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateAnEntityHeaders;
 import com.microsoft.dynamics.customerinsights.apiclient.models.UpdateAnInstanceHeaders;
@@ -242,6 +242,56 @@ public interface CustomerInsights {
      * @return the observable to the Object object
      */
     Observable<ServiceResponseWithHeaders<Object, GetDataSourceHeaders>> getDataSourceWithServiceResponseAsync(String instanceId, String dataSourceId);
+    /**
+     * GetDataSource.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     *
+     * @param instanceId Format - uuid. The instance id to fetch data source info for.
+     * @param dataSourceId Format - uuid. The data source id to fetch info for.
+     * @param includeModel The value indicating whether the model should be inluded in the response.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object getDataSource(String instanceId, String dataSourceId, Boolean includeModel);
+
+    /**
+     * GetDataSource.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     *
+     * @param instanceId Format - uuid. The instance id to fetch data source info for.
+     * @param dataSourceId Format - uuid. The data source id to fetch info for.
+     * @param includeModel The value indicating whether the model should be inluded in the response.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> getDataSourceAsync(String instanceId, String dataSourceId, Boolean includeModel, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * GetDataSource.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     *
+     * @param instanceId Format - uuid. The instance id to fetch data source info for.
+     * @param dataSourceId Format - uuid. The data source id to fetch info for.
+     * @param includeModel The value indicating whether the model should be inluded in the response.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> getDataSourceAsync(String instanceId, String dataSourceId, Boolean includeModel);
+
+    /**
+     * GetDataSource.
+     * Fetches a DataSourceInfo matching the dataSourceId configured for the Customer Insights instance.
+     *
+     * @param instanceId Format - uuid. The instance id to fetch data source info for.
+     * @param dataSourceId Format - uuid. The data source id to fetch info for.
+     * @param includeModel The value indicating whether the model should be inluded in the response.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, GetDataSourceHeaders>> getDataSourceWithServiceResponseAsync(String instanceId, String dataSourceId, Boolean includeModel);
 
     /**
      * DeleteDataSource.
@@ -1144,7 +1194,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createAnInstance(InstancesV2PostRequest body);
+    Object createAnInstance(InstanceCreationRequest body);
 
     /**
      * CreateInstance.
@@ -1155,7 +1205,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createAnInstanceAsync(InstancesV2PostRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createAnInstanceAsync(InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateInstance.
@@ -1165,7 +1215,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createAnInstanceAsync(InstancesV2PostRequest body);
+    Observable<Object> createAnInstanceAsync(InstanceCreationRequest body);
 
     /**
      * CreateInstance.
@@ -1175,7 +1225,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstancesV2PostRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CreateAnInstanceHeaders>> createAnInstanceWithServiceResponseAsync(InstanceCreationRequest body);
 
     /**
      * UpdateInstance.
@@ -1224,47 +1274,47 @@ public interface CustomerInsights {
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstancesInstanceIdV2PatchRequest value
+     * @param body the InstanceCreationRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateAnInstance(String instanceId, InstancesInstanceIdV2PatchRequest body);
+    Object updateAnInstance(String instanceId, InstanceCreationRequest body);
 
     /**
      * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstancesInstanceIdV2PatchRequest value
+     * @param body the InstanceCreationRequest value
      * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateAnInstanceAsync(String instanceId, InstancesInstanceIdV2PatchRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstancesInstanceIdV2PatchRequest value
+     * @param body the InstanceCreationRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateAnInstanceAsync(String instanceId, InstancesInstanceIdV2PatchRequest body);
+    Observable<Object> updateAnInstanceAsync(String instanceId, InstanceCreationRequest body);
 
     /**
      * UpdateInstance.
      * Patches the Market Verticals, Display name, Domain Name, CDS environment and BYOSA secret to the instance. It would trigger a full refresh during CI to CDS MDL migration.
      *
      * @param instanceId Format - uuid.
-     * @param body the InstancesInstanceIdV2PatchRequest value
+     * @param body the InstanceCreationRequest value
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId, InstancesInstanceIdV2PatchRequest body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateAnInstanceHeaders>> updateAnInstanceWithServiceResponseAsync(String instanceId, InstanceCreationRequest body);
 
     /**
      * CopyInstance.
@@ -1314,7 +1364,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object copyAnInstance(InstancesCopyPostRequest body);
+    Object copyAnInstance(InstanceCopyRequest body);
 
     /**
      * CopyInstance.
@@ -1325,7 +1375,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> copyAnInstanceAsync(InstancesCopyPostRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> copyAnInstanceAsync(InstanceCopyRequest body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CopyInstance.
@@ -1335,7 +1385,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> copyAnInstanceAsync(InstancesCopyPostRequest body);
+    Observable<Object> copyAnInstanceAsync(InstanceCopyRequest body);
 
     /**
      * CopyInstance.
@@ -1345,7 +1395,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstancesCopyPostRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CopyAnInstanceHeaders>> copyAnInstanceWithServiceResponseAsync(InstanceCopyRequest body);
 
     /**
      * ListAllMeasuresMetadata.
@@ -1489,7 +1539,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createAMeasure(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body);
+    Object createAMeasure(String instanceId, MeasureMetadata body);
 
     /**
      * CreateMeasure.
@@ -1501,7 +1551,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createAMeasureAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createAMeasureAsync(String instanceId, MeasureMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateMeasure.
@@ -1512,7 +1562,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createAMeasureAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body);
+    Observable<Object> createAMeasureAsync(String instanceId, MeasureMetadata body);
 
     /**
      * CreateMeasure.
@@ -1523,7 +1573,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageMeasuresPostRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CreateAMeasureHeaders>> createAMeasureWithServiceResponseAsync(String instanceId, MeasureMetadata body);
 
     /**
      * GetMeasureMetadata.
@@ -1689,7 +1739,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateAMeasure(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body);
+    Object updateAMeasure(String instanceId, String measureName, MeasureMetadata body);
 
     /**
      * UpdateMeasure.
@@ -1703,7 +1753,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateMeasure.
@@ -1716,7 +1766,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateAMeasureAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body);
+    Observable<Object> updateAMeasureAsync(String instanceId, String measureName, MeasureMetadata body);
 
     /**
      * UpdateMeasure.
@@ -1729,7 +1779,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName, InstancesInstanceIdManageMeasuresMeasureNamePutRequest body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateAMeasureHeaders>> updateAMeasureWithServiceResponseAsync(String instanceId, String measureName, MeasureMetadata body);
 
     /**
      * DeleteMeasure.
@@ -2020,7 +2070,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the List&lt;RoleAssignment&gt; object if successful.
      */
-    List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body);
+    List<RoleAssignment> updateARoleAssignment(String instanceId, String principalId, RoleAssignment body);
 
     /**
      * UpdateRoleAssignment.
@@ -2033,7 +2083,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body, final ServiceCallback<List<RoleAssignment>> serviceCallback);
+    ServiceFuture<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body, final ServiceCallback<List<RoleAssignment>> serviceCallback);
 
     /**
      * UpdateRoleAssignment.
@@ -2045,7 +2095,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;RoleAssignment&gt; object
      */
-    Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body);
+    Observable<List<RoleAssignment>> updateARoleAssignmentAsync(String instanceId, String principalId, RoleAssignment body);
 
     /**
      * UpdateRoleAssignment.
@@ -2057,7 +2107,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the List&lt;RoleAssignment&gt; object
      */
-    Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId, InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest body);
+    Observable<ServiceResponseWithHeaders<List<RoleAssignment>, UpdateARoleAssignmentHeaders>> updateARoleAssignmentWithServiceResponseAsync(String instanceId, String principalId, RoleAssignment body);
 
     /**
      * DeleteRoleAssignment.
@@ -2244,7 +2294,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createARelationship(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body);
+    Object createARelationship(String instanceId, RelationshipMetadata body);
 
     /**
      * CreateRelationship.
@@ -2256,7 +2306,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createARelationshipAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateRelationship.
@@ -2267,7 +2317,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createARelationshipAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body);
+    Observable<Object> createARelationshipAsync(String instanceId, RelationshipMetadata body);
 
     /**
      * CreateRelationship.
@@ -2278,7 +2328,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageRelationshipsPostRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CreateARelationshipHeaders>> createARelationshipWithServiceResponseAsync(String instanceId, RelationshipMetadata body);
 
     /**
      * GetRelationship.
@@ -2432,7 +2482,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateARelationship(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body);
+    Object updateARelationship(String instanceId, String relationshipName, RelationshipMetadata body);
 
     /**
      * UpdateRelationshhip.
@@ -2445,7 +2495,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateRelationshhip.
@@ -2457,7 +2507,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body);
+    Observable<Object> updateARelationshipAsync(String instanceId, String relationshipName, RelationshipMetadata body);
 
     /**
      * UpdateRelationshhip.
@@ -2469,7 +2519,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName, InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateARelationshipHeaders>> updateARelationshipWithServiceResponseAsync(String instanceId, String relationshipName, RelationshipMetadata body);
 
     /**
      * GetSearchConfiguration.
@@ -2567,7 +2617,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateSearchConfiguration(String instanceId, InstancesInstanceIdManageSearchPutRequest body);
+    Object updateSearchConfiguration(String instanceId, InstanceSearchConfiguration body);
 
     /**
      * UpdateSearchConfiguration.
@@ -2579,7 +2629,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateSearchConfiguration.
@@ -2590,7 +2640,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateSearchConfigurationAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body);
+    Observable<Object> updateSearchConfigurationAsync(String instanceId, InstanceSearchConfiguration body);
 
     /**
      * UpdateSearchConfiguration.
@@ -2601,7 +2651,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageSearchPutRequest body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateSearchConfigurationHeaders>> updateSearchConfigurationWithServiceResponseAsync(String instanceId, InstanceSearchConfiguration body);
 
     /**
      * ListAllSegments.
@@ -2753,7 +2803,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createASegment(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body);
+    Object createASegment(String instanceId, SegmentMetadata body);
 
     /**
      * CreateSegment.
@@ -2765,7 +2815,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createASegmentAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createASegmentAsync(String instanceId, SegmentMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateSegment.
@@ -2776,7 +2826,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createASegmentAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body);
+    Observable<Object> createASegmentAsync(String instanceId, SegmentMetadata body);
 
     /**
      * CreateSegment.
@@ -2787,7 +2837,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId, InstancesInstanceIdManageSegmentsPostRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CreateASegmentHeaders>> createASegmentWithServiceResponseAsync(String instanceId, SegmentMetadata body);
 
     /**
      * ActivateSegment.
@@ -2941,7 +2991,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object updateASegment(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body);
+    Object updateASegment(String instanceId, String segmentName, SegmentMetadata body);
 
     /**
      * UpdateSegments.
@@ -2954,7 +3004,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * UpdateSegments.
@@ -2966,7 +3016,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> updateASegmentAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body);
+    Observable<Object> updateASegmentAsync(String instanceId, String segmentName, SegmentMetadata body);
 
     /**
      * UpdateSegments.
@@ -2978,7 +3028,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName, InstancesInstanceIdManageSegmentsSegmentNamePutRequest body);
+    Observable<ServiceResponseWithHeaders<Object, UpdateASegmentHeaders>> updateASegmentWithServiceResponseAsync(String instanceId, String segmentName, SegmentMetadata body);
 
     /**
      * DeleteSegment.
@@ -3355,7 +3405,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object submitAWorkflowJob(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
+    Object submitAWorkflowJob(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
      * SubmitWorkflowJob.
@@ -3373,7 +3423,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested, final ServiceCallback<Object> serviceCallback);
 
     /**
      * SubmitWorkflowJob.
@@ -3390,7 +3440,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
+    Observable<Object> submitAWorkflowJobAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
      * SubmitWorkflowJob.
@@ -3407,7 +3457,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
+    Observable<ServiceResponseWithHeaders<Object, SubmitAWorkflowJobHeaders>> submitAWorkflowJobWithServiceResponseAsync(String instanceId, String workflowName, OnDemandJobRequest body, String operationType, List<String> identifiers, Boolean forceRunRequested);
 
     /**
      * ListWorkflowHistory.
@@ -3705,7 +3755,7 @@ public interface CustomerInsights {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the Object object if successful.
      */
-    Object createWorkflowRefreshSchedule(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body);
+    Object createWorkflowRefreshSchedule(String instanceId, String workflowName, WorkflowRefreshSchedule body);
 
     /**
      * CreateWorkflowRefreshSchedule.
@@ -3718,7 +3768,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body, final ServiceCallback<Object> serviceCallback);
+    ServiceFuture<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body, final ServiceCallback<Object> serviceCallback);
 
     /**
      * CreateWorkflowRefreshSchedule.
@@ -3730,7 +3780,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body);
+    Observable<Object> createWorkflowRefreshScheduleAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body);
 
     /**
      * CreateWorkflowRefreshSchedule.
@@ -3742,7 +3792,7 @@ public interface CustomerInsights {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the Object object
      */
-    Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName, InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest body);
+    Observable<ServiceResponseWithHeaders<Object, CreateWorkflowRefreshScheduleHeaders>> createWorkflowRefreshScheduleWithServiceResponseAsync(String instanceId, String workflowName, WorkflowRefreshSchedule body);
 
     /**
      * GetEntityProfile.
@@ -3790,6 +3840,56 @@ public interface CustomerInsights {
      * @return the observable to the Object object
      */
     Observable<ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders>> getAnEntityProfileWithServiceResponseAsync(String instanceId, String qualifiedEntityName);
+    /**
+     * GetEntityProfile.
+     * Gets the entityProfile for the entity.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param qualifiedEntityName Qualified Entity Name.
+     * @param includeAttributeData Include attribute data.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object getAnEntityProfile(String instanceId, String qualifiedEntityName, Boolean includeAttributeData);
+
+    /**
+     * GetEntityProfile.
+     * Gets the entityProfile for the entity.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param qualifiedEntityName Qualified Entity Name.
+     * @param includeAttributeData Include attribute data.
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName, Boolean includeAttributeData, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * GetEntityProfile.
+     * Gets the entityProfile for the entity.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param qualifiedEntityName Qualified Entity Name.
+     * @param includeAttributeData Include attribute data.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> getAnEntityProfileAsync(String instanceId, String qualifiedEntityName, Boolean includeAttributeData);
+
+    /**
+     * GetEntityProfile.
+     * Gets the entityProfile for the entity.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id.
+     * @param qualifiedEntityName Qualified Entity Name.
+     * @param includeAttributeData Include attribute data.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, GetAnEntityProfileHeaders>> getAnEntityProfileWithServiceResponseAsync(String instanceId, String qualifiedEntityName, Boolean includeAttributeData);
 
     /**
      * Gets the metadata information (including total Activity record count and Activity Types) for a given customer id.
@@ -3977,5 +4077,328 @@ public interface CustomerInsights {
      * @return the observable to the Object object
      */
     Observable<ServiceResponseWithHeaders<Object, CreateABatchOfWorkflowRefreshSchedulesHeaders>> createABatchOfWorkflowRefreshSchedulesWithServiceResponseAsync(String instanceId, String workflowName, List<WorkflowRefreshSchedule> body);
+
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object createAHierarchy(String instanceId);
+
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> createAHierarchyAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> createAHierarchyAsync(String instanceId);
+
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, CreateAHierarchyHeaders>> createAHierarchyWithServiceResponseAsync(String instanceId);
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param body New hierarchy metadata to be created
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object createAHierarchy(String instanceId, HierarchyMetadata body);
+
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param body New hierarchy metadata to be created
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> createAHierarchyAsync(String instanceId, HierarchyMetadata body, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param body New hierarchy metadata to be created
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> createAHierarchyAsync(String instanceId, HierarchyMetadata body);
+
+    /**
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param body New hierarchy metadata to be created
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, CreateAHierarchyHeaders>> createAHierarchyWithServiceResponseAsync(String instanceId, HierarchyMetadata body);
+
+    /**
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object getAllHierarchies(String instanceId);
+
+    /**
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> getAllHierarchiesAsync(String instanceId, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> getAllHierarchiesAsync(String instanceId);
+
+    /**
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, GetAllHierarchiesHeaders>> getAllHierarchiesWithServiceResponseAsync(String instanceId);
+
+    /**
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object getAHierarchy(String instanceId, String hierarchyId);
+
+    /**
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> getAHierarchyAsync(String instanceId, String hierarchyId, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> getAHierarchyAsync(String instanceId, String hierarchyId);
+
+    /**
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     * Retrieves the hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, GetAHierarchyHeaders>> getAHierarchyWithServiceResponseAsync(String instanceId, String hierarchyId);
+
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object updateAHierarchy(String instanceId, String hierarchyId);
+
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> updateAHierarchyAsync(String instanceId, String hierarchyId, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> updateAHierarchyAsync(String instanceId, String hierarchyId);
+
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, UpdateAHierarchyHeaders>> updateAHierarchyWithServiceResponseAsync(String instanceId, String hierarchyId);
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @param body Update hierarchy metadata
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object updateAHierarchy(String instanceId, String hierarchyId, HierarchyMetadata body);
+
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @param body Update hierarchy metadata
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> updateAHierarchyAsync(String instanceId, String hierarchyId, HierarchyMetadata body, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @param body Update hierarchy metadata
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> updateAHierarchyAsync(String instanceId, String hierarchyId, HierarchyMetadata body);
+
+    /**
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @param body Update hierarchy metadata
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, UpdateAHierarchyHeaders>> updateAHierarchyWithServiceResponseAsync(String instanceId, String hierarchyId, HierarchyMetadata body);
+
+    /**
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws RestException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the Object object if successful.
+     */
+    Object deleteAHierarchy(String instanceId, String hierarchyId);
+
+    /**
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<Object> deleteAHierarchyAsync(String instanceId, String hierarchyId, final ServiceCallback<Object> serviceCallback);
+
+    /**
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<Object> deleteAHierarchyAsync(String instanceId, String hierarchyId);
+
+    /**
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     * Deletes the hierarchy metadata for the provided instanceId using hierarchyId.
+     *
+     * @param instanceId Format - uuid. Customer Insights instance id
+     * @param hierarchyId Format - uuid. Id of the hierarchy
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the Object object
+     */
+    Observable<ServiceResponseWithHeaders<Object, DeleteAHierarchyHeaders>> deleteAHierarchyWithServiceResponseAsync(String instanceId, String hierarchyId);
 
 }

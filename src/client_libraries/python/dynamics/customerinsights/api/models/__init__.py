@@ -6,14 +6,17 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .ci_result_py3 import CIResult
-    from .api_error_result_py3 import ApiErrorResult
-    from .value_count_py3 import ValueCount
+    from .workflow_refresh_schedule_py3 import WorkflowRefreshSchedule
     from .histogram_bin_py3 import HistogramBin
     from .quantiles_py3 import Quantiles
     from .moments_py3 import Moments
+    from .value_count_py3 import ValueCount
     from .attribute_data_profile_py3 import AttributeDataProfile
+    from .entity_data_profile_py3 import EntityDataProfile
+    from .ci_result_py3 import CIResult
+    from .api_error_result_py3 import ApiErrorResult
     from .attribute_semantic_information_py3 import AttributeSemanticInformation
+    from .entity_enrichment_information_py3 import EntityEnrichmentInformation
     from .datasource_entity_information_py3 import DatasourceEntityInformation
     from .incremental_refresh_properties_py3 import IncrementalRefreshProperties
     from .data_source_metadata_py3 import DataSourceMetadata
@@ -36,7 +39,6 @@ try:
     from .accepted_result_py3 import AcceptedResult
     from .no_content_result_py3 import NoContentResult
     from .odata_entity_payload_py3 import ODataEntityPayload
-    from .api_error_py3 import ApiError
     from .iedm_type_py3 import IEdmType
     from .iattribute_search_properties_py3 import IAttributeSearchProperties
     from .iattribute_metadata_py3 import IAttributeMetadata
@@ -45,6 +47,9 @@ try:
     from .irelationship_metadata_py3 import IRelationshipMetadata
     from .ic360_entity_model_py3 import IC360EntityModel
     from .entity_size_py3 import EntitySize
+    from .hierarchy_dependency_py3 import HierarchyDependency
+    from .hierarchy_metadata_py3 import HierarchyMetadata
+    from .ok_object_result_py3 import OkObjectResult
     from .instance_info_py3 import InstanceInfo
     from .embedded_report_py3 import EmbeddedReport
     from .instance_provisioning_error_py3 import InstanceProvisioningError
@@ -55,8 +60,10 @@ try:
     from .cds_org_info_py3 import CdsOrgInfo
     from .datalake_folder_detail_py3 import DatalakeFolderDetail
     from .cds_mdl_info_py3 import CdsMdlInfo
+    from .pbi_provisioning_config_py3 import PbiProvisioningConfig
     from .trial_extension_details_py3 import TrialExtensionDetails
     from .instance_metadata_py3 import InstanceMetadata
+    from .mapped_secret_metadata_py3 import MappedSecretMetadata
     from .resource_metadata_py3 import ResourceMetadata
     from .byo_pbi_provisioning_info_py3 import ByoPbiProvisioningInfo
     from .instance_creation_request_py3 import InstanceCreationRequest
@@ -95,9 +102,12 @@ try:
     from .instance_search_configuration_py3 import InstanceSearchConfiguration
     from .segmentation_projection_py3 import SegmentationProjection
     from .segmentation_rowset_py3 import SegmentationRowset
+    from .hierarchy_definition_py3 import HierarchyDefinition
     from .segmentation_query_py3 import SegmentationQuery
     from .segmentation_publish_stats_py3 import SegmentationPublishStats
     from .historical_segment_stats_py3 import HistoricalSegmentStats
+    from .segment_rowset_stat_py3 import SegmentRowsetStat
+    from .segment_query_stat_py3 import SegmentQueryStat
     from .segment_metadata_py3 import SegmentMetadata
     from .custom_task_information_py3 import CustomTaskInformation
     from .selection_reason_py3 import SelectionReason
@@ -108,48 +118,27 @@ try:
     from .data_info_py3 import DataInfo
     from .graph_node_info_py3 import GraphNodeInfo
     from .timezone_detail_py3 import TimezoneDetail
-    from .workflow_refresh_schedule_py3 import WorkflowRefreshSchedule
     from .dismissed_notification_py3 import DismissedNotification
     from .user_notifications_settings_py3 import UserNotificationsSettings
+    from .history_py3 import History
+    from .coachmarks_py3 import Coachmarks
+    from .banners_py3 import Banners
+    from .notifications_py3 import Notifications
     from .portal_settings_py3 import PortalSettings
     from .terms_of_use_py3 import TermsOfUse
     from .user_info_py3 import UserInfo
-    from .entity_data_profile_py3 import EntityDataProfile
-    from .instances_v2_post_request_py3 import InstancesV2PostRequest
-    from .instances_v2_post_request1_py3 import InstancesV2PostRequest1
-    from .instances_instance_id_v2_patch_request_py3 import InstancesInstanceIdV2PatchRequest
-    from .instances_instance_id_v2_patch_request1_py3 import InstancesInstanceIdV2PatchRequest1
-    from .instances_copy_post_request_py3 import InstancesCopyPostRequest
-    from .instances_copy_post_request1_py3 import InstancesCopyPostRequest1
-    from .instances_instance_id_manage_measures_post_request_py3 import InstancesInstanceIdManageMeasuresPostRequest
-    from .instances_instance_id_manage_measures_post_request1_py3 import InstancesInstanceIdManageMeasuresPostRequest1
-    from .instances_instance_id_manage_measures_measure_name_put_request_py3 import InstancesInstanceIdManageMeasuresMeasureNamePutRequest
-    from .instances_instance_id_manage_measures_measure_name_put_request1_py3 import InstancesInstanceIdManageMeasuresMeasureNamePutRequest1
-    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request_py3 import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest
-    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request1_py3 import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1
-    from .instances_instance_id_manage_relationships_post_request_py3 import InstancesInstanceIdManageRelationshipsPostRequest
-    from .instances_instance_id_manage_relationships_post_request1_py3 import InstancesInstanceIdManageRelationshipsPostRequest1
-    from .instances_instance_id_manage_relationships_relationship_name_put_request_py3 import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest
-    from .instances_instance_id_manage_relationships_relationship_name_put_request1_py3 import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1
-    from .instances_instance_id_manage_search_put_request_py3 import InstancesInstanceIdManageSearchPutRequest
-    from .instances_instance_id_manage_search_put_request1_py3 import InstancesInstanceIdManageSearchPutRequest1
-    from .instances_instance_id_manage_segments_post_request_py3 import InstancesInstanceIdManageSegmentsPostRequest
-    from .instances_instance_id_manage_segments_post_request1_py3 import InstancesInstanceIdManageSegmentsPostRequest1
-    from .instances_instance_id_manage_segments_segment_name_put_request_py3 import InstancesInstanceIdManageSegmentsSegmentNamePutRequest
-    from .instances_instance_id_manage_segments_segment_name_put_request1_py3 import InstancesInstanceIdManageSegmentsSegmentNamePutRequest1
-    from .instances_instance_id_workflows_workflow_name_jobs_post_request_py3 import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest
-    from .instances_instance_id_workflows_workflow_name_jobs_post_request1_py3 import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1
-    from .instances_instance_id_workflows_workflow_name_schedules_post_request_py3 import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest
-    from .instances_instance_id_workflows_workflow_name_schedules_post_request1_py3 import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1
 except (SyntaxError, ImportError):
-    from .ci_result import CIResult
-    from .api_error_result import ApiErrorResult
-    from .value_count import ValueCount
+    from .workflow_refresh_schedule import WorkflowRefreshSchedule
     from .histogram_bin import HistogramBin
     from .quantiles import Quantiles
     from .moments import Moments
+    from .value_count import ValueCount
     from .attribute_data_profile import AttributeDataProfile
+    from .entity_data_profile import EntityDataProfile
+    from .ci_result import CIResult
+    from .api_error_result import ApiErrorResult
     from .attribute_semantic_information import AttributeSemanticInformation
+    from .entity_enrichment_information import EntityEnrichmentInformation
     from .datasource_entity_information import DatasourceEntityInformation
     from .incremental_refresh_properties import IncrementalRefreshProperties
     from .data_source_metadata import DataSourceMetadata
@@ -172,7 +161,6 @@ except (SyntaxError, ImportError):
     from .accepted_result import AcceptedResult
     from .no_content_result import NoContentResult
     from .odata_entity_payload import ODataEntityPayload
-    from .api_error import ApiError
     from .iedm_type import IEdmType
     from .iattribute_search_properties import IAttributeSearchProperties
     from .iattribute_metadata import IAttributeMetadata
@@ -181,6 +169,9 @@ except (SyntaxError, ImportError):
     from .irelationship_metadata import IRelationshipMetadata
     from .ic360_entity_model import IC360EntityModel
     from .entity_size import EntitySize
+    from .hierarchy_dependency import HierarchyDependency
+    from .hierarchy_metadata import HierarchyMetadata
+    from .ok_object_result import OkObjectResult
     from .instance_info import InstanceInfo
     from .embedded_report import EmbeddedReport
     from .instance_provisioning_error import InstanceProvisioningError
@@ -191,8 +182,10 @@ except (SyntaxError, ImportError):
     from .cds_org_info import CdsOrgInfo
     from .datalake_folder_detail import DatalakeFolderDetail
     from .cds_mdl_info import CdsMdlInfo
+    from .pbi_provisioning_config import PbiProvisioningConfig
     from .trial_extension_details import TrialExtensionDetails
     from .instance_metadata import InstanceMetadata
+    from .mapped_secret_metadata import MappedSecretMetadata
     from .resource_metadata import ResourceMetadata
     from .byo_pbi_provisioning_info import ByoPbiProvisioningInfo
     from .instance_creation_request import InstanceCreationRequest
@@ -231,9 +224,12 @@ except (SyntaxError, ImportError):
     from .instance_search_configuration import InstanceSearchConfiguration
     from .segmentation_projection import SegmentationProjection
     from .segmentation_rowset import SegmentationRowset
+    from .hierarchy_definition import HierarchyDefinition
     from .segmentation_query import SegmentationQuery
     from .segmentation_publish_stats import SegmentationPublishStats
     from .historical_segment_stats import HistoricalSegmentStats
+    from .segment_rowset_stat import SegmentRowsetStat
+    from .segment_query_stat import SegmentQueryStat
     from .segment_metadata import SegmentMetadata
     from .custom_task_information import CustomTaskInformation
     from .selection_reason import SelectionReason
@@ -244,49 +240,28 @@ except (SyntaxError, ImportError):
     from .data_info import DataInfo
     from .graph_node_info import GraphNodeInfo
     from .timezone_detail import TimezoneDetail
-    from .workflow_refresh_schedule import WorkflowRefreshSchedule
     from .dismissed_notification import DismissedNotification
     from .user_notifications_settings import UserNotificationsSettings
+    from .history import History
+    from .coachmarks import Coachmarks
+    from .banners import Banners
+    from .notifications import Notifications
     from .portal_settings import PortalSettings
     from .terms_of_use import TermsOfUse
     from .user_info import UserInfo
-    from .entity_data_profile import EntityDataProfile
-    from .instances_v2_post_request import InstancesV2PostRequest
-    from .instances_v2_post_request1 import InstancesV2PostRequest1
-    from .instances_instance_id_v2_patch_request import InstancesInstanceIdV2PatchRequest
-    from .instances_instance_id_v2_patch_request1 import InstancesInstanceIdV2PatchRequest1
-    from .instances_copy_post_request import InstancesCopyPostRequest
-    from .instances_copy_post_request1 import InstancesCopyPostRequest1
-    from .instances_instance_id_manage_measures_post_request import InstancesInstanceIdManageMeasuresPostRequest
-    from .instances_instance_id_manage_measures_post_request1 import InstancesInstanceIdManageMeasuresPostRequest1
-    from .instances_instance_id_manage_measures_measure_name_put_request import InstancesInstanceIdManageMeasuresMeasureNamePutRequest
-    from .instances_instance_id_manage_measures_measure_name_put_request1 import InstancesInstanceIdManageMeasuresMeasureNamePutRequest1
-    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest
-    from .instances_instance_id_rbac_principals_principal_id_assignment_put_request1 import InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1
-    from .instances_instance_id_manage_relationships_post_request import InstancesInstanceIdManageRelationshipsPostRequest
-    from .instances_instance_id_manage_relationships_post_request1 import InstancesInstanceIdManageRelationshipsPostRequest1
-    from .instances_instance_id_manage_relationships_relationship_name_put_request import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest
-    from .instances_instance_id_manage_relationships_relationship_name_put_request1 import InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1
-    from .instances_instance_id_manage_search_put_request import InstancesInstanceIdManageSearchPutRequest
-    from .instances_instance_id_manage_search_put_request1 import InstancesInstanceIdManageSearchPutRequest1
-    from .instances_instance_id_manage_segments_post_request import InstancesInstanceIdManageSegmentsPostRequest
-    from .instances_instance_id_manage_segments_post_request1 import InstancesInstanceIdManageSegmentsPostRequest1
-    from .instances_instance_id_manage_segments_segment_name_put_request import InstancesInstanceIdManageSegmentsSegmentNamePutRequest
-    from .instances_instance_id_manage_segments_segment_name_put_request1 import InstancesInstanceIdManageSegmentsSegmentNamePutRequest1
-    from .instances_instance_id_workflows_workflow_name_jobs_post_request import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest
-    from .instances_instance_id_workflows_workflow_name_jobs_post_request1 import InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1
-    from .instances_instance_id_workflows_workflow_name_schedules_post_request import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest
-    from .instances_instance_id_workflows_workflow_name_schedules_post_request1 import InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1
 
 __all__ = [
-    'CIResult',
-    'ApiErrorResult',
-    'ValueCount',
+    'WorkflowRefreshSchedule',
     'HistogramBin',
     'Quantiles',
     'Moments',
+    'ValueCount',
     'AttributeDataProfile',
+    'EntityDataProfile',
+    'CIResult',
+    'ApiErrorResult',
     'AttributeSemanticInformation',
+    'EntityEnrichmentInformation',
     'DatasourceEntityInformation',
     'IncrementalRefreshProperties',
     'DataSourceMetadata',
@@ -309,7 +284,6 @@ __all__ = [
     'AcceptedResult',
     'NoContentResult',
     'ODataEntityPayload',
-    'ApiError',
     'IEdmType',
     'IAttributeSearchProperties',
     'IAttributeMetadata',
@@ -318,6 +292,9 @@ __all__ = [
     'IRelationshipMetadata',
     'IC360EntityModel',
     'EntitySize',
+    'HierarchyDependency',
+    'HierarchyMetadata',
+    'OkObjectResult',
     'InstanceInfo',
     'EmbeddedReport',
     'InstanceProvisioningError',
@@ -328,8 +305,10 @@ __all__ = [
     'CdsOrgInfo',
     'DatalakeFolderDetail',
     'CdsMdlInfo',
+    'PbiProvisioningConfig',
     'TrialExtensionDetails',
     'InstanceMetadata',
+    'MappedSecretMetadata',
     'ResourceMetadata',
     'ByoPbiProvisioningInfo',
     'InstanceCreationRequest',
@@ -368,9 +347,12 @@ __all__ = [
     'InstanceSearchConfiguration',
     'SegmentationProjection',
     'SegmentationRowset',
+    'HierarchyDefinition',
     'SegmentationQuery',
     'SegmentationPublishStats',
     'HistoricalSegmentStats',
+    'SegmentRowsetStat',
+    'SegmentQueryStat',
     'SegmentMetadata',
     'CustomTaskInformation',
     'SelectionReason',
@@ -381,37 +363,13 @@ __all__ = [
     'DataInfo',
     'GraphNodeInfo',
     'TimezoneDetail',
-    'WorkflowRefreshSchedule',
     'DismissedNotification',
     'UserNotificationsSettings',
+    'History',
+    'Coachmarks',
+    'Banners',
+    'Notifications',
     'PortalSettings',
     'TermsOfUse',
     'UserInfo',
-    'EntityDataProfile',
-    'InstancesV2PostRequest',
-    'InstancesV2PostRequest1',
-    'InstancesInstanceIdV2PatchRequest',
-    'InstancesInstanceIdV2PatchRequest1',
-    'InstancesCopyPostRequest',
-    'InstancesCopyPostRequest1',
-    'InstancesInstanceIdManageMeasuresPostRequest',
-    'InstancesInstanceIdManageMeasuresPostRequest1',
-    'InstancesInstanceIdManageMeasuresMeasureNamePutRequest',
-    'InstancesInstanceIdManageMeasuresMeasureNamePutRequest1',
-    'InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest',
-    'InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1',
-    'InstancesInstanceIdManageRelationshipsPostRequest',
-    'InstancesInstanceIdManageRelationshipsPostRequest1',
-    'InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest',
-    'InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1',
-    'InstancesInstanceIdManageSearchPutRequest',
-    'InstancesInstanceIdManageSearchPutRequest1',
-    'InstancesInstanceIdManageSegmentsPostRequest',
-    'InstancesInstanceIdManageSegmentsPostRequest1',
-    'InstancesInstanceIdManageSegmentsSegmentNamePutRequest',
-    'InstancesInstanceIdManageSegmentsSegmentNamePutRequest1',
-    'InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest',
-    'InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1',
-    'InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest',
-    'InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1',
 ]

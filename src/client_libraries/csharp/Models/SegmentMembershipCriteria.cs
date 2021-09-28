@@ -27,8 +27,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <summary>
         /// Initializes a new instance of the SegmentMembershipCriteria class.
         /// </summary>
-        /// <param name="kind">Possible values include: 'default',
-        /// 'engagement'</param>
+        /// <param name="kind">Possible values include: 'post', 'default',
+        /// 'consent', 'engagement'</param>
         /// <param name="logicalOperator">Possible values include: 'and',
         /// 'or'</param>
         /// <param name="attribute">Gets the Attribute of the entity used in
@@ -38,7 +38,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
         /// 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
         /// 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
-        /// 'dayOfWeek', 'timeAt'</param>
+        /// 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'</param>
         /// <param name="childCriterias">Gets the list of Child criteria of
         /// segment.</param>
         /// <param name="value">Gets the Value in criteria.</param>
@@ -68,7 +68,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets possible values include: 'default', 'engagement'
+        /// Gets or sets possible values include: 'post', 'default', 'consent',
+        /// 'engagement'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }
@@ -91,7 +92,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
         /// 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
         /// 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
-        /// 'dayOfWeek', 'timeAt'
+        /// 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
         /// </summary>
         [JsonProperty(PropertyName = "comparisonOperator")]
         public string ComparisonOperator { get; set; }

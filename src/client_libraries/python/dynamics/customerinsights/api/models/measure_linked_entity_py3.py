@@ -11,7 +11,7 @@ from msrest.serialization import Model
 class MeasureLinkedEntity(Model):
     """Represents the base linked entity.
 
-    :param kind: Possible values include: 'base', 'join'
+    :param kind: Possible values include: 'base', 'join', 'scalar'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param entity: Gets the name of the entity.
     :type entity: str

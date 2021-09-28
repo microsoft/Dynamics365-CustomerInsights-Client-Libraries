@@ -22,6 +22,8 @@ class MeasureAggregate(Model):
     :type display_name: str
     :param order: Gets the order for the aggregate
     :type order: int
+    :param operation_scope: Possible values include: 'rollup'
+    :type operation_scope: str or ~dynamics.customerinsights.api.models.enum
     :param aggregates: Gets list of aggregates of the measure.
     :type aggregates:
      list[~dynamics.customerinsights.api.models.MeasureAggregate]
@@ -36,16 +38,18 @@ class MeasureAggregate(Model):
         'alias': {'key': 'alias', 'type': 'str'},
         'display_name': {'key': 'displayName', 'type': 'str'},
         'order': {'key': 'order', 'type': 'int'},
+        'operation_scope': {'key': 'operationScope', 'type': 'str'},
         'aggregates': {'key': 'aggregates', 'type': '[MeasureAggregate]'},
         'is_included': {'key': 'isIncluded', 'type': 'bool'},
     }
 
-    def __init__(self, *, operation=None, field: str=None, alias: str=None, display_name: str=None, order: int=None, aggregates=None, is_included: bool=False, **kwargs) -> None:
+    def __init__(self, *, operation=None, field: str=None, alias: str=None, display_name: str=None, order: int=None, operation_scope=None, aggregates=None, is_included: bool=False, **kwargs) -> None:
         super(MeasureAggregate, self).__init__(**kwargs)
         self.operation = operation
         self.field = field
         self.alias = alias
         self.display_name = display_name
         self.order = order
+        self.operation_scope = operation_scope
         self.aggregates = aggregates
         self.is_included = is_included

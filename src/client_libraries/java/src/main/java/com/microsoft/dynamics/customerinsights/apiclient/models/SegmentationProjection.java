@@ -26,6 +26,18 @@ public class SegmentationProjection {
     private List<String> attributeNames;
 
     /**
+     * Gets the relationship path to use for segment projection.
+     */
+    @JsonProperty(value = "path")
+    private List<String> path;
+
+    /**
+     * Possible values include: 'pre', 'post'.
+     */
+    @JsonProperty(value = "projectionType")
+    private String projectionType;
+
+    /**
      * Get gets the Entity Name of the projection.
      *
      * @return the entityName value
@@ -62,6 +74,46 @@ public class SegmentationProjection {
      */
     public SegmentationProjection withAttributeNames(List<String> attributeNames) {
         this.attributeNames = attributeNames;
+        return this;
+    }
+
+    /**
+     * Get gets the relationship path to use for segment projection.
+     *
+     * @return the path value
+     */
+    public List<String> path() {
+        return this.path;
+    }
+
+    /**
+     * Set gets the relationship path to use for segment projection.
+     *
+     * @param path the path value to set
+     * @return the SegmentationProjection object itself.
+     */
+    public SegmentationProjection withPath(List<String> path) {
+        this.path = path;
+        return this;
+    }
+
+    /**
+     * Get possible values include: 'pre', 'post'.
+     *
+     * @return the projectionType value
+     */
+    public String projectionType() {
+        return this.projectionType;
+    }
+
+    /**
+     * Set possible values include: 'pre', 'post'.
+     *
+     * @param projectionType the projectionType value to set
+     * @return the SegmentationProjection object itself.
+     */
+    public SegmentationProjection withProjectionType(String projectionType) {
+        this.projectionType = projectionType;
         return this;
     }
 

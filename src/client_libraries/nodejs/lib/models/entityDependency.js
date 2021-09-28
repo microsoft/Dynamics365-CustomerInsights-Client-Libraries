@@ -19,7 +19,8 @@ class EntityDependency {
    * 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
    * 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
    * 'conflationManualReview', 'selfConflationManualReview',
-   * 'semanticActivity', 'segmentMembership'
+   * 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage',
+   * 'transform', 'semanticEntity'
    * @property {array} [attributeNames] Gets the list of attributes included in
    * the dependency.
    * @property {array} [relationshipNames] Gets the list of relationships

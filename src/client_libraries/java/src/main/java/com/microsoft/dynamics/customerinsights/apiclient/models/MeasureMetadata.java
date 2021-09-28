@@ -94,6 +94,12 @@ public class MeasureMetadata {
     private UUID templateId;
 
     /**
+     * Check if measure metadata is created from a template.
+     */
+    @JsonProperty(value = "isCreatedFromTemplate")
+    private Boolean isCreatedFromTemplate;
+
+    /**
      * Version number of this object.
      */
     @JsonProperty(value = "version")
@@ -386,6 +392,26 @@ public class MeasureMetadata {
      */
     public MeasureMetadata withTemplateId(UUID templateId) {
         this.templateId = templateId;
+        return this;
+    }
+
+    /**
+     * Get check if measure metadata is created from a template.
+     *
+     * @return the isCreatedFromTemplate value
+     */
+    public Boolean isCreatedFromTemplate() {
+        return this.isCreatedFromTemplate;
+    }
+
+    /**
+     * Set check if measure metadata is created from a template.
+     *
+     * @param isCreatedFromTemplate the isCreatedFromTemplate value to set
+     * @return the MeasureMetadata object itself.
+     */
+    public MeasureMetadata withIsCreatedFromTemplate(Boolean isCreatedFromTemplate) {
+        this.isCreatedFromTemplate = isCreatedFromTemplate;
         return this;
     }
 

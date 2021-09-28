@@ -28,8 +28,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the DataSourceMetadata class.
         /// </summary>
         /// <param name="kind">Possible values include: 'salesforce',
-        /// 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
-        /// 'powerPlatform', 'datahub', 'cjoData', 'eiData'</param>
+        /// 'dynamics365', 'powerQuery', 'attachCdm', 'attachSynapse',
+        /// 'attachCds', 'powerPlatform', 'datahub', 'firstParty'</param>
         /// <param name="isActive">Represents if still in active state</param>
         /// <param name="entityNames">List of all Entity Names</param>
         /// <param name="dataSourceId">Unique identity for this object.</param>
@@ -89,8 +89,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'salesforce', 'dynamics365',
-        /// 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub',
-        /// 'cjoData', 'eiData'
+        /// 'powerQuery', 'attachCdm', 'attachSynapse', 'attachCds',
+        /// 'powerPlatform', 'datahub', 'firstParty'
         /// </summary>
         [JsonProperty(PropertyName = "kind")]
         public string Kind { get; set; }

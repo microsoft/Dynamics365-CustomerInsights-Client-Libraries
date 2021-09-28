@@ -25,6 +25,9 @@ class SegmentationQuery(Model):
      list[~dynamics.customerinsights.api.models.SegmentationRowset]
     :param segmentation_query_sql: Gets the user specified custom SQL query.
     :type segmentation_query_sql: str
+    :param hierarchies: Gets a list of Hierarchies for segment query.
+    :type hierarchies:
+     list[~dynamics.customerinsights.api.models.HierarchyDefinition]
     """
 
     _attribute_map = {
@@ -33,6 +36,7 @@ class SegmentationQuery(Model):
         'projected_attributes': {'key': 'projectedAttributes', 'type': '[SegmentationProjection]'},
         'rowsets': {'key': 'rowsets', 'type': '[SegmentationRowset]'},
         'segmentation_query_sql': {'key': 'segmentationQuerySql', 'type': 'str'},
+        'hierarchies': {'key': 'hierarchies', 'type': '[HierarchyDefinition]'},
     }
 
     def __init__(self, **kwargs):
@@ -42,3 +46,4 @@ class SegmentationQuery(Model):
         self.projected_attributes = kwargs.get('projected_attributes', None)
         self.rowsets = kwargs.get('rowsets', None)
         self.segmentation_query_sql = kwargs.get('segmentation_query_sql', None)
+        self.hierarchies = kwargs.get('hierarchies', None)

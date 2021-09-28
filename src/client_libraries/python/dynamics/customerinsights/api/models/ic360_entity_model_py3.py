@@ -25,7 +25,8 @@ class IC360EntityModel(Model):
      'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
      'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
      'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
-     'cjoData', 'eiData', 'hierarchy'
+     'firstParty', 'hierarchy', 'contact', 'semanticEntity', 'attachSynapse',
+     'transform'
     :type dataflow_type: str or ~dynamics.customerinsights.api.models.enum
     :param entities: Gets entities in the model.
     :type entities:

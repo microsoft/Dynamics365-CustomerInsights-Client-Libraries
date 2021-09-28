@@ -9,7 +9,7 @@ from msrest.serialization import Model
 
 
 class InstanceInfo(Model):
-    """Represents an instance.
+    """The instance info.
 
     :param instance_id: Gets the unique ID for this instance.
     :type instance_id: str
@@ -33,6 +33,9 @@ class InstanceInfo(Model):
     :param azure_region: Gets the Azure Region where the scale unit resides
      (not persisted in store)
     :type azure_region: str
+    :param platform_type: Gets the Insights App Type for g. Verity, Engagement
+     Insight etc. (not persisted in store)
+    :type platform_type: str
     """
 
     _attribute_map = {
@@ -44,6 +47,7 @@ class InstanceInfo(Model):
         'trial_extension_history': {'key': 'trialExtensionHistory', 'type': 'str'},
         'scale_unit_id': {'key': 'scaleUnitId', 'type': 'str'},
         'azure_region': {'key': 'azureRegion', 'type': 'str'},
+        'platform_type': {'key': 'platformType', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
@@ -56,3 +60,4 @@ class InstanceInfo(Model):
         self.trial_extension_history = kwargs.get('trial_extension_history', None)
         self.scale_unit_id = kwargs.get('scale_unit_id', None)
         self.azure_region = kwargs.get('azure_region', None)
+        self.platform_type = kwargs.get('platform_type', None)

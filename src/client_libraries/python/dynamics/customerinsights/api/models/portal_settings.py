@@ -12,6 +12,12 @@ class PortalSettings(Model):
     """Represents a mapping  that can store all user ids associated with the
     email.
 
+    :param coachmarks:
+    :type coachmarks: ~dynamics.customerinsights.api.models.Coachmarks
+    :param banners:
+    :type banners: ~dynamics.customerinsights.api.models.Banners
+    :param notifications:
+    :type notifications: ~dynamics.customerinsights.api.models.Notifications
     :param is_existing_user: Gets a value indicating whether the user has seen
      the all apps (welcome) page.
     :type is_existing_user: bool
@@ -24,6 +30,9 @@ class PortalSettings(Model):
     """
 
     _attribute_map = {
+        'coachmarks': {'key': 'coachmarks', 'type': 'Coachmarks'},
+        'banners': {'key': 'banners', 'type': 'Banners'},
+        'notifications': {'key': 'notifications', 'type': 'Notifications'},
         'is_existing_user': {'key': 'isExistingUser', 'type': 'bool'},
         'show_default_home_page': {'key': 'showDefaultHomePage', 'type': 'bool'},
         'pro_tagger': {'key': 'proTagger', 'type': 'bool'},
@@ -31,6 +40,9 @@ class PortalSettings(Model):
 
     def __init__(self, **kwargs):
         super(PortalSettings, self).__init__(**kwargs)
+        self.coachmarks = kwargs.get('coachmarks', None)
+        self.banners = kwargs.get('banners', None)
+        self.notifications = kwargs.get('notifications', None)
         self.is_existing_user = kwargs.get('is_existing_user', None)
         self.show_default_home_page = kwargs.get('show_default_home_page', None)
         self.pro_tagger = kwargs.get('pro_tagger', None)

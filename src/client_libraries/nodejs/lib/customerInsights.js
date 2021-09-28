@@ -342,6 +342,9 @@ function _getAllDataSources(instanceId, options, callback) {
  *
  * @param {object} [options] Optional Parameters.
  *
+ * @param {boolean} [options.includeModel] The value indicating whether the
+ * model should be inluded in the response.
+ *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
  *
@@ -367,6 +370,7 @@ function _getDataSource(instanceId, dataSourceId, options, callback) {
   if (!callback) {
     throw new Error('callback cannot be null.');
   }
+  let includeModel = (options && options.includeModel !== undefined) ? options.includeModel : true;
   // Validate
   try {
     if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
@@ -374,6 +378,9 @@ function _getDataSource(instanceId, dataSourceId, options, callback) {
     }
     if (dataSourceId === null || dataSourceId === undefined || typeof dataSourceId.valueOf() !== 'string') {
       throw new Error('dataSourceId cannot be null or undefined and it must be of type string.');
+    }
+    if (includeModel !== null && includeModel !== undefined && typeof includeModel !== 'boolean') {
+      throw new Error('includeModel must be of type boolean.');
     }
   } catch (error) {
     return callback(error);
@@ -384,6 +391,13 @@ function _getDataSource(instanceId, dataSourceId, options, callback) {
   let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/manage/datasources/{dataSourceId}';
   requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
   requestUrl = requestUrl.replace('{dataSourceId}', encodeURIComponent(dataSourceId));
+  let queryParameters = [];
+  if (includeModel !== null && includeModel !== undefined) {
+    queryParameters.push('includeModel=' + encodeURIComponent(includeModel.toString()));
+  }
+  if (queryParameters.length > 0) {
+    requestUrl += '?' + queryParameters.join('&');
+  }
 
   // Create HTTP transport objects
   let httpRequest = new WebResource();
@@ -1525,7 +1539,7 @@ function _getAllEntityMetadata(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1542,7 +1556,7 @@ function _getAllEntityMetadata(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1559,7 +1573,7 @@ function _getAllEntityMetadata(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1712,7 +1726,7 @@ function _getEntityMetadata(instanceId, entityName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1729,7 +1743,7 @@ function _getEntityMetadata(instanceId, entityName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1746,7 +1760,7 @@ function _getEntityMetadata(instanceId, entityName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1885,7 +1899,7 @@ function _getEntitySize(instanceId, entityName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1902,7 +1916,7 @@ function _getEntitySize(instanceId, entityName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -1919,7 +1933,7 @@ function _getEntitySize(instanceId, entityName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -2644,6 +2658,16 @@ function _deleteAnInstance(instanceId, options, callback) {
  *
  * @param {object} [options.body.instanceMetadata]
  *
+ * @param {boolean} [options.body.instanceMetadata.isB2B]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isB2C]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+ *
  * @param {string} [options.body.instanceMetadata.name] Gets the user defined
  * instance name.
  *
@@ -2729,6 +2753,15 @@ function _deleteAnInstance(instanceId, options, callback) {
  * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
  * the details of trial extensions done if this is a trial instance
  *
+ * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+ * Workspace type, whether B2B or B2C (Main)
+ *
+ * @param {string} [options.body.instanceMetadata.platformType] Field to store
+ * the Insights Partner who are onboarded to Insights Platform.
+ *
+ * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+ * Region where the scale unit resides (not persisted in store)
+ *
  * @param {number} [options.body.instanceMetadata.version] Version number of
  * this object.
  *
@@ -2754,12 +2787,13 @@ function _deleteAnInstance(instanceId, options, callback) {
  * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
- * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
- * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
- * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
- * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
- * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
- * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+ * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+ * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+ * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+ * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+ * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+ * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+ * 'powerBI', 'azureSql', 'synapse'
  *
  * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
  * the resource.
@@ -2772,6 +2806,30 @@ function _deleteAnInstance(instanceId, options, callback) {
  *
  * @param {string} [options.body.cdsResourceMetadata.description] Gets the
  * Description of the resource.
+ *
+ * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+ * MetadataId for Linked KeyVaultMetadata
+ *
+ * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+ *
+ * @param {string}
+ * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+ * identifier for field mapping to a keyVault
+ *
+ * @param {uuid}
+ * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+ * Gets uniqueId of the KeyVault
+ *
+ * @param {uuid}
+ * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+ * uniqueId of entity Mapping Secrets
+ *
+ * @param {object}
+ * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+ * Gets Secret Names for Fields Mapped in KeyVault
+ *
+ * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+ * Customer Insights instance id associated with this object.
  *
  * @param {number} [options.body.cdsResourceMetadata.version] Version number of
  * this object.
@@ -2791,27 +2849,6 @@ function _deleteAnInstance(instanceId, options, callback) {
  * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
  * Insights instance id associated with this object.
  *
- * @param {object} [options.body.byoPbiProvisioningInfo]
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
- * Storage account subscriptionId.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
- * Storage account Resource Group.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
- * Storage account Region.
- *
- * @param {string}
- * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
- * account tenant.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
- * Capacity Id.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
- * delegation token captured from the user.
- *
  * @param {boolean} [options.body.isCdsMdlStorageEnabled]
  *
  * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -2820,6 +2857,8 @@ function _deleteAnInstance(instanceId, options, callback) {
  * 'skip', 'create', 'attach'
  *
  * @param {boolean} [options.body.isPbiProvisioningRequired]
+ *
+ * @param {boolean} [options.body.isDataverseUpdateRequested]
  *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
@@ -2871,7 +2910,7 @@ function _createAnInstance(options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesV2PostRequest']().mapper();
+      let requestModelMapper = new client.models['InstanceCreationRequest']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -3017,6 +3056,16 @@ function _createAnInstance(options, callback) {
  *
  * @param {object} [options.body.instanceMetadata]
  *
+ * @param {boolean} [options.body.instanceMetadata.isB2B]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isB2C]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+ *
  * @param {string} [options.body.instanceMetadata.name] Gets the user defined
  * instance name.
  *
@@ -3102,6 +3151,15 @@ function _createAnInstance(options, callback) {
  * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
  * the details of trial extensions done if this is a trial instance
  *
+ * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+ * Workspace type, whether B2B or B2C (Main)
+ *
+ * @param {string} [options.body.instanceMetadata.platformType] Field to store
+ * the Insights Partner who are onboarded to Insights Platform.
+ *
+ * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+ * Region where the scale unit resides (not persisted in store)
+ *
  * @param {number} [options.body.instanceMetadata.version] Version number of
  * this object.
  *
@@ -3127,12 +3185,13 @@ function _createAnInstance(options, callback) {
  * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
- * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
- * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
- * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
- * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
- * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
- * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+ * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+ * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+ * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+ * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+ * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+ * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+ * 'powerBI', 'azureSql', 'synapse'
  *
  * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
  * the resource.
@@ -3145,6 +3204,30 @@ function _createAnInstance(options, callback) {
  *
  * @param {string} [options.body.cdsResourceMetadata.description] Gets the
  * Description of the resource.
+ *
+ * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+ * MetadataId for Linked KeyVaultMetadata
+ *
+ * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+ *
+ * @param {string}
+ * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+ * identifier for field mapping to a keyVault
+ *
+ * @param {uuid}
+ * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+ * Gets uniqueId of the KeyVault
+ *
+ * @param {uuid}
+ * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+ * uniqueId of entity Mapping Secrets
+ *
+ * @param {object}
+ * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+ * Gets Secret Names for Fields Mapped in KeyVault
+ *
+ * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+ * Customer Insights instance id associated with this object.
  *
  * @param {number} [options.body.cdsResourceMetadata.version] Version number of
  * this object.
@@ -3164,27 +3247,6 @@ function _createAnInstance(options, callback) {
  * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
  * Insights instance id associated with this object.
  *
- * @param {object} [options.body.byoPbiProvisioningInfo]
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
- * Storage account subscriptionId.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
- * Storage account Resource Group.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
- * Storage account Region.
- *
- * @param {string}
- * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
- * account tenant.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
- * Capacity Id.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
- * delegation token captured from the user.
- *
  * @param {boolean} [options.body.isCdsMdlStorageEnabled]
  *
  * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -3193,6 +3255,8 @@ function _createAnInstance(options, callback) {
  * 'skip', 'create', 'attach'
  *
  * @param {boolean} [options.body.isPbiProvisioningRequired]
+ *
+ * @param {boolean} [options.body.isDataverseUpdateRequested]
  *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
@@ -3253,7 +3317,7 @@ function _updateAnInstance(instanceId, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdV2PatchRequest']().mapper();
+      let requestModelMapper = new client.models['InstanceCreationRequest']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -3381,6 +3445,16 @@ function _updateAnInstance(instanceId, options, callback) {
  *
  * @param {object} [options.body.instanceMetadata]
  *
+ * @param {boolean} [options.body.instanceMetadata.isB2B]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isB2C]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+ *
+ * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+ *
  * @param {string} [options.body.instanceMetadata.name] Gets the user defined
  * instance name.
  *
@@ -3466,6 +3540,15 @@ function _updateAnInstance(instanceId, options, callback) {
  * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
  * the details of trial extensions done if this is a trial instance
  *
+ * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+ * Workspace type, whether B2B or B2C (Main)
+ *
+ * @param {string} [options.body.instanceMetadata.platformType] Field to store
+ * the Insights Partner who are onboarded to Insights Platform.
+ *
+ * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+ * Region where the scale unit resides (not persisted in store)
+ *
  * @param {number} [options.body.instanceMetadata.version] Version number of
  * this object.
  *
@@ -3491,12 +3574,13 @@ function _updateAnInstance(instanceId, options, callback) {
  * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
  * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
  * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
- * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
- * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
- * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
- * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
- * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
- * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+ * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+ * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+ * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+ * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+ * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+ * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+ * 'powerBI', 'azureSql', 'synapse'
  *
  * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
  * the resource.
@@ -3509,6 +3593,30 @@ function _updateAnInstance(instanceId, options, callback) {
  *
  * @param {string} [options.body.cdsResourceMetadata.description] Gets the
  * Description of the resource.
+ *
+ * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+ * MetadataId for Linked KeyVaultMetadata
+ *
+ * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+ *
+ * @param {string}
+ * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+ * identifier for field mapping to a keyVault
+ *
+ * @param {uuid}
+ * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+ * Gets uniqueId of the KeyVault
+ *
+ * @param {uuid}
+ * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+ * uniqueId of entity Mapping Secrets
+ *
+ * @param {object}
+ * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+ * Gets Secret Names for Fields Mapped in KeyVault
+ *
+ * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+ * Customer Insights instance id associated with this object.
  *
  * @param {number} [options.body.cdsResourceMetadata.version] Version number of
  * this object.
@@ -3528,27 +3636,6 @@ function _updateAnInstance(instanceId, options, callback) {
  * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
  * Insights instance id associated with this object.
  *
- * @param {object} [options.body.byoPbiProvisioningInfo]
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
- * Storage account subscriptionId.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
- * Storage account Resource Group.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
- * Storage account Region.
- *
- * @param {string}
- * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
- * account tenant.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
- * Capacity Id.
- *
- * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
- * delegation token captured from the user.
- *
  * @param {boolean} [options.body.isCdsMdlStorageEnabled]
  *
  * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -3557,6 +3644,8 @@ function _updateAnInstance(instanceId, options, callback) {
  * 'skip', 'create', 'attach'
  *
  * @param {boolean} [options.body.isPbiProvisioningRequired]
+ *
+ * @param {boolean} [options.body.isDataverseUpdateRequested]
  *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
@@ -3608,7 +3697,7 @@ function _copyAnInstance(options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesCopyPostRequest']().mapper();
+      let requestModelMapper = new client.models['InstanceCopyRequest']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -3885,7 +3974,7 @@ function _getAListOfMeasuresMetadata(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -3944,7 +4033,7 @@ function _getAListOfMeasuresMetadata(instanceId, options, callback) {
  * @param {object} [options.body.definition.filteringCriteria]
  *
  * @param {string} [options.body.definition.filteringCriteria.kind] Possible
- * values include: 'default', 'engagement'
+ * values include: 'post', 'default', 'consent', 'engagement'
  *
  * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
  * Possible values include: 'and', 'or'
@@ -3958,7 +4047,7 @@ function _getAListOfMeasuresMetadata(instanceId, options, callback) {
  * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
  * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
  * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
- * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+ * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
  *
  * @param {array} [options.body.definition.filteringCriteria.childCriterias]
  * Gets the list of Child criteria of segment.
@@ -4165,6 +4254,9 @@ function _getAListOfMeasuresMetadata(instanceId, options, callback) {
  *
  * @param {uuid} [options.body.templateId] Gets the template ID for templates
  *
+ * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+ * metadata is created from a template
+ *
  * @param {number} [options.body.version] Version number of this object.
  *
  * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -4240,7 +4332,7 @@ function _createAMeasure(instanceId, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdManageMeasuresPostRequest']().mapper();
+      let requestModelMapper = new client.models['MeasureMetadata']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -4322,7 +4414,7 @@ function _createAMeasure(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -4484,7 +4576,7 @@ function _getMetadataForAMeasure(instanceId, measureName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -4546,7 +4638,7 @@ function _getMetadataForAMeasure(instanceId, measureName, options, callback) {
  * @param {object} [options.body.definition.filteringCriteria]
  *
  * @param {string} [options.body.definition.filteringCriteria.kind] Possible
- * values include: 'default', 'engagement'
+ * values include: 'post', 'default', 'consent', 'engagement'
  *
  * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
  * Possible values include: 'and', 'or'
@@ -4560,7 +4652,7 @@ function _getMetadataForAMeasure(instanceId, measureName, options, callback) {
  * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
  * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
  * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
- * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+ * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
  *
  * @param {array} [options.body.definition.filteringCriteria.childCriterias]
  * Gets the list of Child criteria of segment.
@@ -4767,6 +4859,9 @@ function _getMetadataForAMeasure(instanceId, measureName, options, callback) {
  *
  * @param {uuid} [options.body.templateId] Gets the template ID for templates
  *
+ * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+ * metadata is created from a template
+ *
  * @param {number} [options.body.version] Version number of this object.
  *
  * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -4846,7 +4941,7 @@ function _updateAMeasure(instanceId, measureName, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdManageMeasuresMeasureNamePutRequest']().mapper();
+      let requestModelMapper = new client.models['MeasureMetadata']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -4928,7 +5023,7 @@ function _updateAMeasure(instanceId, measureName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -5067,7 +5162,7 @@ function _deleteAMeasure(instanceId, measureName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -5375,7 +5470,7 @@ function _getProfileStoreState(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -5386,13 +5481,13 @@ function _getProfileStoreState(instanceId, options, callback) {
       }
     }
     // Deserialize Response
-    if (statusCode === 503) {
+    if (statusCode === 500) {
       let parsedResponse = null;
       try {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -5740,7 +5835,7 @@ function _updateARoleAssignment(instanceId, principalId, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest']().mapper();
+      let requestModelMapper = new client.models['RoleAssignment']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -6184,7 +6279,7 @@ function _getAllRelationships(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6201,7 +6296,7 @@ function _getAllRelationships(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6332,7 +6427,7 @@ function _createARelationship(instanceId, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdManageRelationshipsPostRequest']().mapper();
+      let requestModelMapper = new client.models['RelationshipMetadata']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -6397,7 +6492,7 @@ function _createARelationship(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6414,7 +6509,7 @@ function _createARelationship(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6431,7 +6526,7 @@ function _createARelationship(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6571,7 +6666,7 @@ function _getARelationship(instanceId, relationshipName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6588,7 +6683,7 @@ function _getARelationship(instanceId, relationshipName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6728,7 +6823,7 @@ function _deleteARelationship(instanceId, relationshipName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6745,7 +6840,7 @@ function _deleteARelationship(instanceId, relationshipName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6883,7 +6978,7 @@ function _updateARelationship(instanceId, relationshipName, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest']().mapper();
+      let requestModelMapper = new client.models['RelationshipMetadata']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -6948,7 +7043,7 @@ function _updateARelationship(instanceId, relationshipName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6965,7 +7060,7 @@ function _updateARelationship(instanceId, relationshipName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -6982,7 +7077,7 @@ function _updateARelationship(instanceId, relationshipName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -7115,7 +7210,7 @@ function _getSearchConfiguration(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -7132,7 +7227,7 @@ function _getSearchConfiguration(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -7239,7 +7334,7 @@ function _updateSearchConfiguration(instanceId, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdManageSearchPutRequest']().mapper();
+      let requestModelMapper = new client.models['InstanceSearchConfiguration']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -7304,7 +7399,7 @@ function _updateSearchConfiguration(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -7321,7 +7416,7 @@ function _updateSearchConfiguration(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -7338,7 +7433,7 @@ function _updateSearchConfiguration(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -7519,7 +7614,7 @@ function _getAllSegments(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -7572,6 +7667,9 @@ function _getAllSegments(instanceId, options, callback) {
  *
  * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
  * Gets the user specified custom SQL query.
+ *
+ * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+ * of Hierarchies for segment query.
  *
  * @param {string} [options.body.state] Possible values include: 'inactive',
  * 'active', 'validating', 'validated', 'invalid', 'validationError'
@@ -7723,6 +7821,11 @@ function _getAllSegments(instanceId, options, callback) {
  * @param {array} [options.body.evaluationStatusHistory] Gets the segment
  * evaluation status history. (not persisted in store)
  *
+ * @param {object} [options.body.segmentQueryStats]
+ *
+ * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+ * Rowset Stat.
+ *
  * @param {number} [options.body.version] Version number of this object.
  *
  * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -7798,7 +7901,7 @@ function _createASegment(instanceId, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdManageSegmentsPostRequest']().mapper();
+      let requestModelMapper = new client.models['SegmentMetadata']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -7863,7 +7966,7 @@ function _createASegment(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -8008,7 +8111,7 @@ function _activateSegment(instanceId, segmentName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -8153,7 +8256,7 @@ function _deactivateSegment(instanceId, segmentName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -8209,6 +8312,9 @@ function _deactivateSegment(instanceId, segmentName, options, callback) {
  *
  * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
  * Gets the user specified custom SQL query.
+ *
+ * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+ * of Hierarchies for segment query.
  *
  * @param {string} [options.body.state] Possible values include: 'inactive',
  * 'active', 'validating', 'validated', 'invalid', 'validationError'
@@ -8360,6 +8466,11 @@ function _deactivateSegment(instanceId, segmentName, options, callback) {
  * @param {array} [options.body.evaluationStatusHistory] Gets the segment
  * evaluation status history. (not persisted in store)
  *
+ * @param {object} [options.body.segmentQueryStats]
+ *
+ * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+ * Rowset Stat.
+ *
  * @param {number} [options.body.version] Version number of this object.
  *
  * @param {string} [options.body.updatedBy] UPN of the user who last updated
@@ -8439,7 +8550,7 @@ function _updateASegment(instanceId, segmentName, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdManageSegmentsSegmentNamePutRequest']().mapper();
+      let requestModelMapper = new client.models['SegmentMetadata']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -8504,7 +8615,7 @@ function _updateASegment(instanceId, segmentName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -8643,7 +8754,7 @@ function _deleteSegment(instanceId, segmentName, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -9210,10 +9321,11 @@ function _getListOfRecentWorkflowJobs(instanceId, workflowName, options, callbac
  * @param {string} [options.body.operationType] Possible values include:
  * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
  * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
- * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
- * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
- * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
- * 'all'
+ * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+ * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+ * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+ * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+ * 'semanticEntity', 'all'
  *
  * @param {string} [options.body.submissionKind] Possible values include:
  * 'onDemand', 'scheduled'
@@ -9331,7 +9443,7 @@ function _submitAWorkflowJob(instanceId, workflowName, options, callback) {
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest']().mapper();
+      let requestModelMapper = new client.models['OnDemandJobRequest']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -10104,10 +10216,11 @@ function _getWorkflowSchedules(instanceId, workflowName, options, callback) {
  * @param {string} [options.body.operationType] Possible values include:
  * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
  * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
- * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
- * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
- * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
- * 'all'
+ * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+ * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+ * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+ * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+ * 'semanticEntity', 'all'
  *
  * @param {string} [options.body.subType] Possible values include: 'noSubType',
  * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -10194,7 +10307,7 @@ function _createWorkflowRefreshSchedule(instanceId, workflowName, options, callb
   let requestModel = null;
   try {
     if (body !== null && body !== undefined) {
-      let requestModelMapper = new client.models['InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest']().mapper();
+      let requestModelMapper = new client.models['WorkflowRefreshSchedule']().mapper();
       requestModel = client.serialize(requestModelMapper, body, 'body');
       requestContent = JSON.stringify(requestModel);
     }
@@ -10285,6 +10398,8 @@ function _createWorkflowRefreshSchedule(instanceId, workflowName, options, callb
  *
  * @param {object} [options] Optional Parameters.
  *
+ * @param {boolean} [options.includeAttributeData] Include attribute data.
+ *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
  *
@@ -10310,6 +10425,7 @@ function _getAnEntityProfile(instanceId, qualifiedEntityName, options, callback)
   if (!callback) {
     throw new Error('callback cannot be null.');
   }
+  let includeAttributeData = (options && options.includeAttributeData !== undefined) ? options.includeAttributeData : false;
   // Validate
   try {
     if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
@@ -10317,6 +10433,9 @@ function _getAnEntityProfile(instanceId, qualifiedEntityName, options, callback)
     }
     if (qualifiedEntityName === null || qualifiedEntityName === undefined || typeof qualifiedEntityName.valueOf() !== 'string') {
       throw new Error('qualifiedEntityName cannot be null or undefined and it must be of type string.');
+    }
+    if (includeAttributeData !== null && includeAttributeData !== undefined && typeof includeAttributeData !== 'boolean') {
+      throw new Error('includeAttributeData must be of type boolean.');
     }
   } catch (error) {
     return callback(error);
@@ -10327,6 +10446,13 @@ function _getAnEntityProfile(instanceId, qualifiedEntityName, options, callback)
   let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/dataprofile/{qualifiedEntityName}';
   requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
   requestUrl = requestUrl.replace('{qualifiedEntityName}', encodeURIComponent(qualifiedEntityName));
+  let queryParameters = [];
+  if (includeAttributeData !== null && includeAttributeData !== undefined) {
+    queryParameters.push('includeAttributeData=' + encodeURIComponent(includeAttributeData.toString()));
+  }
+  if (queryParameters.length > 0) {
+    requestUrl += '?' + queryParameters.join('&');
+  }
 
   // Create HTTP transport objects
   let httpRequest = new WebResource();
@@ -10707,7 +10833,7 @@ function _getAllSystemCreatedRelationships(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -10724,7 +10850,7 @@ function _getAllSystemCreatedRelationships(instanceId, options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['ApiError']().mapper();
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -10940,6 +11066,807 @@ function _createABatchOfWorkflowRefreshSchedules(instanceId, workflowName, optio
   });
 }
 
+/**
+ * @summary Create new hierarchy metadata with hierarchyMetadata on instanceId.
+ *
+ * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+ *
+ * @param {string} instanceId Format - uuid. Customer Insights instance id
+ *
+ * @param {object} [options] Optional Parameters.
+ *
+ * @param {object} [options.body] New hierarchy metadata to be created
+ *
+ * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+ *
+ * @param {string} [options.body.displayName] Gets the Display name of the
+ * hierarchy.
+ *
+ * @param {object} [options.body.dependency]
+ *
+ * @param {string} [options.body.dependency.sourceEntity] Gets the source
+ * entities fully qualified name.
+ *
+ * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+ * account Id.
+ *
+ * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+ * parent account id.
+ *
+ * @param {number} [options.body.version] Version number of this object.
+ *
+ * @param {string} [options.body.updatedBy] UPN of the user who last updated
+ * this record.
+ *
+ * @param {date} [options.body.updatedUtc] Time this object was last updated.
+ *
+ * @param {string} [options.body.createdBy] Email address of the user who
+ * created this record.
+ *
+ * @param {date} [options.body.createdUtc] Time this object was initially
+ * created.
+ *
+ * @param {uuid} [options.body.instanceId] Customer Insights instance id
+ * associated with this object.
+ *
+ * @param {object} [options.customHeaders] Headers that will be added to the
+ * request
+ *
+ * @param {function} callback - The callback.
+ *
+ * @returns {function} callback(err, result, request, response)
+ *
+ *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+ *
+ *                      {object} [result]   - The deserialized result object if an error did not occur.
+ *
+ *                      {object} [request]  - The HTTP Request object if an error did not occur.
+ *
+ *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+ */
+function _createAHierarchy(instanceId, options, callback) {
+   /* jshint validthis: true */
+  let client = this;
+  if(!callback && typeof options === 'function') {
+    callback = options;
+    options = null;
+  }
+  if (!callback) {
+    throw new Error('callback cannot be null.');
+  }
+  let body = (options && options.body !== undefined) ? options.body : undefined;
+  // Validate
+  try {
+    if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
+      throw new Error('instanceId cannot be null or undefined and it must be of type string.');
+    }
+  } catch (error) {
+    return callback(error);
+  }
+
+  // Construct URL
+  let baseUrl = this.baseUri;
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/hierarchies';
+  requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
+
+  // Create HTTP transport objects
+  let httpRequest = new WebResource();
+  httpRequest.method = 'POST';
+  httpRequest.url = requestUrl;
+  httpRequest.headers = {};
+  // Set Headers
+  httpRequest.headers['Content-Type'] = 'application/json-patch+json; charset=utf-8';
+  if(options) {
+    for(let headerName in options['customHeaders']) {
+      if (options['customHeaders'].hasOwnProperty(headerName)) {
+        httpRequest.headers[headerName] = options['customHeaders'][headerName];
+      }
+    }
+  }
+  // Serialize Request
+  let requestContent = null;
+  let requestModel = null;
+  try {
+    if (body !== null && body !== undefined) {
+      let requestModelMapper = new client.models['HierarchyMetadata']().mapper();
+      requestModel = client.serialize(requestModelMapper, body, 'body');
+      requestContent = JSON.stringify(requestModel);
+    }
+  } catch (error) {
+    let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+        `payload - ${JSON.stringify(body, null, 2)}.`);
+    return callback(serializationError);
+  }
+  httpRequest.body = requestContent;
+  // Send Request
+  return client.pipeline(httpRequest, (err, response, responseBody) => {
+    if (err) {
+      return callback(err);
+    }
+    let statusCode = response.statusCode;
+    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
+      let error = new Error(responseBody);
+      error.statusCode = response.statusCode;
+      error.request = msRest.stripRequest(httpRequest);
+      error.response = msRest.stripResponse(response);
+      if (responseBody === '') responseBody = null;
+      let parsedErrorResponse;
+      try {
+        parsedErrorResponse = JSON.parse(responseBody);
+        if (parsedErrorResponse) {
+          let internalError = null;
+          if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+          error.code = internalError ? internalError.code : parsedErrorResponse.code;
+          error.message = internalError ? internalError.message : parsedErrorResponse.message;
+        }
+      } catch (defaultError) {
+        error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                         `- "${responseBody}" for the default response.`;
+        return callback(error);
+      }
+      return callback(error);
+    }
+    // Create Result
+    let result = null;
+    if (responseBody === '') responseBody = null;
+    // Deserialize Response
+    if (statusCode === 200) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['HierarchyMetadata']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(response);
+        return callback(deserializationError);
+      }
+    }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError1.request = msRest.stripRequest(httpRequest);
+        deserializationError1.response = msRest.stripResponse(response);
+        return callback(deserializationError1);
+      }
+    }
+
+    return callback(null, result, httpRequest, response);
+  });
+}
+
+/**
+ * @summary Retrieves a list of hierarchies entity metadata for the provided
+ * instanceId.
+ *
+ * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+ *
+ * @param {string} instanceId Format - uuid. Customer Insights instance id
+ *
+ * @param {object} [options] Optional Parameters.
+ *
+ * @param {object} [options.customHeaders] Headers that will be added to the
+ * request
+ *
+ * @param {function} callback - The callback.
+ *
+ * @returns {function} callback(err, result, request, response)
+ *
+ *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+ *
+ *                      {object} [result]   - The deserialized result object if an error did not occur.
+ *
+ *                      {object} [request]  - The HTTP Request object if an error did not occur.
+ *
+ *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+ */
+function _getAllHierarchies(instanceId, options, callback) {
+   /* jshint validthis: true */
+  let client = this;
+  if(!callback && typeof options === 'function') {
+    callback = options;
+    options = null;
+  }
+  if (!callback) {
+    throw new Error('callback cannot be null.');
+  }
+  // Validate
+  try {
+    if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
+      throw new Error('instanceId cannot be null or undefined and it must be of type string.');
+    }
+  } catch (error) {
+    return callback(error);
+  }
+
+  // Construct URL
+  let baseUrl = this.baseUri;
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/hierarchies';
+  requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
+
+  // Create HTTP transport objects
+  let httpRequest = new WebResource();
+  httpRequest.method = 'GET';
+  httpRequest.url = requestUrl;
+  httpRequest.headers = {};
+  // Set Headers
+  httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+  if(options) {
+    for(let headerName in options['customHeaders']) {
+      if (options['customHeaders'].hasOwnProperty(headerName)) {
+        httpRequest.headers[headerName] = options['customHeaders'][headerName];
+      }
+    }
+  }
+  httpRequest.body = null;
+  // Send Request
+  return client.pipeline(httpRequest, (err, response, responseBody) => {
+    if (err) {
+      return callback(err);
+    }
+    let statusCode = response.statusCode;
+    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
+      let error = new Error(responseBody);
+      error.statusCode = response.statusCode;
+      error.request = msRest.stripRequest(httpRequest);
+      error.response = msRest.stripResponse(response);
+      if (responseBody === '') responseBody = null;
+      let parsedErrorResponse;
+      try {
+        parsedErrorResponse = JSON.parse(responseBody);
+        if (parsedErrorResponse) {
+          let internalError = null;
+          if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+          error.code = internalError ? internalError.code : parsedErrorResponse.code;
+          error.message = internalError ? internalError.message : parsedErrorResponse.message;
+        }
+      } catch (defaultError) {
+        error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                         `- "${responseBody}" for the default response.`;
+        return callback(error);
+      }
+      return callback(error);
+    }
+    // Create Result
+    let result = null;
+    if (responseBody === '') responseBody = null;
+    // Deserialize Response
+    if (statusCode === 200) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = {
+            required: false,
+            serializedName: 'parsedResponse',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'HierarchyMetadataElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'HierarchyMetadata'
+                  }
+              }
+            }
+          };
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(response);
+        return callback(deserializationError);
+      }
+    }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError1.request = msRest.stripRequest(httpRequest);
+        deserializationError1.response = msRest.stripResponse(response);
+        return callback(deserializationError1);
+      }
+    }
+
+    return callback(null, result, httpRequest, response);
+  });
+}
+
+/**
+ * @summary Retrieves the hierarchy metadata for the provided instanceId and
+ * hierarchyId.
+ *
+ * Retrieves the hierarchy metadata for the provided instanceId and
+ * hierarchyId.
+ *
+ * @param {string} instanceId Format - uuid. Customer Insights instance id
+ *
+ * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+ *
+ * @param {object} [options] Optional Parameters.
+ *
+ * @param {object} [options.customHeaders] Headers that will be added to the
+ * request
+ *
+ * @param {function} callback - The callback.
+ *
+ * @returns {function} callback(err, result, request, response)
+ *
+ *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+ *
+ *                      {object} [result]   - The deserialized result object if an error did not occur.
+ *
+ *                      {object} [request]  - The HTTP Request object if an error did not occur.
+ *
+ *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+ */
+function _getAHierarchy(instanceId, hierarchyId, options, callback) {
+   /* jshint validthis: true */
+  let client = this;
+  if(!callback && typeof options === 'function') {
+    callback = options;
+    options = null;
+  }
+  if (!callback) {
+    throw new Error('callback cannot be null.');
+  }
+  // Validate
+  try {
+    if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
+      throw new Error('instanceId cannot be null or undefined and it must be of type string.');
+    }
+    if (hierarchyId === null || hierarchyId === undefined || typeof hierarchyId.valueOf() !== 'string') {
+      throw new Error('hierarchyId cannot be null or undefined and it must be of type string.');
+    }
+  } catch (error) {
+    return callback(error);
+  }
+
+  // Construct URL
+  let baseUrl = this.baseUri;
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/hierarchies/{hierarchyId}';
+  requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
+  requestUrl = requestUrl.replace('{hierarchyId}', encodeURIComponent(hierarchyId));
+
+  // Create HTTP transport objects
+  let httpRequest = new WebResource();
+  httpRequest.method = 'GET';
+  httpRequest.url = requestUrl;
+  httpRequest.headers = {};
+  // Set Headers
+  httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+  if(options) {
+    for(let headerName in options['customHeaders']) {
+      if (options['customHeaders'].hasOwnProperty(headerName)) {
+        httpRequest.headers[headerName] = options['customHeaders'][headerName];
+      }
+    }
+  }
+  httpRequest.body = null;
+  // Send Request
+  return client.pipeline(httpRequest, (err, response, responseBody) => {
+    if (err) {
+      return callback(err);
+    }
+    let statusCode = response.statusCode;
+    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
+      let error = new Error(responseBody);
+      error.statusCode = response.statusCode;
+      error.request = msRest.stripRequest(httpRequest);
+      error.response = msRest.stripResponse(response);
+      if (responseBody === '') responseBody = null;
+      let parsedErrorResponse;
+      try {
+        parsedErrorResponse = JSON.parse(responseBody);
+        if (parsedErrorResponse) {
+          let internalError = null;
+          if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+          error.code = internalError ? internalError.code : parsedErrorResponse.code;
+          error.message = internalError ? internalError.message : parsedErrorResponse.message;
+        }
+      } catch (defaultError) {
+        error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                         `- "${responseBody}" for the default response.`;
+        return callback(error);
+      }
+      return callback(error);
+    }
+    // Create Result
+    let result = null;
+    if (responseBody === '') responseBody = null;
+    // Deserialize Response
+    if (statusCode === 200) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['HierarchyMetadata']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(response);
+        return callback(deserializationError);
+      }
+    }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError1.request = msRest.stripRequest(httpRequest);
+        deserializationError1.response = msRest.stripResponse(response);
+        return callback(deserializationError1);
+      }
+    }
+
+    return callback(null, result, httpRequest, response);
+  });
+}
+
+/**
+ * @summary Updates hierarchy metadata for the provided instanceId and
+ * hierarchyId.
+ *
+ * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+ *
+ * @param {string} instanceId Format - uuid. Customer Insights instance id
+ *
+ * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+ *
+ * @param {object} [options] Optional Parameters.
+ *
+ * @param {object} [options.body] Update hierarchy metadata
+ *
+ * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+ *
+ * @param {string} [options.body.displayName] Gets the Display name of the
+ * hierarchy.
+ *
+ * @param {object} [options.body.dependency]
+ *
+ * @param {string} [options.body.dependency.sourceEntity] Gets the source
+ * entities fully qualified name.
+ *
+ * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+ * account Id.
+ *
+ * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+ * parent account id.
+ *
+ * @param {number} [options.body.version] Version number of this object.
+ *
+ * @param {string} [options.body.updatedBy] UPN of the user who last updated
+ * this record.
+ *
+ * @param {date} [options.body.updatedUtc] Time this object was last updated.
+ *
+ * @param {string} [options.body.createdBy] Email address of the user who
+ * created this record.
+ *
+ * @param {date} [options.body.createdUtc] Time this object was initially
+ * created.
+ *
+ * @param {uuid} [options.body.instanceId] Customer Insights instance id
+ * associated with this object.
+ *
+ * @param {object} [options.customHeaders] Headers that will be added to the
+ * request
+ *
+ * @param {function} callback - The callback.
+ *
+ * @returns {function} callback(err, result, request, response)
+ *
+ *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+ *
+ *                      {object} [result]   - The deserialized result object if an error did not occur.
+ *
+ *                      {object} [request]  - The HTTP Request object if an error did not occur.
+ *
+ *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+ */
+function _updateAHierarchy(instanceId, hierarchyId, options, callback) {
+   /* jshint validthis: true */
+  let client = this;
+  if(!callback && typeof options === 'function') {
+    callback = options;
+    options = null;
+  }
+  if (!callback) {
+    throw new Error('callback cannot be null.');
+  }
+  let body = (options && options.body !== undefined) ? options.body : undefined;
+  // Validate
+  try {
+    if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
+      throw new Error('instanceId cannot be null or undefined and it must be of type string.');
+    }
+    if (hierarchyId === null || hierarchyId === undefined || typeof hierarchyId.valueOf() !== 'string') {
+      throw new Error('hierarchyId cannot be null or undefined and it must be of type string.');
+    }
+  } catch (error) {
+    return callback(error);
+  }
+
+  // Construct URL
+  let baseUrl = this.baseUri;
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/hierarchies/{hierarchyId}';
+  requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
+  requestUrl = requestUrl.replace('{hierarchyId}', encodeURIComponent(hierarchyId));
+
+  // Create HTTP transport objects
+  let httpRequest = new WebResource();
+  httpRequest.method = 'PATCH';
+  httpRequest.url = requestUrl;
+  httpRequest.headers = {};
+  // Set Headers
+  httpRequest.headers['Content-Type'] = 'application/json-patch+json; charset=utf-8';
+  if(options) {
+    for(let headerName in options['customHeaders']) {
+      if (options['customHeaders'].hasOwnProperty(headerName)) {
+        httpRequest.headers[headerName] = options['customHeaders'][headerName];
+      }
+    }
+  }
+  // Serialize Request
+  let requestContent = null;
+  let requestModel = null;
+  try {
+    if (body !== null && body !== undefined) {
+      let requestModelMapper = new client.models['HierarchyMetadata']().mapper();
+      requestModel = client.serialize(requestModelMapper, body, 'body');
+      requestContent = JSON.stringify(requestModel);
+    }
+  } catch (error) {
+    let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+        `payload - ${JSON.stringify(body, null, 2)}.`);
+    return callback(serializationError);
+  }
+  httpRequest.body = requestContent;
+  // Send Request
+  return client.pipeline(httpRequest, (err, response, responseBody) => {
+    if (err) {
+      return callback(err);
+    }
+    let statusCode = response.statusCode;
+    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
+      let error = new Error(responseBody);
+      error.statusCode = response.statusCode;
+      error.request = msRest.stripRequest(httpRequest);
+      error.response = msRest.stripResponse(response);
+      if (responseBody === '') responseBody = null;
+      let parsedErrorResponse;
+      try {
+        parsedErrorResponse = JSON.parse(responseBody);
+        if (parsedErrorResponse) {
+          let internalError = null;
+          if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+          error.code = internalError ? internalError.code : parsedErrorResponse.code;
+          error.message = internalError ? internalError.message : parsedErrorResponse.message;
+        }
+      } catch (defaultError) {
+        error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                         `- "${responseBody}" for the default response.`;
+        return callback(error);
+      }
+      return callback(error);
+    }
+    // Create Result
+    let result = null;
+    if (responseBody === '') responseBody = null;
+    // Deserialize Response
+    if (statusCode === 200) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['HierarchyMetadata']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(response);
+        return callback(deserializationError);
+      }
+    }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError1.request = msRest.stripRequest(httpRequest);
+        deserializationError1.response = msRest.stripResponse(response);
+        return callback(deserializationError1);
+      }
+    }
+
+    return callback(null, result, httpRequest, response);
+  });
+}
+
+/**
+ * @summary Deletes the hierarchy metadata for the provided instanceId using
+ * hierarchyId.
+ *
+ * Deletes the hierarchy metadata for the provided instanceId using
+ * hierarchyId.
+ *
+ * @param {string} instanceId Format - uuid. Customer Insights instance id
+ *
+ * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+ *
+ * @param {object} [options] Optional Parameters.
+ *
+ * @param {object} [options.customHeaders] Headers that will be added to the
+ * request
+ *
+ * @param {function} callback - The callback.
+ *
+ * @returns {function} callback(err, result, request, response)
+ *
+ *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+ *
+ *                      {object} [result]   - The deserialized result object if an error did not occur.
+ *
+ *                      {object} [request]  - The HTTP Request object if an error did not occur.
+ *
+ *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+ */
+function _deleteAHierarchy(instanceId, hierarchyId, options, callback) {
+   /* jshint validthis: true */
+  let client = this;
+  if(!callback && typeof options === 'function') {
+    callback = options;
+    options = null;
+  }
+  if (!callback) {
+    throw new Error('callback cannot be null.');
+  }
+  // Validate
+  try {
+    if (instanceId === null || instanceId === undefined || typeof instanceId.valueOf() !== 'string') {
+      throw new Error('instanceId cannot be null or undefined and it must be of type string.');
+    }
+    if (hierarchyId === null || hierarchyId === undefined || typeof hierarchyId.valueOf() !== 'string') {
+      throw new Error('hierarchyId cannot be null or undefined and it must be of type string.');
+    }
+  } catch (error) {
+    return callback(error);
+  }
+
+  // Construct URL
+  let baseUrl = this.baseUri;
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'instances/{instanceId}/hierarchies/{hierarchyId}';
+  requestUrl = requestUrl.replace('{instanceId}', encodeURIComponent(instanceId));
+  requestUrl = requestUrl.replace('{hierarchyId}', encodeURIComponent(hierarchyId));
+
+  // Create HTTP transport objects
+  let httpRequest = new WebResource();
+  httpRequest.method = 'DELETE';
+  httpRequest.url = requestUrl;
+  httpRequest.headers = {};
+  // Set Headers
+  httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+  if(options) {
+    for(let headerName in options['customHeaders']) {
+      if (options['customHeaders'].hasOwnProperty(headerName)) {
+        httpRequest.headers[headerName] = options['customHeaders'][headerName];
+      }
+    }
+  }
+  httpRequest.body = null;
+  // Send Request
+  return client.pipeline(httpRequest, (err, response, responseBody) => {
+    if (err) {
+      return callback(err);
+    }
+    let statusCode = response.statusCode;
+    if (statusCode !== 200 && statusCode !== 401 && statusCode !== 404 && statusCode !== 500 && statusCode !== 503) {
+      let error = new Error(responseBody);
+      error.statusCode = response.statusCode;
+      error.request = msRest.stripRequest(httpRequest);
+      error.response = msRest.stripResponse(response);
+      if (responseBody === '') responseBody = null;
+      let parsedErrorResponse;
+      try {
+        parsedErrorResponse = JSON.parse(responseBody);
+        if (parsedErrorResponse) {
+          let internalError = null;
+          if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+          error.code = internalError ? internalError.code : parsedErrorResponse.code;
+          error.message = internalError ? internalError.message : parsedErrorResponse.message;
+        }
+      } catch (defaultError) {
+        error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                         `- "${responseBody}" for the default response.`;
+        return callback(error);
+      }
+      return callback(error);
+    }
+    // Create Result
+    let result = null;
+    if (responseBody === '') responseBody = null;
+    // Deserialize Response
+    if (statusCode === 200) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['OkObjectResult']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(response);
+        return callback(deserializationError);
+      }
+    }
+    // Deserialize Response
+    if (statusCode === 404) {
+      let parsedResponse = null;
+      try {
+        parsedResponse = JSON.parse(responseBody);
+        result = JSON.parse(responseBody);
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          let resultMapper = new client.models['ApiErrorResult']().mapper();
+          result = client.deserialize(resultMapper, parsedResponse, 'result');
+        }
+      } catch (error) {
+        let deserializationError1 = new Error(`Error ${error} occurred in deserializing the responseBody - ${responseBody}`);
+        deserializationError1.request = msRest.stripRequest(httpRequest);
+        deserializationError1.response = msRest.stripResponse(response);
+        return callback(deserializationError1);
+      }
+    }
+
+    return callback(null, result, httpRequest, response);
+  });
+}
+
 /** Class representing a CustomerInsights. */
 class CustomerInsights extends ServiceClient {
   /**
@@ -11020,6 +11947,11 @@ class CustomerInsights extends ServiceClient {
     this._getActivityTypesAndCounts = _getActivityTypesAndCounts;
     this._getAllSystemCreatedRelationships = _getAllSystemCreatedRelationships;
     this._createABatchOfWorkflowRefreshSchedules = _createABatchOfWorkflowRefreshSchedules;
+    this._createAHierarchy = _createAHierarchy;
+    this._getAllHierarchies = _getAllHierarchies;
+    this._getAHierarchy = _getAHierarchy;
+    this._updateAHierarchy = _updateAHierarchy;
+    this._deleteAHierarchy = _deleteAHierarchy;
     msRest.addSerializationMixin(this);
   }
 
@@ -11219,6 +12151,9 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
+   * @param {boolean} [options.includeModel] The value indicating whether the
+   * model should be inluded in the response.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -11255,6 +12190,9 @@ class CustomerInsights extends ServiceClient {
    * for.
    *
    * @param {object} [options] Optional Parameters.
+   *
+   * @param {boolean} [options.includeModel] The value indicating whether the
+   * model should be inluded in the response.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -12398,6 +13336,16 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -12483,6 +13431,15 @@ class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -12508,12 +13465,13 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -12526,6 +13484,30 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -12545,27 +13527,6 @@ class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -12574,6 +13535,8 @@ class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -12609,6 +13572,16 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -12694,6 +13667,15 @@ class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -12719,12 +13701,13 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -12737,6 +13720,30 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -12756,27 +13763,6 @@ class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -12785,6 +13771,8 @@ class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -12845,6 +13833,16 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -12930,6 +13928,15 @@ class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -12955,12 +13962,13 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -12973,6 +13981,30 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -12992,27 +14024,6 @@ class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -13021,6 +14032,8 @@ class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -13060,6 +14073,16 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -13145,6 +14168,15 @@ class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -13170,12 +14202,13 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -13188,6 +14221,30 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -13207,27 +14264,6 @@ class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -13236,6 +14272,8 @@ class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -13295,6 +14333,16 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -13380,6 +14428,15 @@ class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -13405,12 +14462,13 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -13423,6 +14481,30 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -13442,27 +14524,6 @@ class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -13471,6 +14532,8 @@ class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -13509,6 +14572,16 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options.body.instanceMetadata]
    *
+   * @param {boolean} [options.body.instanceMetadata.isB2B]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isB2C]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoPbi]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isByoSynapse]
+   *
+   * @param {boolean} [options.body.instanceMetadata.isCdsMdlOrCdsByodl]
+   *
    * @param {string} [options.body.instanceMetadata.name] Gets the user defined
    * instance name.
    *
@@ -13594,6 +14667,15 @@ class CustomerInsights extends ServiceClient {
    * @param {array} [options.body.instanceMetadata.trialExtensionDetails] Stores
    * the details of trial extensions done if this is a trial instance
    *
+   * @param {array} [options.body.instanceMetadata.configuredWorkspaces] Gets the
+   * Workspace type, whether B2B or B2C (Main)
+   *
+   * @param {string} [options.body.instanceMetadata.platformType] Field to store
+   * the Insights Partner who are onboarded to Insights Platform.
+   *
+   * @param {string} [options.body.instanceMetadata.azureRegion] Gets the Azure
+   * Region where the scale unit resides (not persisted in store)
+   *
    * @param {number} [options.body.instanceMetadata.version] Version number of
    * this object.
    *
@@ -13619,12 +14701,13 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.cdsResourceMetadata.kind] Possible values
    * include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
-   * 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    *
    * @param {uuid} [options.body.cdsResourceMetadata.resourceId] Gets the Id of
    * the resource.
@@ -13637,6 +14720,30 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {string} [options.body.cdsResourceMetadata.description] Gets the
    * Description of the resource.
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.keyVaultMetadataId]
+   * MetadataId for Linked KeyVaultMetadata
+   *
+   * @param {object} [options.body.cdsResourceMetadata.mappedSecrets]
+   *
+   * @param {string}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappedFieldId] The
+   * identifier for field mapping to a keyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.linkedKeyVaultMetadataId]
+   * Gets uniqueId of the KeyVault
+   *
+   * @param {uuid}
+   * [options.body.cdsResourceMetadata.mappedSecrets.mappingEntityId] Gets
+   * uniqueId of entity Mapping Secrets
+   *
+   * @param {object}
+   * [options.body.cdsResourceMetadata.mappedSecrets.byoKeyVaultFieldMapping]
+   * Gets Secret Names for Fields Mapped in KeyVault
+   *
+   * @param {uuid} [options.body.cdsResourceMetadata.mappedSecrets.instanceId]
+   * Customer Insights instance id associated with this object.
    *
    * @param {number} [options.body.cdsResourceMetadata.version] Version number of
    * this object.
@@ -13656,27 +14763,6 @@ class CustomerInsights extends ServiceClient {
    * @param {uuid} [options.body.cdsResourceMetadata.instanceId] Customer
    * Insights instance id associated with this object.
    *
-   * @param {object} [options.body.byoPbiProvisioningInfo]
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageSubscriptionId]
-   * Storage account subscriptionId.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceGroup]
-   * Storage account Resource Group.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.storageResourceRegion]
-   * Storage account Region.
-   *
-   * @param {string}
-   * [options.body.byoPbiProvisioningInfo.storageResourceTenantId] Storage
-   * account tenant.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.capacityId] Pbi
-   * Capacity Id.
-   *
-   * @param {string} [options.body.byoPbiProvisioningInfo.delegationToken] PBI
-   * delegation token captured from the user.
-   *
    * @param {boolean} [options.body.isCdsMdlStorageEnabled]
    *
    * @param {boolean} [options.body.isCiToByosaMigrationEnabled]
@@ -13685,6 +14771,8 @@ class CustomerInsights extends ServiceClient {
    * 'skip', 'create', 'attach'
    *
    * @param {boolean} [options.body.isPbiProvisioningRequired]
+   *
+   * @param {boolean} [options.body.isDataverseUpdateRequested]
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -13865,7 +14953,7 @@ class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -13879,7 +14967,7 @@ class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -14085,6 +15173,9 @@ class CustomerInsights extends ServiceClient {
    * template
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
+   *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -14169,7 +15260,7 @@ class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -14183,7 +15274,7 @@ class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -14389,6 +15480,9 @@ class CustomerInsights extends ServiceClient {
    * template
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
+   *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -14596,7 +15690,7 @@ class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -14610,7 +15704,7 @@ class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -14816,6 +15910,9 @@ class CustomerInsights extends ServiceClient {
    * template
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
+   *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -14903,7 +16000,7 @@ class CustomerInsights extends ServiceClient {
    * @param {object} [options.body.definition.filteringCriteria]
    *
    * @param {string} [options.body.definition.filteringCriteria.kind] Possible
-   * values include: 'default', 'engagement'
+   * values include: 'post', 'default', 'consent', 'engagement'
    *
    * @param {string} [options.body.definition.filteringCriteria.logicalOperator]
    * Possible values include: 'and', 'or'
@@ -14917,7 +16014,7 @@ class CustomerInsights extends ServiceClient {
    * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains',
    * 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn',
    * 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf',
-   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    *
    * @param {array} [options.body.definition.filteringCriteria.childCriterias]
    * Gets the list of Child criteria of segment.
@@ -15123,6 +16220,9 @@ class CustomerInsights extends ServiceClient {
    * template
    *
    * @param {uuid} [options.body.templateId] Gets the template ID for templates
+   *
+   * @param {boolean} [options.body.isCreatedFromTemplate] Check if measure
+   * metadata is created from a template
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -16914,6 +18014,9 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -17063,6 +18166,11 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -17142,6 +18250,9 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -17291,6 +18402,11 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -17572,6 +18688,9 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -17721,6 +18840,11 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -17803,6 +18927,9 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.segmentQueryExpression.segmentationQuerySql]
    * Gets the user specified custom SQL query.
    *
+   * @param {array} [options.body.segmentQueryExpression.hierarchies] Gets a list
+   * of Hierarchies for segment query.
+   *
    * @param {string} [options.body.state] Possible values include: 'inactive',
    * 'active', 'validating', 'validated', 'invalid', 'validationError'
    *
@@ -17952,6 +19079,11 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {array} [options.body.evaluationStatusHistory] Gets the segment
    * evaluation status history. (not persisted in store)
+   *
+   * @param {object} [options.body.segmentQueryStats]
+   *
+   * @param {array} [options.body.segmentQueryStats.rowsetStat] Gets a list of
+   * Rowset Stat.
    *
    * @param {number} [options.body.version] Version number of this object.
    *
@@ -18413,10 +19545,11 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.submissionKind] Possible values include:
    * 'onDemand', 'scheduled'
@@ -18487,10 +19620,11 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.submissionKind] Possible values include:
    * 'onDemand', 'scheduled'
@@ -18938,10 +20072,11 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -19004,10 +20139,11 @@ class CustomerInsights extends ServiceClient {
    * @param {string} [options.body.operationType] Possible values include:
    * 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
    * 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation',
-   * 'segmentMembership', 'enrichment', 'intelligence', 'aiBuilder', 'insights',
-   * 'export', 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
-   * 'all'
+   * 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+   * 'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+   * 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+   * 'semanticEntity', 'all'
    *
    * @param {string} [options.body.subType] Possible values include: 'noSubType',
    * 'templatedMeasures', 'createAnalysisModel', 'linkAnalysisModel',
@@ -19086,6 +20222,8 @@ class CustomerInsights extends ServiceClient {
    *
    * @param {object} [options] Optional Parameters.
    *
+   * @param {boolean} [options.includeAttributeData] Include attribute data.
+   *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
    *
@@ -19119,6 +20257,8 @@ class CustomerInsights extends ServiceClient {
    * @param {string} qualifiedEntityName Qualified Entity Name.
    *
    * @param {object} [options] Optional Parameters.
+   *
+   * @param {boolean} [options.includeAttributeData] Include attribute data.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -19432,6 +20572,591 @@ class CustomerInsights extends ServiceClient {
       });
     } else {
       return self._createABatchOfWorkflowRefreshSchedules(instanceId, workflowName, options, optionalCallback);
+    }
+  }
+
+  /**
+   * @summary Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] New hierarchy metadata to be created
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error} - The error object.
+   */
+  createAHierarchyWithHttpOperationResponse(instanceId, options) {
+    let client = this;
+    let self = this;
+    return new Promise((resolve, reject) => {
+      self._createAHierarchy(instanceId, options, (err, result, request, response) => {
+        let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
+        httpOperationResponse.body = result;
+        if (err) { reject(err); }
+        else { resolve(httpOperationResponse); }
+        return;
+      });
+    });
+  }
+
+  /**
+   * @summary Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * Create new hierarchy metadata with hierarchyMetadata on instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] New hierarchy metadata to be created
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {function} [optionalCallback] - The optional callback.
+   *
+   * @returns {function|Promise} If a callback was passed as the last parameter
+   * then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error} - The error object.
+   *
+   * {function} optionalCallback(err, result, request, response)
+   *
+   *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {object} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+   */
+  createAHierarchy(instanceId, options, optionalCallback) {
+    let client = this;
+    let self = this;
+    if (!optionalCallback && typeof options === 'function') {
+      optionalCallback = options;
+      options = null;
+    }
+    if (!optionalCallback) {
+      return new Promise((resolve, reject) => {
+        self._createAHierarchy(instanceId, options, (err, result, request, response) => {
+          if (err) { reject(err); }
+          else { resolve(result); }
+          return;
+        });
+      });
+    } else {
+      return self._createAHierarchy(instanceId, options, optionalCallback);
+    }
+  }
+
+  /**
+   * @summary Retrieves a list of hierarchies entity metadata for the provided
+   * instanceId.
+   *
+   * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error} - The error object.
+   */
+  getAllHierarchiesWithHttpOperationResponse(instanceId, options) {
+    let client = this;
+    let self = this;
+    return new Promise((resolve, reject) => {
+      self._getAllHierarchies(instanceId, options, (err, result, request, response) => {
+        let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
+        httpOperationResponse.body = result;
+        if (err) { reject(err); }
+        else { resolve(httpOperationResponse); }
+        return;
+      });
+    });
+  }
+
+  /**
+   * @summary Retrieves a list of hierarchies entity metadata for the provided
+   * instanceId.
+   *
+   * Retrieves a list of hierarchies entity metadata for the provided instanceId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {function} [optionalCallback] - The optional callback.
+   *
+   * @returns {function|Promise} If a callback was passed as the last parameter
+   * then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error} - The error object.
+   *
+   * {function} optionalCallback(err, result, request, response)
+   *
+   *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {object} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getAllHierarchies(instanceId, options, optionalCallback) {
+    let client = this;
+    let self = this;
+    if (!optionalCallback && typeof options === 'function') {
+      optionalCallback = options;
+      options = null;
+    }
+    if (!optionalCallback) {
+      return new Promise((resolve, reject) => {
+        self._getAllHierarchies(instanceId, options, (err, result, request, response) => {
+          if (err) { reject(err); }
+          else { resolve(result); }
+          return;
+        });
+      });
+    } else {
+      return self._getAllHierarchies(instanceId, options, optionalCallback);
+    }
+  }
+
+  /**
+   * @summary Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error} - The error object.
+   */
+  getAHierarchyWithHttpOperationResponse(instanceId, hierarchyId, options) {
+    let client = this;
+    let self = this;
+    return new Promise((resolve, reject) => {
+      self._getAHierarchy(instanceId, hierarchyId, options, (err, result, request, response) => {
+        let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
+        httpOperationResponse.body = result;
+        if (err) { reject(err); }
+        else { resolve(httpOperationResponse); }
+        return;
+      });
+    });
+  }
+
+  /**
+   * @summary Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Retrieves the hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {function} [optionalCallback] - The optional callback.
+   *
+   * @returns {function|Promise} If a callback was passed as the last parameter
+   * then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error} - The error object.
+   *
+   * {function} optionalCallback(err, result, request, response)
+   *
+   *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {object} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getAHierarchy(instanceId, hierarchyId, options, optionalCallback) {
+    let client = this;
+    let self = this;
+    if (!optionalCallback && typeof options === 'function') {
+      optionalCallback = options;
+      options = null;
+    }
+    if (!optionalCallback) {
+      return new Promise((resolve, reject) => {
+        self._getAHierarchy(instanceId, hierarchyId, options, (err, result, request, response) => {
+          if (err) { reject(err); }
+          else { resolve(result); }
+          return;
+        });
+      });
+    } else {
+      return self._getAHierarchy(instanceId, hierarchyId, options, optionalCallback);
+    }
+  }
+
+  /**
+   * @summary Updates hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] Update hierarchy metadata
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error} - The error object.
+   */
+  updateAHierarchyWithHttpOperationResponse(instanceId, hierarchyId, options) {
+    let client = this;
+    let self = this;
+    return new Promise((resolve, reject) => {
+      self._updateAHierarchy(instanceId, hierarchyId, options, (err, result, request, response) => {
+        let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
+        httpOperationResponse.body = result;
+        if (err) { reject(err); }
+        else { resolve(httpOperationResponse); }
+        return;
+      });
+    });
+  }
+
+  /**
+   * @summary Updates hierarchy metadata for the provided instanceId and
+   * hierarchyId.
+   *
+   * Updates hierarchy metadata for the provided instanceId and hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.body] Update hierarchy metadata
+   *
+   * @param {string} [options.body.name] Gets the unique name of the hierarchy.
+   *
+   * @param {string} [options.body.displayName] Gets the Display name of the
+   * hierarchy.
+   *
+   * @param {object} [options.body.dependency]
+   *
+   * @param {string} [options.body.dependency.sourceEntity] Gets the source
+   * entities fully qualified name.
+   *
+   * @param {string} [options.body.dependency.accountIdAttribute] Gets entity
+   * account Id.
+   *
+   * @param {string} [options.body.dependency.parentAccountIdAttribute] Gets
+   * parent account id.
+   *
+   * @param {number} [options.body.version] Version number of this object.
+   *
+   * @param {string} [options.body.updatedBy] UPN of the user who last updated
+   * this record.
+   *
+   * @param {date} [options.body.updatedUtc] Time this object was last updated.
+   *
+   * @param {string} [options.body.createdBy] Email address of the user who
+   * created this record.
+   *
+   * @param {date} [options.body.createdUtc] Time this object was initially
+   * created.
+   *
+   * @param {uuid} [options.body.instanceId] Customer Insights instance id
+   * associated with this object.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {function} [optionalCallback] - The optional callback.
+   *
+   * @returns {function|Promise} If a callback was passed as the last parameter
+   * then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error} - The error object.
+   *
+   * {function} optionalCallback(err, result, request, response)
+   *
+   *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {object} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+   */
+  updateAHierarchy(instanceId, hierarchyId, options, optionalCallback) {
+    let client = this;
+    let self = this;
+    if (!optionalCallback && typeof options === 'function') {
+      optionalCallback = options;
+      options = null;
+    }
+    if (!optionalCallback) {
+      return new Promise((resolve, reject) => {
+        self._updateAHierarchy(instanceId, hierarchyId, options, (err, result, request, response) => {
+          if (err) { reject(err); }
+          else { resolve(result); }
+          return;
+        });
+      });
+    } else {
+      return self._updateAHierarchy(instanceId, hierarchyId, options, optionalCallback);
+    }
+  }
+
+  /**
+   * @summary Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse<Object>} - The deserialized result object.
+   *
+   * @reject {Error} - The error object.
+   */
+  deleteAHierarchyWithHttpOperationResponse(instanceId, hierarchyId, options) {
+    let client = this;
+    let self = this;
+    return new Promise((resolve, reject) => {
+      self._deleteAHierarchy(instanceId, hierarchyId, options, (err, result, request, response) => {
+        let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
+        httpOperationResponse.body = result;
+        if (err) { reject(err); }
+        else { resolve(httpOperationResponse); }
+        return;
+      });
+    });
+  }
+
+  /**
+   * @summary Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * Deletes the hierarchy metadata for the provided instanceId using
+   * hierarchyId.
+   *
+   * @param {string} instanceId Format - uuid. Customer Insights instance id
+   *
+   * @param {string} hierarchyId Format - uuid. Id of the hierarchy
+   *
+   * @param {object} [options] Optional Parameters.
+   *
+   * @param {object} [options.customHeaders] Headers that will be added to the
+   * request
+   *
+   * @param {function} [optionalCallback] - The optional callback.
+   *
+   * @returns {function|Promise} If a callback was passed as the last parameter
+   * then it returns the callback else returns a Promise.
+   *
+   * {Promise} A promise is returned
+   *
+   *                      @resolve {Object} - The deserialized result object.
+   *
+   *                      @reject {Error} - The error object.
+   *
+   * {function} optionalCallback(err, result, request, response)
+   *
+   *                      {Error}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {object} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {object} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {stream} [response] - The HTTP Response stream if an error did not occur.
+   */
+  deleteAHierarchy(instanceId, hierarchyId, options, optionalCallback) {
+    let client = this;
+    let self = this;
+    if (!optionalCallback && typeof options === 'function') {
+      optionalCallback = options;
+      options = null;
+    }
+    if (!optionalCallback) {
+      return new Promise((resolve, reject) => {
+        self._deleteAHierarchy(instanceId, hierarchyId, options, (err, result, request, response) => {
+          if (err) { reject(err); }
+          else { resolve(result); }
+          return;
+        });
+      });
+    } else {
+      return self._deleteAHierarchy(instanceId, hierarchyId, options, optionalCallback);
     }
   }
 

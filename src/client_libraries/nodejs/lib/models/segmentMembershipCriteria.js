@@ -13,7 +13,8 @@
 class SegmentMembershipCriteria {
   /**
    * Create a SegmentMembershipCriteria.
-   * @property {string} [kind] Possible values include: 'default', 'engagement'
+   * @property {string} [kind] Possible values include: 'post', 'default',
+   * 'consent', 'engagement'
    * @property {string} [logicalOperator] Possible values include: 'and', 'or'
    * @property {string} [attribute] Gets the Attribute of the entity used in
    * segment criteria.
@@ -22,7 +23,7 @@ class SegmentMembershipCriteria {
    * 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
    * 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
    * 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek',
-   * 'timeAt'
+   * 'timeAt', 'childOf', 'parentOf'
    * @property {array} [childCriterias] Gets the list of Child criteria of
    * segment.
    * @property {string} [value] Gets the Value in criteria.

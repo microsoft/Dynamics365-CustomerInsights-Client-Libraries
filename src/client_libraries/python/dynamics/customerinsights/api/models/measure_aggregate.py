@@ -22,6 +22,8 @@ class MeasureAggregate(Model):
     :type display_name: str
     :param order: Gets the order for the aggregate
     :type order: int
+    :param operation_scope: Possible values include: 'rollup'
+    :type operation_scope: str or ~dynamics.customerinsights.api.models.enum
     :param aggregates: Gets list of aggregates of the measure.
     :type aggregates:
      list[~dynamics.customerinsights.api.models.MeasureAggregate]
@@ -36,6 +38,7 @@ class MeasureAggregate(Model):
         'alias': {'key': 'alias', 'type': 'str'},
         'display_name': {'key': 'displayName', 'type': 'str'},
         'order': {'key': 'order', 'type': 'int'},
+        'operation_scope': {'key': 'operationScope', 'type': 'str'},
         'aggregates': {'key': 'aggregates', 'type': '[MeasureAggregate]'},
         'is_included': {'key': 'isIncluded', 'type': 'bool'},
     }
@@ -47,5 +50,6 @@ class MeasureAggregate(Model):
         self.alias = kwargs.get('alias', None)
         self.display_name = kwargs.get('display_name', None)
         self.order = kwargs.get('order', None)
+        self.operation_scope = kwargs.get('operation_scope', None)
         self.aggregates = kwargs.get('aggregates', None)
         self.is_included = kwargs.get('is_included', False)

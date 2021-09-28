@@ -84,6 +84,12 @@ public class SegmentMetadata {
     private List<HistoricalSegmentStats> evaluationStatusHistory;
 
     /**
+     * The segmentQueryStats property.
+     */
+    @JsonProperty(value = "segmentQueryStats")
+    private SegmentQueryStat segmentQueryStats;
+
+    /**
      * Version number of this object.
      */
     @JsonProperty(value = "version")
@@ -336,6 +342,26 @@ public class SegmentMetadata {
      */
     public SegmentMetadata withEvaluationStatusHistory(List<HistoricalSegmentStats> evaluationStatusHistory) {
         this.evaluationStatusHistory = evaluationStatusHistory;
+        return this;
+    }
+
+    /**
+     * Get the segmentQueryStats value.
+     *
+     * @return the segmentQueryStats value
+     */
+    public SegmentQueryStat segmentQueryStats() {
+        return this.segmentQueryStats;
+    }
+
+    /**
+     * Set the segmentQueryStats value.
+     *
+     * @param segmentQueryStats the segmentQueryStats value to set
+     * @return the SegmentMetadata object itself.
+     */
+    public SegmentMetadata withSegmentQueryStats(SegmentQueryStat segmentQueryStats) {
+        this.segmentQueryStats = segmentQueryStats;
         return this;
     }
 

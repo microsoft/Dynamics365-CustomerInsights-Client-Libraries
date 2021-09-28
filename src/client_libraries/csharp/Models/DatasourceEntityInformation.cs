@@ -38,17 +38,25 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'genericPrediction', 'enrichment', 'insights', 'derivedEntity',
         /// 'corrupt', 'selfConflation', 'conflationManualReview',
         /// 'selfConflationManualReview', 'semanticActivity',
-        /// 'segmentMembership'</param>
+        /// 'segmentMembership', 'hierarchy', 'dataLineage', 'transform',
+        /// 'semanticEntity'</param>
         /// <param name="timestampFieldName">Time stamp field name.</param>
         /// <param name="semanticLabels">Semantic labels by attribute
         /// name.</param>
-        public DatasourceEntityInformation(string entityName = default(string), string primaryKey = default(string), string entityType = default(string), string timestampFieldName = default(string), IList<AttributeSemanticInformation> semanticLabels = default(IList<AttributeSemanticInformation>))
+        /// <param name="deltaTableVersion">Gets theDeltaTable version of this
+        /// entity.</param>
+        /// <param name="autoGenerateCDMDefinition">Specifies if CDM definition
+        /// for this entity should be auto generated.</param>
+        public DatasourceEntityInformation(string entityName = default(string), string primaryKey = default(string), string entityType = default(string), string timestampFieldName = default(string), IList<AttributeSemanticInformation> semanticLabels = default(IList<AttributeSemanticInformation>), EntityEnrichmentInformation entityEnrichmentInfo = default(EntityEnrichmentInformation), long? deltaTableVersion = default(long?), bool? autoGenerateCDMDefinition = default(bool?))
         {
             EntityName = entityName;
             PrimaryKey = primaryKey;
             EntityType = entityType;
             TimestampFieldName = timestampFieldName;
             SemanticLabels = semanticLabels;
+            EntityEnrichmentInfo = entityEnrichmentInfo;
+            DeltaTableVersion = deltaTableVersion;
+            AutoGenerateCDMDefinition = autoGenerateCDMDefinition;
             CustomInit();
         }
 
@@ -77,7 +85,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'enrichment', 'insights', 'derivedEntity', 'corrupt',
         /// 'selfConflation', 'conflationManualReview',
         /// 'selfConflationManualReview', 'semanticActivity',
-        /// 'segmentMembership'
+        /// 'segmentMembership', 'hierarchy', 'dataLineage', 'transform',
+        /// 'semanticEntity'
         /// </summary>
         [JsonProperty(PropertyName = "entityType")]
         public string EntityType { get; set; }
@@ -93,6 +102,24 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "semanticLabels")]
         public IList<AttributeSemanticInformation> SemanticLabels { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "entityEnrichmentInfo")]
+        public EntityEnrichmentInformation EntityEnrichmentInfo { get; set; }
+
+        /// <summary>
+        /// Gets theDeltaTable version of this entity.
+        /// </summary>
+        [JsonProperty(PropertyName = "deltaTableVersion")]
+        public long? DeltaTableVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets specifies if CDM definition for this entity should be
+        /// auto generated.
+        /// </summary>
+        [JsonProperty(PropertyName = "autoGenerateCDMDefinition")]
+        public bool? AutoGenerateCDMDefinition { get; set; }
 
     }
 }

@@ -32,8 +32,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// the user has seen the all apps (welcome) page.</param>
         /// <param name="proTagger">Gets a value indicating whether the user
         /// has seen the all apps (welcome) page.</param>
-        public PortalSettings(bool? isExistingUser = default(bool?), bool? showDefaultHomePage = default(bool?), bool? proTagger = default(bool?))
+        public PortalSettings(Coachmarks coachmarks = default(Coachmarks), Banners banners = default(Banners), Notifications notifications = default(Notifications), bool? isExistingUser = default(bool?), bool? showDefaultHomePage = default(bool?), bool? proTagger = default(bool?))
         {
+            Coachmarks = coachmarks;
+            Banners = banners;
+            Notifications = notifications;
             IsExistingUser = isExistingUser;
             ShowDefaultHomePage = showDefaultHomePage;
             ProTagger = proTagger;
@@ -44,6 +47,21 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// An initialization method that performs custom operations like setting defaults
         /// </summary>
         partial void CustomInit();
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "coachmarks")]
+        public Coachmarks Coachmarks { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "banners")]
+        public Banners Banners { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "notifications")]
+        public Notifications Notifications { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the user has seen the all apps

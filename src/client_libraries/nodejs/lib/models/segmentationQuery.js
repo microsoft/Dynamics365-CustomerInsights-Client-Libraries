@@ -21,6 +21,8 @@ class SegmentationQuery {
    * @property {array} [rowsets] Gets list of rowsets of segment.
    * @property {string} [segmentationQuerySql] Gets the user specified custom
    * SQL query.
+   * @property {array} [hierarchies] Gets a list of Hierarchies for segment
+   * query.
    */
   constructor() {
   }
@@ -95,6 +97,21 @@ class SegmentationQuery {
             serializedName: 'segmentationQuerySql',
             type: {
               name: 'String'
+            }
+          },
+          hierarchies: {
+            required: false,
+            serializedName: 'hierarchies',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'HierarchyDefinitionElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'HierarchyDefinition'
+                  }
+              }
             }
           }
         }

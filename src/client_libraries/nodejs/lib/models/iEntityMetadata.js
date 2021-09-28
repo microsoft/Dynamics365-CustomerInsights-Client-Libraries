@@ -30,7 +30,8 @@ class IEntityMetadata {
    * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
    * 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
    * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
-   * 'cjoData', 'eiData', 'hierarchy'
+   * 'firstParty', 'hierarchy', 'contact', 'semanticEntity', 'attachSynapse',
+   * 'transform'
    * @property {boolean} [shouldUseSparkSasAuth] Gets a value indicating
    * whether Sas Auth is used for the entity.
    * @property {uuid} [datasourceId] Gets the original datasourceid of this
@@ -40,7 +41,8 @@ class IEntityMetadata {
    * 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
    * 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
    * 'conflationManualReview', 'selfConflationManualReview',
-   * 'semanticActivity', 'segmentMembership'
+   * 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage',
+   * 'transform', 'semanticEntity'
    * @property {array} [attributes] Gets entity attributes.
    * @property {array} [keys] Gets the keys of the entity.
    * @property {array} [relationships] Gets entity relationships.

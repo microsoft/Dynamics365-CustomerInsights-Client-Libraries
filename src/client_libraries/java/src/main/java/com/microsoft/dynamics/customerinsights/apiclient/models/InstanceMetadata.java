@@ -16,6 +16,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class InstanceMetadata {
     /**
+     * The isB2B property.
+     */
+    @JsonProperty(value = "isB2B")
+    private Boolean isB2B;
+
+    /**
+     * The isB2C property.
+     */
+    @JsonProperty(value = "isB2C")
+    private Boolean isB2C;
+
+    /**
+     * The isByoPbi property.
+     */
+    @JsonProperty(value = "isByoPbi")
+    private Boolean isByoPbi;
+
+    /**
+     * The isByoSynapse property.
+     */
+    @JsonProperty(value = "isByoSynapse")
+    private Boolean isByoSynapse;
+
+    /**
+     * The isCdsMdlOrCdsByodl property.
+     */
+    @JsonProperty(value = "isCdsMdlOrCdsByodl")
+    private Boolean isCdsMdlOrCdsByodl;
+
+    /**
      * Gets the user defined instance name.
      */
     @JsonProperty(value = "name")
@@ -92,6 +122,26 @@ public class InstanceMetadata {
     private List<TrialExtensionDetails> trialExtensionDetails;
 
     /**
+     * Gets the Workspace type, whether B2B or B2C (Main).
+     */
+    @JsonProperty(value = "configuredWorkspaces")
+    private List<String> configuredWorkspaces;
+
+    /**
+     * Field to store the Insights Partner who are onboarded to Insights
+     * Platform.
+     */
+    @JsonProperty(value = "platformType")
+    private String platformType;
+
+    /**
+     * Gets the Azure Region where the scale unit resides (not persisted in
+     * store).
+     */
+    @JsonProperty(value = "azureRegion")
+    private String azureRegion;
+
+    /**
      * Version number of this object.
      */
     @JsonProperty(value = "version")
@@ -126,6 +176,106 @@ public class InstanceMetadata {
      */
     @JsonProperty(value = "instanceId")
     private UUID instanceId;
+
+    /**
+     * Get the isB2B value.
+     *
+     * @return the isB2B value
+     */
+    public Boolean isB2B() {
+        return this.isB2B;
+    }
+
+    /**
+     * Set the isB2B value.
+     *
+     * @param isB2B the isB2B value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withIsB2B(Boolean isB2B) {
+        this.isB2B = isB2B;
+        return this;
+    }
+
+    /**
+     * Get the isB2C value.
+     *
+     * @return the isB2C value
+     */
+    public Boolean isB2C() {
+        return this.isB2C;
+    }
+
+    /**
+     * Set the isB2C value.
+     *
+     * @param isB2C the isB2C value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withIsB2C(Boolean isB2C) {
+        this.isB2C = isB2C;
+        return this;
+    }
+
+    /**
+     * Get the isByoPbi value.
+     *
+     * @return the isByoPbi value
+     */
+    public Boolean isByoPbi() {
+        return this.isByoPbi;
+    }
+
+    /**
+     * Set the isByoPbi value.
+     *
+     * @param isByoPbi the isByoPbi value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withIsByoPbi(Boolean isByoPbi) {
+        this.isByoPbi = isByoPbi;
+        return this;
+    }
+
+    /**
+     * Get the isByoSynapse value.
+     *
+     * @return the isByoSynapse value
+     */
+    public Boolean isByoSynapse() {
+        return this.isByoSynapse;
+    }
+
+    /**
+     * Set the isByoSynapse value.
+     *
+     * @param isByoSynapse the isByoSynapse value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withIsByoSynapse(Boolean isByoSynapse) {
+        this.isByoSynapse = isByoSynapse;
+        return this;
+    }
+
+    /**
+     * Get the isCdsMdlOrCdsByodl value.
+     *
+     * @return the isCdsMdlOrCdsByodl value
+     */
+    public Boolean isCdsMdlOrCdsByodl() {
+        return this.isCdsMdlOrCdsByodl;
+    }
+
+    /**
+     * Set the isCdsMdlOrCdsByodl value.
+     *
+     * @param isCdsMdlOrCdsByodl the isCdsMdlOrCdsByodl value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withIsCdsMdlOrCdsByodl(Boolean isCdsMdlOrCdsByodl) {
+        this.isCdsMdlOrCdsByodl = isCdsMdlOrCdsByodl;
+        return this;
+    }
 
     /**
      * Get gets the user defined instance name.
@@ -364,6 +514,66 @@ public class InstanceMetadata {
      */
     public InstanceMetadata withTrialExtensionDetails(List<TrialExtensionDetails> trialExtensionDetails) {
         this.trialExtensionDetails = trialExtensionDetails;
+        return this;
+    }
+
+    /**
+     * Get gets the Workspace type, whether B2B or B2C (Main).
+     *
+     * @return the configuredWorkspaces value
+     */
+    public List<String> configuredWorkspaces() {
+        return this.configuredWorkspaces;
+    }
+
+    /**
+     * Set gets the Workspace type, whether B2B or B2C (Main).
+     *
+     * @param configuredWorkspaces the configuredWorkspaces value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withConfiguredWorkspaces(List<String> configuredWorkspaces) {
+        this.configuredWorkspaces = configuredWorkspaces;
+        return this;
+    }
+
+    /**
+     * Get field to store the Insights Partner who are onboarded to Insights Platform.
+     *
+     * @return the platformType value
+     */
+    public String platformType() {
+        return this.platformType;
+    }
+
+    /**
+     * Set field to store the Insights Partner who are onboarded to Insights Platform.
+     *
+     * @param platformType the platformType value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withPlatformType(String platformType) {
+        this.platformType = platformType;
+        return this;
+    }
+
+    /**
+     * Get gets the Azure Region where the scale unit resides (not persisted in store).
+     *
+     * @return the azureRegion value
+     */
+    public String azureRegion() {
+        return this.azureRegion;
+    }
+
+    /**
+     * Set gets the Azure Region where the scale unit resides (not persisted in store).
+     *
+     * @param azureRegion the azureRegion value to set
+     * @return the InstanceMetadata object itself.
+     */
+    public InstanceMetadata withAzureRegion(String azureRegion) {
+        this.azureRegion = azureRegion;
         return this;
     }
 

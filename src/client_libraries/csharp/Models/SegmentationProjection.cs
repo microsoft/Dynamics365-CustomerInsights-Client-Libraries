@@ -31,10 +31,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// projection.</param>
         /// <param name="attributeNames">Gets the Attribute Names being
         /// projected.</param>
-        public SegmentationProjection(string entityName = default(string), IList<string> attributeNames = default(IList<string>))
+        /// <param name="path">Gets the relationship path to use for segment
+        /// projection.</param>
+        /// <param name="projectionType">Possible values include: 'pre',
+        /// 'post'</param>
+        public SegmentationProjection(string entityName = default(string), IList<string> attributeNames = default(IList<string>), IList<string> path = default(IList<string>), string projectionType = default(string))
         {
             EntityName = entityName;
             AttributeNames = attributeNames;
+            Path = path;
+            ProjectionType = projectionType;
             CustomInit();
         }
 
@@ -54,6 +60,18 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "attributeNames")]
         public IList<string> AttributeNames { get; set; }
+
+        /// <summary>
+        /// Gets the relationship path to use for segment projection.
+        /// </summary>
+        [JsonProperty(PropertyName = "path")]
+        public IList<string> Path { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'pre', 'post'
+        /// </summary>
+        [JsonProperty(PropertyName = "projectionType")]
+        public string ProjectionType { get; set; }
 
     }
 }

@@ -127,7 +127,8 @@ class IRelationshipMetadata {
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown',
    * 'powerPlatform', 'datahub', 'insights', 'derivedEntity',
    * 'powerPlatformSource', 'powerPlatformBYDL', 'powerPlatformBYDLSource',
-   * 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'
+   * 'semanticActivity', 'segmentMembership', 'firstParty', 'hierarchy',
+   * 'contact', 'semanticEntity', 'attachSynapse', 'transform'
    * @property {boolean} [dataSourceEntity.shouldUseSparkSasAuth] Gets a value
    * indicating whether Sas Auth is used for the entity.
    * @property {uuid} [dataSourceEntity.datasourceId] Gets the original
@@ -137,7 +138,8 @@ class IRelationshipMetadata {
    * 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
    * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt',
    * 'selfConflation', 'conflationManualReview', 'selfConflationManualReview',
-   * 'semanticActivity', 'segmentMembership'
+   * 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage',
+   * 'transform', 'semanticEntity'
    * @property {array} [dataSourceEntity.attributes] Gets entity attributes.
    * @property {array} [dataSourceEntity.keys] Gets the keys of the entity.
    * @property {array} [dataSourceEntity.relationships] Gets entity

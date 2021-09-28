@@ -16,6 +16,9 @@ class SegmentationProjection {
    * @property {string} [entityName] Gets the Entity Name of the projection.
    * @property {array} [attributeNames] Gets the Attribute Names being
    * projected.
+   * @property {array} [path] Gets the relationship path to use for segment
+   * projection.
+   * @property {string} [projectionType] Possible values include: 'pre', 'post'
    */
   constructor() {
   }
@@ -53,6 +56,27 @@ class SegmentationProjection {
                     name: 'String'
                   }
               }
+            }
+          },
+          path: {
+            required: false,
+            serializedName: 'path',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'StringElementType',
+                  type: {
+                    name: 'String'
+                  }
+              }
+            }
+          },
+          projectionType: {
+            required: false,
+            serializedName: 'projectionType',
+            type: {
+              name: 'String'
             }
           }
         }

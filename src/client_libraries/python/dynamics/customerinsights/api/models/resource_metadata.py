@@ -13,13 +13,13 @@ class ResourceMetadata(Model):
 
     :param kind: Possible values include: 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2',
-     'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-     'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice',
+     'basicAuthenticationConnection', 'firstPartyADConnection',
+     'amazonS3Connection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+     'attachCds', 'ftp', 'facebookAds', 'amlWorkspace', 'mlStudioWebservice',
      'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http',
      'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
-     'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat',
-     'powerBI', 'azureSql', 'synapse'
+     'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'activeCampaign',
+     'autopilot', 'klaviyo', 'snapchat', 'powerBI', 'azureSql', 'synapse'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param resource_id: Gets the Id of the resource.
     :type resource_id: str
@@ -30,6 +30,11 @@ class ResourceMetadata(Model):
     :type name: str
     :param description: Gets the Description of the resource.
     :type description: str
+    :param key_vault_metadata_id: MetadataId for Linked KeyVaultMetadata
+    :type key_vault_metadata_id: str
+    :param mapped_secrets:
+    :type mapped_secrets:
+     ~dynamics.customerinsights.api.models.MappedSecretMetadata
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -51,6 +56,8 @@ class ResourceMetadata(Model):
         'operation_id': {'key': 'operationId', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
+        'key_vault_metadata_id': {'key': 'keyVaultMetadataId', 'type': 'str'},
+        'mapped_secrets': {'key': 'mappedSecrets', 'type': 'MappedSecretMetadata'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -66,6 +73,8 @@ class ResourceMetadata(Model):
         self.operation_id = kwargs.get('operation_id', None)
         self.name = kwargs.get('name', None)
         self.description = kwargs.get('description', None)
+        self.key_vault_metadata_id = kwargs.get('key_vault_metadata_id', None)
+        self.mapped_secrets = kwargs.get('mapped_secrets', None)
         self.version = kwargs.get('version', None)
         self.updated_by = kwargs.get('updated_by', None)
         self.updated_utc = kwargs.get('updated_utc', None)

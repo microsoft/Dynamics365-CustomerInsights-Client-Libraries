@@ -14,10 +14,10 @@ class SegmentationRowset {
   /**
    * Create a SegmentationRowset.
    * @property {string} [rowsetOperation] Possible values include: 'union',
-   * 'intersect', 'except', 'none'
+   * 'intersect', 'except', 'none', 'include', 'exclude'
    * @property {object} [criteria]
-   * @property {string} [criteria.kind] Possible values include: 'default',
-   * 'engagement'
+   * @property {string} [criteria.kind] Possible values include: 'post',
+   * 'default', 'consent', 'engagement'
    * @property {string} [criteria.logicalOperator] Possible values include:
    * 'and', 'or'
    * @property {string} [criteria.attribute] Gets the Attribute of the entity
@@ -27,7 +27,7 @@ class SegmentationRowset {
    * 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
    * 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
    * 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek',
-   * 'timeAt'
+   * 'timeAt', 'childOf', 'parentOf'
    * @property {array} [criteria.childCriterias] Gets the list of Child
    * criteria of segment.
    * @property {string} [criteria.value] Gets the Value in criteria.
@@ -39,6 +39,7 @@ class SegmentationRowset {
    * time format
    * @property {array} [paths] Gets the relationship path to use for segment
    * criteria.
+   * @property {uuid} [rowsetId] Gets the rowset Id in the rowsets.
    */
   constructor() {
   }
@@ -91,6 +92,13 @@ class SegmentationRowset {
                     }
                   }
               }
+            }
+          },
+          rowsetId: {
+            required: false,
+            serializedName: 'rowsetId',
+            type: {
+              name: 'String'
             }
           }
         }

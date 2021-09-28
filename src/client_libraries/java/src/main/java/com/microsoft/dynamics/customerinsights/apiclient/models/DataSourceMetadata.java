@@ -17,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DataSourceMetadata {
     /**
      * Possible values include: 'salesforce', 'dynamics365', 'powerQuery',
-     * 'attachCdm', 'attachCds', 'powerPlatform', 'datahub', 'cjoData',
-     * 'eiData'.
+     * 'attachCdm', 'attachSynapse', 'attachCds', 'powerPlatform', 'datahub',
+     * 'firstParty'.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -135,7 +135,7 @@ public class DataSourceMetadata {
     private UUID instanceId;
 
     /**
-     * Get possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub', 'cjoData', 'eiData'.
+     * Get possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachSynapse', 'attachCds', 'powerPlatform', 'datahub', 'firstParty'.
      *
      * @return the kind value
      */
@@ -144,7 +144,7 @@ public class DataSourceMetadata {
     }
 
     /**
-     * Set possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub', 'cjoData', 'eiData'.
+     * Set possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachSynapse', 'attachCds', 'powerPlatform', 'datahub', 'firstParty'.
      *
      * @param kind the kind value to set
      * @return the DataSourceMetadata object itself.

@@ -18,7 +18,8 @@ class EntityDependency(Model):
      'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
      'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
      'conflationManualReview', 'selfConflationManualReview',
-     'semanticActivity', 'segmentMembership'
+     'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage',
+     'transform', 'semanticEntity'
     :type type: str or ~dynamics.customerinsights.api.models.enum
     :param attribute_names: Gets the list of attributes included in the
      dependency.

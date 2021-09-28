@@ -19,6 +19,8 @@ class EntityDataProfile {
    * @property {date} [profilingDate] Date for Profiling.
    * @property {string} [profiledAttributes] Profiling attributes.
    * @property {string} [corruptAttributes] Respresents currupt attributes.
+   * @property {array} [attributeDataProfiles] Contains all the attributes data
+   * profiles.
    */
   constructor() {
   }
@@ -77,6 +79,21 @@ class EntityDataProfile {
             serializedName: 'corruptAttributes',
             type: {
               name: 'String'
+            }
+          },
+          attributeDataProfiles: {
+            required: false,
+            serializedName: 'attributeDataProfiles',
+            type: {
+              name: 'Sequence',
+              element: {
+                  required: false,
+                  serializedName: 'AttributeDataProfileElementType',
+                  type: {
+                    name: 'Composite',
+                    className: 'AttributeDataProfile'
+                  }
+              }
             }
           }
         }

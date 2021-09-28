@@ -11,7 +11,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Represents an instance.
+ * The instance info.
  */
 public class InstanceInfo {
     /**
@@ -65,6 +65,13 @@ public class InstanceInfo {
      */
     @JsonProperty(value = "azureRegion")
     private String azureRegion;
+
+    /**
+     * Gets the Insights App Type for g. Verity, Engagement Insight etc. (not
+     * persisted in store).
+     */
+    @JsonProperty(value = "platformType")
+    private String platformType;
 
     /**
      * Get gets the unique ID for this instance.
@@ -223,6 +230,26 @@ public class InstanceInfo {
      */
     public InstanceInfo withAzureRegion(String azureRegion) {
         this.azureRegion = azureRegion;
+        return this;
+    }
+
+    /**
+     * Get gets the Insights App Type for g. Verity, Engagement Insight etc. (not persisted in store).
+     *
+     * @return the platformType value
+     */
+    public String platformType() {
+        return this.platformType;
+    }
+
+    /**
+     * Set gets the Insights App Type for g. Verity, Engagement Insight etc. (not persisted in store).
+     *
+     * @param platformType the platformType value to set
+     * @return the InstanceInfo object itself.
+     */
+    public InstanceInfo withPlatformType(String platformType) {
+        this.platformType = platformType;
         return this;
     }
 

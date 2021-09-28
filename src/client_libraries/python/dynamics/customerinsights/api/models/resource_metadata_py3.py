@@ -13,13 +13,13 @@ class ResourceMetadata(Model):
 
     :param kind: Possible values include: 'bearerAuthenticationConnection',
      'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2',
-     'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-     'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice',
+     'basicAuthenticationConnection', 'firstPartyADConnection',
+     'amazonS3Connection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+     'attachCds', 'ftp', 'facebookAds', 'amlWorkspace', 'mlStudioWebservice',
      'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http',
      'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
-     'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat',
-     'powerBI', 'azureSql', 'synapse'
+     'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'activeCampaign',
+     'autopilot', 'klaviyo', 'snapchat', 'powerBI', 'azureSql', 'synapse'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param resource_id: Gets the Id of the resource.
     :type resource_id: str
@@ -30,6 +30,11 @@ class ResourceMetadata(Model):
     :type name: str
     :param description: Gets the Description of the resource.
     :type description: str
+    :param key_vault_metadata_id: MetadataId for Linked KeyVaultMetadata
+    :type key_vault_metadata_id: str
+    :param mapped_secrets:
+    :type mapped_secrets:
+     ~dynamics.customerinsights.api.models.MappedSecretMetadata
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -51,6 +56,8 @@ class ResourceMetadata(Model):
         'operation_id': {'key': 'operationId', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
+        'key_vault_metadata_id': {'key': 'keyVaultMetadataId', 'type': 'str'},
+        'mapped_secrets': {'key': 'mappedSecrets', 'type': 'MappedSecretMetadata'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -59,13 +66,15 @@ class ResourceMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, kind=None, resource_id: str=None, operation_id: str=None, name: str=None, description: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, kind=None, resource_id: str=None, operation_id: str=None, name: str=None, description: str=None, key_vault_metadata_id: str=None, mapped_secrets=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(ResourceMetadata, self).__init__(**kwargs)
         self.kind = kind
         self.resource_id = resource_id
         self.operation_id = operation_id
         self.name = name
         self.description = description
+        self.key_vault_metadata_id = key_vault_metadata_id
+        self.mapped_secrets = mapped_secrets
         self.version = version
         self.updated_by = updated_by
         self.updated_utc = updated_utc

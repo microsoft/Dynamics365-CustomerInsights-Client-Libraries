@@ -35,7 +35,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'genericPrediction', 'enrichment', 'insights', 'derivedEntity',
         /// 'corrupt', 'selfConflation', 'conflationManualReview',
         /// 'selfConflationManualReview', 'semanticActivity',
-        /// 'segmentMembership'</param>
+        /// 'segmentMembership', 'hierarchy', 'dataLineage', 'transform',
+        /// 'semanticEntity'</param>
         /// <param name="attributeNames">Gets the list of attributes included
         /// in the dependency.</param>
         /// <param name="relationshipNames">Gets the list of relationships
@@ -70,7 +71,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'enrichment', 'insights', 'derivedEntity', 'corrupt',
         /// 'selfConflation', 'conflationManualReview',
         /// 'selfConflationManualReview', 'semanticActivity',
-        /// 'segmentMembership'
+        /// 'segmentMembership', 'hierarchy', 'dataLineage', 'transform',
+        /// 'semanticEntity'
         /// </summary>
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }

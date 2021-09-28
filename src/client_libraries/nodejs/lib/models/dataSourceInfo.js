@@ -15,8 +15,8 @@ class DataSourceInfo {
    * Create a DataSourceInfo.
    * @property {object} [dataSourceMetadata]
    * @property {string} [dataSourceMetadata.kind] Possible values include:
-   * 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
-   * 'powerPlatform', 'datahub', 'cjoData', 'eiData'
+   * 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachSynapse',
+   * 'attachCds', 'powerPlatform', 'datahub', 'firstParty'
    * @property {boolean} [dataSourceMetadata.isActive] Represents if still in
    * active state
    * @property {array} [dataSourceMetadata.entityNames] List of all Entity

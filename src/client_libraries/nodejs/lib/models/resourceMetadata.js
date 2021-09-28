@@ -16,17 +16,31 @@ class ResourceMetadata {
    * @property {string} [kind] Possible values include:
    * 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection',
-   * 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing',
-   * 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot',
-   * 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks',
-   * 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp',
-   * 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend',
-   * 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'
+   * 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales',
+   * 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace',
+   * 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn',
+   * 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid',
+   * 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat',
+   * 'powerBI', 'azureSql', 'synapse'
    * @property {uuid} [resourceId] Gets the Id of the resource.
    * @property {uuid} [operationId] Gets the Id of the operation being
    * performed on the resource.
    * @property {string} [name] Gets the Name of the resource.
    * @property {string} [description] Gets the Description of the resource.
+   * @property {uuid} [keyVaultMetadataId] MetadataId for Linked
+   * KeyVaultMetadata
+   * @property {object} [mappedSecrets]
+   * @property {string} [mappedSecrets.mappedFieldId] The identifier for field
+   * mapping to a keyVault
+   * @property {uuid} [mappedSecrets.linkedKeyVaultMetadataId] Gets uniqueId of
+   * the KeyVault
+   * @property {uuid} [mappedSecrets.mappingEntityId] Gets uniqueId of entity
+   * Mapping Secrets
+   * @property {object} [mappedSecrets.byoKeyVaultFieldMapping] Gets Secret
+   * Names for Fields Mapped in KeyVault
+   * @property {uuid} [mappedSecrets.instanceId] Customer Insights instance id
+   * associated with this object.
    * @property {number} [version] Version number of this object.
    * @property {string} [updatedBy] UPN of the user who last updated this
    * record.
@@ -87,6 +101,21 @@ class ResourceMetadata {
             serializedName: 'description',
             type: {
               name: 'String'
+            }
+          },
+          keyVaultMetadataId: {
+            required: false,
+            serializedName: 'keyVaultMetadataId',
+            type: {
+              name: 'String'
+            }
+          },
+          mappedSecrets: {
+            required: false,
+            serializedName: 'mappedSecrets',
+            type: {
+              name: 'Composite',
+              className: 'MappedSecretMetadata'
             }
           },
           version: {

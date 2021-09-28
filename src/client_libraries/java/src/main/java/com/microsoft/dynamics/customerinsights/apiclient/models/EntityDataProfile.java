@@ -7,6 +7,7 @@
 package com.microsoft.dynamics.customerinsights.apiclient.models;
 
 import org.joda.time.DateTime;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -48,6 +49,12 @@ public class EntityDataProfile {
      */
     @JsonProperty(value = "corruptAttributes")
     private String corruptAttributes;
+
+    /**
+     * Contains all the attributes data profiles.
+     */
+    @JsonProperty(value = "attributeDataProfiles")
+    private List<AttributeDataProfile> attributeDataProfiles;
 
     /**
      * Get qualified Entity Name.
@@ -166,6 +173,26 @@ public class EntityDataProfile {
      */
     public EntityDataProfile withCorruptAttributes(String corruptAttributes) {
         this.corruptAttributes = corruptAttributes;
+        return this;
+    }
+
+    /**
+     * Get contains all the attributes data profiles.
+     *
+     * @return the attributeDataProfiles value
+     */
+    public List<AttributeDataProfile> attributeDataProfiles() {
+        return this.attributeDataProfiles;
+    }
+
+    /**
+     * Set contains all the attributes data profiles.
+     *
+     * @param attributeDataProfiles the attributeDataProfiles value to set
+     * @return the EntityDataProfile object itself.
+     */
+    public EntityDataProfile withAttributeDataProfiles(List<AttributeDataProfile> attributeDataProfiles) {
+        this.attributeDataProfiles = attributeDataProfiles;
         return this;
     }
 

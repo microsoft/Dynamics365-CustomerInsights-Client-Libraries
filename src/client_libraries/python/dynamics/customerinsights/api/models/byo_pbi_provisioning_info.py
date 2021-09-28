@@ -21,8 +21,8 @@ class ByoPbiProvisioningInfo(Model):
     :type storage_resource_tenant_id: str
     :param capacity_id: Pbi Capacity Id.
     :type capacity_id: str
-    :param delegation_token: PBI delegation token captured from the user.
-    :type delegation_token: str
+    :param synapse_serverless_sql_host_name: Synapse serverless sql host name
+    :type synapse_serverless_sql_host_name: str
     """
 
     _attribute_map = {
@@ -31,7 +31,7 @@ class ByoPbiProvisioningInfo(Model):
         'storage_resource_region': {'key': 'storageResourceRegion', 'type': 'str'},
         'storage_resource_tenant_id': {'key': 'storageResourceTenantId', 'type': 'str'},
         'capacity_id': {'key': 'capacityId', 'type': 'str'},
-        'delegation_token': {'key': 'delegationToken', 'type': 'str'},
+        'synapse_serverless_sql_host_name': {'key': 'synapseServerlessSqlHostName', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
@@ -41,4 +41,4 @@ class ByoPbiProvisioningInfo(Model):
         self.storage_resource_region = kwargs.get('storage_resource_region', None)
         self.storage_resource_tenant_id = kwargs.get('storage_resource_tenant_id', None)
         self.capacity_id = kwargs.get('capacity_id', None)
-        self.delegation_token = kwargs.get('delegation_token', None)
+        self.synapse_serverless_sql_host_name = kwargs.get('synapse_serverless_sql_host_name', None)

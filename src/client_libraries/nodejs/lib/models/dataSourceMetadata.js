@@ -14,8 +14,8 @@ class DataSourceMetadata {
   /**
    * Create a DataSourceMetadata.
    * @property {string} [kind] Possible values include: 'salesforce',
-   * 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform',
-   * 'datahub', 'cjoData', 'eiData'
+   * 'dynamics365', 'powerQuery', 'attachCdm', 'attachSynapse', 'attachCds',
+   * 'powerPlatform', 'datahub', 'firstParty'
    * @property {boolean} [isActive] Represents if still in active state
    * @property {array} [entityNames] List of all Entity Names
    * @property {number} [entitiesCount]

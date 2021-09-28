@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class SegmentMembershipCriteria {
     /**
-     * Possible values include: 'default', 'engagement'.
+     * Possible values include: 'post', 'default', 'consent', 'engagement'.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -36,7 +36,8 @@ public class SegmentMembershipCriteria {
      * 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any',
      * 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all',
      * 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
-     * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'.
+     * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf',
+     * 'parentOf'.
      */
     @JsonProperty(value = "comparisonOperator")
     private String comparisonOperator;
@@ -72,7 +73,7 @@ public class SegmentMembershipCriteria {
     private Boolean isTime;
 
     /**
-     * Get possible values include: 'default', 'engagement'.
+     * Get possible values include: 'post', 'default', 'consent', 'engagement'.
      *
      * @return the kind value
      */
@@ -81,7 +82,7 @@ public class SegmentMembershipCriteria {
     }
 
     /**
-     * Set possible values include: 'default', 'engagement'.
+     * Set possible values include: 'post', 'default', 'consent', 'engagement'.
      *
      * @param kind the kind value to set
      * @return the SegmentMembershipCriteria object itself.
@@ -132,7 +133,7 @@ public class SegmentMembershipCriteria {
     }
 
     /**
-     * Get possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'.
+     * Get possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'.
      *
      * @return the comparisonOperator value
      */
@@ -141,7 +142,7 @@ public class SegmentMembershipCriteria {
     }
 
     /**
-     * Set possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'.
+     * Set possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo', 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'.
      *
      * @param comparisonOperator the comparisonOperator value to set
      * @return the SegmentMembershipCriteria object itself.

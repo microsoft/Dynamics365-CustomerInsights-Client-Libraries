@@ -7,6 +7,8 @@
 namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 {
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -32,7 +34,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="profiledAttributes">Profiling attributes.</param>
         /// <param name="corruptAttributes">Respresents currupt
         /// attributes.</param>
-        public EntityDataProfile(string qualifiedEntityName = default(string), long? rowCount = default(long?), long? quarantineRowCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), string profiledAttributes = default(string), string corruptAttributes = default(string))
+        /// <param name="attributeDataProfiles">Contains all the attributes
+        /// data profiles.</param>
+        public EntityDataProfile(string qualifiedEntityName = default(string), long? rowCount = default(long?), long? quarantineRowCount = default(long?), System.DateTime? profilingDate = default(System.DateTime?), string profiledAttributes = default(string), string corruptAttributes = default(string), IList<AttributeDataProfile> attributeDataProfiles = default(IList<AttributeDataProfile>))
         {
             QualifiedEntityName = qualifiedEntityName;
             RowCount = rowCount;
@@ -40,6 +44,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             ProfilingDate = profilingDate;
             ProfiledAttributes = profiledAttributes;
             CorruptAttributes = corruptAttributes;
+            AttributeDataProfiles = attributeDataProfiles;
             CustomInit();
         }
 
@@ -83,6 +88,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "corruptAttributes")]
         public string CorruptAttributes { get; set; }
+
+        /// <summary>
+        /// Gets or sets contains all the attributes data profiles.
+        /// </summary>
+        [JsonProperty(PropertyName = "attributeDataProfiles")]
+        public IList<AttributeDataProfile> AttributeDataProfiles { get; set; }
 
     }
 }

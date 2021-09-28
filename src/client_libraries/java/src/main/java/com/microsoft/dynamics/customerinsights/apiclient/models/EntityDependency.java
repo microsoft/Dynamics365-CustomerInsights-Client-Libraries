@@ -24,7 +24,8 @@ public class EntityDependency {
      * 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment',
      * 'intelligence', 'genericPrediction', 'enrichment', 'insights',
      * 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview',
-     * 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * 'selfConflationManualReview', 'semanticActivity', 'segmentMembership',
+     * 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      */
     @JsonProperty(value = "type")
     private String type;
@@ -69,7 +70,7 @@ public class EntityDependency {
     }
 
     /**
-     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      *
      * @return the type value
      */
@@ -78,7 +79,7 @@ public class EntityDependency {
     }
 
     /**
-     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      *
      * @param type the type value to set
      * @return the EntityDependency object itself.

@@ -31,12 +31,6 @@ public class InstanceCreationRequest {
     private ResourceMetadata cdsResourceMetadata;
 
     /**
-     * The byoPbiProvisioningInfo property.
-     */
-    @JsonProperty(value = "byoPbiProvisioningInfo")
-    private ByoPbiProvisioningInfo byoPbiProvisioningInfo;
-
-    /**
      * The isCdsMdlStorageEnabled property.
      */
     @JsonProperty(value = "isCdsMdlStorageEnabled")
@@ -59,6 +53,12 @@ public class InstanceCreationRequest {
      */
     @JsonProperty(value = "isPbiProvisioningRequired")
     private Boolean isPbiProvisioningRequired;
+
+    /**
+     * The isDataverseUpdateRequested property.
+     */
+    @JsonProperty(value = "isDataverseUpdateRequested")
+    private Boolean isDataverseUpdateRequested;
 
     /**
      * Get the instanceMetadata value.
@@ -117,26 +117,6 @@ public class InstanceCreationRequest {
      */
     public InstanceCreationRequest withCdsResourceMetadata(ResourceMetadata cdsResourceMetadata) {
         this.cdsResourceMetadata = cdsResourceMetadata;
-        return this;
-    }
-
-    /**
-     * Get the byoPbiProvisioningInfo value.
-     *
-     * @return the byoPbiProvisioningInfo value
-     */
-    public ByoPbiProvisioningInfo byoPbiProvisioningInfo() {
-        return this.byoPbiProvisioningInfo;
-    }
-
-    /**
-     * Set the byoPbiProvisioningInfo value.
-     *
-     * @param byoPbiProvisioningInfo the byoPbiProvisioningInfo value to set
-     * @return the InstanceCreationRequest object itself.
-     */
-    public InstanceCreationRequest withByoPbiProvisioningInfo(ByoPbiProvisioningInfo byoPbiProvisioningInfo) {
-        this.byoPbiProvisioningInfo = byoPbiProvisioningInfo;
         return this;
     }
 
@@ -217,6 +197,26 @@ public class InstanceCreationRequest {
      */
     public InstanceCreationRequest withIsPbiProvisioningRequired(Boolean isPbiProvisioningRequired) {
         this.isPbiProvisioningRequired = isPbiProvisioningRequired;
+        return this;
+    }
+
+    /**
+     * Get the isDataverseUpdateRequested value.
+     *
+     * @return the isDataverseUpdateRequested value
+     */
+    public Boolean isDataverseUpdateRequested() {
+        return this.isDataverseUpdateRequested;
+    }
+
+    /**
+     * Set the isDataverseUpdateRequested value.
+     *
+     * @param isDataverseUpdateRequested the isDataverseUpdateRequested value to set
+     * @return the InstanceCreationRequest object itself.
+     */
+    public InstanceCreationRequest withIsDataverseUpdateRequested(Boolean isDataverseUpdateRequested) {
+        this.isDataverseUpdateRequested = isDataverseUpdateRequested;
         return this;
     }
 

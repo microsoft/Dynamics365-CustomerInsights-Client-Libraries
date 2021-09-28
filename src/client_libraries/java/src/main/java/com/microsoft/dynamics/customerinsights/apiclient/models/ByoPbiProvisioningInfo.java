@@ -43,10 +43,10 @@ public class ByoPbiProvisioningInfo {
     private String capacityId;
 
     /**
-     * PBI delegation token captured from the user.
+     * Synapse serverless sql host name.
      */
-    @JsonProperty(value = "delegationToken")
-    private String delegationToken;
+    @JsonProperty(value = "synapseServerlessSqlHostName")
+    private String synapseServerlessSqlHostName;
 
     /**
      * Get storage account subscriptionId.
@@ -149,22 +149,22 @@ public class ByoPbiProvisioningInfo {
     }
 
     /**
-     * Get pBI delegation token captured from the user.
+     * Get synapse serverless sql host name.
      *
-     * @return the delegationToken value
+     * @return the synapseServerlessSqlHostName value
      */
-    public String delegationToken() {
-        return this.delegationToken;
+    public String synapseServerlessSqlHostName() {
+        return this.synapseServerlessSqlHostName;
     }
 
     /**
-     * Set pBI delegation token captured from the user.
+     * Set synapse serverless sql host name.
      *
-     * @param delegationToken the delegationToken value to set
+     * @param synapseServerlessSqlHostName the synapseServerlessSqlHostName value to set
      * @return the ByoPbiProvisioningInfo object itself.
      */
-    public ByoPbiProvisioningInfo withDelegationToken(String delegationToken) {
-        this.delegationToken = delegationToken;
+    public ByoPbiProvisioningInfo withSynapseServerlessSqlHostName(String synapseServerlessSqlHostName) {
+        this.synapseServerlessSqlHostName = synapseServerlessSqlHostName;
         return this;
     }
 

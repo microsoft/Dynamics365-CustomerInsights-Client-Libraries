@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MeasureLinkedEntity {
     /**
-     * Possible values include: 'base', 'join'.
+     * Possible values include: 'base', 'join', 'scalar'.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -31,7 +31,7 @@ public class MeasureLinkedEntity {
     private String alias;
 
     /**
-     * Get possible values include: 'base', 'join'.
+     * Get possible values include: 'base', 'join', 'scalar'.
      *
      * @return the kind value
      */
@@ -40,7 +40,7 @@ public class MeasureLinkedEntity {
     }
 
     /**
-     * Set possible values include: 'base', 'join'.
+     * Set possible values include: 'base', 'join', 'scalar'.
      *
      * @param kind the kind value to set
      * @return the MeasureLinkedEntity object itself.

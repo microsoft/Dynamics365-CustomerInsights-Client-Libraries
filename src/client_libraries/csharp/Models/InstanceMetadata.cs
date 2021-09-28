@@ -47,6 +47,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// datasources</param>
         /// <param name="trialExtensionDetails">Stores the details of trial
         /// extensions done if this is a trial instance</param>
+        /// <param name="configuredWorkspaces">Gets the Workspace type, whether
+        /// B2B or B2C (Main)</param>
+        /// <param name="platformType">Field to store the Insights Partner who
+        /// are onboarded to Insights Platform.</param>
+        /// <param name="azureRegion">Gets the Azure Region where the scale
+        /// unit resides (not persisted in store)</param>
         /// <param name="version">Version number of this object.</param>
         /// <param name="updatedBy">UPN of the user who last updated this
         /// record.</param>
@@ -57,8 +63,13 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public InstanceMetadata(string name = default(string), string provisioningState = default(string), string instanceType = default(string), DataRefreshSchedule refreshSchedule = default(DataRefreshSchedule), System.DateTime? expiryTimeUtc = default(System.DateTime?), string region = default(string), CdsOrgInfo cdsOrgInfo = default(CdsOrgInfo), CdsMdlInfo cdsMdlInfo = default(CdsMdlInfo), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), bool? isRefreshCredentialRequired = default(bool?), IList<TrialExtensionDetails> trialExtensionDetails = default(IList<TrialExtensionDetails>), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public InstanceMetadata(bool? isB2B = default(bool?), bool? isB2C = default(bool?), bool? isByoPbi = default(bool?), bool? isByoSynapse = default(bool?), bool? isCdsMdlOrCdsByodl = default(bool?), string name = default(string), string provisioningState = default(string), string instanceType = default(string), DataRefreshSchedule refreshSchedule = default(DataRefreshSchedule), System.DateTime? expiryTimeUtc = default(System.DateTime?), string region = default(string), CdsOrgInfo cdsOrgInfo = default(CdsOrgInfo), CdsMdlInfo cdsMdlInfo = default(CdsMdlInfo), int? maxTrialExtensionsAllowed = default(int?), string trialExtensionHistory = default(string), bool? isRefreshCredentialRequired = default(bool?), IList<TrialExtensionDetails> trialExtensionDetails = default(IList<TrialExtensionDetails>), IList<string> configuredWorkspaces = default(IList<string>), string platformType = default(string), string azureRegion = default(string), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
+            IsB2B = isB2B;
+            IsB2C = isB2C;
+            IsByoPbi = isByoPbi;
+            IsByoSynapse = isByoSynapse;
+            IsCdsMdlOrCdsByodl = isCdsMdlOrCdsByodl;
             Name = name;
             ProvisioningState = provisioningState;
             InstanceType = instanceType;
@@ -71,6 +82,9 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             TrialExtensionHistory = trialExtensionHistory;
             IsRefreshCredentialRequired = isRefreshCredentialRequired;
             TrialExtensionDetails = trialExtensionDetails;
+            ConfiguredWorkspaces = configuredWorkspaces;
+            PlatformType = platformType;
+            AzureRegion = azureRegion;
             Version = version;
             UpdatedBy = updatedBy;
             UpdatedUtc = updatedUtc;
@@ -84,6 +98,31 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// An initialization method that performs custom operations like setting defaults
         /// </summary>
         partial void CustomInit();
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "isB2B")]
+        public bool? IsB2B { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "isB2C")]
+        public bool? IsB2C { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "isByoPbi")]
+        public bool? IsByoPbi { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "isByoSynapse")]
+        public bool? IsByoSynapse { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "isCdsMdlOrCdsByodl")]
+        public bool? IsCdsMdlOrCdsByodl { get; set; }
 
         /// <summary>
         /// Gets the user defined instance name.
@@ -160,6 +199,26 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "trialExtensionDetails")]
         public IList<TrialExtensionDetails> TrialExtensionDetails { get; set; }
+
+        /// <summary>
+        /// Gets the Workspace type, whether B2B or B2C (Main)
+        /// </summary>
+        [JsonProperty(PropertyName = "configuredWorkspaces")]
+        public IList<string> ConfiguredWorkspaces { get; set; }
+
+        /// <summary>
+        /// Gets or sets field to store the Insights Partner who are onboarded
+        /// to Insights Platform.
+        /// </summary>
+        [JsonProperty(PropertyName = "platformType")]
+        public string PlatformType { get; set; }
+
+        /// <summary>
+        /// Gets the Azure Region where the scale unit resides (not persisted
+        /// in store)
+        /// </summary>
+        [JsonProperty(PropertyName = "azureRegion")]
+        public string AzureRegion { get; set; }
 
         /// <summary>
         /// Gets or sets version number of this object.

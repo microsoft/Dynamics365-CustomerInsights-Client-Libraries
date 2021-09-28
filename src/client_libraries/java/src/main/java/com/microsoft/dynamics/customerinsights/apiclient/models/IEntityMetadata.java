@@ -48,7 +48,8 @@ public class IEntityMetadata {
      * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
      * 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
      * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
-     * 'cjoData', 'eiData', 'hierarchy'.
+     * 'firstParty', 'hierarchy', 'contact', 'semanticEntity', 'attachSynapse',
+     * 'transform'.
      */
     @JsonProperty(value = "dataflowType")
     private String dataflowType;
@@ -71,7 +72,8 @@ public class IEntityMetadata {
      * 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment',
      * 'intelligence', 'genericPrediction', 'enrichment', 'insights',
      * 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview',
-     * 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * 'selfConflationManualReview', 'semanticActivity', 'segmentMembership',
+     * 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      */
     @JsonProperty(value = "entityType")
     private String entityType;
@@ -239,7 +241,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'.
+     * Get possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'firstParty', 'hierarchy', 'contact', 'semanticEntity', 'attachSynapse', 'transform'.
      *
      * @return the dataflowType value
      */
@@ -248,7 +250,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'.
+     * Set possible values include: 'dynamics365', 'salesforce', 'conflationSortAndRefine', 'conflationDeduplication', 'conflationMatchPairs', 'conflationResolveConflicts', 'enriched', 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation', 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'firstParty', 'hierarchy', 'contact', 'semanticEntity', 'attachSynapse', 'transform'.
      *
      * @param dataflowType the dataflowType value to set
      * @return the IEntityMetadata object itself.
@@ -299,7 +301,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * Get possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      *
      * @return the entityType value
      */
@@ -308,7 +310,7 @@ public class IEntityMetadata {
     }
 
     /**
-     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership'.
+     * Set possible values include: 'unspecified', 'profile', 'conflationMap', 'activity', 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation', 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'.
      *
      * @param entityType the entityType value to set
      * @return the IEntityMetadata object itself.

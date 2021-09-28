@@ -6,7 +6,7 @@
 
   <groupId>com.microsoft.dynamics.customerinsights</groupId>
   <artifactId>api-client</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
   <packaging>jar</packaging>
   <name>Customer Insights API Client for Java</name>
   <description>Client libraries to interact with the Dynamic 365 Customer Insights APIs.</description>

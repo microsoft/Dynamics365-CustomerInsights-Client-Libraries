@@ -17,13 +17,13 @@ public class ResourceMetadata {
     /**
      * Possible values include: 'bearerAuthenticationConnection',
      * 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection',
-     * 'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2',
-     * 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds',
-     * 'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice',
+     * 'basicAuthenticationConnection', 'firstPartyADConnection',
+     * 'amazonS3Connection', 'adlsGen2', 'd365Sales', 'd365Marketing',
+     * 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace', 'mlStudioWebservice',
      * 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http',
      * 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
-     * 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat',
-     * 'powerBI', 'azureSql', 'synapse'.
+     * 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'activeCampaign',
+     * 'autopilot', 'klaviyo', 'snapchat', 'powerBI', 'azureSql', 'synapse'.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -51,6 +51,18 @@ public class ResourceMetadata {
      */
     @JsonProperty(value = "description")
     private String description;
+
+    /**
+     * MetadataId for Linked KeyVaultMetadata.
+     */
+    @JsonProperty(value = "keyVaultMetadataId")
+    private UUID keyVaultMetadataId;
+
+    /**
+     * The mappedSecrets property.
+     */
+    @JsonProperty(value = "mappedSecrets")
+    private MappedSecretMetadata mappedSecrets;
 
     /**
      * Version number of this object.
@@ -89,7 +101,7 @@ public class ResourceMetadata {
     private UUID instanceId;
 
     /**
-     * Get possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'.
+     * Get possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat', 'powerBI', 'azureSql', 'synapse'.
      *
      * @return the kind value
      */
@@ -98,7 +110,7 @@ public class ResourceMetadata {
     }
 
     /**
-     * Set possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'activeCampaign', 'autopilot', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql', 'synapse'.
+     * Set possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection', 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection', 'amazonS3Connection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact', 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo', 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'activeCampaign', 'autopilot', 'klaviyo', 'snapchat', 'powerBI', 'azureSql', 'synapse'.
      *
      * @param kind the kind value to set
      * @return the ResourceMetadata object itself.
@@ -185,6 +197,46 @@ public class ResourceMetadata {
      */
     public ResourceMetadata withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    /**
+     * Get metadataId for Linked KeyVaultMetadata.
+     *
+     * @return the keyVaultMetadataId value
+     */
+    public UUID keyVaultMetadataId() {
+        return this.keyVaultMetadataId;
+    }
+
+    /**
+     * Set metadataId for Linked KeyVaultMetadata.
+     *
+     * @param keyVaultMetadataId the keyVaultMetadataId value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withKeyVaultMetadataId(UUID keyVaultMetadataId) {
+        this.keyVaultMetadataId = keyVaultMetadataId;
+        return this;
+    }
+
+    /**
+     * Get the mappedSecrets value.
+     *
+     * @return the mappedSecrets value
+     */
+    public MappedSecretMetadata mappedSecrets() {
+        return this.mappedSecrets;
+    }
+
+    /**
+     * Set the mappedSecrets value.
+     *
+     * @param mappedSecrets the mappedSecrets value to set
+     * @return the ResourceMetadata object itself.
+     */
+    public ResourceMetadata withMappedSecrets(MappedSecretMetadata mappedSecrets) {
+        this.mappedSecrets = mappedSecrets;
         return this;
     }
 

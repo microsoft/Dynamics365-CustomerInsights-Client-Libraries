@@ -16,10 +16,11 @@ class OnDemandJobRequest(Model):
     :param operation_type: Possible values include: 'none', 'ingestion',
      'derivedEntity', 'hierarchy', 'dataPreparation', 'map',
      'realtimeM3Search', 'match', 'merge', 'profileStore', 'search',
-     'activity', 'attributeMeasures', 'entityMeasures', 'measures',
-     'segmentation', 'segmentMembership', 'enrichment', 'intelligence',
-     'aiBuilder', 'insights', 'export', 'modelManagement', 'relationship',
-     'roleAssignment', 'analysis', 'all'
+     'activity', 'contact', 'attributeMeasures', 'entityMeasures', 'measures',
+     'segmentation', 'segmentMembership', 'enrichment', 'preEnrichment',
+     'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+     'modelManagement', 'relationship', 'roleAssignment', 'analysis',
+     'semanticEntity', 'all'
     :type operation_type: str or ~dynamics.customerinsights.api.models.enum
     :param submission_kind: Possible values include: 'onDemand', 'scheduled'
     :type submission_kind: str or ~dynamics.customerinsights.api.models.enum

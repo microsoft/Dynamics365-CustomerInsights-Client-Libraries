@@ -51,7 +51,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public SegmentMetadata(string kind = default(string), string name = default(string), string friendlyName = default(string), string description = default(string), SegmentationQuery segmentQueryExpression = default(SegmentationQuery), string state = default(string), string errorDescription = default(string), System.DateTime? endDate = default(System.DateTime?), SegmentationPublishStats evaluationStatus = default(SegmentationPublishStats), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<HistoricalSegmentStats> evaluationStatusHistory = default(IList<HistoricalSegmentStats>), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public SegmentMetadata(string kind = default(string), string name = default(string), string friendlyName = default(string), string description = default(string), SegmentationQuery segmentQueryExpression = default(SegmentationQuery), string state = default(string), string errorDescription = default(string), System.DateTime? endDate = default(System.DateTime?), SegmentationPublishStats evaluationStatus = default(SegmentationPublishStats), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<HistoricalSegmentStats> evaluationStatusHistory = default(IList<HistoricalSegmentStats>), SegmentQueryStat segmentQueryStats = default(SegmentQueryStat), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             Kind = kind;
             Name = name;
@@ -64,6 +64,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             EvaluationStatus = evaluationStatus;
             SqlValidationStats = sqlValidationStats;
             EvaluationStatusHistory = evaluationStatusHistory;
+            SegmentQueryStats = segmentQueryStats;
             Version = version;
             UpdatedBy = updatedBy;
             UpdatedUtc = updatedUtc;
@@ -143,6 +144,11 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "evaluationStatusHistory")]
         public IList<HistoricalSegmentStats> EvaluationStatusHistory { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "segmentQueryStats")]
+        public SegmentQueryStat SegmentQueryStats { get; set; }
 
         /// <summary>
         /// Gets or sets version number of this object.

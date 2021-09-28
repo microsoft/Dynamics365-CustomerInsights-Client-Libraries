@@ -12,8 +12,8 @@ class DataSourceMetadata(Model):
     """Represents metadata for a Customer Insights data source.
 
     :param kind: Possible values include: 'salesforce', 'dynamics365',
-     'powerQuery', 'attachCdm', 'attachCds', 'powerPlatform', 'datahub',
-     'cjoData', 'eiData'
+     'powerQuery', 'attachCdm', 'attachSynapse', 'attachCds', 'powerPlatform',
+     'datahub', 'firstParty'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param is_active: Represents if still in active state
     :type is_active: bool

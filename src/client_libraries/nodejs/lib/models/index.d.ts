@@ -6,12 +6,254 @@
 import * as moment from "moment";
 
 /**
- * Represents response result type
+ * Represents a DAG refresh schedule
  */
+export interface WorkflowRefreshSchedule {
+  /**
+   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'contact',
+   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
+   * 'enrichment', 'preEnrichment', 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'
+   */
+  operationType?: string;
+  /**
+   * Possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel',
+   * 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'
+   */
+  subType?: string;
+  /**
+   * Gets the identifiers of the schedule
+   */
+  identifiers?: string[];
+  /**
+   * Possible values include: 'full', 'incremental'
+   */
+  jobType?: string;
+  /**
+   * Gets a value indicating whether the schedule is active.
+   */
+  isActive?: boolean;
+  /**
+   * Gets the ID of the timezone
+   */
+  timezoneId?: string;
+  /**
+   * Gets the schedule in CRON format
+   */
+  cronSchedules?: string[];
+  /**
+   * Gets the ID of the schedule
+   */
+  scheduleId?: string;
+  /**
+   * Customer Insights instance id associated with this object.
+   */
+  instanceId?: string;
+}
+
+/**
+ * Histogram bin.
+ */
+export interface HistogramBin {
+  /**
+   * Lower bound of Histogram bin.
+   */
+  lowerBound?: number;
+  /**
+   * Upper bound Histogram bin.
+   */
+  upperBound?: number;
+  /**
+   * Represents an approximation count of the bin count.
+   */
+  count?: number;
+}
+
+/**
+ * Numerical quantiles.
+ */
+export interface Quantiles {
+  /**
+   * Represents 1% quantile.
+   */
+  p0D1?: number;
+  /**
+   * Represents 1% quantile.
+   */
+  p1?: number;
+  /**
+   * Represents 5% quantile.
+   */
+  p5?: number;
+  /**
+   * Represents 25% quantile.
+   */
+  p25?: number;
+  /**
+   * Represents 50% quantile.
+   */
+  p50?: number;
+  /**
+   * Represents 75% quantile.
+   */
+  p75?: number;
+  /**
+   * Represents 95% quantile.
+   */
+  p95?: number;
+  /**
+   * Represents 99% quantile.
+   */
+  p99?: number;
+  /**
+   * Represents 9% quantile.
+   */
+  p99D9?: number;
+}
+
+/**
+ * Statistical moments.
+ */
+export interface Moments {
+  /**
+   * Represents the mean.
+   */
+  mean?: number;
+  /**
+   * Represents standard deviation.
+   */
+  standardDeviation?: number;
+  /**
+   * Represents variance.
+   */
+  variance?: number;
+  /**
+   * Represents skewness in data.
+   */
+  skewness?: number;
+  /**
+   * Represents kurtosis.
+   */
+  kurtosis?: number;
+}
+
+/**
+ * A value and the count of that value.
+ */
+export interface ValueCount {
+  /**
+   * Represents the value.
+   */
+  value?: any;
+  /**
+   * Represents Count of the value.
+   */
+  count?: number;
+}
+
+/**
+ * Attribute data profile
+ */
+export interface AttributeDataProfile {
+  /**
+   * Represents Distribution of the top 100 values.
+   */
+  valueCounts?: ValueCount[];
+  /**
+   * Represents histogram information Ordered from smallest to largest bin.
+   */
+  histogram?: HistogramBin[];
+  /**
+   * Qualified entity name.
+   */
+  qualifiedEntityName?: string;
+  /**
+   * Attribute name.
+   */
+  attributeName?: string;
+  /**
+   * Minimum value.
+   */
+  min?: any;
+  /**
+   * Maximum value.
+   */
+  max?: any;
+  /**
+   * Total row count.
+   */
+  count?: number;
+  /**
+   * Row count of missing values.
+   */
+  missingCount?: number;
+  /**
+   * Number of error values.
+   */
+  errorCount?: number;
+  quantiles?: Quantiles;
+  moments?: Moments;
+  /**
+   * Number of unique values.
+  */
+  uniqueValueCount?: number;
+  /**
+   * Profiling date
+  */
+  profilingDate?: Date;
+  /**
+   * Represents a value indicating whether this attribute can be used as a primary key of the
+   * entity
+  */
+  isSuggestedPrimaryKey?: boolean;
+  /**
+   * Represents a value indicating whether we calculate exact or approx stats
+  */
+  checkIfExactStats?: any;
+}
+
+/**
+ * Represents Entity Data Profile information.
+*/
+export interface EntityDataProfile {
+  /**
+   * Qualified Entity Name.
+  */
+  qualifiedEntityName?: string;
+  /**
+   * Row count.
+  */
+  rowCount?: number;
+  /**
+   * Quarentine row count
+  */
+  quarantineRowCount?: number;
+  /**
+   * Date for Profiling.
+  */
+  profilingDate?: Date;
+  /**
+   * Profiling attributes.
+  */
+  profiledAttributes?: string;
+  /**
+   * Respresents currupt attributes.
+  */
+  corruptAttributes?: string;
+  /**
+   * Contains all the attributes data profiles.
+  */
+  attributeDataProfiles?: AttributeDataProfile[];
+}
+
+/**
+ * Represents response result type
+*/
 export interface CIResult {
   /**
    * Possible values include: 'system', 'user', 'external'
-   */
+  */
   exceptionCulprit?: string;
   errorCode?: string;
   /**
@@ -64,167 +306,6 @@ export interface ApiErrorResult {
 }
 
 /**
- * A value and the count of that value.
-*/
-export interface ValueCount {
-  /**
-   * Represents the value.
-  */
-  value?: any;
-  /**
-   * Represents Count of the value.
-  */
-  count?: number;
-}
-
-/**
- * Histogram bin.
-*/
-export interface HistogramBin {
-  /**
-   * Lower bound of Histogram bin.
-  */
-  lowerBound?: number;
-  /**
-   * Upper bound Histogram bin.
-  */
-  upperBound?: number;
-  /**
-   * Represents an approximation count of the bin count.
-  */
-  count?: number;
-}
-
-/**
- * Numerical quantiles.
-*/
-export interface Quantiles {
-  /**
-   * Represents 1% quantile.
-  */
-  p0D1?: number;
-  /**
-   * Represents 1% quantile.
-  */
-  p1?: number;
-  /**
-   * Represents 5% quantile.
-  */
-  p5?: number;
-  /**
-   * Represents 25% quantile.
-  */
-  p25?: number;
-  /**
-   * Represents 50% quantile.
-  */
-  p50?: number;
-  /**
-   * Represents 75% quantile.
-  */
-  p75?: number;
-  /**
-   * Represents 95% quantile.
-  */
-  p95?: number;
-  /**
-   * Represents 99% quantile.
-  */
-  p99?: number;
-  /**
-   * Represents 9% quantile.
-  */
-  p99D9?: number;
-}
-
-/**
- * Statistical moments.
-*/
-export interface Moments {
-  /**
-   * Represents the mean.
-  */
-  mean?: number;
-  /**
-   * Represents standard deviation.
-  */
-  standardDeviation?: number;
-  /**
-   * Represents variance.
-  */
-  variance?: number;
-  /**
-   * Represents skewness in data.
-  */
-  skewness?: number;
-  /**
-   * Represents kurtosis.
-  */
-  kurtosis?: number;
-}
-
-/**
- * Attribute data profile
-*/
-export interface AttributeDataProfile {
-  /**
-   * Represents Distribution of the top 100 values.
-  */
-  valueCounts?: ValueCount[];
-  /**
-   * Represents histogram information Ordered from smallest to largest bin.
-  */
-  histogram?: HistogramBin[];
-  /**
-   * Qualified entity name.
-  */
-  qualifiedEntityName?: string;
-  /**
-   * Attribute name.
-  */
-  attributeName?: string;
-  /**
-   * Minimum value.
-  */
-  min?: any;
-  /**
-   * Maximum value.
-  */
-  max?: any;
-  /**
-   * Total row count.
-  */
-  count?: number;
-  /**
-   * Row count of missing values.
-  */
-  missingCount?: number;
-  /**
-   * Number of error values.
-  */
-  errorCount?: number;
-  quantiles?: Quantiles;
-  moments?: Moments;
-  /**
-   * Number of unique values.
-  */
-  uniqueValueCount?: number;
-  /**
-   * Profiling date
-  */
-  profilingDate?: Date;
-  /**
-   * Represents a value indicating whether this attribute can be used as a primary key of the
-   * entity
-  */
-  isSuggestedPrimaryKey?: boolean;
-  /**
-   * Represents a value indicating whether we calculate exact or approx stats
-  */
-  checkIfExactStats?: any;
-}
-
-/**
  * Represents the semantic info used in API requests (attribute level)
 */
 export interface AttributeSemanticInformation {
@@ -254,6 +335,24 @@ export interface AttributeSemanticInformation {
 }
 
 /**
+ * Represents the enrichment entity info used in API requests (entity level)
+*/
+export interface EntityEnrichmentInformation {
+  /**
+   * Gets a value indicating whether there is an enriched entity for the ds entity.
+  */
+  hasEnrichedEntity?: boolean;
+  /**
+   * Name of the enriched entity.
+  */
+  enrichedEntityName?: string;
+  /**
+   * Gets the list configured enrichments on the ds entity.
+  */
+  configuredEnrichments?: string[];
+}
+
+/**
  * Represents the entity info used in API requests (entity level)
 */
 export interface DatasourceEntityInformation {
@@ -271,7 +370,7 @@ export interface DatasourceEntityInformation {
    * 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
    * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
    * 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity',
-   * 'segmentMembership'
+   * 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'
   */
   entityType?: string;
   /**
@@ -282,6 +381,15 @@ export interface DatasourceEntityInformation {
    * Semantic labels by attribute name.
   */
   semanticLabels?: AttributeSemanticInformation[];
+  entityEnrichmentInfo?: EntityEnrichmentInformation;
+  /**
+   * Gets theDeltaTable version of this entity.
+  */
+  deltaTableVersion?: number;
+  /**
+   * Specifies if CDM definition for this entity should be auto generated.
+  */
+  autoGenerateCDMDefinition?: boolean;
 }
 
 /**
@@ -335,8 +443,8 @@ export interface IncrementalRefreshProperties {
 */
 export interface DataSourceMetadata {
   /**
-   * Possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm', 'attachCds',
-   * 'powerPlatform', 'datahub', 'cjoData', 'eiData'
+   * Possible values include: 'salesforce', 'dynamics365', 'powerQuery', 'attachCdm',
+   * 'attachSynapse', 'attachCds', 'powerPlatform', 'datahub', 'firstParty'
   */
   kind?: string;
   /**
@@ -544,21 +652,6 @@ export interface ODataEntityPayload {
   value?: any[];
 }
 
-/**
- * Represents API error code and message
-*/
-export interface ApiError {
-  /**
-   * Possible values include: 'notFound', 'ambiguousReference', 'malformedInput',
-   * 'serviceUnavailable', 'badRequest', 'notAllowed', 'conflict', 'locked', 'forbidden'
-  */
-  errorCode?: string;
-  /**
-   * Message associated with the error
-  */
-  message?: string;
-}
-
 export interface IEdmType {
   /**
    * Possible values include: 'none', 'primitive', 'entity', 'complex', 'collection',
@@ -695,8 +788,8 @@ export interface IEntityMetadata {
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
    * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
-   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData',
-   * 'hierarchy'
+   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'firstParty', 'hierarchy',
+   * 'contact', 'semanticEntity', 'attachSynapse', 'transform'
   */
   dataflowType?: string;
   /**
@@ -712,7 +805,7 @@ export interface IEntityMetadata {
    * 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
    * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
    * 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity',
-   * 'segmentMembership'
+   * 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'
   */
   entityType?: string;
   /**
@@ -824,8 +917,8 @@ export interface IC360EntityModel {
    * 'kpi', 'powerQuery', 'dataPreparation', 'intelligence', 'unifiedActivity', 'segmentation',
    * 'ingestion', 'attachCdm', 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
    * 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
-   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'cjoData', 'eiData',
-   * 'hierarchy'
+   * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership', 'firstParty', 'hierarchy',
+   * 'contact', 'semanticEntity', 'attachSynapse', 'transform'
   */
   dataflowType?: string;
   /**
@@ -853,7 +946,72 @@ export interface EntitySize {
 }
 
 /**
- * Represents an instance
+ * Represents metadata for a Hierarchy Dependency.
+*/
+export interface HierarchyDependency {
+  /**
+   * Gets the source entities fully qualified name.
+  */
+  sourceEntity?: string;
+  /**
+   * Gets entity account Id.
+  */
+  accountIdAttribute?: string;
+  /**
+   * Gets parent account id.
+  */
+  parentAccountIdAttribute?: string;
+}
+
+/**
+ * Represents metadata for a Account Hierarchy.
+*/
+export interface HierarchyMetadata {
+  /**
+   * Gets the unique name of the hierarchy.
+  */
+  name?: string;
+  /**
+   * Gets the Display name of the hierarchy.
+  */
+  displayName?: string;
+  dependency?: HierarchyDependency;
+  /**
+   * Version number of this object.
+  */
+  version?: number;
+  /**
+   * UPN of the user who last updated this record.
+  */
+  updatedBy?: string;
+  /**
+   * Time this object was last updated.
+  */
+  updatedUtc?: Date;
+  /**
+   * Email address of the user who created this record.
+  */
+  createdBy?: string;
+  /**
+   * Time this object was initially created.
+  */
+  createdUtc?: Date;
+  /**
+   * Customer Insights instance id associated with this object.
+  */
+  instanceId?: string;
+}
+
+export interface OkObjectResult {
+  value?: any;
+  formatters?: any[];
+  contentTypes?: string[];
+  declaredType?: string;
+  statusCode?: number;
+}
+
+/**
+ * The instance info.
 */
 export interface InstanceInfo {
   /**
@@ -889,6 +1047,10 @@ export interface InstanceInfo {
    * Gets the Azure Region where the scale unit resides (not persisted in store)
   */
   azureRegion?: string;
+  /**
+   * Gets the Insights App Type for g. Verity, Engagement Insight etc. (not persisted in store)
+  */
+  platformType?: string;
 }
 
 /**
@@ -1073,6 +1235,24 @@ export interface CdsMdlInfo {
 }
 
 /**
+ * The information on how authentication needs to happen for embedded resources
+*/
+export interface PbiProvisioningConfig {
+  /**
+   * Indicates whether we need to use client login for Pbi Embedded
+  */
+  useClientLoginForReports?: boolean;
+  /**
+   * Indicates whether we need to use client login for PQ Embedded
+  */
+  useClientLoginForPQ?: boolean;
+  /**
+   * Power BI Capacity id
+  */
+  capacityId?: string;
+}
+
+/**
  * Extension Details of trial instance
 */
 export interface TrialExtensionDetails {
@@ -1094,6 +1274,11 @@ export interface TrialExtensionDetails {
  * The instance metadata.
 */
 export interface InstanceMetadata {
+  isB2B?: boolean;
+  isB2C?: boolean;
+  isByoPbi?: boolean;
+  isByoSynapse?: boolean;
+  isCdsMdlOrCdsByodl?: boolean;
   /**
    * Gets the user defined instance name.
   */
@@ -1136,6 +1321,18 @@ export interface InstanceMetadata {
   */
   trialExtensionDetails?: TrialExtensionDetails[];
   /**
+   * Gets the Workspace type, whether B2B or B2C (Main)
+  */
+  configuredWorkspaces?: string[];
+  /**
+   * Field to store the Insights Partner who are onboarded to Insights Platform.
+  */
+  platformType?: string;
+  /**
+   * Gets the Azure Region where the scale unit resides (not persisted in store)
+  */
+  azureRegion?: string;
+  /**
    * Version number of this object.
   */
   version?: number;
@@ -1162,17 +1359,43 @@ export interface InstanceMetadata {
 }
 
 /**
+ * Represents mapping between enity fields and Linked Metadata.
+*/
+export interface MappedSecretMetadata {
+  /**
+   * The identifier for field mapping to a keyVault
+  */
+  mappedFieldId?: string;
+  /**
+   * Gets uniqueId of the KeyVault
+  */
+  linkedKeyVaultMetadataId?: string;
+  /**
+   * Gets uniqueId of entity Mapping Secrets
+  */
+  mappingEntityId?: string;
+  /**
+   * Gets Secret Names for Fields Mapped in KeyVault
+  */
+  byoKeyVaultFieldMapping?: { [propertyName: string]: string };
+  /**
+   * Customer Insights instance id associated with this object.
+  */
+  instanceId?: string;
+}
+
+/**
  * Represents a Resource metadata
 */
 export interface ResourceMetadata {
   /**
    * Possible values include: 'bearerAuthenticationConnection', 'sshKeyAuthenticationConnection',
    * 'apiKeyAuthenticationConnection', 'basicAuthenticationConnection', 'firstPartyADConnection',
-   * 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp', 'facebookAds', 'activeCampaign',
-   * 'autopilot', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
+   * 'amazonS3Connection', 'adlsGen2', 'd365Sales', 'd365Marketing', 'attachCds', 'ftp',
+   * 'facebookAds', 'amlWorkspace', 'mlStudioWebservice', 'adRoll', 'rollWorks', 'constantContact',
    * 'campaignMonitor', 'http', 'dotDigital', 'mailchimp', 'linkedIn', 'googleAds', 'marketo',
-   * 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'snapchat', 'powerBI', 'azureSql',
-   * 'synapse'
+   * 'microsoftAds', 'omnisend', 'sendGrid', 'sendinblue', 'activeCampaign', 'autopilot',
+   * 'klaviyo', 'snapchat', 'powerBI', 'azureSql', 'synapse'
   */
   kind?: string;
   /**
@@ -1191,6 +1414,11 @@ export interface ResourceMetadata {
    * Gets the Description of the resource.
   */
   description?: string;
+  /**
+   * MetadataId for Linked KeyVaultMetadata
+  */
+  keyVaultMetadataId?: string;
+  mappedSecrets?: MappedSecretMetadata;
   /**
    * Version number of this object.
   */
@@ -1242,16 +1470,15 @@ export interface ByoPbiProvisioningInfo {
   */
   capacityId?: string;
   /**
-   * PBI delegation token captured from the user.
+   * Synapse serverless sql host name
   */
-  delegationToken?: string;
+  synapseServerlessSqlHostName?: string;
 }
 
 export interface InstanceCreationRequest {
   instanceMetadata?: InstanceMetadata;
   byosaResourceMetadata?: ResourceMetadata;
   cdsResourceMetadata?: ResourceMetadata;
-  byoPbiProvisioningInfo?: ByoPbiProvisioningInfo;
   isCdsMdlStorageEnabled?: boolean;
   isCiToByosaMigrationEnabled?: boolean;
   /**
@@ -1259,6 +1486,7 @@ export interface InstanceCreationRequest {
   */
   bapProvisioningType?: string;
   isPbiProvisioningRequired?: boolean;
+  isDataverseUpdateRequested?: boolean;
 }
 
 export interface InstanceCopyRequest {
@@ -1266,7 +1494,6 @@ export interface InstanceCopyRequest {
   instanceMetadata?: InstanceMetadata;
   byosaResourceMetadata?: ResourceMetadata;
   cdsResourceMetadata?: ResourceMetadata;
-  byoPbiProvisioningInfo?: ByoPbiProvisioningInfo;
   isCdsMdlStorageEnabled?: boolean;
   isCiToByosaMigrationEnabled?: boolean;
   /**
@@ -1274,6 +1501,7 @@ export interface InstanceCopyRequest {
   */
   bapProvisioningType?: string;
   isPbiProvisioningRequired?: boolean;
+  isDataverseUpdateRequested?: boolean;
 }
 
 /**
@@ -1281,7 +1509,7 @@ export interface InstanceCopyRequest {
 */
 export interface MeasureLinkedEntity {
   /**
-   * Possible values include: 'base', 'join'
+   * Possible values include: 'base', 'join', 'scalar'
   */
   kind?: string;
   /**
@@ -1362,7 +1590,7 @@ export interface MeasureExpression {
 */
 export interface SegmentMembershipCriteria {
   /**
-   * Possible values include: 'default', 'engagement'
+   * Possible values include: 'post', 'default', 'consent', 'engagement'
   */
   kind?: string;
   /**
@@ -1377,7 +1605,7 @@ export interface SegmentMembershipCriteria {
    * Possible values include: 'equals', 'notEquals', 'greaterThan', 'greaterThanOrEqualTo',
    * 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith', 'isNull',
    * 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween', 'isNotBetween', 'yearToDate',
-   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt'
+   * 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
   */
   comparisonOperator?: string;
   /**
@@ -1458,6 +1686,10 @@ export interface MeasureAggregate {
   */
   order?: number;
   /**
+   * Possible values include: 'rollup'
+  */
+  operationScope?: string;
+  /**
    * Gets list of aggregates of the measure.
   */
   aggregates?: MeasureAggregate[];
@@ -1508,7 +1740,7 @@ export interface EntityDependency {
    * 'aggregateKpi', 'profileKpi', 'unifiedActivity', 'segment', 'intelligence',
    * 'genericPrediction', 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
    * 'conflationManualReview', 'selfConflationManualReview', 'semanticActivity',
-   * 'segmentMembership'
+   * 'segmentMembership', 'hierarchy', 'dataLineage', 'transform', 'semanticEntity'
   */
   type?: string;
   /**
@@ -1771,6 +2003,10 @@ export interface MeasureMetadata {
    * Gets the template ID for templates
   */
   templateId?: string;
+  /**
+   * Check if measure metadata is created from a template
+  */
+  isCreatedFromTemplate?: boolean;
   /**
    * Version number of this object.
   */
@@ -2058,6 +2294,14 @@ export interface SegmentationProjection {
    * Gets the Attribute Names being projected.
   */
   attributeNames?: string[];
+  /**
+   * Gets the relationship path to use for segment projection.
+  */
+  path?: string[];
+  /**
+   * Possible values include: 'pre', 'post'
+  */
+  projectionType?: string;
 }
 
 /**
@@ -2065,7 +2309,7 @@ export interface SegmentationProjection {
 */
 export interface SegmentationRowset {
   /**
-   * Possible values include: 'union', 'intersect', 'except', 'none'
+   * Possible values include: 'union', 'intersect', 'except', 'none', 'include', 'exclude'
   */
   rowsetOperation?: string;
   criteria?: SegmentMembershipCriteria;
@@ -2073,6 +2317,28 @@ export interface SegmentationRowset {
    * Gets the relationship path to use for segment criteria.
   */
   paths?: string[][];
+  /**
+   * Gets the rowset Id in the rowsets.
+  */
+  rowsetId?: string;
+}
+
+/**
+ * Represents a Hierarchy entity used to define a B2B segment/measure.
+*/
+export interface HierarchyDefinition {
+  /**
+   * Gets the Hierarchy entity fully qualified name.
+  */
+  hierarchyEntityName?: string;
+  /**
+   * Gets the Hierarchy entity Source attribute name.
+  */
+  sourceAttributeName?: string;
+  /**
+   * Gets the Hierarchy entity Destination attribute name.
+  */
+  destinationAttributeName?: string;
 }
 
 /**
@@ -2099,6 +2365,10 @@ export interface SegmentationQuery {
    * Gets the user specified custom SQL query.
   */
   segmentationQuerySql?: string;
+  /**
+   * Gets a list of Hierarchies for segment query.
+  */
+  hierarchies?: HierarchyDefinition[];
 }
 
 export interface SegmentationPublishStats {
@@ -2130,6 +2400,30 @@ export interface HistoricalSegmentStats {
   */
   jobStatus?: string;
   error?: StringInfo;
+}
+
+/**
+ * Represents a SegmentRowset Stat.
+*/
+export interface SegmentRowsetStat {
+  /**
+   * Gets a Rowset Id for the Rowset Stat.
+  */
+  rowsetId?: string;
+  /**
+   * Gets a Rowset Count for the Rowset Id.
+  */
+  rowsetCount?: number;
+}
+
+/**
+ * Represents a Segment Stat.
+*/
+export interface SegmentQueryStat {
+  /**
+   * Gets a list of Rowset Stat.
+  */
+  rowsetStat?: SegmentRowsetStat[];
 }
 
 /**
@@ -2172,6 +2466,7 @@ export interface SegmentMetadata {
    * Gets the segment evaluation status history. (not persisted in store)
   */
   evaluationStatusHistory?: HistoricalSegmentStats[];
+  segmentQueryStats?: SegmentQueryStat;
   /**
    * Version number of this object.
   */
@@ -2228,10 +2523,10 @@ export interface GraphTaskInfo {
   taskStatus?: string;
   /**
    * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
-   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'contact',
    * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
-   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-   * 'relationship', 'roleAssignment', 'analysis', 'all'
+   * 'enrichment', 'preEnrichment', 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'
   */
   operationType?: string;
   /**
@@ -2274,10 +2569,10 @@ export interface GraphJobInfo {
   jobStatus?: string;
   /**
    * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
-   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'contact',
    * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
-   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-   * 'relationship', 'roleAssignment', 'analysis', 'all'
+   * 'enrichment', 'preEnrichment', 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'
   */
   operationType?: string;
   /**
@@ -2297,10 +2592,10 @@ export interface OnDemandJobRequest {
   graphName?: string;
   /**
    * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
-   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'contact',
    * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
-   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-   * 'relationship', 'roleAssignment', 'analysis', 'all'
+   * 'enrichment', 'preEnrichment', 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'
   */
   operationType?: string;
   /**
@@ -2339,10 +2634,10 @@ export interface DataInfo {
 export interface GraphNodeInfo {
   /**
    * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
-   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
+   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity', 'contact',
    * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
-   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-   * 'relationship', 'roleAssignment', 'analysis', 'all'
+   * 'enrichment', 'preEnrichment', 'transform', 'intelligence', 'aiBuilder', 'insights', 'export',
+   * 'modelManagement', 'relationship', 'roleAssignment', 'analysis', 'semanticEntity', 'all'
   */
   operationType?: string;
   /**
@@ -2373,53 +2668,6 @@ export interface TimezoneDetail {
 }
 
 /**
- * Represents a DAG refresh schedule
-*/
-export interface WorkflowRefreshSchedule {
-  /**
-   * Possible values include: 'none', 'ingestion', 'derivedEntity', 'hierarchy', 'dataPreparation',
-   * 'map', 'realtimeM3Search', 'match', 'merge', 'profileStore', 'search', 'activity',
-   * 'attributeMeasures', 'entityMeasures', 'measures', 'segmentation', 'segmentMembership',
-   * 'enrichment', 'intelligence', 'aiBuilder', 'insights', 'export', 'modelManagement',
-   * 'relationship', 'roleAssignment', 'analysis', 'all'
-  */
-  operationType?: string;
-  /**
-   * Possible values include: 'noSubType', 'templatedMeasures', 'createAnalysisModel',
-   * 'linkAnalysisModel', 'singleActivityMapping', 'powerPlatform'
-  */
-  subType?: string;
-  /**
-   * Gets the identifiers of the schedule
-  */
-  identifiers?: string[];
-  /**
-   * Possible values include: 'full', 'incremental'
-  */
-  jobType?: string;
-  /**
-   * Gets a value indicating whether the schedule is active.
-  */
-  isActive?: boolean;
-  /**
-   * Gets the ID of the timezone
-  */
-  timezoneId?: string;
-  /**
-   * Gets the schedule in CRON format
-  */
-  cronSchedules?: string[];
-  /**
-   * Gets the ID of the schedule
-  */
-  scheduleId?: string;
-  /**
-   * Customer Insights instance id associated with this object.
-  */
-  instanceId?: string;
-}
-
-/**
  * Represents a dismissed notification.
 */
 export interface DismissedNotification {
@@ -2444,9 +2692,47 @@ export interface UserNotificationsSettings {
 }
 
 /**
+ * Defaults or user selected values to store across sessions
+*/
+export interface History {
+  /**
+   * Gets history id.
+  */
+  id?: string;
+  /**
+   * Checks for already visited.
+  */
+  viewed?: boolean;
+}
+
+/**
+ * Settings to track coachmarks that users have viewed
+*/
+export interface Coachmarks {
+  history?: History;
+}
+
+/**
+ * Settings to track banners that users have viewed and dismissed
+*/
+export interface Banners {
+  history?: History;
+}
+
+/**
+ * Settings to track notifications that users have viewed and dismissed
+*/
+export interface Notifications {
+  history?: History;
+}
+
+/**
  * Represents a mapping  that can store all user ids associated with the email
 */
 export interface PortalSettings {
+  coachmarks?: Coachmarks;
+  banners?: Banners;
+  notifications?: Notifications;
   /**
    * Gets a value indicating whether the user has seen the all apps (welcome) page.
   */
@@ -2507,14 +2793,6 @@ export interface UserInfo {
    * Gets user default instance id.
   */
   defaultInstance?: string;
-  /**
-   * Gets a value indicating whether the user is a global admin. (not persisted in store)
-  */
-  isGlobalAdmin?: boolean;
-  /**
-   * Gets list of Instance types which are eligible to provision by user. (not persisted in store)
-  */
-  eligibleInstanceTypesToProvision?: string[];
   userNotificationsSettings?: UserNotificationsSettings;
   /**
    * Gets the industry demo selected by user during trial
@@ -2544,195 +2822,11 @@ export interface UserInfo {
   */
   region?: string;
   /**
+   * Possible values include: 'audienceInsights', 'engagementInsights', 'audienceInsightsB2B'
+  */
+  lastUsedExperience?: string;
+  /**
    * Customer Insights instance id associated with this object.
   */
   instanceId?: string;
-}
-
-/**
- * Represents Entity Data Profile information.
-*/
-export interface EntityDataProfile {
-  /**
-   * Qualified Entity Name.
-  */
-  qualifiedEntityName?: string;
-  /**
-   * Row count.
-  */
-  rowCount?: number;
-  /**
-   * Quarentine row count
-  */
-  quarantineRowCount?: number;
-  /**
-   * Date for Profiling.
-  */
-  profilingDate?: Date;
-  /**
-   * Profiling attributes.
-  */
-  profiledAttributes?: string;
-  /**
-   * Respresents currupt attributes.
-  */
-  corruptAttributes?: string;
-}
-
-/**
- * The instance creation request.
-*/
-export interface InstancesV2PostRequest extends InstanceCreationRequest {
-}
-
-/**
- * The instance creation request.
-*/
-export interface InstancesV2PostRequest1 extends InstanceCreationRequest {
-}
-
-export interface InstancesInstanceIdV2PatchRequest extends InstanceCreationRequest {
-}
-
-export interface InstancesInstanceIdV2PatchRequest1 extends InstanceCreationRequest {
-}
-
-/**
- * The metadata to use to create the new instance.
-*/
-export interface InstancesCopyPostRequest extends InstanceCopyRequest {
-}
-
-/**
- * The metadata to use to create the new instance.
-*/
-export interface InstancesCopyPostRequest1 extends InstanceCopyRequest {
-}
-
-/**
- * Represents metadata for a measure (or KPI).
-*/
-export interface InstancesInstanceIdManageMeasuresPostRequest extends MeasureMetadata {
-}
-
-/**
- * Represents metadata for a measure (or KPI).
-*/
-export interface InstancesInstanceIdManageMeasuresPostRequest1 extends MeasureMetadata {
-}
-
-/**
- * Represents metadata for a measure (or KPI).
-*/
-export interface InstancesInstanceIdManageMeasuresMeasureNamePutRequest extends MeasureMetadata {
-}
-
-/**
- * Represents metadata for a measure (or KPI).
-*/
-export interface InstancesInstanceIdManageMeasuresMeasureNamePutRequest1 extends MeasureMetadata {
-}
-
-/**
- * Represents a role assignment Metadata.
-*/
-export interface InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest extends
-RoleAssignment {
-}
-
-/**
- * Represents a role assignment Metadata.
-*/
-export interface InstancesInstanceIdRbacPrincipalsPrincipalIdAssignmentPutRequest1 extends
-RoleAssignment {
-}
-
-/**
- * Represents a Relationship
-*/
-export interface InstancesInstanceIdManageRelationshipsPostRequest extends RelationshipMetadata {
-}
-
-/**
- * Represents a Relationship
-*/
-export interface InstancesInstanceIdManageRelationshipsPostRequest1 extends RelationshipMetadata {
-}
-
-/**
- * Represents a Relationship
-*/
-export interface InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest extends
-RelationshipMetadata {
-}
-
-/**
- * Represents a Relationship
-*/
-export interface InstancesInstanceIdManageRelationshipsRelationshipNamePutRequest1 extends
-RelationshipMetadata {
-}
-
-/**
- * Represents search configuration of an instance
-*/
-export interface InstancesInstanceIdManageSearchPutRequest extends InstanceSearchConfiguration {
-}
-
-/**
- * Represents search configuration of an instance
-*/
-export interface InstancesInstanceIdManageSearchPutRequest1 extends InstanceSearchConfiguration {
-}
-
-/**
- * Represents a base Segment Metadata.
-*/
-export interface InstancesInstanceIdManageSegmentsPostRequest extends SegmentMetadata {
-}
-
-/**
- * Represents a base Segment Metadata.
-*/
-export interface InstancesInstanceIdManageSegmentsPostRequest1 extends SegmentMetadata {
-}
-
-/**
- * Represents a base Segment Metadata.
-*/
-export interface InstancesInstanceIdManageSegmentsSegmentNamePutRequest extends SegmentMetadata {
-}
-
-/**
- * Represents a base Segment Metadata.
-*/
-export interface InstancesInstanceIdManageSegmentsSegmentNamePutRequest1 extends SegmentMetadata {
-}
-
-/**
- * Job Creation Request.
-*/
-export interface InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest extends OnDemandJobRequest
-{
-}
-
-/**
- * Job Creation Request.
-*/
-export interface InstancesInstanceIdWorkflowsWorkflowNameJobsPostRequest1 extends
-OnDemandJobRequest {
-}
-
-/**
- * Represents a DAG refresh schedule
-*/
-export interface InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest extends
-WorkflowRefreshSchedule {
-}
-
-/**
- * Represents a DAG refresh schedule
-*/
-export interface InstancesInstanceIdWorkflowsWorkflowNameSchedulesPostRequest1 extends
-WorkflowRefreshSchedule {
 }

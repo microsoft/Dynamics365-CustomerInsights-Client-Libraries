@@ -38,12 +38,6 @@ public class InstanceCopyRequest {
     private ResourceMetadata cdsResourceMetadata;
 
     /**
-     * The byoPbiProvisioningInfo property.
-     */
-    @JsonProperty(value = "byoPbiProvisioningInfo")
-    private ByoPbiProvisioningInfo byoPbiProvisioningInfo;
-
-    /**
      * The isCdsMdlStorageEnabled property.
      */
     @JsonProperty(value = "isCdsMdlStorageEnabled")
@@ -66,6 +60,12 @@ public class InstanceCopyRequest {
      */
     @JsonProperty(value = "isPbiProvisioningRequired")
     private Boolean isPbiProvisioningRequired;
+
+    /**
+     * The isDataverseUpdateRequested property.
+     */
+    @JsonProperty(value = "isDataverseUpdateRequested")
+    private Boolean isDataverseUpdateRequested;
 
     /**
      * Get the instanceIdToCopy value.
@@ -148,26 +148,6 @@ public class InstanceCopyRequest {
     }
 
     /**
-     * Get the byoPbiProvisioningInfo value.
-     *
-     * @return the byoPbiProvisioningInfo value
-     */
-    public ByoPbiProvisioningInfo byoPbiProvisioningInfo() {
-        return this.byoPbiProvisioningInfo;
-    }
-
-    /**
-     * Set the byoPbiProvisioningInfo value.
-     *
-     * @param byoPbiProvisioningInfo the byoPbiProvisioningInfo value to set
-     * @return the InstanceCopyRequest object itself.
-     */
-    public InstanceCopyRequest withByoPbiProvisioningInfo(ByoPbiProvisioningInfo byoPbiProvisioningInfo) {
-        this.byoPbiProvisioningInfo = byoPbiProvisioningInfo;
-        return this;
-    }
-
-    /**
      * Get the isCdsMdlStorageEnabled value.
      *
      * @return the isCdsMdlStorageEnabled value
@@ -244,6 +224,26 @@ public class InstanceCopyRequest {
      */
     public InstanceCopyRequest withIsPbiProvisioningRequired(Boolean isPbiProvisioningRequired) {
         this.isPbiProvisioningRequired = isPbiProvisioningRequired;
+        return this;
+    }
+
+    /**
+     * Get the isDataverseUpdateRequested value.
+     *
+     * @return the isDataverseUpdateRequested value
+     */
+    public Boolean isDataverseUpdateRequested() {
+        return this.isDataverseUpdateRequested;
+    }
+
+    /**
+     * Set the isDataverseUpdateRequested value.
+     *
+     * @param isDataverseUpdateRequested the isDataverseUpdateRequested value to set
+     * @return the InstanceCopyRequest object itself.
+     */
+    public InstanceCopyRequest withIsDataverseUpdateRequested(Boolean isDataverseUpdateRequested) {
+        this.isDataverseUpdateRequested = isDataverseUpdateRequested;
         return this;
     }
 

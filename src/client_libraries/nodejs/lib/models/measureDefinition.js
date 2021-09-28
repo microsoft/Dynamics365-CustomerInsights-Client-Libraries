@@ -29,7 +29,7 @@ class MeasureDefinition {
    * 'exponent', 'today', 'now'
    * @property {object} [filteringCriteria]
    * @property {string} [filteringCriteria.kind] Possible values include:
-   * 'default', 'engagement'
+   * 'post', 'default', 'consent', 'engagement'
    * @property {string} [filteringCriteria.logicalOperator] Possible values
    * include: 'and', 'or'
    * @property {string} [filteringCriteria.attribute] Gets the Attribute of the
@@ -39,7 +39,7 @@ class MeasureDefinition {
    * 'lessThan', 'lessThanOrEqualTo', 'any', 'contains', 'startsWith',
    * 'endsWith', 'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast',
    * 'isBetween', 'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf',
-   * 'dayOfWeek', 'timeAt'
+   * 'dayOfWeek', 'timeAt', 'childOf', 'parentOf'
    * @property {array} [filteringCriteria.childCriterias] Gets the list of
    * Child criteria of segment.
    * @property {string} [filteringCriteria.value] Gets the Value in criteria.

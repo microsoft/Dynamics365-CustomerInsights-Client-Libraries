@@ -11,7 +11,8 @@ from msrest.serialization import Model
 class SegmentMembershipCriteria(Model):
     """Represents a base Segment Query.
 
-    :param kind: Possible values include: 'default', 'engagement'
+    :param kind: Possible values include: 'post', 'default', 'consent',
+     'engagement'
     :type kind: str or ~dynamics.customerinsights.api.models.enum
     :param logical_operator: Possible values include: 'and', 'or'
     :type logical_operator: str or ~dynamics.customerinsights.api.models.enum
@@ -23,7 +24,7 @@ class SegmentMembershipCriteria(Model):
      'lessThanOrEqualTo', 'any', 'contains', 'startsWith', 'endsWith',
      'isNull', 'isNotNull', 'all', 'isIn', 'isWithinLast', 'isBetween',
      'isNotBetween', 'yearToDate', 'dayOf', 'monthOf', 'yearOf', 'dayOfWeek',
-     'timeAt'
+     'timeAt', 'childOf', 'parentOf'
     :type comparison_operator: str or
      ~dynamics.customerinsights.api.models.enum
     :param child_criterias: Gets the list of Child criteria of segment.

@@ -45,6 +45,12 @@ public class MeasureAggregate {
     private Integer order;
 
     /**
+     * Possible values include: 'rollup'.
+     */
+    @JsonProperty(value = "operationScope")
+    private String operationScope;
+
+    /**
      * Gets list of aggregates of the measure.
      */
     @JsonProperty(value = "aggregates")
@@ -153,6 +159,26 @@ public class MeasureAggregate {
      */
     public MeasureAggregate withOrder(Integer order) {
         this.order = order;
+        return this;
+    }
+
+    /**
+     * Get possible values include: 'rollup'.
+     *
+     * @return the operationScope value
+     */
+    public String operationScope() {
+        return this.operationScope;
+    }
+
+    /**
+     * Set possible values include: 'rollup'.
+     *
+     * @param operationScope the operationScope value to set
+     * @return the MeasureAggregate object itself.
+     */
+    public MeasureAggregate withOperationScope(String operationScope) {
+        this.operationScope = operationScope;
         return this;
     }
 

@@ -46,7 +46,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
         /// 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource',
         /// 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity',
-        /// 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'</param>
+        /// 'segmentMembership', 'firstParty', 'hierarchy', 'contact',
+        /// 'semanticEntity', 'attachSynapse', 'transform'</param>
         /// <param name="shouldUseSparkSasAuth">Gets a value indicating whether
         /// Sas Auth is used for the entity.</param>
         /// <param name="datasourceId">Gets the original datasourceid of this
@@ -57,7 +58,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'genericPrediction', 'enrichment', 'insights', 'derivedEntity',
         /// 'corrupt', 'selfConflation', 'conflationManualReview',
         /// 'selfConflationManualReview', 'semanticActivity',
-        /// 'segmentMembership'</param>
+        /// 'segmentMembership', 'hierarchy', 'dataLineage', 'transform',
+        /// 'semanticEntity'</param>
         /// <param name="attributes">Gets entity attributes.</param>
         /// <param name="keys">Gets the keys of the entity.</param>
         /// <param name="relationships">Gets entity relationships.</param>
@@ -155,7 +157,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'genericPrediction', 'attachCds', 'unknown', 'powerPlatform',
         /// 'datahub', 'insights', 'derivedEntity', 'powerPlatformSource',
         /// 'powerPlatformBYDL', 'powerPlatformBYDLSource', 'semanticActivity',
-        /// 'segmentMembership', 'cjoData', 'eiData', 'hierarchy'
+        /// 'segmentMembership', 'firstParty', 'hierarchy', 'contact',
+        /// 'semanticEntity', 'attachSynapse', 'transform'
         /// </summary>
         [JsonProperty(PropertyName = "dataflowType")]
         public string DataflowType { get; set; }
@@ -180,7 +183,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// 'enrichment', 'insights', 'derivedEntity', 'corrupt',
         /// 'selfConflation', 'conflationManualReview',
         /// 'selfConflationManualReview', 'semanticActivity',
-        /// 'segmentMembership'
+        /// 'segmentMembership', 'hierarchy', 'dataLineage', 'transform',
+        /// 'semanticEntity'
         /// </summary>
         [JsonProperty(PropertyName = "entityType")]
         public string EntityType { get; set; }

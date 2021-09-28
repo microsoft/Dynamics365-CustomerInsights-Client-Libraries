@@ -36,6 +36,8 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// <param name="isTemplate">Check if measure metadata is a
         /// template</param>
         /// <param name="templateId">Gets the template ID for templates</param>
+        /// <param name="isCreatedFromTemplate">Check if measure metadata is
+        /// created from a template</param>
         /// <param name="version">Version number of this object.</param>
         /// <param name="updatedBy">UPN of the user who last updated this
         /// record.</param>
@@ -46,7 +48,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// created.</param>
         /// <param name="instanceId">Customer Insights instance id associated
         /// with this object.</param>
-        public MeasureMetadata(string displayName = default(string), string name = default(string), string description = default(string), MeasureDefinition definition = default(MeasureDefinition), Evaluation latestEvaluation = default(Evaluation), ScalarOutput output = default(ScalarOutput), EvaluationStats evaluationStats = default(EvaluationStats), StringInfo errorDescription = default(StringInfo), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<Evaluation> evaluationHistory = default(IList<Evaluation>), IList<ScalarOutput> outputHistory = default(IList<ScalarOutput>), bool? isTemplate = default(bool?), System.Guid? templateId = default(System.Guid?), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
+        public MeasureMetadata(string displayName = default(string), string name = default(string), string description = default(string), MeasureDefinition definition = default(MeasureDefinition), Evaluation latestEvaluation = default(Evaluation), ScalarOutput output = default(ScalarOutput), EvaluationStats evaluationStats = default(EvaluationStats), StringInfo errorDescription = default(StringInfo), SqlValidationStats sqlValidationStats = default(SqlValidationStats), IList<Evaluation> evaluationHistory = default(IList<Evaluation>), IList<ScalarOutput> outputHistory = default(IList<ScalarOutput>), bool? isTemplate = default(bool?), System.Guid? templateId = default(System.Guid?), bool? isCreatedFromTemplate = default(bool?), long? version = default(long?), string updatedBy = default(string), System.DateTime? updatedUtc = default(System.DateTime?), string createdBy = default(string), System.DateTime? createdUtc = default(System.DateTime?), System.Guid? instanceId = default(System.Guid?))
         {
             DisplayName = displayName;
             Name = name;
@@ -61,6 +63,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
             OutputHistory = outputHistory;
             IsTemplate = isTemplate;
             TemplateId = templateId;
+            IsCreatedFromTemplate = isCreatedFromTemplate;
             Version = version;
             UpdatedBy = updatedBy;
             UpdatedUtc = updatedUtc;
@@ -147,6 +150,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "templateId")]
         public System.Guid? TemplateId { get; set; }
+
+        /// <summary>
+        /// Gets or sets check if measure metadata is created from a template
+        /// </summary>
+        [JsonProperty(PropertyName = "isCreatedFromTemplate")]
+        public bool? IsCreatedFromTemplate { get; set; }
 
         /// <summary>
         /// Gets or sets version number of this object.

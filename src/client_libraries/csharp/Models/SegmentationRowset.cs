@@ -28,14 +28,16 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// Initializes a new instance of the SegmentationRowset class.
         /// </summary>
         /// <param name="rowsetOperation">Possible values include: 'union',
-        /// 'intersect', 'except', 'none'</param>
+        /// 'intersect', 'except', 'none', 'include', 'exclude'</param>
         /// <param name="paths">Gets the relationship path to use for segment
         /// criteria.</param>
-        public SegmentationRowset(string rowsetOperation = default(string), SegmentMembershipCriteria criteria = default(SegmentMembershipCriteria), IList<IList<string>> paths = default(IList<IList<string>>))
+        /// <param name="rowsetId">Gets the rowset Id in the rowsets.</param>
+        public SegmentationRowset(string rowsetOperation = default(string), SegmentMembershipCriteria criteria = default(SegmentMembershipCriteria), IList<IList<string>> paths = default(IList<IList<string>>), System.Guid? rowsetId = default(System.Guid?))
         {
             RowsetOperation = rowsetOperation;
             Criteria = criteria;
             Paths = paths;
+            RowsetId = rowsetId;
             CustomInit();
         }
 
@@ -46,7 +48,7 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'union', 'intersect',
-        /// 'except', 'none'
+        /// 'except', 'none', 'include', 'exclude'
         /// </summary>
         [JsonProperty(PropertyName = "rowsetOperation")]
         public string RowsetOperation { get; set; }
@@ -61,6 +63,12 @@ namespace Microsoft.Dynamics.CustomerInsights.Api.Models
         /// </summary>
         [JsonProperty(PropertyName = "paths")]
         public IList<IList<string>> Paths { get; set; }
+
+        /// <summary>
+        /// Gets the rowset Id in the rowsets.
+        /// </summary>
+        [JsonProperty(PropertyName = "rowsetId")]
+        public System.Guid? RowsetId { get; set; }
 
     }
 }

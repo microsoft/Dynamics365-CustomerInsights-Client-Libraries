@@ -21,9 +21,21 @@ class DatasourceEntityInformation {
    * 'unifiedActivity', 'segment', 'intelligence', 'genericPrediction',
    * 'enrichment', 'insights', 'derivedEntity', 'corrupt', 'selfConflation',
    * 'conflationManualReview', 'selfConflationManualReview',
-   * 'semanticActivity', 'segmentMembership'
+   * 'semanticActivity', 'segmentMembership', 'hierarchy', 'dataLineage',
+   * 'transform', 'semanticEntity'
    * @property {string} [timestampFieldName] Time stamp field name.
    * @property {array} [semanticLabels] Semantic labels by attribute name.
+   * @property {object} [entityEnrichmentInfo]
+   * @property {boolean} [entityEnrichmentInfo.hasEnrichedEntity] Gets a value
+   * indicating whether there is an enriched entity for the ds entity.
+   * @property {string} [entityEnrichmentInfo.enrichedEntityName] Name of the
+   * enriched entity.
+   * @property {array} [entityEnrichmentInfo.configuredEnrichments] Gets the
+   * list configured enrichments on the ds entity.
+   * @property {number} [deltaTableVersion] Gets theDeltaTable version of this
+   * entity.
+   * @property {boolean} [autoGenerateCDMDefinition] Specifies if CDM
+   * definition for this entity should be auto generated.
    */
   constructor() {
   }
@@ -83,6 +95,28 @@ class DatasourceEntityInformation {
                     className: 'AttributeSemanticInformation'
                   }
               }
+            }
+          },
+          entityEnrichmentInfo: {
+            required: false,
+            serializedName: 'entityEnrichmentInfo',
+            type: {
+              name: 'Composite',
+              className: 'EntityEnrichmentInformation'
+            }
+          },
+          deltaTableVersion: {
+            required: false,
+            serializedName: 'deltaTableVersion',
+            type: {
+              name: 'Number'
+            }
+          },
+          autoGenerateCDMDefinition: {
+            required: false,
+            serializedName: 'autoGenerateCDMDefinition',
+            type: {
+              name: 'Boolean'
             }
           }
         }

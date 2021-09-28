@@ -13,6 +13,20 @@
 class PortalSettings {
   /**
    * Create a PortalSettings.
+   * @property {object} [coachmarks]
+   * @property {object} [coachmarks.history]
+   * @property {string} [coachmarks.history.id] Gets history id.
+   * @property {boolean} [coachmarks.history.viewed] Checks for already
+   * visited.
+   * @property {object} [banners]
+   * @property {object} [banners.history]
+   * @property {string} [banners.history.id] Gets history id.
+   * @property {boolean} [banners.history.viewed] Checks for already visited.
+   * @property {object} [notifications]
+   * @property {object} [notifications.history]
+   * @property {string} [notifications.history.id] Gets history id.
+   * @property {boolean} [notifications.history.viewed] Checks for already
+   * visited.
    * @property {boolean} [isExistingUser] Gets a value indicating whether the
    * user has seen the all apps (welcome) page.
    * @property {boolean} [showDefaultHomePage] Gets a value indicating whether
@@ -37,6 +51,30 @@ class PortalSettings {
         name: 'Composite',
         className: 'PortalSettings',
         modelProperties: {
+          coachmarks: {
+            required: false,
+            serializedName: 'coachmarks',
+            type: {
+              name: 'Composite',
+              className: 'Coachmarks'
+            }
+          },
+          banners: {
+            required: false,
+            serializedName: 'banners',
+            type: {
+              name: 'Composite',
+              className: 'Banners'
+            }
+          },
+          notifications: {
+            required: false,
+            serializedName: 'notifications',
+            type: {
+              name: 'Composite',
+              className: 'Notifications'
+            }
+          },
           isExistingUser: {
             required: false,
             nullable: true,

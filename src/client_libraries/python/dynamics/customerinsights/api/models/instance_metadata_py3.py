@@ -11,6 +11,16 @@ from msrest.serialization import Model
 class InstanceMetadata(Model):
     """The instance metadata.
 
+    :param is_b2_b:
+    :type is_b2_b: bool
+    :param is_b2_c:
+    :type is_b2_c: bool
+    :param is_byo_pbi:
+    :type is_byo_pbi: bool
+    :param is_byo_synapse:
+    :type is_byo_synapse: bool
+    :param is_cds_mdl_or_cds_byodl:
+    :type is_cds_mdl_or_cds_byodl: bool
     :param name: Gets the user defined instance name.
     :type name: str
     :param provisioning_state: Possible values include: 'new', 'creating',
@@ -46,6 +56,15 @@ class InstanceMetadata(Model):
      done if this is a trial instance
     :type trial_extension_details:
      list[~dynamics.customerinsights.api.models.TrialExtensionDetails]
+    :param configured_workspaces: Gets the Workspace type, whether B2B or B2C
+     (Main)
+    :type configured_workspaces: list[str]
+    :param platform_type: Field to store the Insights Partner who are
+     onboarded to Insights Platform.
+    :type platform_type: str
+    :param azure_region: Gets the Azure Region where the scale unit resides
+     (not persisted in store)
+    :type azure_region: str
     :param version: Version number of this object.
     :type version: long
     :param updated_by: UPN of the user who last updated this record.
@@ -62,6 +81,11 @@ class InstanceMetadata(Model):
     """
 
     _attribute_map = {
+        'is_b2_b': {'key': 'isB2B', 'type': 'bool'},
+        'is_b2_c': {'key': 'isB2C', 'type': 'bool'},
+        'is_byo_pbi': {'key': 'isByoPbi', 'type': 'bool'},
+        'is_byo_synapse': {'key': 'isByoSynapse', 'type': 'bool'},
+        'is_cds_mdl_or_cds_byodl': {'key': 'isCdsMdlOrCdsByodl', 'type': 'bool'},
         'name': {'key': 'name', 'type': 'str'},
         'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
         'instance_type': {'key': 'instanceType', 'type': 'str'},
@@ -74,6 +98,9 @@ class InstanceMetadata(Model):
         'trial_extension_history': {'key': 'trialExtensionHistory', 'type': 'str'},
         'is_refresh_credential_required': {'key': 'isRefreshCredentialRequired', 'type': 'bool'},
         'trial_extension_details': {'key': 'trialExtensionDetails', 'type': '[TrialExtensionDetails]'},
+        'configured_workspaces': {'key': 'configuredWorkspaces', 'type': '[str]'},
+        'platform_type': {'key': 'platformType', 'type': 'str'},
+        'azure_region': {'key': 'azureRegion', 'type': 'str'},
         'version': {'key': 'version', 'type': 'long'},
         'updated_by': {'key': 'updatedBy', 'type': 'str'},
         'updated_utc': {'key': 'updatedUtc', 'type': 'iso-8601'},
@@ -82,8 +109,13 @@ class InstanceMetadata(Model):
         'instance_id': {'key': 'instanceId', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str=None, provisioning_state=None, instance_type=None, refresh_schedule=None, expiry_time_utc=None, region: str=None, cds_org_info=None, cds_mdl_info=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, is_refresh_credential_required: bool=None, trial_extension_details=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
+    def __init__(self, *, is_b2_b: bool=None, is_b2_c: bool=None, is_byo_pbi: bool=None, is_byo_synapse: bool=None, is_cds_mdl_or_cds_byodl: bool=None, name: str=None, provisioning_state=None, instance_type=None, refresh_schedule=None, expiry_time_utc=None, region: str=None, cds_org_info=None, cds_mdl_info=None, max_trial_extensions_allowed: int=None, trial_extension_history: str=None, is_refresh_credential_required: bool=None, trial_extension_details=None, configured_workspaces=None, platform_type: str=None, azure_region: str=None, version: int=None, updated_by: str=None, updated_utc=None, created_by: str=None, created_utc=None, instance_id: str=None, **kwargs) -> None:
         super(InstanceMetadata, self).__init__(**kwargs)
+        self.is_b2_b = is_b2_b
+        self.is_b2_c = is_b2_c
+        self.is_byo_pbi = is_byo_pbi
+        self.is_byo_synapse = is_byo_synapse
+        self.is_cds_mdl_or_cds_byodl = is_cds_mdl_or_cds_byodl
         self.name = name
         self.provisioning_state = provisioning_state
         self.instance_type = instance_type
@@ -96,6 +128,9 @@ class InstanceMetadata(Model):
         self.trial_extension_history = trial_extension_history
         self.is_refresh_credential_required = is_refresh_credential_required
         self.trial_extension_details = trial_extension_details
+        self.configured_workspaces = configured_workspaces
+        self.platform_type = platform_type
+        self.azure_region = azure_region
         self.version = version
         self.updated_by = updated_by
         self.updated_utc = updated_utc

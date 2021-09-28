@@ -27,7 +27,8 @@ class IC360EntityModel {
    * 'attachCds', 'unknown', 'powerPlatform', 'datahub', 'insights',
    * 'derivedEntity', 'powerPlatformSource', 'powerPlatformBYDL',
    * 'powerPlatformBYDLSource', 'semanticActivity', 'segmentMembership',
-   * 'cjoData', 'eiData', 'hierarchy'
+   * 'firstParty', 'hierarchy', 'contact', 'semanticEntity', 'attachSynapse',
+   * 'transform'
    * @property {array} [entities] Gets entities in the model.
    */
   constructor() {
